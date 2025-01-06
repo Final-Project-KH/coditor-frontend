@@ -1,0 +1,224 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AxiosApi from "../../../api/AxiosApi";
+import {
+  Wrap,
+  Container,
+  LogoContainer,
+  Logo,
+  Title,
+  StyledLink,
+  InputContainer,
+  InputTitle,
+  InputId,
+  InputEmail,
+  InputUser,
+  InputPw,
+  InputPwDiv,
+  InputStyledDiv,
+  InputPwDivToggle,
+  SignUp,
+  NoticeContainer,
+  Notice,
+  NoticeLink,
+} from "../../styles/signup/signup";
+
+const Signup = () => {
+  const navigate = useNavigate();
+  // 키보드 입력
+  const [inputUserId, setInputUserId] = useState("");
+  const [inputPw, setInputPw] = useState("");
+  const [inputConPw, setInputConPw] = useState("");
+  const [inputName, setInputName] = useState("");
+  const [inputEmail, setInputEmail] = useState("");
+  // 오류 메시지
+  const [userIdMessage, setUserIdMessage] = useState("");
+  const [pwMessage, setPwMessage] = useState("");
+  const [nameMessage, setNameMessage] = useState("");
+  const [conPwMessage, setConPwMessage] = useState("");
+  const [emailMessage, setEmailMessage] = useState("");
+  // 유효성 검사
+  const [isUserId, setIsUserId] = useState(false);
+  const [isEmail, setIsEmail] = useState(false);
+  const [isPw, setIsPw] = useState(false);
+  const [isConPw, setIsConPw] = useState(false);
+  const [isName, setIsName] = useState(false);
+
+  const onChangeUserId = (e) => {
+    setInputUserId(e.target.value);
+    const idRegex = /^[a-zA-Z0-9]{6,16}$/;
+    if (!idRegex.test(e.target.value)) {
+      setUserIdMessage("아이디 형식이 올바르지 않습니다.");
+      setIsUserId(false);
+    } else {
+      setUserIdMessage("올바른 형식입니다.");
+      setIsUserId(true);
+    }
+  };
+  const onChangeEmail = (e) => {
+    setInputEmail(e.target.value);
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailRegex.test(e.target.value)) {
+      setEmailMessage("이메일 형식이 올바르지 않습니다.");
+      setIsEmail(false);
+    } else {
+      setEmailMessage("올바른 형식입니다.");
+      setIsEmail(true); // 나중에 Email Check 추가해야함
+    }
+  };
+  const onChangePw = (e) => {
+    const passwordRegex =
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+    const passwordCurrent = e.target.value;
+    setInputPw(passwordCurrent);
+    if (!passwordRegex.test(passwordCurrent)) {
+      setPwMessage("비밀번호 형식이 올바르지 않습니다.");
+      setIsPw(false);
+    } else {
+      setPwMessage("올바른 형식입니다.");
+      setIsPw(true);
+    }
+  };
+  const onChangeConPw = (e) => {
+    const passwordCurrent = e.target.value;
+    setInputConPw(passwordCurrent);
+    if (passwordCurrent !== inputPw) {
+      setConPwMessage("비밀번호가 일치하지 않습니다.");
+      setIsConPw(false);
+    } else {
+      setConPwMessage("비밀번호가 일치합니다.");
+      setIsConPw(true);
+    }
+  };
+  const onChangeName = (e) => {
+    const nameRegex = /^[a-zA-Z가-힣]{4,16}$/;
+    const nameCurrent = e.target.value;
+    setInputName(nameCurrent);
+    if (!nameRegex.test(nameCurrent)) {
+      setNameMessage("닉네임 형식이 올바르지 않습니다.");
+      setIsName(false);
+    } else {
+      setNameMessage("올바른 형식입니다.");
+      setIsName(true);
+    }
+  };
+  const onClickSignUp = async () => {
+    try {
+      const memberReg = await AxiosApi.signup(
+        inputUserId,
+        inputEmail,
+        inputPw,
+        inputName
+      );
+      console.log(memberReg.data);
+      if (memberReg.data) {
+        navigate("/");
+      } else {
+        alert("회원 가입에 실패했습니다.");
+      }
+    } catch (e) {
+      alert("서버가 응답하지 않습니다.");
+    }
+  };
+  const setViewportHeight = () => {
+    const vh = window.innerHeight * 0.01; // 1 vh에 해당하는 값 계산
+    document.documentElement.style.setProperty("--vh", `${vh}px`); // CSS 변수에 설ㄹ정
+  };
+
+  setViewportHeight();
+  window.addEventListener("resize", setViewportHeight);
+
+  const [isVisiblePwd, setIsVisiblePwd] = useState(false);
+  const [isVisibleConPwd, setIsVisibleConPwd] = useState(false);
+
+  const toggleVisiblePwd = () => {
+    setIsVisiblePwd(!isVisiblePwd);
+  };
+  const toggleVisibleConPwd = () => {
+    setIsVisibleConPwd(!isVisibleConPwd);
+  };
+
+  return (
+    <Wrap>
+      <Container>
+        <LogoContainer>
+          <Logo>
+            <StyledLink to="/"></StyledLink>
+          </Logo>
+          <Title>
+            <StyledLink to="/"></StyledLink>
+            coditor
+          </Title>
+        </LogoContainer>
+        <InputContainer>
+          <InputTitle>회원가입</InputTitle>
+          <InputStyledDiv>아이디</InputStyledDiv>
+          <InputId
+            type="userId"
+            placeholder="아이디 입력"
+            value={inputUserId}
+            onChange={onChangeUserId}
+          ></InputId>
+          <InputStyledDiv>이메일</InputStyledDiv>
+          <InputEmail
+            type="email"
+            placeholder="이메일 주소 입력"
+            value={inputEmail}
+            onChange={onChangeEmail}
+          ></InputEmail>
+          <InputStyledDiv>비밀번호</InputStyledDiv>
+          <InputPwDiv>
+            <InputPw
+              type={isVisiblePwd ? "text" : "password"}
+              placeholder="영문자,숫자,특수문자 포함 8~20자"
+              value={inputPw}
+              onChange={onChangePw}
+            ></InputPw>
+            <InputPwDivToggle
+              isVisible={isVisiblePwd}
+              onClick={() => toggleVisiblePwd()}
+            />
+          </InputPwDiv>
+          <InputPwDiv>
+            <InputPw
+              type={isVisibleConPwd ? "text" : "password"}
+              placeholder="비밀번호 확인"
+              value={inputConPw}
+              onChange={onChangeConPw}
+            ></InputPw>
+            <InputPwDivToggle
+              isVisible={isVisibleConPwd}
+              onClick={() => toggleVisibleConPwd()}
+            />
+          </InputPwDiv>
+          <InputStyledDiv>닉네임</InputStyledDiv>
+          <InputUser
+            type="text"
+            placeholder="닉네임 입력"
+            value={inputName}
+            onChange={onChangeName}
+          ></InputUser>
+          {isEmail && isPw && isConPw && isName ? (
+            <SignUp enabled onClick={onClickSignUp}>
+              회원가입하기
+            </SignUp>
+          ) : (
+            <SignUp disabled>회원가입하기</SignUp>
+          )}
+        </InputContainer>
+        <NoticeContainer>
+          <Notice>
+            {/* 공지 및 안내 페이지 링크 연결 미구현 */}
+            <NoticeLink to="#"></NoticeLink>
+            서비스 이용약관
+          </Notice>
+          <Notice>
+            <NoticeLink to="#"></NoticeLink>
+            개인정보 처리방침
+          </Notice>
+        </NoticeContainer>
+      </Container>
+    </Wrap>
+  );
+};
+export default Signup;
