@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import AxiosApi from "../../../api/AxiosApi";
 import {
   Wrap,
@@ -112,6 +112,7 @@ const Signup = () => {
       );
       console.log(memberReg.data);
       if (memberReg.data) {
+        alert("회원 가입에 성공했습니다.");
         navigate("/");
       } else {
         alert("회원 가입에 실패했습니다.");
@@ -154,6 +155,7 @@ const Signup = () => {
           <InputTitle>회원가입</InputTitle>
           <InputStyledDiv>아이디</InputStyledDiv>
           <InputId
+            autoComplete="off"
             type="userId"
             placeholder="아이디 입력"
             value={inputUserId}
@@ -161,6 +163,7 @@ const Signup = () => {
           ></InputId>
           <InputStyledDiv>이메일</InputStyledDiv>
           <InputEmail
+            autoComplete="off"
             type="email"
             placeholder="이메일 주소 입력"
             value={inputEmail}

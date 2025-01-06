@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import AxiosApi from "../../../api/AxiosApi";
-import { setLoginData, setError } from "../../../redux/slice/authSlice";
+import {setLoginData, setError} from "../../../redux/slice/authSlice";
 import JwtDecoding from "../../../api/JwtDecode";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {
   Wrap,
   Container,
@@ -38,7 +38,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { error, nickname } = useSelector((state) => state.auth);
+  const {error, nickname} = useSelector((state) => state.auth);
 
   const handleInputChange = (e, setState, setValidState) => {
     setState(e.target.value);

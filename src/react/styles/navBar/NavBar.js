@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {css} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -102,16 +102,6 @@ export const MenuTitle = styled.div.attrs({
   position: relative;
   justify-content: center;
   align-items: center;
-  & + &::before {
-    content: "";
-    position: absolute;
-    left: -14px;
-    bottom: 47px;
-    width: 25px;
-    height: 2px;
-    background-color: #dadcdf;
-    transform: rotate(90deg);
-  }
 `;
 
 export const MenuBox = styled.div.attrs({
