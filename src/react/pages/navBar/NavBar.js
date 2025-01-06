@@ -6,7 +6,6 @@ import {
   LogoContainer,
   Logo,
   StyledLink,
-  Title,
   MenuContainer,
   MenuTitle,
   MenuBox,
@@ -123,21 +122,16 @@ const NavBar = () => {
           <Logo>
             <StyledLink to="/"></StyledLink>
           </Logo>
-          <Title>
-            <StyledLink to="/"></StyledLink>
-            coditor
-          </Title>
         </LogoContainer>
         <MenuContainer>
           {/* 메뉴 컨테이너 -> 선택 메뉴 포함 */}
-          <MenuTitle ref={(el) => (menuRefs.current["isAboutOpen"] = el)}>
+          <MenuTitle
+            ref={(el) => (menuRefs.current["isAboutOpen"] = el)}
+            onMouseEnter={() => toggleMenu("isAboutOpen")}
+            onMouseLeave={() => toggleMenu("isAboutOpen")}
+          >
             <MenuBox isOpen={menuState.isAboutOpen}>
-              <MenuButton
-                isOpen={menuState.isAboutOpen}
-                onClick={() => toggleMenu("isAboutOpen")}
-              >
-                about
-              </MenuButton>
+              <MenuButton isOpen={menuState.isAboutOpen}>about</MenuButton>
             </MenuBox>
             {(menuState.isAboutOpen || animatingMenus.isAboutOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <AboutBar
@@ -146,14 +140,13 @@ const NavBar = () => {
               ></AboutBar>
             )}
           </MenuTitle>
-          <MenuTitle ref={(el) => (menuRefs.current["isStudyOpen"] = el)}>
+          <MenuTitle
+            ref={(el) => (menuRefs.current["isStudyOpen"] = el)}
+            onMouseEnter={() => toggleMenu("isStudyOpen")}
+            onMouseLeave={() => toggleMenu("isStudyOpen")}
+          >
             <MenuBox isOpen={menuState.isStudyOpen}>
-              <MenuButton
-                isOpen={menuState.isStudyOpen}
-                onClick={() => toggleMenu("isStudyOpen")}
-              >
-                study
-              </MenuButton>
+              <MenuButton isOpen={menuState.isStudyOpen}>study</MenuButton>
             </MenuBox>
             {(menuState.isStudyOpen || animatingMenus.isStudyOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <StudyBar
@@ -162,12 +155,13 @@ const NavBar = () => {
               ></StudyBar>
             )}
           </MenuTitle>
-          <MenuTitle ref={(el) => (menuRefs.current["isCodingTestOpen"] = el)}>
+          <MenuTitle
+            ref={(el) => (menuRefs.current["isCodingTestOpen"] = el)}
+            onMouseEnter={() => toggleMenu("isCodingTestOpen")}
+            onMouseLeave={() => toggleMenu("isCodingTestOpen")}
+          >
             <MenuBox isOpen={menuState.isCodingTestOpen}>
-              <MenuButton
-                isOpen={menuState.isCodingTestOpen}
-                onClick={() => toggleMenu("isCodingTestOpen")}
-              >
+              <MenuButton isOpen={menuState.isCodingTestOpen}>
                 coding test
               </MenuButton>
             </MenuBox>
@@ -179,12 +173,13 @@ const NavBar = () => {
               ></CodingTestBar>
             )}
           </MenuTitle>
-          <MenuTitle ref={(el) => (menuRefs.current["isCommunityOpen"] = el)}>
+          <MenuTitle
+            ref={(el) => (menuRefs.current["isCommunityOpen"] = el)}
+            onMouseEnter={() => toggleMenu("isCommunityOpen")}
+            onMouseLeave={() => toggleMenu("isCommunityOpen")}
+          >
             <MenuBox isOpen={menuState.isCommunityOpen}>
-              <MenuButton
-                isOpen={menuState.isCommunityOpen}
-                onClick={() => toggleMenu("isCommunityOpen")}
-              >
+              <MenuButton isOpen={menuState.isCommunityOpen}>
                 community
               </MenuButton>
             </MenuBox>
@@ -196,14 +191,13 @@ const NavBar = () => {
               ></CommunityBar>
             )}
           </MenuTitle>
-          <MenuTitle ref={(el) => (menuRefs.current["isMoreOpen"] = el)}>
+          <MenuTitle
+            ref={(el) => (menuRefs.current["isMoreOpen"] = el)}
+            onMouseEnter={() => toggleMenu("isMoreOpen")}
+            onMouseLeave={() => toggleMenu("isMoreOpen")}
+          >
             <MenuBox isOpen={menuState.isMoreOpen}>
-              <MenuButton
-                isOpen={menuState.isMoreOpen}
-                onClick={() => toggleMenu("isMoreOpen")}
-              >
-                more
-              </MenuButton>
+              <MenuButton isOpen={menuState.isMoreOpen}>more</MenuButton>
             </MenuBox>
             {(menuState.isMoreOpen || animatingMenus.isMoreOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <MoreBar
@@ -212,14 +206,13 @@ const NavBar = () => {
               ></MoreBar>
             )}
           </MenuTitle>
-          <MenuTitle ref={(el) => (menuRefs.current["isCsOpen"] = el)}>
+          <MenuTitle
+            ref={(el) => (menuRefs.current["isCsOpen"] = el)}
+            onMouseEnter={() => toggleMenu("isCsOpen")}
+            onMouseLeave={() => toggleMenu("isCsOpen")}
+          >
             <MenuBox isOpen={menuState.isCsOpen}>
-              <MenuButton
-                isOpen={menuState.isCsOpen}
-                onClick={() => toggleMenu("isCsOpen")}
-              >
-                cs
-              </MenuButton>
+              <MenuButton isOpen={menuState.isCsOpen}>cs</MenuButton>
             </MenuBox>
             {(menuState.isCsOpen || animatingMenus.isCsOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <CsBar
@@ -227,9 +220,6 @@ const NavBar = () => {
                 closeMenu={() => toggleMenu("isCsOpen")} // closeMenu 함수 전달
               ></CsBar>
             )}
-          </MenuTitle>
-          <MenuTitle>
-            <MenuButton>user</MenuButton>
           </MenuTitle>
         </MenuContainer>
         <LoginContainer>

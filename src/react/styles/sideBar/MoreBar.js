@@ -9,9 +9,12 @@ export const Container = styled.div.attrs({
   flex-direction: row;
   position: fixed;
   top: 100px;
-  left: 0px;
-  background-color: yellow;
+  justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
   overflow: hidden;
+  border-bottom: 1px solid #ddd;
   ${(props) =>
     props.isOpen
       ? css`
@@ -27,13 +30,13 @@ const expandHeight = keyframes`
     opacity: 0;
   }
   100% {
-    height: 300px;
+    height: 430px;
     opacity: 1;
   }
 `;
 const collapseHeight = keyframes`
   0% {
-    height: 300px;
+    height: 430px;
     opacity: 1;
   }
   100% {
@@ -124,42 +127,57 @@ export const CloseButton = styled.button.attrs({
           }
         `}
 `;
-export const LogoContainer = styled.div.attrs({
-  id: "logocontainer",
-})`
-  width: 20%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  position: relative;
-`;
 export const MenuContainer = styled.div.attrs({
   id: "menucontainer",
 })`
-  width: 60%;
+  width: 100%;
+  max-width: 1280px;
   height: 100%;
   display: flex;
   flex-direction: row;
   position: relative;
   justify-content: space-between;
 `;
+export const MenuColumn = styled.div.attrs({
+  id: "menucolumn",
+})`
+  width: 33%;
+  padding-top: 55px;
+`;
 export const MenuTitle = styled.div.attrs({
   id: "menutitle",
 })`
-  width: 14%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
   justify-content: flex-start;
-  align-items: center;
+  align-items: left;
+  font-family: "bold", sans-serif;
+  font-size: 18px;
+  margin: 10px;
 `;
-export const LoginContainer = styled.div.attrs({
-  id: "logincontainer",
+export const MenuContents = styled.div.attrs({
+  id: "menucontents",
 })`
-  width: 20%;
-  height: 100%;
   display: flex;
   flex-direction: row;
   position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
+  margin: 8px;
+`;
+export const OutLink = styled.div.attrs({
+  id: "outlink",
+})`
+  margin-left: 10px;
+  top: 1px;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/outlink.png");
 `;

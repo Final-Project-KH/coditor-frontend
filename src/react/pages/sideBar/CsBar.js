@@ -1,29 +1,23 @@
 import React, { useState, useEffect } from "react";
 import {
   Container,
-  CloseButton,
-  LogoContainer,
   MenuContainer,
+  MenuColumn,
   MenuTitle,
-  LoginContainer,
+  MenuContents,
 } from "../../styles/sideBar/CsBar";
 
 const CsBar = ({ isOpen, closeMenu }) => {
   return (
     <Container isOpen={isOpen}>
-      <LogoContainer></LogoContainer>
       <MenuContainer>
-        <MenuTitle></MenuTitle>
-        <MenuTitle></MenuTitle>
-        <MenuTitle></MenuTitle>
-        <MenuTitle></MenuTitle>
-        <MenuTitle></MenuTitle>
-        <MenuTitle>CS</MenuTitle>
-        <MenuTitle></MenuTitle>
+        <MenuColumn>
+          <MenuContents>악성 사용자 신고</MenuContents>
+          <MenuContents>건의사항</MenuContents>
+        </MenuColumn>
+        <MenuColumn></MenuColumn>
+        <MenuColumn></MenuColumn>
       </MenuContainer>
-      <LoginContainer>
-        <CloseButton isOpen={isOpen} onClick={closeMenu}></CloseButton>
-      </LoginContainer>
     </Container>
   );
 };

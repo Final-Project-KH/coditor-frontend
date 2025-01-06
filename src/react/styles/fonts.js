@@ -45,5 +45,15 @@ export const Fonts = css`
     font-family: thin;
     src: url("/fonts/NotoSansKR-Thin.ttf") format("truetype");
   }
+
+  @font-face {
+    font-family: cocogoose-eb;
+    src: url("/fonts/Cocogoose-Classic-ExtraBold-trial.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: cocogoose-md;
+    src: url("/fonts/Cocogoose-CLassic-Medium-trial.ttf") format("truetype");
+  }
 `;
 export default Fonts;

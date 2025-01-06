@@ -7,11 +7,13 @@ export const Container = styled.div.attrs({
   width: 100%;
   display: flex;
   flex-direction: row;
+  align-items: center;
   position: fixed;
   top: 100px;
-  left: 0px;
-  background-color: yellow;
+  justify-content: center;
+  background-color: white;
   overflow: hidden;
+  border-bottom: 1px solid #ddd;
   ${(props) =>
     props.isOpen
       ? css`
@@ -27,13 +29,13 @@ const expandHeight = keyframes`
     opacity: 0;
   }
   100% {
-    height: 300px;
+    height: 400px;
     opacity: 1;
   }
 `;
 const collapseHeight = keyframes`
   0% {
-    height: 300px;
+    height: 400px;
     opacity: 1;
   }
   100% {
@@ -60,106 +62,121 @@ const fadeOutOpacity = keyframes`
     opacity: 0;
   }
 `;
-export const CloseButton = styled.button.attrs({
-  id: "container",
-})`
-  display: flex;
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  transition: background-color 0.5s ease;
-  cursor: pointer;
-  &::before {
-    content: "";
-    position: absolute;
-    left: 2px;
-    bottom: 14px;
-    width: 25px;
-    height: 2px;
-    background-color: black;
-    border-radius: 2px;
-    transform: rotate(45deg);
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    left: 2px;
-    bottom: 14px;
-    width: 25px;
-    height: 2px;
-    background-color: black;
-    border-radius: 2px;
-    transform: rotate(-45deg);
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  &:hover::before {
-    transform: rotate(-45deg) scale(0.8);
-    opacity: 0.7;
-  }
-  &:hover::after {
-    transform: rotate(45deg) scale(0.8);
-    opacity: 0.7;
-  }
-  &:hover {
-    background-color: rgba(128, 128, 128, 0.3);
-  }
-  ${(props) =>
-    props.isOpen
-      ? css`
-          &::before,
-          &::after {
-            animation: ${fadeInOpacity} 0.3s ease-out forwards;
-          }
-        `
-      : css`
-          &::before,
-          &::after {
-            animation: ${fadeOutOpacity} 0.3s ease-out forwards;
-          }
-        `}
-`;
-export const LogoContainer = styled.div.attrs({
-  id: "logocontainer",
-})`
-  width: 20%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  position: relative;
-`;
+
 export const MenuContainer = styled.div.attrs({
   id: "menucontainer",
 })`
-  width: 60%;
+  width: 100%;
+  max-width: 1280px;
   height: 100%;
   display: flex;
   flex-direction: row;
   position: relative;
   justify-content: space-between;
 `;
+export const MenuColumn = styled.div.attrs({
+  id: "menucolumn",
+})`
+  padding-top: 25px;
+  padding-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+export const MenuImgContainer = styled.div.attrs({
+  id: "menuimgcontainer",
+})`
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+`;
+export const MenuImgJava = styled.div.attrs({
+  id: "menuimgjava",
+})`
+  width: 80px;
+  height: 80px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/java_small.png");
+`;
+export const MenuImgPython = styled.div.attrs({
+  id: "menuimgpython",
+})`
+  width: 80px;
+  height: 80px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/python_small.png");
+`;
+export const MenuImgC = styled.div.attrs({
+  id: "menuimgc",
+})`
+  width: 80px;
+  height: 80px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/c_full.png");
+`;
+export const MenuImgCPlus = styled.div.attrs({
+  id: "menuimgcplus",
+})`
+  width: 80px;
+  height: 80px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/cplus_full.png");
+`;
+export const MenuImgJavaScript = styled.div.attrs({
+  id: "menuimgjavascript",
+})`
+  width: 80px;
+  height: 80px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/js_full.png");
+`;
+export const MenuImgCss = styled.div.attrs({
+  id: "menuimgcss",
+})`
+  width: 80px;
+  height: 80px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/css_small.png");
+`;
 export const MenuTitle = styled.div.attrs({
   id: "menutitle",
 })`
-  width: 14%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
   justify-content: flex-start;
-  align-items: center;
+  align-items: left;
+  font-family: "bold", sans-serif;
+  font-size: 18px;
+  text-align: center;
+  margin: 10px;
 `;
-export const LoginContainer = styled.div.attrs({
-  id: "logincontainer",
+export const MenuContents = styled.div.attrs({
+  id: "menucontents",
 })`
-  width: 20%;
-  height: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   position: relative;
+  justify-content: flex-start;
+  align-items: left;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
+  text-align: center;
+  margin: 8px;
 `;

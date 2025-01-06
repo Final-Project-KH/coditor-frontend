@@ -1,29 +1,78 @@
 import React, { useState, useEffect } from "react";
 import {
   Container,
-  CloseButton,
-  LogoContainer,
   MenuContainer,
+  MenuColumn,
+  MenuImgContainer,
+  MenuImgJava,
+  MenuImgPython,
+  MenuImgC,
+  MenuImgCPlus,
+  MenuImgJavaScript,
+  MenuImgCss,
   MenuTitle,
-  LoginContainer,
+  MenuContents,
 } from "../../styles/sideBar/CoddingTestBar";
 
 const CodingTestBar = ({ isOpen, closeMenu }) => {
   return (
     <Container isOpen={isOpen}>
-      <LogoContainer></LogoContainer>
       <MenuContainer>
-        <MenuTitle></MenuTitle>
-        <MenuTitle></MenuTitle>
-        <MenuTitle>Coding Test</MenuTitle>
-        <MenuTitle></MenuTitle>
-        <MenuTitle></MenuTitle>
-        <MenuTitle></MenuTitle>
-        <MenuTitle></MenuTitle>
+        <MenuColumn>
+        <MenuImgContainer>
+            <MenuImgJava />
+          </MenuImgContainer>
+          <MenuTitle>Java</MenuTitle>
+          <MenuContents>Basic</MenuContents>
+          <MenuContents>Intermediate</MenuContents>
+          <MenuContents>Expert</MenuContents>
+        </MenuColumn>
+        <MenuColumn>
+        <MenuImgContainer>
+            <MenuImgPython />
+          </MenuImgContainer>
+        <MenuTitle>Python</MenuTitle>
+          <MenuContents>Basic</MenuContents>
+          <MenuContents>Intermediate</MenuContents>
+          <MenuContents>Expert</MenuContents>
+        </MenuColumn>
+        <MenuColumn>
+        <MenuImgContainer>
+            <MenuImgC />
+          </MenuImgContainer>
+        <MenuTitle>C</MenuTitle>
+          <MenuContents>Basic</MenuContents>
+          <MenuContents>Intermediate</MenuContents>
+          <MenuContents>Expert</MenuContents>
+        </MenuColumn>
+        <MenuColumn>
+        <MenuImgContainer>
+            <MenuImgCPlus />
+          </MenuImgContainer>
+        <MenuTitle>C++</MenuTitle>
+          <MenuContents>Basic</MenuContents>
+          <MenuContents>Intermediate</MenuContents>
+          <MenuContents>Expert</MenuContents>
+        </MenuColumn>
+        <MenuColumn>
+        <MenuImgContainer>
+            <MenuImgJavaScript />
+          </MenuImgContainer>
+        <MenuTitle>JavaScript</MenuTitle>
+          <MenuContents>Basic</MenuContents>
+          <MenuContents>Intermediate</MenuContents>
+          <MenuContents>Expert</MenuContents>
+        </MenuColumn>
+        <MenuColumn>
+        <MenuImgContainer>
+            <MenuImgCss />
+          </MenuImgContainer>
+        <MenuTitle>CSS</MenuTitle>
+          <MenuContents>Basic</MenuContents>
+          <MenuContents>Intermediate</MenuContents>
+          <MenuContents>Expert</MenuContents>
+        </MenuColumn>
       </MenuContainer>
-      <LoginContainer>
-        <CloseButton isOpen={isOpen} onClick={closeMenu}></CloseButton>
-      </LoginContainer>
     </Container>
   );
 };

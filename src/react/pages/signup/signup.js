@@ -1,22 +1,27 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AxiosApi from "../../../api/AxiosApi";
 import {
   Wrap,
   Container,
+  TopBar,
   LogoContainer,
   Logo,
-  Title,
   StyledLink,
-  InputContainer,
-  InputTitle,
+  FloatingContainer,
+  FloatingInnerContainer,
+  FloatingTitle,
+  InputIndex,
   InputId,
-  InputEmail,
-  InputUser,
-  InputPw,
+  InputPwContainer,
   InputPwDiv,
-  InputStyledDiv,
+  InputPw,
   InputPwDivToggle,
+  InputEmail,
+  InputNickName,
+  InputExtra,
+  InputExtraItemCheckBox,
+  InputExtraItemP,
   SignUp,
   NoticeContainer,
   Notice,
@@ -43,6 +48,12 @@ const Signup = () => {
   const [isPw, setIsPw] = useState(false);
   const [isConPw, setIsConPw] = useState(false);
   const [isName, setIsName] = useState(false);
+  // 약관동의
+  const [isCheckedAll, setIsCheckedAll] = useState("");
+
+  const handleCheckAllBox = (e) => {
+    setIsCheckedAll(e.target.checked);
+  };
 
   const onChangeUserId = (e) => {
     setInputUserId(e.target.value);
@@ -142,18 +153,17 @@ const Signup = () => {
   return (
     <Wrap>
       <Container>
-        <LogoContainer>
-          <Logo>
-            <StyledLink to="/"></StyledLink>
-          </Logo>
-          <Title>
-            <StyledLink to="/"></StyledLink>
-            coditor
-          </Title>
-        </LogoContainer>
-        <InputContainer>
-          <InputTitle>회원가입</InputTitle>
-          <InputStyledDiv>아이디</InputStyledDiv>
+        <TopBar>
+          <LogoContainer>
+            <Logo>
+              <StyledLink to="/"></StyledLink>
+            </Logo>
+          </LogoContainer>
+        </TopBar>
+        <FloatingContainer>
+          <FloatingInnerContainer>
+          <FloatingTitle>회원가입</FloatingTitle>
+          <InputIndex>아이디</InputIndex>
           <InputId
             autoComplete="off"
             type="userId"
@@ -161,15 +171,8 @@ const Signup = () => {
             value={inputUserId}
             onChange={onChangeUserId}
           ></InputId>
-          <InputStyledDiv>이메일</InputStyledDiv>
-          <InputEmail
-            autoComplete="off"
-            type="email"
-            placeholder="이메일 주소 입력"
-            value={inputEmail}
-            onChange={onChangeEmail}
-          ></InputEmail>
-          <InputStyledDiv>비밀번호</InputStyledDiv>
+          <InputPwContainer>
+          <InputIndex>비밀번호</InputIndex>
           <InputPwDiv>
             <InputPw
               type={isVisiblePwd ? "text" : "password"}
@@ -194,13 +197,31 @@ const Signup = () => {
               onClick={() => toggleVisibleConPwd()}
             />
           </InputPwDiv>
-          <InputStyledDiv>닉네임</InputStyledDiv>
-          <InputUser
+          </InputPwContainer>
+          <InputIndex>이메일</InputIndex>
+          <InputEmail
+            autoComplete="off"
+            type="email"
+            placeholder="이메일 주소 입력"
+            value={inputEmail}
+            onChange={onChangeEmail}
+          ></InputEmail>
+          <InputIndex>닉네임</InputIndex>
+          <InputNickName
             type="text"
             placeholder="닉네임 입력"
             value={inputName}
             onChange={onChangeName}
-          ></InputUser>
+          ></InputNickName>
+          <InputExtra>
+          <InputExtraItemCheckBox
+          type="checkbox"
+          id="agreeall"
+          checked={isCheckedAll}
+          onChange={handleCheckAllBox}
+          ></InputExtraItemCheckBox>
+          <InputExtraItemP>전체동의</InputExtraItemP>
+          </InputExtra>
           {isEmail && isPw && isConPw && isName ? (
             <SignUp enabled onClick={onClickSignUp}>
               회원가입하기
@@ -208,7 +229,8 @@ const Signup = () => {
           ) : (
             <SignUp disabled>회원가입하기</SignUp>
           )}
-        </InputContainer>
+          </FloatingInnerContainer>
+        </FloatingContainer>
         <NoticeContainer>
           <Notice>
             {/* 공지 및 안내 페이지 링크 연결 미구현 */}

@@ -1,21 +1,21 @@
-import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AxiosApi from "../../../api/AxiosApi";
-import {setLoginData, setError} from "../../../redux/slice/authSlice";
+import { setLoginData, setError } from "../../../redux/slice/authSlice";
 import JwtDecoding from "../../../api/JwtDecode";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Wrap,
   Container,
+  TopBar,
   LogoContainer,
   Logo,
   StyledLink,
-  Title,
-  InputContainer,
+  FloatingContainer,
   NoticeContainer,
   Notice,
   NoticeLink,
-  InputTitle,
+  FloatingTitle,
   Input,
   InputExtra,
   SignIn,
@@ -24,7 +24,7 @@ import {
   ThirdLoginItem,
   StyledP,
   InputExtraItem,
-  InputExtraItemChekBox,
+  InputExtraItemCheckBox,
   InputExtraItemLeftP,
   InputExtraItemRightP,
 } from "../../styles/login/login";
@@ -38,7 +38,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {error, nickname} = useSelector((state) => state.auth);
+  const { error, nickname } = useSelector((state) => state.auth);
 
   const handleInputChange = (e, setState, setValidState) => {
     setState(e.target.value);
@@ -88,37 +88,37 @@ const Login = () => {
   return (
     <Wrap>
       <Container>
-        <LogoContainer>
-          <Logo>
-            <StyledLink to="/"></StyledLink>
-          </Logo>
-          <Title>
-            <StyledLink to="/"></StyledLink>
-            coditor
-          </Title>
-        </LogoContainer>
-        <InputContainer>
-          <InputTitle>로그인</InputTitle>
+        <TopBar>
+          <LogoContainer>
+            <Logo>
+              <StyledLink to="/"></StyledLink>
+            </Logo>
+          </LogoContainer>
+        </TopBar>
+        <FloatingContainer>
+          <FloatingTitle>로그인</FloatingTitle>
           <Input
             autoComplete="off"
             placeholder="아이디 입력"
+            icon="/images/icon/user.png"
             value={inputUserId}
             onChange={(e) => handleInputChange(e, setInputUserId, setIsId)}
           ></Input>
           <Input
             type="password"
             placeholder="비밀번호 입력"
+            icon="/images/icon/pwd.png"
             value={inputPw}
             onChange={(e) => handleInputChange(e, setInputPw, setIsPw)}
           ></Input>
           <InputExtra>
             <InputExtraItem>
-              <InputExtraItemChekBox
+              <InputExtraItemCheckBox
                 type="checkbox"
                 id="autologin"
                 checked={isChecked}
                 onChange={handleCheckBox}
-              ></InputExtraItemChekBox>
+              ></InputExtraItemCheckBox>
               {/* 아이디 저장 관련 로직 아직 미구현 */}
               <InputExtraItemLeftP>아이디 저장</InputExtraItemLeftP>
             </InputExtraItem>
@@ -129,7 +129,10 @@ const Login = () => {
                 아이디 찾기
               </InputExtraItemRightP>
               {/* 비밀번호 찾기 페이지 링크 연결 미구현 */}
-              <InputExtraItemRightP>비밀번호 찾기</InputExtraItemRightP>
+              <InputExtraItemRightP>
+              <StyledLink to="#"></StyledLink>
+              비밀번호 찾기
+              </InputExtraItemRightP>
             </InputExtraItem>
           </InputExtra>
           {isId && isPw ? (
@@ -144,23 +147,23 @@ const Login = () => {
             회원가입
           </SignUp>
           <ThirdLogin>
-            <ThirdLoginItem>
+            <ThirdLoginItem icon="/images/sns/gmail.png">
               {/* 3자 인증 로그인 페이지 링크 연결 미구현 */}
               <StyledLink to="#"></StyledLink>
             </ThirdLoginItem>
-            <ThirdLoginItem>
+            <ThirdLoginItem icon="/images/sns/kakao.png">
               <StyledLink to="#"></StyledLink>
             </ThirdLoginItem>
-            <ThirdLoginItem>
+            <ThirdLoginItem icon="/images/sns/naver.png">
               <StyledLink to="#"></StyledLink>
             </ThirdLoginItem>
-            <ThirdLoginItem>
+            <ThirdLoginItem icon="/images/sns/facebook.png">
               <StyledLink to="#"></StyledLink>
             </ThirdLoginItem>
           </ThirdLogin>
           <StyledP>SNS 계정으로 로그인하실 경우</StyledP>
           <StyledP>일부 서비스 이용에 제한이 있을 수 있습니다.</StyledP>
-        </InputContainer>
+        </FloatingContainer>
         <NoticeContainer>
           <Notice>
             {/* 공지 및 안내 페이지 링크 연결 미구현 */}

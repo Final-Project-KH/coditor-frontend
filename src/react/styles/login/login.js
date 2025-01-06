@@ -23,35 +23,41 @@ export const Container = styled.div.attrs({
   justify-content: center;
   align-items: center;
 `;
-export const LogoContainer = styled.div.attrs({
-  id: "logocontainer",
+export const TopBar = styled.div.attrs({
+  id: "topbar",
 })`
   width: 100%;
   height: 100px;
+  top: 0;
+  left: 0;
+  position: absolute;
+  margin: 0 auto;
+`;
+export const LogoContainer = styled.div.attrs({
+  id: "logocontainer",
+})`
+  margin-left: 25px;
+  width: 186px;
+  height: 100%;
   display: flex;
   flex-direction: row;
-  position: absolute;
-  top: 0px;
+  /* background-color: white; */
+  position: relative;
+  align-items: center;
 `;
 export const Logo = styled.div.attrs({
   id: "logo",
 })`
-  width: 50px;
+  width: 186px;
   height: 50px;
   display: flex;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: url("/logo/white_logo.PNG");
-  border-radius: 5px;
+  background-image: url("/images/logo/fulllogo_white.png");
   position: absolute;
-  bottom: 25px;
-  transition: all 0.3s ease-in-out;
-  margin-left: 10px;
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
+  align-items: center;
+  justify-content: center;
 `;
 export const StyledLink = styled(Link)`
   text-decoration: none;
@@ -61,32 +67,12 @@ export const StyledLink = styled(Link)`
   position: absolute;
   background-color: transparent;
 `;
-export const Title = styled.h1.attrs({
-  id: "title",
-})`
-  width: 100px;
-  height: 50px;
-  display: flex;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  left: 75px;
-  bottom: 25px;
-  user-select: none;
-  cursor: pointer;
-  margin-left: 10px;
-  color: white;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    font-size: 35px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
-`;
-export const InputContainer = styled.div.attrs({
-  id: "inputcontainer",
+export const FloatingContainer = styled.div.attrs({
+  id: "floatingcontainer",
 })`
   width: 500px;
   height: 682px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -96,7 +82,7 @@ export const InputContainer = styled.div.attrs({
   border-radius: 30px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 `;
-export const InputTitle = styled.h1.attrs({
+export const FloatingTitle = styled.h1.attrs({
   id: "inputtitle",
 })`
   width: 400px;
@@ -106,7 +92,9 @@ export const InputTitle = styled.h1.attrs({
   align-items: center;
   justify-content: center;
   user-select: none;
-  margin-top: 120px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  font-size: 30px;
 `;
 export const Input = styled.input.attrs({
   id: "input",
@@ -119,30 +107,18 @@ export const Input = styled.input.attrs({
   justify-content: flex-start;
   user-select: none;
   border-radius: 5px;
-  border: 1px solid black;
-  margin-top: 60px;
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+  color: #313131;
+  font-family: 'medium', sans-serif;
   font-size: 13px;
   padding-left: 40px;
   background-repeat: no-repeat;
-  background-size: 20px 15px;
-  background-position: left 10px center;
-  background-image: url("/logo/mail.png");
-  & + & {
-    margin-top: 10px;
-    background-repeat: no-repeat;
-    background-size: 18px 19px;
-    background-position: left 11px center;
-    background-image: url("/logo/pwd.png");
-  }
-  &:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
-    background-color: white !important;
-    background-image: url("/logo/mail.png") !important;
-    background-repeat: no-repeat;
-    background-size: 20px 15px;
-    background-position: left 10px center;
-    color: rgba(0, 0, 0, 0.5) !important;
+  background-size: 10px auto;
+  background-position: 20px center;
+  background-image: url(${props => props.icon});
+  &:focus {
+  outline: none;
   }
 `;
 export const InputExtra = styled.div.attrs({
@@ -158,7 +134,6 @@ export const InputExtra = styled.div.attrs({
   user-select: none;
   margin-top: 10px;
 `;
-
 export const InputExtraItem = styled.div.attrs({
   id: "inputextraitem",
 })`
@@ -171,12 +146,12 @@ export const InputExtraItem = styled.div.attrs({
   justify-content: center;
   user-select: none;
 `;
-export const InputExtraItemChekBox = styled.input.attrs({
+export const InputExtraItemCheckBox = styled.input.attrs({
   id: "inputextraitemcheckbox",
 })`
   appearance: none;
-  width: 15px;
-  height: 15px;
+  width: 14px;
+  height: 14px;
   display: flex;
   position: absolute;
   outline: none;
@@ -185,11 +160,10 @@ export const InputExtraItemChekBox = styled.input.attrs({
   bottom: 2.5px;
   background-color: white;
   border-radius: 50%;
-  border: 2px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, border-color 0.3s ease;
   &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-color: #007bff;
+    border-color: black;
   }
   ${(props) =>
     props.checked &&
@@ -197,14 +171,13 @@ export const InputExtraItemChekBox = styled.input.attrs({
       &::after {
         content: "";
         position: absolute;
-        top: -10%; /* 부모 요소의 중앙 */
-        left: 60%;
+        top: 50%;
+        left: 50%;
         width: 8px;
-        height: 14px;
-        border: solid #007bff;
-        border-width: 0 4px 4px 0;
-        transform: translate(-50%, -50%) rotate(45deg);
-        animation: ${checkmark} 0.3s ease-in-out;
+        height: 8px;
+        background-color: #313131;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
       }
     `}
 `;
@@ -219,7 +192,8 @@ export const InputExtraItemLeftP = styled.p.attrs({
   align-items: center;
   justify-content: flex-start;
   user-select: none;
-  font-size: 12px;
+  font-size: 14px;
+  color: #313131;
   margin-bottom: 2px;
   margin-right: 50px;
 `;
@@ -245,20 +219,20 @@ export const InputExtraItemRightP = styled.p.attrs({
   align-items: center;
   justify-content: flex-end;
   user-select: none;
-  font-size: 12px;
+  font-size: 14px;
+  color: #313131;
   cursor: pointer;
   &:hover {
-    text-decoration: underline;
     font-weight: bold;
   }
   & + &::before {
     content: "";
     position: absolute;
-    left: 8px;
+    left: 4px;
     bottom: 8px;
-    width: 15px;
+    width: 11px;
     height: 1px;
-    background-color: #dadcdf;
+    background-color: #313131;
     transform: rotate(90deg);
   }
 `;
@@ -273,16 +247,13 @@ export const SignIn = styled.button.attrs({
   justify-content: center;
   user-select: none;
   border-radius: 5px;
-  background-color: ${(props) => (props.disabled ? "black" : "#007bff")};
+  background-color: ${(props) => (props.disabled ? "#313131" : "#007bff")};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   border: none;
   margin-top: 35px;
   color: white;
   transition: all 0.3s ease-in-out;
-  &:hover {
-    text-decoration: underline;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
+  font-size: 14px;
 `;
 export const SignUp = styled.button.attrs({
   id: "signup",
@@ -299,11 +270,8 @@ export const SignUp = styled.button.attrs({
   border: none;
   margin-top: 10px;
   color: black;
+  font-size: 14px;
   transition: all 0.3s ease-in-out;
-  &:hover {
-    text-decoration: underline;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
 `;
 export const ThirdLogin = styled.div.attrs({
   id: "thirdlogin",
@@ -332,34 +300,10 @@ export const ThirdLoginItem = styled.div.attrs({
   border-radius: 50%;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  & {
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    background-image: url("/logo/gmail.png");
-  }
-  & + & {
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    background-image: url("/logo/kakao.png");
-  }
-  & + & + & {
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    background-image: url("/logo/naver.png");
-  }
-  & + & + & + & {
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    background-image: url("/logo/facebook.png");
-  }
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(${props => props.icon});
 `;
 export const StyledP = styled.p.attrs({
   id: "announce",
@@ -370,7 +314,9 @@ export const StyledP = styled.p.attrs({
   justify-content: center;
   align-items: center;
   margin-top: 30px;
-  font-size: 12px;
+  font-size: 14px;
+  font-family: 'medium', sans-serif;
+  color: #313131;
   & + & {
     margin-top: 0px;
   }

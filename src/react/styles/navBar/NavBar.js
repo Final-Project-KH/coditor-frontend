@@ -8,50 +8,48 @@ export const Wrap = styled.div.attrs({
   height: 100px;
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
+  justify-content: center;
+  border-bottom: 1px solid #ddd;
 `;
 
 export const Container = styled.div.attrs({
   id: "container",
 })`
   width: 100%;
+  max-width: 1280px;
   height: 100%;
   display: flex;
   flex-direction: row;
-  /* background-color: blue; */
   position: relative;
-  border-bottom: 2px solid #ddd;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
 `;
 
 export const LogoContainer = styled.div.attrs({
   id: "logocontainer",
 })`
-  width: 20%;
+  margin-left: 25px;
+  width: 186px;
   height: 100%;
   display: flex;
   flex-direction: row;
   /* background-color: white; */
   position: relative;
+  align-items: center;
 `;
 export const Logo = styled.div.attrs({
   id: "logo",
 })`
-  width: 50px;
+  width: 186px;
   height: 50px;
   display: flex;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: url("/logo/logo.PNG");
-  border-radius: 7px;
+  background-image: url("/images/logo/fulllogo_black.png");
   position: absolute;
-  bottom: 25px;
-  transition: all 0.3s ease-in-out;
-  margin-left: 10px;
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
+  align-items: center;
+  justify-content: center;
 `;
 export const StyledLink = styled(Link)`
   text-decoration: none;
@@ -60,26 +58,6 @@ export const StyledLink = styled(Link)`
   height: 100%;
   position: absolute;
   background-color: transparent;
-`;
-export const Title = styled.h1.attrs({
-  id: "title",
-})`
-  width: 100px;
-  height: 50px;
-  display: flex;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  left: 75px;
-  bottom: 25px;
-  user-select: none;
-  cursor: pointer;
-  margin-left: 10px;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    font-size: 35px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
 `;
 export const MenuContainer = styled.div.attrs({
   id: "menucontainer",
@@ -90,12 +68,12 @@ export const MenuContainer = styled.div.attrs({
   flex-direction: row;
   position: relative;
   justify-content: space-between;
+  align-content: center;
 `;
 
 export const MenuTitle = styled.div.attrs({
   id: "menutitle",
 })`
-  width: 14%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -107,14 +85,14 @@ export const MenuTitle = styled.div.attrs({
 export const MenuBox = styled.div.attrs({
   id: "menubox",
 })`
-  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
   position: relative;
   justify-content: center;
   align-items: center;
-  ${(props) =>
+  &:hover {
+    ${(props) =>
     props.isOpen &&
     css`
       &::before {
@@ -128,52 +106,53 @@ export const MenuBox = styled.div.attrs({
         z-index: 5;
       }
     `}
+  }
 `;
 
 export const MenuButton = styled.button.attrs({
   id: "menubutton",
 })`
-  width: 50%;
   height: 50%;
   display: flex;
   flex-direction: row;
   position: relative;
   justify-content: center;
   align-items: center;
+  top: 5px;
   cursor: pointer;
   background-color: transparent;
   border: none;
   user-select: none;
-  font-size: 18px;
+  font-size: 25px;
+  font-family: 'cocogoose-md';
   &:focus {
     outline: none;
     box-shadow: none;
   }
   transition: all 0.1s ease-in-out;
   &:hover {
-    font-size: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  ${(props) =>
+    ${(props) =>
     props.isOpen &&
     css`
       & {
-        font-size: 20px;
+
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
       }
     `}
+  }
+
 `;
 
 export const LoginContainer = styled.div.attrs({
   id: "logincontainer",
 })`
-  width: 20%;
   height: 100%;
   display: flex;
   flex-direction: row;
   position: relative;
   justify-content: center;
   align-items: center;
+  margin-right: 30px;
 `;
 
 export const LoginBox = styled.div.attrs({
@@ -182,15 +161,19 @@ export const LoginBox = styled.div.attrs({
   width: 100px;
   height: 50px;
   display: flex;
-  background-color: black;
+  background-color: #313131;
   position: relative;
   justify-content: center;
   align-items: center;
   color: white;
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
+  font-size: 25px;
+  font-family: 'cocogoose-md';
+  padding-top: 5px;
   &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border: 1px solid #313131;
+    color: #313131;
   }
 `;
