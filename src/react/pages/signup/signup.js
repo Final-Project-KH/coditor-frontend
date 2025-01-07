@@ -19,6 +19,7 @@ import {
   InputPwDivToggle,
   InputEmail,
   InputNickName,
+  InputExtraContainer,
   InputExtra,
   InputExtraItemCheckBox,
   InputExtraItemP,
@@ -49,11 +50,37 @@ const Signup = () => {
   const [isConPw, setIsConPw] = useState(false);
   const [isName, setIsName] = useState(false);
   // 약관동의
-  const [isCheckedAll, setIsCheckedAll] = useState("");
+  const [isCheckedAll, setIsCheckedAll] = useState(false);
+  // const [isCheckedTerms, setIsCheckedTerms] = useState("");
+  // const [isCheckedUses, setIsCheckedUses] = useState("");
+  // const [isChecked14, setIsChecked14] = useState("");
+  // const [isCheckedMarketing, setIsCheckedMarketing] = useState("");
 
   const handleCheckAllBox = (e) => {
+    console.log("핸들러 실행됨");
     setIsCheckedAll(e.target.checked);
+    console.log("전체 체크박스 상태:", e.target.checked);
+    // setIsCheckedTerms(e.target.checked);
+    // setIsCheckedUses(e.target.checked);
+    // setIsChecked14(e.target.checked);
+    // setIsCheckedMarketing(e.target.checked);
   };
+
+  // const handleCheckTermsBox = (e) => {
+  //   setIsCheckedTerms(e.target.checked);
+  // };
+
+  // const handleCheckUsesBox = (e) => {
+  //   setIsCheckedUses(e.target.checked);
+  // };
+
+  // const handleCheck14Box = (e) => {
+  //   setIsChecked14(e.target.checked);
+  // };
+
+  // const handleCheckMarketingBox = (e) => {
+  //   setIsCheckedMarketing(e.target.checked);
+  // };
 
   const onChangeUserId = (e) => {
     setInputUserId(e.target.value);
@@ -162,73 +189,112 @@ const Signup = () => {
         </TopBar>
         <FloatingContainer>
           <FloatingInnerContainer>
-          <FloatingTitle>회원가입</FloatingTitle>
-          <InputIndex>아이디</InputIndex>
-          <InputId
-            autoComplete="off"
-            type="userId"
-            placeholder="아이디 입력"
-            value={inputUserId}
-            onChange={onChangeUserId}
-          ></InputId>
-          <InputPwContainer>
-          <InputIndex>비밀번호</InputIndex>
-          <InputPwDiv>
-            <InputPw
-              type={isVisiblePwd ? "text" : "password"}
-              placeholder="영문자,숫자,특수문자 포함 8~20자"
-              value={inputPw}
-              onChange={onChangePw}
-            ></InputPw>
-            <InputPwDivToggle
-              isVisible={isVisiblePwd}
-              onClick={() => toggleVisiblePwd()}
-            />
-          </InputPwDiv>
-          <InputPwDiv>
-            <InputPw
-              type={isVisibleConPwd ? "text" : "password"}
-              placeholder="비밀번호 확인"
-              value={inputConPw}
-              onChange={onChangeConPw}
-            ></InputPw>
-            <InputPwDivToggle
-              isVisible={isVisibleConPwd}
-              onClick={() => toggleVisibleConPwd()}
-            />
-          </InputPwDiv>
-          </InputPwContainer>
-          <InputIndex>이메일</InputIndex>
-          <InputEmail
-            autoComplete="off"
-            type="email"
-            placeholder="이메일 주소 입력"
-            value={inputEmail}
-            onChange={onChangeEmail}
-          ></InputEmail>
-          <InputIndex>닉네임</InputIndex>
-          <InputNickName
-            type="text"
-            placeholder="닉네임 입력"
-            value={inputName}
-            onChange={onChangeName}
-          ></InputNickName>
+            <FloatingTitle>회원가입</FloatingTitle>
+            <InputIndex>아이디</InputIndex>
+            <InputId
+              autoComplete="off"
+              type="userId"
+              placeholder="아이디 입력"
+              value={inputUserId}
+              onChange={onChangeUserId}
+            ></InputId>
+            <InputPwContainer>
+              <InputIndex>비밀번호</InputIndex>
+              <InputPwDiv>
+                <InputPw
+                  type={isVisiblePwd ? "text" : "password"}
+                  placeholder="영문자,숫자,특수문자 포함 8~20자"
+                  value={inputPw}
+                  onChange={onChangePw}
+                ></InputPw>
+                <InputPwDivToggle
+                  isVisible={isVisiblePwd}
+                  onClick={() => toggleVisiblePwd()}
+                />
+              </InputPwDiv>
+              <InputPwDiv>
+                <InputPw
+                  type={isVisibleConPwd ? "text" : "password"}
+                  placeholder="비밀번호 확인"
+                  value={inputConPw}
+                  onChange={onChangeConPw}
+                ></InputPw>
+                <InputPwDivToggle
+                  isVisible={isVisibleConPwd}
+                  onClick={() => toggleVisibleConPwd()}
+                />
+              </InputPwDiv>
+            </InputPwContainer>
+            <InputIndex>이메일</InputIndex>
+            <InputEmail
+              autoComplete="off"
+              type="email"
+              placeholder="이메일 주소 입력"
+              value={inputEmail}
+              onChange={onChangeEmail}
+            ></InputEmail>
+            <InputIndex>닉네임</InputIndex>
+            <InputNickName
+              type="text"
+              placeholder="닉네임 입력"
+              value={inputName}
+              onChange={onChangeName}
+            ></InputNickName>
+            <InputExtraContainer>
+              <InputExtra>
+                <InputExtraItemCheckBox
+                  type="checkbox"
+                  id="agreeall"
+                  checked={isCheckedAll}
+                  onChange={handleCheckAllBox}
+                ></InputExtraItemCheckBox>
+                <InputExtraItemP>전체동의</InputExtraItemP>
+              </InputExtra>
+              <hr style={{ marginTop: "10px", marginBottom: "10px" }} />
+              {/* <InputExtra>
+          <InputExtraItemCheckBox
+          type="checkbox"
+          id="agreeterms"
+          checked={isCheckedTerms}
+          onChange={handleCheckTermsBox}
+          ></InputExtraItemCheckBox>
+          <InputExtraItemP>이용약관 동의</InputExtraItemP>
+          </InputExtra>
           <InputExtra>
           <InputExtraItemCheckBox
           type="checkbox"
-          id="agreeall"
-          checked={isCheckedAll}
-          onChange={handleCheckAllBox}
+          id="agreeuses"
+          checked={isCheckedUses}
+          onChange={handleCheckUsesBox}
           ></InputExtraItemCheckBox>
-          <InputExtraItemP>전체동의</InputExtraItemP>
+          <InputExtraItemP>개인정보 수집 및 이용 동의</InputExtraItemP>
           </InputExtra>
-          {isEmail && isPw && isConPw && isName ? (
-            <SignUp enabled onClick={onClickSignUp}>
-              회원가입하기
-            </SignUp>
-          ) : (
-            <SignUp disabled>회원가입하기</SignUp>
-          )}
+          <InputExtra>
+          <InputExtraItemCheckBox
+          type="checkbox"
+          id="agree14"
+          checked={isChecked14}
+          onChange={handleCheck14Box}
+          ></InputExtraItemCheckBox>
+          <InputExtraItemP>[선택] 만 14세 이상입니다.</InputExtraItemP>
+          </InputExtra>
+          <InputExtra>
+          <InputExtraItemCheckBox
+          type="checkbox"
+          id="agreemarketing"
+          checked={isCheckedMarketing}
+          onChange={handleCheckMarketingBox}
+          ></InputExtraItemCheckBox>
+          <InputExtraItemP>[선택] 마케팅 활용 동의 및 광고 수신 동의</InputExtraItemP>
+          </InputExtra> */}
+            </InputExtraContainer>
+            {isEmail && isPw && isConPw && isName ? (
+              <SignUp enabled onClick={onClickSignUp}>
+                회원가입하기
+              </SignUp>
+            ) : (
+              <SignUp disabled>회원가입하기</SignUp>
+            )}
           </FloatingInnerContainer>
         </FloatingContainer>
         <NoticeContainer>

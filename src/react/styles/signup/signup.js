@@ -1,5 +1,5 @@
-import styled, {css, keyframes} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css, keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -84,9 +84,8 @@ export const FloatingContainer = styled.div.attrs({
 `;
 export const FloatingInnerContainer = styled.div.attrs({
   id: "floatinginnercontainer",
-}) `
+})`
   width: 400px;
-  height: 763px;
 `;
 export const FloatingTitle = styled.h1.attrs({
   id: "inputtitle",
@@ -131,7 +130,7 @@ export const InputId = styled.input.attrs({
   margin-top: 10px;
   margin-bottom: 10px;
   color: #313131;
-  font-family: 'medium', sans-serif;
+  font-family: "medium", sans-serif;
   font-size: 13px;
   padding-left: 40px;
   background-repeat: no-repeat;
@@ -139,7 +138,7 @@ export const InputId = styled.input.attrs({
   background-position: 20px center;
   background-image: url("/images/icon/user.png");
   &:focus {
-  outline: none;
+    outline: none;
   }
 `;
 export const InputPwContainer = styled.div.attrs({
@@ -176,7 +175,7 @@ export const InputPw = styled.input.attrs({
   margin-top: 10px;
   margin-bottom: 10px;
   color: #313131;
-  font-family: 'medium', sans-serif;
+  font-family: "medium", sans-serif;
   font-size: 13px;
   padding-left: 40px;
   background-repeat: no-repeat;
@@ -184,7 +183,7 @@ export const InputPw = styled.input.attrs({
   background-position: 20px center;
   background-image: url("/images/icon/pwd.png");
   &:focus {
-  outline: none;
+    outline: none;
   }
 `;
 export const InputPwDivToggle = styled.button.attrs({
@@ -248,7 +247,7 @@ export const InputEmail = styled.input.attrs({
   margin-top: 10px;
   margin-bottom: 10px;
   color: #313131;
-  font-family: 'medium', sans-serif;
+  font-family: "medium", sans-serif;
   font-size: 13px;
   padding-left: 40px;
   background-repeat: no-repeat;
@@ -256,7 +255,7 @@ export const InputEmail = styled.input.attrs({
   background-position: 20px center;
   background-image: url("/images/icon/mail.png");
   &:focus {
-  outline: none;
+    outline: none;
   }
 `;
 export const InputNickName = styled.input.attrs({
@@ -274,7 +273,7 @@ export const InputNickName = styled.input.attrs({
   margin-top: 10px;
   margin-bottom: 10px;
   color: #313131;
-  font-family: 'medium', sans-serif;
+  font-family: "medium", sans-serif;
   font-size: 13px;
   padding-left: 40px;
   background-repeat: no-repeat;
@@ -282,10 +281,18 @@ export const InputNickName = styled.input.attrs({
   background-position: 20px center;
   background-image: url("/images/icon/nickname.png");
   &:focus {
-  outline: none;
+    outline: none;
   }
 `;
-
+export const InputExtraContainer = styled.div.attrs({
+  id: "inputextracontainer",
+})`
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  margin-bottom: 40px;
+`;
 export const InputExtra = styled.div.attrs({
   id: "inputextra",
 })`
@@ -293,15 +300,17 @@ export const InputExtra = styled.div.attrs({
   height: 20px;
   display: flex;
   position: relative;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   user-select: none;
-  margin-top: 40px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
-export const InputExtraItemCheckBox = styled.input.attrs({
+export const InputExtraItemCheckBox = styled.input.attrs((props) => ({
   id: "inputextraitemcheckbox",
-})`
+  checked: props.checked,
+  onChange: props.onChange,
+}))`
   appearance: none;
   width: 14px;
   height: 14px;
@@ -347,9 +356,7 @@ export const InputExtraItemP = styled.p.attrs({
   user-select: none;
   font-size: 14px;
   color: #313131;
-  margin-left: 25px;
-  margin-bottom: 2px;
-  margin-right: 50px;
+  padding-left: 25px;
 `;
 export const SignUp = styled.button.attrs({
   id: "signup",
@@ -366,6 +373,7 @@ export const SignUp = styled.button.attrs({
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   border: none;
   margin-top: 20px;
+  margin-bottom: 50px;
   color: white;
   transition: all 0.3s ease-in-out;
   &:hover {
@@ -397,7 +405,7 @@ export const Notice = styled.div.attrs({
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 10px;
+  font-size: 14px;
   user-select: none;
   & + &::before {
     content: "";

@@ -346,7 +346,7 @@ export const Notice = styled.div.attrs({
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 10px;
+  font-size: 14px;
   user-select: none;
   & + &::before {
     content: "";
