@@ -189,8 +189,6 @@ export const InputPw = styled.input.attrs({
 export const InputPwDivToggle = styled.button.attrs({
   id: "inputpwdivtoggle",
 })`
-  width: 10px;
-  height: 10px;
   display: flex;
   position: absolute;
   align-items: center;
@@ -222,7 +220,7 @@ export const InputPwDivToggle = styled.button.attrs({
             background-repeat: no-repeat;
             background-size: contain;
             right: 10px;
-            top: -6px;
+            top: -11px;
             margin-top: 5px;
             width: 15px;
             height: 15px;
@@ -368,12 +366,12 @@ export const SignUp = styled.button.attrs({
   justify-content: center;
   user-select: none;
   border-radius: 5px;
-  background-color: ${(props) => (props.disabled ? "black" : "#007bff")};
+  background-color: ${(props) => (props.disabled ? "#f1f1f1" : "#313131")};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   border: none;
   margin-top: 20px;
   margin-bottom: 50px;
-  color: white;
+  color: ${(props) => (props.disabled ? "#313131" : "white")};
   transition: all 0.3s ease-in-out;
   &:hover {
     text-decoration: underline;
