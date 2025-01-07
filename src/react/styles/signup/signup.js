@@ -80,7 +80,9 @@ export const FloatingContainer = styled.div.attrs({
   background-color: white;
   border-radius: 30px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  overflow-y: auto;
+  overflow-y: scroll; /* 세로 스크롤 활성화 */
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
 `;
 export const FloatingInnerContainer = styled.div.attrs({
   id: "floatinginnercontainer",
@@ -373,10 +375,6 @@ export const SignUp = styled.button.attrs({
   margin-bottom: 50px;
   color: ${(props) => (props.disabled ? "#313131" : "white")};
   transition: all 0.3s ease-in-out;
-  &:hover {
-    text-decoration: underline;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
 `;
 export const NoticeContainer = styled.div.attrs({
   id: "noticecontainer",
@@ -413,9 +411,6 @@ export const Notice = styled.div.attrs({
     height: 1px;
     background-color: #dadcdf;
     transform: rotate(90deg);
-  }
-  &:hover {
-    text-decoration: underline;
   }
 `;
 export const NoticeLink = styled(Link)`

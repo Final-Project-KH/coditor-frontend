@@ -358,9 +358,6 @@ export const Notice = styled.div.attrs({
     background-color: #dadcdf;
     transform: rotate(90deg);
   }
-  &:hover {
-    text-decoration: underline;
-  }
 `;
 export const NoticeLink = styled(Link)`
   text-decoration: none;

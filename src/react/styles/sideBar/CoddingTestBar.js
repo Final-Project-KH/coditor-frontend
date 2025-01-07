@@ -157,26 +157,44 @@ export const MenuImgCss = styled.div.attrs({
 export const MenuTitle = styled.div.attrs({
   id: "menutitle",
 })`
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
   position: relative;
-  justify-content: flex-start;
   align-items: left;
   font-family: "bold", sans-serif;
   font-size: 18px;
-  text-align: center;
   margin: 10px;
+  .menu-link {
+    display: inline-block; /* 텍스트 길이에 맞춰 너비가 설정되도록 */
+    text-decoration: none;
+    color: inherit;
+    padding: 5px 10px; /* 텍스트 주변에 여백을 추가하여 배경색이 더 커지도록 */
+  }
+  .menu-link:hover {
+    text-decoration: none; /* 호버 시 밑줄 추가 */
+    background-color: black;
+    color: white;
+  }
 `;
 export const MenuContents = styled.div.attrs({
   id: "menucontents",
 })`
-  display: flex;
-  flex-direction: column;
+  width: auto;
+  display: inline-block;
   position: relative;
-  justify-content: flex-start;
   align-items: left;
   font-family: "medium", sans-serif;
   font-size: 15px;
-  text-align: center;
   margin: 8px;
+  .menu-link {
+    display: inline-block; /* 텍스트 길이에 맞춰 너비가 설정되도록 */
+    text-decoration: none;
+    color: inherit;
+    padding: 5px 10px; /* 텍스트 주변에 여백을 추가하여 배경색이 더 커지도록 */
+  }
+  .menu-link:hover {
+    text-decoration: none; /* 호버 시 밑줄 추가 */
+    background-color: black;
+    color: white;
+  }
 `;
+
