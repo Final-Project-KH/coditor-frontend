@@ -50,37 +50,38 @@ const Signup = () => {
   const [isConPw, setIsConPw] = useState(false);
   const [isName, setIsName] = useState(false);
   // 약관동의
-  const [isCheckedAll, setIsCheckedAll] = useState(false);
-  // const [isCheckedTerms, setIsCheckedTerms] = useState("");
-  // const [isCheckedUses, setIsCheckedUses] = useState("");
-  // const [isChecked14, setIsChecked14] = useState("");
-  // const [isCheckedMarketing, setIsCheckedMarketing] = useState("");
+  const [isCheckedAll, setIsCheckedAll] = useState("");
+  const [isCheckedTerms, setIsCheckedTerms] = useState("");
+  const [isCheckedUses, setIsCheckedUses] = useState("");
+  const [isChecked14, setIsChecked14] = useState("");
+  const [isCheckedMarketing, setIsCheckedMarketing] = useState("");
 
   const handleCheckAllBox = (e) => {
     console.log("핸들러 실행됨");
-    setIsCheckedAll(e.target.checked);
+    console.log("이벤트 객체:", e);
     console.log("전체 체크박스 상태:", e.target.checked);
-    // setIsCheckedTerms(e.target.checked);
-    // setIsCheckedUses(e.target.checked);
-    // setIsChecked14(e.target.checked);
-    // setIsCheckedMarketing(e.target.checked);
+    setIsCheckedAll(e.target.checked);
+    setIsCheckedTerms(e.target.checked);
+    setIsCheckedUses(e.target.checked);
+    setIsChecked14(e.target.checked);
+    setIsCheckedMarketing(e.target.checked);
   };
 
-  // const handleCheckTermsBox = (e) => {
-  //   setIsCheckedTerms(e.target.checked);
-  // };
+  const handleCheckTermsBox = (e) => {
+    setIsCheckedTerms(e.target.checked);
+  };
 
-  // const handleCheckUsesBox = (e) => {
-  //   setIsCheckedUses(e.target.checked);
-  // };
+  const handleCheckUsesBox = (e) => {
+    setIsCheckedUses(e.target.checked);
+  };
 
-  // const handleCheck14Box = (e) => {
-  //   setIsChecked14(e.target.checked);
-  // };
+  const handleCheck14Box = (e) => {
+    setIsChecked14(e.target.checked);
+  };
 
-  // const handleCheckMarketingBox = (e) => {
-  //   setIsCheckedMarketing(e.target.checked);
-  // };
+  const handleCheckMarketingBox = (e) => {
+    setIsCheckedMarketing(e.target.checked);
+  };
 
   const onChangeUserId = (e) => {
     setInputUserId(e.target.value);
@@ -177,6 +178,8 @@ const Signup = () => {
     setIsVisibleConPwd(!isVisibleConPwd);
   };
 
+  console.log("isCheckedAll 상태:", isCheckedAll);
+
   return (
     <Wrap>
       <Container>
@@ -251,7 +254,7 @@ const Signup = () => {
                 <InputExtraItemP>전체동의</InputExtraItemP>
               </InputExtra>
               <hr style={{ marginTop: "10px", marginBottom: "10px" }} />
-              {/* <InputExtra>
+              <InputExtra>
           <InputExtraItemCheckBox
           type="checkbox"
           id="agreeterms"
@@ -286,7 +289,7 @@ const Signup = () => {
           onChange={handleCheckMarketingBox}
           ></InputExtraItemCheckBox>
           <InputExtraItemP>[선택] 마케팅 활용 동의 및 광고 수신 동의</InputExtraItemP>
-          </InputExtra> */}
+          </InputExtra>
             </InputExtraContainer>
             {isEmail && isPw && isConPw && isName ? (
               <SignUp enabled onClick={onClickSignUp}>

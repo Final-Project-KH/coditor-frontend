@@ -306,16 +306,17 @@ export const InputExtra = styled.div.attrs({
   margin-top: 5px;
   margin-bottom: 5px;
 `;
-export const InputExtraItemCheckBox = styled.input.attrs((props) => ({
+export const InputExtraItemCheckBox = styled.input.attrs({
   id: "inputextraitemcheckbox",
-  checked: props.checked,
-  onChange: props.onChange,
-}))`
+})`
   appearance: none;
   width: 14px;
-  height: 14px;
+  height: 13px;
   display: flex;
-  position: absolute;
+  /* position: absolute; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   outline: none;
   cursor: pointer;
   left: 0px;
@@ -332,14 +333,11 @@ export const InputExtraItemCheckBox = styled.input.attrs((props) => ({
     css`
       &::after {
         content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 8px;
-        height: 8px;
+        position: relative;
+        width: 9px;
+        height: 9px;
         background-color: #313131;
         border-radius: 50%;
-        transform: translate(-50%, -50%);
       }
     `}
 `;
@@ -356,7 +354,8 @@ export const InputExtraItemP = styled.p.attrs({
   user-select: none;
   font-size: 14px;
   color: #313131;
-  padding-left: 25px;
+  padding-left: 10px;
+  margin-top: -3px;
 `;
 export const SignUp = styled.button.attrs({
   id: "signup",
