@@ -11,6 +11,8 @@ export const Container = styled.div.attrs({
   position: fixed;
   top: 100px;
   justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: white;
   overflow: hidden;
   border-bottom: 1px solid #ddd;

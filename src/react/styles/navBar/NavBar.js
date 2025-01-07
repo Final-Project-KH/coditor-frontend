@@ -11,6 +11,9 @@ export const Wrap = styled.div.attrs({
   margin: 0 auto;
   justify-content: center;
   border-bottom: 1px solid #ddd;
+  background-color: white;
+  position: fixed;
+  z-index: 10;
 `;
 
 export const Container = styled.div.attrs({
@@ -23,6 +26,7 @@ export const Container = styled.div.attrs({
   flex-direction: row;
   position: relative;
   justify-content: space-between;
+  z-index: 10;
 `;
 
 export const LogoContainer = styled.div.attrs({

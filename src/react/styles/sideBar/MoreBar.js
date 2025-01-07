@@ -30,13 +30,13 @@ const expandHeight = keyframes`
     opacity: 0;
   }
   100% {
-    height: 430px;
+    height: 500px;
     opacity: 1;
   }
 `;
 const collapseHeight = keyframes`
   0% {
-    height: 430px;
+    height: 500px;
     opacity: 1;
   }
   100% {
