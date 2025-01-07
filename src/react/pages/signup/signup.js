@@ -57,9 +57,6 @@ const Signup = () => {
   const [isCheckedMarketing, setIsCheckedMarketing] = useState("");
 
   const handleCheckAllBox = (e) => {
-    console.log("핸들러 실행됨");
-    console.log("이벤트 객체:", e);
-    console.log("전체 체크박스 상태:", e.target.checked);
     setIsCheckedAll(e.target.checked);
     setIsCheckedTerms(e.target.checked);
     setIsCheckedUses(e.target.checked);
@@ -178,8 +175,6 @@ const Signup = () => {
     setIsVisibleConPwd(!isVisibleConPwd);
   };
 
-  console.log("isCheckedAll 상태:", isCheckedAll);
-
   return (
     <Wrap>
       <Container>
@@ -291,7 +286,7 @@ const Signup = () => {
           <InputExtraItemP>[선택] 마케팅 활용 동의 및 광고 수신 동의</InputExtraItemP>
           </InputExtra>
             </InputExtraContainer>
-            {isEmail && isPw && isConPw && isName ? (
+            {isUserId && isEmail && isPw && isConPw && isName ? (
               <SignUp enabled onClick={onClickSignUp}>
                 회원가입하기
               </SignUp>
