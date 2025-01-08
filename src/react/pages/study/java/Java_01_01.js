@@ -15,7 +15,6 @@ import {
   EachClass,
   ClassHeader,
   ClassHeaderTitle,
-  ClassContents,
   ClassContentsTitle1,
   ClassContentsText,
   ClassContentsContainer,
