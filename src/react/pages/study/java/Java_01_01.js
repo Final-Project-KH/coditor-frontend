@@ -28,7 +28,12 @@ import {
   ClassStatus,
   ClassStatusDot,
   ClassStatusText,
+  StickyClassBox,
+  ArrowContainer,
+  LeftArrow,
+  RightArrow,
 } from "../../../styles/study/Study";
+import Java_ClassListSmall_01 from "./Java_ClassListSmall_01";
 
 const Java_01_01 = () => {
   return (
@@ -47,55 +52,9 @@ const Java_01_01 = () => {
               <SubjectRateContents>52%</SubjectRateContents>
             </SubjectRateContainer>
           </LeftSubjectContainer>
-          <EachClass>
-            <ClassHeader>
-              <ClassHeaderTitle>01. Java 시작</ClassHeaderTitle>
-            </ClassHeader>
-            <ClassContents>
-              <ClassSet>
-                <ClassName>
-                  <a href="/study/java/01_01" className="menu-link">
-                    Java 시작하기
-                  </a>
-                </ClassName>
-                <ClassStatus>
-                  <ClassStatusDot style={{ color: "#28B657" }}>
-                    ●
-                  </ClassStatusDot>
-                  <ClassStatusText>학습 완료</ClassStatusText>
-                </ClassStatus>
-              </ClassSet>
-              <hr />
-              <ClassSet>
-                <ClassName>
-                  <a href="/study/java/01_02" className="menu-link">
-                    Java 개발 환경 구축
-                  </a>
-                </ClassName>
-
-                <ClassStatus>
-                  <ClassStatusDot style={{ color: "#28B657" }}>
-                    ●
-                  </ClassStatusDot>
-                  <ClassStatusText>학습 완료</ClassStatusText>
-                </ClassStatus>
-              </ClassSet>
-              <hr />
-              <ClassSet>
-                <ClassName>
-                  <a href="/study/java/01_03" className="menu-link">
-                    Java 프로젝트 생성 및 기본
-                  </a>
-                </ClassName>{" "}
-                <ClassStatus>
-                  <ClassStatusDot style={{ color: "#28B657" }}>
-                    ●
-                  </ClassStatusDot>
-                  <ClassStatusText>학습 완료</ClassStatusText>
-                </ClassStatus>
-              </ClassSet>
-            </ClassContents>
-          </EachClass>
+          <StickyClassBox>
+            <Java_ClassListSmall_01 />
+          </StickyClassBox>
         </LeftContainer>
         <RightContainer>
           <EachClass>
@@ -277,6 +236,11 @@ const Java_01_01 = () => {
               </ClassContentsText>
             </ClassContentsContainer>
           </EachClass>
+          <ArrowContainer style={{ justifyContent: "flex-end" }}>
+            <a href="/study/java/01/02" style={{ textDecoration: "none" }}>
+            <RightArrow />
+            </a>
+          </ArrowContainer>
         </RightContainer>
       </Container>
     </Wrap>

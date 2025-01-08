@@ -50,12 +50,6 @@ const StudyBar = ({ isOpen, closeMenu }) => {
           </MenuImgContainer>
         <MenuTitle>JavaScript</MenuTitle>
         </MenuColumn>
-        <MenuColumn>
-        <MenuImgContainer>
-            <MenuImgCss />
-          </MenuImgContainer>
-        <MenuTitle>CSS</MenuTitle>
-        </MenuColumn>
       </MenuContainer>
     </Container>
   );

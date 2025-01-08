@@ -24,7 +24,12 @@ import {
   ClassContentsImage,
   ClassContentsCodeBox,
   ClassContentsCode,
+  StickyClassBox,
+  ArrowContainer,
+  LeftArrow,
+  RightArrow,
 } from "../../../styles/study/Study";
+import Java_ClassListSmall_01 from "./Java_ClassListSmall_01";
 
 const Java_01_03 = () => {
   return (
@@ -43,6 +48,9 @@ const Java_01_03 = () => {
               <SubjectRateContents>52%</SubjectRateContents>
             </SubjectRateContainer>
           </LeftSubjectContainer>
+          <StickyClassBox>
+            <Java_ClassListSmall_01 />
+          </StickyClassBox>
         </LeftContainer>
         <RightContainer>
           <EachClass>
@@ -181,12 +189,12 @@ const Java_01_03 = () => {
               </ClassContentsText>
               <ClassContentsTitle3>주석</ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsTextTab>
+
                   - 한줄 주석 : //
                   <br />
                   - 여러 줄 주석 : /* */
                   <br />
-                </ClassContentsTextTab>
+
               </ClassContentsText>
               <ClassContentsTitle3>명령문과 세미콜론</ClassContentsTitle3>
               <ClassContentsText>
@@ -219,7 +227,7 @@ const Java_01_03 = () => {
                       {`System.out.printf("%d\n", 3); // 서식 지정자 사용`}
                       <br />
                     </ClassContentsCode>
-                  </ClassContentsCodeBox>
+                  </ClassContentsCodeBox><br />
                   - %d : 정수형 출력
                   <br />
                   - %s : 문자열 출력
@@ -234,6 +242,14 @@ const Java_01_03 = () => {
               </ClassContentsText>
             </ClassContentsContainer>
           </EachClass>
+                    <ArrowContainer>
+                      <a href="/study/java/01/02" style={{ textDecoration: "none" }}>
+                        <LeftArrow />
+                      </a>
+                      <a href="/study/java/02/01" style={{ textDecoration: "none" }}>
+                        <RightArrow />
+                      </a>
+                    </ArrowContainer>
         </RightContainer>
       </Container>
     </Wrap>

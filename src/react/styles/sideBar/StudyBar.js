@@ -157,16 +157,6 @@ export const MenuImgJavaScript = styled.div.attrs({
   background-position: center;
   background-image: url("/images/program/js_full.png");
 `;
-export const MenuImgCss = styled.div.attrs({
-  id: "menuimgcss",
-})`
-  width: 80px;
-  height: 80px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  background-image: url("/images/program/css_small.png");
-`;
 export const MenuTitle = styled.div.attrs({
   id: "menutitle",
 })`

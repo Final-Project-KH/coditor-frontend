@@ -31,13 +31,13 @@ const expandHeight = keyframes`
     opacity: 0;
   }
   100% {
-    height: 400px;
+    height: 420px;
     opacity: 1;
   }
 `;
 const collapseHeight = keyframes`
   0% {
-    height: 400px;
+    height: 420px;
     opacity: 1;
   }
   100% {
@@ -145,16 +145,6 @@ export const MenuImgJavaScript = styled.div.attrs({
   background-size: contain;
   background-position: center;
   background-image: url("/images/program/js_full.png");
-`;
-export const MenuImgCss = styled.div.attrs({
-  id: "menuimgcss",
-})`
-  width: 80px;
-  height: 80px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  background-image: url("/images/program/css_small.png");
 `;
 export const MenuTitle = styled.div.attrs({
   id: "menutitle",

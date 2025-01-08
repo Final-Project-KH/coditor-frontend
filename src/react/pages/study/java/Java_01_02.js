@@ -24,7 +24,13 @@ import {
   ClassContentsImage,
   ClassContentsCodeBox,
   ClassContentsCode,
+  StickyClassBox,
+  ArrowContainer,
+  RightArrow,
+  LeftArrow,
 } from "../../../styles/study/Study";
+
+import Java_ClassListSmall_01 from "./Java_ClassListSmall_01";
 
 const Java_01_02 = () => {
   return (
@@ -43,6 +49,9 @@ const Java_01_02 = () => {
               <SubjectRateContents>52%</SubjectRateContents>
             </SubjectRateContainer>
           </LeftSubjectContainer>
+          <StickyClassBox>
+            <Java_ClassListSmall_01 />
+          </StickyClassBox>
         </LeftContainer>
         <RightContainer>
           <EachClass>
@@ -141,37 +150,49 @@ const Java_01_02 = () => {
               </ClassContentsCodeBox>
               <ClassContentsTitle3>환경 변수 테스트</ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsTextTab>
-                  - 검색창에서 cmd d 입력
-                </ClassContentsTextTab>
+                - 검색창에서 cmd d 입력
+                <br />
+                <br />
+                <ClassContentsImage
+                  style={{
+                    backgroundImage: `url(${"/images/study/java_01_02_01.png"})`,
+                  }}
+                />
+                <br />
               </ClassContentsText>
-              <ClassContentsImage
-                style={{
-                  backgroundImage: `url(${"/images/study/java_01_02_01.png"})`,
-                }}
-              />
               <ClassContentsTitle3>
                 인텔리제이에서 JDK 버전 확인하기
               </ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsTextTab>
-                  - 파일 → Project Structure 이동
-                </ClassContentsTextTab>
+                - 파일 → Project Structure 이동
+                <br />
+                <br />
+                <ClassContentsImage
+                  style={{
+                    backgroundImage: `url(${"/images/study/java_01_02_02.png"})`,
+                  }}
+                />
+                <br />
               </ClassContentsText>
-              <ClassContentsImage
-                style={{
-                  backgroundImage: `url(${"/images/study/java_01_02_02.png"})`,
-                }}
-              />
               <ClassContentsText>
-                👉 SDK 버전이 정상적으로 잡혀 있는지 확인 합니다.{" "}
+                👉 SDK 버전이 정상적으로 잡혀 있는지 확인 합니다.
+                <br />
+                <br />
+                <ClassContentsCodeBox>
+                  👉 설치 후 버전 변경이 안되는 경우 해당 경로를 찾아서 환경
+                  변수를 설정해주어야 합니다.
+                </ClassContentsCodeBox>{" "}
               </ClassContentsText>
-              <ClassContentsCodeBox>
-                👉 설치 후 버전 변경이 안되는 경우 해당 경로를 찾아서 환경
-                변수를 설정해주어야 합니다.
-              </ClassContentsCodeBox>
             </ClassContentsContainer>
           </EachClass>
+          <ArrowContainer>
+            <a href="/study/java/01/01" style={{ textDecoration: "none" }}>
+              <LeftArrow />
+            </a>
+            <a href="/study/java/01/03" style={{ textDecoration: "none" }}>
+              <RightArrow />
+            </a>
+          </ArrowContainer>
         </RightContainer>
       </Container>
     </Wrap>

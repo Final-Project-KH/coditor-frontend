@@ -142,7 +142,7 @@ export const RightContainer = styled.div.attrs({
   width: 830px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 50px;
   padding-bottom: 50px;
 `;
 
@@ -178,10 +178,23 @@ export const ClassHeaderTitle = styled.div.attrs({
   font-size: 20px;
   font-family: "bold", sans-serif;
 `;
+export const StickyClassBox = styled.div.attrs({
+  id: "stickyclassbox",
+})`
+  width: 100%;
+  height: calc(100vh - 550px);
+  position: sticky;
+  top: 510px;
+  bottom: 50px;
+  overflow-y: scroll; /* 세로 스크롤 활성화 */
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+  overflow-x: hidden;
+`;
 export const ClassContents = styled.div.attrs({
   id: "classcontents",
 })`
-  width: 790px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -321,4 +334,107 @@ export const ClassContentsCode = styled.div.attrs({
   font-size: 12px;
   font-family: "regular", sans-serif;
   color: gray;
+`;
+
+export const ClassTable = styled.table.attrs({
+  id: "classtable",
+})`
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px;
+`;
+
+export const ClassTableTr = styled.tr.attrs({
+  id: "classtabletr",
+})`
+  border: 1px solid black;
+`;
+
+export const ClassTableTd = styled.td.attrs({
+  id: "classtabletd",
+})`
+  border: 1px solid black;
+  padding: 10px;
+`;
+
+export const ClassIndex = styled.div.attrs({
+  id: "classindex",
+})`
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: sticky;
+  top: 510px;
+  height: calc(100vh - 560px);
+  overflow-y: scroll; /* 세로 스크롤 활성화 */
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+  overflow-x: hidden;
+`;
+
+export const ClassIndexInner = styled.div.attrs({
+  id: "classindexinner",
+})`
+  width: 92%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  margin-bottom: 5px;
+`;
+export const ClassIndexName = styled.div.attrs({
+  id: "classindexname",
+})`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  color: white;
+  margin-left: 20px;
+  font-size: 20px;
+  font-family: "bold", sans-serif;
+  cursor: pointer;
+  position: relative;
+`;
+export const ArrowContainer = styled.div.attrs({
+  id: "arrowcontainer",
+})`
+width: 100%;
+height: 50px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+`;
+export const LeftArrow = styled.div.attrs({
+  id: "leftarrow",
+})`
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-repeat: no-repeat;
+  background-size: 15px 15px;
+  background-position: center;
+  background-image: url("/images/icon/arrow_left.png");
+`;
+export const RightArrow = styled.div.attrs({
+  id: "rightarrow",
+})`
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-repeat: no-repeat;
+  background-size: 15px 15px;
+  background-position: center;
+  background-image: url("/images/icon/arrow_right.png");
 `;
