@@ -28,6 +28,7 @@ const CodingTestBar = ({isOpen, closeMenu}) => {
             <StyledLink to="/ct_commons"></StyledLink>
             Java
           </MenuTitle>
+          <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
           <MenuContents>Intermediate</MenuContents>
           <MenuContents>Expert</MenuContents>
@@ -37,6 +38,7 @@ const CodingTestBar = ({isOpen, closeMenu}) => {
             <MenuImgPython />
           </MenuImgContainer>
           <MenuTitle>Python</MenuTitle>
+          <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
           <MenuContents>Intermediate</MenuContents>
           <MenuContents>Expert</MenuContents>
@@ -46,6 +48,7 @@ const CodingTestBar = ({isOpen, closeMenu}) => {
             <MenuImgC />
           </MenuImgContainer>
           <MenuTitle>C</MenuTitle>
+          <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
           <MenuContents>Intermediate</MenuContents>
           <MenuContents>Expert</MenuContents>
@@ -55,6 +58,7 @@ const CodingTestBar = ({isOpen, closeMenu}) => {
             <MenuImgCPlus />
           </MenuImgContainer>
           <MenuTitle>C++</MenuTitle>
+          <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
           <MenuContents>Intermediate</MenuContents>
           <MenuContents>Expert</MenuContents>
@@ -64,15 +68,7 @@ const CodingTestBar = ({isOpen, closeMenu}) => {
             <MenuImgJavaScript />
           </MenuImgContainer>
           <MenuTitle>JavaScript</MenuTitle>
-          <MenuContents>Basic</MenuContents>
-          <MenuContents>Intermediate</MenuContents>
-          <MenuContents>Expert</MenuContents>
-        </MenuColumn>
-        <MenuColumn>
-          <MenuImgContainer>
-            <MenuImgCss />
-          </MenuImgContainer>
-          <MenuTitle>CSS</MenuTitle>
+          <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
           <MenuContents>Intermediate</MenuContents>
           <MenuContents>Expert</MenuContents>

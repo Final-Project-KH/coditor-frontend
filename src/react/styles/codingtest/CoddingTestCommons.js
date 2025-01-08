@@ -24,6 +24,26 @@ export const Container = styled.div.attrs({
   margin-bottom: 0;
   gap: 50px;
 `;
+export const Navigator = styled.div.attrs({
+  id: "navigator",
+})`
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 30px;
+`;
+export const TopBox = styled.div.attrs({
+  id: "topbox",
+})`
+  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: top;
+  justify-content: flex-start;
+  margin-bottom: 0;
+  margin-top: 10px;
+`;
 export const LeftContainer = styled.div.attrs({
   id: "leftcontainer",
 })`
@@ -128,7 +148,99 @@ export const RightContainer = styled.div.attrs({
   width: 780px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 50px;
   padding-bottom: 50px;
   background-color: blue;
+  position: relative;
+`;
+export const EachClass = styled.div.attrs({
+  id: "eachclass",
+})`
+  width: 100%;
+  background-color: #f1f1f1;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+`;
+export const ClassHeader = styled.div.attrs({
+  id: "classheader",
+})`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 30px 30px 0px 0px;
+`;
+export const ClassHeaderTitle = styled.div.attrs({
+  id: "classheadertitle",
+})`
+  width: 600px;
+  margin-left: 30px;
+  position: relative;
+  color: white;
+  font-size: 20px;
+  font-family: "bold", sans-serif;
+`;
+export const ClassContents = styled.div.attrs({
+  id: "classcontents",
+})`
+  width: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+`;
+export const ClassSet = styled.div.attrs({
+  id: "classset",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  & + &::before {
+    content: "";
+    position: absolute;
+    width: 740px;
+    left: 20px;
+    height: 1px;
+    background-color: black;
+    transform: rotate(0deg);
+  }
+`;
+export const ClassName = styled.div.attrs({
+  id: "classname",
+})`
+  color: black;
+  font-size: 20px;
+  font-family: "medium", sans-serif;
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 5px 20px;
+  display: flex;
+  position: relative;
+  &:hover {
+    text-decoration: none; /* 호버 시 밑줄 추가 */
+    background-color: #313131;
+    color: white;
+    display: inline-block;
+    border-radius: 30px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+`;
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  bottom: 0px;
+  position: absolute;
+  background-color: transparent;
 `;
