@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import AxiosApi from "../../../api/AxiosApi";
 import {
   Wrap,
@@ -233,6 +233,7 @@ const Signup = () => {
             ></InputEmail>
             <InputIndex>닉네임</InputIndex>
             <InputNickName
+              autoComplete="off"
               type="text"
               placeholder="닉네임 입력"
               value={inputName}
@@ -248,43 +249,45 @@ const Signup = () => {
                 ></InputExtraItemCheckBox>
                 <InputExtraItemP>전체동의</InputExtraItemP>
               </InputExtra>
-              <hr style={{ marginTop: "10px", marginBottom: "10px" }} />
+              <hr style={{marginTop: "10px", marginBottom: "10px"}} />
               <InputExtra>
-          <InputExtraItemCheckBox
-          type="checkbox"
-          id="agreeterms"
-          checked={isCheckedTerms}
-          onChange={handleCheckTermsBox}
-          ></InputExtraItemCheckBox>
-          <InputExtraItemP>이용약관 동의</InputExtraItemP>
-          </InputExtra>
-          <InputExtra>
-          <InputExtraItemCheckBox
-          type="checkbox"
-          id="agreeuses"
-          checked={isCheckedUses}
-          onChange={handleCheckUsesBox}
-          ></InputExtraItemCheckBox>
-          <InputExtraItemP>개인정보 수집 및 이용 동의</InputExtraItemP>
-          </InputExtra>
-          <InputExtra>
-          <InputExtraItemCheckBox
-          type="checkbox"
-          id="agree14"
-          checked={isChecked14}
-          onChange={handleCheck14Box}
-          ></InputExtraItemCheckBox>
-          <InputExtraItemP>[선택] 만 14세 이상입니다.</InputExtraItemP>
-          </InputExtra>
-          <InputExtra>
-          <InputExtraItemCheckBox
-          type="checkbox"
-          id="agreemarketing"
-          checked={isCheckedMarketing}
-          onChange={handleCheckMarketingBox}
-          ></InputExtraItemCheckBox>
-          <InputExtraItemP>[선택] 마케팅 활용 동의 및 광고 수신 동의</InputExtraItemP>
-          </InputExtra>
+                <InputExtraItemCheckBox
+                  type="checkbox"
+                  id="agreeterms"
+                  checked={isCheckedTerms}
+                  onChange={handleCheckTermsBox}
+                ></InputExtraItemCheckBox>
+                <InputExtraItemP>이용약관 동의</InputExtraItemP>
+              </InputExtra>
+              <InputExtra>
+                <InputExtraItemCheckBox
+                  type="checkbox"
+                  id="agreeuses"
+                  checked={isCheckedUses}
+                  onChange={handleCheckUsesBox}
+                ></InputExtraItemCheckBox>
+                <InputExtraItemP>개인정보 수집 및 이용 동의</InputExtraItemP>
+              </InputExtra>
+              <InputExtra>
+                <InputExtraItemCheckBox
+                  type="checkbox"
+                  id="agree14"
+                  checked={isChecked14}
+                  onChange={handleCheck14Box}
+                ></InputExtraItemCheckBox>
+                <InputExtraItemP>[선택] 만 14세 이상입니다.</InputExtraItemP>
+              </InputExtra>
+              <InputExtra>
+                <InputExtraItemCheckBox
+                  type="checkbox"
+                  id="agreemarketing"
+                  checked={isCheckedMarketing}
+                  onChange={handleCheckMarketingBox}
+                ></InputExtraItemCheckBox>
+                <InputExtraItemP>
+                  [선택] 마케팅 활용 동의 및 광고 수신 동의
+                </InputExtraItemP>
+              </InputExtra>
             </InputExtraContainer>
             {isUserId && isEmail && isPw && isConPw && isName ? (
               <SignUp enabled onClick={onClickSignUp}>
