@@ -6,6 +6,7 @@ import {
   MenuTitle,
   MenuContents,
   OutLink,
+  LinkContents,
 } from "../../styles/sideBar/MoreBar";
 
 const MoreBar = ({ isOpen, closeMenu }) => {
@@ -29,14 +30,14 @@ const MoreBar = ({ isOpen, closeMenu }) => {
             코딩 테스트 및<br />
             알고리즘 관련 외부 사이트
           </MenuTitle>
-          <MenuContents
+          <LinkContents
             onClick={() => window.open("https://www.acmicpc.net", "_blank")}
             style={{ cursor: "pointer", textDecoration: "none" }}
           >
             백준 온라인 저지
             <OutLink />
-          </MenuContents>
-          <MenuContents
+          </LinkContents>
+          <LinkContents
             onClick={() =>
               window.open("https://swexpertacademy.com/main/main.do", "_blank")
             }
@@ -44,49 +45,49 @@ const MoreBar = ({ isOpen, closeMenu }) => {
           >
             삼성 SW Expert Academy
             <OutLink />
-          </MenuContents>
-          <MenuContents
+          </LinkContents>
+          <LinkContents
             onClick={() => window.open("https://programmers.co.kr/", "_blank")}
             style={{ cursor: "pointer", textDecoration: "none" }}
           >
             프로그래머스
             <OutLink />
-          </MenuContents>
-          <MenuContents
+          </LinkContents>
+          <LinkContents
             onClick={() => window.open("https://codeup.kr/", "_blank")}
             style={{ cursor: "pointer", textDecoration: "none" }}
           >
             코드업
             <OutLink />
-          </MenuContents>
-          <MenuContents
+          </LinkContents>
+          <LinkContents
             onClick={() => window.open("https://leetcode.com/", "_blank")}
             style={{ cursor: "pointer", textDecoration: "none" }}
           >
             LeetCode
             <OutLink />
-          </MenuContents>
-          <MenuContents
+          </LinkContents>
+          <LinkContents
             onClick={() => window.open("https://codeforces.com/", "_blank")}
             style={{ cursor: "pointer", textDecoration: "none" }}
           >
             Codeforces
             <OutLink />
-          </MenuContents>
-          <MenuContents
+          </LinkContents>
+          <LinkContents
             onClick={() => window.open("https://www.hackerrank.com/", "_blank")}
             style={{ cursor: "pointer", textDecoration: "none" }}
           >
             Hackerrank
             <OutLink />
-          </MenuContents>
-          <MenuContents
+          </LinkContents>
+          <LinkContents
             onClick={() => window.open("https://devth.goorm.io/", "_blank")}
             style={{ cursor: "pointer", textDecoration: "none" }}
           >
             구름DEVTH
             <OutLink />
-          </MenuContents>
+          </LinkContents>
         </MenuColumn>
         <MenuColumn>
           <MenuTitle>기타 정보</MenuTitle>

@@ -12,8 +12,16 @@ const AboutBar = ({ isOpen, closeMenu }) => {
     <Container isOpen={isOpen}>
       <MenuContainer>
         <MenuColumn>
-          <MenuTitle>About</MenuTitle>
-          <MenuContents>코디터 소개</MenuContents>
+          <MenuTitle>
+            <a href="/about" className="menu-link">
+              About
+            </a>
+          </MenuTitle>
+          <MenuContents>
+            <a href="/about" className="menu-link">
+              코디터 소개
+            </a>
+          </MenuContents>
         </MenuColumn>
         <MenuColumn></MenuColumn>
         <MenuColumn></MenuColumn>

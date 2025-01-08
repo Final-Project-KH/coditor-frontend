@@ -301,11 +301,11 @@ const Signup = () => {
         <NoticeContainer>
           <Notice>
             {/* 공지 및 안내 페이지 링크 연결 미구현 */}
-            <NoticeLink to="#"></NoticeLink>
+            <NoticeLink to="../legal/Terms"></NoticeLink>
             서비스 이용약관
           </Notice>
           <Notice>
-            <NoticeLink to="#"></NoticeLink>
+            <NoticeLink to="../legal/Privacy"></NoticeLink>
             개인정보 처리방침
           </Notice>
         </NoticeContainer>

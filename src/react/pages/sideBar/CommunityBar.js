@@ -21,7 +21,10 @@ const CommunityBar = ({ isOpen, closeMenu }) => {
           <MenuContents>스터디</MenuContents>
           <MenuContents>팀 프로젝트</MenuContents>
         </MenuColumn>
-        <MenuColumn></MenuColumn>
+        <MenuColumn>
+        <MenuTitle style={{ minHeight: '26px' }} />
+        <MenuContents>✨ 코디터 멘토링 서비스</MenuContents>
+        </MenuColumn>
       </MenuContainer>
     </Container>
   );
