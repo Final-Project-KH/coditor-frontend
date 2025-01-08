@@ -4,7 +4,6 @@ import AxiosApi from "../../../api/AxiosApi";
 import { setLoginData, setError } from "../../../redux/slice/authSlice";
 import JwtDecoding from "../../../api/JwtDecode";
 import { useNavigate } from "react-router-dom";
-import Modal from "../../../util/Modal";
 import Common from "../../../util/Common";
 import { GoogleOAuthProvider } from "@react-oauth/google"; // GoogleOAuthProvider 추가
 import {
