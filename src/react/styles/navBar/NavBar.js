@@ -95,8 +95,7 @@ export const MenuBox = styled.div.attrs({
   position: relative;
   justify-content: center;
   align-items: center;
-  &:hover {
-    ${(props) =>
+  ${(props) =>
     props.isOpen &&
     css`
       &::before {
@@ -110,7 +109,6 @@ export const MenuBox = styled.div.attrs({
         z-index: 5;
       }
     `}
-  }
 `;
 
 export const MenuButton = styled.button.attrs({
@@ -128,7 +126,7 @@ export const MenuButton = styled.button.attrs({
   border: none;
   user-select: none;
   font-size: 25px;
-  font-family: 'cocogoose-md';
+  font-family: "cocogoose-md";
   &:focus {
     outline: none;
     box-shadow: none;
@@ -136,15 +134,13 @@ export const MenuButton = styled.button.attrs({
   transition: all 0.1s ease-in-out;
   &:hover {
     ${(props) =>
-    props.isOpen &&
-    css`
-      & {
-
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-      }
-    `}
+      props.isOpen &&
+      css`
+        & {
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+      `}
   }
-
 `;
 
 export const LoginContainer = styled.div.attrs({
@@ -173,7 +169,7 @@ export const LoginBox = styled.div.attrs({
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
   font-size: 25px;
-  font-family: 'cocogoose-md';
+  font-family: "cocogoose-md";
   padding-top: 5px;
   &:hover {
     background-color: white;

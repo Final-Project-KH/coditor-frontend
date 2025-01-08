@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import {useState, useEffect, useRef} from "react";
 import React from "react";
 import {
   Wrap,
@@ -68,7 +68,7 @@ const NavBar = () => {
 
   // 메뉴 닫기 (추가적인 상황에서 사용)
   const closeMenu = (menuName) => {
-    setMenuState((prev) => ({ ...prev, [menuName]: false }));
+    setMenuState((prev) => ({...prev, [menuName]: false}));
     setTimeout(() => {
       setAnimatingMenus((prev) => ({
         ...prev,
@@ -94,24 +94,14 @@ const NavBar = () => {
           closeMenu(menuName);
         }
       });
-    } else if (event.type === "keydown") {
-      if (event.key === "Escape") {
-        Object.keys(menuState).forEach((menuName) => {
-          if (menuState[menuName]) {
-            closeMenu(menuName);
-          }
-        });
-      }
     }
   };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleEvent);
-    document.addEventListener("keydown", handleEvent);
 
     return () => {
       document.removeEventListener("mousedown", handleEvent);
-      document.removeEventListener("keydown", handleEvent);
     };
   }, [menuState]);
 
