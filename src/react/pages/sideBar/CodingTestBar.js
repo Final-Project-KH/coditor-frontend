@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {
   Container,
   MenuContainer,
@@ -12,58 +12,72 @@ import {
   MenuImgCss,
   MenuTitle,
   MenuContents,
+  StyledLink,
 } from "../../styles/sideBar/CoddingTestBar";
 
-const CodingTestBar = ({ isOpen, closeMenu }) => {
+const CodingTestBar = ({isOpen, closeMenu}) => {
   return (
     <Container isOpen={isOpen}>
       <MenuContainer>
         <MenuColumn>
-        <MenuImgContainer>
+          <MenuImgContainer>
             <MenuImgJava />
           </MenuImgContainer>
           <MenuTitle>Java</MenuTitle>
+          <MenuTitle>
+            {/* Test용 */}
+            <StyledLink to="/ct_commons"></StyledLink>
+            Java
+          </MenuTitle>
           <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
           <MenuContents>Intermediate</MenuContents>
           <MenuContents>Expert</MenuContents>
         </MenuColumn>
         <MenuColumn>
-        <MenuImgContainer>
+          <MenuImgContainer>
             <MenuImgPython />
           </MenuImgContainer>
         <MenuTitle>Python</MenuTitle>
         <MenuContents>Practice</MenuContents>
+          <MenuTitle>Python</MenuTitle>
+          <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
           <MenuContents>Intermediate</MenuContents>
           <MenuContents>Expert</MenuContents>
         </MenuColumn>
         <MenuColumn>
-        <MenuImgContainer>
+          <MenuImgContainer>
             <MenuImgC />
           </MenuImgContainer>
         <MenuTitle>C</MenuTitle>
         <MenuContents>Practice</MenuContents>
+          <MenuTitle>C</MenuTitle>
+          <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
           <MenuContents>Intermediate</MenuContents>
           <MenuContents>Expert</MenuContents>
         </MenuColumn>
         <MenuColumn>
-        <MenuImgContainer>
+          <MenuImgContainer>
             <MenuImgCPlus />
           </MenuImgContainer>
         <MenuTitle>C++</MenuTitle>
         <MenuContents>Practice</MenuContents>
+          <MenuTitle>C++</MenuTitle>
+          <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
           <MenuContents>Intermediate</MenuContents>
           <MenuContents>Expert</MenuContents>
         </MenuColumn>
         <MenuColumn>
-        <MenuImgContainer>
+          <MenuImgContainer>
             <MenuImgJavaScript />
           </MenuImgContainer>
         <MenuTitle>JavaScript</MenuTitle>
         <MenuContents>Practice</MenuContents>
+          <MenuTitle>JavaScript</MenuTitle>
+          <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
           <MenuContents>Intermediate</MenuContents>
           <MenuContents>Expert</MenuContents>

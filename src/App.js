@@ -17,6 +17,7 @@ import Java_02_02 from "./react/pages/study/java/Java_02_02";
 import Java_02_03 from "./react/pages/study/java/Java_02_03";
 import Java_02_04 from "./react/pages/study/java/Java_02_04";
 import Java_02_05 from "./react/pages/study/java/Java_02_05";
+import CodingTestCommons from "./react/pages/codingtest/CodingTestCommon";
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
             <Route path="/study/java/02/03" element={<Java_02_03 />} />
             <Route path="/study/java/02/04" element={<Java_02_04 />} />
             <Route path="/study/java/02/05" element={<Java_02_05 />} />
+            <Route path="/study/java/01_01" element={<Java_01_01 />} />
+            <Route path="/study/java/01_02" element={<Java_01_02 />} />
+            <Route path="/study/java/01_03" element={<Java_01_03 />} />
+            <Route path="/ct_commons" element={<CodingTestCommons />} />
             <Route path="/legal/terms" element={<Terms />} />
             <Route path="/legal/privacy" element={<Privacy />} />
           </Route>
