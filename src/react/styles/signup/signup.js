@@ -261,6 +261,7 @@ export const InputEmail = styled.input.attrs({
 export const InputNickName = styled.input.attrs({
   id: "inputuser",
 })`
+
   width: 400px;
   height: 50px;
   display: flex;

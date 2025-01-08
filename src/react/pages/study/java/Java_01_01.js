@@ -22,6 +22,12 @@ import {
   ClassContentsTitle3,
   ClassContentsTextTab,
   ClassContentsImage,
+  ClassContents,
+  ClassSet,
+  ClassName,
+  ClassStatus,
+  ClassStatusDot,
+  ClassStatusText,
 } from "../../../styles/study/Study";
 
 const Java_01_01 = () => {
@@ -41,6 +47,55 @@ const Java_01_01 = () => {
               <SubjectRateContents>52%</SubjectRateContents>
             </SubjectRateContainer>
           </LeftSubjectContainer>
+          <EachClass>
+            <ClassHeader>
+              <ClassHeaderTitle>01. Java 시작</ClassHeaderTitle>
+            </ClassHeader>
+            <ClassContents>
+              <ClassSet>
+                <ClassName>
+                  <a href="/study/java/01_01" className="menu-link">
+                    Java 시작하기
+                  </a>
+                </ClassName>
+                <ClassStatus>
+                  <ClassStatusDot style={{ color: "#28B657" }}>
+                    ●
+                  </ClassStatusDot>
+                  <ClassStatusText>학습 완료</ClassStatusText>
+                </ClassStatus>
+              </ClassSet>
+              <hr />
+              <ClassSet>
+                <ClassName>
+                  <a href="/study/java/01_02" className="menu-link">
+                    Java 개발 환경 구축
+                  </a>
+                </ClassName>
+
+                <ClassStatus>
+                  <ClassStatusDot style={{ color: "#28B657" }}>
+                    ●
+                  </ClassStatusDot>
+                  <ClassStatusText>학습 완료</ClassStatusText>
+                </ClassStatus>
+              </ClassSet>
+              <hr />
+              <ClassSet>
+                <ClassName>
+                  <a href="/study/java/01_03" className="menu-link">
+                    Java 프로젝트 생성 및 기본
+                  </a>
+                </ClassName>{" "}
+                <ClassStatus>
+                  <ClassStatusDot style={{ color: "#28B657" }}>
+                    ●
+                  </ClassStatusDot>
+                  <ClassStatusText>학습 완료</ClassStatusText>
+                </ClassStatus>
+              </ClassSet>
+            </ClassContents>
+          </EachClass>
         </LeftContainer>
         <RightContainer>
           <EachClass>
@@ -167,7 +222,7 @@ const Java_01_01 = () => {
               <ClassContentsTitle1>자바 프로그램 개발 과정</ClassContentsTitle1>
               <ClassContentsImage
                 style={{
-                  backgroundImage: `url(${"/images/study/java_01_01.png"})`,
+                  backgroundImage: `url(${"/images/study/java_01_01_01.png"})`,
                 }}
               />
               <ClassContentsTitle2>컴파일</ClassContentsTitle2>
@@ -178,7 +233,7 @@ const Java_01_01 = () => {
               </ClassContentsText>
               <ClassContentsImage
                 style={{
-                  backgroundImage: `url(${"/images/study/java_01_02.png"})`,
+                  backgroundImage: `url(${"/images/study/java_01_01_02.png"})`,
                 }}
               />
               <ClassContentsTitle2>JDK, JRE, JVM</ClassContentsTitle2>
@@ -197,7 +252,7 @@ const Java_01_01 = () => {
               </ClassContentsText>
               <ClassContentsImage
                 style={{
-                  backgroundImage: `url(${"/images/study/java_01_03.png"})`,
+                  backgroundImage: `url(${"/images/study/java_01_01_03.png"})`,
                 }}
               />
               <ClassContentsTitle2>빌드</ClassContentsTitle2>

@@ -290,7 +290,6 @@ export const ClassContentsTextTab = styled.div.attrs({
   id: "classcontentstexttab",
 })`
   padding-left: 25px;
-  font-size: 14px;
   font-family: "regular", sans-serif;
 `;
 export const ClassContentsImage = styled.div.attrs({
@@ -301,4 +300,25 @@ export const ClassContentsImage = styled.div.attrs({
   background-repeat: no-repeat;
   background-size: contain;
   background-position: top left;
+`;
+
+export const ClassContentsCodeBox = styled.div.attrs({
+  id: "classcontentscodebox",
+})`
+  width: 100%;
+  border: 1px solid black;
+  overflow-x: auto;
+  padding: 20px 25px;
+  font-size: 12px;
+  font-family: "regular", sans-serif;
+  color: black;
+`;
+
+export const ClassContentsCode = styled.div.attrs({
+  id: "classcontentscode",
+})`
+  width: 1000px;
+  font-size: 12px;
+  font-family: "regular", sans-serif;
+  color: gray;
 `;

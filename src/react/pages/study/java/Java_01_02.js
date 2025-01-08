@@ -22,6 +22,8 @@ import {
   ClassContentsTitle3,
   ClassContentsTextTab,
   ClassContentsImage,
+  ClassContentsCodeBox,
+  ClassContentsCode,
 } from "../../../styles/study/Study";
 
 const Java_01_02 = () => {
@@ -58,7 +60,7 @@ const Java_01_02 = () => {
               <hr />
               <ClassContentsTitle3>JDK 설치</ClassContentsTitle3>
               <ClassContentsText>
-                https://oracle.com 접속
+                <a href="https://oracle.com">https://oracle.com</a> 접속
                 <br />
                 Java SE Development Kit 11.0.15
                 <br />
@@ -75,10 +77,12 @@ const Java_01_02 = () => {
                 존재하며 Community 버전으로도 충분히 개발을 진행할 수 있으므로
                 Community 버전을 사용하도록 하겠습니다.
                 <br />
-                https://www.jetbrains.com/ko-kr/idea/
+                <a href="https://www.jetbrains.com/ko-kr/idea/">
+                  https://www.jetbrains.com/ko-kr/idea/
+                </a>
                 <br />
                 <ClassContentsTextTab>
-                  - 환경 설정 > 에디터 > 일반 > Ctrl + 마우스 휠로 글꼴 크기
+                  - 환경 설정 → 에디터 → 일반 → Ctrl + 마우스 휠로 글꼴 크기
                   변경
                 </ClassContentsTextTab>
               </ClassContentsText>
@@ -103,6 +107,69 @@ const Java_01_02 = () => {
                 경로와 안드로이드 설치 경로는 개인 PC의 설치 경로로 변경해야
                 합니다.
               </ClassContentsText>
+              <ClassContentsCodeBox>
+                <ClassContentsCode>
+                  export
+                  JAVA_HOME=/Users/kyungsoojeong/Library/Java/JavaVirtualMachines/corretto-17.0.9/Contents/Home
+                  <br />
+                  export PATH=${`{PATH}`}:$JAVA_HOME/bin
+                </ClassContentsCode>
+              </ClassContentsCodeBox>
+              <ClassContentsTitle3>윈도우</ClassContentsTitle3>
+              <ClassContentsText>시스템 환경 변수 편집</ClassContentsText>
+
+              <ClassContentsCodeBox>
+                👉 설치 후 버전 변경이 안되는 경우 해당 경로를 찾아서 환경
+                변수를 설정해주어야 합니다.
+                <ClassContentsTextTab>
+                  <br />
+                  예) C:\Program Files\java\jdk-11
+                  <br />
+                  <font color="red">환경 변수 추가</font>
+                  <br />
+                  <b>JAVA_HOME</b>
+                  <br />
+                  C:\Program Files\java\jdk-11
+                  <br />
+                  <font color="red">환경변수 편집</font>
+                  <br />
+                  <b>Path</b>
+                  <br />
+                  %JAVA_HOME%\bin
+                  <br />
+                </ClassContentsTextTab>
+              </ClassContentsCodeBox>
+              <ClassContentsTitle3>환경 변수 테스트</ClassContentsTitle3>
+              <ClassContentsText>
+                <ClassContentsTextTab>
+                  - 검색창에서 cmd d 입력
+                </ClassContentsTextTab>
+              </ClassContentsText>
+              <ClassContentsImage
+                style={{
+                  backgroundImage: `url(${"/images/study/java_01_02_01.png"})`,
+                }}
+              />
+              <ClassContentsTitle3>
+                인텔리제이에서 JDK 버전 확인하기
+              </ClassContentsTitle3>
+              <ClassContentsText>
+                <ClassContentsTextTab>
+                  - 파일 → Project Structure 이동
+                </ClassContentsTextTab>
+              </ClassContentsText>
+              <ClassContentsImage
+                style={{
+                  backgroundImage: `url(${"/images/study/java_01_02_02.png"})`,
+                }}
+              />
+              <ClassContentsText>
+                👉 SDK 버전이 정상적으로 잡혀 있는지 확인 합니다.{" "}
+              </ClassContentsText>
+              <ClassContentsCodeBox>
+                👉 설치 후 버전 변경이 안되는 경우 해당 경로를 찾아서 환경
+                변수를 설정해주어야 합니다.
+              </ClassContentsCodeBox>
             </ClassContentsContainer>
           </EachClass>
         </RightContainer>
