@@ -4,7 +4,7 @@ import {
   LeftContainer,
   RightContainer,
   LeftSubjectContainer,
-  SubjectImgContainer,
+  SubjectImgContainerJava,
   SubjectTitle,
   SubjectContents,
   SubjectRateBlack,
@@ -28,6 +28,10 @@ import {
   ArrowContainer,
   RightArrow,
   LeftArrow,
+  TopBoxWide,
+  TopBox,
+  TopBoxText,
+  TopBoxArrow,
 } from "../../../styles/study/Study";
 
 import Java_ClassListSmall_01 from "./Java_ClassListSmall_01";
@@ -35,10 +39,29 @@ import Java_ClassListSmall_01 from "./Java_ClassListSmall_01";
 const Java_01_02 = () => {
   return (
     <Wrap>
+      <TopBoxWide>
+        <TopBox>
+          <a href="/study" className="menu-link">
+            <TopBoxText>study</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/study/java/main" className="menu-link">
+            <TopBoxText>Java</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/study/java/01" className="menu-link">
+            <TopBoxText>01. Java 시작</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/study/java/01/02" className="menu-link">
+            <TopBoxText>Java 개발 환경 구축</TopBoxText>
+          </a>
+        </TopBox>
+      </TopBoxWide>
       <Container>
         <LeftContainer>
           <LeftSubjectContainer>
-            <SubjectImgContainer />
+            <SubjectImgContainerJava />
             <SubjectTitle>Java 개념잡기</SubjectTitle>
             <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
             <SubjectRateContainer>

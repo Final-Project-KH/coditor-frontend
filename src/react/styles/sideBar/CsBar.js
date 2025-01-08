@@ -31,13 +31,13 @@ const expandHeight = keyframes`
     opacity: 0;
   }
   100% {
-    height: 200px;
+    height: 230px;
     opacity: 1;
   }
 `;
 const collapseHeight = keyframes`
   0% {
-    height: 200px;
+    height: 230px;
     opacity: 1;
   }
   100% {

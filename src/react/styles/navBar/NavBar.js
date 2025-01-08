@@ -132,15 +132,6 @@ export const MenuButton = styled.button.attrs({
     box-shadow: none;
   }
   transition: all 0.1s ease-in-out;
-  &:hover {
-    ${(props) =>
-      props.isOpen &&
-      css`
-        & {
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-      `}
-  }
 `;
 
 export const LoginContainer = styled.div.attrs({

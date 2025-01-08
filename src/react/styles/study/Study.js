@@ -10,51 +10,106 @@ export const Wrap = styled.div.attrs({
   justify-content: center;
   align-items: center;
 `;
+export const TopBoxWide = styled.div.attrs({
+  id: "topboxwide",
+})`
+  width: 100%;
+  height: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #313131;
+  position: fixed;
+  top: 100px;
+  z-index: 5;
+`;
+export const TopBox = styled.div.attrs({
+  id: "topbox",
+})`
+  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
+`;
+export const TopBoxText = styled.div.attrs({
+  id: "topboxtext",
+})`
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 30px;
+  border: 1px solid #313131;
+  font-family: "bold", sans-serif;
+  font-size: 18px;
+  align-items: center;
+  padding-bottom: 3px;
+  cursor: pointer;
+  color: white;
+  background-color: #313131;
+  &:hover{
+    color: #313131;
+    background-color: white;
+  }
+`;
+export const TopBoxArrow = styled.div.attrs({
+  id: "topboxarrow",
+})`
+  color: white;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: "light", sans-serif;
+  padding-bottom: 3px;
+`;
 export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
-  margin-top: 50px;
+  margin-top: 75px;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: top;
   justify-content: center;
   margin-bottom: 0;
-  gap: 50px;
+  gap: 25px;
 `;
 export const LeftContainer = styled.div.attrs({
   id: "leftcontainer",
 })`
-  width: 400px;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
+  gap: 25px;
   left: 0;
 `;
 export const LeftSubjectContainer = styled.div.attrs({
   id: "leftsubjectcontainer",
 })`
-  width: 400px;
-  height: 310px;
+  width: 100%;
+  height: 290.18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 29px 18px;
-  gap: 9px;
+  gap: 5px;
   border-radius: 30px;
   background-color: #f1f1f1;
   position: sticky;
-  top: 150px;
+  top: 175px;
   left: 0;
 `;
 
-export const SubjectImgContainer = styled.div.attrs({
-  id: "subjectimgcontainer",
+export const SubjectImgContainerJava = styled.div.attrs({
+  id: "subjectimgcontainerjava",
 })`
-  width: 234px;
-  height: 156px;
+  width: 20%;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,13 +117,78 @@ export const SubjectImgContainer = styled.div.attrs({
   background-size: contain;
   background-position: center;
   background-image: url("/images/program/java_full.png");
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
+export const SubjectImgContainerPython = styled.div.attrs({
+  id: "subjectimgcontainerpython",
+})`
+  width: 20%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/python_full.png");
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
+export const SubjectImgContainerC = styled.div.attrs({
+  id: "subjectimgcontainerc",
+})`
+  width: 20%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/c_full.png");
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
+export const SubjectImgContainerCPlus = styled.div.attrs({
+  id: "subjectimgcontainercplus",
+})`
+  width: 20%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/cplus_full.png");
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
+export const SubjectImgContainerJavaScript = styled.div.attrs({
+  id: "subjectimgcontainerjavascript",
+})`
+  width: 20%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/js_full.png");
+  margin-top: 10px;
+  margin-bottom: 10px;
 `;
 
 export const SubjectTitle = styled.div.attrs({
   id: "subjecttitle",
 })`
   width: 100%;
-  height: 30px;
   font-family: "medium", sans-serif;
   font-size: 20px;
   text-align: center;
@@ -80,7 +200,6 @@ export const SubjectContents = styled.div.attrs({
   id: "subjectcontents",
 })`
   width: 100%;
-  height: 20px;
   font-family: "medium", sans-serif;
   font-size: 15px;
   text-align: center;
@@ -107,22 +226,24 @@ export const SubjectRateBox = styled.div.attrs({
 export const SubjectRateWhite = styled.div.attrs({
   id: "subjectratewhite",
 })`
-  width: 364px;
+  width: 90%;
   height: 13px;
   border-radius: 10px;
   background-color: white;
   position: absolute;
-  top: 250px;
+  top: 220px;
+  left: 24px;
 `;
 export const SubjectRateBlack = styled.div.attrs({
   id: "subjectrateblack",
 })`
-  width: 195px;
+  width: 47%;
   height: 13px;
   border-radius: 10px 0px 0px 10px;
   background-color: rgba(0, 0, 0, 0.8);
   position: absolute;
-  top: 250px;
+  top: 220px;
+  left: 24px;
 `;
 export const SubjectRateContents = styled.div.attrs({
   id: "subjectratecontents",
@@ -130,7 +251,7 @@ export const SubjectRateContents = styled.div.attrs({
   width: 100%;
   height: 14px;
   font-family: "regular", sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -139,10 +260,10 @@ export const SubjectRateContents = styled.div.attrs({
 export const RightContainer = styled.div.attrs({
   id: "rightcontainer",
 })`
-  width: 830px;
+  width: 60%;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 25px;
   padding-bottom: 50px;
 `;
 
@@ -155,6 +276,7 @@ export const EachClass = styled.div.attrs({
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 export const ClassHeader = styled.div.attrs({
@@ -172,8 +294,8 @@ export const ClassHeader = styled.div.attrs({
 export const ClassHeaderTitle = styled.div.attrs({
   id: "classheadertitle",
 })`
-  width: 600px;
-  margin-left: 30px;
+  width: 90%;
+  padding-left: 30px;
   color: white;
   font-size: 20px;
   font-family: "bold", sans-serif;
@@ -182,9 +304,9 @@ export const StickyClassBox = styled.div.attrs({
   id: "stickyclassbox",
 })`
   width: 100%;
-  height: calc(100vh - 550px);
+  height: calc(100vh - 510px);
   position: sticky;
-  top: 510px;
+  top: 490px;
   bottom: 50px;
   overflow-y: scroll; /* 세로 스크롤 활성화 */
   -ms-overflow-style: none; /* IE/Edge */
@@ -198,7 +320,8 @@ export const ClassContents = styled.div.attrs({
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 export const ClassSet = styled.div.attrs({
   id: "classset",
@@ -258,7 +381,7 @@ export const ClassStatusText = styled.div.attrs({
 export const ClassContentsContainer = styled.div.attrs({
   id: "classcontentscontainer",
 })`
-  width: 760px;
+  width: 90%;
   margin-top: 50px;
   padding-bottom: 50px;
   gap: 20px;
@@ -319,21 +442,23 @@ export const ClassContentsCodeBox = styled.div.attrs({
   id: "classcontentscodebox",
 })`
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   overflow-x: auto;
   padding: 20px 25px;
   font-size: 12px;
   font-family: "regular", sans-serif;
   color: black;
+  background-color: white;
+  border-radius: 10px;
 `;
 
 export const ClassContentsCode = styled.div.attrs({
   id: "classcontentscode",
 })`
-  width: 1000px;
+  width: 100%;
   font-size: 12px;
   font-family: "regular", sans-serif;
-  color: gray;
+  color: #313131;
 `;
 
 export const ClassTable = styled.table.attrs({
@@ -370,8 +495,8 @@ export const ClassIndex = styled.div.attrs({
   padding-top: 5px;
   padding-bottom: 5px;
   position: sticky;
-  top: 510px;
-  height: calc(100vh - 560px);
+  top: 490px;
+  height: calc(100vh - 515px);
   overflow-y: scroll; /* 세로 스크롤 활성화 */
   -ms-overflow-style: none; /* IE/Edge */
   scrollbar-width: none; /* Firefox */
@@ -408,11 +533,11 @@ export const ClassIndexName = styled.div.attrs({
 export const ArrowContainer = styled.div.attrs({
   id: "arrowcontainer",
 })`
-width: 100%;
-height: 50px;
-display: flex;
-justify-content: space-between;
-align-items: center;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 export const LeftArrow = styled.div.attrs({
   id: "leftarrow",

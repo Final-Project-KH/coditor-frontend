@@ -92,8 +92,8 @@ export const LeftSubjectSubContainer = styled.div.attrs({
   position: relative;
   justify-content: center;
 `;
-export const SubjectImgContainer = styled.div.attrs({
-  id: "subjectimgcontainer",
+export const SubjectImgContainerJava = styled.div.attrs({
+  id: "subjectimgcontainerjava",
 })`
   width: 156px;
   height: 104px;

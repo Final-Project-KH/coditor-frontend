@@ -23,7 +23,6 @@ const CodingTestBar = ({isOpen, closeMenu}) => {
           <MenuImgContainer>
             <MenuImgJava />
           </MenuImgContainer>
-          <MenuTitle>Java</MenuTitle>
           <MenuTitle>
             {/* Test용 */}
             <StyledLink to="/ct_commons"></StyledLink>
@@ -38,8 +37,6 @@ const CodingTestBar = ({isOpen, closeMenu}) => {
           <MenuImgContainer>
             <MenuImgPython />
           </MenuImgContainer>
-        <MenuTitle>Python</MenuTitle>
-        <MenuContents>Practice</MenuContents>
           <MenuTitle>Python</MenuTitle>
           <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
@@ -50,8 +47,6 @@ const CodingTestBar = ({isOpen, closeMenu}) => {
           <MenuImgContainer>
             <MenuImgC />
           </MenuImgContainer>
-        <MenuTitle>C</MenuTitle>
-        <MenuContents>Practice</MenuContents>
           <MenuTitle>C</MenuTitle>
           <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
@@ -62,8 +57,6 @@ const CodingTestBar = ({isOpen, closeMenu}) => {
           <MenuImgContainer>
             <MenuImgCPlus />
           </MenuImgContainer>
-        <MenuTitle>C++</MenuTitle>
-        <MenuContents>Practice</MenuContents>
           <MenuTitle>C++</MenuTitle>
           <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>
@@ -74,8 +67,6 @@ const CodingTestBar = ({isOpen, closeMenu}) => {
           <MenuImgContainer>
             <MenuImgJavaScript />
           </MenuImgContainer>
-        <MenuTitle>JavaScript</MenuTitle>
-        <MenuContents>Practice</MenuContents>
           <MenuTitle>JavaScript</MenuTitle>
           <MenuContents>Practice</MenuContents>
           <MenuContents>Basic</MenuContents>

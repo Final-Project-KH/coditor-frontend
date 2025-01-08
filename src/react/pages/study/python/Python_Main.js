@@ -4,7 +4,7 @@ import {
   LeftContainer,
   RightContainer,
   LeftSubjectContainer,
-  SubjectImgContainerJava,
+  SubjectImgContainerPython,
   SubjectTitle,
   SubjectContents,
   SubjectRateBlack,
@@ -26,32 +26,26 @@ import {
   TopBoxArrow,
   TopBoxWide,
 } from "../../../styles/study/Study";
-import Java_ChapterList from "./Java_ChapterList";
-import Java_ClassListFull from "./Java_ClassListFull";
 
-const Java_Main = () => {
+const Python_Main = () => {
   return (
     <Wrap>
       <TopBoxWide>
         <TopBox>
-        <a href="/study" className="menu-link">
-        <TopBoxText>
-          study
-        </TopBoxText>
-        </a>
-        <TopBoxArrow>{`>`}</TopBoxArrow>
-        <a href="/study/java/main" className="menu-link">
-        <TopBoxText>
-          Java
-        </TopBoxText>
-        </a>
+          <a href="/study" className="menu-link">
+            <TopBoxText>study</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/study/python/main" className="menu-link">
+            <TopBoxText>Python</TopBoxText>
+          </a>
         </TopBox>
       </TopBoxWide>
       <Container>
         <LeftContainer>
           <LeftSubjectContainer>
-            <SubjectImgContainerJava />
-            <SubjectTitle>Java 개념잡기</SubjectTitle>
+            <SubjectImgContainerPython />
+            <SubjectTitle>Python 개념잡기</SubjectTitle>
             <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
             <SubjectRateContainer>
               <SubjectRateBox>
@@ -61,14 +55,12 @@ const Java_Main = () => {
               <SubjectRateContents>52%</SubjectRateContents>
             </SubjectRateContainer>
           </LeftSubjectContainer>
-          <Java_ChapterList />
+          {/* <Java_ChapterList /> */}
         </LeftContainer>
-        <RightContainer>
-          <Java_ClassListFull />
-        </RightContainer>
+        <RightContainer>{/* <Java_ClassListFull /> */}</RightContainer>
       </Container>
     </Wrap>
   );
 };
 
-export default Java_Main;
+export default Python_Main;

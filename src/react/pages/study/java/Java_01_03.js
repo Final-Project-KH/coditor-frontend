@@ -4,7 +4,7 @@ import {
   LeftContainer,
   RightContainer,
   LeftSubjectContainer,
-  SubjectImgContainer,
+  SubjectImgContainerJava,
   SubjectTitle,
   SubjectContents,
   SubjectRateBlack,
@@ -28,16 +28,39 @@ import {
   ArrowContainer,
   LeftArrow,
   RightArrow,
+  TopBoxWide,
+  TopBox,
+  TopBoxText,
+  TopBoxArrow,
 } from "../../../styles/study/Study";
 import Java_ClassListSmall_01 from "./Java_ClassListSmall_01";
 
 const Java_01_03 = () => {
   return (
     <Wrap>
+      <TopBoxWide>
+        <TopBox>
+          <a href="/study" className="menu-link">
+            <TopBoxText>study</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/study/java/main" className="menu-link">
+            <TopBoxText>Java</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/study/java/01" className="menu-link">
+            <TopBoxText>01. Java 시작</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/study/java/01/03" className="menu-link">
+            <TopBoxText>Java 프로젝트 생성 및 기본</TopBoxText>
+          </a>
+        </TopBox>
+      </TopBoxWide>
       <Container>
         <LeftContainer>
           <LeftSubjectContainer>
-            <SubjectImgContainer />
+            <SubjectImgContainerJava />
             <SubjectTitle>Java 개념잡기</SubjectTitle>
             <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
             <SubjectRateContainer>
@@ -55,7 +78,7 @@ const Java_01_03 = () => {
         <RightContainer>
           <EachClass>
             <ClassHeader>
-              <ClassHeaderTitle>JAVA 프로젝트 생성 및 기본</ClassHeaderTitle>
+              <ClassHeaderTitle>Java 프로젝트 생성 및 기본</ClassHeaderTitle>
             </ClassHeader>
             <ClassContentsContainer>
               <ClassContentsTitle2>
@@ -189,12 +212,10 @@ const Java_01_03 = () => {
               </ClassContentsText>
               <ClassContentsTitle3>주석</ClassContentsTitle3>
               <ClassContentsText>
-
-                  - 한줄 주석 : //
-                  <br />
-                  - 여러 줄 주석 : /* */
-                  <br />
-
+                - 한줄 주석 : //
+                <br />
+                - 여러 줄 주석 : /* */
+                <br />
               </ClassContentsText>
               <ClassContentsTitle3>명령문과 세미콜론</ClassContentsTitle3>
               <ClassContentsText>
@@ -227,7 +248,8 @@ const Java_01_03 = () => {
                       {`System.out.printf("%d\n", 3); // 서식 지정자 사용`}
                       <br />
                     </ClassContentsCode>
-                  </ClassContentsCodeBox><br />
+                  </ClassContentsCodeBox>
+                  <br />
                   - %d : 정수형 출력
                   <br />
                   - %s : 문자열 출력
@@ -242,14 +264,14 @@ const Java_01_03 = () => {
               </ClassContentsText>
             </ClassContentsContainer>
           </EachClass>
-                    <ArrowContainer>
-                      <a href="/study/java/01/02" style={{ textDecoration: "none" }}>
-                        <LeftArrow />
-                      </a>
-                      <a href="/study/java/02/01" style={{ textDecoration: "none" }}>
-                        <RightArrow />
-                      </a>
-                    </ArrowContainer>
+          <ArrowContainer>
+            <a href="/study/java/01/02" style={{ textDecoration: "none" }}>
+              <LeftArrow />
+            </a>
+            <a href="/study/java/02/01" style={{ textDecoration: "none" }}>
+              <RightArrow />
+            </a>
+          </ArrowContainer>
         </RightContainer>
       </Container>
     </Wrap>

@@ -7,7 +7,7 @@ import {
   LeftTopSubjectContainer,
   LeftMiddleSubjectContainer,
   LeftSubjectSubContainer,
-  SubjectImgContainer,
+  SubjectImgContainerJava,
   SubjectUserContainer,
   SubjectTitle,
   SubjectContent,
@@ -38,7 +38,7 @@ const CodingTestCommons = () => {
         <LeftContainer>
           <LeftTopSubjectContainer>
             <LeftSubjectSubContainer>
-              <SubjectImgContainer />
+              <SubjectImgContainerJava />
               <SubjectTitle>Java</SubjectTitle>
               <SubjectContent>Basic</SubjectContent>
             </LeftSubjectSubContainer>

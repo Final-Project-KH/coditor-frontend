@@ -13,9 +13,7 @@ const AboutBar = ({ isOpen, closeMenu }) => {
       <MenuContainer>
         <MenuColumn>
           <MenuTitle>
-            <a href="/about" className="menu-link">
               About
-            </a>
           </MenuTitle>
           <MenuContents>
             <a href="/about" className="menu-link">

@@ -4,7 +4,7 @@ import {
   LeftContainer,
   RightContainer,
   LeftSubjectContainer,
-  SubjectImgContainer,
+  SubjectImgContainerJava,
   SubjectTitle,
   SubjectContents,
   SubjectRateBlack,

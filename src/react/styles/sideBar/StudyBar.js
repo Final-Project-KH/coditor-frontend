@@ -93,8 +93,7 @@ export const MenuColumn = styled.div.attrs({
   }
   .menu-link:hover {
     text-decoration: none; /* 호버 시 밑줄 추가 */
-    background-color: black;
-    color: white;
+    border-bottom: 5px solid black;
   }
 `;
 export const MenuImgContainer = styled.div.attrs({
