@@ -11,6 +11,9 @@ const Common = {
     const refreshtoken = store.getState().auth.refreshtoken;
     return refreshtoken;
   },
+  getNickName: () => {
+    const nickname = store.getState().auth.nickname;
+    return nickname;
+  },
 };
-
 export default Common;

@@ -1,5 +1,5 @@
-import styled, { keyframes, css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {keyframes, css} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Container = styled.div.attrs({
   id: "container",
@@ -199,4 +199,11 @@ export const MenuContents = styled.div.attrs({
     color: white;
   }
 `;
-
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: transparent;
+`;
