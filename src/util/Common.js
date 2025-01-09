@@ -1,5 +1,6 @@
 import store from "../redux/store/store";
 import { setLoginData } from "../redux/slice/authSlice"; // Redux 액션 가져오기
+import axios from "axios";
 
 const Common = {
   SPRING_DOMAIN: "http://localhost:8111",
@@ -24,6 +25,29 @@ const Common = {
   getNickName: () => {
     const nickname = store.getState().auth.nickname;
     return nickname;
+  },
+  handleUnauthorized: async () => {
+    console.log("handleUnauthorized");
+    const refreshtoken = Common.getRefreshToken();
+    const accesstoken = Common.getAccessToken();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accesstoken}`,
+      },
+    };
+    try {
+      const res = await axios.post(
+        `${Common.SPRING_DOMAIN}/auth/refresh`, // 컨트롤러 경ㄹ로 수정 필요
+        refreshtoken,
+        config
+      );
+      console.log(res.data);
+      Common.setAccessToken(res.data); // data.accessToken (?)
+      return true;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
   },
 };
 
