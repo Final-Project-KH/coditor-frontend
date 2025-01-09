@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrap = styled.div.attrs({
@@ -404,6 +404,14 @@ export const PathLink = styled.button.attrs({
     background-color: #313131;
     color: white;
   }
+`;
+export const ArrowLink = styled.button.attrs({
+  id: "arrowlink",
+})`
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 `;
 export const c = styled.button.attrs({
   id: "topboxlink",

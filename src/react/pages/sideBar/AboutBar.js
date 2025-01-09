@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   MenuContainer,
@@ -8,9 +8,9 @@ import {
   MenuLink,
 } from "../../styles/sideBar/AboutBar";
 import About from "../about/About";
-import {useNavigate, useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const AboutBar = ({isOpen, closeMenu, path}) => {
+const AboutBar = ({ isOpen, closeMenu, path }) => {
   const navigate = useNavigate();
 
   const handleSubmenuClick = () => {
@@ -26,7 +26,7 @@ const AboutBar = ({isOpen, closeMenu, path}) => {
       <MenuContainer>
         <MenuColumn>
           <MenuTitle>About</MenuTitle>
-          <MenuContents>
+          <MenuContents onClick={closeMenu}>
             {/* <a href="/about" className="menu-link" onClick={handleSubmenuClick}>
               코디터 소개
             </a> */}

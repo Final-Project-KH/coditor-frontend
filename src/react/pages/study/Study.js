@@ -17,12 +17,12 @@ import Python_SubjectTitle from "./python/Python_SubjectTitle";
 import C_SubjectTitle from "./c/C_SubjectTitle";
 import CPlus_SubjectTitle from "./cplus/CPlus_SubjectTitle";
 import JavaScript_SubjectTitle from "./javascript/JavaScript_SubjectTitle";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Study = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {firstpath} = location.state || {};
+  const { firstpath } = location.state || {};
 
   const handleRefresh = () => {
     navigate("/study", {
@@ -76,7 +76,7 @@ const Study = () => {
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <PathLink>
+            <PathLink onClick={() => handleRefresh()}>
               <TopBoxText>{firstpath}</TopBoxText>
             </PathLink>
           </TopBox>

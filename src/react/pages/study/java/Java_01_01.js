@@ -21,15 +21,17 @@ import {
   TopBoxText,
   TopBoxArrow,
   PathLink,
+  ArrowLink,
 } from "../../../styles/study/Study";
-import {Java_ClassListSmall_01} from "./Java_ClassListSmall";
+import { Java_ClassListSmall_01 } from "./Java_ClassListSmall";
 import Java_SubjectTitle from "./Java_SubjectTitle";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Java_01_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {firstpath, secondpath, thirdpath, lowerpath} = location.state || {};
+  const { firstpath, secondpath, thirdpath, lowerpath } = location.state || {};
 
   const handleStudy = () => {
     navigate("/study", {
@@ -65,7 +67,16 @@ const Java_01_01 = () => {
       },
     });
   };
-
+  const handleNavigation = (subPath) => {
+    navigate(`/study/java/01/${subPath}`, {
+      state: {
+        firstpath,
+        secondpath,
+        thirdpath,
+        lowerpath,
+      },
+    });
+  };
   return (
     <Wrap>
       <TopBoxWide>
@@ -292,10 +303,15 @@ const Java_01_01 = () => {
               </ClassContentsText>
             </ClassContentsContainer>
           </EachClass>
-          <ArrowContainer style={{justifyContent: "flex-end"}}>
-            <a href="/study/java/01/02" style={{textDecoration: "none"}}>
+          {/* <ArrowContainer style={{ justifyContent: "flex-end" }}>
+            <a href="/study/java/01/02" style={{ textDecoration: "none" }}>
               <RightArrow />
             </a>
+          </ArrowContainer> */}
+          <ArrowContainer style={{ justifyContent: "flex-end" }}>
+            <ArrowLink onClick={() => handleNavigation("02")}>
+              <RightArrow />
+            </ArrowLink>
           </ArrowContainer>
         </RightContainer>
       </Container>

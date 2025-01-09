@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 import {
   Wrap,
@@ -78,13 +78,18 @@ const NavBar = () => {
 
   // 메뉴 닫기 (추가적인 상황에서 사용)
   const closeMenu = (menuName) => {
-    setMenuState((prev) => ({...prev, [menuName]: false}));
+    setMenuState((prev) => ({ ...prev, [menuName]: false }));
     setTimeout(() => {
       setAnimatingMenus((prev) => ({
         ...prev,
         [`${menuName}Animating`]: false,
       }));
     }, 300);
+  };
+
+  const handleContentClick = (menuName, event) => {
+    event.stopPropagation();
+    closeMenu(menuName);
   };
 
   const menuRefs = useRef({
@@ -136,7 +141,7 @@ const NavBar = () => {
             {(menuState.isAboutOpen || animatingMenus.isAboutOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <AboutBar
                 isOpen={menuState.isAboutOpen} // isOpen 상태 전달
-                closeMenu={() => toggleMenu("isAboutOpen")} // closeMenu 함수 전달
+                closeMenu={(event) => handleContentClick("isAboutOpen", event)} // closeMenu 함수 전달
                 path={paths.pathAbout}
               ></AboutBar>
             )}
