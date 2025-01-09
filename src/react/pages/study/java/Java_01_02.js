@@ -22,37 +22,94 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
+  PathLink,
 } from "../../../styles/study/Study";
-import { Java_ClassListSmall_01 } from "./Java_ClassListSmall";
+import {Java_ClassListSmall_01} from "./Java_ClassListSmall";
 import Java_SubjectTitle from "./Java_SubjectTitle";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const Java_01_02 = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const {firstpath, secondpath, thirdpath, lowerpath} = location.state || {};
+
+  const handleStudy = () => {
+    navigate("/study", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+  const handleJavaMain = () => {
+    navigate("/study/java/main", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+      },
+    });
+  };
+  const handleJava01 = () => {
+    navigate("/study/java/01", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+      },
+    });
+  };
+  const handleRefresh = () => {
+    navigate("/study/java/01/02", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+        lowerpath: lowerpath,
+      },
+    });
+  };
   return (
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <a href="/study" className="menu-link">
+          {/* <a href="/study" className="menu-link">
             <TopBoxText>study</TopBoxText>
-          </a>
+          </a> */}
+          <PathLink onClick={() => handleStudy()}>
+            <TopBoxText>{firstpath}</TopBoxText>
+          </PathLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/java/main" className="menu-link">
+          {/* <a href="/study/java/main" className="menu-link">
             <TopBoxText>Java</TopBoxText>
-          </a>
+          </a> */}
+          <PathLink onClick={() => handleJavaMain()}>
+            <TopBoxText>{secondpath}</TopBoxText>
+          </PathLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/java/01" className="menu-link">
+          {/* <a href="/study/java/01" className="menu-link">
             <TopBoxText>01. Java 시작</TopBoxText>
-          </a>
+          </a> */}
+          <PathLink onClick={() => handleJava01()}>
+            <TopBoxText>{thirdpath}</TopBoxText>
+          </PathLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/java/01/02" className="menu-link">
+          {/* <a href="/study/java/01/02" className="menu-link">
             <TopBoxText>Java 개발 환경 구축</TopBoxText>
-          </a>
+          </a> */}
+          <PathLink onClick={() => handleRefresh()}>
+            <TopBoxText>{lowerpath[1]}</TopBoxText>
+          </PathLink>
         </TopBox>
       </TopBoxWide>
       <Container>
         <LeftContainer>
           <Java_SubjectTitle />
           <StickyClassBox>
-            <Java_ClassListSmall_01 />
+            <Java_ClassListSmall_01
+              firstpath={firstpath}
+              secondpath={secondpath}
+              thirdpath={thirdpath}
+              lowerpath={lowerpath}
+            />
           </StickyClassBox>
         </LeftContainer>
         <RightContainer>
@@ -188,10 +245,10 @@ const Java_01_02 = () => {
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <a href="/study/java/01/01" style={{ textDecoration: "none" }}>
+            <a href="/study/java/01/01" style={{textDecoration: "none"}}>
               <LeftArrow />
             </a>
-            <a href="/study/java/01/03" style={{ textDecoration: "none" }}>
+            <a href="/study/java/01/03" style={{textDecoration: "none"}}>
               <RightArrow />
             </a>
           </ArrowContainer>

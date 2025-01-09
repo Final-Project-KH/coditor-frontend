@@ -8,48 +8,105 @@ import {
   ClassStatusDot,
   ClassStatusText,
   ClassSet,
+  PathLink,
+  ClassNamePathLink,
 } from "../../../styles/study/Study";
+import {useLocation, useNavigate} from "react-router-dom";
 
-export const Java_ClassListFull_01 = () => {
+export const Java_ClassListFull_01 = ({firstpath, secondpath}) => {
+  const navigate = useNavigate();
+  const thirdpath = "01.Java시작";
+  const lowerpath = [
+    "Java 시작하기",
+    "Java 개발 환경 구축",
+    "Java 프로젝트 생성 및 기본",
+  ];
+
+  const handleStudy = () => {
+    navigate("/study", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+  const handleJava0101 = () => {
+    navigate("/study/java/01/01", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+        lowerpath: lowerpath,
+      },
+    });
+  };
+  const handleJava0102 = () => {
+    navigate("/study/java/01/02", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+        lowerpath: lowerpath,
+      },
+    });
+  };
+  const handleJava0103 = () => {
+    navigate("/study/java/01/03", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+        lowerpath: lowerpath,
+      },
+    });
+  };
   return (
     <>
       <EachClass>
         <ClassHeader>
-          <ClassHeaderTitle>01. Java 시작</ClassHeaderTitle>
+          <ClassHeaderTitle>{thirdpath}</ClassHeaderTitle>
         </ClassHeader>
         <ClassContents>
           <ClassSet>
             <ClassName>
-              <a href="/study/java/01/01" className="menu-link">
+              {/* <a href="/study/java/01/01" className="menu-link">
                 Java 시작하기
-              </a>
+              </a> */}
+              <ClassNamePathLink onClick={() => handleJava0101()}>
+                {lowerpath[0]}
+              </ClassNamePathLink>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
           <hr />
           <ClassSet>
             <ClassName>
-              <a href="/study/java/01/02" className="menu-link">
+              {/* <a href="/study/java/01/02" className="menu-link">
                 Java 개발 환경 구축
-              </a>
+              </a> */}
+              <ClassNamePathLink onClick={() => handleJava0102()}>
+                {lowerpath[1]}
+              </ClassNamePathLink>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
           <hr />
           <ClassSet>
             <ClassName>
-              <a href="/study/java/01/03" className="menu-link">
+              {/* <a href="/study/java/01/03" className="menu-link">
                 Java 프로젝트 생성 및 기본
-              </a>
-            </ClassName>{" "}
+              </a> */}
+              <ClassNamePathLink onClick={() => handleJava0103()}>
+                {lowerpath[2]}
+              </ClassNamePathLink>
+            </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -59,7 +116,7 @@ export const Java_ClassListFull_01 = () => {
   );
 };
 
-export const Java_ClassListFull_02 = () => {
+export const Java_ClassListFull_02 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass>
@@ -74,7 +131,7 @@ export const Java_ClassListFull_02 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -86,7 +143,7 @@ export const Java_ClassListFull_02 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -98,7 +155,7 @@ export const Java_ClassListFull_02 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -110,7 +167,7 @@ export const Java_ClassListFull_02 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -122,7 +179,7 @@ export const Java_ClassListFull_02 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -132,7 +189,7 @@ export const Java_ClassListFull_02 = () => {
   );
 };
 
-export const Java_ClassListFull_03 = () => {
+export const Java_ClassListFull_03 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass>
@@ -147,7 +204,7 @@ export const Java_ClassListFull_03 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -159,7 +216,7 @@ export const Java_ClassListFull_03 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -171,7 +228,7 @@ export const Java_ClassListFull_03 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#FF0000" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#FF0000"}}>●</ClassStatusDot>
               <ClassStatusText>학습 중</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -183,7 +240,7 @@ export const Java_ClassListFull_03 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -193,7 +250,7 @@ export const Java_ClassListFull_03 = () => {
   );
 };
 
-export const Java_ClassListFull_04 = () => {
+export const Java_ClassListFull_04 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass>
@@ -208,7 +265,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -220,7 +277,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -232,7 +289,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -244,7 +301,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -256,7 +313,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -268,7 +325,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -280,7 +337,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -292,7 +349,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -304,7 +361,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -316,7 +373,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -328,7 +385,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -340,7 +397,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -352,7 +409,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -364,7 +421,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -376,7 +433,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -388,7 +445,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -400,7 +457,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -412,7 +469,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -424,7 +481,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -436,7 +493,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -448,7 +505,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -460,7 +517,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -472,7 +529,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -484,7 +541,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -496,7 +553,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -508,7 +565,7 @@ export const Java_ClassListFull_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -518,7 +575,7 @@ export const Java_ClassListFull_04 = () => {
   );
 };
 
-export const Java_ClassListFull_05 = () => {
+export const Java_ClassListFull_05 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass>
@@ -533,7 +590,7 @@ export const Java_ClassListFull_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -545,7 +602,7 @@ export const Java_ClassListFull_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -557,7 +614,7 @@ export const Java_ClassListFull_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -569,7 +626,7 @@ export const Java_ClassListFull_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -581,7 +638,7 @@ export const Java_ClassListFull_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -593,7 +650,7 @@ export const Java_ClassListFull_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -605,7 +662,7 @@ export const Java_ClassListFull_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -617,7 +674,7 @@ export const Java_ClassListFull_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -629,7 +686,7 @@ export const Java_ClassListFull_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -641,7 +698,7 @@ export const Java_ClassListFull_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -653,7 +710,7 @@ export const Java_ClassListFull_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -663,7 +720,7 @@ export const Java_ClassListFull_05 = () => {
   );
 };
 
-export const Java_ClassListFull_06 = () => {
+export const Java_ClassListFull_06 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass>
@@ -678,7 +735,7 @@ export const Java_ClassListFull_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -690,7 +747,7 @@ export const Java_ClassListFull_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -702,7 +759,7 @@ export const Java_ClassListFull_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -714,7 +771,7 @@ export const Java_ClassListFull_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -726,7 +783,7 @@ export const Java_ClassListFull_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -738,7 +795,7 @@ export const Java_ClassListFull_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -750,7 +807,7 @@ export const Java_ClassListFull_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -762,7 +819,7 @@ export const Java_ClassListFull_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -774,7 +831,7 @@ export const Java_ClassListFull_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -786,7 +843,7 @@ export const Java_ClassListFull_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -796,7 +853,7 @@ export const Java_ClassListFull_06 = () => {
   );
 };
 
-export const Java_ClassListFull_07 = () => {
+export const Java_ClassListFull_07 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass>
@@ -811,7 +868,7 @@ export const Java_ClassListFull_07 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -823,7 +880,7 @@ export const Java_ClassListFull_07 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -835,7 +892,7 @@ export const Java_ClassListFull_07 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -845,7 +902,7 @@ export const Java_ClassListFull_07 = () => {
   );
 };
 
-export const Java_ClassListFull_08 = () => {
+export const Java_ClassListFull_08 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass>
@@ -860,7 +917,7 @@ export const Java_ClassListFull_08 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -872,7 +929,7 @@ export const Java_ClassListFull_08 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -884,7 +941,7 @@ export const Java_ClassListFull_08 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -894,7 +951,7 @@ export const Java_ClassListFull_08 = () => {
   );
 };
 
-export const Java_ClassListFull_09 = () => {
+export const Java_ClassListFull_09 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass>
@@ -909,7 +966,7 @@ export const Java_ClassListFull_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -921,7 +978,7 @@ export const Java_ClassListFull_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -933,7 +990,7 @@ export const Java_ClassListFull_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -945,7 +1002,7 @@ export const Java_ClassListFull_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -957,7 +1014,7 @@ export const Java_ClassListFull_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -969,7 +1026,7 @@ export const Java_ClassListFull_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -981,7 +1038,7 @@ export const Java_ClassListFull_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -991,18 +1048,18 @@ export const Java_ClassListFull_09 = () => {
   );
 };
 
-const Java_ClassListFull = () => {
+const Java_ClassListFull = ({firstpath, secondpath}) => {
   return (
     <>
-      <Java_ClassListFull_01 />
-      <Java_ClassListFull_02 />
-      <Java_ClassListFull_03 />
-      <Java_ClassListFull_04 />
-      <Java_ClassListFull_05 />
-      <Java_ClassListFull_06 />
-      <Java_ClassListFull_07 />
-      <Java_ClassListFull_08 />
-      <Java_ClassListFull_09 />
+      <Java_ClassListFull_01 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_02 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_03 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_04 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_05 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_06 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_07 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_08 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_09 firstpath={firstpath} secondpath={secondpath} />
     </>
   );
 };

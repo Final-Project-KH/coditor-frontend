@@ -1,5 +1,5 @@
-import styled, { keyframes, css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {keyframes, css} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Container = styled.div.attrs({
   id: "container",
@@ -93,6 +93,24 @@ export const MenuColumn = styled.div.attrs({
   }
   .menu-link:hover {
     text-decoration: none; /* 호버 시 밑줄 추가 */
+    border-bottom: 2px solid black;
+    & > #menutitle {
+      font-family: "extrabold", sans-serif;
+    }
+  }
+`;
+export const MenuLink = styled.button.attrs({
+  id: "menulink",
+})`
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
     border-bottom: 2px solid black;
     & > #menutitle {
       font-family: "extrabold", sans-serif;

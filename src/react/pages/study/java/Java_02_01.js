@@ -27,7 +27,7 @@ import {
   TopBoxText,
   TopBoxArrow,
 } from "../../../styles/study/Study";
-import { Java_ClassListSmall_02 } from "./Java_ClassListSmall";
+import {Java_ClassListSmall_02} from "./Java_ClassListSmall";
 import Java_SubjectTitle from "./Java_SubjectTitle";
 
 const Java_02_01 = () => {
@@ -44,7 +44,7 @@ const Java_02_01 = () => {
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <a href="/study/java/02" className="menu-link">
-            <TopBoxText>02. 기본 지료형과 연산자 / 제어문</TopBoxText>
+            <TopBoxText>02. 기본 자료형과 연산자 / 제어문</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <a href="/study/java/02/01" className="menu-link">
@@ -94,10 +94,10 @@ const Java_02_01 = () => {
                 표현되는 수를 말합니다.
                 <br />
                 <br />
-                <ClassTable style={{ textAlign: "center" }}>
+                <ClassTable style={{textAlign: "center"}}>
                   <ClassTableTr>
                     <ClassTableTd
-                      style={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }}
+                      style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}
                     >
                       <b>10진수</b>
                     </ClassTableTd>
@@ -115,7 +115,7 @@ const Java_02_01 = () => {
                   </ClassTableTr>
                   <ClassTableTr>
                     <ClassTableTd
-                      style={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }}
+                      style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}
                     >
                       <b>2진수</b>
                     </ClassTableTd>
@@ -240,7 +240,7 @@ const Java_02_01 = () => {
                 <b>[참고] 자바의 키워드</b>
                 <br />
                 <br />
-                <ClassTable style={{ textAlign: "center", width: "50%" }}>
+                <ClassTable style={{textAlign: "center", width: "50%"}}>
                   <ClassTableTr>
                     <ClassTableTd>abstract</ClassTableTd>
                     <ClassTableTd>continue</ClassTableTd>
@@ -915,10 +915,10 @@ const Java_02_01 = () => {
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <a href="/study/java/01/03" style={{ textDecoration: "none" }}>
+            <a href="/study/java/01/03" style={{textDecoration: "none"}}>
               <LeftArrow />
             </a>
-            <a href="/study/java/02/02" style={{ textDecoration: "none" }}>
+            <a href="/study/java/02/02" style={{textDecoration: "none"}}>
               <RightArrow />
             </a>
           </ArrowContainer>
