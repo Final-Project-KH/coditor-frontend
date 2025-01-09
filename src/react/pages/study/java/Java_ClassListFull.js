@@ -10,48 +10,105 @@ import {
   ClassStatusDot,
   ClassStatusText,
   ClassSet,
+  PathLink,
+  ClassNamePathLink,
 } from "../../../styles/study/Study";
+import {useLocation, useNavigate} from "react-router-dom";
 
-export const Java_ClassListFull_01 = forwardRef((props, ref) => {
+export const Java_ClassListFull_01 = forwardRef((props, ref{firstpath, secondpath}) => {
+  const navigate = useNavigate();
+  const thirdpath = "01.Java시작";
+  const lowerpath = [
+    "Java 시작하기",
+    "Java 개발 환경 구축",
+    "Java 프로젝트 생성 및 기본",
+  ];
+
+  const handleStudy = () => {
+    navigate("/study", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+  const handleJava0101 = () => {
+    navigate("/study/java/01/01", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+        lowerpath: lowerpath,
+      },
+    });
+  };
+  const handleJava0102 = () => {
+    navigate("/study/java/01/02", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+        lowerpath: lowerpath,
+      },
+    });
+  };
+  const handleJava0103 = () => {
+    navigate("/study/java/01/03", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+        lowerpath: lowerpath,
+      },
+    });
+  };
   return (
     <>
       <EachClass ref={ref}>
         <ClassHeader>
-          <ClassHeaderTitle>01. Java 시작</ClassHeaderTitle>
+          <ClassHeaderTitle>{thirdpath}</ClassHeaderTitle>
         </ClassHeader>
         <ClassContents>
           <ClassSet>
             <ClassName>
-              <a href="/study/java/01/01" className="menu-link">
+              {/* <a href="/study/java/01/01" className="menu-link">
                 Java 시작하기
-              </a>
+              </a> */}
+              <ClassNamePathLink onClick={() => handleJava0101()}>
+                {lowerpath[0]}
+              </ClassNamePathLink>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
           <hr />
           <ClassSet>
             <ClassName>
-              <a href="/study/java/01/02" className="menu-link">
+              {/* <a href="/study/java/01/02" className="menu-link">
                 Java 개발 환경 구축
-              </a>
+              </a> */}
+              <ClassNamePathLink onClick={() => handleJava0102()}>
+                {lowerpath[1]}
+              </ClassNamePathLink>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
           <hr />
           <ClassSet>
             <ClassName>
-              <a href="/study/java/01/03" className="menu-link">
+              {/* <a href="/study/java/01/03" className="menu-link">
                 Java 프로젝트 생성 및 기본
-              </a>
-            </ClassName>{" "}
+              </a> */}
+              <ClassNamePathLink onClick={() => handleJava0103()}>
+                {lowerpath[2]}
+              </ClassNamePathLink>
+            </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -61,7 +118,7 @@ export const Java_ClassListFull_01 = forwardRef((props, ref) => {
   );
 });
 
-export const Java_ClassListFull_02 = forwardRef((props, ref) => {
+export const Java_ClassListFull_02 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass ref={ref}>
@@ -76,7 +133,7 @@ export const Java_ClassListFull_02 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -88,7 +145,7 @@ export const Java_ClassListFull_02 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -100,7 +157,7 @@ export const Java_ClassListFull_02 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -112,7 +169,7 @@ export const Java_ClassListFull_02 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -124,7 +181,7 @@ export const Java_ClassListFull_02 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -134,7 +191,7 @@ export const Java_ClassListFull_02 = forwardRef((props, ref) => {
   );
 });
 
-export const Java_ClassListFull_03 = forwardRef((props, ref) => {
+export const Java_ClassListFull_03 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass ref={ref}>
@@ -149,7 +206,7 @@ export const Java_ClassListFull_03 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -161,7 +218,7 @@ export const Java_ClassListFull_03 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
               <ClassStatusText>학습 완료</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -173,7 +230,7 @@ export const Java_ClassListFull_03 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#FF0000" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#FF0000"}}>●</ClassStatusDot>
               <ClassStatusText>학습 중</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -185,7 +242,7 @@ export const Java_ClassListFull_03 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -195,7 +252,7 @@ export const Java_ClassListFull_03 = forwardRef((props, ref) => {
   );
 });
 
-export const Java_ClassListFull_04 = forwardRef((props, ref) => {
+export const Java_ClassListFull_04 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass ref={ref}>
@@ -210,7 +267,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -222,7 +279,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -234,7 +291,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -246,7 +303,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -258,7 +315,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -270,7 +327,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -282,7 +339,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -294,7 +351,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -306,7 +363,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -318,7 +375,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -330,7 +387,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -342,7 +399,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -354,7 +411,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -366,7 +423,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -378,7 +435,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -390,7 +447,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -402,7 +459,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -414,7 +471,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -426,7 +483,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -438,7 +495,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -450,7 +507,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -462,7 +519,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -474,7 +531,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -486,7 +543,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -498,7 +555,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -510,7 +567,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -520,7 +577,7 @@ export const Java_ClassListFull_04 = forwardRef((props, ref) => {
   );
 });
 
-export const Java_ClassListFull_05 = forwardRef((props, ref) => {
+export const Java_ClassListFull_05 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass ref={ref}>
@@ -535,7 +592,7 @@ export const Java_ClassListFull_05 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -547,7 +604,7 @@ export const Java_ClassListFull_05 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -559,7 +616,7 @@ export const Java_ClassListFull_05 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -571,7 +628,7 @@ export const Java_ClassListFull_05 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -583,7 +640,7 @@ export const Java_ClassListFull_05 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -595,7 +652,7 @@ export const Java_ClassListFull_05 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -607,7 +664,7 @@ export const Java_ClassListFull_05 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -619,7 +676,7 @@ export const Java_ClassListFull_05 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -631,7 +688,7 @@ export const Java_ClassListFull_05 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -643,7 +700,7 @@ export const Java_ClassListFull_05 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -655,7 +712,7 @@ export const Java_ClassListFull_05 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -665,7 +722,7 @@ export const Java_ClassListFull_05 = forwardRef((props, ref) => {
   );
 });
 
-export const Java_ClassListFull_06 = forwardRef((props, ref) => {
+export const Java_ClassListFull_06 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass ref={ref}>
@@ -680,7 +737,7 @@ export const Java_ClassListFull_06 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -692,7 +749,7 @@ export const Java_ClassListFull_06 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -704,7 +761,7 @@ export const Java_ClassListFull_06 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -716,7 +773,7 @@ export const Java_ClassListFull_06 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -728,7 +785,7 @@ export const Java_ClassListFull_06 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -740,7 +797,7 @@ export const Java_ClassListFull_06 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -752,7 +809,7 @@ export const Java_ClassListFull_06 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -764,7 +821,7 @@ export const Java_ClassListFull_06 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -776,7 +833,7 @@ export const Java_ClassListFull_06 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -788,7 +845,7 @@ export const Java_ClassListFull_06 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -798,7 +855,7 @@ export const Java_ClassListFull_06 = forwardRef((props, ref) => {
   );
 });
 
-export const Java_ClassListFull_07 = forwardRef((props, ref) => {
+export const Java_ClassListFull_07 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass ref={ref}>
@@ -813,7 +870,7 @@ export const Java_ClassListFull_07 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -825,7 +882,7 @@ export const Java_ClassListFull_07 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -837,7 +894,7 @@ export const Java_ClassListFull_07 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -847,7 +904,7 @@ export const Java_ClassListFull_07 = forwardRef((props, ref) => {
   );
 });
 
-export const Java_ClassListFull_08 = forwardRef((props, ref) => {
+export const Java_ClassListFull_08 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass ref={ref}>
@@ -862,7 +919,7 @@ export const Java_ClassListFull_08 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -874,7 +931,7 @@ export const Java_ClassListFull_08 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -886,7 +943,7 @@ export const Java_ClassListFull_08 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -896,7 +953,7 @@ export const Java_ClassListFull_08 = forwardRef((props, ref) => {
   );
 });
 
-export const Java_ClassListFull_09 = forwardRef((props, ref) => {
+export const Java_ClassListFull_09 = (firstpath, secondpath) => {
   return (
     <>
       <EachClass ref={ref}>
@@ -911,7 +968,7 @@ export const Java_ClassListFull_09 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -923,7 +980,7 @@ export const Java_ClassListFull_09 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -935,7 +992,7 @@ export const Java_ClassListFull_09 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -947,7 +1004,7 @@ export const Java_ClassListFull_09 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -959,7 +1016,7 @@ export const Java_ClassListFull_09 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -971,7 +1028,7 @@ export const Java_ClassListFull_09 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -983,7 +1040,7 @@ export const Java_ClassListFull_09 = forwardRef((props, ref) => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
+              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
               <ClassStatusText>학습 전</ClassStatusText>
             </ClassStatus>
           </ClassSet>
@@ -993,18 +1050,18 @@ export const Java_ClassListFull_09 = forwardRef((props, ref) => {
   );
 });
 
-const Java_ClassListFull = ({ refs }) => {
+const Java_ClassListFull = ({firstpath, secondpath}) => {
   return (
     <>
-      <Java_ClassListFull_01 ref={refs.section01} />
-      <Java_ClassListFull_02 ref={refs.section02} />
-      <Java_ClassListFull_03 ref={refs.section03} />
-      <Java_ClassListFull_04 ref={refs.section04} />
-      <Java_ClassListFull_05 ref={refs.section05} />
-      <Java_ClassListFull_06 ref={refs.section06} />
-      <Java_ClassListFull_07 ref={refs.section07} />
-      <Java_ClassListFull_08 ref={refs.section08} />
-      <Java_ClassListFull_09 ref={refs.section09} />
+      <Java_ClassListFull_01 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_02 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_03 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_04 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_05 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_06 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_07 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_08 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_09 firstpath={firstpath} secondpath={secondpath} />
     </>
   );
 };

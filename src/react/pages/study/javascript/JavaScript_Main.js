@@ -5,54 +5,48 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-  LeftSubjectContainer,
-  SubjectImgContainerJavaScript,
-  SubjectTitle,
-  SubjectContents,
-  SubjectRateBlack,
-  SubjectRateWhite,
-  SubjectRateContents,
-  SubjectRateContainer,
-  SubjectRateBox,
-  EachClass,
-  ClassHeader,
-  ClassHeaderTitle,
-  ClassName,
-  ClassContents,
-  ClassStatus,
-  ClassStatusDot,
-  ClassStatusText,
-  ClassSet,
   TopBox,
   TopBoxText,
   TopBoxArrow,
   TopBoxWide,
+  PathLink,
 } from "../../../styles/study/Study";
 import JavaScript_ChapterList from "./JavaScript_ChapterList";
 import JavaScript_SubjectTitle from "./JavaScript_SubjectTitle";
 import JavaScript_ClassListFull from "./JavaScript_ClassListFull";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const JavaScript_Main = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const {firstpath, secondpath} = location.state || {};
 
-    const sectionRefs = {
-      section01: useRef(null),
-      section02: useRef(null),
-      section03: useRef(null),
-      section04: useRef(null),
-      section05: useRef(null),
-    }
-
+  const handleStudy = () => {
+    navigate("/study", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+  const handleJavaScriptMain = () => {
+    navigate("/study/javascript/main", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+      },
+    });
+  };
   return (
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <a href="/study" className="menu-link">
-            <TopBoxText>study</TopBoxText>
-          </a>
+          <PathLink onClick={() => handleStudy()}>
+            <TopBoxText>{firstpath}</TopBoxText>
+          </PathLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/javascript" className="menu-link">
-            <TopBoxText>JavaScript</TopBoxText>
-          </a>
+          <PathLink onClick={() => handleJavaScriptMain()}>
+            <TopBoxText>{secondpath}</TopBoxText>
+          </PathLink>
         </TopBox>
       </TopBoxWide>
       <Container>
@@ -60,7 +54,9 @@ const JavaScript_Main = () => {
           <JavaScript_SubjectTitle />
           <JavaScript_ChapterList refs={sectionRefs} />
         </LeftContainer>
-        <RightContainer><JavaScript_ClassListFull refs={sectionRefs} /></RightContainer>
+        <RightContainer>
+          <JavaScript_ClassListFull />
+        </RightContainer>
       </Container>
     </Wrap>
   );

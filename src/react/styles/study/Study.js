@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrap = styled.div.attrs({
@@ -258,7 +258,7 @@ export const SubjectRateContents = styled.div.attrs({
   justify-content: center;
   align-items: center;
 `;
-export const SubjectLink = styled(Link)`
+export const SubjectLink = styled.button`
   text-decoration: none;
   display: flex;
   width: 100%;
@@ -266,6 +266,7 @@ export const SubjectLink = styled(Link)`
   color: black;
   border-radius: 30px;
   border: 2px solid #f1f1f1;
+  cursor: pointer;
   &:hover {
     border: 2px solid black;
     transition: all 0.3s ease-in-out;
@@ -366,6 +367,56 @@ export const ClassName = styled.div.attrs({
   .menu-link:hover {
     text-decoration: none; /* 호버 시 밑줄 추가 */
     background-color: #313131;
+    color: white;
+  }
+`;
+export const ClassNamePathLink = styled.button.attrs({
+  id: "classnamepathlink",
+})`
+  display: inline-block;
+  font-size: 20px;
+  font-family: "medium", sans-serif;
+  text-decoration: none;
+  border-radius: 30px;
+  color: inherit;
+  padding: 5px 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    background-color: #313131;
+    color: white;
+  }
+`;
+export const PathLink = styled.button.attrs({
+  id: "pathlink",
+})`
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    background-color: #313131;
+    color: white;
+  }
+`;
+export const c = styled.button.attrs({
+  id: "topboxlink",
+})`
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
     color: white;
   }
 `;

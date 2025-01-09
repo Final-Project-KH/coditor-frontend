@@ -1,5 +1,5 @@
-import styled, { keyframes, css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {keyframes, css} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Container = styled.div.attrs({
   id: "container",
@@ -113,6 +113,22 @@ export const MenuContents = styled.div.attrs({
     border-radius: 30px;
   }
   .menu-link:hover {
+    text-decoration: none;
+    background-color: black;
+    color: white;
+  }
+`;
+export const MenuLink = styled.button.attrs({
+  id: "menulink",
+})`
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover {
     text-decoration: none;
     background-color: black;
     color: white;

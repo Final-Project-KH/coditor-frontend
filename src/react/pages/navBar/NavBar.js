@@ -40,6 +40,16 @@ const NavBar = () => {
     isCsOpenAnimating: false,
   });
 
+  const paths = {
+    pathAbout: "about",
+    pathStudy: "study",
+    pathCT: "coding test",
+    pathCommunity: "community",
+    pathMore: "more",
+    pathCs: "cs",
+    pathMypage: "my page", // 추후 추가할 마이페이지용
+  };
+
   // 메뉴 열기, 닫기
   const toggleMenu = (menuName) => {
     // menuName (실제로는 isAboutOpen 등)을 받아 state 변환하는 함수
@@ -127,6 +137,7 @@ const NavBar = () => {
               <AboutBar
                 isOpen={menuState.isAboutOpen} // isOpen 상태 전달
                 closeMenu={() => toggleMenu("isAboutOpen")} // closeMenu 함수 전달
+                path={paths.pathAbout}
               ></AboutBar>
             )}
           </MenuTitle>
@@ -142,6 +153,7 @@ const NavBar = () => {
               <StudyBar
                 isOpen={menuState.isStudyOpen} // isOpen 상태 전달
                 closeMenu={() => toggleMenu("isStudyOpen")} // closeMenu 함수 전달
+                path={paths.pathStudy}
               ></StudyBar>
             )}
           </MenuTitle>

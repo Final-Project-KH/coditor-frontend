@@ -9,36 +9,50 @@ import {
   TopBoxText,
   TopBoxArrow,
   TopBoxWide,
+  PathLink,
 } from "../../../styles/study/Study";
 import Java_ChapterList from "./Java_ChapterList";
 import Java_ClassListFull from "./Java_ClassListFull";
 import Java_SubjectTitle from "./Java_SubjectTitle";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const Java_Main = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const {firstpath, secondpath} = location.state || {};
 
-  const sectionRefs = {
-    section01: useRef(null),
-    section02: useRef(null),
-    section03: useRef(null),
-    section04: useRef(null),
-    section05: useRef(null),
-    section06: useRef(null),
-    section07: useRef(null),
-    section08: useRef(null),
-    section09: useRef(null),
-  }
-
+  const handleStudy = () => {
+    navigate("/study", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+  const handleJavaMain = () => {
+    navigate("/study/java/main", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+      },
+    });
+  };
   return (
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <a href="/study" className="menu-link">
-            <TopBoxText>study</TopBoxText>
-          </a>
+          {/* <a href="/study" className="menu-link">
+            <TopBoxText>{firstpath}</TopBoxText>
+          </a> */}
+          <PathLink onClick={() => handleStudy()}>
+            <TopBoxText>{firstpath}</TopBoxText>
+          </PathLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/java" className="menu-link">
-            <TopBoxText>Java</TopBoxText>
-          </a>
+          {/* <a href="/study/java/main" className="menu-link">
+            <TopBoxText>{secondpath}</TopBoxText>
+          </a> */}
+          <PathLink onClick={() => handleJavaMain()}>
+            <TopBoxText>{secondpath}</TopBoxText>
+          </PathLink>
         </TopBox>
       </TopBoxWide>
       <Container>
@@ -47,7 +61,7 @@ const Java_Main = () => {
           <Java_ChapterList refs={sectionRefs} />
         </LeftContainer>
         <RightContainer>
-          <Java_ClassListFull refs={sectionRefs} />
+          <Java_ClassListFull firstpath={firstpath} secondpath={secondpath} />
         </RightContainer>
       </Container>
     </Wrap>
