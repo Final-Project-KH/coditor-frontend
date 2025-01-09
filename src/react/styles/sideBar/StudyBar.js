@@ -93,7 +93,10 @@ export const MenuColumn = styled.div.attrs({
   }
   .menu-link:hover {
     text-decoration: none; /* 호버 시 밑줄 추가 */
-    border-bottom: 5px solid black;
+    border-bottom: 2px solid black;
+    & > #menutitle {
+      font-family: "extrabold", sans-serif;
+    }
   }
 `;
 export const MenuImgContainer = styled.div.attrs({
@@ -163,7 +166,7 @@ export const MenuTitle = styled.div.attrs({
   display: inline-block;
   position: relative;
   align-items: left;
-  font-family: "bold", sans-serif;
+  font-family: "medium", sans-serif;
   font-size: 18px;
   margin: 10px;
   text-align: center;

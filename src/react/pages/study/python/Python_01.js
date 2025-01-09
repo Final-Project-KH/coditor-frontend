@@ -8,11 +8,10 @@ import {
   TopBoxArrow,
   TopBoxWide,
 } from "../../../styles/study/Study";
-import Python_ChapterList from "./Python_ChapterList";
-import Python_ClassListFull from "./Python_ClassListFull";
 import Python_SubjectTitle from "./Python_SubjectTitle";
+import { Python_ClassListFull_01 } from "./Python_ClassListFull";
 
-const Python_Main = () => {
+const Python_01 = () => {
   return (
     <Wrap>
       <TopBoxWide>
@@ -29,14 +28,13 @@ const Python_Main = () => {
       <Container>
         <LeftContainer>
           <Python_SubjectTitle />
-          <Python_ChapterList />
         </LeftContainer>
         <RightContainer>
-          <Python_ClassListFull />
+          <Python_ClassListFull_01 />
         </RightContainer>
       </Container>
     </Wrap>
   );
 };
 
-export default Python_Main;
+export default Python_01;

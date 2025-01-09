@@ -3,15 +3,6 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-  LeftSubjectContainer,
-  SubjectImgContainerJava,
-  SubjectTitle,
-  SubjectContents,
-  SubjectRateBlack,
-  SubjectRateWhite,
-  SubjectRateContents,
-  SubjectRateContainer,
-  SubjectRateBox,
   EachClass,
   ClassHeader,
   ClassHeaderTitle,
@@ -21,16 +12,10 @@ import {
   ClassContentsTitle2,
   ClassContentsTitle3,
   ClassContentsTextTab,
-  ClassContentsImage,
-  ClassContents,
-  ClassSet,
-  ClassName,
-  ClassStatus,
-  ClassStatusDot,
-  ClassStatusText,
   StickyClassBox,
   ClassContentsCodeBox,
   ClassContentsCode,
+  ClassContentsImage,
   ArrowContainer,
   LeftArrow,
   RightArrow,
@@ -40,7 +25,8 @@ import {
   TopBoxArrow,
 } from "../../../styles/study/Study";
 
-import Java_ClassListSmall_02 from "./Java_ClassListSmall_02";
+import { Java_ClassListSmall_02 } from "./Java_ClassListSmall";
+import Java_SubjectTitle from "./Java_SubjectTitle";
 
 const Java_02_04 = () => {
   return (
@@ -66,18 +52,7 @@ const Java_02_04 = () => {
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <LeftSubjectContainer>
-            <SubjectImgContainerJava />
-            <SubjectTitle>Java 개념잡기</SubjectTitle>
-            <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
-            <SubjectRateContainer>
-              <SubjectRateBox>
-                <SubjectRateWhite />
-                <SubjectRateBlack />
-              </SubjectRateBox>
-              <SubjectRateContents>52%</SubjectRateContents>
-            </SubjectRateContainer>
-          </LeftSubjectContainer>
+          <Java_SubjectTitle />
           <StickyClassBox>
             <Java_ClassListSmall_02 />
           </StickyClassBox>

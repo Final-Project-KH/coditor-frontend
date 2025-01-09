@@ -3,15 +3,6 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-  LeftSubjectContainer,
-  SubjectImgContainerJava,
-  SubjectTitle,
-  SubjectContents,
-  SubjectRateBlack,
-  SubjectRateWhite,
-  SubjectRateContents,
-  SubjectRateContainer,
-  SubjectRateBox,
   EachClass,
   ClassHeader,
   ClassHeaderTitle,
@@ -22,12 +13,6 @@ import {
   ClassContentsTitle3,
   ClassContentsTextTab,
   ClassContentsImage,
-  ClassContents,
-  ClassSet,
-  ClassName,
-  ClassStatus,
-  ClassStatusDot,
-  ClassStatusText,
   StickyClassBox,
   ClassTable,
   ClassTableTr,
@@ -42,7 +27,8 @@ import {
   TopBoxText,
   TopBoxArrow,
 } from "../../../styles/study/Study";
-import Java_ClassListSmall_02 from "./Java_ClassListSmall_02";
+import { Java_ClassListSmall_02 } from "./Java_ClassListSmall";
+import Java_SubjectTitle from "./Java_SubjectTitle";
 
 const Java_02_01 = () => {
   return (
@@ -68,18 +54,7 @@ const Java_02_01 = () => {
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <LeftSubjectContainer>
-            <SubjectImgContainerJava />
-            <SubjectTitle>Java 개념잡기</SubjectTitle>
-            <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
-            <SubjectRateContainer>
-              <SubjectRateBox>
-                <SubjectRateWhite />
-                <SubjectRateBlack />
-              </SubjectRateBox>
-              <SubjectRateContents>52%</SubjectRateContents>
-            </SubjectRateContainer>
-          </LeftSubjectContainer>
+          <Java_SubjectTitle />
           <StickyClassBox>
             <Java_ClassListSmall_02 />
           </StickyClassBox>
@@ -530,7 +505,7 @@ const Java_02_01 = () => {
               </ClassContentsTitle2>
               <ClassContentsImage
                 style={{
-                  backgroundImage: `url(${"/images/study/java_02_01_01.png"})`,
+                  backgroundImage: `url(${"/images/study/java/java_02_01_01.png"})`,
                 }}
               />
               <ClassContentsTitle2>기본 자료형의 종류</ClassContentsTitle2>
@@ -683,7 +658,7 @@ const Java_02_01 = () => {
               <ClassContentsTitle3>실수 자료형</ClassContentsTitle3>
               <ClassContentsImage
                 style={{
-                  backgroundImage: `url(${"/images/study/java_02_01_02.png"})`,
+                  backgroundImage: `url(${"/images/study/java/java_02_01_02.png"})`,
                 }}
               />
               <ClassContentsText>

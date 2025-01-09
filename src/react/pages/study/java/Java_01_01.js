@@ -3,15 +3,6 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-  LeftSubjectContainer,
-  SubjectImgContainerJava,
-  SubjectTitle,
-  SubjectContents,
-  SubjectRateBlack,
-  SubjectRateWhite,
-  SubjectRateContents,
-  SubjectRateContainer,
-  SubjectRateBox,
   EachClass,
   ClassHeader,
   ClassHeaderTitle,
@@ -22,22 +13,16 @@ import {
   ClassContentsTitle3,
   ClassContentsTextTab,
   ClassContentsImage,
-  ClassContents,
-  ClassSet,
-  ClassName,
-  ClassStatus,
-  ClassStatusDot,
-  ClassStatusText,
   StickyClassBox,
   ArrowContainer,
-  LeftArrow,
   RightArrow,
   TopBoxWide,
   TopBox,
   TopBoxText,
   TopBoxArrow,
 } from "../../../styles/study/Study";
-import Java_ClassListSmall_01 from "./Java_ClassListSmall_01";
+import { Java_ClassListSmall_01 } from "./Java_ClassListSmall";
+import Java_SubjectTitle from "./Java_SubjectTitle";
 
 const Java_01_01 = () => {
   return (
@@ -63,18 +48,7 @@ const Java_01_01 = () => {
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <LeftSubjectContainer>
-            <SubjectImgContainerJava />
-            <SubjectTitle>Java 개념잡기</SubjectTitle>
-            <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
-            <SubjectRateContainer>
-              <SubjectRateBox>
-                <SubjectRateWhite />
-                <SubjectRateBlack />
-              </SubjectRateBox>
-              <SubjectRateContents>52%</SubjectRateContents>
-            </SubjectRateContainer>
-          </LeftSubjectContainer>
+          <Java_SubjectTitle />
           <StickyClassBox>
             <Java_ClassListSmall_01 />
           </StickyClassBox>
@@ -204,7 +178,7 @@ const Java_01_01 = () => {
               <ClassContentsTitle1>자바 프로그램 개발 과정</ClassContentsTitle1>
               <ClassContentsImage
                 style={{
-                  backgroundImage: `url(${"/images/study/java_01_01_01.png"})`,
+                  backgroundImage: `url(${"/images/study/java/java_01_01_01.png"})`,
                 }}
               />
               <ClassContentsTitle2>컴파일</ClassContentsTitle2>
@@ -215,7 +189,7 @@ const Java_01_01 = () => {
               </ClassContentsText>
               <ClassContentsImage
                 style={{
-                  backgroundImage: `url(${"/images/study/java_01_01_02.png"})`,
+                  backgroundImage: `url(${"/images/study/java/java_01_01_02.png"})`,
                 }}
               />
               <ClassContentsTitle2>JDK, JRE, JVM</ClassContentsTitle2>
@@ -234,7 +208,7 @@ const Java_01_01 = () => {
               </ClassContentsText>
               <ClassContentsImage
                 style={{
-                  backgroundImage: `url(${"/images/study/java_01_01_03.png"})`,
+                  backgroundImage: `url(${"/images/study/java/java_01_01_03.png"})`,
                 }}
               />
               <ClassContentsTitle2>빌드</ClassContentsTitle2>

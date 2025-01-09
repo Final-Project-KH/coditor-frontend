@@ -3,29 +3,14 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-  LeftSubjectContainer,
-  SubjectImgContainerC,
-  SubjectTitle,
-  SubjectContents,
-  SubjectRateBlack,
-  SubjectRateWhite,
-  SubjectRateContents,
-  SubjectRateContainer,
-  SubjectRateBox,
-  EachClass,
-  ClassHeader,
-  ClassHeaderTitle,
-  ClassName,
-  ClassContents,
-  ClassStatus,
-  ClassStatusDot,
-  ClassStatusText,
-  ClassSet,
   TopBox,
   TopBoxText,
   TopBoxArrow,
   TopBoxWide,
 } from "../../../styles/study/Study";
+import C_ChapterList from "./C_ChapterList";
+import C_ClassListFull from "./C_ClassListFull";
+import C_SubjectTitle from "./C_SubjectTitle";
 
 const C_Main = () => {
   return (
@@ -43,21 +28,12 @@ const C_Main = () => {
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <LeftSubjectContainer>
-            <SubjectImgContainerC />
-            <SubjectTitle>C언어 개념잡기</SubjectTitle>
-            <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
-            <SubjectRateContainer>
-              <SubjectRateBox>
-                <SubjectRateWhite />
-                <SubjectRateBlack />
-              </SubjectRateBox>
-              <SubjectRateContents>52%</SubjectRateContents>
-            </SubjectRateContainer>
-          </LeftSubjectContainer>
-          {/* <Java_ChapterList /> */}
+          <C_SubjectTitle />
+          <C_ChapterList />
         </LeftContainer>
-        <RightContainer>{/* <Java_ClassListFull /> */}</RightContainer>
+        <RightContainer>
+          <C_ClassListFull />
+        </RightContainer>
       </Container>
     </Wrap>
   );
