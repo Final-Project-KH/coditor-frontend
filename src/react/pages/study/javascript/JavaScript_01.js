@@ -8,11 +8,10 @@ import {
   TopBoxArrow,
   TopBoxWide,
 } from "../../../styles/study/Study";
-import Python_ChapterList from "./Python_ChapterList";
-import Python_ClassListFull from "./Python_ClassListFull";
-import Python_SubjectTitle from "./Python_SubjectTitle";
+import JavaScript_SubjectTitle from "./JavaScript_SubjectTitle";
+import { JavaScript_ClassListFull_01 } from "./JavaScript_ClassListFull";
 
-const Python_Main = () => {
+const JavaScript_01 = () => {
   return (
     <Wrap>
       <TopBoxWide>
@@ -21,22 +20,21 @@ const Python_Main = () => {
             <TopBoxText>study</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/python/main" className="menu-link">
-            <TopBoxText>Python</TopBoxText>
+          <a href="/study/javascript/main" className="menu-link">
+            <TopBoxText>JavaScript</TopBoxText>
           </a>
         </TopBox>
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <Python_SubjectTitle />
-          <Python_ChapterList />
+          <JavaScript_SubjectTitle />
         </LeftContainer>
         <RightContainer>
-          <Python_ClassListFull />
+          <JavaScript_ClassListFull_01 />
         </RightContainer>
       </Container>
     </Wrap>
   );
 };
 
-export default Python_Main;
+export default JavaScript_01;

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrap = styled.div.attrs({
@@ -50,7 +51,7 @@ export const TopBoxText = styled.div.attrs({
   cursor: pointer;
   color: white;
   background-color: #313131;
-  &:hover{
+  &:hover {
     color: #313131;
     background-color: white;
   }
@@ -232,18 +233,18 @@ export const SubjectRateWhite = styled.div.attrs({
   background-color: white;
   position: absolute;
   top: 220px;
-  left: 24px;
+  left: 5%;
 `;
 export const SubjectRateBlack = styled.div.attrs({
   id: "subjectrateblack",
 })`
-  width: 47%;
+  width: 46%;
   height: 13px;
   border-radius: 10px 0px 0px 10px;
   background-color: rgba(0, 0, 0, 0.8);
   position: absolute;
   top: 220px;
-  left: 24px;
+  left: 5%;
 `;
 export const SubjectRateContents = styled.div.attrs({
   id: "subjectratecontents",
@@ -257,6 +258,20 @@ export const SubjectRateContents = styled.div.attrs({
   justify-content: center;
   align-items: center;
 `;
+export const SubjectLink = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  color: black;
+  border-radius: 30px;
+  border: 2px solid #f1f1f1;
+  &:hover {
+    border: 2px solid black;
+    transition: all 0.3s ease-in-out;
+  }
+`;
+
 export const RightContainer = styled.div.attrs({
   id: "rightcontainer",
 })`
@@ -486,8 +501,6 @@ export const ClassIndex = styled.div.attrs({
   id: "classindex",
 })`
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -506,30 +519,43 @@ export const ClassIndex = styled.div.attrs({
 export const ClassIndexInner = styled.div.attrs({
   id: "classindexinner",
 })`
-  width: 92%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   position: absolute;
   align-items: center;
   justify-content: center;
   top: 0;
-  margin-bottom: 5px;
+  padding-bottom: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 30px;
 `;
 export const ClassIndexName = styled.div.attrs({
   id: "classindexname",
 })`
-  width: 100%;
+  width: 90%;
   height: 50px;
   display: flex;
   justify-content: left;
   align-items: center;
   color: white;
-  margin-left: 20px;
+  padding-left: 20px;
   font-size: 20px;
-  font-family: "bold", sans-serif;
+  font-family: "medium", sans-serif;
+  margin-bottom: 3px;
   cursor: pointer;
   position: relative;
+  &:hover {
+    font-family: "bold", sans-serif;
+  }
 `;
+export const ClassIndexHr = styled.hr.attrs({
+  id: "classindexhr",
+})`
+  width: 90%;
+  color: white;
+`;
+
 export const ArrowContainer = styled.div.attrs({
   id: "arrowcontainer",
 })`

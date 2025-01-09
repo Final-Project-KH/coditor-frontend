@@ -3,29 +3,14 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-  LeftSubjectContainer,
-  SubjectImgContainerCPlus,
-  SubjectTitle,
-  SubjectContents,
-  SubjectRateBlack,
-  SubjectRateWhite,
-  SubjectRateContents,
-  SubjectRateContainer,
-  SubjectRateBox,
-  EachClass,
-  ClassHeader,
-  ClassHeaderTitle,
-  ClassName,
-  ClassContents,
-  ClassStatus,
-  ClassStatusDot,
-  ClassStatusText,
-  ClassSet,
   TopBox,
   TopBoxText,
   TopBoxArrow,
   TopBoxWide,
 } from "../../../styles/study/Study";
+import CPlus_ChapterList from "./CPlus_ChapterList";
+import CPlus_SubjectTitle from "./CPlus_SubjectTitle";
+import CPlus_ClassListFull from "./CPlus_ClassListFull";
 
 const CPlus_Main = () => {
   return (
@@ -43,21 +28,12 @@ const CPlus_Main = () => {
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <LeftSubjectContainer>
-            <SubjectImgContainerCPlus />
-            <SubjectTitle>C++ 개념잡기</SubjectTitle>
-            <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
-            <SubjectRateContainer>
-              <SubjectRateBox>
-                <SubjectRateWhite />
-                <SubjectRateBlack />
-              </SubjectRateBox>
-              <SubjectRateContents>52%</SubjectRateContents>
-            </SubjectRateContainer>
-          </LeftSubjectContainer>
-          {/* <Java_ChapterList /> */}
+          <CPlus_SubjectTitle />
+          <CPlus_ChapterList />
         </LeftContainer>
-        <RightContainer>{/* <Java_ClassListFull /> */}</RightContainer>
+        <RightContainer>
+          <CPlus_ClassListFull />
+        </RightContainer>
       </Container>
     </Wrap>
   );

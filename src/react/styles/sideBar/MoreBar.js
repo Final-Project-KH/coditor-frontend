@@ -180,13 +180,14 @@ export const MenuContents = styled.div.attrs({
   font-size: 15px;
   margin: 8px;
   .menu-link {
-    display: inline-block; /* 텍스트 길이에 맞춰 너비가 설정되도록 */
+    display: inline-block;
     text-decoration: none;
     color: inherit;
-    padding: 5px 10px; /* 텍스트 주변에 여백을 추가하여 배경색이 더 커지도록 */
+    padding: 5px 10px;
+    border-radius: 30px;
   }
   .menu-link:hover {
-    text-decoration: none; /* 호버 시 밑줄 추가 */
+    text-decoration: none;
     background-color: black;
     color: white;
   }
@@ -202,6 +203,13 @@ export const LinkContents = styled.div.attrs({
   font-family: "medium", sans-serif;
   font-size: 15px;
   margin: 8px;
+  &:hover {
+    font-family: "bold", sans-serif;
+    & > #outlink {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
 `;
 export const OutLink = styled.div.attrs({
   id: "outlink",
@@ -215,4 +223,7 @@ export const OutLink = styled.div.attrs({
   background-size: contain;
   background-position: center;
   background-image: url("/images/icon/outlink.png");
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s, opacity 0.2s;
 `;

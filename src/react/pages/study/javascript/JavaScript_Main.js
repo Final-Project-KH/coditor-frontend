@@ -26,6 +26,9 @@ import {
   TopBoxArrow,
   TopBoxWide,
 } from "../../../styles/study/Study";
+import JavaScript_ChapterList from "./JavaScript_ChapterList";
+import JavaScript_SubjectTitle from "./JavaScript_SubjectTitle";
+import JavaScript_ClassListFull from "./JavaScript_ClassListFull";
 
 const JavaScript_Main = () => {
   return (
@@ -43,21 +46,10 @@ const JavaScript_Main = () => {
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <LeftSubjectContainer>
-            <SubjectImgContainerJavaScript />
-            <SubjectTitle>JavaScript 개념잡기</SubjectTitle>
-            <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
-            <SubjectRateContainer>
-              <SubjectRateBox>
-                <SubjectRateWhite />
-                <SubjectRateBlack />
-              </SubjectRateBox>
-              <SubjectRateContents>52%</SubjectRateContents>
-            </SubjectRateContainer>
-          </LeftSubjectContainer>
-          {/* <Java_ChapterList /> */}
+          <JavaScript_SubjectTitle />
+          <JavaScript_ChapterList />
         </LeftContainer>
-        <RightContainer>{/* <Java_ClassListFull /> */}</RightContainer>
+        <RightContainer><JavaScript_ClassListFull /></RightContainer>
       </Container>
     </Wrap>
   );

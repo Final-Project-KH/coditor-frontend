@@ -37,7 +37,7 @@ const MoreBar = ({ isOpen, closeMenu }) => {
             백준 온라인 저지
             <OutLink />
           </LinkContents>
-          <LinkContents
+          <LinkContents className="menu-link"
             onClick={() =>
               window.open("https://swexpertacademy.com/main/main.do", "_blank")
             }
