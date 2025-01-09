@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Layout from "./react/pages/Layout";
 import Login from "./react/pages/login/login";
 import Signup from "./react/pages/signup/signup";
@@ -51,7 +51,10 @@ function App() {
             <Route path="/study/python/main" element={<Python_Main />} />
             <Route path="/study/c/main" element={<C_Main />} />
             <Route path="/study/cplus/main" element={<CPlus_Main />} />
-            <Route path="/study/javascript/main" element={<JavaScript_Main />} />
+            <Route
+              path="/study/javascript/main"
+              element={<JavaScript_Main />}
+            />
             <Route path="/ct_commons" element={<CodingTestCommons />} />
             <Route path="/legal/terms" element={<Terms />} />
             <Route path="/legal/privacy" element={<Privacy />} />
