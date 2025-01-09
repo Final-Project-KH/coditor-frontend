@@ -1,3 +1,5 @@
+import React, { forwardRef } from "react";
+
 import {
   EachClass,
   ClassHeader,
@@ -10,10 +12,10 @@ import {
   ClassSet,
 } from "../../../styles/study/Study";
 
-export const Java_ClassListFull_01 = () => {
+export const Java_ClassListFull_01 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>01. Java 시작</ClassHeaderTitle>
         </ClassHeader>
@@ -57,12 +59,12 @@ export const Java_ClassListFull_01 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_02 = () => {
+export const Java_ClassListFull_02 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>02. 기본 자료형과 연산자 / 제어문</ClassHeaderTitle>
         </ClassHeader>
@@ -130,12 +132,12 @@ export const Java_ClassListFull_02 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_03 = () => {
+export const Java_ClassListFull_03 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>03. 배열과 문자열(참조 타입)</ClassHeaderTitle>
         </ClassHeader>
@@ -191,12 +193,12 @@ export const Java_ClassListFull_03 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_04 = () => {
+export const Java_ClassListFull_04 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>04. 객체 지향 프로그래밍</ClassHeaderTitle>
         </ClassHeader>
@@ -516,12 +518,12 @@ export const Java_ClassListFull_04 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_05 = () => {
+export const Java_ClassListFull_05 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>05. Java API 클래스</ClassHeaderTitle>
         </ClassHeader>
@@ -661,12 +663,12 @@ export const Java_ClassListFull_05 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_06 = () => {
+export const Java_ClassListFull_06 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>06. 제네릭 / 컬렉션 프레임워크</ClassHeaderTitle>
         </ClassHeader>
@@ -794,14 +796,14 @@ export const Java_ClassListFull_06 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_07 = () => {
+export const Java_ClassListFull_07 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
-          <ClassHeaderTitle>07. Thread / 예외 처리</ClassHeaderTitle>
+          <ClassHeaderTitle ref={ref}>07. Thread / 예외 처리</ClassHeaderTitle>
         </ClassHeader>
         <ClassContents>
           <ClassSet>
@@ -843,12 +845,12 @@ export const Java_ClassListFull_07 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_08 = () => {
+export const Java_ClassListFull_08 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>08. 람다와 스트림 / 입력과 출력</ClassHeaderTitle>
         </ClassHeader>
@@ -892,12 +894,12 @@ export const Java_ClassListFull_08 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_09 = () => {
+export const Java_ClassListFull_09 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>09. 네트워킹</ClassHeaderTitle>
         </ClassHeader>
@@ -989,20 +991,20 @@ export const Java_ClassListFull_09 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-const Java_ClassListFull = () => {
+const Java_ClassListFull = ({ refs }) => {
   return (
     <>
-      <Java_ClassListFull_01 />
-      <Java_ClassListFull_02 />
-      <Java_ClassListFull_03 />
-      <Java_ClassListFull_04 />
-      <Java_ClassListFull_05 />
-      <Java_ClassListFull_06 />
-      <Java_ClassListFull_07 />
-      <Java_ClassListFull_08 />
-      <Java_ClassListFull_09 />
+      <Java_ClassListFull_01 ref={refs.section01} />
+      <Java_ClassListFull_02 ref={refs.section02} />
+      <Java_ClassListFull_03 ref={refs.section03} />
+      <Java_ClassListFull_04 ref={refs.section04} />
+      <Java_ClassListFull_05 ref={refs.section05} />
+      <Java_ClassListFull_06 ref={refs.section06} />
+      <Java_ClassListFull_07 ref={refs.section07} />
+      <Java_ClassListFull_08 ref={refs.section08} />
+      <Java_ClassListFull_09 ref={refs.section09} />
     </>
   );
 };

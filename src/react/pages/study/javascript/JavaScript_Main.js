@@ -1,3 +1,5 @@
+import React, { useRef } from "react";
+
 import {
   Wrap,
   Container,
@@ -31,6 +33,15 @@ import JavaScript_SubjectTitle from "./JavaScript_SubjectTitle";
 import JavaScript_ClassListFull from "./JavaScript_ClassListFull";
 
 const JavaScript_Main = () => {
+
+    const sectionRefs = {
+      section01: useRef(null),
+      section02: useRef(null),
+      section03: useRef(null),
+      section04: useRef(null),
+      section05: useRef(null),
+    }
+
   return (
     <Wrap>
       <TopBoxWide>
@@ -39,7 +50,7 @@ const JavaScript_Main = () => {
             <TopBoxText>study</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/javascript/main" className="menu-link">
+          <a href="/study/javascript" className="menu-link">
             <TopBoxText>JavaScript</TopBoxText>
           </a>
         </TopBox>
@@ -47,9 +58,9 @@ const JavaScript_Main = () => {
       <Container>
         <LeftContainer>
           <JavaScript_SubjectTitle />
-          <JavaScript_ChapterList />
+          <JavaScript_ChapterList refs={sectionRefs} />
         </LeftContainer>
-        <RightContainer><JavaScript_ClassListFull /></RightContainer>
+        <RightContainer><JavaScript_ClassListFull refs={sectionRefs} /></RightContainer>
       </Container>
     </Wrap>
   );

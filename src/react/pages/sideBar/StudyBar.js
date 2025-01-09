@@ -19,7 +19,7 @@ const StudyBar = ({ isOpen, closeMenu }) => {
     <Container isOpen={isOpen}>
       <MenuContainer>
         <MenuColumn>
-          <a href="/study/java/main" className="menu-link">
+          <a href="/study/java" className="menu-link">
             <MenuImgContainer>
               <MenuImgJava />
             </MenuImgContainer>
@@ -27,7 +27,7 @@ const StudyBar = ({ isOpen, closeMenu }) => {
           </a>
         </MenuColumn>
         <MenuColumn>
-          <a href="/study/python/main" className="menu-link">
+          <a href="/study/python" className="menu-link">
             <MenuImgContainer>
               <MenuImgPython />
             </MenuImgContainer>
@@ -35,7 +35,7 @@ const StudyBar = ({ isOpen, closeMenu }) => {
           </a>
         </MenuColumn>
         <MenuColumn>
-          <a href="/study/c/main" className="menu-link">
+          <a href="/study/c" className="menu-link">
             <MenuImgContainer>
               <MenuImgC />
             </MenuImgContainer>
@@ -43,7 +43,7 @@ const StudyBar = ({ isOpen, closeMenu }) => {
           </a>
         </MenuColumn>
         <MenuColumn>
-          <a href="/study/cplus/main" className="menu-link">
+          <a href="/study/cplus" className="menu-link">
             <MenuImgContainer>
               <MenuImgCPlus />
             </MenuImgContainer>
@@ -51,7 +51,7 @@ const StudyBar = ({ isOpen, closeMenu }) => {
           </a>
         </MenuColumn>
         <MenuColumn>
-          <a href="/study/javascript/main" className="menu-link">
+          <a href="/study/javascript" className="menu-link">
             <MenuImgContainer>
               <MenuImgJavaScript />
             </MenuImgContainer>

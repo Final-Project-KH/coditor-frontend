@@ -29,22 +29,22 @@ const Study = () => {
           </TopBox>
         </TopBoxWide>
         <Container>
-          <SubjectLink to="/study/java/main">
+          <SubjectLink to="/study/java">
             <Java_SubjectTitle />
           </SubjectLink>
-          <SubjectLink to="/study/python/main">
+          <SubjectLink to="/study/python">
             <Python_SubjectTitle />
           </SubjectLink>
 
-          <SubjectLink to="/study/c/main">
+          <SubjectLink to="/study/c">
             <C_SubjectTitle />
           </SubjectLink>
 
-          <SubjectLink to="/study/cplus/main">
+          <SubjectLink to="/study/cplus">
             <CPlus_SubjectTitle />
           </SubjectLink>
 
-          <SubjectLink to="/study/javascript/main">
+          <SubjectLink to="/study/javascript">
             <JavaScript_SubjectTitle />
           </SubjectLink>
         </Container>

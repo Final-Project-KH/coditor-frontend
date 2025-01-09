@@ -20,8 +20,12 @@ const Java_01 = () => {
             <TopBoxText>study</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/java/main" className="menu-link">
-            <TopBoxText>JavaScript</TopBoxText>
+          <a href="/study/java" className="menu-link">
+            <TopBoxText>Java</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/study/java/01" className="menu-link">
+            <TopBoxText>01. Java 시작</TopBoxText>
           </a>
         </TopBox>
       </TopBoxWide>

@@ -1,3 +1,5 @@
+import React, { forwardRef } from "react";
+
 import {
   EachClass,
   ClassHeader,
@@ -10,10 +12,10 @@ import {
   ClassSet,
 } from "../../../styles/study/Study";
 
-export const C_ClassListFull_01 = () => {
+export const C_ClassListFull_01 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>01. C 기본</ClassHeaderTitle>
         </ClassHeader>
@@ -57,12 +59,12 @@ export const C_ClassListFull_01 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const C_ClassListFull_02 = () => {
+export const C_ClassListFull_02 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>02. 자료형과 연산자</ClassHeaderTitle>
         </ClassHeader>
@@ -142,12 +144,12 @@ export const C_ClassListFull_02 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const C_ClassListFull_03 = () => {
+export const C_ClassListFull_03 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>03. 제어문</ClassHeaderTitle>
         </ClassHeader>
@@ -191,12 +193,12 @@ export const C_ClassListFull_03 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const C_ClassListFull_04 = () => {
+export const C_ClassListFull_04 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>04. 배열과 문자열</ClassHeaderTitle>
         </ClassHeader>
@@ -228,12 +230,12 @@ export const C_ClassListFull_04 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const C_ClassListFull_05 = () => {
+export const C_ClassListFull_05 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>05. 함수 및 자료 처리</ClassHeaderTitle>
         </ClassHeader>
@@ -325,16 +327,16 @@ export const C_ClassListFull_05 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-const C_ClassListFull = () => {
+const C_ClassListFull = ({ refs }) => {
   return (
     <>
-      <C_ClassListFull_01 />
-      <C_ClassListFull_02 />
-      <C_ClassListFull_03 />
-      <C_ClassListFull_04 />
-      <C_ClassListFull_05 />
+      <C_ClassListFull_01 ref={refs.section01} />
+      <C_ClassListFull_02 ref={refs.section02} />
+      <C_ClassListFull_03 ref={refs.section03} />
+      <C_ClassListFull_04 ref={refs.section04} />
+      <C_ClassListFull_05 ref={refs.section05} />
     </>
   );
 };

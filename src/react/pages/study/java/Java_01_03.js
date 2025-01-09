@@ -36,7 +36,7 @@ const Java_01_03 = () => {
             <TopBoxText>study</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/java/main" className="menu-link">
+          <a href="/study/java" className="menu-link">
             <TopBoxText>Java</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
@@ -80,7 +80,7 @@ const Java_01_03 = () => {
                   <br />
                   <ClassContentsImage
                     style={{
-                      backgroundImage: `url(${"java/java_01_03_01.png"})`,
+                      backgroundImage: `url(${"/images/study/java/java_01_03_01.png"})`,
                     }}
                   />
                   <br />

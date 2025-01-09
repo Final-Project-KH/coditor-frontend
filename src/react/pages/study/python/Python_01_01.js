@@ -35,7 +35,7 @@ const Java_01_01 = () => {
             <TopBoxText>study</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/python/main" className="menu-link">
+          <a href="/study/python" className="menu-link">
             <TopBoxText>Python</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>

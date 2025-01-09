@@ -35,7 +35,7 @@ const JavaScript_01_01 = () => {
             <TopBoxText>study</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/javascript/main" className="menu-link">
+          <a href="/study/javascript" className="menu-link">
             <TopBoxText>JavaScript</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>

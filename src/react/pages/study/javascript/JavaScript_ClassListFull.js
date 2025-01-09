@@ -1,3 +1,5 @@
+import React, { forwardRef } from "react";
+
 import {
   EachClass,
   ClassHeader,
@@ -10,10 +12,10 @@ import {
   ClassSet,
 } from "../../../styles/study/Study";
 
-export const JavaScript_ClassListFull_01 = () => {
+export const JavaScript_ClassListFull_01 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>01. 자바스크립트 기초</ClassHeaderTitle>
         </ClassHeader>
@@ -105,12 +107,12 @@ export const JavaScript_ClassListFull_01 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const JavaScript_ClassListFull_02 = () => {
+export const JavaScript_ClassListFull_02 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>02. 자바스크립트 응용</ClassHeaderTitle>
         </ClassHeader>
@@ -178,12 +180,12 @@ export const JavaScript_ClassListFull_02 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const JavaScript_ClassListFull_03 = () => {
+export const JavaScript_ClassListFull_03 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>03. HTTP와 RESTful</ClassHeaderTitle>
         </ClassHeader>
@@ -239,12 +241,12 @@ export const JavaScript_ClassListFull_03 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const JavaScript_ClassListFull_04 = () => {
+export const JavaScript_ClassListFull_04 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>04. 최신 문법</ClassHeaderTitle>
         </ClassHeader>
@@ -276,12 +278,12 @@ export const JavaScript_ClassListFull_04 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const JavaScript_ClassListFull_05 = () => {
+export const JavaScript_ClassListFull_05 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>05. 알고리즘과 웹화면</ClassHeaderTitle>
         </ClassHeader>
@@ -325,16 +327,16 @@ export const JavaScript_ClassListFull_05 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-const JavaScript_ClassListFull = () => {
+const JavaScript_ClassListFull = ({ refs }) => {
   return (
     <>
-      <JavaScript_ClassListFull_01 />
-      <JavaScript_ClassListFull_02 />
-      <JavaScript_ClassListFull_03 />
-      <JavaScript_ClassListFull_04 />
-      <JavaScript_ClassListFull_05 />
+      <JavaScript_ClassListFull_01 ref={refs.section01} />
+      <JavaScript_ClassListFull_02 ref={refs.section02} />
+      <JavaScript_ClassListFull_03 ref={refs.section03} />
+      <JavaScript_ClassListFull_04 ref={refs.section04} />
+      <JavaScript_ClassListFull_05 ref={refs.section05} />
     </>
   );
 };

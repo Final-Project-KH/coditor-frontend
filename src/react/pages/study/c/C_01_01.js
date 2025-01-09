@@ -35,7 +35,7 @@ const C_01_01 = () => {
             <TopBoxText>study</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/c/main" className="menu-link">
+          <a href="/study/c" className="menu-link">
             <TopBoxText>C</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>

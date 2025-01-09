@@ -13,17 +13,39 @@ const CommunityBar = ({ isOpen, closeMenu }) => {
       <MenuContainer>
         <MenuColumn>
           <MenuTitle>커뮤니티</MenuTitle>
-          <MenuContents>코딩 질문</MenuContents>
-          <MenuContents>진로 질문</MenuContents>
+
+          <MenuContents>
+            <a href="/community/coding" className="menu-link">
+              코딩 질문
+            </a>
+          </MenuContents>
+
+          <MenuContents>
+            <a href="/community/course" className="menu-link">
+              진로 질문
+            </a>
+          </MenuContents>
         </MenuColumn>
         <MenuColumn>
-          <MenuTitle style={{ minHeight: '26px' }} />
-          <MenuContents>스터디</MenuContents>
-          <MenuContents>팀 프로젝트</MenuContents>
+          <MenuTitle style={{ minHeight: "26px" }} />
+          <MenuContents>
+            <a href="/community/study" className="menu-link">
+              스터디
+            </a>
+          </MenuContents>
+          <MenuContents>
+            <a href="/community/team" className="menu-link">
+              팀 프로젝트
+            </a>
+          </MenuContents>
         </MenuColumn>
         <MenuColumn>
-        <MenuTitle style={{ minHeight: '26px' }} />
-        <MenuContents>✨ 코디터 멘토링 서비스</MenuContents>
+          <MenuTitle style={{ minHeight: "26px" }} />
+          <MenuContents>
+            <a href="/community/mentoring" className="menu-link">
+              ✨ 코디터 멘토링 서비스
+            </a>
+          </MenuContents>
         </MenuColumn>
       </MenuContainer>
     </Container>

@@ -1,3 +1,5 @@
+import React, { forwardRef } from "react";
+
 import {
   EachClass,
   ClassHeader,
@@ -10,10 +12,10 @@ import {
   ClassSet,
 } from "../../../styles/study/Study";
 
-export const Python_ClassListFull_01 = () => {
+export const Python_ClassListFull_01 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>01. 개발 환경 구성 및 기본 문법</ClassHeaderTitle>
         </ClassHeader>
@@ -141,12 +143,12 @@ export const Python_ClassListFull_01 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Python_ClassListFull_02 = () => {
+export const Python_ClassListFull_02 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>02. 함수 및 자료 처리</ClassHeaderTitle>
         </ClassHeader>
@@ -238,12 +240,12 @@ export const Python_ClassListFull_02 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Python_ClassListFull_03 = () => {
+export const Python_ClassListFull_03 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>03. 파이썬 고급</ClassHeaderTitle>
         </ClassHeader>
@@ -311,12 +313,12 @@ export const Python_ClassListFull_03 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Python_ClassListFull_04 = () => {
+export const Python_ClassListFull_04 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>04. 파이썬 응용</ClassHeaderTitle>
         </ClassHeader>
@@ -420,12 +422,12 @@ export const Python_ClassListFull_04 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Python_ClassListFull_05 = () => {
+export const Python_ClassListFull_05 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>05. 파이썬 연동</ClassHeaderTitle>
         </ClassHeader>
@@ -481,12 +483,12 @@ export const Python_ClassListFull_05 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Python_ClassListFull_06 = () => {
+export const Python_ClassListFull_06 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>06. 데이터분석을 위한 패키지</ClassHeaderTitle>
         </ClassHeader>
@@ -566,17 +568,17 @@ export const Python_ClassListFull_06 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-const Python_ClassListFull = () => {
+const Python_ClassListFull = ({ refs }) => {
   return (
     <>
-      <Python_ClassListFull_01 />
-      <Python_ClassListFull_02 />
-      <Python_ClassListFull_03 />
-      <Python_ClassListFull_04 />
-      <Python_ClassListFull_05 />
-      <Python_ClassListFull_06 />
+      <Python_ClassListFull_01 ref={refs.section01} />
+      <Python_ClassListFull_02 ref={refs.section02} />
+      <Python_ClassListFull_03 ref={refs.section03} />
+      <Python_ClassListFull_04 ref={refs.section04} />
+      <Python_ClassListFull_05 ref={refs.section05} />
+      <Python_ClassListFull_06 ref={refs.section06} />
     </>
   );
 };
