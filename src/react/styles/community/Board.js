@@ -8,6 +8,7 @@ export const BoardContainer = styled.div.attrs({
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  padding-bottom: 40px;
 `;
 export const TopSortOuterContiner = styled.div.attrs({
   id: "topsortoutercontainer",
@@ -198,7 +199,7 @@ export const MiddleSortOuterContiner = styled.div.attrs({
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 export const MiddleSortInnerContainer = styled.div.attrs({
   id: "middlesortinnercontainer",
@@ -267,8 +268,18 @@ export const PostListContainer = styled.div.attrs({
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   gap: 20px;
+  margin-bottom: 40px;
 `;
+
+export const PostListHr = styled.hr.attrs({
+  id: "postlisthr",
+})`
+  width: 100%;
+  color: black;
+`;
+
 export const PostEach = styled.div.attrs({
   id: "posteach",
 })`
@@ -276,6 +287,14 @@ export const PostEach = styled.div.attrs({
   display: flex;
   flex-direction: column;
   gap: 10px;
+  .menu-link {
+    text-decoration: none;
+    color: inherit;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 export const PostTop = styled.div.attrs({
   id: "posttop",
@@ -291,6 +310,7 @@ export const PostTopUser = styled.div.attrs({
   display: flex;
   flex-direction: row;
   gap: 10px;
+  padding-left: 2px;
 `;
 export const PostTopUserImg = styled.div.attrs({
   id: "posttopuserimg",
@@ -298,10 +318,9 @@ export const PostTopUserImg = styled.div.attrs({
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.4);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 40%;
+  background-size: cover;
 `;
 export const PostTopUserId = styled.div.attrs({
   id: "posttopuserid",
@@ -324,6 +343,7 @@ export const PostMiddle = styled.div.attrs({
   gap: 5px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 export const PostMiddleContentsUpper = styled.div.attrs({
   id: "postmiddlecontentsupper",
@@ -331,8 +351,9 @@ export const PostMiddleContentsUpper = styled.div.attrs({
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 10px;
   justify-content: flex-start;
+  align-items: center;
 `;
 export const PostMiddleContentsPending = styled.div.attrs({
   id: "postmiddlecontentspending",
@@ -370,6 +391,7 @@ export const PostMiddleContentsTitle = styled.div.attrs({
   font-size: 16px;
   font-family: "medium", sans-serif;
   color: black;
+  margin-bottom: 3px;
 `;
 export const PostMiddleContentsText = styled.div.attrs({
   id: "postmiddlecontentstext",
@@ -399,7 +421,7 @@ export const PostBottomTag = styled.div.attrs({
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 2px 5px;
+  padding: 4px 6px;
   font-size: 11px;
   font-family: "medium", sans-serif;
 `;
@@ -423,10 +445,25 @@ export const PostBottomRepliesBox = styled.div.attrs({
 `;
 export const PostBottomRepliesImg = styled.div.attrs({
   id: "postbottomrepliesimg",
-})``;
+})`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10px;
+  height: 10px;
+  margin-top: 1px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/replies.png");
+`;
 export const PostBottomRepliesText = styled.div.attrs({
   id: "postbottomrepliestext",
-})``;
+})`
+  font-family: "regular", sans-serif;
+  font-size: 12px;
+  color: black;
+`;
 export const PostBottomDot = styled.div.attrs({
   id: "postbottomdot",
 })`
@@ -437,6 +474,8 @@ export const PostBottomDot = styled.div.attrs({
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 2px;
+  margin-right: 2px;
 `;
 export const PostBottomViewsBox = styled.div.attrs({
   id: "postbottomviewsbox",
@@ -444,10 +483,150 @@ export const PostBottomViewsBox = styled.div.attrs({
   display: flex;
   flex-direction: row;
   gap: 5px;
+  justify-content: center;
+  align-items: center;
 `;
 export const PostBottomViewsImg = styled.div.attrs({
   id: "postbottomviewsimg",
-})``;
+})`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10px;
+  height: 10px;
+  margin-top: 1px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/views.png");
+`;
 export const PostBottomViewsText = styled.div.attrs({
   id: "postbottomviewstext",
-})``;
+})`
+  font-family: "regular", sans-serif;
+  font-size: 12px;
+  color: black;
+`;
+
+export const PagenationContainer = styled.div.attrs({
+  id: "pagenationcontainer",
+})`
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+`;
+export const PagenationEachBoxActive = styled.div.attrs({
+  id: "pagenationeachboxactive",
+})`
+  width: 10%;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+  cursor: pointer;
+`;
+export const PagenationEachBoxInactive = styled.div.attrs({
+  id: "pagenationeachboxinactive",
+})`
+  width: 10%;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+export const PagenationLLActive = styled.div.attrs({
+  id: "pagenationllactive",
+})`
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/page_ll_active.png");
+`;
+export const PagenationLLInactive = styled.div.attrs({
+  id: "pagenationllinactive",
+})`
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/page_ll_inactive.png");
+`;
+export const PagenationLActive = styled.div.attrs({
+  id: "pagenationlactive",
+})`
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/page_l_active.png");
+`;
+export const PagenationLInactive = styled.div.attrs({
+  id: "pagenationlinactive",
+})`
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/page_l_inactive.png");
+`;
+export const PagenationRRActive = styled.div.attrs({
+  id: "pagenationrractive",
+})`
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/page_rr_active.png");
+`;
+export const PagenationRRInactive = styled.div.attrs({
+  id: "pagenationrrinactive",
+})`
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/page_rr_inactive.png");
+`;
+export const PagenationRActive = styled.div.attrs({
+  id: "pagenationractive",
+})`
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/page_r_active.png");
+`;
+export const PagenationRInactive = styled.div.attrs({
+  id: "pagenationrinactive",
+})`
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/page_r_inactive.png");
+`;
+export const PagenationNumber = styled.div.attrs({
+  id: "pagenationnumber",
+})`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "regular", sans-serif;
+  color: black;
+  font-size: 14px;
+`;

@@ -38,7 +38,7 @@ export const PopularTagsItem = styled.div.attrs({
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   font-family: "medium", sans-serif;
-  font-size: 13px;
+  font-size: 11px;
   height: 24px;
-  padding: 2px 5px;
+  padding: 4px 6px;
 `;

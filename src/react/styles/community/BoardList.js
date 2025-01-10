@@ -18,6 +18,10 @@ export const BoardListTitle = styled.div.attrs({
   font-family: "bold", sans-serif;
   font-size: 24px;
   color: black;
+  .menu-link {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 export const BoardListActiveContents = styled.div.attrs({
   id: "boardlistactivecontents",
@@ -26,6 +30,10 @@ export const BoardListActiveContents = styled.div.attrs({
   font-family: "semibold", sans-serif;
   font-size: 18px;
   color: black;
+  .menu-link {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 export const BoardListInactiveContents = styled.div.attrs({
   id: "boardlistactivecontents",
@@ -34,4 +42,8 @@ export const BoardListInactiveContents = styled.div.attrs({
   font-family: "regular", sans-serif;
   font-size: 18px;
   color: rgba(0, 0, 0, 0.4);
+  .menu-link {
+    text-decoration: none;
+    color: inherit;
+  }
 `;

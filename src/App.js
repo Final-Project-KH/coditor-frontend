@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./react/pages/Layout";
 import Login from "./react/pages/login/login";
 import Signup from "./react/pages/signup/signup";
@@ -35,6 +35,10 @@ import JavaScript_01_01 from "./react/pages/study/javascript/JavaScript_01_01";
 import CodingTestCommons from "./react/pages/codingtest/CodingTestCommon";
 import Community_Main from "./react/pages/community/Community_Main";
 import Community_Coding from "./react/pages/community/Community_Coding";
+import Community_Course from "./react/pages/community/Community_Course";
+import Community_Study from "./react/pages/community/Community_Study";
+import Community_Team from "./react/pages/community/Community_Team";
+import Post_Read from "./react/pages/community/Post_Read";
 
 function App() {
   return (
@@ -79,6 +83,11 @@ function App() {
             <Route path="/ct_commons" element={<CodingTestCommons />} />
             <Route path="/community" element={<Community_Main />} />
             <Route path="/community/coding" element={<Community_Coding />} />
+            <Route path="/community/coding/post1" element={<Post_Read />} />
+            <Route path="/community/course" element={<Community_Course />} />
+            <Route path="/community/study" element={<Community_Study />} />
+            <Route path="/community/team" element={<Community_Team />} />
+
           </Route>
         </Routes>
       </Router>

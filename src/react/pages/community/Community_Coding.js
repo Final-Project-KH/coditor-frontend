@@ -9,11 +9,11 @@ import {
   CenterContainer,
   RightContainer,
 } from "../../styles/community/Community";
-import Board_Coding from "./Board_Coding";
-import { BoardList_Coding } from "./BoardList";
-import PopularTags from "./PopularTags";
-import TopWriters from "./TopWriters";
-import WeeklyBest from "./WeeklyBest";
+import Board_Coding from "./components/Board_Coding";
+import { BoardList_Coding } from "./components/Side_BoardList";
+import PopularTags from "./components/Side_PopularTags";
+import TopWriters from "./components/Side_TopWriters";
+import WeeklyBest from "./components/Side_WeeklyBest";
 const Community_Coding = () => {
   return (
     <>

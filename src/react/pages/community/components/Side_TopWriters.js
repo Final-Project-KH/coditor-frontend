@@ -6,7 +6,7 @@ import {
   TopWritersImg,
   TopWritersId,
   TopWritersPoint,
-} from "../../styles/community/TopWriters";
+} from "../../../styles/community/TopWriters";
 
 const TopWriters = () => {
   return (

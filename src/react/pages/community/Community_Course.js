@@ -1,4 +1,5 @@
 import {
+  TopBoxArrow,
   TopBoxText,
   TopBox,
   TopBoxWide,
@@ -8,13 +9,12 @@ import {
   CenterContainer,
   RightContainer,
 } from "../../styles/community/Community";
-import Board_Main from "./components/Board_Main";
-import BoardList from "./components/Side_BoardList";
+import Board_Course from "./components/Board_Course";
+import { BoardList_Course } from "./components/Side_BoardList";
 import PopularTags from "./components/Side_PopularTags";
 import TopWriters from "./components/Side_TopWriters";
 import WeeklyBest from "./components/Side_WeeklyBest";
-
-const Community_Main = () => {
+const Community_Course = () => {
   return (
     <>
       <Wrap>
@@ -23,15 +23,19 @@ const Community_Main = () => {
             <a href="/community" className="menu-link">
               <TopBoxText>community</TopBoxText>
             </a>
+            <TopBoxArrow>{`>`}</TopBoxArrow>
+            <a href="/community/course" className="menu-link">
+              <TopBoxText>진로 질문</TopBoxText>
+            </a>
           </TopBox>
         </TopBoxWide>
         <Container>
           <LeftContainer>
-            <BoardList />
+            <BoardList_Course />
             <TopWriters />
           </LeftContainer>
           <CenterContainer>
-            <Board_Main />
+            <Board_Course />
           </CenterContainer>
           <RightContainer>
             <PopularTags />
@@ -43,4 +47,4 @@ const Community_Main = () => {
   );
 };
 
-export default Community_Main;
+export default Community_Course;
