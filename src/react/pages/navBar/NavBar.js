@@ -87,9 +87,19 @@ const NavBar = () => {
     }, 300);
   };
 
+  // 메뉴 닫기 (떨림 방지용 -> Timeout 제거)
+  const closeMenuIm = (menuName) => {
+    setMenuState((prev) => ({ ...prev, [menuName]: false }));
+    setAnimatingMenus((prev) => ({
+      ...prev,
+      [`${menuName}Animating`]: false,
+    }));
+  };
+
+  // 버블링 방지용 함수 (효과는 잘 모르겠음)
   const handleContentClick = (menuName, event) => {
     event.stopPropagation();
-    closeMenu(menuName);
+    closeMenuIm(menuName);
   };
 
   const menuRefs = useRef({
@@ -157,7 +167,7 @@ const NavBar = () => {
             {(menuState.isStudyOpen || animatingMenus.isStudyOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <StudyBar
                 isOpen={menuState.isStudyOpen} // isOpen 상태 전달
-                closeMenu={() => toggleMenu("isStudyOpen")} // closeMenu 함수 전달
+                closeMenu={(event) => handleContentClick("isStudyOpen", event)} // closeMenu 함수 전달
                 path={paths.pathStudy}
               ></StudyBar>
             )}
@@ -176,7 +186,10 @@ const NavBar = () => {
               animatingMenus.isCodingTestOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <CodingTestBar
                 isOpen={menuState.isCodingTestOpen} // isOpen 상태 전달
-                closeMenu={() => toggleMenu("isCodingTestOpen")} // closeMenu 함수 전달
+                closeMenu={(event) =>
+                  handleContentClick("isCodingTestOpen", event)
+                } // closeMenu 함수 전달
+                path={paths.pathCT}
               ></CodingTestBar>
             )}
           </MenuTitle>
@@ -194,7 +207,10 @@ const NavBar = () => {
               animatingMenus.isCommunityOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <CommunityBar
                 isOpen={menuState.isCommunityOpen} // isOpen 상태 전달
-                closeMenu={() => toggleMenu("isCommunityOpen")} // closeMenu 함수 전달
+                closeMenu={(event) =>
+                  handleContentClick("isCommunityOpen", event)
+                } // closeMenu 함수 전달
+                path={paths.pathCommunity}
               ></CommunityBar>
             )}
           </MenuTitle>
@@ -209,7 +225,8 @@ const NavBar = () => {
             {(menuState.isMoreOpen || animatingMenus.isMoreOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <MoreBar
                 isOpen={menuState.isMoreOpen} // isOpen 상태 전달
-                closeMenu={() => toggleMenu("isMoreOpen")} // closeMenu 함수 전달
+                closeMenu={(event) => handleContentClick("isMoreOpen", event)} // closeMenu 함수 전달
+                path={paths.pathMore}
               ></MoreBar>
             )}
           </MenuTitle>
@@ -224,7 +241,8 @@ const NavBar = () => {
             {(menuState.isCsOpen || animatingMenus.isCsOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <CsBar
                 isOpen={menuState.isCsOpen} // isOpen 상태 전달
-                closeMenu={() => toggleMenu("isCsOpen")} // closeMenu 함수 전달
+                closeMenu={(event) => handleContentClick("isCsOpen", event)} // closeMenu 함수 전달
+                path={paths.pathCs}
               ></CsBar>
             )}
           </MenuTitle>

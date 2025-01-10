@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   MenuContainer,
@@ -15,7 +15,7 @@ import {
   StyledLink,
 } from "../../styles/sideBar/CoddingTestBar";
 
-const CodingTestBar = ({isOpen, closeMenu}) => {
+const CodingTestBar = ({ isOpen, closeMenu }) => {
   return (
     <Container isOpen={isOpen}>
       <MenuContainer>

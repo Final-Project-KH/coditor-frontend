@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   MenuContainer,
@@ -14,9 +14,9 @@ import {
   MenuImgCss,
   MenuLink,
 } from "../../styles/sideBar/StudyBar";
-import {useNavigate, useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const StudyBar = ({isOpen, closeMenu, path}) => {
+const StudyBar = ({ isOpen, closeMenu, path }) => {
   const navigate = useNavigate();
 
   const handleJavaCheck = () => {
@@ -63,7 +63,7 @@ const StudyBar = ({isOpen, closeMenu, path}) => {
   return (
     <Container isOpen={isOpen}>
       <MenuContainer>
-        <MenuColumn>
+        <MenuColumn onClick={closeMenu}>
           {/* <a href="/study/java/main" className="menu-link">
             <MenuImgContainer>
               <MenuImgJava />
@@ -77,7 +77,7 @@ const StudyBar = ({isOpen, closeMenu, path}) => {
             <MenuTitle>Java</MenuTitle>
           </MenuLink>
         </MenuColumn>
-        <MenuColumn>
+        <MenuColumn onClick={closeMenu}>
           {/* <a href="/study/python/main" className="menu-link">
             <MenuImgContainer>
               <MenuImgPython />
@@ -91,7 +91,7 @@ const StudyBar = ({isOpen, closeMenu, path}) => {
             <MenuTitle>Python</MenuTitle>
           </MenuLink>
         </MenuColumn>
-        <MenuColumn>
+        <MenuColumn onClick={closeMenu}>
           {/* <a href="/study/c/main" className="menu-link">
             <MenuImgContainer>
               <MenuImgC />
@@ -105,7 +105,7 @@ const StudyBar = ({isOpen, closeMenu, path}) => {
             <MenuTitle>C</MenuTitle>
           </MenuLink>
         </MenuColumn>
-        <MenuColumn>
+        <MenuColumn onClick={closeMenu}>
           {/* <a href="/study/cplus/main" className="menu-link">
             <MenuImgContainer>
               <MenuImgCPlus />
@@ -119,7 +119,7 @@ const StudyBar = ({isOpen, closeMenu, path}) => {
             <MenuTitle>C++</MenuTitle>
           </MenuLink>
         </MenuColumn>
-        <MenuColumn>
+        <MenuColumn onClick={closeMenu}>
           {/* <a href="/study/javascript/main" className="menu-link">
             <MenuImgContainer>
               <MenuImgJavaScript />
