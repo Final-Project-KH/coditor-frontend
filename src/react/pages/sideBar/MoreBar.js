@@ -9,7 +9,7 @@ import {
   LinkContents,
 } from "../../styles/sideBar/MoreBar";
 
-const MoreBar = ({ isOpen, closeMenu }) => {
+const MoreBar = ({ isOpen, closeMenu, path }) => {
   return (
     <Container isOpen={isOpen}>
       <MenuContainer>
@@ -37,7 +37,8 @@ const MoreBar = ({ isOpen, closeMenu }) => {
             백준 온라인 저지
             <OutLink />
           </LinkContents>
-          <LinkContents className="menu-link"
+          <LinkContents
+            className="menu-link"
             onClick={() =>
               window.open("https://swexpertacademy.com/main/main.do", "_blank")
             }

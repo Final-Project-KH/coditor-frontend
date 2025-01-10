@@ -92,6 +92,7 @@ export const MenuTitle = styled.div.attrs({
   font-family: "bold", sans-serif;
   font-size: 18px;
   margin: 10px;
+  padding: 5px 10px;
 `;
 export const MenuContents = styled.div.attrs({
   id: "menucontents",
@@ -112,6 +113,25 @@ export const MenuContents = styled.div.attrs({
     border-radius: 30px;
   }
   .menu-link:hover {
+    text-decoration: none;
+    background-color: black;
+    color: white;
+  }
+`;
+export const MenuLink = styled.button.attrs({
+  id: "menulink",
+})`
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: 5px 10px;
+  background-color: transparent;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  &:hover {
     text-decoration: none;
     background-color: black;
     color: white;

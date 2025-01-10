@@ -14,7 +14,7 @@ import {
   MenuContents,
   StyledLink,
   NavigatePath,
-} from "../../styles/sideBar/CoddingTestBar";
+} from "../../styles/sideBar/CodingTestBar";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const CodingTestBar = ({ isOpen, closeMenu, path }) => {

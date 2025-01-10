@@ -19,120 +19,66 @@ import { useNavigate, useLocation } from "react-router-dom";
 const StudyBar = ({ isOpen, closeMenu, path }) => {
   const navigate = useNavigate();
 
-  const handleJavaCheck = () => {
-    navigate("/study/java", {
-      state: {
-        firstpath: path,
-        secondpath: "Java",
-      },
-    });
+  const handleNavigation = (navigatepath, data) => {
+    navigate(navigatepath, { state: data });
   };
-  const handlePythonCheck = () => {
-    navigate("/study/python", {
-      state: {
-        firstpath: path,
-        secondpath: "Python",
-      },
-    });
-  };
-  const handleCCheck = () => {
-    navigate("/study/c", {
-      state: {
-        firstpath: path,
-        secondpath: "C",
-      },
-    });
-  };
-  const handleCPlusCheck = () => {
-    navigate("/study/cplus", {
-      state: {
-        firstpath: path,
-        secondpath: "C++",
-      },
-    });
-  };
-  const handleJavaScriptCheck = () => {
-    navigate("/study/javascript", {
-      state: {
-        firstpath: path,
-        secondpath: "JavaScript",
-      },
-    });
-  };
+  // 언어가 늘어난다면 다음과 같은 형식으로 맨 밑에 추가해주면 자동 생성이 됩니다.
+  const subMenuData = [
+    {
+      title: "Java",
+      imgComponent: <MenuImgJava />,
+      navigatepath: "/study/java",
+      firstpath: path,
+      secondpath: "Java",
+    },
+    {
+      title: "Python",
+      imgComponent: <MenuImgPython />,
+      navigatepath: "/study/python",
+      firstpath: path,
+      secondpath: "Python",
+    },
+    {
+      title: "C",
+      imgComponent: <MenuImgC />,
+      navigatepath: "/study/c",
+      firstpath: path,
+      secondpath: "C",
+    },
+    {
+      title: "C++",
+      imgComponent: <MenuImgCPlus />,
+      navigatepath: "/study/cplus",
+      firstpath: path,
+      secondpath: "C++",
+    },
+    {
+      title: "JavaScript",
+      imgComponent: <MenuImgJavaScript />,
+      navigatepath: "/study/javascript",
+      firstpath: path,
+      secondpath: "JavaScript",
+    },
+  ];
 
   return (
     <Container isOpen={isOpen}>
       <MenuContainer>
-        <MenuColumn onClick={closeMenu}>
-          {/* <a href="/study/java/main" className="menu-link">
-            <MenuImgContainer>
-              <MenuImgJava />
-            </MenuImgContainer>
-            <MenuTitle>Java</MenuTitle>
-          </a> */}
-          <MenuLink onClick={() => handleJavaCheck()}>
-            <MenuImgContainer>
-              <MenuImgJava />
-            </MenuImgContainer>
-            <MenuTitle>Java</MenuTitle>
-          </MenuLink>
-        </MenuColumn>
-        <MenuColumn onClick={closeMenu}>
-          {/* <a href="/study/python/main" className="menu-link">
-            <MenuImgContainer>
-              <MenuImgPython />
-            </MenuImgContainer>
-            <MenuTitle>Python</MenuTitle>
-          </a> */}
-          <MenuLink onClick={() => handlePythonCheck()}>
-            <MenuImgContainer>
-              <MenuImgPython />
-            </MenuImgContainer>
-            <MenuTitle>Python</MenuTitle>
-          </MenuLink>
-        </MenuColumn>
-        <MenuColumn onClick={closeMenu}>
-          {/* <a href="/study/c/main" className="menu-link">
-            <MenuImgContainer>
-              <MenuImgC />
-            </MenuImgContainer>
-            <MenuTitle>C</MenuTitle>
-          </a> */}
-          <MenuLink onClick={() => handleCCheck()}>
-            <MenuImgContainer>
-              <MenuImgC />
-            </MenuImgContainer>
-            <MenuTitle>C</MenuTitle>
-          </MenuLink>
-        </MenuColumn>
-        <MenuColumn onClick={closeMenu}>
-          {/* <a href="/study/cplus/main" className="menu-link">
-            <MenuImgContainer>
-              <MenuImgCPlus />
-            </MenuImgContainer>
-            <MenuTitle>C++</MenuTitle>
-          </a> */}
-          <MenuLink onClick={() => handleCPlusCheck()}>
-            <MenuImgContainer>
-              <MenuImgCPlus />
-            </MenuImgContainer>
-            <MenuTitle>C++</MenuTitle>
-          </MenuLink>
-        </MenuColumn>
-        <MenuColumn onClick={closeMenu}>
-          {/* <a href="/study/javascript/main" className="menu-link">
-            <MenuImgContainer>
-              <MenuImgJavaScript />
-            </MenuImgContainer>
-            <MenuTitle>JavaScript</MenuTitle>
-          </a> */}
-          <MenuLink onClick={() => handleJavaScriptCheck()}>
-            <MenuImgContainer>
-              <MenuImgJavaScript />
-            </MenuImgContainer>
-            <MenuTitle>JavaScript</MenuTitle>
-          </MenuLink>
-        </MenuColumn>
+        {subMenuData.map((menu, index) => (
+          <MenuColumn key={index} onClick={closeMenu}>
+            <MenuLink
+              onClick={() =>
+                handleNavigation(menu.navigatepath, {
+                  firstpath: menu.firstpath,
+                  secondpath: menu.secondpath,
+                })
+              }
+            >
+              <MenuImgContainer>{menu.imgComponent}</MenuImgContainer>
+              <MenuTitle>{menu.title}</MenuTitle>
+            </MenuLink>
+          </MenuColumn>
+        ))}
       </MenuContainer>
     </Container>
   );

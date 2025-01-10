@@ -126,7 +126,10 @@ export const MenuLink = styled.button.attrs({
   color: inherit;
   padding: 5px 10px;
   background-color: transparent;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
   border: none;
+  border-radius: 30px;
   cursor: pointer;
   &:hover {
     text-decoration: none;
