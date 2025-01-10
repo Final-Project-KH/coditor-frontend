@@ -1,3 +1,7 @@
+import React, { useEffect } from 'react';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/a11y-dark.css';
+
 import {
   Wrap,
   Container,
@@ -78,6 +82,22 @@ const Java_01_02 = () => {
       },
     });
   };
+
+  const TopicCodeBlock = () => {
+    useEffect(() => {
+       hljs.highlightAll();
+    }, []);
+      
+    return (
+      <pre>
+         <code>
+            <div>안녕하세요</div>
+               <div>제니입니다</div>
+         </code>
+      </pre>
+    );
+  };
+
   return (
     <Wrap>
       <TopBoxWide>
@@ -126,9 +146,11 @@ const Java_01_02 = () => {
         <RightContainer>
           <EachClass>
             <ClassHeader>
+              
               <ClassHeaderTitle>Java 개발 환경 구축</ClassHeaderTitle>
             </ClassHeader>
             <ClassContentsContainer>
+              <TopicCodeBlock />
               <ClassContentsText>
                 자바 개발을 위해 자바와 자바 프로그래밍을 위한 통합 개발
                 환경(Integrated Development Environment)이 필요 합니다.

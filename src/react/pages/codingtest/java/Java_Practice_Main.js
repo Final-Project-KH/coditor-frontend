@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 import {
   Wrap,
@@ -21,19 +21,34 @@ import {
   StyledLink,
   TopBox,
   Navigator,
-} from "../../styles/codingtest/CoddingTestCommons";
-import AxiosApi from "../../../api/AxiosApi";
-import Common from "../../../util/Common";
+  TopBoxWide,
+  TopBoxText,
+  TopBoxArrow,
+} from "../../../styles/codingtest/CoddingTestCommons";
+import AxiosApi from "../../../../api/AxiosApi";
+import Common from "../../../../util/Common";
 
 // User Nickname, 등급
 // Coding Test 난이도 받아와야함
 // 경로 받아와야함
-const CodingTestCommons = () => {
+const CT_Java_Practice_Main = () => {
   return (
     <Wrap>
-      <TopBox>
-        <Navigator>coding test - java - practice</Navigator>
-      </TopBox>
+      <TopBoxWide>
+        <TopBox>
+          <a href="/codingtest" className="menu-link">
+            <TopBoxText>coding test</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/codingtest/java" className="menu-link">
+            <TopBoxText>Java</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/codingtest/java/practice" className="menu-link">
+            <TopBoxText>Practice</TopBoxText>
+          </a>
+        </TopBox>
+      </TopBoxWide>
       <Container>
         <LeftContainer>
           <LeftTopSubjectContainer>
@@ -56,12 +71,13 @@ const CodingTestCommons = () => {
           <EachClass>
             <ClassHeader>
               {/* Title 및 관련 내용은 백엔드에서 받아올지 논의 필요 */}
-              <ClassHeaderTitle>사칙연산</ClassHeaderTitle>
+              <ClassHeaderTitle>01. 사칙연산</ClassHeaderTitle>
             </ClassHeader>
             <ClassContents>
               <ClassSet>
                 <ClassName>
-                  <StyledLink to="/ct/java_01"></StyledLink>A + B
+                  <StyledLink to="/codingtest/java/practice/01/01"></StyledLink>
+                  A + B
                 </ClassName>
               </ClassSet>
               <ClassSet>
@@ -84,7 +100,7 @@ const CodingTestCommons = () => {
           <EachClass>
             <ClassHeader>
               {/* Title 및 관련 내용은 백엔드에서 받아올지 논의 필요 */}
-              <ClassHeaderTitle>조건문</ClassHeaderTitle>
+              <ClassHeaderTitle>02. 조건문</ClassHeaderTitle>
             </ClassHeader>
             <ClassContents>
               <ClassSet>
@@ -106,4 +122,4 @@ const CodingTestCommons = () => {
     </Wrap>
   );
 };
-export default CodingTestCommons;
+export default CT_Java_Practice_Main;

@@ -11,19 +11,6 @@ export const Wrap = styled.div.attrs({
   justify-content: center;
   align-items: center;
 `;
-export const Container = styled.div.attrs({
-  id: "container",
-})`
-  max-width: 1280px;
-  margin-top: 50px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: top;
-  justify-content: center;
-  margin-bottom: 0;
-  gap: 50px;
-`;
 export const Navigator = styled.div.attrs({
   id: "navigator",
 })`
@@ -32,35 +19,92 @@ export const Navigator = styled.div.attrs({
   width: 100%;
   height: 30px;
 `;
+export const TopBoxWide = styled.div.attrs({
+  id: "topboxwide",
+})`
+  width: 100%;
+  height: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #313131;
+  position: fixed;
+  top: 100px;
+  z-index: 5;
+`;
 export const TopBox = styled.div.attrs({
   id: "topbox",
 })`
   max-width: 1280px;
   width: 100%;
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
+`;
+export const TopBoxText = styled.div.attrs({
+  id: "topboxtext",
+})`
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 30px;
+  border: 1px solid #313131;
+  font-family: "bold", sans-serif;
+  font-size: 18px;
+  align-items: center;
+  padding-bottom: 3px;
+  cursor: pointer;
+  color: white;
+  background-color: #313131;
+  &:hover {
+    color: #313131;
+    background-color: white;
+  }
+`;
+export const TopBoxArrow = styled.div.attrs({
+  id: "topboxarrow",
+})`
+  color: white;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: "light", sans-serif;
+  padding-bottom: 3px;
+`;
+export const Container = styled.div.attrs({
+  id: "container",
+})`
+  max-width: 1280px;
+  margin-top: 75px;
+  width: 100%;
+  display: flex;
   flex-direction: row;
   align-items: top;
-  justify-content: flex-start;
+  justify-content: center;
   margin-bottom: 0;
-  margin-top: 10px;
+  gap: 25px;
 `;
 export const LeftContainer = styled.div.attrs({
   id: "leftcontainer",
 })`
-  width: 450px;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
   left: 0;
+  gap: 25px;
 `;
 export const LeftTopSubjectContainer = styled.div.attrs({
   id: "leftsubjectcontainer",
 })`
-  width: 450px;
+  width: 100%;
   height: 200px;
   display: flex;
   flex-direction: row;
-  gap: 50px;
+  gap: 25px;
   border-radius: 30px;
   position: sticky;
   left: 0;
@@ -68,7 +112,7 @@ export const LeftTopSubjectContainer = styled.div.attrs({
 export const LeftMiddleSubjectContainer = styled.div.attrs({
   id: "leftsubjectcontainer",
 })`
-  width: 450px;
+  width: 100%;
   height: 200px;
   display: flex;
   flex-direction: row;
@@ -77,12 +121,12 @@ export const LeftMiddleSubjectContainer = styled.div.attrs({
   background-color: #f1f1f1;
   position: sticky;
   left: 0;
-  margin-top: 50px;
+
 `;
 export const LeftSubjectSubContainer = styled.div.attrs({
   id: "leftsubjectcontainer",
 })`
-  width: 200px;
+  width: 50%;
   height: 200px;
   display: flex;
   flex-direction: column;
@@ -145,12 +189,11 @@ export const SubjectContent = styled.div.attrs({
 export const RightContainer = styled.div.attrs({
   id: "rightcontainer",
 })`
-  width: 780px;
+  width: 60%;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 25px;
   padding-bottom: 50px;
-  background-color: blue;
   position: relative;
 `;
 export const EachClass = styled.div.attrs({
