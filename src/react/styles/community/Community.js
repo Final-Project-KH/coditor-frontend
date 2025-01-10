@@ -110,3 +110,19 @@ export const RightContainer = styled.div.attrs({
   gap: 25px;
   left: 0;
 `;
+export const PathLink = styled.button.attrs({
+  id: "pathlink",
+})`
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    background-color: #313131;
+    color: white;
+  }
+`;

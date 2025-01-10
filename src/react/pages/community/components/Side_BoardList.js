@@ -5,11 +5,11 @@ import {
   BoardListInactiveContents,
   BoardListContainer,
 } from "../../../styles/community/BoardList";
+import { useLocation, useNavigate } from "react-router-dom";
 
-
-export const BoardList_Test = () => {
-
+export const BoardList_Test = (firstpath) => {
   const [activeBoard, setActiveBoard] = useState("coding"); // 초기 활성 보드 설정
+  const navigate = useNavigate();
 
   const boards = [
     { id: "coding", label: "코딩 질문", link: "/community/coding" },
@@ -46,9 +46,7 @@ export const BoardList_Test = () => {
       })}
     </BoardListContainer>
   );
-  
 };
-
 
 export const BoardList_Coding = () => {
   return (
@@ -245,7 +243,7 @@ export const BoardList_Mentoring = () => {
   );
 };
 
-const BoardList = () => {
+const BoardList = ({ firstpath }) => {
   return (
     <>
       <BoardListContainer>

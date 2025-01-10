@@ -8,25 +8,47 @@ import {
   LeftContainer,
   CenterContainer,
   RightContainer,
+  PathLink,
 } from "../../styles/community/Community";
 import Board_Study from "./components/Board_Study";
 import { BoardList_Study } from "./components/Side_BoardList";
 import PopularTags from "./components/Side_PopularTags";
 import TopWriters from "./components/Side_TopWriters";
 import WeeklyBest from "./components/Side_WeeklyBest";
+import { useLocation, useNavigate } from "react-router-dom";
 const Community_Study = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { firstpath, secondpath } = location.state || {};
+
+  const handleCommunity = () => {
+    navigate("/community", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+  const handleRefresh = () => {
+    navigate("/community/study", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+      },
+    });
+  };
+
   return (
     <>
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <a href="/community" className="menu-link">
-              <TopBoxText>community</TopBoxText>
-            </a>
+            <PathLink onClick={() => handleCommunity()}>
+              <TopBoxText>{firstpath}</TopBoxText>
+            </PathLink>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <a href="/community/study" className="menu-link">
-              <TopBoxText>스터디</TopBoxText>
-            </a>
+            <PathLink onClick={() => handleRefresh()}>
+              <TopBoxText>{secondpath}</TopBoxText>
+            </PathLink>
           </TopBox>
         </TopBoxWide>
         <Container>

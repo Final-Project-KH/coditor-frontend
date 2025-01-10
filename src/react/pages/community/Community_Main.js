@@ -7,27 +7,40 @@ import {
   LeftContainer,
   CenterContainer,
   RightContainer,
+  PathLink,
 } from "../../styles/community/Community";
 import Board_Main from "./components/Board_Main";
 import BoardList from "./components/Side_BoardList";
 import PopularTags from "./components/Side_PopularTags";
 import TopWriters from "./components/Side_TopWriters";
 import WeeklyBest from "./components/Side_WeeklyBest";
-
+import { useLocation, useNavigate } from "react-router-dom";
 const Community_Main = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { firstpath } = location.state || {};
+
+  const handleRefresh = () => {
+    navigate("/community", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+
   return (
     <>
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <a href="/community" className="menu-link">
-              <TopBoxText>community</TopBoxText>
-            </a>
+            <PathLink onClick={() => handleRefresh()}>
+              <TopBoxText>{firstpath}</TopBoxText>
+            </PathLink>
           </TopBox>
         </TopBoxWide>
         <Container>
           <LeftContainer>
-            <BoardList />
+            <BoardList firstpath={firstpath} />
             <TopWriters />
           </LeftContainer>
           <CenterContainer>

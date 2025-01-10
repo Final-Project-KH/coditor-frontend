@@ -8,25 +8,46 @@ import {
   LeftContainer,
   CenterContainer,
   RightContainer,
+  PathLink,
 } from "../../styles/community/Community";
 import Board_Team from "./components/Board_Study";
 import { BoardList_Team } from "./components/Side_BoardList";
 import PopularTags from "./components/Side_PopularTags";
 import TopWriters from "./components/Side_TopWriters";
 import WeeklyBest from "./components/Side_WeeklyBest";
+import { useLocation, useNavigate } from "react-router-dom";
 const Community_Team = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { firstpath, secondpath } = location.state || {};
+
+  const handleCommunity = () => {
+    navigate("/community", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+  const handleRefresh = () => {
+    navigate("/community/team", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+      },
+    });
+  };
   return (
     <>
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <a href="/community" className="menu-link">
-              <TopBoxText>community</TopBoxText>
-            </a>
+            <PathLink onClick={() => handleCommunity()}>
+              <TopBoxText>{firstpath}</TopBoxText>
+            </PathLink>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <a href="/community/team" className="menu-link">
-              <TopBoxText>팀 프로젝트</TopBoxText>
-            </a>
+            <PathLink onClick={() => handleRefresh()}>
+              <TopBoxText>{secondpath}</TopBoxText>
+            </PathLink>
           </TopBox>
         </TopBoxWide>
         <Container>
