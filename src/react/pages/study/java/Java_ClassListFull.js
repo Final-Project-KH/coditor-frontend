@@ -1,3 +1,5 @@
+import React, { forwardRef } from "react";
+
 import {
   EachClass,
   ClassHeader,
@@ -13,7 +15,7 @@ import {
 } from "../../../styles/study/Study";
 import {useLocation, useNavigate} from "react-router-dom";
 
-export const Java_ClassListFull_01 = ({firstpath, secondpath}) => {
+export const Java_ClassListFull_01 = forwardRef(({ firstpath, secondpath }, ref) => {
   const navigate = useNavigate();
   const thirdpath = "01.Java시작";
   const lowerpath = [
@@ -61,7 +63,7 @@ export const Java_ClassListFull_01 = ({firstpath, secondpath}) => {
   };
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>{thirdpath}</ClassHeaderTitle>
         </ClassHeader>
@@ -114,12 +116,12 @@ export const Java_ClassListFull_01 = ({firstpath, secondpath}) => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_02 = (firstpath, secondpath) => {
+export const Java_ClassListFull_02 = forwardRef(({ firstpath, secondpath }, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>02. 기본 자료형과 연산자 / 제어문</ClassHeaderTitle>
         </ClassHeader>
@@ -187,12 +189,12 @@ export const Java_ClassListFull_02 = (firstpath, secondpath) => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_03 = (firstpath, secondpath) => {
+export const Java_ClassListFull_03 = forwardRef(({ firstpath, secondpath }, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>03. 배열과 문자열(참조 타입)</ClassHeaderTitle>
         </ClassHeader>
@@ -248,12 +250,12 @@ export const Java_ClassListFull_03 = (firstpath, secondpath) => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_04 = (firstpath, secondpath) => {
+export const Java_ClassListFull_04 = forwardRef(({ firstpath, secondpath }, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>04. 객체 지향 프로그래밍</ClassHeaderTitle>
         </ClassHeader>
@@ -573,12 +575,12 @@ export const Java_ClassListFull_04 = (firstpath, secondpath) => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_05 = (firstpath, secondpath) => {
+export const Java_ClassListFull_05 = forwardRef(({ firstpath, secondpath }, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>05. Java API 클래스</ClassHeaderTitle>
         </ClassHeader>
@@ -718,12 +720,12 @@ export const Java_ClassListFull_05 = (firstpath, secondpath) => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_06 = (firstpath, secondpath) => {
+export const Java_ClassListFull_06 = forwardRef(({ firstpath, secondpath }, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>06. 제네릭 / 컬렉션 프레임워크</ClassHeaderTitle>
         </ClassHeader>
@@ -851,14 +853,14 @@ export const Java_ClassListFull_06 = (firstpath, secondpath) => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_07 = (firstpath, secondpath) => {
+export const Java_ClassListFull_07 = forwardRef(({ firstpath, secondpath }, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
-          <ClassHeaderTitle>07. Thread / 예외 처리</ClassHeaderTitle>
+          <ClassHeaderTitle ref={ref}>07. Thread / 예외 처리</ClassHeaderTitle>
         </ClassHeader>
         <ClassContents>
           <ClassSet>
@@ -900,12 +902,12 @@ export const Java_ClassListFull_07 = (firstpath, secondpath) => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_08 = (firstpath, secondpath) => {
+export const Java_ClassListFull_08 = forwardRef(({ firstpath, secondpath }, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>08. 람다와 스트림 / 입력과 출력</ClassHeaderTitle>
         </ClassHeader>
@@ -949,12 +951,12 @@ export const Java_ClassListFull_08 = (firstpath, secondpath) => {
       </EachClass>
     </>
   );
-};
+});
 
-export const Java_ClassListFull_09 = (firstpath, secondpath) => {
+export const Java_ClassListFull_09 = forwardRef(({ firstpath, secondpath }, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>09. 네트워킹</ClassHeaderTitle>
         </ClassHeader>
@@ -1046,20 +1048,20 @@ export const Java_ClassListFull_09 = (firstpath, secondpath) => {
       </EachClass>
     </>
   );
-};
+});
 
-const Java_ClassListFull = ({firstpath, secondpath}) => {
+const Java_ClassListFull = ({ firstpath, secondpath, refs }) => {
   return (
     <>
-      <Java_ClassListFull_01 firstpath={firstpath} secondpath={secondpath} />
-      <Java_ClassListFull_02 firstpath={firstpath} secondpath={secondpath} />
-      <Java_ClassListFull_03 firstpath={firstpath} secondpath={secondpath} />
-      <Java_ClassListFull_04 firstpath={firstpath} secondpath={secondpath} />
-      <Java_ClassListFull_05 firstpath={firstpath} secondpath={secondpath} />
-      <Java_ClassListFull_06 firstpath={firstpath} secondpath={secondpath} />
-      <Java_ClassListFull_07 firstpath={firstpath} secondpath={secondpath} />
-      <Java_ClassListFull_08 firstpath={firstpath} secondpath={secondpath} />
-      <Java_ClassListFull_09 firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_01 ref={refs.section01} firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_02 ref={refs.section02} firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_03 ref={refs.section03} firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_04 ref={refs.section04} firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_05 ref={refs.section05} firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_06 ref={refs.section06} firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_07 ref={refs.section07} firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_08 ref={refs.section08} firstpath={firstpath} secondpath={secondpath} />
+      <Java_ClassListFull_09 ref={refs.section09} firstpath={firstpath} secondpath={secondpath} />
     </>
   );
 };

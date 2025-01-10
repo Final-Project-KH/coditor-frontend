@@ -1,3 +1,5 @@
+import React, { forwardRef } from "react";
+
 import {
   EachClass,
   ClassHeader,
@@ -10,10 +12,10 @@ import {
   ClassSet,
 } from "../../../styles/study/Study";
 
-export const CPlus_ClassListFull_01 = () => {
+export const CPlus_ClassListFull_01 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>01. C++ 기본</ClassHeaderTitle>
         </ClassHeader>
@@ -57,12 +59,12 @@ export const CPlus_ClassListFull_01 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const CPlus_ClassListFull_02 = () => {
+export const CPlus_ClassListFull_02 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>02. 자료형과 연산자</ClassHeaderTitle>
         </ClassHeader>
@@ -94,12 +96,12 @@ export const CPlus_ClassListFull_02 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const CPlus_ClassListFull_03 = () => {
+export const CPlus_ClassListFull_03 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>03. 제어문</ClassHeaderTitle>
         </ClassHeader>
@@ -155,12 +157,12 @@ export const CPlus_ClassListFull_03 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const CPlus_ClassListFull_04 = () => {
+export const CPlus_ClassListFull_04 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>04. 배열과 문자열</ClassHeaderTitle>
         </ClassHeader>
@@ -192,12 +194,12 @@ export const CPlus_ClassListFull_04 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const CPlus_ClassListFull_05 = () => {
+export const CPlus_ClassListFull_05 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>05. 함수 및 자료 처리</ClassHeaderTitle>
         </ClassHeader>
@@ -265,12 +267,12 @@ export const CPlus_ClassListFull_05 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const CPlus_ClassListFull_06 = () => {
+export const CPlus_ClassListFull_06 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>06. 클래스</ClassHeaderTitle>
         </ClassHeader>
@@ -518,12 +520,12 @@ export const CPlus_ClassListFull_06 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const CPlus_ClassListFull_07 = () => {
+export const CPlus_ClassListFull_07 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>07. 컨테이너</ClassHeaderTitle>
         </ClassHeader>
@@ -567,12 +569,12 @@ export const CPlus_ClassListFull_07 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const CPlus_ClassListFull_08 = () => {
+export const CPlus_ClassListFull_08 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>08. 집합</ClassHeaderTitle>
         </ClassHeader>
@@ -628,12 +630,12 @@ export const CPlus_ClassListFull_08 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const CPlus_ClassListFull_09 = () => {
+export const CPlus_ClassListFull_09 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>09. 모던 C++</ClassHeaderTitle>
         </ClassHeader>
@@ -665,12 +667,12 @@ export const CPlus_ClassListFull_09 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-export const CPlus_ClassListFull_10 = () => {
+export const CPlus_ClassListFull_10 = forwardRef((props, ref) => {
   return (
     <>
-      <EachClass>
+      <EachClass ref={ref}>
         <ClassHeader>
           <ClassHeaderTitle>10. 프로그래밍</ClassHeaderTitle>
         </ClassHeader>
@@ -726,21 +728,21 @@ export const CPlus_ClassListFull_10 = () => {
       </EachClass>
     </>
   );
-};
+});
 
-const CPlus_ClassListFull = () => {
+const CPlus_ClassListFull = ({ refs }) => {
   return (
     <>
-      <CPlus_ClassListFull_01 />
-      <CPlus_ClassListFull_02 />
-      <CPlus_ClassListFull_03 />
-      <CPlus_ClassListFull_04 />
-      <CPlus_ClassListFull_05 />
-      <CPlus_ClassListFull_06 />
-      <CPlus_ClassListFull_07 />
-      <CPlus_ClassListFull_08 />
-      <CPlus_ClassListFull_09 />
-      <CPlus_ClassListFull_10 />
+      <CPlus_ClassListFull_01 ref={refs.section01} />
+      <CPlus_ClassListFull_02 ref={refs.section02} />
+      <CPlus_ClassListFull_03 ref={refs.section03} />
+      <CPlus_ClassListFull_04 ref={refs.section04} />
+      <CPlus_ClassListFull_05 ref={refs.section05} />
+      <CPlus_ClassListFull_06 ref={refs.section06} />
+      <CPlus_ClassListFull_07 ref={refs.section07} />
+      <CPlus_ClassListFull_08 ref={refs.section08} />
+      <CPlus_ClassListFull_09 ref={refs.section09} />
+      <CPlus_ClassListFull_10 ref={refs.section10} />
     </>
   );
 };

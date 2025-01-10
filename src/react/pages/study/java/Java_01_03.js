@@ -144,7 +144,7 @@ const Java_01_03 = () => {
                   <br />
                   <ClassContentsImage
                     style={{
-                      backgroundImage: `url(${"java/java_01_03_01.png"})`,
+                      backgroundImage: `url(${"/images/study/java/java_01_03_01.png"})`,
                     }}
                   />
                   <br />

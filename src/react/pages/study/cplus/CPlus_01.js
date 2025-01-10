@@ -20,8 +20,12 @@ const CPlus_01 = () => {
             <TopBoxText>study</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/cplus/main" className="menu-link">
+          <a href="/study/cplus" className="menu-link">
             <TopBoxText>C++</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/study/cplus/01" className="menu-link">
+            <TopBoxText>01. C++ 기본</TopBoxText>
           </a>
         </TopBox>
       </TopBoxWide>

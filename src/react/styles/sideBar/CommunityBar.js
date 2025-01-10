@@ -91,6 +91,7 @@ export const MenuTitle = styled.div.attrs({
   font-family: "bold", sans-serif;
   font-size: 18px;
   margin: 10px;
+  padding: 5px 10px;
 `;
 export const MenuContents = styled.div.attrs({
   id: "menucontents",

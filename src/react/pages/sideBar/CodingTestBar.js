@@ -23,12 +23,11 @@ const CodingTestBar = ({ isOpen, closeMenu }) => {
           <MenuImgContainer>
             <MenuImgJava />
           </MenuImgContainer>
-          <MenuTitle>
+          <MenuTitle>Java</MenuTitle>
+          <MenuContents>
             {/* Test용 */}
-            <StyledLink to="/ct_commons"></StyledLink>
-            Java
-          </MenuTitle>
-          <MenuContents>Practice</MenuContents>
+            <StyledLink to="/codingtest/java/practice"></StyledLink>Practice
+          </MenuContents>
           <MenuContents>Basic</MenuContents>
           <MenuContents>Intermediate</MenuContents>
           <MenuContents>Expert</MenuContents>

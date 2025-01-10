@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./react/pages/Layout";
 import Login from "./react/pages/login/login";
 import Signup from "./react/pages/signup/signup";
@@ -32,7 +32,17 @@ import CPlus_01_01 from "./react/pages/study/cplus/CPlus_01_01";
 import JavaScript_Main from "./react/pages/study/javascript/JavaScript_Main";
 import JavaScript_01 from "./react/pages/study/javascript/JavaScript_01";
 import JavaScript_01_01 from "./react/pages/study/javascript/JavaScript_01_01";
-import CodingTestCommons from "./react/pages/codingtest/CodingTestCommon";
+import CodingTest from "./react/pages/codingtest/CodingTest";
+import CT_Java_Main from "./react/pages/codingtest/java/Java_Main";
+import CT_Java_Practice_Main from "./react/pages/codingtest/java/Java_Practice_Main";
+import CT_Java_Practice_01 from "./react/pages/codingtest/java/Java_Practice_01";
+import CT_Java_Practice_01_01 from "./react/pages/codingtest/java/Java_Practice_01_01";
+import Community_Main from "./react/pages/community/Community_Main";
+import Community_Coding from "./react/pages/community/Community_Coding";
+import Community_Course from "./react/pages/community/Community_Course";
+import Community_Study from "./react/pages/community/Community_Study";
+import Community_Team from "./react/pages/community/Community_Team";
+import Post_Read from "./react/pages/community/Post_Read";
 
 function App() {
   return (
@@ -48,7 +58,7 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/about" element={<About />} />
             <Route path="/study" element={<Study />} />
-            <Route path="/study/java/main" element={<Java_Main />} />
+            <Route path="/study/java" element={<Java_Main />} />
             <Route path="/study/java/01" element={<Java_01 />} />
             <Route path="/study/java/01/01" element={<Java_01_01 />} />
             <Route path="/study/java/01/02" element={<Java_01_02 />} />
@@ -59,18 +69,41 @@ function App() {
             <Route path="/study/java/02/03" element={<Java_02_03 />} />
             <Route path="/study/java/02/04" element={<Java_02_04 />} />
             <Route path="/study/java/02/05" element={<Java_02_05 />} />
-            <Route path="/study/python/main" element={<Python_Main />} />
+            <Route path="/study/python" element={<Python_Main />} />
             <Route path="/study/python/01" element={<Python_01 />} />
             <Route path="/study/python/01/01" element={<Python_01_01 />} />
-            <Route path="/study/c/main" element={<C_Main />} />
+            <Route path="/study/c" element={<C_Main />} />
             <Route path="/study/c/01" element={<C_01 />} />
             <Route path="/study/c/01/01" element={<C_01_01 />} />
-            <Route path="/study/cplus/main" element={<CPlus_Main />} />
+            <Route path="/study/cplus" element={<CPlus_Main />} />
+            <Route path="/study/cplus/01" element={<CPlus_01 />} />
+            <Route path="/study/cplus/01/01" element={<CPlus_01_01 />} />
+            <Route path="/study/javascript" element={<JavaScript_Main />} />
+            <Route path="/study/javascript/01" element={<JavaScript_01 />} />
             <Route
-              path="/study/javascript/main"
-              element={<JavaScript_Main />}
+              path="/study/javascript/01/01"
+              element={<JavaScript_01_01 />}
             />
-            <Route path="/ct_commons" element={<CodingTestCommons />} />
+            <Route path="/codingtest" element={<CodingTest />} />
+            <Route path="/codingtest/java" element={<CT_Java_Main />} />
+            <Route
+              path="/codingtest/java/practice"
+              element={<CT_Java_Practice_Main />}
+            />
+            <Route
+              path="/codingtest/java/practice/01"
+              element={<CT_Java_Practice_01 />}
+            />
+            <Route
+              path="/codingtest/java/practice/01/01"
+              element={<CT_Java_Practice_01_01 />}
+            />
+            <Route path="/community" element={<Community_Main />} />
+            <Route path="/community/coding" element={<Community_Coding />} />
+            <Route path="/community/coding/post1" element={<Post_Read />} />
+            <Route path="/community/course" element={<Community_Course />} />
+            <Route path="/community/study" element={<Community_Study />} />
+            <Route path="/community/team" element={<Community_Team />} />
           </Route>
         </Routes>
       </Router>

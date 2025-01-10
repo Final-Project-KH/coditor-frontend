@@ -32,7 +32,7 @@ const Study = () => {
     });
   };
   const handleJavaCheck = () => {
-    navigate("/study/java/main", {
+    navigate("/study/java", {
       state: {
         firstpath: firstpath,
         secondpath: "Java",
@@ -40,7 +40,7 @@ const Study = () => {
     });
   };
   const handlePythonCheck = () => {
-    navigate("/study/python/main", {
+    navigate("/study/python", {
       state: {
         firstpath: firstpath,
         secondpath: "Python",
@@ -48,7 +48,7 @@ const Study = () => {
     });
   };
   const handleCCheck = () => {
-    navigate("/study/c/main", {
+    navigate("/study/c", {
       state: {
         firstpath: firstpath,
         secondpath: "C",
@@ -56,7 +56,7 @@ const Study = () => {
     });
   };
   const handleCPlusCheck = () => {
-    navigate("/study/cplus/main", {
+    navigate("/study/cplus", {
       state: {
         firstpath: firstpath,
         secondpath: "C++",
@@ -64,7 +64,7 @@ const Study = () => {
     });
   };
   const handleJavaScriptCheck = () => {
-    navigate("/study/javascript/main", {
+    navigate("/study/javascript", {
       state: {
         firstpath: firstpath,
         secondpath: "JavaScript",

@@ -39,7 +39,7 @@ const Java_02_01 = () => {
             <TopBoxText>study</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/java/main" className="menu-link">
+          <a href="/study/java" className="menu-link">
             <TopBoxText>Java</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>

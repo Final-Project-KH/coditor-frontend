@@ -20,8 +20,12 @@ const C_01 = () => {
             <TopBoxText>study</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/c/main" className="menu-link">
+          <a href="/study/c" className="menu-link">
             <TopBoxText>C</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/study/c/01" className="menu-link">
+            <TopBoxText>01. C 기본</TopBoxText>
           </a>
         </TopBox>
       </TopBoxWide>

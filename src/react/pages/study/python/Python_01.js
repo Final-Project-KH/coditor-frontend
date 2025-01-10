@@ -20,8 +20,12 @@ const Python_01 = () => {
             <TopBoxText>study</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/python/main" className="menu-link">
+          <a href="/study/python" className="menu-link">
             <TopBoxText>Python</TopBoxText>
+          </a>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <a href="/study/python/01" className="menu-link">
+            <TopBoxText>01. 개발 환경 구성 및 기본 문법</TopBoxText>
           </a>
         </TopBox>
       </TopBoxWide>
