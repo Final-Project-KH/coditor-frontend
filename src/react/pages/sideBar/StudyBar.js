@@ -20,7 +20,7 @@ const StudyBar = ({isOpen, closeMenu, path}) => {
   const navigate = useNavigate();
 
   const handleJavaCheck = () => {
-    navigate("/study/java/main", {
+    navigate("/study/java", {
       state: {
         firstpath: path,
         secondpath: "Java",
@@ -28,7 +28,7 @@ const StudyBar = ({isOpen, closeMenu, path}) => {
     });
   };
   const handlePythonCheck = () => {
-    navigate("/study/python/main", {
+    navigate("/study/python", {
       state: {
         firstpath: path,
         secondpath: "Python",
@@ -36,7 +36,7 @@ const StudyBar = ({isOpen, closeMenu, path}) => {
     });
   };
   const handleCCheck = () => {
-    navigate("/study/c/main", {
+    navigate("/study/c", {
       state: {
         firstpath: path,
         secondpath: "C",
@@ -44,7 +44,7 @@ const StudyBar = ({isOpen, closeMenu, path}) => {
     });
   };
   const handleCPlusCheck = () => {
-    navigate("/study/cplus/main", {
+    navigate("/study/cplus", {
       state: {
         firstpath: path,
         secondpath: "C++",
@@ -52,7 +52,7 @@ const StudyBar = ({isOpen, closeMenu, path}) => {
     });
   };
   const handleJavaScriptCheck = () => {
-    navigate("/study/javascript/main", {
+    navigate("/study/javascript", {
       state: {
         firstpath: path,
         secondpath: "JavaScript",

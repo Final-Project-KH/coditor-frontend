@@ -36,6 +36,19 @@ const Java_Main = () => {
       },
     });
   };
+
+  const sectionRefs = {
+    section01: useRef(null),
+    section02: useRef(null),
+    section03: useRef(null),
+    section04: useRef(null),
+    section05: useRef(null),
+    section06: useRef(null),
+    section07: useRef(null),
+    section08: useRef(null),
+    section09: useRef(null),
+  }
+
   return (
     <Wrap>
       <TopBoxWide>
@@ -61,7 +74,7 @@ const Java_Main = () => {
           <Java_ChapterList refs={sectionRefs} />
         </LeftContainer>
         <RightContainer>
-          <Java_ClassListFull firstpath={firstpath} secondpath={secondpath} />
+          <Java_ClassListFull refs={sectionRefs} firstpath={firstpath} secondpath={secondpath} />
         </RightContainer>
       </Container>
     </Wrap>

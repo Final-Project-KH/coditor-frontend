@@ -36,6 +36,15 @@ const JavaScript_Main = () => {
       },
     });
   };
+
+  const sectionRefs = {
+    section01: useRef(null),
+    section02: useRef(null),
+    section03: useRef(null),
+    section04: useRef(null),
+    section05: useRef(null),
+  }
+
   return (
     <Wrap>
       <TopBoxWide>
@@ -55,7 +64,7 @@ const JavaScript_Main = () => {
           <JavaScript_ChapterList refs={sectionRefs} />
         </LeftContainer>
         <RightContainer>
-          <JavaScript_ClassListFull />
+          <JavaScript_ClassListFull refs={sectionRefs}  />
         </RightContainer>
       </Container>
     </Wrap>

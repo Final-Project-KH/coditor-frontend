@@ -88,7 +88,7 @@ const Java_01_01 = () => {
             <TopBoxText>{firstpath}</TopBoxText>
           </PathLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/java" className="menu-link">
+          {/* <a href="/study/java" className="menu-link"> */}
           {/* <a href="/study/java/main" className="menu-link">
             <TopBoxText>Java</TopBoxText>
           </a> */}
