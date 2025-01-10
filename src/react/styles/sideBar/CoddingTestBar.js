@@ -177,6 +177,8 @@ export const MenuContents = styled.div.attrs({
   font-family: "medium", sans-serif;
   font-size: 15px;
   margin: 8px;
+  cursor: pointer;
+  padding: 5px 10px;
   .menu-link {
     display: inline-block; /* 텍스트 길이에 맞춰 너비가 설정되도록 */
     text-decoration: none;
@@ -188,6 +190,10 @@ export const MenuContents = styled.div.attrs({
     background-color: black;
     color: white;
   }
+  &:hover {
+    background-color: black;
+    color: white;
+  }
 `;
 export const StyledLink = styled(Link)`
   text-decoration: none;
@@ -196,4 +202,19 @@ export const StyledLink = styled(Link)`
   height: 100%;
   position: absolute;
   background-color: transparent;
+`;
+
+export const NavigatePath = styled.button`
+  text-decoration: none;
+  display: inline-block;
+  padding: 5px 10px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
 `;

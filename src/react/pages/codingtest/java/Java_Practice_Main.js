@@ -104,16 +104,24 @@ const CT_Java_Practice_Main = () => {
             </ClassHeader>
             <ClassContents>
               <ClassSet>
-                <ClassName>두 수 비교</ClassName>
+                <ClassName>
+                  <StyledLink></StyledLink>두 수 비교
+                </ClassName>
               </ClassSet>
               <ClassSet>
-                <ClassName>사분면 고르기</ClassName>
+                <ClassName>
+                  <StyledLink></StyledLink>사분면 고르기
+                </ClassName>
               </ClassSet>
               <ClassSet>
-                <ClassName>윤년</ClassName>
+                <ClassName>
+                  <StyledLink></StyledLink>윤년
+                </ClassName>
               </ClassSet>
               <ClassSet>
-                <ClassName>알람시계</ClassName>
+                <ClassName>
+                  <StyledLink></StyledLink>알람시계
+                </ClassName>
               </ClassSet>
             </ClassContents>
           </EachClass>

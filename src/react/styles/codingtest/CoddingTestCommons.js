@@ -1,5 +1,5 @@
-import styled, {css} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -121,7 +121,6 @@ export const LeftMiddleSubjectContainer = styled.div.attrs({
   background-color: #f1f1f1;
   position: sticky;
   left: 0;
-
 `;
 export const LeftSubjectSubContainer = styled.div.attrs({
   id: "leftsubjectcontainer",
@@ -248,7 +247,7 @@ export const ClassSet = styled.div.attrs({
   & + &::before {
     content: "";
     position: absolute;
-    width: 740px;
+    width: 710px;
     left: 20px;
     height: 1px;
     background-color: black;
