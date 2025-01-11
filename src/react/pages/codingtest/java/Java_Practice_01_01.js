@@ -14,8 +14,13 @@ import {
   TopBoxArrow,
   Wrap,
 } from "../../../styles/codingtest/java/CodingTestJava";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CT_Java_Practice_01_01 = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { firstpath, secondpath, thirdpath, fourthpath, lowerpath } =
+    location.state || {};
   return (
     <>
       <Wrap>
@@ -23,31 +28,31 @@ const CT_Java_Practice_01_01 = () => {
           <TopBox>
             <TopBoxText>
               <a href="/codingtest" className="menu-link">
-                coding test
+                {firstpath}
               </a>
             </TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
             <TopBoxText>
               <a href="/codingtest/java" className="menu-link">
-                Java
+                {secondpath}
               </a>
             </TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
             <TopBoxText>
               <a href="/codingtest/java/practice" className="menu-link">
-                Practice
+                {thirdpath}
               </a>
             </TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
             <TopBoxText>
               <a href="/codingtest/java/practice/01" className="menu-link">
-                01. 사칙연산
+                {fourthpath}
               </a>
             </TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
             <TopBoxText>
               <a href="/codingtest/java/practice/01/01" className="menu-link">
-                A + B
+                {lowerpath}
               </a>
             </TopBoxText>
           </TopBox>

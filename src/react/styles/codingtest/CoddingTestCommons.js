@@ -148,8 +148,60 @@ export const SubjectImgContainerJava = styled.div.attrs({
   background-position: center;
   background-image: url("/images/program/java_full.png");
 `;
-export const SubjectUserContainer = styled.div.attrs({
-  id: "subjectusercontainer",
+export const SubjectImgContainerPython = styled.div.attrs({
+  id: "subjectimgcontainerpython",
+})`
+  width: 156px;
+  height: 104px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/python_full.png");
+`;
+export const SubjectImgContainerC = styled.div.attrs({
+  id: "subjectimgcontainerc",
+})`
+  width: 156px;
+  height: 104px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/c_full.png");
+`;
+export const SubjectImgContainerCPlus = styled.div.attrs({
+  id: "subjectimgcontainercplus",
+})`
+  width: 156px;
+  height: 104px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/cplus_full.png");
+`;
+export const SubjectImgContainerJavaScript = styled.div.attrs({
+  id: "subjectimgcontainercplus",
+})`
+  width: 156px;
+  height: 104px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/program/js_full.png");
+`;
+export const SubjectUserImgContainer = styled.div.attrs({
+  id: "subjectuserimgcontainer",
 })`
   width: 104px;
   height: 104px;
@@ -217,6 +269,14 @@ export const ClassHeader = styled.div.attrs({
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 30px 30px 0px 0px;
+  ${(props) =>
+    props.isOpen
+      ? css`
+          border-radius: 30px 30px 0px 0px;
+        `
+      : css`
+          border-radius: 30px;
+        `}
 `;
 export const ClassHeaderTitle = styled.div.attrs({
   id: "classheadertitle",
@@ -228,6 +288,22 @@ export const ClassHeaderTitle = styled.div.attrs({
   font-size: 20px;
   font-family: "bold", sans-serif;
 `;
+export const ClassHeaderTitleButton = styled.div.attrs({
+  id: "classheadertitlebutton",
+})`
+  width: 30px;
+  height: 30px;
+  position: relative;
+  margin-right: 30px;
+  color: white;
+  cursor: pointer;
+  &::before {
+    content: ${(props) =>
+      props.isOpen ? '"▼"' : '"▶"'}; /* 토글 상태에 따라 아이콘 변경 */
+    position: relative;
+    margin-left: 7px;
+  }
+`;
 export const ClassContents = styled.div.attrs({
   id: "classcontents",
 })`
@@ -236,6 +312,9 @@ export const ClassContents = styled.div.attrs({
   position: relative;
   flex-direction: column;
   justify-content: center;
+  user-select: none;
+  display: ${(props) =>
+    props.isOpen ? "block" : "none"}; /* 토글 상태에 따라 표시/숨김 */
 `;
 export const ClassSet = styled.div.attrs({
   id: "classset",
@@ -285,4 +364,17 @@ export const StyledLink = styled(Link)`
   bottom: 0px;
   position: absolute;
   background-color: transparent;
+`;
+
+export const NavigatiePath = styled.button`
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  bottom: 0px;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 `;

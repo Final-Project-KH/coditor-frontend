@@ -37,6 +37,10 @@ import CT_Java_Main from "./react/pages/codingtest/java/Java_Main";
 import CT_Java_Practice_Main from "./react/pages/codingtest/java/Java_Practice_Main";
 import CT_Java_Practice_01 from "./react/pages/codingtest/java/Java_Practice_01";
 import CT_Java_Practice_01_01 from "./react/pages/codingtest/java/Java_Practice_01_01";
+import CT_Python_Practice_Main from "./react/pages/codingtest/python/Python_Practice_Main";
+import CT_C_Practice_Main from "./react/pages/codingtest/c/C_Practice_Main";
+import CT_CPlus_Practice_Main from "./react/pages/codingtest/cplus/CPlus_Practice_Main";
+import CT_JavaScript_Practice_Main from "./react/pages/codingtest/javascript/JavaScript_Practice_Main";
 import Community_Main from "./react/pages/community/Community_Main";
 import Community_Coding from "./react/pages/community/Community_Coding";
 import Community_Course from "./react/pages/community/Community_Course";
@@ -97,6 +101,22 @@ function App() {
             <Route
               path="/codingtest/java/practice/01/01"
               element={<CT_Java_Practice_01_01 />}
+            />
+            <Route
+              path="/codingtest/python/practice"
+              element={<CT_Python_Practice_Main />}
+            />
+            <Route
+              path="/codingtest/c/practice"
+              element={<CT_C_Practice_Main />}
+            />
+            <Route
+              path="/codingtest/cplus/practice"
+              element={<CT_CPlus_Practice_Main />}
+            />
+            <Route
+              path="/codingtest/javascript/practice"
+              element={<CT_JavaScript_Practice_Main />}
             />
             <Route path="/community" element={<Community_Main />} />
             <Route path="/community/coding" element={<Community_Coding />} />

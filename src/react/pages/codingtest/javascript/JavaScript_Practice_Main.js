@@ -7,7 +7,7 @@ import {
   LeftTopSubjectContainer,
   LeftMiddleSubjectContainer,
   LeftSubjectSubContainer,
-  SubjectImgContainerJava,
+  SubjectImgContainerJavaScript,
   SubjectUserImgContainer,
   SubjectTitle,
   SubjectContent,
@@ -30,11 +30,11 @@ import {
 import AxiosApi from "../../../../api/AxiosApi";
 import Common from "../../../../util/Common";
 import { useLocation, useNavigate } from "react-router-dom";
-import { classJavaMenuData } from "../../../../util/codingtestpractice/ClassJavaMenuData";
+import { classJavaScriptMenuData } from "../../../../util/codingtestpractice/ClassJSMenuData";
 // User Nickname, 등급
 // Coding Test 난이도 받아와야함
 // 경로 받아와야함
-const CT_Java_Practice_Main = () => {
+const CT_JavaScript_Practice_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
@@ -47,8 +47,8 @@ const CT_Java_Practice_Main = () => {
     });
   };
 
-  const handleCodingTestJava = () => {
-    navigate("/codingtest/java", {
+  const handleCodingTestJavaScript = () => {
+    navigate("/codingtest/javascript", {
       state: {
         firstpath: firstpath,
         secondpath: secondpath,
@@ -57,7 +57,7 @@ const CT_Java_Practice_Main = () => {
   };
 
   const handleRefresh = () => {
-    navigate(`/codingtest/java/practice`, {
+    navigate(`/codingtest/javascript/practice`, {
       state: {
         firstpath: firstpath,
         secondpath: secondpath,
@@ -78,7 +78,7 @@ const CT_Java_Practice_Main = () => {
     );
   };
 
-  const updatedJavaMenuData = classJavaMenuData.map((menu) => ({
+  const updatedJavaScriptMenuData = classJavaScriptMenuData.map((menu) => ({
     ...menu,
     contents: menu.contents.map((content) => ({
       ...content,
@@ -99,7 +99,7 @@ const CT_Java_Practice_Main = () => {
             {firstpath}
           </TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleCodingTestJava()}>
+          <TopBoxText onClick={() => handleCodingTestJavaScript()}>
             {secondpath}
           </TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
@@ -110,7 +110,7 @@ const CT_Java_Practice_Main = () => {
         <LeftContainer>
           <LeftTopSubjectContainer>
             <LeftSubjectSubContainer>
-              <SubjectImgContainerJava />
+              <SubjectImgContainerJavaScript />
               <SubjectTitle>{secondpath}</SubjectTitle>
               <SubjectContent>{thirdpath}</SubjectContent>
             </LeftSubjectSubContainer>
@@ -125,7 +125,7 @@ const CT_Java_Practice_Main = () => {
           <LeftMiddleSubjectContainer></LeftMiddleSubjectContainer>
         </LeftContainer>
         <RightContainer>
-          {updatedJavaMenuData.map((cls) => (
+          {updatedJavaScriptMenuData.map((cls) => (
             <EachClass key={cls.id}>
               <ClassHeader isOpen={isToggleOpenId.includes(cls.id)}>
                 <ClassHeaderTitle>{cls.title}</ClassHeaderTitle>
@@ -161,4 +161,4 @@ const CT_Java_Practice_Main = () => {
     </Wrap>
   );
 };
-export default CT_Java_Practice_Main;
+export default CT_JavaScript_Practice_Main;
