@@ -27,25 +27,29 @@ import {
 } from "../../../styles/codingtest/CoddingTestCommons";
 import AxiosApi from "../../../../api/AxiosApi";
 import Common from "../../../../util/Common";
-
+import { useLocation, useNavigate } from "react-router-dom";
 // User Nickname, 등급
 // Coding Test 난이도 받아와야함
 // 경로 받아와야함
 const CT_Java_Practice_Main = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { firstpath, secondpath, thirdpath } = location.state || {};
+
   return (
     <Wrap>
       <TopBoxWide>
         <TopBox>
           <a href="/codingtest" className="menu-link">
-            <TopBoxText>coding test</TopBoxText>
+            <TopBoxText>{firstpath}</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <a href="/codingtest/java" className="menu-link">
-            <TopBoxText>Java</TopBoxText>
+            <TopBoxText>{secondpath}</TopBoxText>
           </a>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <a href="/codingtest/java/practice" className="menu-link">
-            <TopBoxText>Practice</TopBoxText>
+            <TopBoxText>{thirdpath}</TopBoxText>
           </a>
         </TopBox>
       </TopBoxWide>

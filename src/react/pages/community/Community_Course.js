@@ -11,7 +11,7 @@ import {
   PathLink,
 } from "../../styles/community/Community";
 import Board_Course from "./components/Board_Course";
-import { BoardList_Course } from "./components/Side_BoardList";
+import BoardList from "./components/Side_BoardList";
 import PopularTags from "./components/Side_PopularTags";
 import TopWriters from "./components/Side_TopWriters";
 import WeeklyBest from "./components/Side_WeeklyBest";
@@ -52,7 +52,7 @@ const Community_Course = () => {
         </TopBoxWide>
         <Container>
           <LeftContainer>
-            <BoardList_Course />
+            <BoardList firstpath={firstpath} />
             <TopWriters />
           </LeftContainer>
           <CenterContainer>
