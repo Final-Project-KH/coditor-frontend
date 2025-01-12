@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-  h1, h2, h3 {
+  /* h1, h2, h3 {
     font-family:'extrabold', sans-serif;
   }
   div {
@@ -20,6 +20,6 @@ const GlobalStyle = createGlobalStyle`
   }
   p {
     font-family:'regular', sans-serif;
-  }
+  } */
 `;
 export default GlobalStyle;

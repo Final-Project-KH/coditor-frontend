@@ -102,6 +102,10 @@ function App() {
               path="/codingtest/java/practice/01/01"
               element={<CT_Java_Practice_01_01 />}
             />
+            {/* <Route
+              path="/codingtest/java/practice/01/02"
+              element={<CodeEditor />}
+            /> */}
             <Route
               path="/codingtest/python/practice"
               element={<CT_Python_Practice_Main />}

@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/a11y-dark.css';
+import React, { useEffect } from "react";
+import hljs from "highlight.js";
+import "highlight.js/styles/a11y-dark.css";
 
 import {
   Wrap,
@@ -81,19 +81,20 @@ const Java_01_02 = () => {
         lowerpath,
       },
     });
+    window.scrollTo(0, 0);
   };
 
   const TopicCodeBlock = () => {
     useEffect(() => {
-       hljs.highlightAll();
+      hljs.highlightAll();
     }, []);
-      
+
     return (
       <pre>
-         <code>
-            <div>안녕하세요</div>
-               <div>제니입니다</div>
-         </code>
+        <code>
+          <div>안녕하세요</div>
+          <div>제니입니다</div>
+        </code>
       </pre>
     );
   };
@@ -146,7 +147,6 @@ const Java_01_02 = () => {
         <RightContainer>
           <EachClass>
             <ClassHeader>
-              
               <ClassHeaderTitle>Java 개발 환경 구축</ClassHeaderTitle>
             </ClassHeader>
             <ClassContentsContainer>

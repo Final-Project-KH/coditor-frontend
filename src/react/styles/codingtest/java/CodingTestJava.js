@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
-width: 100%;
-display: flex;
-flex-direction: column;
-background-color: white;
-justify-content: center;
-align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const TopBoxWide = styled.div.attrs({
@@ -55,6 +55,10 @@ export const TopBoxText = styled.div.attrs({
     text-decoration: none;
     color: inherit;
   }
+  &:hover {
+    color: #313131;
+    background-color: white;
+  }
 `;
 export const TopBoxArrow = styled.div.attrs({
   id: "topboxarrow",
@@ -90,7 +94,6 @@ export const LeftContainer = styled.div.attrs({
   gap: 25px;
 `;
 
-
 export const ClassHeader = styled.div.attrs({
   id: "classheader",
 })`
@@ -100,7 +103,6 @@ export const ClassHeader = styled.div.attrs({
   justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 30px 30px 0px 0px;
 `;
 
 export const ClassHeaderTitle = styled.div.attrs({
@@ -122,7 +124,16 @@ export const InputClass = styled.div.attrs({
   justify-content: flex-start;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 30px;
+  position: relative;
+`;
+export const StyledDiv = styled.div.attrs({
+  id: "styleddiv",
+})`
+  width: 100%;
+  height: 450px;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: relative;
 `;
 export const InputClassInner = styled.textarea.attrs({
   id: "inputclassinner",
@@ -142,7 +153,6 @@ export const ConsoleClass = styled.div.attrs({
   justify-content: flex-start;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 30px;
 `;
 
 export const ConsoleClassInner = styled.div.attrs({

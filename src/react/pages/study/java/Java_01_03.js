@@ -77,6 +77,7 @@ const Java_01_03 = () => {
         lowerpath,
       },
     });
+    window.scrollTo(0, 0);
   };
   return (
     <Wrap>

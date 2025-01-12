@@ -13,48 +13,86 @@ import {
   TopBoxText,
   TopBoxArrow,
   Wrap,
+  StyledDiv,
 } from "../../../styles/codingtest/java/CodingTestJava";
 import { useLocation, useNavigate } from "react-router-dom";
+import MonacoJava from "../../../../util/monaco/MonacoJava";
 
 const CT_Java_Practice_01_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath, fourthpath, lowerpath } =
     location.state || {};
+
+  const handleCodingTest = () => {
+    navigate("/codingtest", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+
+  const handleCodingTestJava = () => {
+    navigate("/codingtest/java", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+      },
+    });
+  };
+
+  const handleCodingTestJavaPractice = () => {
+    navigate(`/codingtest/java/practice`, {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+      },
+    });
+  };
+  const handleCodingTestJavaPractice01 = () => {
+    navigate(`/codingtest/java/practice/01`, {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+        fourthpath: fourthpath,
+      },
+    });
+  };
+  const handleRefresh = () => {
+    navigate(`/codingtest/java/practice/01/01`, {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+        fourthpath: fourthpath,
+        lowerpath: lowerpath,
+      },
+    });
+  };
   return (
     <>
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <TopBoxText>
-              <a href="/codingtest" className="menu-link">
-                {firstpath}
-              </a>
+            <TopBoxText onClick={() => handleCodingTest()}>
+              {firstpath}
             </TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxText>
-              <a href="/codingtest/java" className="menu-link">
-                {secondpath}
-              </a>
+            <TopBoxText onClick={() => handleCodingTestJava()}>
+              {secondpath}
             </TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxText>
-              <a href="/codingtest/java/practice" className="menu-link">
-                {thirdpath}
-              </a>
+            <TopBoxText onClick={() => handleCodingTestJavaPractice()}>
+              {thirdpath}
             </TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxText>
-              <a href="/codingtest/java/practice/01" className="menu-link">
-                {fourthpath}
-              </a>
+            <TopBoxText onClick={() => handleCodingTestJavaPractice01()}>
+              {fourthpath}
             </TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxText>
-              <a href="/codingtest/java/practice/01/01" className="menu-link">
-                {lowerpath}
-              </a>
-            </TopBoxText>
+            <TopBoxText onClick={() => handleRefresh()}>{lowerpath}</TopBoxText>
           </TopBox>
         </TopBoxWide>
         <Container>
@@ -63,7 +101,10 @@ const CT_Java_Practice_01_01 = () => {
               <ClassHeader>
                 <ClassHeaderTitle>INPUT</ClassHeaderTitle>
               </ClassHeader>
-              <InputClassInner></InputClassInner>
+              {/* <InputClassInner></InputClassInner> */}
+              <StyledDiv>
+                <MonacoJava />
+              </StyledDiv>
             </InputClass>
             <ConsoleClass>
               <ClassHeader>

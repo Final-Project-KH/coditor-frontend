@@ -9,7 +9,7 @@ import {
   ClassStatusDot,
   ClassNamePathLink,
 } from "../../../styles/study/Study";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Java_ClassListSmall_01 = ({
   firstpath,
@@ -27,6 +27,7 @@ export const Java_ClassListSmall_01 = ({
         lowerpath,
       },
     });
+    window.scrollTo(0, 0);
   };
   return (
     <>
@@ -45,7 +46,7 @@ export const Java_ClassListSmall_01 = ({
               </ClassNamePathLink>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -60,7 +61,7 @@ export const Java_ClassListSmall_01 = ({
             </ClassName>
 
             <ClassStatus>
-              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -74,7 +75,7 @@ export const Java_ClassListSmall_01 = ({
               </ClassNamePathLink>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
         </ClassContents>
@@ -97,7 +98,7 @@ export const Java_ClassListSmall_02 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -108,7 +109,7 @@ export const Java_ClassListSmall_02 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -119,7 +120,7 @@ export const Java_ClassListSmall_02 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -130,7 +131,7 @@ export const Java_ClassListSmall_02 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -141,7 +142,7 @@ export const Java_ClassListSmall_02 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
         </ClassContents>
@@ -164,7 +165,7 @@ export const Java_ClassListSmall_03 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -175,7 +176,7 @@ export const Java_ClassListSmall_03 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#28B657"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#28B657" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -186,7 +187,7 @@ export const Java_ClassListSmall_03 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#FF0000"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#FF0000" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -197,7 +198,7 @@ export const Java_ClassListSmall_03 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
         </ClassContents>
@@ -220,7 +221,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -231,7 +232,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -242,7 +243,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -253,7 +254,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -264,7 +265,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -275,7 +276,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -286,7 +287,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -297,7 +298,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -308,7 +309,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -319,7 +320,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -330,7 +331,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -341,7 +342,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -352,7 +353,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -363,7 +364,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -374,7 +375,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -385,7 +386,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -396,7 +397,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -407,7 +408,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -418,7 +419,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -429,7 +430,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -440,7 +441,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -451,7 +452,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -462,7 +463,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -473,7 +474,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -484,7 +485,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -495,7 +496,7 @@ export const Java_ClassListSmall_04 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
         </ClassContents>
@@ -518,7 +519,7 @@ export const Java_ClassListSmall_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -529,7 +530,7 @@ export const Java_ClassListSmall_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -540,7 +541,7 @@ export const Java_ClassListSmall_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -551,7 +552,7 @@ export const Java_ClassListSmall_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -562,7 +563,7 @@ export const Java_ClassListSmall_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -573,7 +574,7 @@ export const Java_ClassListSmall_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -584,7 +585,7 @@ export const Java_ClassListSmall_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -595,7 +596,7 @@ export const Java_ClassListSmall_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -606,7 +607,7 @@ export const Java_ClassListSmall_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -617,7 +618,7 @@ export const Java_ClassListSmall_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -628,7 +629,7 @@ export const Java_ClassListSmall_05 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
         </ClassContents>
@@ -651,7 +652,7 @@ export const Java_ClassListSmall_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -662,7 +663,7 @@ export const Java_ClassListSmall_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -673,7 +674,7 @@ export const Java_ClassListSmall_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -684,7 +685,7 @@ export const Java_ClassListSmall_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -695,7 +696,7 @@ export const Java_ClassListSmall_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -706,7 +707,7 @@ export const Java_ClassListSmall_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -717,7 +718,7 @@ export const Java_ClassListSmall_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -728,7 +729,7 @@ export const Java_ClassListSmall_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -739,7 +740,7 @@ export const Java_ClassListSmall_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -750,7 +751,7 @@ export const Java_ClassListSmall_06 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
         </ClassContents>
@@ -773,7 +774,7 @@ export const Java_ClassListSmall_07 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -784,7 +785,7 @@ export const Java_ClassListSmall_07 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -795,7 +796,7 @@ export const Java_ClassListSmall_07 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
         </ClassContents>
@@ -818,7 +819,7 @@ export const Java_ClassListSmall_08 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -829,7 +830,7 @@ export const Java_ClassListSmall_08 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -840,7 +841,7 @@ export const Java_ClassListSmall_08 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
         </ClassContents>
@@ -863,7 +864,7 @@ export const Java_ClassListSmall_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -874,7 +875,7 @@ export const Java_ClassListSmall_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -885,7 +886,7 @@ export const Java_ClassListSmall_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -896,7 +897,7 @@ export const Java_ClassListSmall_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -907,7 +908,7 @@ export const Java_ClassListSmall_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -918,7 +919,7 @@ export const Java_ClassListSmall_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
           <hr />
@@ -929,7 +930,7 @@ export const Java_ClassListSmall_09 = () => {
               </a>
             </ClassName>
             <ClassStatus>
-              <ClassStatusDot style={{color: "#313131"}}>●</ClassStatusDot>
+              <ClassStatusDot style={{ color: "#313131" }}>●</ClassStatusDot>
             </ClassStatus>
           </ClassSet>
         </ClassContents>
