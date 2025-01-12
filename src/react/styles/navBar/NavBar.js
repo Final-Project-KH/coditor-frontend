@@ -1,5 +1,5 @@
-import styled, {css} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -62,6 +62,22 @@ export const StyledLink = styled(Link)`
   height: 100%;
   position: absolute;
   background-color: transparent;
+`;
+export const LoginLink = styled.div`
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: transparent;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  &:hover {
+    color: black;
+  }
 `;
 export const MenuContainer = styled.div.attrs({
   id: "menucontainer",

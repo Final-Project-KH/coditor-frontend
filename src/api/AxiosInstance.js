@@ -1,5 +1,4 @@
 // Refresh Token 받아오는 로직 구현해야함
-
 import axios from "axios";
 import Common from "../util/Common";
 
@@ -16,6 +15,8 @@ AxiosInstance.interceptors.request.use(
   async (config) => {
     // Access Token을 가져와서 Authorization 헤더에 추가
     const accessToken = Common.getAccessToken();
+    const expirationTime = Common.getAccessTokenExpiresIn();
+
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }

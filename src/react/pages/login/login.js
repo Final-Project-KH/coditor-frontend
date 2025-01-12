@@ -71,7 +71,7 @@ const Login = () => {
   // 실제 뷰포트 높이를 계산하여 CSS 변수에 설정
   const setViewportHeight = () => {
     const vh = window.innerHeight * 0.01; // 1 vh에 해당하는 값 계산
-    document.documentElement.style.setProperty("--vh", `${vh}px`); // CSS 변수에 설ㄹ정
+    document.documentElement.style.setProperty("--vh", `${vh}px`); // CSS 변수에 설정
   };
 
   setViewportHeight();
@@ -95,7 +95,9 @@ const Login = () => {
           setLoginData({
             nickname: nickname,
             accesstoken: rsp.data.accessToken,
+            accesstokenexpiresin: rsp.data.accessTokenExpiresIn,
             refreshtoken: rsp.data.refreshToken,
+            refreshtokenexpiresin: rsp.data.refreshTokenExpiresIn,
           })
         );
         navigate("/");

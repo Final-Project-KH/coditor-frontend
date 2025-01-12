@@ -17,7 +17,6 @@ const MonacoJava = () => {
   const handleEditorDidMount = (editor) => {
     editorRef.current = editor;
     editor.focus();
-    console.log("초기 코드값: ", editor.getValue());
   };
 
   // 현재 브라우저 화면이 작은 상태에서는 콘솔 창 열 시 에러 문구가 뜸

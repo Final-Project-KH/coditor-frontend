@@ -71,6 +71,7 @@ const CT_Java_Practice_01_01 = () => {
         lowerpath: lowerpath,
       },
     });
+    window.location.reload();
   };
   return (
     <Wrap>

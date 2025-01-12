@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import React from "react";
+import store from "../../../redux/store/store";
+import { logout } from "../../../redux/slice/authSlice";
 import {
   Wrap,
   Container,
@@ -12,6 +14,7 @@ import {
   LoginContainer,
   MenuButton,
   LoginBox,
+  LoginLink,
 } from "../../styles/navBar/NavBar";
 import AboutBar from "../sideBar/AboutBar";
 import CodingTestBar from "../sideBar/CodingTestBar";
@@ -19,6 +22,8 @@ import CommunityBar from "../sideBar/CommunityBar";
 import CsBar from "../sideBar/CsBar";
 import MoreBar from "../sideBar/MoreBar";
 import StudyBar from "../sideBar/StudyBar";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const [menuState, setMenuState] = useState({
@@ -129,6 +134,27 @@ const NavBar = () => {
       document.removeEventListener("mousedown", handleEvent);
     };
   }, [menuState]);
+
+  const [isUser, setIsUser] = useState(null);
+
+  useEffect(() => {
+    if (store.getState().auth.nickname !== null) {
+      setIsUser(store.getState().auth.nickname);
+    }
+  }, []);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+    window.location.reload();
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
 
   return (
     <Wrap>
@@ -249,8 +275,13 @@ const NavBar = () => {
         </MenuContainer>
         <LoginContainer>
           <LoginBox>
-            <StyledLink to="/login"></StyledLink>
-            login
+            {isUser !== null ? (
+              <LoginLink onClick={() => handleLogout()}>logout</LoginLink>
+            ) : (
+              <LoginLink onClick={() => handleLogin()}>login</LoginLink>
+            )}
+            {/* <StyledLink to="/login"></StyledLink>
+            login */}
           </LoginBox>
         </LoginContainer>
       </Container>

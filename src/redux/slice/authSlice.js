@@ -6,14 +6,18 @@ export const authSlice = createSlice({
   initialState: {
     nickname: null,
     accesstoken: null,
+    accesstokenexpiresin: null,
     refreshtoken: null,
+    refreshtokenexpiresin: null,
     error: null,
   },
   reducers: {
     setLoginData: (state, action) => {
       state.nickname = action.payload.nickname;
       state.accesstoken = action.payload.accesstoken;
+      state.accesstokenexpiresin = action.payload.accesstokenexpiresin;
       state.refreshtoken = action.payload.refreshtoken;
+      state.refreshtokenexpiresin = action.payload.refreshtokenexpiresin;
     },
     setError: (state, action) => {
       state.error = action.payload;
@@ -21,8 +25,10 @@ export const authSlice = createSlice({
     logout: (state) => {
       state.nickname = null;
       state.accesstoken = null;
+      state.accesstokenexpiresin = null;
       state.refreshtoken = null;
       state.error = null;
+      state.refreshtokenexpiresin = null;
     },
   },
 });
