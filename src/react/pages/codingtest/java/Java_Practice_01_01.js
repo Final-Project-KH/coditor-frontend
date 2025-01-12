@@ -17,6 +17,7 @@ import {
 } from "../../../styles/codingtest/java/CodingTestJava";
 import { useLocation, useNavigate } from "react-router-dom";
 import MonacoJava from "../../../../util/monaco/MonacoJava";
+import MonacoJavaOutput from "../../../../util/monaco/MonacoJavaOutput";
 
 const CT_Java_Practice_01_01 = () => {
   const navigate = useNavigate();
@@ -72,51 +73,36 @@ const CT_Java_Practice_01_01 = () => {
     });
   };
   return (
-    <>
-      <Wrap>
-        <TopBoxWide>
-          <TopBox>
-            <TopBoxText onClick={() => handleCodingTest()}>
-              {firstpath}
-            </TopBoxText>
-            <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxText onClick={() => handleCodingTestJava()}>
-              {secondpath}
-            </TopBoxText>
-            <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxText onClick={() => handleCodingTestJavaPractice()}>
-              {thirdpath}
-            </TopBoxText>
-            <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxText onClick={() => handleCodingTestJavaPractice01()}>
-              {fourthpath}
-            </TopBoxText>
-            <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxText onClick={() => handleRefresh()}>{lowerpath}</TopBoxText>
-          </TopBox>
-        </TopBoxWide>
-        <Container>
-          <LeftContainer>
-            <InputClass>
-              <ClassHeader>
-                <ClassHeaderTitle>INPUT</ClassHeaderTitle>
-              </ClassHeader>
-              {/* <InputClassInner></InputClassInner> */}
-              <StyledDiv>
-                <MonacoJava />
-              </StyledDiv>
-            </InputClass>
-            <ConsoleClass>
-              <ClassHeader>
-                <ClassHeaderTitle>CONSOLE</ClassHeaderTitle>
-              </ClassHeader>
-              <ConsoleClassInner></ConsoleClassInner>
-            </ConsoleClass>
-          </LeftContainer>
-          <RightContainer></RightContainer>
-        </Container>
-      </Wrap>
-    </>
+    <Wrap>
+      <TopBoxWide>
+        <TopBox>
+          <TopBoxText onClick={() => handleCodingTest()}>
+            {firstpath}
+          </TopBoxText>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <TopBoxText onClick={() => handleCodingTestJava()}>
+            {secondpath}
+          </TopBoxText>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <TopBoxText onClick={() => handleCodingTestJavaPractice()}>
+            {thirdpath}
+          </TopBoxText>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <TopBoxText onClick={() => handleCodingTestJavaPractice01()}>
+            {fourthpath}
+          </TopBoxText>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <TopBoxText onClick={() => handleRefresh()}>{lowerpath}</TopBoxText>
+        </TopBox>
+      </TopBoxWide>
+      <Container>
+        <LeftContainer>
+          <MonacoJava />
+          <MonacoJavaOutput />
+        </LeftContainer>
+        <RightContainer></RightContainer>
+      </Container>
+    </Wrap>
   );
 };
 

@@ -114,6 +114,24 @@ export const ClassHeaderTitle = styled.div.attrs({
   font-size: 20px;
   font-family: "bold", sans-serif;
 `;
+export const ClassHeaderButton = styled.button.attrs({
+  id: "classheaderbutton",
+})`
+  width: 60px;
+  height: 30px;
+  position: absolute;
+  right: 30px;
+  color: white;
+  font-size: 13px;
+  font-family: "bold", sans-serif;
+  background-color: pink;
+  border: 1px solid white;
+  cursor: pointer;
+  &:hover {
+    background-color: yellow;
+    color: black;
+  }
+`;
 export const InputClass = styled.div.attrs({
   id: "inputclass",
 })`
@@ -125,6 +143,7 @@ export const InputClass = styled.div.attrs({
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
   position: relative;
+  overflow: hidden;
 `;
 export const StyledDiv = styled.div.attrs({
   id: "styleddiv",
@@ -132,8 +151,8 @@ export const StyledDiv = styled.div.attrs({
   width: 100%;
   height: 450px;
   display: flex;
-  background-color: rgba(0, 0, 0, 0.8);
   position: relative;
+  overflow: hidden;
 `;
 export const InputClassInner = styled.textarea.attrs({
   id: "inputclassinner",

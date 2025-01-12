@@ -5,6 +5,7 @@ import Common from "../util/Common";
 // 1. Access Token 전달
 // 2. Access Token 없을 시 Refresh Token 전달 -> Access Token 재발급
 // 3. 둘 다 없을 시 -> 로그아웃 -> 로그인 Access, Refresh Token 발급
+// 로그인쪽 연관
 const JwtDecoding = {
   getDecodedToken: () => {
     try {
