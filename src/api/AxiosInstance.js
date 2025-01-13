@@ -3,7 +3,7 @@ import axios from "axios";
 import Common from "../util/Common";
 
 const AxiosInstance = axios.create({
-  baseURL: Common.KH_DOMAIN,
+  baseURL: Common.SPRING_DOMAIN,
   headers: {
     "Content-Type": "application/json",
   },

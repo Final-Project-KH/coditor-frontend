@@ -105,7 +105,7 @@ const Login = () => {
             refreshtokenexpiresin: refreshtokenexpirationtime,
           })
         );
-        navigate("/");
+        navigate("/"); // 로그인 과정에서 추가적인 정보를 가져오는 axios 함수 한번 더 불러주기?
       }
     } catch (err) {
       dispatch(setError(err.rsp?.data?.message || "Login Failed"));
