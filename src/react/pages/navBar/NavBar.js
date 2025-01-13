@@ -154,6 +154,16 @@ const NavBar = () => {
     navigate("/login");
   };
 
+  const location = useLocation();
+  const { firstpath } = location.state || {};
+  const handleRefresh = () => {
+    navigate("/study", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+
   return (
     <Wrap>
       <Container>
@@ -184,6 +194,7 @@ const NavBar = () => {
             ref={(el) => (menuRefs.current["isStudyOpen"] = el)}
             onMouseEnter={() => toggleMenu("isStudyOpen")}
             onMouseLeave={() => toggleMenu("isStudyOpen")}
+            onClick={() => handleRefresh()}
           >
             <MenuBox isOpen={menuState.isStudyOpen}>
               <MenuButton isOpen={menuState.isStudyOpen}>study</MenuButton>
