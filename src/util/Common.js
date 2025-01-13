@@ -1,5 +1,9 @@
 import store from "../redux/store/store";
-import {setLoginData} from "../redux/slice/authSlice"; // Redux 액션 가져오기
+import {
+  setLoginData,
+  clearAccessToken,
+  clearRefreshToken,
+} from "../redux/slice/authSlice"; // Redux 액션 가져오기
 import axios from "axios";
 import JwtDecoding from "../api/JwtDecode";
 
@@ -86,6 +90,13 @@ const Common = {
     store.dispatch(setLoginData({refreshtokenexpiresin: expirationtime}));
   }, // refreshtoken expiretime 데이터는 getNewRefreshTokenExpiresIn 함수를 거친 데이터
 
+  clearAccessToken: () => {
+    store.dispatch(clearAccessToken());
+  },
+  clearRefreshToken: () => {
+    store.dispatch(clearRefreshToken());
+  },
+
   handleUnauthorized: async () => {
     console.log("handleUnauthorized");
     const refreshtoken = Common.getRefreshToken();
@@ -119,7 +130,9 @@ const Common = {
       refreshToken,
     });
     const accessToken = response.data.accessToken;
-    const accessTokenExpirationTime = response.data.accessTokenExpiresIn;
+    const accessTokenExpirationTime = Common.getNewAccessTokenExpiresIn(
+      response.data.accessToken
+    );
 
     Common.setAccessToken(accessToken);
     Common.setAccessTokenExpiresIn(accessTokenExpirationTime);

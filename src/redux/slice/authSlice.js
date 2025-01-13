@@ -32,9 +32,23 @@ export const authSlice = createSlice({
       state.error = null;
       state.refreshtokenexpiresin = null;
     },
+    clearAccessToken: (state) => {
+      state.accesstoken = null;
+      state.accesstokenexpiresin = null;
+    },
+    clearRefreshToken: (state) => {
+      state.refreshtoken = null;
+      state.refreshtokenexpiresin = null;
+    },
   },
 });
 
-export const {setLoginData, setError, logout} = authSlice.actions;
+export const {
+  setLoginData,
+  setError,
+  logout,
+  clearAccessToken,
+  clearRefreshToken,
+} = authSlice.actions;
 
 export default authSlice.reducer;
