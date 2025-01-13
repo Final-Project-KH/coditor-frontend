@@ -32,16 +32,16 @@ import {
   RightArrow,
   ArrowLink,
 } from "../../../styles/study/Study";
-import { Java_ClassListSmall_01 } from "./Java_ClassListSmall";
+import {Java_ClassListSmall_01} from "./Java_ClassListSmall";
 import Java_SubjectTitle from "./Java_SubjectTitle";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { JavaStudyChapter } from "../../../../util/study/JavaStudyChapter";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {JavaStudyChapter} from "../../../../util/study/JavaStudyChapter";
 
 const Java_01_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
+  const {firstpath, secondpath, thirdpath, fourthpath} = location.state || {};
 
   const handleStudy = () => {
     navigate("/study", {
@@ -81,7 +81,7 @@ const Java_01_01 = () => {
 
   // 챕터리스트 토글링 및 간소화
   const handleNavigation = (navigatepath, data) => {
-    navigate(navigatepath, { state: data });
+    navigate(navigatepath, {state: data});
   };
 
   const [isToggleOpenId, setIsToggleOpenId] = useState([]);
@@ -106,7 +106,7 @@ const Java_01_01 = () => {
   }));
 
   // 좌측 스터디 영역 컴포넌트로 분리
-  const EachClassComponent = ({ cls, isOpen, onToggle }) => (
+  const EachClassComponent = ({cls, isOpen, onToggle}) => (
     <EachClass key={cls.id}>
       <ClassHeader isOpen={isOpen}>
         <ClassHeaderTitle>{cls.title}</ClassHeaderTitle>
@@ -118,7 +118,7 @@ const Java_01_01 = () => {
       {isOpen &
       (
         <ClassContents isOpen={isOpen}>
-          {cls.contents.map((content, index) => (
+          {updatedJavaStudyChapter.map((content, index) => (
             <ClassSet key={index}>
               <ClassName
                 onClick={() =>
@@ -360,7 +360,7 @@ const Java_01_01 = () => {
               </ClassContentsText>
             </ClassContentsContainer>
           </EachClass>
-          <ArrowContainer style={{ justifyContent: "flex-end" }}>
+          <ArrowContainer style={{justifyContent: "flex-end"}}>
             <ArrowLink onClick={() => handleNavigation("02")}>
               <RightArrow />
             </ArrowLink>

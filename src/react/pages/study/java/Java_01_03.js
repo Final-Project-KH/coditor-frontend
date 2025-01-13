@@ -26,14 +26,14 @@ import {
   PathLink,
   ArrowLink,
 } from "../../../styles/study/Study";
-import { Java_ClassListSmall_01 } from "./Java_ClassListSmall";
+import {Java_ClassListSmall_01} from "./Java_ClassListSmall";
 import Java_SubjectTitle from "./Java_SubjectTitle";
-import { useLocation, useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const Java_01_03 = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath, lowerpath } = location.state || {};
+  const {firstpath, secondpath, thirdpath, lowerpath} = location.state || {};
   const handleStudy = () => {
     navigate("/study", {
       state: {
@@ -105,7 +105,7 @@ const Java_01_03 = () => {
           </PathLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <PathLink onClick={() => handleRefresh()}>
-            <TopBoxText>{lowerpath[2]}</TopBoxText>
+            <TopBoxText>{lowerpath}</TopBoxText>
           </PathLink>
         </TopBox>
       </TopBoxWide>
@@ -317,7 +317,7 @@ const Java_01_03 = () => {
             <ArrowLink onClick={() => handleNavigation("02")}>
               <LeftArrow />
             </ArrowLink>
-            <a href="/study/java/02/01" style={{ textDecoration: "none" }}>
+            <a href="/study/java/02/01" style={{textDecoration: "none"}}>
               <RightArrow />
             </a>
           </ArrowContainer>
