@@ -1,4 +1,4 @@
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 import Common from "../util/Common";
 
 // 코드 수정 필요
@@ -7,6 +7,7 @@ import Common from "../util/Common";
 // 3. 둘 다 없을 시 -> 로그아웃 -> 로그인 Access, Refresh Token 발급
 // 로그인쪽 연관
 const JwtDecoding = {
+  // 이미 저장된 토큰 기반으로 Decoding 진행
   getDecodedToken: () => {
     try {
       const token = Common.getAccessToken();
@@ -20,6 +21,7 @@ const JwtDecoding = {
       return null;
     }
   },
+  // 현재 받아온 토큰 기반으로 Decoding 진행
   getDecodingToken: (token) => {
     //
     try {
@@ -33,6 +35,7 @@ const JwtDecoding = {
       return null;
     }
   },
+  // Decoding 한 Token의 Field 가져오기
   getField: (field) => {
     const decoded = JwtDecoding.getDecodedToken();
     if (decoded && field in decoded) {
@@ -42,7 +45,8 @@ const JwtDecoding = {
       return null;
     }
   },
-  // 특정 토큰에서 필드를 추출하는 메서드
+
+  // 현재 가져온 토큰에서 필드를 추출하는 메서드
   getFieldFromToken: (token, field) => {
     const decoded = JwtDecoding.getDecodingToken(token);
     if (decoded && field in decoded) {

@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import {useState, useEffect, useRef} from "react";
 import React from "react";
 import store from "../../../redux/store/store";
-import { logout } from "../../../redux/slice/authSlice";
+import {logout} from "../../../redux/slice/authSlice";
 import {
   Wrap,
   Container,
@@ -22,8 +22,8 @@ import CommunityBar from "../sideBar/CommunityBar";
 import CsBar from "../sideBar/CsBar";
 import MoreBar from "../sideBar/MoreBar";
 import StudyBar from "../sideBar/StudyBar";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, useLocation} from "react-router-dom";
 
 const NavBar = () => {
   const [menuState, setMenuState] = useState({
@@ -83,7 +83,7 @@ const NavBar = () => {
 
   // 메뉴 닫기 (추가적인 상황에서 사용)
   const closeMenu = (menuName) => {
-    setMenuState((prev) => ({ ...prev, [menuName]: false }));
+    setMenuState((prev) => ({...prev, [menuName]: false}));
     setTimeout(() => {
       setAnimatingMenus((prev) => ({
         ...prev,
@@ -94,7 +94,7 @@ const NavBar = () => {
 
   // 메뉴 닫기 (떨림 방지용 -> Timeout 제거)
   const closeMenuIm = (menuName) => {
-    setMenuState((prev) => ({ ...prev, [menuName]: false }));
+    setMenuState((prev) => ({...prev, [menuName]: false}));
     setAnimatingMenus((prev) => ({
       ...prev,
       [`${menuName}Animating`]: false,
@@ -135,13 +135,12 @@ const NavBar = () => {
     };
   }, [menuState]);
 
+  const nickname = useSelector((state) => state.auth.nickname);
   const [isUser, setIsUser] = useState(null);
 
   useEffect(() => {
-    if (store.getState().auth.nickname !== null) {
-      setIsUser(store.getState().auth.nickname);
-    }
-  }, []);
+    setIsUser(nickname);
+  }, [nickname]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -149,7 +148,6 @@ const NavBar = () => {
   const handleLogout = () => {
     dispatch(logout());
     navigate("/");
-    window.location.reload();
   };
 
   const handleLogin = () => {
