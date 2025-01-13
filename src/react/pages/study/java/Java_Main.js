@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, {useRef, useState} from "react";
 
 import {
   Wrap,
@@ -21,14 +21,14 @@ import {
 import Java_ChapterList from "./Java_ChapterList";
 import Java_ClassListFull from "./Java_ClassListFull";
 import Java_SubjectTitle from "./Java_SubjectTitle";
-import { useLocation, useNavigate } from "react-router-dom";
-import { JavaStudyChapter } from "../../../../util/study/JavaStudyChapter";
+import {useLocation, useNavigate} from "react-router-dom";
+import {JavaStudyChapter} from "../../../../util/study/JavaStudyChapter";
 import Java_ClassListFull_Test from "./Java_ClassListFull_Test";
 
 const Java_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
+  const {firstpath, secondpath, thirdpath} = location.state || {};
 
   const handleStudy = () => {
     navigate("/study", {
@@ -55,10 +55,10 @@ const Java_Main = () => {
       },
     });
   };
-  
+
   // 챕터리스트 토글링 및 간소화
   const handleNavigation = (navigatepath, data) => {
-    navigate(navigatepath, { state: data });
+    navigate(navigatepath, {state: data});
   };
 
   const [isToggleOpenId, setIsToggleOpenId] = useState([]);
@@ -96,7 +96,7 @@ const Java_Main = () => {
   };
 
   // 우측 스터디 영역 컴포넌트로 분리
-  const EachClassComponent = ({ cls, isOpen, onToggle }) => (
+  const EachClassComponent = ({cls, isOpen, onToggle}) => (
     <EachClass key={cls.id}>
       <ClassHeader isOpen={isOpen}>
         <ClassHeaderTitle onClick={() => handleNext(cls)}>
@@ -116,8 +116,7 @@ const Java_Main = () => {
                   firstpath: content.firstpath,
                   secondpath: content.secondpath,
                   thirdpath: content.thirdpath,
-                  fourthpath: content.fourthpath,
-                  lowerpath: content.label,
+                  fourthpath: content.label,
                 })
               }
             >
@@ -146,7 +145,7 @@ const Java_Main = () => {
         <RightContainer>
           {updatedJavaStudyChapter.map((cls) => (
             <EachClassComponent
-              key={cls.id}
+              // key={cls.id}
               cls={cls}
               isOpen={isToggleOpenId.includes(cls.id)}
               onToggle={toggleVisibility}

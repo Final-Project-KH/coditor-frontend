@@ -1,6 +1,6 @@
 import Java_SubjectTitle from "./Java_SubjectTitle";
-import { Java_ClassListFull_01 } from "./Java_ClassListFull";
-import { useLocation, useNavigate } from "react-router-dom";
+import {Java_ClassListFull_01} from "./Java_ClassListFull";
+import {useLocation, useNavigate} from "react-router-dom";
 
 import {
   Wrap,
@@ -22,13 +22,13 @@ import {
   NavigatePath,
   PathLink,
 } from "../../../styles/study/Class_Main";
-import { JavaStudyChapter } from "../../../../util/study/JavaStudyChapter";
-import { useState } from "react";
+import {JavaStudyChapter} from "../../../../util/study/JavaStudyChapter";
+import {useState} from "react";
 
 const Java_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
+  const {firstpath, secondpath, thirdpath} = location.state || {};
 
   const handleStudy = () => {
     navigate("/study", {
@@ -68,7 +68,7 @@ const Java_01 = () => {
 
   // 챕터리스트 토글링 및 간소화
   const handleNavigation = (navigatepath, data) => {
-    navigate(navigatepath, { state: data });
+    navigate(navigatepath, {state: data});
   };
 
   const [isToggleOpenId, setIsToggleOpenId] = useState([]);
@@ -88,12 +88,11 @@ const Java_01 = () => {
       firstpath: firstpath,
       secondpath: secondpath,
       thirdpath: content.thirdpath,
-      fourthpath: content.fourthpath,
     })),
   }));
 
   // 우측 스터디 영역 컴포넌트로 분리
-  const EachClassComponent = ({ cls, isOpen, onToggle }) => (
+  const EachClassComponent = ({cls, isOpen, onToggle}) => (
     <EachClass key={cls.id}>
       <ClassHeader isOpen={isOpen}>
         <ClassHeaderTitle onClick={() => handleNext(cls)}>
@@ -110,11 +109,10 @@ const Java_01 = () => {
             <ClassName
               onClick={() =>
                 handleNavigation(content.navigatepath, {
-                  firstpath: content.firstpath,
-                  secondpath: content.secondpath,
+                  firstpath: firstpath,
+                  secondpath: secondpath,
                   thirdpath: content.thirdpath,
-                  fourthpath: content.fourthpath,
-                  lowerpath: content.label,
+                  fourthpath: content.label,
                 })
               }
             >
