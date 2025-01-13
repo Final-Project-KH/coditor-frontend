@@ -1,6 +1,6 @@
 import {
   LeftSubjectContainer,
-  SubjectImgContainerPython,
+  SubjectImgContainerCPlus,
   SubjectTitle,
   SubjectContents,
   SubjectRateBlack,
@@ -8,14 +8,14 @@ import {
   SubjectRateContents,
   SubjectRateContainer,
   SubjectRateBox,
-} from "../../../styles/study/Study";
+} from "../../../styles/study/Class_Title";
 
-const Python_SubjectTitle = () => {
+const CPlus_Title = () => {
   return (
     <>
       <LeftSubjectContainer>
-        <SubjectImgContainerPython />
-        <SubjectTitle>Python Study</SubjectTitle>
+        <SubjectImgContainerCPlus />
+        <SubjectTitle>C++ Study</SubjectTitle>
         <SubjectContents>학습전</SubjectContents>
         <SubjectRateContainer>
           <SubjectRateBox>
@@ -28,4 +28,4 @@ const Python_SubjectTitle = () => {
   );
 };
 
-export default Python_SubjectTitle;
+export default CPlus_Title;

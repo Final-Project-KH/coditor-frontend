@@ -1,23 +1,19 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
 import {
   Wrap,
   TopBoxWide,
   TopBox,
   TopBoxText,
-  TopBoxArrow,
   Container,
-  LeftContainer,
-  RightContainer,
   SubjectLink,
-  ClassContentsText,
-  ClassContentsContainer,
   PathLink,
 } from "../../styles/study/Study";
-import Java_SubjectTitle from "./java/Java_SubjectTitle";
-import Python_SubjectTitle from "./python/Python_SubjectTitle";
-import C_SubjectTitle from "./c/C_SubjectTitle";
-import CPlus_SubjectTitle from "./cplus/CPlus_SubjectTitle";
-import JavaScript_SubjectTitle from "./javascript/JavaScript_SubjectTitle";
-import { useLocation, useNavigate } from "react-router-dom";
+import Java_Title from "./java/Java_Title";
+import Python_Title from "./python/Python_Title";
+import C_Title from "./c/C_Title";
+import CPlus_Title from "./cplus/CPlus_Title";
+import JavaScript_Title from "./javascript/JavaScript_Title";
 
 const Study = () => {
   const navigate = useNavigate();
@@ -83,19 +79,19 @@ const Study = () => {
         </TopBoxWide>
         <Container>
           <SubjectLink onClick={() => handleJavaCheck()}>
-            <Java_SubjectTitle />
+            <Java_Title />
           </SubjectLink>
           <SubjectLink onClick={() => handlePythonCheck()}>
-            <Python_SubjectTitle />
+            <Python_Title />
           </SubjectLink>
           <SubjectLink onClick={() => handleCCheck()}>
-            <C_SubjectTitle />
+            <C_Title />
           </SubjectLink>
           <SubjectLink onClick={() => handleCPlusCheck()}>
-            <CPlus_SubjectTitle />
+            <CPlus_Title />
           </SubjectLink>
           <SubjectLink onClick={() => handleJavaScriptCheck()}>
-            <JavaScript_SubjectTitle />
+            <JavaScript_Title />
           </SubjectLink>
         </Container>
       </Wrap>

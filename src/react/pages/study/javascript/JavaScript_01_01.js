@@ -1,11 +1,26 @@
+import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import hljs from "highlight.js";
+import "highlight.js/styles/a11y-dark.css";
+
 import {
   Wrap,
+  TopBox,
+  TopBoxText,
+  TopBoxArrow,
+  TopBoxWide,
   Container,
   LeftContainer,
   RightContainer,
   EachClass,
   ClassHeader,
   ClassHeaderTitle,
+  ClassHeaderTitleButton,
+  ClassContents,
+  ClassSet,
+  ClassName,
+} from "../../../styles/study/Class_Main";
+import {
   ClassContentsTitle1,
   ClassContentsText,
   ClassContentsContainer,
@@ -13,46 +28,164 @@ import {
   ClassContentsTitle3,
   ClassContentsTextTab,
   ClassContentsImage,
-  StickyClassBox,
-  ArrowContainer,
-  RightArrow,
-  TopBoxWide,
-  TopBox,
-  TopBoxText,
-  TopBoxArrow,
   ClassContentsCodeBox,
   ClassContentsCode,
-} from "../../../styles/study/Study";
-import { JavaScript_ClassListSmall_01 } from "./JavaScript_ClassListSmall";
-import JavaScript_SubjectTitle from "./JavaScript_SubjectTitle";
+  ClassTable,
+  ClassTableTd,
+  ClassTableTr,
+  ArrowContainer,
+  LeftArrow,
+  RightArrow,
+  ArrowLink,
+} from "../../../styles/study/Class_Each";
+import { StickyClassBox } from "../../../styles/study/Study";
+import JavaScript_Title from "./JavaScript_Title";
+import { JavaScriptStudyChapter } from "../../../../util/study/JavaScriptStudyChapter";
+import ArrowNavigation from "../ArrowNavigation";
 
 const JavaScript_01_01 = () => {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
+  
+    const handleStudy = () => {
+      navigate("/study", {
+        state: {
+          firstpath: firstpath,
+        },
+      });
+    };
+    const handleStudyJavaScript = () => {
+      navigate("/study/javascript", {
+        state: {
+          firstpath: firstpath,
+          secondpath: secondpath,
+        },
+      });
+    };
+    const handleStudyJavaScript01 = () => {
+      navigate("/study/javascript/01", {
+        state: {
+          firstpath: firstpath,
+          secondpath: secondpath,
+          thirdpath: thirdpath,
+        },
+      });
+    };
+    const handleRefresh = () => {
+      navigate("/study/javascript/01/01", {
+        state: {
+          firstpath: firstpath,
+          secondpath: secondpath,
+          thirdpath: thirdpath,
+          fourthpath: fourthpath,
+        },
+      });
+      window.location.reload();
+    };
+  
+    const handleNext = (cls) => {
+      navigate(`/study/javascript/${cls.id}`, {
+        state: {
+          firstpath: firstpath,
+          secondpath: secondpath,
+          thirdpath: cls.title,
+        },
+      });
+    };
+  
+    // 챕터리스트 토글링 및 간소화
+    const handleNavigation = (navigatepath, data) => {
+      navigate(navigatepath, { state: data });
+    };
+  
+    const [isToggleOpenId, setIsToggleOpenId] = useState([]);
+  
+    const toggleVisibility = (id) => {
+      setIsToggleOpenId((prevId) =>
+        prevId.includes(id) ? prevId.filter((i) => i !== id) : [...prevId, id]
+      );
+    };
+  
+    const updatedJavaScriptStudyChapter = JavaScriptStudyChapter.map((menu) => ({
+      ...menu,
+      contents: menu.contents.map((content) => ({
+        ...content,
+        label: content.label,
+        navigatepath: content.navigatepath,
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: content.thirdpath,
+      })),
+    }));
+  
+    // 좌측 스터디 영역 컴포넌트로 분리
+    const EachClassComponent = ({ cls, isOpen, onToggle }) => (
+      <EachClass key={cls.id}>
+        <ClassHeader isOpen={isOpen}>
+          <ClassHeaderTitle onClick={() => handleNext(cls)}>
+            {cls.title}
+          </ClassHeaderTitle>
+          <ClassHeaderTitleButton
+            isOpen={isOpen}
+            onClick={() => onToggle(cls.id)}
+          />
+        </ClassHeader>
+        <ClassContents isOpen={isOpen}>
+          {cls.contents.map((content, index) => (
+            <ClassSet key={index}>
+              <ClassName
+                onClick={() =>
+                  handleNavigation(content.navigatepath, {
+                    firstpath: firstpath,
+                    secondpath: secondpath,
+                    thirdpath: content.thirdpath,
+                    fourthpath: content.label,
+                  })
+                }
+              >
+                {content.label}
+              </ClassName>
+            </ClassSet>
+          ))}
+        </ClassContents>
+      </EachClass>
+    );
+  
+    const filteredJavaScriptStudyChapter = updatedJavaScriptStudyChapter.filter(
+      (chapter) => chapter.id === "01"
+    );
+  
   return (
     <Wrap>
-      <TopBoxWide>
-        <TopBox>
-          <a href="/study" className="menu-link">
-            <TopBoxText>study</TopBoxText>
-          </a>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/javascript" className="menu-link">
-            <TopBoxText>JavaScript</TopBoxText>
-          </a>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/javascript/01" className="menu-link">
-            <TopBoxText>01. 자바스크립트 기초</TopBoxText>
-          </a>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/javascript/01/01" className="menu-link">
-            <TopBoxText>자바스크립트 개요</TopBoxText>
-          </a>
-        </TopBox>
-      </TopBoxWide>
+          <TopBoxWide>
+            <TopBox>
+              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleStudyJavaScript()}>
+                {secondpath}
+              </TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleStudyJavaScript01()}>
+                {thirdpath}
+              </TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleRefresh()}>{fourthpath}</TopBoxText>
+            </TopBox>
+          </TopBoxWide>
       <Container>
         <LeftContainer>
-          <JavaScript_SubjectTitle />
+          <JavaScript_Title />
           <StickyClassBox>
-            <JavaScript_ClassListSmall_01 />
+          {filteredJavaScriptStudyChapter.map((cls) => (
+              <EachClassComponent
+                key={cls.id}
+                cls={cls}
+                isOpen={isToggleOpenId.includes(cls.id)}
+                onToggle={toggleVisibility}
+              />
+            ))}
           </StickyClassBox>
         </LeftContainer>
         <RightContainer>
@@ -179,13 +312,9 @@ const JavaScript_01_01 = () => {
               </ClassContentsText>
             </ClassContentsContainer>
           </EachClass>
-          <ArrowContainer style={{ justifyContent: "flex-end" }}>
-            <a
-              href="/study/javascript/01/02"
-              style={{ textDecoration: "none" }}
-            >
-              <RightArrow />
-            </a>
+          <ArrowContainer>
+          <ArrowNavigation direction="left" />
+          <ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

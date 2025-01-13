@@ -1,6 +1,6 @@
 import {
   LeftSubjectContainer,
-  SubjectImgContainerJava,
+  SubjectImgContainerJavaScript,
   SubjectTitle,
   SubjectContents,
   SubjectRateBlack,
@@ -8,25 +8,24 @@ import {
   SubjectRateContents,
   SubjectRateContainer,
   SubjectRateBox,
-} from "../../../styles/study/Study";
+} from "../../../styles/study/Class_Title";
 
-const Java_SubjectTitle = () => {
+const JavaScript_Title = () => {
   return (
     <>
       <LeftSubjectContainer>
-        <SubjectImgContainerJava />
-        <SubjectTitle>Java Study</SubjectTitle>
-        <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
+        <SubjectImgContainerJavaScript />
+        <SubjectTitle>JavaScript Study</SubjectTitle>
+        <SubjectContents>학습전</SubjectContents>
         <SubjectRateContainer>
           <SubjectRateBox>
             <SubjectRateWhite />
-            <SubjectRateBlack />
           </SubjectRateBox>
-          <SubjectRateContents>52%</SubjectRateContents>
+          <SubjectRateContents>0%</SubjectRateContents>
         </SubjectRateContainer>
       </LeftSubjectContainer>
     </>
   );
 };
 
-export default Java_SubjectTitle;
+export default JavaScript_Title;

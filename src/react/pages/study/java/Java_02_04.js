@@ -1,62 +1,198 @@
+import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import hljs from "highlight.js";
+import "highlight.js/styles/a11y-dark.css";
+
 import {
   Wrap,
+  TopBox,
+  TopBoxText,
+  TopBoxArrow,
+  TopBoxWide,
   Container,
   LeftContainer,
   RightContainer,
   EachClass,
   ClassHeader,
   ClassHeaderTitle,
+  ClassHeaderTitleButton,
+  ClassContents,
+  ClassSet,
+  ClassName,
+} from "../../../styles/study/Class_Main";
+import {
   ClassContentsTitle1,
   ClassContentsText,
   ClassContentsContainer,
   ClassContentsTitle2,
   ClassContentsTitle3,
   ClassContentsTextTab,
-  StickyClassBox,
+  ClassContentsImage,
   ClassContentsCodeBox,
   ClassContentsCode,
-  ClassContentsImage,
+  ClassTable,
+  ClassTableTd,
+  ClassTableTr,
   ArrowContainer,
   LeftArrow,
   RightArrow,
-  TopBoxWide,
-  TopBox,
-  TopBoxText,
-  TopBoxArrow,
+  ArrowLink,
+} from "../../../styles/study/Class_Each";
+import {
+  StickyClassBox,
 } from "../../../styles/study/Study";
-
-import { Java_ClassListSmall_02 } from "./Java_ClassListSmall";
-import Java_SubjectTitle from "./Java_SubjectTitle";
+import Java_Title from "./Java_Title";
+import { JavaStudyChapter } from "../../../../util/study/JavaStudyChapter";
+import ArrowNavigation from "../ArrowNavigation";
 
 const Java_02_04 = () => {
+
+      const navigate = useNavigate();
+      const location = useLocation();
+      const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
+    
+      const handleStudy = () => {
+        navigate("/study", {
+          state: {
+            firstpath: firstpath,
+          },
+        });
+      };
+      const handleStudyJava = () => {
+        navigate("/study/java", {
+          state: {
+            firstpath: firstpath,
+            secondpath: secondpath,
+          },
+        });
+      };
+  
+      const handleStudyJava02 = () => {
+        navigate("/study/java/02", {
+          state: {
+            firstpath: firstpath,
+            secondpath: secondpath,
+            thirdpath: thirdpath,
+          },
+        });
+      };
+      const handleRefresh = () => {
+        navigate("/study/java/02/04", {
+          state: {
+            firstpath: firstpath,
+            secondpath: secondpath,
+            thirdpath: thirdpath,
+            fourthpath: fourthpath,
+          },
+        });
+        window.location.reload();
+      };
+  
+      const handleNext = (cls) => {
+        navigate(`/study/java/${cls.id}`, {
+          state: {
+            firstpath: firstpath,
+            secondpath: secondpath,
+            thirdpath: cls.title,
+          },
+        });
+      };
+  
+        // 챕터리스트 토글링 및 간소화
+        const handleNavigation = (navigatepath, data) => {
+          navigate(navigatepath, { state: data });
+        };
+      
+        const [isToggleOpenId, setIsToggleOpenId] = useState([]);
+      
+        const toggleVisibility = (id) => {
+          setIsToggleOpenId((prevId) =>
+            prevId.includes(id) ? prevId.filter((i) => i !== id) : [...prevId, id]
+          );
+        };
+      
+        const updatedJavaStudyChapter = JavaStudyChapter.map((menu) => ({
+          ...menu,
+          contents: menu.contents.map((content) => ({
+            ...content,
+            label: content.label,
+            navigatepath: content.navigatepath,
+            firstpath: firstpath,
+            secondpath: secondpath,
+            thirdpath: content.thirdpath,
+          })),
+        }));
+      
+        // 좌측 스터디 영역 컴포넌트로 분리
+        const EachClassComponent = ({ cls, isOpen, onToggle }) => (
+          <EachClass key={cls.id}>
+            <ClassHeader isOpen={isOpen}>
+              <ClassHeaderTitle onClick={() => handleNext(cls)}>
+                {cls.title}
+              </ClassHeaderTitle>
+              <ClassHeaderTitleButton
+                isOpen={isOpen}
+                onClick={() => onToggle(cls.id)}
+              />
+            </ClassHeader>
+            <ClassContents isOpen={isOpen}>
+              {cls.contents.map((content, index) => (
+                <ClassSet key={index}>
+                  <ClassName
+                    onClick={() =>
+                      handleNavigation(content.navigatepath, {
+                        firstpath: firstpath,
+                        secondpath: secondpath,
+                        thirdpath: content.thirdpath,
+                        fourthpath: content.label,
+                      })
+                    }
+                  >
+                    {content.label}
+                  </ClassName>
+                </ClassSet>
+              ))}
+            </ClassContents>
+          </EachClass>
+        );
+      
+        const filteredJavaStudyChapter = updatedJavaStudyChapter.filter(
+          (chapter) => chapter.id === "02"
+        );
+
+
   return (
     <Wrap>
-      <TopBoxWide>
-        <TopBox>
-          <a href="/study" className="menu-link">
-            <TopBoxText>study</TopBoxText>
-          </a>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/java" className="menu-link">
-            <TopBoxText>Java</TopBoxText>
-          </a>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/java/02" className="menu-link">
-            <TopBoxText>02. 기본 자료형과 연산자 / 제어문</TopBoxText>
-          </a>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <a href="/study/java/02/04" className="menu-link">
-            <TopBoxText>조건문</TopBoxText>
-          </a>
-        </TopBox>
-      </TopBoxWide>
+       <TopBoxWide>
+         <TopBox>
+           <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+           <TopBoxArrow>{`>`}</TopBoxArrow>
+           <TopBoxText onClick={() => handleStudyJava()}>
+             {secondpath}
+           </TopBoxText>
+           <TopBoxArrow>{`>`}</TopBoxArrow>
+           <TopBoxText onClick={() => handleStudyJava02()}>
+             {thirdpath}
+           </TopBoxText>
+           <TopBoxArrow>{`>`}</TopBoxArrow>
+           <TopBoxText onClick={() => handleRefresh()}>{fourthpath}</TopBoxText>
+         </TopBox>
+       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <Java_SubjectTitle />
+          <Java_Title />
           <StickyClassBox>
-            <Java_ClassListSmall_02 />
+          {filteredJavaStudyChapter.map((cls) => (
+              <EachClassComponent
+                key={cls.id}
+                cls={cls}
+                isOpen={isToggleOpenId.includes(cls.id)}
+                onToggle={toggleVisibility}
+              />
+            ))}
           </StickyClassBox>
         </LeftContainer>
+
 
         <RightContainer>
           <EachClass>
@@ -658,12 +794,8 @@ const Java_02_04 = () => {
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <a href="/study/java/02/03" style={{ textDecoration: "none" }}>
-              <LeftArrow />
-            </a>
-            <a href="/study/java/02/05" style={{ textDecoration: "none" }}>
-              <RightArrow />
-            </a>
+          <ArrowNavigation direction="left" />
+          <ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

@@ -11,7 +11,7 @@ const Python_ChapterList = ({ refs }) => {
     if (refs[section].current) {
       const offset = 175;  // 상단 여백 오프셋
       const elementPosition = refs[section].current.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      const offsetPosition = elementPosition + window.pageYOffset - offset; // 오프셋 적용
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",  // 부드러운 스크롤
