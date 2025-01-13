@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import AxiosApi from "../../../api/AxiosApi";
-import { setLoginData, setError } from "../../../redux/slice/authSlice";
+import {setLoginData, setError} from "../../../redux/slice/authSlice";
 import JwtDecoding from "../../../api/JwtDecode";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Common from "../../../util/Common";
-import { GoogleOAuthProvider } from "@react-oauth/google"; // GoogleOAuthProvider 추가
+import {GoogleOAuthProvider} from "@react-oauth/google"; // GoogleOAuthProvider 추가
 import {
   Wrap,
   Container,
@@ -57,7 +57,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { error, nickname } = useSelector((state) => state.auth);
+  const {error, nickname} = useSelector((state) => state.auth);
 
   const handleInputChange = (e, setState, setValidState) => {
     setState(e.target.value);
@@ -85,19 +85,24 @@ const Login = () => {
       console.log(rsp.data);
 
       if (rsp.data.grantType === "Bearer") {
-        const nickname = JwtDecoding.getFieldFromToken(
-          rsp.data.accessToken,
-          "nickname"
-        ); // 이 부분 체크 (아직 Dispatch 전에 가져오기 떄문에 null 가능성 높음)
+        const keynumber = Common.getNewUserKeyNumber(rsp.data.accessToken);
+        const nickname = Common.getNewNickname(rsp.data.accessToken);
+        const accesstokenexpirationtime = Common.getNewAccessTokenExpiresIn(
+          rsp.data.accessToken
+        );
+        const refreshtokenexpirationtime = Common.getNewRefreshTokenExpiresIn(
+          rsp.data.refreshToken
+        );
         console.log("액세스 토큰 : ", rsp.data.accessToken);
         console.log("리프레쉬 토큰 : ", rsp.data.refreshToken);
         dispatch(
           setLoginData({
+            keynumber: keynumber,
             nickname: nickname,
             accesstoken: rsp.data.accessToken,
-            accesstokenexpiresin: rsp.data.accessTokenExpiresIn,
+            accesstokenexpiresin: accesstokenexpirationtime,
             refreshtoken: rsp.data.refreshToken,
-            refreshtokenexpiresin: rsp.data.refreshTokenExpiresIn,
+            refreshtokenexpiresin: refreshtokenexpirationtime,
           })
         );
         navigate("/");

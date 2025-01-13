@@ -10,13 +10,27 @@ const AxiosInstance = axios.create({
   withCredentials: true, // 필요시 쿠키 전송 활성화
 });
 
+// // 요청 인터셉터 추가
+// AxiosInstance.interceptors.request.use(
+//   async (config) => {
+//     // Access Token을 가져와서 Authorization 헤더에 추가
+//     const accessToken = Common.getAccessToken();
+//     if (accessToken) {
+//       config.headers.Authorization = `Bearer ${accessToken}`;
+//     }
+//     return config;
+//   },
+//   (error) => {
+//     return Promise.reject(error);
+//   }
+// );
+
 // 요청 인터셉터 추가
 AxiosInstance.interceptors.request.use(
   async (config) => {
     // Access Token을 가져와서 Authorization 헤더에 추가
-    const accessToken = Common.getAccessToken();
-    const expirationTime = Common.getAccessTokenExpiresIn();
-
+    const accessToken = Common.getAccessToken(); // Access Token
+    const expirationTime = Common.getAccessTokenExpiresIn(); // 만료 시간
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
