@@ -56,7 +56,7 @@ export const Java_ClassListSmall_01 = ({
                 Java 개발 환경 구축
               </a> */}
               <ClassNamePathLink onClick={() => handleNavigation("02")}>
-                {lowerpath}
+                {lowerpath[1]}
               </ClassNamePathLink>
             </ClassName>
 
