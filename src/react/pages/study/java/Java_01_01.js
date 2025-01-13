@@ -79,17 +79,6 @@ const Java_01_01 = () => {
     window.location.reload();
   };
 
-  const handleNext = (cls) => {
-    navigate(`/study/java/${cls.id}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: cls.title,
-        fourthpath: cls.title,
-      },
-    });
-  };
-
   // 챕터리스트 토글링 및 간소화
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
@@ -120,9 +109,7 @@ const Java_01_01 = () => {
   const EachClassComponent = ({ cls, isOpen, onToggle }) => (
     <EachClass key={cls.id}>
       <ClassHeader isOpen={isOpen}>
-        <ClassHeaderTitle onClick={() => handleNext(cls)}>
-          {cls.title}
-        </ClassHeaderTitle>
+        <ClassHeaderTitle>{cls.title}</ClassHeaderTitle>
         <ClassHeaderTitleButton
           isOpen={isOpen}
           onClick={() => onToggle(cls.id)}
@@ -136,11 +123,10 @@ const Java_01_01 = () => {
               <ClassName
                 onClick={() =>
                   handleNavigation(content.navigatepath, {
-                    firstpath: content.firstpath,
-                    secondpath: content.secondpath,
+                    firstpath: firstpath,
+                    secondpath: secondpath,
                     thirdpath: content.thirdpath,
-                    fourthpath: content.fourthpath,
-                    lowerpath: content.label,
+                    fourthpath: content.label,
                   })
                 }
               >
