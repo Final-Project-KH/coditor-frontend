@@ -15,14 +15,14 @@ import {
   Wrap,
   StyledDiv,
 } from "../../../styles/codingtest/java/CodingTestJava";
-import { useLocation, useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import MonacoJava from "../../../../util/monaco/MonacoJava";
 import MonacoJavaOutput from "../../../../util/monaco/MonacoJavaOutput";
 
 const CT_Java_Practice_01_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath, fourthpath, lowerpath } =
+  const {firstpath, secondpath, thirdpath, fourthpath, lowerpath} =
     location.state || {};
 
   const handleCodingTest = () => {
@@ -73,6 +73,7 @@ const CT_Java_Practice_01_01 = () => {
     });
     window.location.reload();
   };
+  // Test용 주석입니다.
   return (
     <Wrap>
       <TopBoxWide>
