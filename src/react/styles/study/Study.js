@@ -316,6 +316,35 @@ export const ClassHeaderTitle = styled.div.attrs({
   font-size: 20px;
   font-family: "bold", sans-serif;
 `;
+export const ClassHeaderTitlePathLink = styled.button.attrs({
+  id: "classheadertitlepathlink",
+})`
+  width: inherit;
+  text-align: left;
+  font-size: inherit;
+  font-family: inherit;
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+`;
+export const ClassHeaderTitleButton = styled.div.attrs({
+  id: "classheadertitlebutton",
+})`
+  width: 30px;
+  height: 30px;
+  position: relative;
+  margin-right: 30px;
+  color: white;
+  cursor: pointer;
+  &::before {
+    content: ${(props) =>
+      props.isOpen ? '"▼"' : '"▶"'}; /* 토글 상태에 따라 아이콘 변경 */
+    position: relative;
+    margin-left: 7px;
+  }
+`;
 export const StickyClassBox = styled.div.attrs({
   id: "stickyclassbox",
 })`
@@ -332,12 +361,12 @@ export const StickyClassBox = styled.div.attrs({
 export const ClassContents = styled.div.attrs({
   id: "classcontents",
 })`
-  width: 100%;
+  width: 95%;
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
-  padding-left: 20px;
-  padding-right: 20px;
+  user-select: none;
 `;
 export const ClassSet = styled.div.attrs({
   id: "classset",
@@ -346,11 +375,19 @@ export const ClassSet = styled.div.attrs({
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  & + &::before {
+    content: "";
+    position: absolute;
+    width: 710px;
+    left: 20px;
+    height: 1px;
+    background-color: black;
+    transform: rotate(0deg);
+  }
 `;
 export const ClassName = styled.div.attrs({
   id: "classname",
 })`
-  width: 85%;
   color: black;
   font-size: 20px;
   font-family: "medium", sans-serif;
@@ -631,11 +668,29 @@ export const LeftArrow = styled.div.attrs({
   height: 50px;
   border-radius: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-size: 15px 15px;
-  background-position: center;
-  background-image: url("/images/icon/arrow_left.png");
+  background-position: center; */
+  /* background-image: url("/images/icon/arrow_left.png"); */
+
+  /* 기존 background-image 제거 */
+  background-image: none;
+
+  /* ::before를 사용하여 텍스트 추가 */
+  &::before {
+    content: "◀";
+    width: 95%;
+    height: 95%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    color: white;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
+
 export const RightArrow = styled.div.attrs({
   id: "rightarrow",
 })`
@@ -643,8 +698,35 @@ export const RightArrow = styled.div.attrs({
   height: 50px;
   border-radius: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-size: 15px 15px;
-  background-position: center;
-  background-image: url("/images/icon/arrow_right.png");
+  background-position: center; */
+  /* background-image: url("/images/icon/arrow_right.png"); */
+
+  /* ::before를 사용하여 텍스트 추가 */
+  &::before {
+    content: "▶";
+    width: 95%;
+    height: 95%;
+    padding-left: 5%;
+    padding-bottom: 5%;
+    color: white;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const NavigatePath = styled.button`
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  bottom: 0px;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 `;

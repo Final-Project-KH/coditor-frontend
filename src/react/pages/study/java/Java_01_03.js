@@ -42,7 +42,7 @@ const Java_01_03 = () => {
     });
   };
   const handleJavaMain = () => {
-    navigate("/study/java/main", {
+    navigate("/study/java", {
       state: {
         firstpath: firstpath,
         secondpath: secondpath,

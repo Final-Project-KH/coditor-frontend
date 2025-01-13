@@ -12,12 +12,13 @@ import {
   ClassSet,
   PathLink,
   ClassNamePathLink,
+  ClassHeaderTitlePathLink,
 } from "../../../styles/study/Study";
 import {useLocation, useNavigate} from "react-router-dom";
 
 export const Java_ClassListFull_01 = forwardRef(({ firstpath, secondpath }, ref) => {
   const navigate = useNavigate();
-  const thirdpath = "01.Java시작";
+  const thirdpath = "01. Java시작";
   const lowerpath = [
     "Java 시작하기",
     "Java 개발 환경 구축",
@@ -31,6 +32,17 @@ export const Java_ClassListFull_01 = forwardRef(({ firstpath, secondpath }, ref)
       },
     });
   };
+  const handleJava01 = () => {
+    navigate("/study/java/01", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+        lowerpath: lowerpath,
+      },
+    });
+  };
+
   const handleJava0101 = () => {
     navigate("/study/java/01/01", {
       state: {
@@ -65,7 +77,9 @@ export const Java_ClassListFull_01 = forwardRef(({ firstpath, secondpath }, ref)
     <>
       <EachClass ref={ref}>
         <ClassHeader>
+          <ClassHeaderTitlePathLink onClick={() => handleJava01()}>
           <ClassHeaderTitle>{thirdpath}</ClassHeaderTitle>
+          </ClassHeaderTitlePathLink>
         </ClassHeader>
         <ClassContents>
           <ClassSet>

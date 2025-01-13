@@ -23,7 +23,7 @@ import CsBar from "../sideBar/CsBar";
 import MoreBar from "../sideBar/MoreBar";
 import StudyBar from "../sideBar/StudyBar";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const [menuState, setMenuState] = useState({
@@ -156,6 +156,16 @@ const NavBar = () => {
     navigate("/login");
   };
 
+  const location = useLocation();
+  const { firstpath } = location.state || {};
+  const handleRefresh = () => {
+    navigate("/study", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+
   return (
     <Wrap>
       <Container>
@@ -186,6 +196,7 @@ const NavBar = () => {
             ref={(el) => (menuRefs.current["isStudyOpen"] = el)}
             onMouseEnter={() => toggleMenu("isStudyOpen")}
             onMouseLeave={() => toggleMenu("isStudyOpen")}
+            onClick={() => handleRefresh()}
           >
             <MenuBox isOpen={menuState.isStudyOpen}>
               <MenuButton isOpen={menuState.isStudyOpen}>study</MenuButton>

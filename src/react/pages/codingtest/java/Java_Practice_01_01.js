@@ -13,97 +13,64 @@ import {
   TopBoxText,
   TopBoxArrow,
   Wrap,
-  StyledDiv,
 } from "../../../styles/codingtest/java/CodingTestJava";
-import { useLocation, useNavigate } from "react-router-dom";
-import MonacoJava from "../../../../util/monaco/MonacoJava";
-import MonacoJavaOutput from "../../../../util/monaco/MonacoJavaOutput";
 
 const CT_Java_Practice_01_01 = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath, fourthpath, lowerpath } =
-    location.state || {};
-
-  const handleCodingTest = () => {
-    navigate("/codingtest", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
-  };
-
-  const handleCodingTestJava = () => {
-    navigate("/codingtest/java", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
-  };
-
-  const handleCodingTestJavaPractice = () => {
-    navigate(`/codingtest/java/practice`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
-  };
-  const handleCodingTestJavaPractice01 = () => {
-    navigate(`/codingtest/java/practice/01`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-        fourthpath: fourthpath,
-      },
-    });
-  };
-  const handleRefresh = () => {
-    navigate(`/codingtest/java/practice/01/01`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-        fourthpath: fourthpath,
-        lowerpath: lowerpath,
-      },
-    });
-    window.location.reload();
-  };
   return (
-    <Wrap>
-      <TopBoxWide>
-        <TopBox>
-          <TopBoxText onClick={() => handleCodingTest()}>
-            {firstpath}
-          </TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleCodingTestJava()}>
-            {secondpath}
-          </TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleCodingTestJavaPractice()}>
-            {thirdpath}
-          </TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleCodingTestJavaPractice01()}>
-            {fourthpath}
-          </TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{lowerpath}</TopBoxText>
-        </TopBox>
-      </TopBoxWide>
-      <Container>
-        <LeftContainer>
-          <MonacoJava />
-          <MonacoJavaOutput />
-        </LeftContainer>
-        <RightContainer></RightContainer>
-      </Container>
-    </Wrap>
+    <>
+      <Wrap>
+        <TopBoxWide>
+          <TopBox>
+            <TopBoxText>
+              <a href="/codingtest" className="menu-link">
+                coding test
+              </a>
+            </TopBoxText>
+            <TopBoxArrow>{`>`}</TopBoxArrow>
+            <TopBoxText>
+              <a href="/codingtest/java" className="menu-link">
+                Java
+              </a>
+            </TopBoxText>
+            <TopBoxArrow>{`>`}</TopBoxArrow>
+            <TopBoxText>
+              <a href="/codingtest/java/practice" className="menu-link">
+                Practice
+              </a>
+            </TopBoxText>
+            <TopBoxArrow>{`>`}</TopBoxArrow>
+            <TopBoxText>
+              <a href="/codingtest/java/practice/01" className="menu-link">
+                01. 사칙연산
+              </a>
+            </TopBoxText>
+            <TopBoxArrow>{`>`}</TopBoxArrow>
+            <TopBoxText>
+              <a href="/codingtest/java/practice/01/01" className="menu-link">
+                A + B
+              </a>
+            </TopBoxText>
+          </TopBox>
+        </TopBoxWide>
+        <Container>
+          <LeftContainer>
+            <InputClass>
+              <ClassHeader>
+                <ClassHeaderTitle>INPUT</ClassHeaderTitle>
+              </ClassHeader>
+              <InputClassInner></InputClassInner>
+            </InputClass>
+            <ConsoleClass>
+              <ClassHeader>
+                <ClassHeaderTitle>CONSOLE</ClassHeaderTitle>
+              </ClassHeader>
+              <ConsoleClassInner></ConsoleClassInner>
+            </ConsoleClass>
+          </LeftContainer>
+          <RightContainer></RightContainer>
+        </Container>
+      </Wrap>
+    </>
   );
 };
 

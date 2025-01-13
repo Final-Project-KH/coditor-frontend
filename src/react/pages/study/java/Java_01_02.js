@@ -36,7 +36,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const Java_01_02 = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath, lowerpath } = location.state || {};
+  const { firstpath, secondpath, thirdpath, fourthpath, lowerpath } = location.state || {};
 
   const handleStudy = () => {
     navigate("/study", {
@@ -46,7 +46,7 @@ const Java_01_02 = () => {
     });
   };
   const handleJavaMain = () => {
-    navigate("/study/java/main", {
+    navigate("/study/java", {
       state: {
         firstpath: firstpath,
         secondpath: secondpath,
@@ -68,7 +68,7 @@ const Java_01_02 = () => {
         firstpath: firstpath,
         secondpath: secondpath,
         thirdpath: thirdpath,
-        lowerpath: lowerpath,
+        lowerpath: fourthpath,
       },
     });
   };
@@ -78,7 +78,7 @@ const Java_01_02 = () => {
         firstpath,
         secondpath,
         thirdpath,
-        lowerpath,
+        fourthpath,
       },
     });
     window.scrollTo(0, 0);
@@ -128,7 +128,7 @@ const Java_01_02 = () => {
             <TopBoxText>Java 개발 환경 구축</TopBoxText>
           </a> */}
           <PathLink onClick={() => handleRefresh()}>
-            <TopBoxText>{lowerpath[1]}</TopBoxText>
+            <TopBoxText>{fourthpath}</TopBoxText>
           </PathLink>
         </TopBox>
       </TopBoxWide>
@@ -136,12 +136,12 @@ const Java_01_02 = () => {
         <LeftContainer>
           <Java_SubjectTitle />
           <StickyClassBox>
-            <Java_ClassListSmall_01
+            {/* <Java_ClassListSmall_01
               firstpath={firstpath}
               secondpath={secondpath}
               thirdpath={thirdpath}
-              lowerpath={lowerpath}
-            />
+              lowerpath={fourthpath}
+            /> */}
           </StickyClassBox>
         </LeftContainer>
         <RightContainer>
