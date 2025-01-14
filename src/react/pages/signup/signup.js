@@ -289,7 +289,12 @@ const Signup = () => {
                 </InputExtraItemP>
               </InputExtra>
             </InputExtraContainer>
-            {isUserId && isEmail && isPw && isConPw && isName ? (
+            {isUserId &&
+            isEmail &&
+            isPw &&
+            isConPw &&
+            isName &&
+            isCheckedAll ? (
               <SignUp enabled onClick={onClickSignUp}>
                 회원가입하기
               </SignUp>
