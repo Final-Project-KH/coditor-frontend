@@ -79,40 +79,57 @@ const Login = () => {
   setViewportHeight();
   window.addEventListener("resize", setViewportHeight);
 
-  const handleSubmit = async () => {
-    // e.preventDefault();
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("handleSubmit 호출됨");
+
+    if (isSubmitting) {
+      console.log("로그인 중인 상태로 중복 요청 방지");
+      return;
+    }
+
+    setIsSubmitting(true); // 로그인 요청 시작
+    console.log("로그인 요청 시작");
 
     try {
-      const rsp = await AxiosApi.login(inputUserId, inputPw);
-      console.log(rsp.data);
+      const response = await AxiosApi.login(inputUserId, inputPw); // 로그인 API 호출
+      console.log("로그인 응답:", response.data);
+      setRsp(response); // 응답 데이터를 상태에 저장
 
-      if (rsp.data.grantType === "Bearer") {
-        const keynumber = Common.getNewUserKeyNumber(rsp.data.accessToken);
-        const nickname = Common.getNewNickname(rsp.data.accessToken);
-        const accesstokenexpirationtime = Common.getNewAccessTokenExpiresIn(
-          rsp.data.accessToken
+      if (response.data.grantType === "Bearer") {
+        const nickname = JwtDecoding.getFieldFromToken(
+          response.data.accessToken,
+          "nickname"
         );
-        const refreshtokenexpirationtime = Common.getNewRefreshTokenExpiresIn(
-          rsp.data.refreshToken
-        );
-        console.log("액세스 토큰 : ", rsp.data.accessToken);
-        console.log("리프레쉬 토큰 : ", rsp.data.refreshToken);
+        console.log("액세스 토큰: ", response.data.accessToken);
+        console.log("리프레쉬 토큰: ", response.data.refreshToken);
+
         dispatch(
           setLoginData({
-            keynumber: keynumber,
             nickname: nickname,
-            accesstoken: rsp.data.accessToken,
-            accesstokenexpiresin: accesstokenexpirationtime,
-            refreshtoken: rsp.data.refreshToken,
-            refreshtokenexpiresin: refreshtokenexpirationtime,
+            accesstoken: response.data.accessToken,
+            accesstokenexpiresin: response.data.accessTokenExpiresIn,
+            refreshtoken: response.data.refreshToken,
+            refreshtokenexpiresin: response.data.refreshTokenExpiresIn,
           })
         );
-        navigate("/"); // 로그인 과정에서 추가적인 정보를 가져오는 axios 함수 한번 더 불러주기?
+
+        navigate("/"); // 로그인 후 홈 페이지로 이동
       }
     } catch (err) {
+      console.error("로그인 실패: ", err);
       dispatch(setError(err.rsp?.data?.message || "Login Failed"));
+    } finally {
+      setIsSubmitting(false); // 로그인 요청 끝
     }
   };
+
+  // useEffect에서 rsp 상태를 감지하여 처리
+  useEffect(() => {
+    if (rsp && rsp.data.grantType === "Bearer") {
+      navigate("/"); // 필요한 경우 navigate만 유지
+    }
+  }, [rsp]);
 
   //////////////////// 구글 로그인 메소드 ////////////////////
   const onGoogleLoginSuccess = async (response) => {
