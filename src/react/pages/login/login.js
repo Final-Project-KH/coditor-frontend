@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AxiosApi from "../../../api/AxiosApi";
-import {setLoginData, setError} from "../../../redux/slice/authSlice";
+import { setLoginData, setError } from "../../../redux/slice/authSlice";
 import JwtDecoding from "../../../api/JwtDecode";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Common from "../../../util/Common";
-import {GoogleOAuthProvider} from "@react-oauth/google"; // GoogleOAuthProvider 추가
+import { GoogleOAuthProvider } from "@react-oauth/google"; // GoogleOAuthProvider 추가
 import {
   Wrap,
   Container,
@@ -371,11 +371,11 @@ const Login = () => {
           <NoticeContainer>
             <Notice>
               {/* 공지 및 안내 페이지 링크 연결 미구현 */}
-              <NoticeLink to="#"></NoticeLink>
+              <NoticeLink to="../legal/Terms"></NoticeLink>
               서비스 이용약관
             </Notice>
             <Notice>
-              <NoticeLink to="#"></NoticeLink>
+              <NoticeLink to="../legal/Privacy"></NoticeLink>
               개인정보 처리방침
             </Notice>
           </NoticeContainer>

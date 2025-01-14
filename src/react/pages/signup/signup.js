@@ -1,5 +1,5 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AxiosApi from "../../../api/AxiosApi";
 import {
   Wrap,
@@ -17,7 +17,12 @@ import {
   InputPwDiv,
   InputPw,
   InputPwDivToggle,
+  InputEmailDiv,
   InputEmail,
+  InputEmailButton,
+  InputSecurityDiv,
+  InputSecurity,
+  InputSecurityButton,
   InputNickName,
   InputExtraContainer,
   InputExtra,
@@ -224,13 +229,24 @@ const Signup = () => {
               </InputPwDiv>
             </InputPwContainer>
             <InputIndex>이메일</InputIndex>
-            <InputEmail
-              autoComplete="off"
-              type="email"
-              placeholder="이메일 주소 입력"
-              value={inputEmail}
-              onChange={onChangeEmail}
-            ></InputEmail>
+            <InputEmailDiv>
+              <InputEmail
+                autoComplete="off"
+                type="email"
+                placeholder="이메일 주소 입력"
+                value={inputEmail}
+                onChange={onChangeEmail}
+              ></InputEmail>
+              <InputEmailButton>인증번호받기</InputEmailButton>
+            </InputEmailDiv>
+            <InputSecurityDiv>
+              <InputSecurity
+                autoComplete="off"
+                type="text"
+                placeholder="인증번호 입력"
+              ></InputSecurity>
+              <InputSecurityButton>이메일 인증</InputSecurityButton>
+            </InputSecurityDiv>
             <InputIndex>닉네임</InputIndex>
             <InputNickName
               autoComplete="off"
@@ -249,7 +265,7 @@ const Signup = () => {
                 ></InputExtraItemCheckBox>
                 <InputExtraItemP>전체동의</InputExtraItemP>
               </InputExtra>
-              <hr style={{marginTop: "10px", marginBottom: "10px"}} />
+              <hr style={{ marginTop: "10px", marginBottom: "10px" }} />
               <InputExtra>
                 <InputExtraItemCheckBox
                   type="checkbox"
@@ -305,7 +321,6 @@ const Signup = () => {
         </FloatingContainer>
         <NoticeContainer>
           <Notice>
-            {/* 공지 및 안내 페이지 링크 연결 미구현 */}
             <NoticeLink to="../legal/Terms"></NoticeLink>
             서비스 이용약관
           </Notice>

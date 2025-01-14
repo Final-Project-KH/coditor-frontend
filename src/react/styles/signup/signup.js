@@ -1,5 +1,5 @@
-import styled, {css, keyframes} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css, keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -232,8 +232,8 @@ export const InputPwDivToggle = styled.button.attrs({
           }
         `}
 `;
-export const InputEmail = styled.input.attrs({
-  id: "inputemail",
+export const InputEmailDiv = styled.div.attrs({
+  id: "inputemaildiv",
 })`
   width: 400px;
   height: 50px;
@@ -243,9 +243,24 @@ export const InputEmail = styled.input.attrs({
   justify-content: flex-start;
   user-select: none;
   border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: none;
   margin-top: 10px;
   margin-bottom: 10px;
+  flex-direction: row;
+`;
+
+export const InputEmail = styled.input.attrs({
+  id: "inputemail",
+})`
+  width: 290px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
   color: #313131;
   font-family: "medium", sans-serif;
   font-size: 13px;
@@ -258,10 +273,93 @@ export const InputEmail = styled.input.attrs({
     outline: none;
   }
 `;
+export const InputEmailButton = styled.button.attrs({
+  id: "inputemailbutton",
+})`
+  width: 100px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  &:hover {
+    background-color: black;
+  }
+`;
+export const InputSecurityDiv = styled.div.attrs({
+  id: "inputsecuritydiv",
+})`
+  width: 400px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  flex-direction: row;
+`;
+export const InputSecurity = styled.input.attrs({
+  id: "inputsecurity",
+})`
+  width: 290px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  background-position: 20px center;
+  background-image: url("/images/icon/mail.png");
+  &:focus {
+    outline: none;
+  }
+`;
+export const InputSecurityButton = styled.button.attrs({
+  id: "inputsecuritybutton",
+})`
+  width: 100px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  &:hover {
+    background-color: black;
+  }
+`;
 export const InputNickName = styled.input.attrs({
   id: "inputuser",
 })`
-
   width: 400px;
   height: 50px;
   display: flex;
