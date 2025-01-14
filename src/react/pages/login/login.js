@@ -77,7 +77,7 @@ const Login = () => {
   setViewportHeight();
   window.addEventListener("resize", setViewportHeight);
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("handleSubmit 호출됨");
 
@@ -259,7 +259,7 @@ const handleSubmit = async (e) => {
       } else {
         console.log("카카오 SDK 로딩 중...");
       }
-    }, 100);
+    }, 500);
 
     // 리다이렉트 후 URL에서 인가 코드 추출 및 처리
     const params = new URLSearchParams(window.location.search);
