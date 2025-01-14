@@ -77,8 +77,8 @@ const Login = () => {
   setViewportHeight();
   window.addEventListener("resize", setViewportHeight);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    // e.preventDefault();
 
     try {
       const rsp = await AxiosApi.login(inputUserId, inputPw);

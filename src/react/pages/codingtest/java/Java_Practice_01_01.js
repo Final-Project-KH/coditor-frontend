@@ -99,8 +99,8 @@ const CT_Java_Practice_01_01 = () => {
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <MonacoJava />
-          <MonacoJavaOutput />
+          <MonacoJava secondpath={secondpath} />
+          {/* <MonacoJavaOutput /> */}
         </LeftContainer>
         <RightContainer></RightContainer>
       </Container>
