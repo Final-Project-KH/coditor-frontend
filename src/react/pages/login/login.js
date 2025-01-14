@@ -48,15 +48,13 @@ const Login = () => {
     closeMadal();
   };
 
-    const [inputUserId, setInputUserId] = useState("");
+  const [inputUserId, setInputUserId] = useState("");
   const [inputPw, setInputPw] = useState("");
   const [isId, setIsId] = useState("");
   const [isPw, setIsPw] = useState("");
   const [isChecked, setIsChecked] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false); // 로그인 중 상태 관리
   const [rsp, setRsp] = useState(null); // rsp 상태 추가
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {error, nickname} = useSelector((state) => state.auth);
