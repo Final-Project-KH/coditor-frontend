@@ -33,7 +33,7 @@ import {
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
 import Java_Title from "../Java_Title";
-import ArrowNavigation from "../../ArrowNavigation";
+import Java_ArrowNavigation from "../Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
 
 const Java_02_01 = () => {
@@ -84,6 +84,391 @@ const Java_02_01 = () => {
     window.location.reload();
   };
 
+  const Java_02_01_Code01 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+int age; // 정수값을 저장할 수 있는 age 변수 선언
+double value; // 실수값을 저장 할 수 있는 value 변수 선언
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code02 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+abstract  continue  for         new        switch
+assert    default   goto        package    synchronized
+boolean   do        if          private    this
+break     double    implements  protected  throw
+byte      else      import      public     throws
+case      enum      instanceof  return     transient
+catch     extends   int         short      try
+char      final     interface   static     void
+class     finally   long        strictfp   volatile
+const     float     native      super      while
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code03 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+int 1st;   // 변수명은 숫자로 시작할 수 없다.
+int a#;    // 변수명에 특수문자를 사용할 수 없다.
+int class; // 키워드를 변수명으로 사용할 수 없다.
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code04 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+// 논리형 변수 선언
+boolean isTrue;     
+
+// 정수형 변수 선언
+byte bNum;
+short sNum;
+int iNume;
+long lNum;
+
+// 문자형 변수 선언
+char ch;
+
+// 문자열 변수 선언
+String str;
+
+// 실수형 변수 선언
+float fNum;
+double dNum;
+
+
+int num1, num2;                  // 같은 타입의 변수를 동시에 선언함.
+double num3 = 3.14;              // 선언과 동시에 초기화함.
+double num4 = 1.23, num5 = 4.56; // 같은 타입의 변수를 동시에 선언하면서 초기화함.
+
+int hour = 3;
+int minute = 5;
+System.out.println(hour + "시간" + minute + "분");
+
+int test;
+System.out.println(test); // 선언 이후 초기화 없이 사용하였으므로 에러 발생
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code05 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+class NameCard{
+	String name;
+	int age;
+	String addr;
+	String eMail;
+	String phoneNum;
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code06 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+int score = 90;
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code07 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public static void main(String[] args) {
+		int value = 10;  // 로컬 변수 { }
+		int sum = value + 20;
+		System.out.printf("%d", sum);
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code08 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public static void main(String[] args) {
+		int n = 20;
+		if (n > 10) {
+			int m = 30; // 조건문 내의 지역 변수
+			m = n - 10;
+		}
+		int k = n + m;
+	}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code09 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public static void main(String[] args) {
+        byte num1 = 127;
+        byte num2 = -128;
+
+        num1++; // 127 + 1
+        num2--; // -128 - 1
+
+        System.out.println(num1); // -128
+        System.out.println(num2); // 127
+    }
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code10 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+char ch = 'A'; // 단일 문자를 저장
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code11 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public class CharacterEx {
+    public static void main(String[] args) {
+        char ch1 = 'A';
+        System.out.println(ch1);  // 문자 출력
+        System.out.println((int)ch1); // 문자에 대한 정수(ASCII)값 출력
+
+        char ch2 = 66;
+        System.out.println(ch2);
+
+        System.out.printf("%c\n", ch2);
+        System.out.printf("%d\n", (int)ch2);
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code12 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+float height = 175.5f;
+double pi = 3.141592653589793;
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code13 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public class Float {
+    public static void main(String[] args) {
+        double num1 = 0.1;
+        for(int i = 0; i < 1000; i++) {
+            num1 += 0.1;
+        }
+        System.out.println(num1);
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code14 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+final int AGES = 30;
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code15 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+import java.util.Scanner;
+
+public class Final {
+    public static void main(String[] args) {
+        final double TAX_RATE = 0.10;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("수입을 입력 하세요 : ");
+        int income = sc.nextInt();
+        System.out.println("당신의 내야 할 세금은 " + income * TAX_RATE);
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code16 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public class CharacterEx {
+    final static String KH_DOMAIN = "http://128.129.133.12";
+    final static String PORT_NUM = "8111";
+    public static void main(String[] args) {
+        System.out.println(KH_DOMAIN);
+        System.out.println(PORT_NUM);
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code17 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+char ch = 'A';
+int num = 10;
+final double PI = 3.14;
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_01_Code18 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+int num1 = 1, num2 = 4;
+double result1 = num1 / num2;  
+double result2 = (double) num1 / num2;  // 명시적 형변환
+
+System.out.println(result1);
+System.out.println(result2);
+
+System.out.println(""+ result1 + 10); // 연산자 우선순위에 의해서 문자열로 간주 됩니다.
+System.out.println(result1 + 10 + "10"); // 먼저 숫자형 타입이 계산되고 문자열이추가 됩니다.
+          `}
+        </code>
+      </pre>
+    );
+  };
+
   return (
     <Wrap>
       <TopBoxWide>
@@ -121,6 +506,7 @@ const Java_02_01 = () => {
                 저장하고 표현하는지, 그리고 이러한 값을 어떻게 컴퓨터가 이해할
                 수 있게하는지 알아보겠습니다.
               </ClassContentsText>
+              <br />
               <ClassContentsTitle1>
                 컴퓨터가 데이터를 표현하는 방법
               </ClassContentsTitle1>
@@ -225,6 +611,7 @@ const Java_02_01 = () => {
                 ☘️  자바에서 음수를 2의 보수로 표기하는 이유는 컴퓨터 시스템에서
                 산술 연산을 간단하고 효율적으로 처리하기 위해서입니다.
               </ClassContentsText>
+              <br />
               <ClassContentsTitle1>변수란?</ClassContentsTitle1>
               <hr />
               <ClassContentsText>
@@ -243,6 +630,7 @@ const Java_02_01 = () => {
                 자바는 데이터형이 존재하는 언어 이기 때문에 선언시 사용 데이터에
                 맞는 자료형을 선언해야 합니다.
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>변수의 선언</ClassContentsTitle2>
               <ClassContentsText>
                 변수를 사용하기 위해서는 먼저 변수를 선언해야 합니다. 변수의
@@ -250,13 +638,7 @@ const Java_02_01 = () => {
                 무엇인지를 결정해야 합니다.
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`int age; // 정수값을 저장할 수 있는 age 변수 선언`}
-                    <br />
-                    {`double value; // 실수값을 저장 할 수 있는 value 변수 선언`}
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code01 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle2>변수의 생성 규칙</ClassContentsTitle2>
@@ -289,94 +671,16 @@ const Java_02_01 = () => {
                 <b>[참고] 자바의 키워드</b>
                 <br />
                 <br />
-                <ClassTable style={{ textAlign: "center", width: "50%" }}>
-                  <ClassTableTr>
-                    <ClassTableTd>abstract</ClassTableTd>
-                    <ClassTableTd>continue</ClassTableTd>
-                    <ClassTableTd>for</ClassTableTd>
-                    <ClassTableTd>new</ClassTableTd>
-                    <ClassTableTd>switch</ClassTableTd>
-                  </ClassTableTr>
-                  <ClassTableTr>
-                    <ClassTableTd>assert</ClassTableTd>
-                    <ClassTableTd>default</ClassTableTd>
-                    <ClassTableTd>goto</ClassTableTd>
-                    <ClassTableTd>package</ClassTableTd>
-                    <ClassTableTd>synchronized</ClassTableTd>
-                  </ClassTableTr>
-                  <ClassTableTr>
-                    <ClassTableTd>boolean</ClassTableTd>
-                    <ClassTableTd>do</ClassTableTd>
-                    <ClassTableTd>if</ClassTableTd>
-                    <ClassTableTd>private</ClassTableTd>
-                    <ClassTableTd>this</ClassTableTd>
-                  </ClassTableTr>
-                  <ClassTableTr>
-                    <ClassTableTd>break</ClassTableTd>
-                    <ClassTableTd>double</ClassTableTd>
-                    <ClassTableTd>implements</ClassTableTd>
-                    <ClassTableTd>protected</ClassTableTd>
-                    <ClassTableTd>throw</ClassTableTd>
-                  </ClassTableTr>
-                  <ClassTableTr>
-                    <ClassTableTd>byte</ClassTableTd>
-                    <ClassTableTd>else</ClassTableTd>
-                    <ClassTableTd>import</ClassTableTd>
-                    <ClassTableTd>public</ClassTableTd>
-                    <ClassTableTd>throws</ClassTableTd>
-                  </ClassTableTr>
-                  <ClassTableTr>
-                    <ClassTableTd>case</ClassTableTd>
-                    <ClassTableTd>enum</ClassTableTd>
-                    <ClassTableTd>instanceof</ClassTableTd>
-                    <ClassTableTd>return</ClassTableTd>
-                    <ClassTableTd>transient</ClassTableTd>
-                  </ClassTableTr>
-                  <ClassTableTr>
-                    <ClassTableTd>catch</ClassTableTd>
-                    <ClassTableTd>extends</ClassTableTd>
-                    <ClassTableTd>int</ClassTableTd>
-                    <ClassTableTd>short</ClassTableTd>
-                    <ClassTableTd>try</ClassTableTd>
-                  </ClassTableTr>
-                  <ClassTableTr>
-                    <ClassTableTd>char</ClassTableTd>
-                    <ClassTableTd>final</ClassTableTd>
-                    <ClassTableTd>interface</ClassTableTd>
-                    <ClassTableTd>static</ClassTableTd>
-                    <ClassTableTd>void</ClassTableTd>
-                  </ClassTableTr>
-                  <ClassTableTr>
-                    <ClassTableTd>class</ClassTableTd>
-                    <ClassTableTd>finally</ClassTableTd>
-                    <ClassTableTd>long</ClassTableTd>
-                    <ClassTableTd>strictfp</ClassTableTd>
-                    <ClassTableTd>volatile</ClassTableTd>
-                  </ClassTableTr>
-                  <ClassTableTr>
-                    <ClassTableTd>const</ClassTableTd>
-                    <ClassTableTd>float</ClassTableTd>
-                    <ClassTableTd>native</ClassTableTd>
-                    <ClassTableTd>super</ClassTableTd>
-                    <ClassTableTd>while</ClassTableTd>
-                  </ClassTableTr>
-                </ClassTable>
+                <Java_02_01_Code02 />
+                <br />
                 <br />
                 <b>[참고] 변수명을 잘못 사용한 경우</b>
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`int 1st;   // 변수명은 숫자로 시작할 수 없다.`}
-                    <br />
-                    {`int a#;    // 변수명에 특수문자를 사용할 수 없다.`}
-                    <br />
-                    {`int class; // 키워드를 변수명으로 사용할 수 없다.`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code03 />
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>변수의 선언과 초기화</ClassContentsTitle2>
               <ClassContentsText>
                 자바에서는 변수를 사용하기 전에 반드시 먼저 변수를 선언하고
@@ -394,62 +698,8 @@ const Java_02_01 = () => {
                 </ClassContentsTextTab>
               </ClassContentsText>
               <ClassContentsTitle3>선언 예시</ClassContentsTitle3>
-              <ClassContentsCodeBox>
-                <ClassContentsCode>
-                  {`// 논리형 변수 선언`}
-                  <br />
-                  {`boolean isTrue;     `}
-                  <br />
-                  <br />
-                  {`// 정수형 변수 선언`}
-                  <br />
-                  {`byte bNum;`}
-                  <br />
-                  {`short sNum;`}
-                  <br />
-                  {`int iNume;`}
-                  <br />
-                  {`long lNum;`}
-                  <br />
-                  <br />
-                  {`// 문자형 변수 선언`}
-                  <br />
-                  {`char ch;`}
-                  <br />
-                  <br />
-                  {`// 문자열 변수 선언`}
-                  <br />
-                  {`String str;`}
-                  <br />
-                  <br />
-                  {`// 실수형 변수 선언`}
-                  <br />
-                  {`float fNum;`}
-                  <br />
-                  {`double dNum;`}
-                  <br />
-                  <br />
-                  <br />
-                  {`int num1, num2;                  // 같은 타입의 변수를 동시에 선언함.`}
-                  <br />
-                  {`double num3 = 3.14;              // 선언과 동시에 초기화함.`}
-                  <br />
-                  {`double num4 = 1.23, num5 = 4.56; // 같은 타입의 변수를 동시에 선언하면서 초기화함.`}
-                  <br />
-                  <br />
-                  {`int hour = 3;`}
-                  <br />
-                  {`int minute = 5;`}
-                  <br />
-                  {`System.out.println(hour + "시간" + minute + "분");`}
-                  <br />
-                  <br />
-                  {`int test;`}
-                  <br />
-                  {`System.out.println(test); // 선언 이후 초기화 없이 사용하였으므로 에러 발생`}
-                  <br />
-                </ClassContentsCode>
-              </ClassContentsCodeBox>
+
+              <Java_02_01_Code04 />
               <br />
               <ClassContentsTitle3>사용자 정의 자료형</ClassContentsTitle3>
               <ClassContentsText>
@@ -458,25 +708,10 @@ const Java_02_01 = () => {
                 - 내부에 다양한 메소드를 포함 할 수 있습니다.
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`class NameCard{`}
-                    <br />
-                    {`	String name;`}
-                    <br />
-                    {`	int age;`}
-                    <br />
-                    {`	String addr;`}
-                    <br />
-                    {`	String eMail;`}
-                    <br />
-                    {`	String phoneNum;`}
-                    <br />
-                    {`}`}
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code05 />
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>값 저장</ClassContentsTitle2>
               <ClassContentsText>
                 <b>변수에 값을 저장 할 때는 대입연산자(=)를 사용</b> 합니다.
@@ -485,59 +720,27 @@ const Java_02_01 = () => {
                 값을 왼쪽 변수에 저장 한다는 의미 입니다.
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>{`int score = 90; `}</ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code06 />
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>변수의 사용 범위</ClassContentsTitle2>
               <ClassContentsText>
                 - 변수는 중괄호 {} 블록 내에서 선언되고 사용 됩니다. (변수는
                 선언된 블록 내에서만 사용이 가능 합니다.)
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public static void main(String[] args) {`}
-                    <br />
-                    {`		int value = 10;  // 로컬 변수 { }`}
-                    <br />
-                    {`		int sum = value + 20;`}
-                    <br />
-                    {`		System.out.printf("%d\n", sum);`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code07 />
                 <br />
                 <br />
                 - int m이라는 변수가 블록 내에서 선언되어 사용되었으면 블록
                 밖에서는 존재 할 수 없으므로 에러 발생
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public static void main(String[] args) {`}
-                    <br />
-                    {`		int n = 20;`}
-                    <br />
-                    {`		if (n > 10) {`}
-                    <br />
-                    {`			int m = 30; // 조건문 내의 지역 변수`}
-                    <br />
-                    {`			m = n - 10;`}
-                    <br />
-                    {`		}`}
-                    <br />
-                    {`		int k = n + m;`}
-                    <br />
-                    {`	}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code08 />
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle1>
                 변수가 저장되는 공간의 특성, 자료형
               </ClassContentsTitle1>
@@ -549,6 +752,7 @@ const Java_02_01 = () => {
                 선언하면, 메모리에 4바이트 크기의 공간이 level 이라는 이름으로
                 할당됩니다.
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>
                 자료형의 종류 및 표현 범위
               </ClassContentsTitle2>
@@ -557,6 +761,7 @@ const Java_02_01 = () => {
                   backgroundImage: `url(${"/images/study/java/java_02_01_01.png"})`,
                 }}
               />
+              <br />
               <ClassContentsTitle2>기본 자료형의 종류</ClassContentsTitle2>
               <ClassContentsText>
                 자바에서 제공하는 자료형은 <b>기본 자료형과 참조 자료형</b>이
@@ -598,28 +803,7 @@ const Java_02_01 = () => {
                   <br />
                   <br />
                 </ClassContentsTextTab>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public static void main(String[] args) {`}
-                    <br />
-                    {`        byte num1 = 127;`}
-                    <br />
-                    {`        byte num2 = -128;`}
-                    <br />
-                    <br />
-                    {`        num1++; // 127 + 1`}
-                    <br />
-                    {`        num2--; // -128 - 1`}
-                    <br />
-                    <br />
-                    {`        System.out.println(num1); // -128`}
-                    <br />
-                    {`        System.out.println(num2); // 127`}
-                    <br />
-                    {`    }`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code09 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>문자 자료형</ClassContentsTitle3>
@@ -668,40 +852,9 @@ const Java_02_01 = () => {
                 데 사용됩니다.
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`char ch = 'A'; // 단일 문자를 저장`}
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code10 />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public class CharacterEx {`}
-                    <br />
-                    {`    public static void main(String[] args) {`}
-                    <br />
-                    {`        char ch1 = 'A';`}
-                    <br />
-                    {`        System.out.println(ch1);  // 문자 출력`}
-                    <br />
-                    {`        System.out.println((int)ch1); // 문자에 대한 정수(ASCII)값 출력`}
-                    <br />
-                    <br />
-                    {`        char ch2 = 66;`}
-                    <br />
-                    {`       System.out.println(ch2);`}
-                    <br />
-                    <br />
-                    {`        System.out.printf("%c\n", ch2);`}
-                    <br />
-                    {`        System.out.printf("%d\n", (int)ch2);`}
-                    <br />
-                    {`     }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code11 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>실수 자료형</ClassContentsTitle3>
@@ -728,14 +881,7 @@ const Java_02_01 = () => {
                 - 부동소수점은 정수부와 소수부로 구성된 숫자를 나타내는 방식
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`float height = 175.5f;`}
-                    <br />
-                    {`double pi = 3.141592653589793;`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code12 />
                 <br />
                 1. float : <br />
                 <ClassContentsTextTab>
@@ -762,14 +908,6 @@ const Java_02_01 = () => {
                 부동소수점 자료형 대신 정수 연산을 고려하는 것이 좋습니다.
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`float height = 175.5f;`}
-                    <br />
-                    {`double pi = 3.141592653589793;`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
                 <br />
                 <br />
                 <font color="red">
@@ -781,30 +919,10 @@ const Java_02_01 = () => {
                 오차가 발생할 수 있습니다.
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public class Float {`}
-                    <br />
-                    {`    public static void main(String[] args) {`}
-                    <br />
-                    {`        double num1 = 0.1;`}
-                    <br />
-                    {`        for(int i = 0; i < 1000; i++) {`}
-                    <br />
-                    {`            num1 += 0.1;`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`        System.out.println(num1);`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code13 />
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle1>상수와 리터럴</ClassContentsTitle1>
               <hr />
               <ClassContentsTitle2>상수(constant)</ClassContentsTitle2>
@@ -821,34 +939,8 @@ const Java_02_01 = () => {
                 <br />
                 <br />
               </ClassContentsText>
-              <ClassContentsCodeBox>
-                <ClassContentsCode>{`final int AGES = 30;`}</ClassContentsCode>
-              </ClassContentsCodeBox>
-              <ClassContentsCodeBox>
-                <ClassContentsCode>
-                  {`import java.util.Scanner;`}
-                  <br />
-                  <br />
-                  {`public class Final {`}
-                  <br />
-                  {`    public static void main(String[] args) {`}
-                  <br />
-                  {`        final double TAX_RATE = 0.10;`}
-                  <br />
-                  {`        Scanner sc = new Scanner(System.in);`}
-                  <br />
-                  {`        System.out.print("수입을 입력 하세요 : ");`}
-                  <br />
-                  {`        int income = sc.nextInt();`}
-                  <br />
-                  {`        System.out.println("당신의 내야 할 세금은 " + income * TAX_RATE);`}
-                  <br />
-                  {`    }`}
-                  <br />
-                  {`}`}
-                  <br />
-                </ClassContentsCode>
-              </ClassContentsCodeBox>
+              <Java_02_01_Code14 />
+              <Java_02_01_Code15 />
               <br />
               <ClassContentsTitle2>
                 상수를 사용하면 편리한 이유
@@ -857,28 +949,9 @@ const Java_02_01 = () => {
                 프로그램 내부에서 반복적으로 사용하고, 변하지 않아야 하는 값을
                 상수로 선언하여 사용하면 좋습니다. <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public class CharacterEx {`}
-                    <br />
-                    {`    final static String KH_DOMAIN = "http://128.129.133.12";`}
-                    <br />
-                    {`    final static String PORT_NUM = "8111";`}
-                    <br />
-                    {`    public static void main(String[] args) {`}
-                    <br />
-                    {`        System.out.println(KH_DOMAIN);`}
-                    <br />
-                    {`        System.out.println(PORT_NUM);`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code16 />
                 <br />
-              </ClassContentsText>
+              </ClassContentsText><br />
               <ClassContentsTitle2>리터럴</ClassContentsTitle2>
               <ClassContentsText>
                 리터럴이한 프로그램에서 사용하는 모든 숫자, 문자, 논리값을
@@ -894,18 +967,9 @@ const Java_02_01 = () => {
                 에 놓입니다.
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`char ch = 'A';`}
-                    <br />
-                    {`int num = 10;`}
-                    <br />
-                    {`final double PI = 3.14;`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code17 />
                 <br />
-              </ClassContentsText>
+              </ClassContentsText><br />
               <ClassContentsTitle1>형 변환</ClassContentsTitle1>
               <hr />
               <ClassContentsTitle2>형 변환이란?</ClassContentsTitle2>
@@ -915,7 +979,7 @@ const Java_02_01 = () => {
                 자바에서는 다른 타입끼리 연산의 경우 모두 같은 타입으로 변환이
                 후 수행이 됩니다.
                 <br />
-              </ClassContentsText>
+              </ClassContentsText><br />
               <ClassContentsTitle2>묵시적 형 변환</ClassContentsTitle2>
               <ClassContentsText>
                 자동 타입 변환이라고도 하며 컴파일러가 유리한 방향으로 형을 변환
@@ -927,26 +991,7 @@ const Java_02_01 = () => {
                 합니다.
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`int num1 = 1, num2 = 4;`}
-                    <br />
-                    {`double result1 = num1 / num2;  `}
-                    <br />
-                    {`double result2 = (double) num1 / num2;  // 명시적 형변환`}
-                    <br />
-                    <br />
-                    {`System.out.println(result1);`}
-                    <br />
-                    {`System.out.println(result2);`}
-                    <br />
-                    <br />
-                    {`System.out.println(""+ result1 + 10); // 연산자 우선순위에 의해서 문자열로 간주 됩니다.`}
-                    <br />
-                    {`System.out.println(result1 + 10 + "10"); // 먼저 숫자형 타입이 계산되고 문자열이추가 됩니다.`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_01_Code18 />
                 <br />
                 <br />
                 <ClassContentsTitle3>타입 변환 메소드</ClassContentsTitle3>
@@ -964,8 +1009,8 @@ const Java_02_01 = () => {
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <ArrowNavigation direction="left" />
-            <ArrowNavigation direction="right" />
+            <Java_ArrowNavigation direction="left" />
+            <Java_ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

@@ -33,7 +33,7 @@ import {
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
 import JavaScript_Title from "../JavaScript_Title";
-import ArrowNavigation from "../../ArrowNavigation";
+import JavaScript_ArrowNavigation from "../JavaScript_ArrowNavigation";
 import JavaScript_ClassList_Filtered from "../JavaScript_ClassList_Filtered";
 
 const JavaScript_01_01 = () => {
@@ -233,8 +233,8 @@ const JavaScript_01_01 = () => {
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <ArrowNavigation direction="left" />
-            <ArrowNavigation direction="right" />
+            <JavaScript_ArrowNavigation direction="left" />
+            <JavaScript_ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

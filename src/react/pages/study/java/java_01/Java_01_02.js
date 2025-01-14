@@ -33,7 +33,7 @@ import {
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
 import Java_Title from "../Java_Title";
-import ArrowNavigation from "../../ArrowNavigation";
+import Java_ArrowNavigation from "../Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
 
 const Java_01_02 = () => {
@@ -84,17 +84,17 @@ const Java_01_02 = () => {
     window.location.reload();
   };
 
-  // 코드블록 삽입 테스트
-  const TopicCodeBlock = () => {
+  const Java_01_02_Code01 = () => {
     useEffect(() => {
       hljs.highlightAll();
     }, []);
-
     return (
       <pre>
-        <code>
-          <div>안녕하세요</div>
-          <div>제니입니다</div>
+        <code className="language-java">
+          {`
+export JAVA_HOME=/Users/kyungsoojeong/Library/Java/JavaVirtualMachines/corretto-17.0.9/Contents/Home
+export PATH=\${PATH}:$JAVA_HOME/bin
+          `}
         </code>
       </pre>
     );
@@ -130,13 +130,12 @@ const Java_01_02 = () => {
               <ClassHeaderTitle>Java 프로젝트 생성 및 기본</ClassHeaderTitle>
             </ClassHeader>
             <ClassContentsContainer>
-              <TopicCodeBlock />
               <ClassContentsText>
                 자바 개발을 위해 자바와 자바 프로그래밍을 위한 통합 개발
                 환경(Integrated Development Environment)이 필요 합니다.
                 통합개발환경에는 이클립스, 인텔리제이, VS Code 등이 있으며,
                 인텔리제이를 주로 사용하도록 하겠습니다.
-              </ClassContentsText>
+              </ClassContentsText><br />
               <ClassContentsTitle2>프로그램 설치</ClassContentsTitle2>
               <hr />
               <ClassContentsTitle3>JDK 설치</ClassContentsTitle3>
@@ -166,7 +165,7 @@ const Java_01_02 = () => {
                   - 환경 설정 → 에디터 → 일반 → Ctrl + 마우스 휠로 글꼴 크기
                   변경
                 </ClassContentsTextTab>
-              </ClassContentsText>
+              </ClassContentsText><br />
               <ClassContentsTitle2>환경 변수 설정</ClassContentsTitle2>
               <hr />
               <ClassContentsText>
@@ -188,6 +187,7 @@ const Java_01_02 = () => {
                 경로와 안드로이드 설치 경로는 개인 PC의 설치 경로로 변경해야
                 합니다.
               </ClassContentsText>
+              <Java_01_02_Code01 />
               <ClassContentsCodeBox>
                 <ClassContentsCode>
                   export
@@ -258,8 +258,8 @@ const Java_01_02 = () => {
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <ArrowNavigation direction="left" />
-            <ArrowNavigation direction="right" />
+            <Java_ArrowNavigation direction="left" />
+            <Java_ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

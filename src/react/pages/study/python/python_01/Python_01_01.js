@@ -33,7 +33,7 @@ import {
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
 import Python_Title from "../Python_Title";
-import ArrowNavigation from "../../ArrowNavigation";
+import Python_ArrowNavigation from "../Python_ArrowNavigation";
 import Python_ClassList_Filtered from "../Python_ClassList_Filtered";
 
 const Python_01_01 = () => {
@@ -84,6 +84,61 @@ const Python_01_01 = () => {
     window.location.reload();
   };
 
+  const Python_01_01_Code01 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-c++">
+          {`
+#include <iostream>
+using namespace std;
+int main() {
+	cout << "Hello World");
+	return 0;
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Python_01_01_Code02 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+package sample;
+public class Hello { 
+	public static void main(String[] args) { 
+		System.out.println("Hello, World"); 
+	}
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Python_01_01_Code03 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-python">
+          {`
+print("Hello World")
+          `}
+        </code>
+      </pre>
+    );
+  };
+
   return (
     <Wrap>
       <TopBoxWide>
@@ -123,6 +178,7 @@ const Python_01_01 = () => {
                   </b>
                 </font>
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>프로그래밍이란?</ClassContentsTitle2>
               <ClassContentsText>
                 프로그래밍은 프로그램을 만드는 것을 의미합니다. 프로그래밍
@@ -135,6 +191,7 @@ const Python_01_01 = () => {
                 바꾸는 작업을 말합니다. 이를 위해 코딩과 함께 컴파일 또는
                 인터프리터 작업이 필요합니다.
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>프로그래밍이란?</ClassContentsTitle2>
               <ClassContentsText>
                 프로그래밍은 특정 목적을 달성하기 위해 설계된 알고리즘을
@@ -152,6 +209,7 @@ const Python_01_01 = () => {
                 효율적으로 해결하는 능력을 배울 수 있습니다. 이는 중요한 학습
                 목표입니다.
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>파이썬(Python)</ClassContentsTitle2>
               <ClassContentsText>
                 파이썬은 1991년 귀도 반 로섬에 의해 개발된 고급 프로그래밍
@@ -159,6 +217,7 @@ const Python_01_01 = () => {
                 하나입니다. 다양한 플랫폼에서 사용 가능하며, 풍부한 라이브러리
                 덕분에 사용이 쉽고 개발 속도가 빠른 것이 장점입니다.
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>파이썬의 특징</ClassContentsTitle2>
               <ClassContentsTitle3>간결한 코드</ClassContentsTitle3>
               <ClassContentsText>
@@ -171,53 +230,19 @@ const Python_01_01 = () => {
                 · C++로 “Hello World” 출력
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`#include <iostream>`}
-                    <br />
-                    {`using namespace std;`}
-                    <br />
-                    {`int main() {`}
-                    <br />
-                    {`	cout << "Hello World");`}
-                    <br />
-                    {`	return 0;`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Python_01_01_Code01 />
                 <br />
                 <br />
                 · Java로 “Hello World” 출력
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`package sample;`}
-                    <br />
-                    {`public class Hello { `}
-                    <br />
-                    {`	public static void main(String[] args) { `}
-                    <br />
-                    {`		System.out.println("Hello, World"); `}
-                    <br />
-                    {`	}`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Python_01_01_Code02 />
                 <br />
                 <br />
                 · Python에서의 “Hello World” 출력
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`print("Hello World")`}
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Python_01_01_Code03 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>들여쓰기</ClassContentsTitle3>
@@ -280,6 +305,7 @@ const Python_01_01 = () => {
                   <br />
                 </ClassContentsTextTab>
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>
                 파이썬으로 할 수 없는 일
               </ClassContentsTitle2>
@@ -293,6 +319,7 @@ const Python_01_01 = () => {
                 파이썬은 여전히 부족한 점이 있습니다.
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>사용되는 회사</ClassContentsTitle2>
               <ClassContentsText>
                 파이썬은 다양한 글로벌 기업에서 사용됩니다. 데이터 분석,
@@ -310,8 +337,8 @@ const Python_01_01 = () => {
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <ArrowNavigation direction="left" />
-            <ArrowNavigation direction="right" />
+            <Python_ArrowNavigation direction="left" />
+            <Python_ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

@@ -160,6 +160,7 @@ export const ClassHeaderTitleButton = styled.div.attrs({
 })`
   width: 30px;
   height: 30px;
+  margin-top: 8px;
   position: relative;
   margin-right: 30px;
   color: white;
@@ -167,7 +168,7 @@ export const ClassHeaderTitleButton = styled.div.attrs({
   &::before {
      /* 토글 상태에 따라 아이콘 변경 */
     content: ${(props) =>
-      props.isOpen ? '"▼"' : '"◀"'};
+      props.isOpen ? '"◀"' : '"▼"'};
     position: relative;
     margin-left: 7px;
   }

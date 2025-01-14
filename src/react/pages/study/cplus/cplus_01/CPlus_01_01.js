@@ -33,7 +33,7 @@ import {
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
 import CPlus_Title from "../CPlus_Title";
-import ArrowNavigation from "../../ArrowNavigation";
+import CPlus_ArrowNavigation from "../CPlus_ArrowNavigation";
 import CPlus_ClassList_Filtered from "../CPlus_ClassList_Filtered";
 
 const CPlus_01_01 = () => {
@@ -236,8 +236,8 @@ const CPlus_01_01 = () => {
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <ArrowNavigation direction="left" />
-            <ArrowNavigation direction="right" />
+            <CPlus_ArrowNavigation direction="left" />
+            <CPlus_ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

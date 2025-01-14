@@ -33,7 +33,7 @@ import {
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
 import Java_Title from "../Java_Title";
-import ArrowNavigation from "../../ArrowNavigation";
+import Java_ArrowNavigation from "../Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
 
 const Java_02_03 = () => {
@@ -82,6 +82,257 @@ const Java_02_03 = () => {
       },
     });
     window.location.reload();
+  };
+
+  const Java_02_03_Code01 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public class operator {
+    public static void main(String[] args) {
+        int num1 = 10, num2 = 4;
+        System.out.println("+ 연산자 : " + (num1 + num2));
+        System.out.println("- 연산자 : " + (num1 - num2));
+        System.out.println("* 연산자 : " + (num1 * num2));
+        System.out.println("/ 연산자 : " + ((double)num1 / num2));
+        System.out.println("% 연산자 : " + (num1 % num2));
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_03_Code02 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+try {
+    System.out.println(5 / 0);
+} catch(ArithmeticException e) {
+    System.out.println("0 으로 나누면 안됨");
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_03_Code03 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+int num1 = 10;
+System.out.println(num1 += 2);
+System.out.println(num1 -= 2);
+System.out.println(num1 *= 2);
+System.out.println(num1 /= 2);
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_03_Code04 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+int num1 = 10;
+System.out.println(num1++);
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_03_Code05 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+int x = 10;
+int y = 20;
+System.out.println(x > y);
+System.out.println(x < y);
+System.out.println(x == y);
+System.out.println(x != y);
+System.out.println(x >= y);
+System.out.println(x <= y);
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_03_Code06 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+int x = 10;
+int y = 20;
+boolean rst1;
+boolean rst2;
+boolean rst3;
+rst1 = (x > 0) && (x < y);
+rst2 = (x > 0) || (x > y);
+rst3 = !((x > 0) || (x > y));
+System.out.println(rst1);
+System.out.println(rst2);
+System.out.println(rst3);
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_03_Code07 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+Scanner sc = new Scanner(System.in); // 입력을 받기 위한 스캐너 객체 생성
+  System.out.print("나이를 입력 하세요 : ");
+  int age = sc.nextInt();
+  boolean isAdult = (age > 19) ? true : false;
+  System.out.println(isAdult);
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_03_Code08 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+System.out.println("Java" + 18.04 + 12);
+System.out.println(3 + 3.3 + "JDK");
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_03_Code09 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public class Sample {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("년도를 입력 하세요 : ");
+        int year = in.nextInt();
+        if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+            System.out.println("윤년 입니다.");
+        } else {
+            System.out.println("윤년이 아닙니다.");
+        }
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_03_Code10 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+Scanner in = new Scanner(System.in);
+System.out.print("정수를 입력 하세요 : ");
+int num = in.nextInt();
+int a = num / 100;
+int b = (num % 100) / 10;
+int c = num % 10;
+System.out.println("100의 자리 : " + a + ", 10의 자리 : " + b + ", 1의 자리 : " + c);
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_03_Code11 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+	int val1 = 5;
+	int val2 = 5;
+	int val3 = 5;
+	int result1, result2, result3;
+
+	result1 = val1 + val2 * val3;
+	result2 = (val1 + val2) * val3;
+	result3 = val1 + (++val2) * val3; // val2에 증가 연산자를 표시하면 어떻게 될까?
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_03_Code12 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+int num1 = 10;
+int num2 = 12;
+System.out.println(num1 & num2);
+System.out.println(num1 | num2);
+System.out.println(num1 ^ num2);
+System.out.println(~num1);
+System.out.println(num1 << 1);
+System.out.println(num1 >> 1);
+          `}
+        </code>
+      </pre>
+    );
   };
 
   return (
@@ -227,6 +478,7 @@ const Java_02_03 = () => {
                 </ClassTable>
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>이항 연산자</ClassContentsTitle2>
               <ClassContentsText>
                 이항 연산자는 피연산자가 두 개인 연산자를 말합니다.
@@ -234,6 +486,7 @@ const Java_02_03 = () => {
                 산술 연산자, 문자열 연결 연산자, 대입연산자, 비교 연산자, 논리
                 연산자, 비트 논리 연산사, 비트 이동 연산자 등이 있습니다.
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>산술 연산자</ClassContentsTitle2>
               <ClassContentsText>
                 산술연산자는 사칙연산을 다루는 연산자로 가장 기본적이면서 가장
@@ -245,30 +498,7 @@ const Java_02_03 = () => {
                   <br />
                   <br />
                 </ClassContentsTextTab>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public class operator {`}
-                    <br />
-                    {`    public static void main(String[] args) {`}
-                    <br />
-                    {`        int num1 = 10, num2 = 4;`}
-                    <br />
-                    {`        System.out.println("+ 연산자 : " + (num1 + num2));`}
-                    <br />
-                    {`        System.out.println("- 연산자 : " + (num1 - num2));`}
-                    <br />
-                    {`        System.out.println("* 연산자 : " + (num1 * num2));`}
-                    <br />
-                    {`        System.out.println("/ 연산자 : " + ((double)num1 / num2));`}
-                    <br />
-                    {`        System.out.println("% 연산자 : " + (num1 % num2));`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_03_Code01 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>Nan과 Infinity 연산</ClassContentsTitle3>
@@ -283,20 +513,7 @@ const Java_02_03 = () => {
                 5 % 0.0 → NaN (Not a Number)
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`try {`}
-                    <br />
-                    {`    System.out.println(5 / 0);`}
-                    <br />
-                    {`} catch(ArithmeticException e) {`}
-                    <br />
-                    {`    System.out.println("0 으로 나누면 안됨");`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_03_Code02 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>
@@ -444,22 +661,10 @@ const Java_02_03 = () => {
                   <br />
                   <br />
                 </ClassContentsTextTab>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`int num1 = 10;`}
-                    <br />
-                    {`System.out.println(num1 += 2);`}
-                    <br />
-                    {`System.out.println(num1 -= 2);`}
-                    <br />
-                    {`System.out.println(num1 *= 2);`}
-                    <br />
-                    {`System.out.println(num1 /= 2);`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_03_Code03 />
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>증감 연산자</ClassContentsTitle2>
               <ClassContentsText>
                 증감 연산자는 피연산자를 1씩 증가 혹은 감소 시킬 때 사용하는
@@ -468,16 +673,10 @@ const Java_02_03 = () => {
                 단항연산자 입니다.
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`int num1 = 10;`}
-                    <br />
-                    {`System.out.println(num1++);`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_03_Code04 />
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>비교연산자</ClassContentsTitle2>
               <ClassContentsText>
                 비교 연산자는 왼쪽의 피연산자와 오른쪽의 피연산자를 비교하여,
@@ -487,28 +686,10 @@ const Java_02_03 = () => {
                 피연산자들의 결합 방향은 왼쪽에서 오른쪽입니다.
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`int x = 10;`}
-                    <br />
-                    {`int y = 20;`}
-                    <br />
-                    {`System.out.println(x > y);`}
-                    <br />
-                    {`System.out.println(x < y);`}
-                    <br />
-                    {`System.out.println(x == y);`}
-                    <br />
-                    {`System.out.println(x != y);`}
-                    <br />
-                    {`System.out.println(x >= y);`}
-                    <br />
-                    {`System.out.println(x <= y);`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_03_Code05 />
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>논리연산자</ClassContentsTitle2>
               <ClassContentsText>
                 - && : AND 연산자 이며 A이고 B, 즉 A와 B가 모두 만족해야
@@ -522,34 +703,10 @@ const Java_02_03 = () => {
                 - 논리연산자만 쓰이는 경우는 없으며, 비교 연산자와 함께 쓰인다.
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`int x = 10;`}
-                    <br />
-                    {`int y = 20;`}
-                    <br />
-                    {`boolean rst1;`}
-                    <br />
-                    {`boolean rst2;`}
-                    <br />
-                    {`boolean rst3;`}
-                    <br />
-                    {`rst1 = (x > 0) && (x < y);`}
-                    <br />
-                    {`rst2 = (x > 0) || (x > y);`}
-                    <br />
-                    {`rst3 = !((x > 0) || (x > y));`}
-                    <br />
-                    {`System.out.println(rst1);`}
-                    <br />
-                    {`System.out.println(rst2);`}
-                    <br />
-                    {`System.out.println(rst3);`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_03_Code06 />
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>삼항 연산자</ClassContentsTitle2>
               <ClassContentsCodeBox>
                 👉 조건식 ? 참인 경우 수행 : 거짓인 경우 수행
@@ -561,21 +718,10 @@ const Java_02_03 = () => {
                 <br />
                 if ~ else 문 보다 간결 합니다.
                 <br />
+                <br />
+                <Java_02_03_Code07 />
+                <br />
               </ClassContentsText>
-              <ClassContentsCodeBox>
-                <ClassContentsCode>
-                  {`Scanner sc = new Scanner(System.in); // 입력을 받기 위한 스캐너 객체 생성`}
-                  <br />
-                  {`  System.out.print("나이를 입력 하세요 : ");`}
-                  <br />
-                  {`  int age = sc.nextInt();`}
-                  <br />
-                  {`  boolean isAdult = (age > 19) ? true : false;`}
-                  <br />
-                  {`  System.out.println(isAdult);`}
-                  <br />
-                </ClassContentsCode>
-              </ClassContentsCodeBox>
               <br />
               <ClassContentsTitle2>문자열 결합 연산자</ClassContentsTitle2>
               <ClassContentsText>
@@ -583,14 +729,7 @@ const Java_02_03 = () => {
                 피연산자 중 한쪽이 문자열이면 + 연산자는 문자열의 결합 연산자로
                 사용 됩니다.
               </ClassContentsText>
-              <ClassContentsCodeBox>
-                <ClassContentsCode>
-                  {`System.out.println("Java" + 18.04 + 12);`}
-                  <br />
-                  {`System.out.println(3 + 3.3 + "JDK");`}
-                  <br />
-                </ClassContentsCode>
-              </ClassContentsCodeBox>
+              <Java_02_03_Code08 />
               <br />
               <ClassContentsTitle3>연습문제(1)</ClassContentsTitle3>
               <ClassContentsText>
@@ -611,34 +750,7 @@ const Java_02_03 = () => {
                   <br />
                   <br />
                 </ClassContentsTextTab>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public class Sample {`}
-                    <br />
-                    {`    public static void main(String[] args) {`}
-                    <br />
-                    {`        Scanner in = new Scanner(System.in);`}
-                    <br />
-                    {`        System.out.print("년도를 입력 하세요 : ");`}
-                    <br />
-                    {`        int year = in.nextInt();`}
-                    <br />
-                    {`        if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {`}
-                    <br />
-                    {`            System.out.println("윤년 입니다.");`}
-                    <br />
-                    {`        } else {`}
-                    <br />
-                    {`            System.out.println("윤년이 아닙니다.");`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_03_Code09 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>연습문제(2)</ClassContentsTitle3>
@@ -646,48 +758,15 @@ const Java_02_03 = () => {
                 100의 자리 정수를 입력 받아서 3개의 변수에 나누어 대입 하기
                 <br />
               </ClassContentsText>
-              <ClassContentsCodeBox>
-                <ClassContentsCode>
-                  {`Scanner in = new Scanner(System.in);`}
-                  <br />
-                  {`System.out.print("정수를 입력 하세요 : ");`}
-                  <br />
-                  {`int num = in.nextInt();`}
-                  <br />
-                  {`int a = num / 100;`}
-                  <br />
-                  {`int b = (num % 100) / 10;`}
-                  <br />
-                  {`int c = num % 10;`}
-                  <br />
-                  {`System.out.println("100의 자리 : " + a + ", 10의 자리 : " + b + ", 1의 자리 : " + c);`}
-                  <br />
-                </ClassContentsCode>
-              </ClassContentsCodeBox>
+              <Java_02_03_Code10 />
               <br />
               <ClassContentsTitle3>연산자 우선순위</ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`	int val1 = 5;`}
-                    <br />
-                    {`	int val2 = 5;`}
-                    <br />
-                    {`	int val3 = 5;`}
-                    <br />
-                    {`	int result1, result2, result3;`}
-                    <br />
-                    <br />
-                    {`	result1 = val1 + val2 * val3;`}
-                    <br />
-                    {`	result2 = (val1 + val2) * val3;`}
-                    <br />
-                    {`	result3 = val1 + (++val2) * val3; // val2에 증가 연산자를 표시하면 어떻게 될까?`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_03_Code11 />
+
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>비트 연산자</ClassContentsTitle2>
               <ClassContentsText>
                 자바(Java)는 비트 연산자를 제공하여 숫자의 비트 수준(bit-level)
@@ -805,33 +884,14 @@ const Java_02_03 = () => {
                   </ClassContentsTextTab>
                 </ClassContentsCodeBox>
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`int num1 = 10;`}
-                    <br />
-                    {`int num2 = 12;`}
-                    <br />
-                    {`System.out.println(num1 & num2);`}
-                    <br />
-                    {`System.out.println(num1 | num2);`}
-                    <br />
-                    {`System.out.println(num1 ^ num2);`}
-                    <br />
-                    {`System.out.println(~num1);`}
-                    <br />
-                    {`System.out.println(num1 << 1);`}
-                    <br />
-                    {`System.out.println(num1 >> 1);`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_03_Code12 />
                 <br />
               </ClassContentsText>
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <ArrowNavigation direction="left" />
-            <ArrowNavigation direction="right" />
+            <Java_ArrowNavigation direction="left" />
+            <Java_ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

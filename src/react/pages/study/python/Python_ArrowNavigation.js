@@ -1,19 +1,27 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { JavaStudyChapter } from "../../../util/study/JavaStudyChapter";
-import { ArrowLink, LeftArrow, RightArrow } from "../../styles/study/Class_Each";
+import { PythonStudyChapter } from "../../../../util/study/PythonStudyChapter";
+import {
+  ArrowLink,
+  LeftArrow,
+  RightArrow,
+} from "../../../styles/study/Class_Each";
 
-const ArrowNavigation = ({ direction }) => {
+const Python_ArrowNavigation = ({ direction }) => {
   const location = useLocation();
   const navigate = useNavigate();
-    const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
+  const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
 
   // 현재 경로의 chapterId와 contentIndex 추출
   const currentPath = location.pathname.split("/");
   const currentChapterId = currentPath[3] || "";
-  const currentContentIndex = currentPath[4] ? parseInt(currentPath[4], 10) - 1 : -1;
+  const currentContentIndex = currentPath[4]
+    ? parseInt(currentPath[4], 10) - 1
+    : -1;
 
   // 현재 챕터와 콘텐츠 찾기
-  const currentChapter = JavaStudyChapter.find((chapter) => chapter.id === currentChapterId);
+  const currentChapter = PythonStudyChapter.find(
+    (chapter) => chapter.id === currentChapterId
+  );
   const currentContent = currentChapter?.contents?.[currentContentIndex];
 
   if (!currentChapter || !currentContent) {
@@ -23,19 +31,21 @@ const ArrowNavigation = ({ direction }) => {
 
   const handleNavigation = () => {
     let nextContent;
-    let nextNavigatePath;  // 다음 navigatepath를 위한 변수
+    let nextNavigatePath; // 다음 navigatepath를 위한 변수
 
     if (direction === "left") {
       if (currentContentIndex === 0) {
         // 첫 번째 콘텐츠인 경우, 이전 챕터의 마지막 콘텐츠로 이동
-        const previousChapterIndex = JavaStudyChapter.findIndex(
-          (chapter) => chapter.id === currentChapterId
-        ) - 1;
-        const previousChapter = JavaStudyChapter[previousChapterIndex];
+        const previousChapterIndex =
+          PythonStudyChapter.findIndex(
+            (chapter) => chapter.id === currentChapterId
+          ) - 1;
+        const previousChapter = PythonStudyChapter[previousChapterIndex];
 
         if (previousChapter) {
-          nextContent = previousChapter.contents[previousChapter.contents.length - 1];
-          nextNavigatePath = nextContent.navigatepath;  // 이전 챕터의 마지막 콘텐츠로 이동
+          nextContent =
+            previousChapter.contents[previousChapter.contents.length - 1];
+          nextNavigatePath = nextContent.navigatepath; // 이전 챕터의 마지막 콘텐츠로 이동
         } else {
           console.error("이전 챕터가 없습니다.");
           return;
@@ -51,13 +61,14 @@ const ArrowNavigation = ({ direction }) => {
 
       // 현재 챕터의 마지막 콘텐츠인 경우, 다음 챕터로 이동
       if (nextContentIndex >= currentChapter.contents.length) {
-        const nextChapterIndex = JavaStudyChapter.findIndex(
-          (chapter) => chapter.id === currentChapterId
-        ) + 1;
-        const nextChapter = JavaStudyChapter[nextChapterIndex];
+        const nextChapterIndex =
+          PythonStudyChapter.findIndex(
+            (chapter) => chapter.id === currentChapterId
+          ) + 1;
+        const nextChapter = PythonStudyChapter[nextChapterIndex];
 
         if (nextChapter) {
-          nextContent = nextChapter.contents[0];  // 다음 챕터의 첫 번째 콘텐츠로 이동
+          nextContent = nextChapter.contents[0]; // 다음 챕터의 첫 번째 콘텐츠로 이동
           nextNavigatePath = nextContent.navigatepath;
         } else {
           console.error("다음 챕터가 없습니다.");
@@ -90,4 +101,4 @@ const ArrowNavigation = ({ direction }) => {
   );
 };
 
-export default ArrowNavigation;
+export default Python_ArrowNavigation;

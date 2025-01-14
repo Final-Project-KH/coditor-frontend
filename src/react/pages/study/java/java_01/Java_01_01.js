@@ -33,7 +33,7 @@ import {
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
 import Java_Title from "../Java_Title";
-import ArrowNavigation from "../../ArrowNavigation";
+import Java_ArrowNavigation from "../Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
 
 const Java_01_01 = () => {
@@ -141,13 +141,13 @@ const Java_01_01 = () => {
                   <br />
                 </ClassContentsTextTab>
               </ClassContentsText>
-              <hr />
+              <hr /><br />
               <ClassContentsTitle1>자바(Java)란?</ClassContentsTitle1>
               <ClassContentsText>
                 자바는 C++와 다르게 처음부터 객체지향 언어로 개발된 프로그래밍
                 언어입니다. 자바는 자바 가상 머신(JVM, Java Virtual Machine)을
                 사용하여 어느 운영체제에서나 동일하게 실행될 수 있습니다.
-              </ClassContentsText>
+              </ClassContentsText><br />
               <ClassContentsTitle2>자바의 역사</ClassContentsTitle2>
               <hr />
               <ClassContentsText>
@@ -172,7 +172,7 @@ const Java_01_01 = () => {
                   <br />
                 </ClassContentsTextTab>
               </ClassContentsText>
-              <hr />
+              <hr /><br />
               <ClassContentsTitle2>자바의 특징</ClassContentsTitle2>
               <ClassContentsTitle3>자바의 장점</ClassContentsTitle3>
               <ClassContentsText>
@@ -229,13 +229,13 @@ const Java_01_01 = () => {
                   객체를 생성합니다.
                   <br />
                 </ClassContentsTextTab>
-              </ClassContentsText>
+              </ClassContentsText><br />
               <ClassContentsTitle1>자바 프로그램 개발 과정</ClassContentsTitle1>
               <ClassContentsImage
                 style={{
                   backgroundImage: `url(${"/images/study/java/java_01_01_01.png"})`,
                 }}
-              />
+              /><br />
               <ClassContentsTitle2>컴파일</ClassContentsTitle2>
               <ClassContentsText>
                 컴파일은 사람이 이해하는 언어로 작성된 소스 코드를 컴퓨터가
@@ -246,7 +246,7 @@ const Java_01_01 = () => {
                 style={{
                   backgroundImage: `url(${"/images/study/java/java_01_01_02.png"})`,
                 }}
-              />
+              /><br />
               <ClassContentsTitle2>JDK, JRE, JVM</ClassContentsTitle2>
               <ClassContentsText>
                 <ClassContentsTextTab>
@@ -265,7 +265,7 @@ const Java_01_01 = () => {
                 style={{
                   backgroundImage: `url(${"/images/study/java/java_01_01_03.png"})`,
                 }}
-              />
+              /><br />
               <ClassContentsTitle2>빌드</ClassContentsTitle2>
               <ClassContentsText>
                 빌드는 소프트웨어 개발 과정에서 코드를 컴파일하고 테스트하며
@@ -289,8 +289,8 @@ const Java_01_01 = () => {
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <ArrowNavigation direction="left" />
-            <ArrowNavigation direction="right" />
+            <Java_ArrowNavigation direction="left" />
+            <Java_ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

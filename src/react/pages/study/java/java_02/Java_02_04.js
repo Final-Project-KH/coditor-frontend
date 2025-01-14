@@ -33,7 +33,7 @@ import {
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
 import Java_Title from "../Java_Title";
-import ArrowNavigation from "../../ArrowNavigation";
+import Java_ArrowNavigation from "../Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
 
 const Java_02_04 = () => {
@@ -82,6 +82,364 @@ const Java_02_04 = () => {
       },
     });
     window.location.reload();
+  };
+
+  const Java_02_04_Code01 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+if (조건식) {
+    조건식의 결과가 참일 때 실행하고자 하는 명령문;
+}
+이 부분은 조건식을 만족하거나 만족하거나 공통으로 수행 됩니다.
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_04_Code02 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+System.out.print("정수를 입력 하세요 : ");
+Scanner sc = new Scanner(System.in);
+int a = sc.nextInt()
+if (a >= 0) {
+	System.out.println("양수 입니다.");
+} else {
+	System.out.println("음수 입니다.");
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_04_Code03 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+if (조건식) {
+	조건식이 참일 때 실행될 문장
+} else if (조건식) {
+	첫번째 조건식이 거짓이고 현재의 조건이 참인 경우 실행 될 문장
+} else {
+	조건식이 거짓일 때 실행 될 문장
+} 
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_04_Code04 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+Scanner sc = new Scanner(System.in); // 키 입력 받기 위해 스캐너 객체 생성
+  System.out.print("정수를 입력 하세요 : ");
+  int number = sc.nextInt(); // 키보드 입력을 정수형 변수에 담음
+  if(number > 100) {
+      System.out.println(number + "는 100보다 커요");
+  } else if(number < 100) {
+      System.out.println(number + "는 100보다 작아요.");
+  } else {
+      System.out.println(number + "는 100과 같아요.");
+  }
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_04_Code05 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+import java.util.Scanner;
+
+public class condition {
+    public static void main(String[] args) {
+        System.out.print("문자를 입력 하세요 : ");
+        Scanner sc = new Scanner(System.in);
+        char ch = sc.next().charAt(0);
+        if (ch >= 'a' && ch <= 'z') {
+            System.out.println("알파벳 소문자 입니다.");
+        } else if(ch >= 'A' && ch <= 'Z') {
+            System.out.println("알파벳 대문자 입니다.");
+        } else {
+            System.out.println("알파벳이 아닙니다.");
+        }
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_04_Code06 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+switch(변수) {
+	case 값 :
+		실행문
+		....
+		break;  // switch문을 탈출 합니다.
+	case 값 :
+		....
+		break;
+	default:
+		나머지 조건에 해당
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_04_Code07 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public class SwitchEx1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("계절을 입력 하세요 : ");
+        String season = sc.next();
+        switch(season) {
+            case "spring" : // 해당 조건이 실행 됨
+                System.out.println("꽃이 피는 봄이 왔어요^^");
+                break; // 해당 조건을 종료
+            case "summer" :
+                System.out.println("무더운 여름 입니다.");
+                break;
+            case "fall":
+            case "autumn" :
+                System.out.println("쓸쓸한 가을 입니다.");
+                break;
+            case "winter":
+                System.out.println("아직 겨울이네요ㅠㅠㅠㅠㅠㅠ");
+                break;
+            default :
+                System.out.println("계절을 잘 못 입력 했습니다.");
+        }
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_04_Code08 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public class Main {
+    public static void main(String[] args) {
+        int x, y;
+        char op;
+        Scanner sc = new Scanner(System.in);
+        x = sc.nextInt();
+        op = sc.next().charAt(0);
+        y = sc.nextInt();
+        switch(op) {
+            case '+' :
+                System.out.printf("SUM : %d\n", x + y);
+                break;
+            case '-' :
+                System.out.printf("SUB : %d\n", x - y);
+                break;
+            case '*' :
+                System.out.printf("MUL : %d\n", x * y);
+                break;
+            case '/' :
+                System.out.printf("DIV : %d\n", x / y);
+                break;
+            default :
+                System.out.println("조건식이 없습니다.");
+        }
+    }
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_04_Code09 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public class ScoreEx1 {
+    public static void main(String[] args) {
+        // 입력을 위한 스캐너 생성
+        Scanner sc = new Scanner(System.in);
+        // 입력을 받아서 정수형 변수에 대입
+        // 조건문을 만드는데 우선, 0 ~ 100 사이의 정상 적인 입력 인지 확인
+        while(true) {
+            System.out.print("성적을 입력 하세요 : ");
+            int score = sc.nextInt();
+            if(score < 0 || score > 100) continue;
+            if(score >= 90) System.out.println("A");
+            else if(score >= 80) System.out.println("B");
+            else if(score >= 70) System.out.println("C");
+            else if(score >= 60) System.out.println("D");
+            else System.out.println("F");
+            break;
+        }
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_04_Code10 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public class Main {
+    public static void main(String[] args) {
+       int num;
+       int a, b, c;
+       System.out.print("세자리 정수 입력 : ");
+       Scanner sc = new Scanner(System.in);
+       num = sc.nextInt();
+       a = num / 100;
+       b = (num % 100) / 10;
+       c = num % 10;
+
+       if (a > b) {
+           System.out.println(Math.max(a, c));
+       } else {
+           System.out.println(Math.max(b,c));
+       }
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_04_Code11 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+[이름]님.
+[계절에 맞는 인사말]
+아래와 일정으로 [제목]를 진행하고자 하오니 오셔서 자리를 빛내 주시기 바랍니다.
+
+===== 행사 안내 =====
+행사 안내 : [제목]
+일시 : [년]년 [월]월 [일]일
+시간 : [시간]시
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_04_Code12 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+package 행사안내메일;
+import java.util.Scanner;
+// 사용자로부터 이름, 제목, 날짜(20230817), 시간(17) 정보를 입력 받습니다.
+public class GreetingEx {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("이름 : ");
+        String name = sc.nextLine();
+        System.out.print("제목 : ");
+        String title = sc.nextLine();
+        System.out.print("날짜 : ");
+        String date = sc.nextLine();
+        System.out.print("시간 : ");
+        String time = sc.nextLine();
+
+        String month = date.substring(4, 6);
+        String greeting = "";
+        switch (month) {
+            case "01" : greeting = "한파의 연속인 1월 입니다."; break;
+            case "02" : greeting = "한파의 연속인 2월 입니다."; break;
+            case "03" : greeting = "봄의 기운이 느껴지는 3월 입니다."; break;
+            case "04" : greeting = "새싹이 피어나는 4월 입니다."; break;
+            case "05" : greeting = "계절의 여왕 5월 입니다."; break;
+            case "06" : greeting = "활동하기 좋은 6월 입니다."; break;
+            case "07" : greeting = "휴가가 기다려지는 7월 입니다."; break;
+            case "08" : greeting = "무더운 8월 입니다."; break;
+            case "09" : greeting = "선선한 9월 입니다."; break;
+            case "10" : greeting = "천고마비의 계절 10월 입니다."; break;
+            case "11" : greeting = "쓸쓸한 늦가을 11월 입니다."; break;
+            case "12" : greeting = "한파의 연속인 12월 입니다."; break;
+            default: System.out.println("알 수 없는 월 입니다.");
+        }
+        System.out.println(name + "님.");
+        System.out.println(greeting);
+        System.out.println("아래와 일정으로" + title +"를 진행하고자 하오니 오셔서 자리를 빛내 주시기 바랍니다.\n");
+        System.out.println("=".repeat(5) + "행사 안내" + "=".repeat(5));
+        System.out.println("날짜 : " + date.substring(0, 4) + "년 " + month + "월 " + date.substring(6,8) + "일");
+        System.out.println("시간 : " + time + "시");
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
   };
 
   return (
@@ -139,6 +497,7 @@ const Java_02_04 = () => {
                   <br />
                 </ClassContentsTextTab>
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>조건문</ClassContentsTitle2>
               <ClassContentsText>
                 조건문은 주어진 조건식의 결과에 따라 별도의 명령을 수행하도록
@@ -153,131 +512,32 @@ const Java_02_04 = () => {
                 거짓(false)이면 아무것도 실행하지 않습니다.
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`if (조건식) { `}
-                    <br />
-                    {`    조건식의 결과가 참일 때 실행하고자 하는 명령문;`}
-                    <br />
-                    {`}`}
-                    <br />
-                    {`이 부분은 조건식을 만족하거나 만족하거나 공통으로 수행 됩니다.`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_04_Code01 />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`System.out.print("정수를 입력 하세요 : ");`}
-                    <br />
-                    {`Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`int a = sc.nextInt()`}
-                    <br />
-                    {`if (a >= 0) {`}
-                    <br />
-                    {`	System.out.println("양수 입니다.");`}
-                    <br />
-                    {`} else {`}
-                    <br />
-                    {`	System.out.println("음수 입니다.");`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_04_Code02 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>if ~ else if ~ else 문</ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`if (조건식) {`}
-                    <br />
-                    {`	조건식이 참일 때 실행될 문장`}
-                    <br />
-                    {`} else if (조건식) {`}
-                    <br />
-                    {`	첫번째 조건식이 거짓이고 현재의 조건이 참인 경우 실행 될 문장`}
-                    <br />
-                    {`} else {`}
-                    <br />
-                    {`	조건식이 거짓일 때 실행 될 문장`}
-                    <br />
-                    {`} `} <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_04_Code03 />
+
                 <br />
                 <br />
                 <b>[예제1]</b>
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`Scanner sc = new Scanner(System.in); // 키 입력 받기 위해 스캐너 객체 생성`}
-                    <br />
-                    {`  System.out.print("정수를 입력 하세요 : ");`}
-                    <br />
-                    {`  int number = sc.nextInt(); // 키보드 입력을 정수형 변수에 담음`}
-                    <br />
-                    {`  if(number > 100) {`}
-                    <br />
-                    {`      System.out.println(number + "는 100보다 커요");`}
-                    <br />
-                    {`  } else if(number < 100) {`}
-                    <br />
-                    {`      System.out.println(number + "는 100보다 작아요.");`}
-                    <br />
-                    {`  } else {`}
-                    <br />
-                    {`      System.out.println(number + "는 100과 같아요.");`}
-                    <br />
-                    {`  }`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_04_Code04 />
+
                 <br />
                 <br />
                 <b>[예제2]</b>
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`import java.util.Scanner;`}
-                    <br />
-                    <br />
-                    {`public class condition {`}
-                    <br />
-                    {`    public static void main(String[] args) {`}
-                    <br />
-                    {`        System.out.print("문자를 입력 하세요 : ");`}
-                    <br />
-                    {`        Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`        char ch = sc.next().charAt(0);`}
-                    <br />
-                    {`        if (ch >= 'a' && ch <= 'z') {`}
-                    <br />
-                    {`            System.out.println("알파벳 소문자 입니다.");`}
-                    <br />
-                    {`        } else if(ch >= 'A' && ch <= 'Z') {`}
-                    <br />
-                    {`            System.out.println("알파벳 대문자 입니다.");`}
-                    <br />
-                    {`        } else {`}
-                    <br />
-                    {`            System.out.println("알파벳이 아닙니다.");`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_04_Code05 />
+
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>switch문</ClassContentsTitle2>
               <ClassContentsText>
                 switch문은 if문과 마찬가지로 조건 제어문 입니다. switch문의 if문
@@ -293,144 +553,18 @@ const Java_02_04 = () => {
                   <br />
                   <br />
                 </ClassContentsTextTab>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`switch(변수) {`}
-                    <br />
-                    {`	case 값 :`}
-                    <br />
-                    {`		실행문`}
-                    <br />
-                    {`		....}`}
-                    <br />
-                    {`		break;  // switch문을 탈출 합니다.`}
-                    <br />
-                    {`	case 값 :`}
-                    <br />
-                    {`		....`}
-                    <br />
-                    {`		break;`}
-                    <br />
-                    {`	default:`}
-                    <br />
-                    {`		나머지 조건에 해당`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_04_Code06 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>스위치문 기본</ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`  public class SwitchEx1 {`}
-                    <br />
-                    {`    public static void main(String[] args) {`}
-                    <br />
-                    {`        Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`        System.out.print("계절을 입력 하세요 : ");`}
-                    <br />
-                    {`        String season = sc.next();`}
-                    <br />
-                    {`        switch(season) {`}
-                    <br />
-                    {`            case "spring" : // 해당 조건이 실행 됨`}
-                    <br />
-                    {`                System.out.println("꽃이 피는 봄이 왔어요^^");`}
-                    <br />
-                    {`                break; // 해당 조건을 종료`}
-                    <br />
-                    {`            case "summer" :`}
-                    <br />
-                    {`                System.out.println("무더운 여름 입니다.");`}
-                    <br />
-                    {`                break;`}
-                    <br />
-                    {`            case "fall":`}
-                    <br />
-                    {`            case "autumn" :`}
-                    <br />
-                    {`                System.out.println("쓸쓸한 가을 입니다.");`}
-                    <br />
-                    {`                break;`}
-                    <br />
-                    {`            case "winter":`}
-                    <br />
-                    {`                System.out.println("아직 겨울이네요ㅠㅠㅠㅠㅠㅠ");`}
-                    <br />
-                    {`                break;`}
-                    <br />
-                    {`            default :`}
-                    <br />
-                    {`                System.out.println("계절을 잘못 입력 했습니다.");`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`    }`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_04_Code07 />
+
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>계산기 만들기</ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public class Main {`}
-                    <br />
-                    {`    public static void main(String[] args) {`}
-                    <br />
-                    {`        int x, y;`}
-                    <br />
-                    {`        char op;`}
-                    <br />
-                    {`        Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`        x = sc.nextInt();`}
-                    <br />
-                    {`        op = sc.next().charAt(0);`}
-                    <br />
-                    {`        y = sc.nextInt();`}
-                    <br />
-                    {`        switch(op) {`}
-                    <br />
-                    {`            case '+' :`}
-                    <br />
-                    {`                System.out.printf("SUM : %d\n", x + y);`}
-                    <br />
-                    {`                break;`}
-                    <br />
-                    {`            case '-' :`}
-                    <br />
-                    {`                System.out.printf("SUB : %d\n", x - y);`}
-                    <br />
-                    {`                break;`}
-                    <br />
-                    {`            case '*' :`}
-                    <br />
-                    {`                System.out.printf("MUL : %d\n", x * y);`}
-                    <br />
-                    {`                break;`}
-                    <br />
-                    {`            case '/' :`}
-                    <br />
-                    {`                System.out.printf("DIV : %d\n", x / y);`}
-                    <br />
-                    {`                break;`}
-                    <br />
-                    {`            default :`}
-                    <br />
-                    {`                System.out.println("조건식이 없습니다.");`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`    }`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_04_Code08 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>연습문제(1)</ClassContentsTitle3>
@@ -444,48 +578,7 @@ const Java_02_04 = () => {
                 <b>[선택사항]</b> 성적이 잘못 입력된 경우 다시 입력 받도록 수정
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public class ScoreEx1 {`}
-                    <br />
-                    {`    public static void main(String[] args) {`}
-                    <br />
-                    {`        // 입력을 위한 스캐너 생성`}
-                    <br />
-                    {`        Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`        // 입력을 받아서 정수형 변수에 대입`}
-                    <br />
-                    {`        // 조건문을 만드는데 우선, 0 ~ 100 사이의 정상 적인 입력 인지 확인`}
-                    <br />
-                    {`        while(true) {`}
-                    <br />
-                    {`            System.out.print("성적을 입력 하세요 : ");`}
-                    <br />
-                    {`            int score = sc.nextInt();`}
-                    <br />
-                    {`            if(score < 0 || score > 100) continue;`}
-                    <br />
-                    {`            if(score >= 90) System.out.println("A");`}
-                    <br />
-                    {`            else if(score >= 80) System.out.println("B");`}
-                    <br />
-                    {`            else if(score >= 70) System.out.println("C");`}
-                    <br />
-                    {`            else if(score >= 60) System.out.println("D");`}
-                    <br />
-                    {`            else System.out.println("F");`}
-                    <br />
-                    {`            break;`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_04_Code09 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>연습문제(2)</ClassContentsTitle3>
@@ -493,45 +586,7 @@ const Java_02_04 = () => {
                 · 세자리의 정수를 입력 받아 가장 큰 수 출력
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public class Main {`}
-                    <br />
-                    {`    public static void main(String[] args) {`}
-                    <br />
-                    {`       int num;`}
-                    <br />
-                    {`       int a, b, c;`}
-                    <br />
-                    {`       System.out.print("세자리 정수 입력 : ");`}
-                    <br />
-                    {`       Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`       num = sc.nextInt();`}
-                    <br />
-                    {`       a = num / 100;`}
-                    <br />
-                    {`       b = (num % 100) / 10;`}
-                    <br />
-                    {`       c = num % 10;`}
-                    <br />
-                    <br />
-                    {`       if (a > b) {`}
-                    <br />
-                    {`           System.out.println(Math.max(a, c));`}
-                    <br />
-                    {`       } else {`}
-                    <br />
-                    {`           System.out.println(Math.max(b,c));`}
-                    <br />
-                    {`       }`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_04_Code10 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>연습문제(3)</ClassContentsTitle3>
@@ -600,117 +655,16 @@ const Java_02_04 = () => {
                 <b>[출력 형식]</b>
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    [이름]님.
-                    <br />
-                    [계절에 맞는 인사말]
-                    <br />
-                    아래와 일정으로 [제목]를 진행하고자 하오니 오셔서 자리를
-                    빛내 주시기 바랍니다.
-                    <br />
-                    <br />
-                    ===== 행사 안내 =====
-                    <br />
-                    행사 안내 : [제목]
-                    <br />
-                    일시 : [년]년 [월]월 [일]일
-                    <br />
-                    시간 : [시간]시
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_04_Code11 />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`package 행사안내메일;`}
-                    <br />
-                    {`import java.util.Scanner;`}
-                    <br />
-                    {`// 사용자로부터 이름, 제목, 날짜(20230817), 시간(17) 정보를 입력 받습니다.`}
-                    <br />
-                    {`public class GreetingEx {`}
-                    <br />
-                    {`    public static void main(String[] args) {`}
-                    <br />
-                    {`        Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`        System.out.print("이름 : ");`}
-                    <br />
-                    {`        String name = sc.nextLine();`}
-                    <br />
-                    {`        System.out.print("제목 : ");`}
-                    <br />
-                    {`        String title = sc.nextLine();`}
-                    <br />
-                    {`        System.out.print("날짜 : ");`}
-                    <br />
-                    {`        String date = sc.nextLine();`}
-                    <br />
-                    {`        System.out.print("시간 : ");`}
-                    <br />
-                    {`        String time = sc.nextLine();`}
-                    <br />
-                    <br />
-                    {`        String month = date.substring(4, 6);`}
-                    <br />
-                    {`        String greeting = "";`}
-                    <br />
-                    {`        switch (month) {`}
-                    <br />
-                    {`            case "01" : greeting = "한파의 연속인 1월 입니다."; break;`}
-                    <br />
-                    {`            case "02" : greeting = "한파의 연속인 2월 입니다."; break;`}
-                    <br />
-                    {`            case "03" : greeting = "봄의 기운이 느껴지는 3월 입니다."; break;`}
-                    <br />
-                    {`            case "04" : greeting = "새싹이 피어나는 4월 입니다."; break;`}
-                    <br />
-                    {`            case "05" : greeting = "계절의 여왕 5월 입니다."; break;`}
-                    <br />
-                    {`            case "06" : greeting = "활동하기 좋은 6월 입니다."; break;`}
-                    <br />
-                    {`            case "07" : greeting = "휴가가 기다려지는 7월 입니다."; break;`}
-                    <br />
-                    {`            case "08" : greeting = "무더운 8월 입니다."; break;`}
-                    <br />
-                    {`            case "09" : greeting = "선선한 9월 입니다."; break;`}
-                    <br />
-                    {`            case "10" : greeting = "천고마비의 계절 10월 입니다."; break;`}
-                    <br />
-                    {`            case "11" : greeting = "쓸쓸한 늦가을 11월 입니다."; break;`}
-                    <br />
-                    {`            case "12" : greeting = "한파의 연속인 12월 입니다."; break;`}
-                    <br />
-                    {`            default: System.out.println("알 수 없는 월 입니다.");`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`        System.out.println(name + "님.");`}
-                    <br />
-                    {`        System.out.println(greeting);`}
-                    <br />
-                    {`        System.out.println("아래와 일정으로" + title +"를 진행하고자 하오니 오셔서 자리를 빛내 주시기 바랍니다.\n");`}
-                    <br />
-                    {`        System.out.println("=".repeat(5) + "행사 안내" + "=".repeat(5));`}
-                    <br />
-                    {`        System.out.println("날짜 : " + date.substring(0, 4) + "년 " + month + "월 " + date.substring(6,8) + "일");`}
-                    <br />
-                    {`        System.out.println("시간 : " + time + "시");`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_04_Code12 />
                 <br />
               </ClassContentsText>
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <ArrowNavigation direction="left" />
-            <ArrowNavigation direction="right" />
+            <Java_ArrowNavigation direction="left" />
+            <Java_ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

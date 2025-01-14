@@ -33,7 +33,7 @@ import {
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
 import Java_Title from "../Java_Title";
-import ArrowNavigation from "../../ArrowNavigation";
+import Java_ArrowNavigation from "../Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
 
 const Java_02_02 = () => {
@@ -82,6 +82,183 @@ const Java_02_02 = () => {
       },
     });
     window.location.reload();
+  };
+
+  const Java_02_02_Code01 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+package data_ex1;
+
+// System.out
+public class DataType {
+    public static void main(String[] args) {
+      String name = "Lee";
+      String addr = "Seoul City";
+      char gender = 'F';
+      int age = 18;
+      int kor = 99;
+      int eng = 88;
+      int mat = 40;
+      double aver = 0.0;
+
+	      // 자바 스타일 (print 오버로딩)
+        System.out.println("====== Java Style output =======");
+        System.out.println("Name : " + name);
+        System.out.println("Address : " + addr);
+        System.out.println("Gender : " + gender);
+        System.out.println("Age : " + age);
+        System.out.println("Total : " + (kor + eng + mat));
+        System.out.println("Average : " + (double)(kor + eng + mat) / 3);
+
+        // C언어 스타일 (printf 서식지정자)
+        System.out.println("====== C Style Output ======");
+        System.out.printf("Name : %s\n", name);
+        System.out.printf("Address : %s\n", addr);
+        System.out.printf("Gender : %c\n", gender);
+        System.out.printf("Age : %d\n", age);
+        System.out.printf("Total : %d\n", (kor + eng + mat));
+        System.out.printf("Average : %.2f\n", (double)(kor + eng + mat)/3);
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_02_Code02 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+System.out.println("\"Enter\" 키를 입력 하셔면 종료 됩니다.");
+System.out.println("Hello\\Java"); 
+Ssytem.out.println("25%%");
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_02_Code03 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public static void main(String[] args) throws IOException {
+    int keyCode = System.in.read();
+    System.out.println("KeyCode : " + keyCode);
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_02_Code04 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public static void main(String[] args) throws IOException {
+        while(true) {
+            int keyCode = System.in.read();
+            System.out.println("KeyCode : " + keyCode);
+            if (keyCode == 'q') break;
+        }
+    }
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_02_Code05 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+import java.util.Scanner;	// Scanner 클래스 호출
+ 
+public class Main {
+	public static void main(String[] args) {
+ 
+		Scanner in = new Scanner(System.in);	// Scanner 객체 생성
+ 
+		byte a = in.nextByte(); 		// byte 형 입력 및 리턴
+		short b = in.nextShort(); 		// short 형 입력 및 리턴
+		int c = in.nextInt(); 			// int 형 입력 및 리턴
+		long d = in.nextLong(); 		// long 형 입력 및 리턴
+		char ch = sc.next().charAt(0); // 문자 입력
+ 
+		float e = in.nextFloat(); 		// float 형 입력 및 리턴
+		double f = in.nextDouble(); 	// double 형 입력 및 리턴
+ 
+		boolean g = in.nextBoolean(); 	// boolean 형 입력 및 리턴
+ 
+		String h = in.next(); 			// String 형 입력 및 리턴 (공백을 기준으로 한 단어를 읽음)
+		String i = in.nextLine(); 		// String 형 입력 및 리턴 (개행을 기준으로 한 줄을 읽음)
+	} 
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_02_Code06 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+package Sample1;
+import java.lang.String;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("이름을 입력 하세요 : ");
+        String name = sc.next();
+        sc.nextLine();
+        System.out.print("주소를 입력 하세요 : ");
+        String addr = sc.nextLine();
+        System.out.print("성별을 입력 하세요 : ");
+        char gender = sc.next().charAt(0);
+        System.out.print("나이를 입력 하세요 : ");
+        int age = sc.nextInt();
+
+        System.out.println("==== 회원 정보 출력 =====");
+        System.out.println("이름 : " + name);
+        System.out.println("주소 : " + addr);
+        System.out.println("성별 : " + gender);
+        System.out.println("나이 : " + age);
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
   };
 
   return (
@@ -201,73 +378,7 @@ const Java_02_02 = () => {
                   <br />
                   <br />
                 </ClassContentsTextTab>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`package data_ex1;`}
-                    <br />
-
-                    {`// System.out`}
-                    <br />
-                    {`public class DataType {`}
-                    <br />
-                    {`    public static void main(String[] args) {`}
-                    <br />
-                    {`      String name = "Lee";`}
-                    <br />
-                    {`      String addr = "Seoul City";`}
-                    <br />
-                    {`      char gender = 'F';`}
-                    <br />
-                    {`      int age = 18;`}
-                    <br />
-                    {`      int kor = 99;`}
-                    <br />
-                    {`      int eng = 88;`}
-                    <br />
-                    {`      int mat = 40;`}
-                    <br />
-                    {`      double aver = 0.0;`}
-                    <br />
-
-                    {`	      // 자바 스타일 (print 오버로딩)`}
-                    <br />
-                    {`        System.out.println("====== Java Style output =======");`}
-                    <br />
-                    {`        System.out.println("Name : " + name);`}
-                    <br />
-                    {`        System.out.println("Address : " + addr);`}
-                    <br />
-                    {`        System.out.println("Gender : " + gender);`}
-                    <br />
-                    {`        System.out.println("Age : " + age);`}
-                    <br />
-                    {`        System.out.println("Total : " + (kor + eng + mat));`}
-                    <br />
-                    {`        System.out.println("Average : " + (double)(kor + eng + mat) / 3);`}
-                    <br />
-
-                    {`        // C언어 스타일 (printf 서식지정자)`}
-                    <br />
-                    {`        System.out.println("====== C Style Output ======");`}
-                    <br />
-                    {`        System.out.printf("Name : %s\n", name);`}
-                    <br />
-                    {`        System.out.printf("Address : %s\n", addr);`}
-                    <br />
-                    {`        System.out.printf("Gender : %c\n", gender);`}
-                    <br />
-                    {`        System.out.printf("Age : %d\n", age);`}
-                    <br />
-                    {`        System.out.printf("Total : %d\n", (kor + eng + mat));`}
-                    <br />
-                    {`        System.out.printf("Average : %.2f\n", (double)(kor + eng + mat)/3);`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_02_Code01 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>System 클래스 특징</ClassContentsTitle3>
@@ -293,15 +404,7 @@ const Java_02_02 = () => {
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>기타 출력 예제</ClassContentsTitle3>
-              <ClassContentsCodeBox>
-                <ClassContentsCode>
-                  {`System.out.println("\"Enter\" 키를 입력 하셔면 종료 됩니다.");`}
-                  <br />
-                  {`System.out.println("Hello\\Java");`} <br />
-                  {`Sytem.out.println("25%%");`}
-                  <br />
-                </ClassContentsCode>
-              </ClassContentsCodeBox>
+              <Java_02_02_Code02 />
               <br />
               <ClassContentsTitle3>
                 키보드에서 입력된 내용을 변수에 저장하기
@@ -325,36 +428,9 @@ const Java_02_02 = () => {
                 </font>
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public static void main(String[] args) throws IOException {`}
-                    <br />
-                    {`    int keyCode = System.in.read();`}
-                    <br />
-                    {`    System.out.println("KeyCode : " + keyCode);`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_02_Code03 />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public static void main(String[] args) throws IOException {`}
-                    <br />
-                    {`        while(true) {`}
-                    <br />
-                    {`            int keyCode = System.in.read();`}
-                    <br />
-                    {`            System.out.println("KeyCode : " + keyCode);`}
-                    <br />
-                    {`            if (keyCode == 'q') break;`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`    }`}
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_02_Code04 />
                 <br />
                 <br />
                 <font color="red">
@@ -1389,6 +1465,7 @@ const Java_02_02 = () => {
                 </ClassTable>
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>Scanner 클래스</ClassContentsTitle2>
               <ClassContentsText>
                 1. 기본적인 데이터 타입들을 Scanner의 메소드를 사용하여 입력받을
@@ -1429,48 +1506,7 @@ const Java_02_02 = () => {
                 지정 합니다.
               </ClassContentsText>
               <ClassContentsTitle3>사용 방법</ClassContentsTitle3>
-              <ClassContentsCodeBox>
-                <ClassContentsCode>
-                  {`import java.util.Scanner;	// Scanner 클래스 호출`}
-                  <br />
-                  <br />
-                  {`public class Main {`}
-                  <br />
-                  {`	public static void main(String[] args) {`}
-                  <br />
-                  <br />
-                  {`		Scanner in = new Scanner(System.in);	// Scanner 객체 생성`}
-                  <br />
-                  <br />
-                  {`		byte a = in.nextByte(); 		// byte 형 입력 및 리턴`}
-                  <br />
-                  {`		short b = in.nextShort(); 		// short 형 입력 및 리턴`}
-                  <br />
-                  {`		int c = in.nextInt(); 			// int 형 입력 및 리턴`}
-                  <br />
-                  {`		long d = in.nextLong(); 		// long 형 입력 및 리턴`}
-                  <br />
-                  {`		char ch = sc.next().charAt(0); // 문자 입력`}
-                  <br />
-                  <br />
-                  {`		float e = in.nextFloat(); 		// float 형 입력 및 리턴`}
-                  <br />
-                  {`		double f = in.nextDouble(); 	// double 형 입력 및 리턴`}
-                  <br />
-                  <br />
-                  {`		boolean g = in.nextBoolean(); 	// boolean 형 입력 및 리턴`}
-                  <br />
-                  <br />
-                  {`		String h = in.next(); 			// String 형 입력 및 리턴 (공백을 기준으로 한 단어를 읽음)`}
-                  <br />
-                  {`		String i = in.nextLine(); 		// String 형 입력 및 리턴 (개행을 기준으로 한 줄을 읽음)`}
-                  <br />
-                  {`	} `}
-                  <br />
-                  {`}`}
-                  <br />
-                </ClassContentsCode>
-              </ClassContentsCodeBox>
+              <Java_02_02_Code05 />
               <br />
               <ClassContentsTitle3>실습 예제</ClassContentsTitle3>
               <ClassContentsText>
@@ -1483,61 +1519,12 @@ const Java_02_02 = () => {
                 </font>
                 <br />
               </ClassContentsText>
-              <ClassContentsCodeBox>
-                <ClassContentsCode>
-                  {`package Sample1;`}
-                  <br />
-                  {`import java.lang.String;`}
-                  <br />
-                  {`import java.util.Scanner;`}
-                  <br />
-                  <br />
-                  {`public class Main {`}
-                  <br />
-                  {`    public static void main(String[] args) {`}
-                  <br />
-                  {`        Scanner sc = new Scanner(System.in);`}
-                  <br />
-                  {`        System.out.print("이름을 입력 하세요 : ");`}
-                  <br />
-                  {`        String name = sc.next();`}
-                  <br />
-                  {`        sc.nextLine();`}
-                  <br />
-                  {`        System.out.print("주소를 입력 하세요 : ");`}
-                  <br />
-                  {`        String addr = sc.nextLine();`}
-                  <br />
-                  {`        System.out.print("성별을 입력 하세요 : ");`}
-                  <br />
-                  {`        char gender = sc.next().charAt(0);`}
-                  <br />
-                  {`        System.out.print("나이를 입력 하세요 : ");`}
-                  <br />
-                  {`        int age = sc.nextInt();`}
-                  <br />
-                  <br />
-                  {`        System.out.println("==== 회원 정보 출력 =====");`}
-                  <br />
-                  {`        System.out.println("이름 : " + name);`}
-                  <br />
-                  {`        System.out.println("주소 : " + addr);`}
-                  <br />
-                  {`        System.out.println("성별 : " + gender);`}
-                  <br />
-                  {`        System.out.println("나이 : " + age);`}
-                  <br />
-                  {`    }`}
-                  <br />
-                  {`}`}
-                  <br />
-                </ClassContentsCode>
-              </ClassContentsCodeBox>
+              <Java_02_02_Code06 />
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <ArrowNavigation direction="left" />
-            <ArrowNavigation direction="right" />
+            <Java_ArrowNavigation direction="left" />
+            <Java_ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

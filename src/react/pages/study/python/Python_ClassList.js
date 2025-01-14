@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 
 import {
   EachClass,
@@ -12,12 +12,12 @@ import {
 } from "../../../styles/study/Class_Main";
 import { PythonStudyChapter } from "../../../../util/study/PythonStudyChapter";
 
-const Python_ClassList = () => {
+const Python_ClassList = forwardRef(({ refs }, ref) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
 
-  // 클래스 헤더 클릭시 진입
+  // Class Header onClick
   const handleNext = (cls) => {
     navigate(`/study/python/${cls.id}`, {
       state: {
@@ -28,12 +28,12 @@ const Python_ClassList = () => {
     });
   };
 
-  // 클래스 이름 클릭시 진입
+  // Class Contents onClick
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
   };
 
-  // 챕터 헤더 우측 Arrow 클릭시 토글
+  // Class Header Toggle
   const [isToggleOpenId, setIsToggleOpenId] = useState([]);
   const toggleVisibility = (id) => {
     setIsToggleOpenId((prevId) =>
@@ -41,9 +41,9 @@ const Python_ClassList = () => {
     );
   };
 
-  // 각 챕터/클래스 리스트 생성
+  // Class List Set
   const EachClassComponent = ({ cls, isOpen, onToggle }) => (
-    <EachClass key={cls.id}>
+    <EachClass key={cls.id} ref={(el) => (refs[cls.id.toString()] = el)}>
       <ClassHeader isOpen={isOpen}>
         <ClassHeaderTitle onClick={() => handleNext(cls)}>
           {cls.title}
@@ -74,7 +74,7 @@ const Python_ClassList = () => {
     </EachClass>
   );
 
-  // 경로 받아오기
+  // Path Set
   const updatedPythonStudyChapter = PythonStudyChapter.map((menu) => ({
     ...menu,
     contents: menu.contents.map((content) => ({
@@ -100,6 +100,6 @@ const Python_ClassList = () => {
       ))}
     </>
   );
-};
+});
 
 export default Python_ClassList;

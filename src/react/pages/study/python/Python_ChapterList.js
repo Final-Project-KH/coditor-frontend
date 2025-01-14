@@ -6,20 +6,30 @@ import {
 } from "../../../styles/study/Class_Chapter";
 
 const Python_ChapterList = ({ refs }) => {
-  const handleScrollToSection = (section) => {
-    if (refs[section].current) {
-      const offset = 175; // 상단 여백 오프셋
-      const elementPosition = refs[section].current.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset; // 오프셋 적용
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth", // 부드러운 스크롤
-      });
-    }
+
+    // Scrolling Action Set
+    const handleScrollToSection = (clsId) => {
+      const sectionElement = refs[clsId];
+      const offset = 175;
+      if (sectionElement) {
+        const elementPosition = sectionElement.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - offset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    };
+
+  // Chapter Shortcut Set
+  const ChapterComponent = ({ cls }) => {
+    return (
+      <ChapterName onClick={() => handleScrollToSection(cls.id)}>
+        {cls.title}
+      </ChapterName>
+    );
   };
-
-  const ChapterComponent = ({ cls }) => <ChapterName>{cls.title}</ChapterName>;
-
+  
   return (
     <>
       <ChapterOuter>

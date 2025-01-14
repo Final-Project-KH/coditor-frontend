@@ -33,7 +33,7 @@ import {
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
 import Java_Title from "../Java_Title";
-import ArrowNavigation from "../../ArrowNavigation";
+import Java_ArrowNavigation from "../Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
 
 const Java_01_03 = () => {
@@ -82,6 +82,79 @@ const Java_01_03 = () => {
       },
     });
     window.location.reload();
+  };
+
+  const Java_01_03_Code01 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+package sample;
+/*
+	Author : 홍길동
+	Date : 2023.08.14
+	Purpose : 기본 샘플 프로그램
+*/
+
+public class SampleClass{ // 클래스 블록의 시작
+	// 여기가 진입점 입니다.
+	public static void main(String[] args) { // 메소드 블록의 시작
+		System.out.println("자바 개발을 시작해 봅니다.");
+	}
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_01_03_Code02 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+/* 클래스 블록 */
+public class 클래스명 {
+
+    /* 메소드 블록 */
+    [public|private|protected] [static] (리턴자료형|void) 메소드명1(입력자료형 매개변수, ...) {
+        명령문(statement);
+        ...
+    }
+
+    ...
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_01_03_Code03 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+System.out.print(7);         // print() 메소드는 줄 바꿈을 하지 않음.
+System.out.println(3);       // 정수 출력
+System.out.println(3.14);    // 실수 출력
+System.out.println("자바!"); // 문자열 출력
+System.out.println("문자열끼리의 " + "연결도 가능합니다.");
+System.out.println("숫자" + 3 + "과 문자열의 연결도 가능합니다.");
+System.out.printf("%d", 3); // 서식 지정자 사용
+          `}
+        </code>
+      </pre>
+    );
   };
 
   return (
@@ -136,6 +209,7 @@ const Java_01_03 = () => {
                     }}
                   />
                   <br />
+                  <br />
                   - Package이름을 샘플프로그램 으로 지정
                   <br />
                   - 샘플프로그램에서 마우스 오른쪽 클릭 후 New → Java Class 선택
@@ -143,40 +217,13 @@ const Java_01_03 = () => {
                   - Class 이름을 SampleClass로 지정
                   <br />
                   <br />
-                  <ClassContentsCodeBox>
-                    <ClassContentsCode>
-                      {`package sample;`}
-                      <br />
-                      {`/*`}
-                      <br />
-                      {`	Author : 정경수`}
-                      <br />
-                      {`	Date : 2023.08.14`}
-                      <br />
-                      {`	Purpose : 기본 샘플 프로그램`}
-                      <br />
-                      {`*/`}
-                      <br />
-                      {``}
-                      <br />
-                      {`public class SampleClass{ // 클래스 블록의 시작`}
-                      <br />
-                      {`	// 여기가 진입점 입니다.`}
-                      <br />
-                      {`	public static void main(String[] args) { // 메소드 블록의 시작`}
-                      <br />
-                      {`		System.out.println("자바 개발을 시작해 봅니다.");`}
-                      <br />
-                      {`	}`}
-                      <br />
-                      {`}`}
-                      <br />
-                    </ClassContentsCode>
-                  </ClassContentsCodeBox>
+                  <Java_01_03_Code01 />
+                  <br />
                   <br />
                   ▶️ 클릭으로 실행 후 화면 아래의 창에서 실행 결과 확인
                 </ClassContentsTextTab>
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>자바의 기본 구성</ClassContentsTitle2>
               <hr />
               <ClassContentsText>
@@ -186,34 +233,10 @@ const Java_01_03 = () => {
                   이부분은 파이썬 언어와 대비되는 부분 입니다.
                   <br />
                   <br />
-                  <ClassContentsCodeBox>
-                    <ClassContentsCode>
-                      {`/* 클래스 블록 */`}
-                      <br />
-                      {`public class 클래스명 {`}
-                      <br />
-                      {``}
-                      <br />
-                      {`    /* 메소드 블록 */`}
-                      <br />
-                      {`    [public|private|protected] [static] (리턴자료형|void) 메소드명1(입력자료형 매개변수, ...) {`}
-                      <br />
-                      {`        명령문(statement);`}
-                      <br />
-                      {`        ...`}
-                      <br />
-                      {`    }`}
-                      <br />
-                      {``}
-                      <br />
-                      {`    ...`}
-                      <br />
-                      {`}`}
-                      <br />
-                    </ClassContentsCode>
-                  </ClassContentsCodeBox>
+                  <Java_01_03_Code02 />
                 </ClassContentsTextTab>
               </ClassContentsText>
+              <br />
               <ClassContentsTitle3>코드 설명</ClassContentsTitle3>
               <ClassContentsText>
                 클래스와 매소드의 시작과 끝은 중괄호로 감싸서 표현하며 각 내부의
@@ -255,6 +278,7 @@ const Java_01_03 = () => {
                 자바 프로그램의 동작을 명시하고, 이러한 동작을 컴퓨터에게
                 알려주는데 사용되며 반드시 (;)세미콜론으로 끝나야 합니다.
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>자바 표준 출력 클래스</ClassContentsTitle2>
               <ClassContentsText>
                 <ClassContentsTextTab>
@@ -264,24 +288,7 @@ const Java_01_03 = () => {
                   - print(), println() 메소드 오버로딩으로 구현되어 있습니다.
                   <br />
                   <br />
-                  <ClassContentsCodeBox>
-                    <ClassContentsCode>
-                      {`System.out.print(7);         // print() 메소드는 줄 바꿈을 하지 않음.`}
-                      <br />
-                      {`System.out.println(3);       // 정수 출력`}
-                      <br />
-                      {`System.out.println(3.14);    // 실수 출력`}
-                      <br />
-                      {`System.out.println("자바!"); // 문자열 출력`}
-                      <br />
-                      {`System.out.println("문자열끼리의 " + "연결도 가능합니다.");`}
-                      <br />
-                      {`System.out.println("숫자" + 3 + "과 문자열의 연결도 가능합니다.");`}
-                      <br />
-                      {`System.out.printf("%d\n", 3); // 서식 지정자 사용`}
-                      <br />
-                    </ClassContentsCode>
-                  </ClassContentsCodeBox>
+                  <Java_01_03_Code03 />
                   <br />
                   - %d : 정수형 출력
                   <br />
@@ -298,8 +305,8 @@ const Java_01_03 = () => {
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <ArrowNavigation direction="left" />
-            <ArrowNavigation direction="right" />
+            <Java_ArrowNavigation direction="left" />
+            <Java_ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

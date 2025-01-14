@@ -65,7 +65,7 @@ const Python_Main = () => {
           <Python_ChapterList refs={sectionRefs} />
         </LeftContainer>
         <RightContainer>
-          <Python_ClassList />
+          <Python_ClassList refs={sectionRefs} />
         </RightContainer>
       </Container>
     </Wrap>

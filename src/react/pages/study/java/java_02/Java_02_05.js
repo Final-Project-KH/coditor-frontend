@@ -33,7 +33,7 @@ import {
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
 import Java_Title from "../Java_Title";
-import ArrowNavigation from "../../ArrowNavigation";
+import Java_ArrowNavigation from "../Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
 
 const Java_02_05 = () => {
@@ -82,6 +82,320 @@ const Java_02_05 = () => {
       },
     });
     window.location.reload();
+  };
+
+  const Java_02_05_Code01 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+while(n > 0) {
+	sum += n;
+	n--;
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_05_Code02 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public class While {
+    public static void main(String[]args) {
+        int age;
+				 Scanner sc = new Scanner(System.in);
+        while(true) {
+            System.out.print("나이를 입력 하세요 : ");
+            age = sc.nextInt();
+            if (age > 0 && age < 200) break;
+            else System.out.println("나이를 잘못 입력 하셨습니다. ");
+        }
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_05_Code03 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+int treeHit = 0;
+while (treeHit < 10) {
+    treeHit++;
+    System.out.println("나무를  " + treeHit + "번 찍었습니다.");
+    if (treeHit == 10) {
+        System.out.println("나무 넘어갑니다.");
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_05_Code04 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public class While {
+    public static void main(String[]args) {
+        int age;
+        do {
+            System.out.print("나이를 입력 하세요 : ");
+            Scanner sc = new Scanner(System.in);
+            age = sc.nextInt();
+        } while(age <= 0 || age >= 200);
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_05_Code05 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public static void main(String[]args) {
+    for (int i = 1; i <= 100; i++) {
+        System.out.printf("%4d", i);
+        if (i % 10 == 0) System.out.println();
+    }
+    System.out.println();
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_05_Code06 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+   public static void main(String[]args) {
+      for (int i = 0; i < 10; i++) {
+          for (int j = 0; j < 10; j++) {
+              System.out.print("* ");
+          }
+          System.out.println();
+      }
+  }
+
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_05_Code07 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public static void main(String[]args) {
+  for (int i = 2; i < 10; i++) {
+      for (int j = 1; j < 10; j++) {
+          System.out.printf("%d x %d = %d\n", i, j, (i*j));
+      }
+      System.out.println();
+  }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_05_Code08 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public static void main(String[]args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        for (int i = 0; i <= n*n; i++) {
+            System.out.printf("%3d", i);
+            if(i % n == 0) System.out.println();
+        }
+    }
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_05_Code09 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+Scanner sc = new Scanner(System.in);
+  int n = sc.nextInt();
+  for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n;j++) {
+          System.out.print("* ");
+      }
+      System.out.println();
+ }
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_05_Code10 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public static void main(String[]args) {
+    Scanner sc = new Scanner(System.in);
+    int n = sc.nextInt();
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < i+1;j++) {
+            System.out.print("* ");
+        }
+        System.out.println();
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_05_Code11 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public static void main(String[] args) {
+    int rand1, rand2;
+    int cnt = 0;
+    while(true) {
+        cnt++;
+        rand1 = (int) ((Math.random() * 6) + 1); // 랜덤 함수는 실수형으로 값이 생성되므로 형변환이 필요.
+        rand2 = (int) ((Math.random() * 6) + 1);
+        if((rand1 + rand2) == 12) {
+            System.out.printf("무인도를 %d 번만에 탈출 합니다.\n", cnt);
+            break;
+        } else {
+            System.out.println("주사위의 합이 " + (rand1 + rand2) + "입니다.");
+        }
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_05_Code12 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+public class Main {
+   public static void main(String[] args) {
+       int[] lotto = new int[6];
+       int val, index = 0;
+       boolean isExist = false;
+       while(true) {
+           val = (int)((Math.random() * 45) + 1);
+           for (int i = 0; i < 6; i++) {
+               if (lotto[i] == val) isExist = true;
+           }
+           if(!isExist) lotto[index++] = val;
+           if(index == 6) break;
+           isExist = false;
+       }
+       for(int i = 0; i < 6; i++) {
+           System.out.print(lotto[i] + " ");
+       }
+       System.out.println();
+   }
+}
+          `}
+        </code>
+      </pre>
+    );
+  };
+
+  const Java_02_05_Code13 = () => {
+    useEffect(() => {
+      hljs.highlightAll();
+    }, []);
+    return (
+      <pre>
+        <code className="language-java">
+          {`
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args)  {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("정수 입력 : ");
+        int n = sc.nextInt();
+        for (int i = 1; i <= n * n; i++) {
+            System.out.printf("%4d", i);
+            if (i % n == 0) System.out.println();
+        }
+    }
+}
+          `}
+        </code>
+      </pre>
+    );
   };
 
   return (
@@ -153,78 +467,22 @@ const Java_02_05 = () => {
                 </font>
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`while(n > 0) {`}
-                    <br />
-                    {`	sum += n;`}
-                    <br />
-                    {`	n--;`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code01 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>
                 잘못 입력된 경우 반복문 계속 수행 (유효값 체크)
               </ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public class While {`}
-                    <br />
-                    {`    public static void main(String[]args) {`}
-                    <br />
-                    {`        int age;`}
-                    <br />
-                    {`				 Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`        while(true) {`}
-                    <br />
-                    {`            System.out.print("나이를 입력 하세요 : ");`}
-                    <br />
-                    {`            age = sc.nextInt();`}
-                    <br />
-                    {`            if (age > 0 && age < 200) break;`}
-                    <br />
-                    {`            else System.out.println("나이를 잘못 입력 하셨습니다. ");`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code02 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>정해진 횟수 반복하기</ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`int treeHit = 0;`}
-                    <br />
-                    {`while (treeHit < 10) {`}
-                    <br />
-                    {`    treeHit++;`}
-                    <br />
-                    {`    System.out.println("나무를  " + treeHit + "번 찍었습니다.");`}
-                    <br />
-                    {`    if (treeHit == 10) {`}
-                    <br />
-                    {`        System.out.println("나무 넘어갑니다.");`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code03 />
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>do ~ while문</ClassContentsTitle2>
               <ClassContentsText>
                 먼저 루틴을 수행하고 조건을 나중에 비교 합니다.
@@ -243,32 +501,10 @@ const Java_02_05 = () => {
                 </font>
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public class While {`}
-                    <br />
-                    {`    public static void main(String[]args) {`}
-                    <br />
-                    {`        int age;`}
-                    <br />
-                    {`        do {`}
-                    <br />
-                    {`            System.out.print("나이를 입력 하세요 : ");`}
-                    <br />
-                    {`            Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`            age = sc.nextInt();`}
-                    <br />
-                    {`        } while(age <= 0 || age >= 200);`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code04 />
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>for문</ClassContentsTitle2>
               <ClassContentsText>
                 for문내에 초기식, 조건식, 증감식에 대한 식을 가지고 있는 유한의
@@ -292,122 +528,30 @@ const Java_02_05 = () => {
               </ClassContentsText>
               <ClassContentsTitle3>기본 for문</ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public static void main(String[]args) {`}
-                    <br />
-                    {`    for (int i = 1; i <= 100; i++) {`}
-                    <br />
-                    {`        System.out.printf("%4d", i);`}
-                    <br />
-                    {`        if (i % 10 == 0) System.out.println();`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`    System.out.println();`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code05 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>중첩 for문(별찍기)</ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`   public static void main(String[]args) {`}
-                    <br />
-                    {`      for (int i = 0; i < 10; i++) {`}
-                    <br />
-                    {`          for (int j = 0; j < 10; j++) {`}
-                    <br />
-                    {`              System.out.print("* ");`}
-                    <br />
-                    {`          }`}
-                    <br />
-                    {`          System.out.println();`}
-                    <br />
-                    {`      }`}
-                    <br />
-                    {`  }`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code06 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>구구단 찍기</ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public static void main(String[]args) {`}
-                    <br />
-                    {`  for (int i = 2; i < 10; i++) {`}
-                    <br />
-                    {`      for (int j = 1; j < 10; j++) {`}
-                    <br />
-                    {`          System.out.printf("%d x %d = %d\n", i, j, (i*j));`}
-                    <br />
-                    {`      }`}
-                    <br />
-                    {`      System.out.println();`}
-                    <br />
-                    {`  }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code07 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>사각형 찍기</ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public static void main(String[]args) {`}
-                    <br />
-                    {`        Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`        int n = sc.nextInt();`}
-                    <br />
-                    {`        for (int i = 0; i <= n*n; i++) {`}
-                    <br />
-                    {`            System.out.printf("%3d", i);`}
-                    <br />
-                    {`            if(i % n == 0) System.out.println();`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`    }`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code08 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>별찍기 (2중 for 기본)</ClassContentsTitle3>
               <ClassContentsText>
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`  int n = sc.nextInt();`}
-                    <br />
-                    {`  for (int i = 0; i < n; i++) {`}
-                    <br />
-                    {`      for (int j = 0; j < n;j++) {`}
-                    <br />
-                    {`          System.out.print("* ");`}
-                    <br />
-                    {`      }`}
-                    <br />
-                    {`      System.out.println();`}
-                    <br />
-                    {` }`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code09 />
                 <br />
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>분기분</ClassContentsTitle2>
               <ClassContentsTitle3>break문</ClassContentsTitle3>
               <ClassContentsText>
@@ -434,36 +578,14 @@ const Java_02_05 = () => {
               <ClassContentsText>
                 메소드에서 사용되며, 메소드의 실행을 종료하고 값을 반환합니다.
               </ClassContentsText>
+              <br />
               <ClassContentsTitle2>실습문제</ClassContentsTitle2>
               <ClassContentsTitle3>연습문제(1)</ClassContentsTitle3>
               <ClassContentsText>
                 · 삼각형 별찍기
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public static void main(String[]args) {`}
-                    <br />
-                    {`    Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`    int n = sc.nextInt();`}
-                    <br />
-                    {`    for (int i = 0; i < n; i++) {`}
-                    <br />
-                    {`        for (int j = 0; j < i+1;j++) {`}
-                    <br />
-                    {`            System.out.print("* ");`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`        System.out.println();`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code10 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>연습문제(2)</ClassContentsTitle3>
@@ -476,40 +598,7 @@ const Java_02_05 = () => {
                   미만의 무작위 실수 값을 반환합니다.
                 </ClassContentsCodeBox>
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public static void main(String[] args) {`}
-                    <br />
-                    {`    int rand1, rand2;`}
-                    <br />
-                    {`    int cnt = 0;`}
-                    <br />
-                    {`    while(true) {`}
-                    <br />
-                    {`        cnt++;`}
-                    <br />
-                    {`        rand1 = (int) ((Math.random() * 6) + 1); // 랜덤 함수는 실수형으로 값이 생성되므로 형변환이 필요.`}
-                    <br />
-                    {`        rand2 = (int) ((Math.random() * 6) + 1);`}
-                    <br />
-                    {`        if((rand1 + rand2) == 12) {`}
-                    <br />
-                    {`            System.out.printf("무인도를 %d 번만에 탈출 합니다.\n", cnt);`}
-                    <br />
-                    {`            break;`}
-                    <br />
-                    {`        } else {`}
-                    <br />
-                    {`            System.out.println("주사위의 합이 " + (rand1 + rand2) + "입니다.");`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code11 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>연습문제(3)</ClassContentsTitle3>
@@ -517,50 +606,7 @@ const Java_02_05 = () => {
                 · 중복 없는 로또 번호 만들기
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`public class Main {`}
-                    <br />
-                    {`   public static void main(String[] args) {`}
-                    <br />
-                    {`       int[] lotto = new int[6];`}
-                    <br />
-                    {`       int val, index = 0;`}
-                    <br />
-                    {`       boolean isExist = false;`}
-                    <br />
-                    {`       while(true) {`}
-                    <br />
-                    {`           val = (int)((Math.random() * 45) + 1);`}
-                    <br />
-                    {`           for (int i = 0; i < 6; i++) {`}
-                    <br />
-                    {`               if (lotto[i] == val) isExist = true;`}
-                    <br />
-                    {`           }`}
-                    <br />
-                    {`           if(!isExist) lotto[index++] = val;`}
-                    <br />
-                    {`           if(index == 6) break;`}
-                    <br />
-                    {`           isExist = false;`}
-                    <br />
-                    {`       }`}
-                    <br />
-                    {`       for(int i = 0; i < 6; i++) {`}
-                    <br />
-                    {`           System.out.print(lotto[i] + " ");`}
-                    <br />
-                    {`       }`}
-                    <br />
-                    {`       System.out.println();`}
-                    <br />
-                    {`   }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code12 />
                 <br />
               </ClassContentsText>
               <ClassContentsTitle3>연습문제(4)</ClassContentsTitle3>
@@ -572,41 +618,13 @@ const Java_02_05 = () => {
                 순서대로 채워 넣음
                 <br />
                 <br />
-                <ClassContentsCodeBox>
-                  <ClassContentsCode>
-                    {`import java.util.Scanner;`}
-                    <br />
-                    <br />
-                    {`public class Test {`}
-                    <br />
-                    {`    public static void main(String[] args)  {`}
-                    <br />
-                    {`        Scanner sc = new Scanner(System.in);`}
-                    <br />
-                    {`        System.out.print("정수 입력 : ");`}
-                    <br />
-                    {`        int n = sc.nextInt();`}
-                    <br />
-                    {`        for (int i = 1; i <= n * n; i++) {`}
-                    <br />
-                    {`            System.out.printf("%4d", i);`}
-                    <br />
-                    {`            if (i % n == 0) System.out.println();`}
-                    <br />
-                    {`        }`}
-                    <br />
-                    {`    }`}
-                    <br />
-                    {`}`}
-                    <br />
-                  </ClassContentsCode>
-                </ClassContentsCodeBox>
+                <Java_02_05_Code13 />
               </ClassContentsText>
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-            <ArrowNavigation direction="left" />
-            <ArrowNavigation direction="right" />
+            <Java_ArrowNavigation direction="left" />
+            <Java_ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

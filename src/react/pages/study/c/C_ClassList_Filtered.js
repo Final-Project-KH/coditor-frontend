@@ -18,6 +18,18 @@ const C_ClassList_Filtered = ({ chapter }) => {
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
 
+    // Class Header onClick
+    const handleNext = (cls) => {
+      navigate(`/study/c/${cls.id}`, {
+        state: {
+          firstpath: firstpath,
+          secondpath: secondpath,
+          thirdpath: cls.title,
+        },
+      });
+    };
+
+    
   // 클래스 이름 클릭시 진입
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
@@ -27,7 +39,7 @@ const C_ClassList_Filtered = ({ chapter }) => {
   const EachClassComponent = ({ cls, isOpen, onToggle }) => (
     <EachClass key={cls.id}>
       <ClassHeader isOpen={isOpen}>
-        <ClassHeaderTitle onClick={() => window.location.reload()}>
+        <ClassHeaderTitle onClick={() => handleNext(cls)}>
           {cls.title}
         </ClassHeaderTitle>
       </ClassHeader>
