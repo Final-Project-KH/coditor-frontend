@@ -149,7 +149,7 @@ export const StyledDiv = styled.div.attrs({
   id: "styleddiv",
 })`
   width: 100%;
-  height: 450px;
+  height: 350px;
   display: flex;
   position: relative;
   overflow: hidden;

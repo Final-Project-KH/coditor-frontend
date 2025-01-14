@@ -13,12 +13,10 @@ export const authSlice = createSlice({
   },
   reducers: {
     setLoginData: (state, action) => {
-      state.keynumber = action.payload.keynumber;
-      state.nickname = action.payload.nickname;
-      state.accesstoken = action.payload.accesstoken;
-      state.accesstokenexpiresin = action.payload.accesstokenexpiresin;
-      state.refreshtoken = action.payload.refreshtoken;
-      state.refreshtokenexpiresin = action.payload.refreshtokenexpiresin;
+      return {
+        ...state,
+        ...action.payload,
+      };
     },
     setError: (state, action) => {
       state.error = action.payload;

@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, {useRef} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
 
 import {
   Wrap,
@@ -19,7 +19,7 @@ import Java_ClassList from "./Java_ClassList";
 const Java_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
+  const {firstpath, secondpath} = location.state || {};
 
   // TopBox firstpath
   const handleStudy = () => {

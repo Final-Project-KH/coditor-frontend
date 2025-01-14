@@ -32,17 +32,13 @@ import {
 } from "../../styles/login/login";
 
 const Login = () => {
-  // 모달 (Modal) 창을 열고 닫기
   const [modalOpen, setModalOpen] = useState(false);
-
-  // 모달창에 대한 문구
   const [modalContent, setModalContent] = useState("");
-  // Modal 모달창 닫는 함수
   const closeMadal = () => {
+    console.log("closeMadal 호출됨");
     setModalOpen(false);
   };
 
-  // Modal 모달창 confirm 동작 함수
   const confirmModal = () => {
     console.log("Confirm 버튼이 눌러졌습니다.");
     closeMadal();
@@ -53,106 +49,133 @@ const Login = () => {
   const [isId, setIsId] = useState("");
   const [isPw, setIsPw] = useState("");
   const [isChecked, setIsChecked] = useState("");
-  const [googleToken, setGoogleToken] = useState(null); // 구글 토큰 상태 추가
-
+  const [isSubmitting, setIsSubmitting] = useState(false); // 로그인 중 상태 관리
+  const [rsp, setRsp] = useState(null); // rsp 상태 추가
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {error, nickname} = useSelector((state) => state.auth);
 
   const handleInputChange = (e, setState, setValidState) => {
+    console.log(`handleInputChange 호출: ${e.target.value}`);
     setState(e.target.value);
     setValidState(e.target.value.length >= 5);
   };
 
   const handleCheckBox = (e) => {
+    console.log(`Checkbox 상태 변경: ${e.target.checked}`);
     setIsChecked(e.target.checked);
   };
 
-  // 실제 뷰포트 높이를 계산하여 CSS 변수에 설정
   const setViewportHeight = () => {
-    const vh = window.innerHeight * 0.01; // 1 vh에 해당하는 값 계산
-    document.documentElement.style.setProperty("--vh", `${vh}px`); // CSS 변수에 설정
+    const vh = window.innerHeight * 0.01;
+    console.log(`Viewport height 설정: ${vh}`);
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
   };
 
   setViewportHeight();
   window.addEventListener("resize", setViewportHeight);
 
-  const handleSubmit = async () => {
-    // e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("handleSubmit 호출됨");
+
+    if (isSubmitting) {
+      console.log("로그인 중인 상태로 중복 요청 방지");
+      return;
+    }
+
+    setIsSubmitting(true); // 로그인 요청 시작
+    console.log("로그인 요청 시작");
 
     try {
-      const rsp = await AxiosApi.login(inputUserId, inputPw);
-      console.log(rsp.data);
+      const response = await AxiosApi.login(inputUserId, inputPw); // 로그인 API 호출
+      console.log("로그인 응답:", response.data);
+      setRsp(response); // 응답 데이터를 상태에 저장
 
-      if (rsp.data.grantType === "Bearer") {
-        const keynumber = Common.getNewUserKeyNumber(rsp.data.accessToken);
-        const nickname = Common.getNewNickname(rsp.data.accessToken);
-        const accesstokenexpirationtime = Common.getNewAccessTokenExpiresIn(
-          rsp.data.accessToken
+      if (response.data.grantType === "Bearer") {
+        const nickname = JwtDecoding.getFieldFromToken(
+          response.data.accessToken,
+          "nickname"
         );
-        const refreshtokenexpirationtime = Common.getNewRefreshTokenExpiresIn(
-          rsp.data.refreshToken
-        );
-        console.log("액세스 토큰 : ", rsp.data.accessToken);
-        console.log("리프레쉬 토큰 : ", rsp.data.refreshToken);
+        console.log("액세스 토큰: ", response.data.accessToken);
+        console.log("리프레쉬 토큰: ", response.data.refreshToken);
+
         dispatch(
           setLoginData({
-            keynumber: keynumber,
             nickname: nickname,
-            accesstoken: rsp.data.accessToken,
-            accesstokenexpiresin: accesstokenexpirationtime,
-            refreshtoken: rsp.data.refreshToken,
-            refreshtokenexpiresin: refreshtokenexpirationtime,
+            accesstoken: response.data.accessToken,
+            accesstokenexpiresin: response.data.accessTokenExpiresIn,
+            refreshtoken: response.data.refreshToken,
+            refreshtokenexpiresin: response.data.refreshTokenExpiresIn,
           })
         );
-        navigate("/"); // 로그인 과정에서 추가적인 정보를 가져오는 axios 함수 한번 더 불러주기?
+
+        navigate("/"); // 로그인 후 홈 페이지로 이동
       }
     } catch (err) {
+      console.error("로그인 실패: ", err);
       dispatch(setError(err.rsp?.data?.message || "Login Failed"));
+    } finally {
+      setIsSubmitting(false); // 로그인 요청 끝
     }
   };
 
+  // useEffect에서 rsp 상태를 감지하여 처리
+  useEffect(() => {
+    if (rsp && rsp.data.grantType === "Bearer") {
+      navigate("/"); // 필요한 경우 navigate만 유지
+    }
+  }, [rsp]);
+
+  //////////////////// 구글 로그인 메소드 ////////////////////
   const onGoogleLoginSuccess = async (response) => {
+    console.log("구글 로그인 성공: ", response);
     const token = response.credential;
 
     if (!token) {
+      console.log("Google 토큰이 존재하지 않음");
       setModalOpen(true);
       setModalContent("Google 토큰이 존재하지 않습니다.");
       return;
     }
 
     try {
-      // 백엔드 API 호출
+      console.log("구글 로그인 API 호출");
       const rsp = await AxiosApi.googleLogin(token);
+      console.log("구글 로그인 응답: ", rsp.data);
+
       const data = rsp.data;
 
       if (data && data.grantType === "Bearer") {
-        // 정상 로그인 처리
+        if (data.isNewUser === "true") {
+          // 새로운 사용자로 로그인
+          console.log("새로운 사용자로 로그인");
+        } else {
+          // 기존 사용자 로그인
+          console.log("기존 사용자로 로그인");
+        }
+
+        // 공통된 토큰 처리
+        const accessTokenExpirationTime = Common.getNewAccessTokenExpiresIn(
+          data.accessToken
+        );
+        const refreshTokenExpirationTime = Common.getNewRefreshTokenExpiresIn(
+          data.refreshToken
+        );
+        const keynumber = Common.getNewUserKeyNumber(data.accessToken);
+        const nickname = Common.getNewNickname(data.accessToken);
+
         Common.setAccessToken(data.accessToken);
         Common.setRefreshToken(data.refreshToken);
+        Common.setAccessTokenExpiresIn(accessTokenExpirationTime);
+        Common.setRefreshTokenExpiresIn(refreshTokenExpirationTime);
+        Common.setNickname(nickname);
 
-        // 로그인 성공 후 홈 페이지로 리디렉션
         navigate("/");
-
-        console.log("로그인 성공");
-      } else if (data.error && data.error === "EMAIL_EXISTS") {
-        // 이메일이 이미 존재하는 경우
-        console.log("이미 존재하는 이메일: ", data.error); // 로그 추가
-
-        // 로그인 실패 후 홈 페이지로 리디렉션
-        navigate("/");
-
-        // 페이지 이동 후 alert을 띄우기 위한 방법
-        setTimeout(() => {
-          alert("이미 존재하는 계정입니다.");
-          console.log("이미 존재하는 계정입니다."); // 로그 추가
-        }, 500); // 페이지가 이동할 때까지 약간의 시간 딜레이 추가
       } else {
         setModalOpen(true);
         setModalContent(`구글 로그인 실패: ${data.error}`);
       }
     } catch (error) {
-      // 백엔드와의 통신 에러 처리
       console.error(
         "Google login failure: ",
         error.response?.data || error.message
@@ -162,33 +185,103 @@ const Login = () => {
     }
   };
 
-  const onGoogleLoginFailure = (error) => {
-    const errorMessage = error?.details || "구글 로그인에 실패했습니다.";
-    setModalOpen(true);
-    setModalContent(`구글 로그인 실패: ${errorMessage}`);
-  };
-  // 구글 로그인 스크립트 로드
+  //////////////////// 구글 로그인 스크립트 로드 ////////////////////
   useEffect(() => {
+    console.log("구글 로그인 스크립트 로드 시작");
     const script = document.createElement("script");
     script.src = "https://accounts.google.com/gsi/client";
     script.async = true;
     script.onload = () => {
+      console.log("구글 로그인 스크립트 로드 완료");
       window.google.accounts.id.initialize({
         client_id:
           "159300514752-4da56n3as35i523kr5resdcqaba8e7t4.apps.googleusercontent.com",
-        callback: onGoogleLoginSuccess,
+        callback: onGoogleLoginSuccess, // 구글 로그인 성공 시 콜백 함수
       });
     };
     document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script); // 컴포넌트가 unmount 될 때 스크립트 제거
+      document.body.removeChild(script); // 컴포넌트 언마운트 시 스크립트 제거
+      console.log("구글 로그인 스크립트 제거");
     };
-  }, []);
-  // 이미지 클릭 시 구글 로그인 트리거
+  }, []); // 의존성 배열을 비워서 한 번만 실행되도록 설정
+
   const handleGoogleLoginClick = () => {
+    console.log("구글 로그인 클릭");
     window.google.accounts.id.prompt();
   };
+
+  const initializeKakao = () => {
+    console.log("카카오 SDK 초기화 시작");
+    if (window.Kakao && !window.Kakao.isInitialized()) {
+      window.Kakao.init("ccd0061668dbb55d02bf897bc1dea392");
+      console.log("카카오 SDK 초기화 완료");
+    } else {
+      console.error("카카오 SDK 로드 실패 또는 이미 초기화됨");
+    }
+  };
+
+  const handleKakaoLoginClick = () => {
+    console.log("카카오 로그인 클릭");
+    if (!window.Kakao) {
+      console.error("카카오 SDK가 로드되지 않았습니다.");
+      return;
+    }
+
+    if (!window.Kakao.isInitialized()) {
+      initializeKakao();
+    }
+
+    const width = 600;
+    const height = 600;
+    const left = (window.innerWidth - width) / 2;
+    const top = (window.innerHeight - height) / 2;
+
+    const kakaoLoginUrl =
+      "https://kauth.kakao.com/oauth/authorize?client_id=ccd0061668dbb55d02bf897bc1dea392&redirect_uri=http://localhost:3000/login/oauth2/code/kakao&response_type=code";
+
+    window.open(
+      kakaoLoginUrl,
+      "KakaoLogin",
+      `width=${width},height=${height},left=${left},top=${top}`
+    );
+  };
+
+  const handleKakaoLoginCallback = async (code) => {
+    try {
+      console.log("카카오 로그인 콜백 처리 시작, 코드:", code);
+      const response = await AxiosApi.kakaoLogin(code); // 백엔드로 인가 코드 전송
+      console.log("카카오 로그인 성공:", response);
+      navigate("/"); // 로그인 성공 시 메인 페이지로 이동
+    } catch (error) {
+      console.error("카카오 로그인 실패:", error);
+      alert("카카오 로그인에 실패했습니다. 다시 시도해주세요.");
+    }
+  };
+
+  useEffect(() => {
+    console.log("카카오 SDK 로딩 확인");
+    const checkKakaoSDK = setInterval(() => {
+      if (window.Kakao) {
+        clearInterval(checkKakaoSDK);
+        console.log("카카오 SDK 로드 완료");
+        initializeKakao();
+      } else {
+        console.log("카카오 SDK 로딩 중...");
+      }
+    }, 500);
+
+    // 리다이렉트 후 URL에서 인가 코드 추출 및 처리
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+
+    if (code) {
+      handleKakaoLoginCallback(code);
+    }
+
+    return () => clearInterval(checkKakaoSDK);
+  }, []);
 
   return (
     <GoogleOAuthProvider clientId="159300514752-4da56n3as35i523kr5resdcqaba8e7t4.apps.googleusercontent.com">
@@ -259,7 +352,10 @@ const Login = () => {
               >
                 <StyledP></StyledP>
               </ThirdLoginItem>
-              <ThirdLoginItem icon="/images/sns/kakao.png">
+              <ThirdLoginItem
+                icon="/images/sns/kakao.png"
+                onClick={handleKakaoLoginClick} // 카카오 로그인 클릭 핸들러 적용
+              >
                 <StyledLink to="#"></StyledLink>
               </ThirdLoginItem>
               <ThirdLoginItem icon="/images/sns/naver.png">
