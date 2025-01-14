@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import {
@@ -10,16 +9,14 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../styles/study/Class_Main";
+} from "../../../../styles/study/Class_Main";
+import CPlus_Title from "../CPlus_Title";
+import CPlus_ClassList_Filtered from "../CPlus_ClassList_Filtered";
 
-import CPlus_ChapterList from "./CPlus_ChapterList";
-import CPlus_Title from "./CPlus_Title";
-import CPlus_ClassList from "./CPlus_ClassList";
-
-const CPlus_Main = () => {
+const CPlus_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
+  const { firstpath, secondpath, thirdpath } = location.state || {};
 
   // TopBox firstpath
   const handleStudy = () => {
@@ -31,7 +28,7 @@ const CPlus_Main = () => {
   };
 
   // TopBox secondpath
-  const handleRefresh = () => {
+  const handleStudyCPlus = () => {
     navigate("/study/cplus", {
       state: {
         firstpath: firstpath,
@@ -40,18 +37,16 @@ const CPlus_Main = () => {
     });
   };
 
-  // Chapter Scrolling
-  const sectionRefs = {
-    section01: useRef(null),
-    section02: useRef(null),
-    section03: useRef(null),
-    section04: useRef(null),
-    section05: useRef(null),
-    section06: useRef(null),
-    section07: useRef(null),
-    section08: useRef(null),
-    section09: useRef(null),
-    section10: useRef(null),
+  // TopBox thirdpath
+  const handleRefresh = () => {
+    navigate("/study/cplus/01", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+      },
+    });
+    window.location.reload();
   };
 
   return (
@@ -60,20 +55,23 @@ const CPlus_Main = () => {
         <TopBox>
           <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{secondpath}</TopBoxText>
+          <TopBoxText onClick={() => handleStudyCPlus()}>
+            {secondpath}
+          </TopBoxText>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <TopBoxText onClick={() => handleRefresh()}>{thirdpath}</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <Container>
         <LeftContainer>
           <CPlus_Title />
-          <CPlus_ChapterList refs={sectionRefs} />
         </LeftContainer>
         <RightContainer>
-          <CPlus_ClassList />
+          <CPlus_ClassList_Filtered chapter="01" />
         </RightContainer>
       </Container>
     </Wrap>
   );
 };
 
-export default CPlus_Main;
+export default CPlus_01;

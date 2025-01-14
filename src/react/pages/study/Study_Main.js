@@ -15,7 +15,7 @@ import C_Title from "./c/C_Title";
 import CPlus_Title from "./cplus/CPlus_Title";
 import JavaScript_Title from "./javascript/JavaScript_Title";
 
-const Study = () => {
+const Study_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath } = location.state || {};
@@ -99,4 +99,4 @@ const Study = () => {
   );
 };
 
-export default Study;
+export default Study_Main;

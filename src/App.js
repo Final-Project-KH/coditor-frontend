@@ -8,30 +8,30 @@ import Terms from "./react/pages/legal/Terms";
 import Privacy from "./react/pages/legal/Privacy";
 import About from "./react/pages/about/About";
 import Main from "./react/pages/main/Main";
-import Study from "./react/pages/study/Study";
+import Study_Main from "./react/pages/study/Study_Main";
 import Java_Main from "./react/pages/study/java/Java_Main";
-import Java_01 from "./react/pages/study/java/Java_01";
-import Java_01_01 from "./react/pages/study/java/Java_01_01";
-import Java_01_02 from "./react/pages/study/java/Java_01_02";
-import Java_01_03 from "./react/pages/study/java/Java_01_03";
-import Java_02 from "./react/pages/study/java/Java_02";
-import Java_02_01 from "./react/pages/study/java/Java_02_01";
-import Java_02_02 from "./react/pages/study/java/Java_02_02";
-import Java_02_03 from "./react/pages/study/java/Java_02_03";
-import Java_02_04 from "./react/pages/study/java/Java_02_04";
-import Java_02_05 from "./react/pages/study/java/Java_02_05";
+import Java_01 from "./react/pages/study/java/java_01/Java_01";
+import Java_01_01 from "./react/pages/study/java/java_01/Java_01_01";
+import Java_01_02 from "./react/pages/study/java/java_01/Java_01_02";
+import Java_01_03 from "./react/pages/study/java/java_01/Java_01_03";
+import Java_02 from "./react/pages/study/java/java_02/Java_02";
+import Java_02_01 from "./react/pages/study/java/java_02/Java_02_01";
+import Java_02_02 from "./react/pages/study/java/java_02/Java_02_02";
+import Java_02_03 from "./react/pages/study/java/java_02/Java_02_03";
+import Java_02_04 from "./react/pages/study/java/java_02/Java_02_04";
+import Java_02_05 from "./react/pages/study/java/java_02/Java_02_05";
 import Python_Main from "./react/pages/study/python/Python_Main";
-import Python_01 from "./react/pages/study/python/Python_01";
-import Python_01_01 from "./react/pages/study/python/Python_01_01";
+import Python_01 from "./react/pages/study/python/python_01/Python_01";
+import Python_01_01 from "./react/pages/study/python/python_01/Python_01_01";
 import C_Main from "./react/pages/study/c/C_Main";
-import C_01 from "./react/pages/study/c/C_01";
-import C_01_01 from "./react/pages/study/c/C_01_01";
+import C_01 from "./react/pages/study/c/c_01/C_01";
+import C_01_01 from "./react/pages/study/c/c_01/C_01_01";
 import CPlus_Main from "./react/pages/study/cplus/CPlus_Main";
-import CPlus_01 from "./react/pages/study/cplus/CPlus_01";
-import CPlus_01_01 from "./react/pages/study/cplus/CPlus_01_01";
+import CPlus_01 from "./react/pages/study/cplus/cplus_01/CPlus_01";
+import CPlus_01_01 from "./react/pages/study/cplus/cplus_01/CPlus_01_01";
 import JavaScript_Main from "./react/pages/study/javascript/JavaScript_Main";
-import JavaScript_01 from "./react/pages/study/javascript/JavaScript_01";
-import JavaScript_01_01 from "./react/pages/study/javascript/JavaScript_01_01";
+import JavaScript_01 from "./react/pages/study/javascript/javascript_01/JavaScript_01";
+import JavaScript_01_01 from "./react/pages/study/javascript/javascript_01/JavaScript_01_01";
 import CodingTest from "./react/pages/codingtest/CodingTest";
 import CT_Java_Main from "./react/pages/codingtest/java/Java_Main";
 import CT_Java_Practice_Main from "./react/pages/codingtest/java/Java_Practice_Main";
@@ -63,7 +63,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route path="/" element={<Main />} />
               <Route path="/about" element={<About />} />
-              <Route path="/study" element={<Study />} />
+              <Route path="/study" element={<Study_Main />} />
               <Route path="/study/java" element={<Java_Main />} />
               <Route path="/study/java/01" element={<Java_01 />} />
               <Route path="/study/java/01/01" element={<Java_01_01 />} />

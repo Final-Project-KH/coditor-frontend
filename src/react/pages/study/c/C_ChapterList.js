@@ -1,9 +1,9 @@
+import { CStudyChapter } from "../../../../util/study/CStudyChapter";
 import {
-  ClassIndex,
-  ClassIndexName,
-  ClassIndexInner,
-  ClassIndexHr,
-} from "../../../styles/study/Study";
+  ChapterOuter,
+  ChapterInner,
+  ChapterName,
+} from "../../../styles/study/Class_Chapter";
 
 const C_ChapterList = ({ refs }) => {
 
@@ -19,21 +19,17 @@ const C_ChapterList = ({ refs }) => {
     }
   };
 
+  const ChapterComponent = ({ cls }) => <ChapterName>{cls.title}</ChapterName>;
+
   return (
     <>
-    <ClassIndex>
-      <ClassIndexInner>
-      <ClassIndexName onClick={() => handleScrollToSection("section01")}>01. C 기본</ClassIndexName>
-      <ClassIndexHr />
-      <ClassIndexName onClick={() => handleScrollToSection("section02")}>02. 자료형과 연산자</ClassIndexName>
-      <ClassIndexHr />
-      <ClassIndexName onClick={() => handleScrollToSection("section03")}>03. 제어문</ClassIndexName>
-      <ClassIndexHr />
-      <ClassIndexName onClick={() => handleScrollToSection("section04")}>04. 배열과 문자열</ClassIndexName>
-      <ClassIndexHr />
-      <ClassIndexName onClick={() => handleScrollToSection("section05")}>05. 함수 및 자료 처리</ClassIndexName>
-      </ClassIndexInner>
-      </ClassIndex>
+      <ChapterOuter>
+        <ChapterInner>
+          {CStudyChapter.map((cls) => (
+            <ChapterComponent key={cls.id} cls={cls} />
+          ))}
+        </ChapterInner>
+      </ChapterOuter>
     </>
   );
 };

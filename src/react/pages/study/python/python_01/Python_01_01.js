@@ -15,11 +15,7 @@ import {
   EachClass,
   ClassHeader,
   ClassHeaderTitle,
-  ClassHeaderTitleButton,
-  ClassContents,
-  ClassSet,
-  ClassName,
-} from "../../../styles/study/Class_Main";
+} from "../../../../styles/study/Class_Main";
 import {
   ClassContentsTitle1,
   ClassContentsText,
@@ -34,20 +30,18 @@ import {
   ClassTableTd,
   ClassTableTr,
   ArrowContainer,
-  LeftArrow,
-  RightArrow,
-  ArrowLink,
-} from "../../../styles/study/Class_Each";
-import { StickyClassBox } from "../../../styles/study/Study";
-import Python_SubjectTitle from "./Python_Title";
-import { PythonStudyChapter } from "../../../../util/study/PythonStudyChapter";
-import ArrowNavigation from "../ArrowNavigation";
+} from "../../../../styles/study/Class_Each";
+import { StickyClassBox } from "../../../../styles/study/Study";
+import Python_Title from "../Python_Title";
+import ArrowNavigation from "../../ArrowNavigation";
+import Python_ClassList_Filtered from "../Python_ClassList_Filtered";
 
 const Python_01_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
 
+  // TopBox firstpath
   const handleStudy = () => {
     navigate("/study", {
       state: {
@@ -55,6 +49,8 @@ const Python_01_01 = () => {
       },
     });
   };
+
+  // TopBox secondpath
   const handleStudyPython = () => {
     navigate("/study/python", {
       state: {
@@ -63,6 +59,8 @@ const Python_01_01 = () => {
       },
     });
   };
+
+  // TopBox thirdpath
   const handleStudyPython01 = () => {
     navigate("/study/python/01", {
       state: {
@@ -72,6 +70,8 @@ const Python_01_01 = () => {
       },
     });
   };
+
+  // TopBox fourthpath
   const handleRefresh = () => {
     navigate("/study/python/01/01", {
       state: {
@@ -83,78 +83,6 @@ const Python_01_01 = () => {
     });
     window.location.reload();
   };
-
-  const handleNext = (cls) => {
-    navigate(`/study/python/${cls.id}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: cls.title,
-      },
-    });
-  };
-
-  // 챕터리스트 토글링 및 간소화
-  const handleNavigation = (navigatepath, data) => {
-    navigate(navigatepath, { state: data });
-  };
-
-  const [isToggleOpenId, setIsToggleOpenId] = useState([]);
-
-  const toggleVisibility = (id) => {
-    setIsToggleOpenId((prevId) =>
-      prevId.includes(id) ? prevId.filter((i) => i !== id) : [...prevId, id]
-    );
-  };
-
-  const updatedPythonStudyChapter = PythonStudyChapter.map((menu) => ({
-    ...menu,
-    contents: menu.contents.map((content) => ({
-      ...content,
-      label: content.label,
-      navigatepath: content.navigatepath,
-      firstpath: firstpath,
-      secondpath: secondpath,
-      thirdpath: content.thirdpath,
-    })),
-  }));
-
-  // 좌측 스터디 영역 컴포넌트로 분리
-  const EachClassComponent = ({ cls, isOpen, onToggle }) => (
-    <EachClass key={cls.id}>
-      <ClassHeader isOpen={isOpen}>
-        <ClassHeaderTitle onClick={() => handleNext(cls)}>
-          {cls.title}
-        </ClassHeaderTitle>
-        <ClassHeaderTitleButton
-          isOpen={isOpen}
-          onClick={() => onToggle(cls.id)}
-        />
-      </ClassHeader>
-      <ClassContents isOpen={isOpen}>
-        {cls.contents.map((content, index) => (
-          <ClassSet key={index}>
-            <ClassName
-              onClick={() =>
-                handleNavigation(content.navigatepath, {
-                  firstpath: firstpath,
-                  secondpath: secondpath,
-                  thirdpath: content.thirdpath,
-                  fourthpath: content.label,
-                })
-              }
-            >
-              {content.label}
-            </ClassName>
-          </ClassSet>
-        ))}
-      </ClassContents>
-    </EachClass>
-  );
-
-  const filteredPythonStudyChapter = updatedPythonStudyChapter.filter(
-    (chapter) => chapter.id === "01"
-  );
 
   return (
     <Wrap>
@@ -175,16 +103,9 @@ const Python_01_01 = () => {
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <Python_SubjectTitle />
+          <Python_Title />
           <StickyClassBox>
-            {filteredPythonStudyChapter.map((cls) => (
-              <EachClassComponent
-                key={cls.id}
-                cls={cls}
-                isOpen={isToggleOpenId.includes(cls.id)}
-                onToggle={toggleVisibility}
-              />
-            ))}
+            <Python_ClassList_Filtered chapter="01" />
           </StickyClassBox>
         </LeftContainer>
         <RightContainer>

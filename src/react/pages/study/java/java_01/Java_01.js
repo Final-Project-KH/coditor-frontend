@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import {
@@ -10,16 +9,14 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../styles/study/Class_Main";
+} from "../../../../styles/study/Class_Main";
+import Java_Title from "../Java_Title";
+import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
 
-import C_ChapterList from "./C_ChapterList";
-import C_Title from "./C_Title";
-import C_ClassList from "./C_ClassList";
-
-const C_Main = () => {
+const Java_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
+  const { firstpath, secondpath, thirdpath } = location.state || {};
 
   // TopBox firstpath
   const handleStudy = () => {
@@ -31,8 +28,8 @@ const C_Main = () => {
   };
 
   // TopBox secondpath
-  const handleRefresh = () => {
-    navigate("/study/c", {
+  const handleStudyJava = () => {
+    navigate("/study/java", {
       state: {
         firstpath: firstpath,
         secondpath: secondpath,
@@ -40,13 +37,16 @@ const C_Main = () => {
     });
   };
 
-  // Chapter Scrolling
-  const sectionRefs = {
-    section01: useRef(null),
-    section02: useRef(null),
-    section03: useRef(null),
-    section04: useRef(null),
-    section05: useRef(null),
+  // TopBox thirdpath
+  const handleRefresh = () => {
+    navigate("/study/java/01", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+      },
+    });
+    window.location.reload();
   };
 
   return (
@@ -55,20 +55,23 @@ const C_Main = () => {
         <TopBox>
           <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{secondpath}</TopBoxText>
+          <TopBoxText onClick={() => handleStudyJava()}>
+            {secondpath}
+          </TopBoxText>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <TopBoxText onClick={() => handleRefresh()}>{thirdpath}</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <C_Title />
-          <C_ChapterList refs={sectionRefs} />
+          <Java_Title />
         </LeftContainer>
         <RightContainer>
-          <C_ClassList />
+          <Java_ClassList_Filtered chapter="01" />
         </RightContainer>
       </Container>
     </Wrap>
   );
 };
 
-export default C_Main;
+export default Java_01;

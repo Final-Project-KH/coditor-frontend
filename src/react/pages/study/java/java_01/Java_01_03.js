@@ -15,11 +15,7 @@ import {
   EachClass,
   ClassHeader,
   ClassHeaderTitle,
-  ClassHeaderTitleButton,
-  ClassContents,
-  ClassSet,
-  ClassName,
-} from "../../../styles/study/Class_Main";
+} from "../../../../styles/study/Class_Main";
 import {
   ClassContentsTitle1,
   ClassContentsText,
@@ -34,22 +30,18 @@ import {
   ClassTableTd,
   ClassTableTr,
   ArrowContainer,
-  LeftArrow,
-  RightArrow,
-  ArrowLink,
-} from "../../../styles/study/Class_Each";
-import {
-  StickyClassBox,
-} from "../../../styles/study/Study";
-import Java_Title from "./Java_Title";
-import { JavaStudyChapter } from "../../../../util/study/JavaStudyChapter";
-import ArrowNavigation from "../ArrowNavigation";
+} from "../../../../styles/study/Class_Each";
+import { StickyClassBox } from "../../../../styles/study/Study";
+import Java_Title from "../Java_Title";
+import ArrowNavigation from "../../ArrowNavigation";
+import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
 
 const Java_01_03 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
 
+  // TopBox firstpath
   const handleStudy = () => {
     navigate("/study", {
       state: {
@@ -57,6 +49,8 @@ const Java_01_03 = () => {
       },
     });
   };
+
+  // TopBox secondpath
   const handleStudyJava = () => {
     navigate("/study/java", {
       state: {
@@ -65,6 +59,8 @@ const Java_01_03 = () => {
       },
     });
   };
+
+  // TopBox thirdpath
   const handleStudyJava01 = () => {
     navigate("/study/java/01", {
       state: {
@@ -74,6 +70,8 @@ const Java_01_03 = () => {
       },
     });
   };
+
+  // TopBox fourthpath
   const handleRefresh = () => {
     navigate("/study/java/01/03", {
       state: {
@@ -86,109 +84,28 @@ const Java_01_03 = () => {
     window.location.reload();
   };
 
-  const handleNext = (cls) => {
-    navigate(`/study/java/${cls.id}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: cls.title,
-      },
-    });
-  };
-
-  // 챕터리스트 토글링 및 간소화
-  const handleNavigation = (navigatepath, data) => {
-    navigate(navigatepath, { state: data });
-  };
-
-  const [isToggleOpenId, setIsToggleOpenId] = useState([]);
-
-  const toggleVisibility = (id) => {
-    setIsToggleOpenId((prevId) =>
-      prevId.includes(id) ? prevId.filter((i) => i !== id) : [...prevId, id]
-    );
-  };
-
-  const updatedJavaStudyChapter = JavaStudyChapter.map((menu) => ({
-    ...menu,
-    contents: menu.contents.map((content) => ({
-      ...content,
-      label: content.label,
-      navigatepath: content.navigatepath,
-      firstpath: firstpath,
-      secondpath: secondpath,
-      thirdpath: content.thirdpath,
-    })),
-  }));
-
-  // 좌측 스터디 영역 컴포넌트로 분리
-  const EachClassComponent = ({ cls, isOpen, onToggle }) => (
-    <EachClass key={cls.id}>
-      <ClassHeader isOpen={isOpen}>
-        <ClassHeaderTitle onClick={() => handleNext(cls)}>
-          {cls.title}
-        </ClassHeaderTitle>
-        <ClassHeaderTitleButton
-          isOpen={isOpen}
-          onClick={() => onToggle(cls.id)}
-        />
-      </ClassHeader>
-      <ClassContents isOpen={isOpen}>
-        {cls.contents.map((content, index) => (
-          <ClassSet key={index}>
-            <ClassName
-              onClick={() =>
-                handleNavigation(content.navigatepath, {
-                  firstpath: firstpath,
-                  secondpath: secondpath,
-                  thirdpath: content.thirdpath,
-                  fourthpath: content.label,
-                })
-              }
-            >
-              {content.label}
-            </ClassName>
-          </ClassSet>
-        ))}
-      </ClassContents>
-    </EachClass>
-  );
-
-  const filteredJavaStudyChapter = updatedJavaStudyChapter.filter(
-    (chapter) => chapter.id === "01"
-  );
-
-
-
   return (
     <Wrap>
-       <TopBoxWide>
-         <TopBox>
-           <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
-           <TopBoxArrow>{`>`}</TopBoxArrow>
-           <TopBoxText onClick={() => handleStudyJava()}>
-             {secondpath}
-           </TopBoxText>
-           <TopBoxArrow>{`>`}</TopBoxArrow>
-           <TopBoxText onClick={() => handleStudyJava01()}>
-             {thirdpath}
-           </TopBoxText>
-           <TopBoxArrow>{`>`}</TopBoxArrow>
-           <TopBoxText onClick={() => handleRefresh()}>{fourthpath}</TopBoxText>
-         </TopBox>
-       </TopBoxWide>
+      <TopBoxWide>
+        <TopBox>
+          <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <TopBoxText onClick={() => handleStudyJava()}>
+            {secondpath}
+          </TopBoxText>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <TopBoxText onClick={() => handleStudyJava01()}>
+            {thirdpath}
+          </TopBoxText>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <TopBoxText onClick={() => handleRefresh()}>{fourthpath}</TopBoxText>
+        </TopBox>
+      </TopBoxWide>
       <Container>
         <LeftContainer>
           <Java_Title />
           <StickyClassBox>
-          {filteredJavaStudyChapter.map((cls) => (
-              <EachClassComponent
-                key={cls.id}
-                cls={cls}
-                isOpen={isToggleOpenId.includes(cls.id)}
-                onToggle={toggleVisibility}
-              />
-            ))}
+            <Java_ClassList_Filtered chapter="01" />
           </StickyClassBox>
         </LeftContainer>
         <RightContainer>

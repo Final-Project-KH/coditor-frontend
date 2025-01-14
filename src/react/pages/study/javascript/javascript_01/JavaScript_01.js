@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import {
@@ -10,16 +9,14 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../styles/study/Class_Main";
+} from "../../../../styles/study/Class_Main";
+import JavaScript_Title from "../JavaScript_Title";
+import JavaScript_ClassList_Filtered from "../JavaScript_ClassList_Filtered";
 
-import JavaScript_ChapterList from "./JavaScript_ChapterList";
-import JavaScript_Title from "./JavaScript_Title";
-import JavaScript_ClassList from "./JavaScript_ClassList";
-
-const JavaScript_Main = () => {
+const JavaScript_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
+  const { firstpath, secondpath, thirdpath } = location.state || {};
 
   // TopBox firstpath
   const handleStudy = () => {
@@ -31,7 +28,7 @@ const JavaScript_Main = () => {
   };
 
   // TopBox secondpath
-  const handleRefresh = () => {
+  const handleStudyJavaScript = () => {
     navigate("/study/javascript", {
       state: {
         firstpath: firstpath,
@@ -40,13 +37,16 @@ const JavaScript_Main = () => {
     });
   };
 
-  // Chapter Scrolling
-  const sectionRefs = {
-    section01: useRef(null),
-    section02: useRef(null),
-    section03: useRef(null),
-    section04: useRef(null),
-    section05: useRef(null),
+  // TopBox thirdpath
+  const handleRefresh = () => {
+    navigate("/study/javascript/01", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+      },
+    });
+    window.location.reload();
   };
 
   return (
@@ -55,20 +55,23 @@ const JavaScript_Main = () => {
         <TopBox>
           <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{secondpath}</TopBoxText>
+          <TopBoxText onClick={() => handleStudyJavaScript()}>
+            {secondpath}
+          </TopBoxText>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <TopBoxText onClick={() => handleRefresh()}>{thirdpath}</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <Container>
         <LeftContainer>
           <JavaScript_Title />
-          <JavaScript_ChapterList refs={sectionRefs} />
         </LeftContainer>
         <RightContainer>
-          <JavaScript_ClassList refs={sectionRefs} />
+          <JavaScript_ClassList_Filtered chapter="01" />
         </RightContainer>
       </Container>
     </Wrap>
   );
 };
 
-export default JavaScript_Main;
+export default JavaScript_01;

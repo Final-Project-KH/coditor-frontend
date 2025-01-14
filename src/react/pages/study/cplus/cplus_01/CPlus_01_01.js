@@ -15,11 +15,7 @@ import {
   EachClass,
   ClassHeader,
   ClassHeaderTitle,
-  ClassHeaderTitleButton,
-  ClassContents,
-  ClassSet,
-  ClassName,
-} from "../../../styles/study/Class_Main";
+} from "../../../../styles/study/Class_Main";
 import {
   ClassContentsTitle1,
   ClassContentsText,
@@ -34,129 +30,60 @@ import {
   ClassTableTd,
   ClassTableTr,
   ArrowContainer,
-  LeftArrow,
-  RightArrow,
-  ArrowLink,
-} from "../../../styles/study/Class_Each";
-import { StickyClassBox } from "../../../styles/study/Study";
-import CPlus_Title from "./CPlus_Title";
-import { CPlusStudyChapter } from "../../../../util/study/CPlusStudyChapter";
-import ArrowNavigation from "../ArrowNavigation";
+} from "../../../../styles/study/Class_Each";
+import { StickyClassBox } from "../../../../styles/study/Study";
+import CPlus_Title from "../CPlus_Title";
+import ArrowNavigation from "../../ArrowNavigation";
+import CPlus_ClassList_Filtered from "../CPlus_ClassList_Filtered";
 
 const CPlus_01_01 = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
-  
-    const handleStudy = () => {
-      navigate("/study", {
-        state: {
-          firstpath: firstpath,
-        },
-      });
-    };
-    const handleStudyCPlus = () => {
-      navigate("/study/cplus", {
-        state: {
-          firstpath: firstpath,
-          secondpath: secondpath,
-        },
-      });
-    };
-    const handleStudyCPlus01 = () => {
-      navigate("/study/cplus/01", {
-        state: {
-          firstpath: firstpath,
-          secondpath: secondpath,
-          thirdpath: thirdpath,
-        },
-      });
-    };
-    const handleRefresh = () => {
-      navigate("/study/cplus/01/01", {
-        state: {
-          firstpath: firstpath,
-          secondpath: secondpath,
-          thirdpath: thirdpath,
-          fourthpath: fourthpath,
-        },
-      });
-      window.location.reload();
-    };
-  
-    const handleNext = (cls) => {
-      navigate(`/study/cplus/${cls.id}`, {
-        state: {
-          firstpath: firstpath,
-          secondpath: secondpath,
-          thirdpath: cls.title,
-        },
-      });
-    };
-  
-    // 챕터리스트 토글링 및 간소화
-    const handleNavigation = (navigatepath, data) => {
-      navigate(navigatepath, { state: data });
-    };
-  
-    const [isToggleOpenId, setIsToggleOpenId] = useState([]);
-  
-    const toggleVisibility = (id) => {
-      setIsToggleOpenId((prevId) =>
-        prevId.includes(id) ? prevId.filter((i) => i !== id) : [...prevId, id]
-      );
-    };
-  
-    const updatedCPlusStudyChapter = CPlusStudyChapter.map((menu) => ({
-      ...menu,
-      contents: menu.contents.map((content) => ({
-        ...content,
-        label: content.label,
-        navigatepath: content.navigatepath,
+  // TopBox firstpath
+  const handleStudy = () => {
+    navigate("/study", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+
+  // TopBox secondpath
+  const handleStudyCPlus = () => {
+    navigate("/study/cplus", {
+      state: {
         firstpath: firstpath,
         secondpath: secondpath,
-        thirdpath: content.thirdpath,
-      })),
-    }));
-  
-    // 좌측 스터디 영역 컴포넌트로 분리
-    const EachClassComponent = ({ cls, isOpen, onToggle }) => (
-      <EachClass key={cls.id}>
-        <ClassHeader isOpen={isOpen}>
-          <ClassHeaderTitle onClick={() => handleNext(cls)}>
-            {cls.title}
-          </ClassHeaderTitle>
-          <ClassHeaderTitleButton
-            isOpen={isOpen}
-            onClick={() => onToggle(cls.id)}
-          />
-        </ClassHeader>
-        <ClassContents isOpen={isOpen}>
-          {cls.contents.map((content, index) => (
-            <ClassSet key={index}>
-              <ClassName
-                onClick={() =>
-                  handleNavigation(content.navigatepath, {
-                    firstpath: firstpath,
-                    secondpath: secondpath,
-                    thirdpath: content.thirdpath,
-                    fourthpath: content.label,
-                  })
-                }
-              >
-                {content.label}
-              </ClassName>
-            </ClassSet>
-          ))}
-        </ClassContents>
-      </EachClass>
-    );
-  
-    const filteredCPlusStudyChapter = updatedCPlusStudyChapter.filter(
-      (chapter) => chapter.id === "01"
-    );
-  
+      },
+    });
+  };
+
+  // TopBox thirdpath
+  const handleStudyCPlus01 = () => {
+    navigate("/study/cplus/01", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+      },
+    });
+  };
+
+  // TopBox fourthpath
+  const handleRefresh = () => {
+    navigate("/study/cplus/01/01", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+        fourthpath: fourthpath,
+      },
+    });
+    window.location.reload();
+  };
+
   return (
     <Wrap>
       <TopBoxWide>
@@ -178,14 +105,7 @@ const CPlus_01_01 = () => {
         <LeftContainer>
           <CPlus_Title />
           <StickyClassBox>
-          {filteredCPlusStudyChapter.map((cls) => (
-              <EachClassComponent
-                key={cls.id}
-                cls={cls}
-                isOpen={isToggleOpenId.includes(cls.id)}
-                onToggle={toggleVisibility}
-              />
-            ))}
+            <CPlus_ClassList_Filtered chapter="01" />
           </StickyClassBox>
         </LeftContainer>
         <RightContainer>
@@ -316,8 +236,8 @@ const CPlus_01_01 = () => {
             </ClassContentsContainer>
           </EachClass>
           <ArrowContainer>
-          <ArrowNavigation direction="left" />
-          <ArrowNavigation direction="right" />
+            <ArrowNavigation direction="left" />
+            <ArrowNavigation direction="right" />
           </ArrowContainer>
         </RightContainer>
       </Container>

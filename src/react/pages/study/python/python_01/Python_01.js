@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import {
@@ -10,16 +9,14 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../styles/study/Class_Main";
+} from "../../../../styles/study/Class_Main";
+import Python_Title from "../Python_Title";
+import Python_ClassList_Filtered from "../Python_ClassList_Filtered";
 
-import Python_ChapterList from "./Python_ChapterList";
-import Python_Title from "./Python_Title";
-import Python_ClassList from "./Python_ClassList";
-
-const Python_Main = () => {
+const Python_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
+  const { firstpath, secondpath, thirdpath } = location.state || {};
 
   // TopBox firstpath
   const handleStudy = () => {
@@ -31,7 +28,7 @@ const Python_Main = () => {
   };
 
   // TopBox secondpath
-  const handleRefresh = () => {
+  const handleStudyPython = () => {
     navigate("/study/python", {
       state: {
         firstpath: firstpath,
@@ -40,14 +37,16 @@ const Python_Main = () => {
     });
   };
 
-  // 챕터 스크롤링
-  const sectionRefs = {
-    section01: useRef(null),
-    section02: useRef(null),
-    section03: useRef(null),
-    section04: useRef(null),
-    section05: useRef(null),
-    section06: useRef(null),
+  // TopBox thirdpath
+  const handleRefresh = () => {
+    navigate("/study/python/01", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: thirdpath,
+      },
+    });
+    window.location.reload();
   };
 
   return (
@@ -56,20 +55,23 @@ const Python_Main = () => {
         <TopBox>
           <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{secondpath}</TopBoxText>
+          <TopBoxText onClick={() => handleStudyPython()}>
+            {secondpath}
+          </TopBoxText>
+          <TopBoxArrow>{`>`}</TopBoxArrow>
+          <TopBoxText onClick={() => handleRefresh()}>{thirdpath}</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <Container>
         <LeftContainer>
           <Python_Title />
-          <Python_ChapterList refs={sectionRefs} />
         </LeftContainer>
         <RightContainer>
-          <Python_ClassList />
+          <Python_ClassList_Filtered chapter="01" />
         </RightContainer>
       </Container>
     </Wrap>
   );
 };
 
-export default Python_Main;
+export default Python_01;
