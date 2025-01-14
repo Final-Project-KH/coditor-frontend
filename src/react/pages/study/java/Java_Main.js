@@ -68,7 +68,7 @@ const Java_Main = () => {
           <Java_ChapterList refs={sectionRefs} />
         </LeftContainer>
         <RightContainer>
-          <Java_ClassList />
+          <Java_ClassList refs={sectionRefs} />
         </RightContainer>
       </Container>
     </Wrap>

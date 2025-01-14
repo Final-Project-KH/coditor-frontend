@@ -82,6 +82,17 @@ const Common = {
     store.dispatch(setLoginData({accesstokenexpiresin: expirationtime}));
   }, // accesstoken expiretime 데이터는 getNewAccessTokenExpiresIn 함수를 거친 데이터
 
+  setTokens: (accessToken, refreshToken) => {
+    // 여기에 추가
+    store.dispatch(
+      setLoginData({
+        accesstoken: accessToken,
+        refreshtoken: refreshToken,
+      })
+    );
+  },
+
+
   setRefreshToken: (token) => {
     store.dispatch(setLoginData({refreshtoken: token})); // Redux store에 토큰 저장
   }, // refreshtoken 데이터는 (response.data.refreshToken) -> response는 지정한 변수명

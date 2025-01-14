@@ -21,24 +21,41 @@ const AxiosApi = {
     return await axios.post(SPRING_DOMAIN + "/auth/signup", user);
   },
   // 구글 로그인 추가
+  // 구글 로그인
   googleLogin: async (token) => {
     try {
-      // 서버로 JSON 데이터를 전송
       const response = await AxiosInstance.post(
-        SPRING_DOMAIN + "/auth/google",
+        SPRING_DOMAIN + "/auth/google/login",
         {
-          token: token,
+          token: token, // 구글 인증 토큰
         }
       );
-
-      // 서버로부터 정상 응답 받음
       return response;
     } catch (error) {
       console.error(
         "Google login API error: ",
         error.response?.data || error.message
       );
-      throw error; // 에러 발생 시 호출한 쪽에서 처리하도록 예외를 던짐
+      throw error;
+    }
+  },
+
+  // 카카오 로그인
+  kakaoLogin: async (token) => {
+    try {
+      const response = await AxiosInstance.post(
+        SPRING_DOMAIN + "/auth/kakao/login",
+        {
+          token: token, // 카카오 인증 토큰
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error(
+        "Kakao login API error: ",
+        error.response?.data || error.message
+      );
+      throw error;
     }
   },
   codingtest: async (code, language, questionid) => {
