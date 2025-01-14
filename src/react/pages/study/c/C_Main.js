@@ -64,7 +64,7 @@ const C_Main = () => {
           <C_ChapterList refs={sectionRefs} />
         </LeftContainer>
         <RightContainer>
-          <C_ClassList />
+          <C_ClassList refs={sectionRefs} />
         </RightContainer>
       </Container>
     </Wrap>

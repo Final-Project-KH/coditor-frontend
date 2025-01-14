@@ -69,7 +69,7 @@ const CPlus_Main = () => {
           <CPlus_ChapterList refs={sectionRefs} />
         </LeftContainer>
         <RightContainer>
-          <CPlus_ClassList />
+          <CPlus_ClassList refs={sectionRefs} />
         </RightContainer>
       </Container>
     </Wrap>

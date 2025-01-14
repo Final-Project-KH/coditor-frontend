@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import React, { useRef, useState, forwardRef } from "react";
+import React, { useState, forwardRef } from "react";
 
 import {
   EachClass,
@@ -12,12 +12,12 @@ import {
 } from "../../../styles/study/Class_Main";
 import { JavaScriptStudyChapter } from "../../../../util/study/JavaScriptStudyChapter";
 
-const JavaScript_ClassList = forwardRef(({ sectionRefs }) => {
+const JavaScript_ClassList = forwardRef(({ refs }, ref) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
 
-  // 클래스 헤더 클릭시 진입
+  // Class Header onClick
   const handleNext = (cls) => {
     navigate(`/study/javascript/${cls.id}`, {
       state: {
@@ -28,12 +28,12 @@ const JavaScript_ClassList = forwardRef(({ sectionRefs }) => {
     });
   };
 
-  // 클래스 이름 클릭시 진입
+  // Class Contents onClick
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
   };
 
-  // 챕터 헤더 우측 Arrow 클릭시 토글
+  // Class Header Toggle
   const [isToggleOpenId, setIsToggleOpenId] = useState([]);
   const toggleVisibility = (id) => {
     setIsToggleOpenId((prevId) =>
@@ -41,40 +41,40 @@ const JavaScript_ClassList = forwardRef(({ sectionRefs }) => {
     );
   };
 
-   // 각 챕터/클래스 리스트 생성
-   const EachClassComponent = ({ cls, isOpen, onToggle }) => (
-     <EachClass key={cls.id} ref={sectionRefs[cls.id]}>
-       <ClassHeader isOpen={isOpen}>
-         <ClassHeaderTitle onClick={() => handleNext(cls)}>
-           {cls.title}
-         </ClassHeaderTitle>
-         <ClassHeaderTitleButton
-           isOpen={isOpen}
-           onClick={() => onToggle(cls.id)}
-         />
-       </ClassHeader>
-       <ClassContents isOpen={isOpen}>
-         {cls.contents.map((content, index) => (
-           <ClassSet key={index}>
-             <ClassName
-               onClick={() =>
-                 handleNavigation(content.navigatepath, {
-                   firstpath: firstpath,
-                   secondpath: secondpath,
-                   thirdpath: content.thirdpath,
-                   fourthpath: content.label,
-                 })
-               }
-             >
-               {content.label}
-             </ClassName>
-           </ClassSet>
-         ))}
-       </ClassContents>
-     </EachClass>
-   );
+  // Class List Set
+  const EachClassComponent = ({ cls, isOpen, onToggle }) => (
+    <EachClass key={cls.id} ref={(el) => (refs[cls.id.toString()] = el)}>
+      <ClassHeader isOpen={isOpen}>
+        <ClassHeaderTitle onClick={() => handleNext(cls)}>
+          {cls.title}
+        </ClassHeaderTitle>
+        <ClassHeaderTitleButton
+          isOpen={isOpen}
+          onClick={() => onToggle(cls.id)}
+        />
+      </ClassHeader>
+      <ClassContents isOpen={isOpen}>
+        {cls.contents.map((content, index) => (
+          <ClassSet key={index}>
+            <ClassName
+              onClick={() =>
+                handleNavigation(content.navigatepath, {
+                  firstpath: firstpath,
+                  secondpath: secondpath,
+                  thirdpath: content.thirdpath,
+                  fourthpath: content.label,
+                })
+              }
+            >
+              {content.label}
+            </ClassName>
+          </ClassSet>
+        ))}
+      </ClassContents>
+    </EachClass>
+  );
 
-  // 경로 받아오기
+  // Path Set
   const updatedJavaScriptStudyChapter = JavaScriptStudyChapter.map((menu) => ({
     ...menu,
     contents: menu.contents.map((content) => ({
@@ -92,10 +92,10 @@ const JavaScript_ClassList = forwardRef(({ sectionRefs }) => {
     <>
       {updatedJavaScriptStudyChapter.map((cls) => (
         <EachClassComponent
-        key={cls.id}
-        cls={cls}
-        isOpen={isToggleOpenId.includes(cls.id)}
-        onToggle={toggleVisibility}
+          key={cls.id}
+          cls={cls}
+          isOpen={isToggleOpenId.includes(cls.id)}
+          onToggle={toggleVisibility}
         />
       ))}
     </>
