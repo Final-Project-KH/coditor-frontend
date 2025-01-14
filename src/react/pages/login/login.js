@@ -32,17 +32,13 @@ import {
 } from "../../styles/login/login";
 
 const Login = () => {
-  // 모달 (Modal) 창을 열고 닫기
   const [modalOpen, setModalOpen] = useState(false);
-
-  // 모달창에 대한 문구
   const [modalContent, setModalContent] = useState("");
-  // Modal 모달창 닫는 함수
   const closeMadal = () => {
+    console.log("closeMadal 호출됨");
     setModalOpen(false);
   };
 
-  // Modal 모달창 confirm 동작 함수
   const confirmModal = () => {
     console.log("Confirm 버튼이 눌러졌습니다.");
     closeMadal();
@@ -57,21 +53,22 @@ const Login = () => {
   const [rsp, setRsp] = useState(null); // rsp 상태 추가
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {error, nickname} = useSelector((state) => state.auth);
 
   const handleInputChange = (e, setState, setValidState) => {
+    console.log(`handleInputChange 호출: ${e.target.value}`);
     setState(e.target.value);
     setValidState(e.target.value.length >= 5);
   };
 
   const handleCheckBox = (e) => {
+    console.log(`Checkbox 상태 변경: ${e.target.checked}`);
     setIsChecked(e.target.checked);
   };
 
-  // 실제 뷰포트 높이를 계산하여 CSS 변수에 설정
   const setViewportHeight = () => {
-    const vh = window.innerHeight * 0.01; // 1 vh에 해당하는 값 계산
-    document.documentElement.style.setProperty("--vh", `${vh}px`); // CSS 변수에 설정
+    const vh = window.innerHeight * 0.01;
+    console.log(`Viewport height 설정: ${vh}`);
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
   };
 
   setViewportHeight();
@@ -158,7 +155,21 @@ const Login = () => {
         }
 
         // 공통된 토큰 처리
-        Common.setTokens(data.accessToken, data.refreshToken);
+        const accessTokenExpirationTime = Common.getNewAccessTokenExpiresIn(
+          data.accessToken
+        );
+        const refreshTokenExpirationTime = Common.getNewRefreshTokenExpiresIn(
+          data.refreshToken
+        );
+        const keynumber = Common.getNewUserKeyNumber(data.accessToken);
+        const nickname = Common.getNewNickname(data.accessToken);
+
+        Common.setAccessToken(data.accessToken);
+        Common.setRefreshToken(data.refreshToken);
+        Common.setAccessTokenExpiresIn(accessTokenExpirationTime);
+        Common.setRefreshTokenExpiresIn(refreshTokenExpirationTime);
+        Common.setNickname(nickname);
+
         navigate("/");
       } else {
         setModalOpen(true);
@@ -271,6 +282,7 @@ const Login = () => {
 
     return () => clearInterval(checkKakaoSDK);
   }, []);
+
   return (
     <GoogleOAuthProvider clientId="159300514752-4da56n3as35i523kr5resdcqaba8e7t4.apps.googleusercontent.com">
       <Wrap>
