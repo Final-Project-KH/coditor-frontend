@@ -167,7 +167,7 @@ export const ClassHeaderTitleButton = styled.div.attrs({
   &::before {
      /* 토글 상태에 따라 아이콘 변경 */
     content: ${(props) =>
-      props.isOpen ? '"▼"' : '"▶"'};
+      props.isOpen ? '"▼"' : '"◀"'};
     position: relative;
     margin-left: 7px;
   }
@@ -184,7 +184,7 @@ export const ClassContents = styled.div.attrs({
 
    /* 토글 상태에 따라 표시/숨김 */
   display: ${(props) =>
-    props.isOpen ? "block" : "none"};
+    props.isOpen ? "none" : "block"};
 `;
 export const ClassSet = styled.div.attrs({
   id: "classset",

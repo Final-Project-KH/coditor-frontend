@@ -1,4 +1,5 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import {
   Wrap,
@@ -19,16 +20,13 @@ import {
 } from "../../../styles/study/Class_Main";
 
 import Java_ChapterList from "./Java_ChapterList";
-import Java_ClassListFull from "./Java_ClassListFull";
-import Java_SubjectTitle from "./Java_SubjectTitle";
-import {useLocation, useNavigate} from "react-router-dom";
-import {JavaStudyChapter} from "../../../../util/study/JavaStudyChapter";
-import Java_ClassListFull_Test from "./Java_ClassListFull_Test";
+import Java_Title from "./Java_Title";
+import { JavaStudyChapter } from "../../../../util/study/JavaStudyChapter";
 
 const Java_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {firstpath, secondpath, thirdpath} = location.state || {};
+  const { firstpath, secondpath } = location.state || {};
 
   const handleStudy = () => {
     navigate("/study", {
@@ -37,6 +35,7 @@ const Java_Main = () => {
       },
     });
   };
+
   const handleRefresh = () => {
     navigate("/study/java", {
       state: {
@@ -58,7 +57,7 @@ const Java_Main = () => {
 
   // 챕터리스트 토글링 및 간소화
   const handleNavigation = (navigatepath, data) => {
-    navigate(navigatepath, {state: data});
+    navigate(navigatepath, { state: data });
   };
 
   const [isToggleOpenId, setIsToggleOpenId] = useState([]);
@@ -82,6 +81,40 @@ const Java_Main = () => {
     })),
   }));
 
+    // 우측 스터디 영역 컴포넌트로 분리
+    const EachClassComponent = ({ cls, isOpen, onToggle }) => (
+      <EachClass key={cls.id}>
+        <ClassHeader isOpen={isOpen}>
+          <ClassHeaderTitle onClick={() => handleNext(cls)}>
+            {cls.title}
+          </ClassHeaderTitle>
+          <ClassHeaderTitleButton
+            isOpen={isOpen}
+            onClick={() => onToggle(cls.id)}
+          />
+        </ClassHeader>
+        <ClassContents isOpen={isOpen}>
+          {cls.contents.map((content, index) => (
+            <ClassSet key={index}>
+              <ClassName
+                onClick={() =>
+                  handleNavigation(content.navigatepath, {
+                    firstpath: firstpath,
+                    secondpath: secondpath,
+                    thirdpath: content.thirdpath,
+                    fourthpath: content.label,
+                  })
+                }
+              >
+                {content.label}
+              </ClassName>
+            </ClassSet>
+          ))}
+        </ClassContents>
+      </EachClass>
+    );
+
+    
   // 챕터 스크롤링
   const sectionRefs = {
     section01: useRef(null),
@@ -95,38 +128,6 @@ const Java_Main = () => {
     section09: useRef(null),
   };
 
-  // 우측 스터디 영역 컴포넌트로 분리
-  const EachClassComponent = ({cls, isOpen, onToggle}) => (
-    <EachClass key={cls.id}>
-      <ClassHeader isOpen={isOpen}>
-        <ClassHeaderTitle onClick={() => handleNext(cls)}>
-          {cls.title}
-        </ClassHeaderTitle>
-        <ClassHeaderTitleButton
-          isOpen={isOpen}
-          onClick={() => onToggle(cls.id)}
-        />
-      </ClassHeader>
-      <ClassContents isOpen={isOpen}>
-        {cls.contents.map((content, index) => (
-          <ClassSet key={index}>
-            <ClassName
-              onClick={() =>
-                handleNavigation(content.navigatepath, {
-                  firstpath: content.firstpath,
-                  secondpath: content.secondpath,
-                  thirdpath: content.thirdpath,
-                  fourthpath: content.label,
-                })
-              }
-            >
-              {content.label}
-            </ClassName>
-          </ClassSet>
-        ))}
-      </ClassContents>
-    </EachClass>
-  );
 
   return (
     <Wrap>
@@ -139,7 +140,7 @@ const Java_Main = () => {
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <Java_SubjectTitle />
+          <Java_Title />
           <Java_ChapterList refs={sectionRefs} />
         </LeftContainer>
         <RightContainer>

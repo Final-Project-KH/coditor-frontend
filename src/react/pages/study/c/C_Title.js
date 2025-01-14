@@ -8,9 +8,10 @@ import {
   SubjectRateContents,
   SubjectRateContainer,
   SubjectRateBox,
-} from "../../../styles/study/Study";
+} from "../../../styles/study/Class_Title";
 
-const C_SubjectTitle = () => {
+
+const C_Title = () => {
   return (
     <>
       <LeftSubjectContainer>
@@ -28,4 +29,4 @@ const C_SubjectTitle = () => {
   );
 };
 
-export default C_SubjectTitle;
+export default C_Title;

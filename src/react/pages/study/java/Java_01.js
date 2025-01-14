@@ -1,6 +1,5 @@
-import Java_SubjectTitle from "./Java_SubjectTitle";
-import {Java_ClassListFull_01} from "./Java_ClassListFull";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import {
   Wrap,
@@ -22,8 +21,8 @@ import {
   NavigatePath,
   PathLink,
 } from "../../../styles/study/Class_Main";
-import {JavaStudyChapter} from "../../../../util/study/JavaStudyChapter";
-import {useState} from "react";
+import { JavaStudyChapter } from "../../../../util/study/JavaStudyChapter";
+import Java_Title from "./Java_Title";
 
 const Java_01 = () => {
   const navigate = useNavigate();
@@ -143,7 +142,7 @@ const Java_01 = () => {
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <Java_SubjectTitle />
+          <Java_Title />
         </LeftContainer>
         <RightContainer>
           {filteredJavaStudyChapter.map((cls) => (
@@ -154,10 +153,6 @@ const Java_01 = () => {
               onToggle={toggleVisibility}
             />
           ))}
-          {/* <Java_ClassListFull_01
-            firstpath={firstpath}
-            secondpath={secondpath}
-          /> */}
         </RightContainer>
       </Container>
     </Wrap>

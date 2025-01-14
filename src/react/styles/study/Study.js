@@ -450,7 +450,7 @@ export const ArrowLink = styled.button.attrs({
   background-color: transparent;
   cursor: pointer;
 `;
-export const c = styled.button.attrs({
+export const TopBoxLink = styled.button.attrs({
   id: "topboxlink",
 })`
   display: inline-block;
