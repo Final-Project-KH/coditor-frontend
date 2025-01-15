@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import AxiosApi from "../../../api/AxiosApi";
 import {
   Wrap,
@@ -33,6 +33,8 @@ import {
   Notice,
   NoticeLink,
 } from "../../styles/signup/signup";
+import {useDispatch} from "react-redux";
+import {setError} from "../../../redux/slice/authSlice";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -42,6 +44,7 @@ const Signup = () => {
   const [inputConPw, setInputConPw] = useState("");
   const [inputName, setInputName] = useState("");
   const [inputEmail, setInputEmail] = useState("");
+  const [inputSecurity, setInputSecurity] = useState("");
   // 오류 메시지
   const [userIdMessage, setUserIdMessage] = useState("");
   const [pwMessage, setPwMessage] = useState("");
@@ -54,12 +57,17 @@ const Signup = () => {
   const [isPw, setIsPw] = useState(false);
   const [isConPw, setIsConPw] = useState(false);
   const [isName, setIsName] = useState(false);
+  const [isSecurity, setIsSecurity] = useState(false);
   // 약관동의
   const [isCheckedAll, setIsCheckedAll] = useState("");
   const [isCheckedTerms, setIsCheckedTerms] = useState("");
   const [isCheckedUses, setIsCheckedUses] = useState("");
   const [isChecked14, setIsChecked14] = useState("");
   const [isCheckedMarketing, setIsCheckedMarketing] = useState("");
+  // 인증번호 입력 가능 / 불가능 여부
+  const [isSecurityAvailabe, setIsSecurityAvailable] = useState(false);
+  // 이메일 수정 가능 / 불가능 여부
+  const [isEmailAvailable, setIsEmailAvailable] = useState(true);
 
   const handleCheckAllBox = (e) => {
     setIsCheckedAll(e.target.checked);
@@ -101,6 +109,17 @@ const Signup = () => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!emailRegex.test(e.target.value)) {
       setEmailMessage("이메일 형식이 올바르지 않습니다.");
+      setIsEmail(false);
+    } else {
+      setEmailMessage("올바른 형식입니다.");
+      setIsEmail(true); // 나중에 Email Check 추가해야함
+    }
+  };
+  const onChangeSecurity = (e) => {
+    setInputSecurity(e.target.value);
+    const securityRegex = /^[1-9][0-9]{5}$/;
+    if (securityRegex.test(e.target.value)) {
+      setEmailMessage("인증번호 형식이 올바르지 않습니다.");
       setIsEmail(false);
     } else {
       setEmailMessage("올바른 형식입니다.");
@@ -180,6 +199,28 @@ const Signup = () => {
     setIsVisibleConPwd(!isVisibleConPwd);
   };
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const dispatch = useDispatch();
+  const handleVerify = async (e) => {
+    e.preventDefault();
+    if (isSubmitting) {
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      const response = await AxiosApi.verifyemail(inputEmail);
+      if (response.data) {
+        setIsEmailAvailable(false);
+        setIsSecurityAvailable(true);
+      }
+    } catch (error) {
+      console.error("인증번호 요청 실패", error);
+      dispatch(setError(error.response?.data?.message || "Verify Failed"));
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <Wrap>
       <Container>
@@ -236,8 +277,15 @@ const Signup = () => {
                 placeholder="이메일 주소 입력"
                 value={inputEmail}
                 onChange={onChangeEmail}
+                isEmailAvailable={isEmailAvailable}
               ></InputEmail>
-              <InputEmailButton>인증번호받기</InputEmailButton>
+              {isEmail ? (
+                <InputEmailButton enabled onClick={(e) => handleVerify(e)}>
+                  인증번호받기
+                </InputEmailButton>
+              ) : (
+                <InputEmailButton disabled>인증번호받기</InputEmailButton>
+              )}
             </InputEmailDiv>
             <InputSecurityDiv>
               <InputSecurity
@@ -265,7 +313,7 @@ const Signup = () => {
                 ></InputExtraItemCheckBox>
                 <InputExtraItemP>전체동의</InputExtraItemP>
               </InputExtra>
-              <hr style={{ marginTop: "10px", marginBottom: "10px" }} />
+              <hr style={{marginTop: "10px", marginBottom: "10px"}} />
               <InputExtra>
                 <InputExtraItemCheckBox
                   type="checkbox"

@@ -1,5 +1,5 @@
-import styled, { css, keyframes } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {css, keyframes} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -291,9 +291,19 @@ export const InputEmailButton = styled.button.attrs({
   font-size: 13px;
   background-color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
-  &:hover {
-    background-color: black;
-  }
+  background-color: ${(props) => (props.disabled ? "#f1f1f1" : "#313131")};
+  color: ${(props) => (props.disabled ? "#313131" : "white")};
+  transition: all 0.3s ease-in-out;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  ${(props) =>
+    props.enabled
+      ? css`
+          &:hover {
+            background-color: black;
+          }
+        `
+      : css``}
+  border: none;
 `;
 export const InputSecurityDiv = styled.div.attrs({
   id: "inputsecuritydiv",
@@ -504,7 +514,7 @@ export const Notice = styled.div.attrs({
   & + &::before {
     content: "";
     position: absolute;
-    left: -5px;
+    left: -8px;
     bottom: 8px;
     width: 10px;
     height: 1px;

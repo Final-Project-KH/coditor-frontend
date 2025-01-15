@@ -1,5 +1,5 @@
-import styled, { css, keyframes } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {css, keyframes} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -110,15 +110,15 @@ export const Input = styled.input.attrs({
   border: 1px solid rgba(0, 0, 0, 0.5);
   margin-bottom: 10px;
   color: #313131;
-  font-family: 'medium', sans-serif;
+  font-family: "medium", sans-serif;
   font-size: 13px;
   padding-left: 40px;
   background-repeat: no-repeat;
   background-size: 10px auto;
   background-position: 20px center;
-  background-image: url(${props => props.icon});
+  background-image: url(${(props) => props.icon});
   &:focus {
-  outline: none;
+    outline: none;
   }
 `;
 export const InputExtra = styled.div.attrs({
@@ -228,7 +228,7 @@ export const InputExtraItemRightP = styled.p.attrs({
   & + &::before {
     content: "";
     position: absolute;
-    left: 4px;
+    left: 0px;
     bottom: 8px;
     width: 11px;
     height: 1px;
@@ -303,7 +303,7 @@ export const ThirdLoginItem = styled.div.attrs({
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: url(${props => props.icon});
+  background-image: url(${(props) => props.icon});
 `;
 export const StyledP = styled.p.attrs({
   id: "announce",
@@ -315,7 +315,7 @@ export const StyledP = styled.p.attrs({
   align-items: center;
   margin-top: 30px;
   font-size: 14px;
-  font-family: 'medium', sans-serif;
+  font-family: "medium", sans-serif;
   color: #313131;
   & + & {
     margin-top: 0px;
@@ -351,7 +351,7 @@ export const Notice = styled.div.attrs({
   & + &::before {
     content: "";
     position: absolute;
-    left: -5px;
+    left: -8px;
     bottom: 8px;
     width: 10px;
     height: 1px;
