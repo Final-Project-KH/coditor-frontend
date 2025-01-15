@@ -14,7 +14,6 @@ const Board_Study_TopSort = () => {
           <TopSortTitleInactive>모집중</TopSortTitleInactive>
           <TopSortTitleInactive>모집완료</TopSortTitleInactive>
         </TopSortInnerContainer>
-        <hr />
       </TopSortOuterContiner>
     </>
   );

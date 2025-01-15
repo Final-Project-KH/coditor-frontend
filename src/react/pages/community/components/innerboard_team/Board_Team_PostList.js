@@ -1,6 +1,5 @@
 import {
   PostListContainer,
-  PostListHr,
 } from "../../../../styles/community/Board";
 import {
   Board_Team_EachPost_01,
@@ -20,25 +19,15 @@ const Board_Team_PostList = () => {
     <>
       <PostListContainer>
         <Board_Team_EachPost_01 />
-        <PostListHr />
         <Board_Team_EachPost_02 />
-        <PostListHr />
         <Board_Team_EachPost_03 />
-        <PostListHr />
         <Board_Team_EachPost_04 />
-        <PostListHr />
         <Board_Team_EachPost_05 />
-        <PostListHr />
         <Board_Team_EachPost_06 />
-        <PostListHr />
         <Board_Team_EachPost_07 />
-        <PostListHr />
         <Board_Team_EachPost_08 />
-        <PostListHr />
         <Board_Team_EachPost_09 />
-        <PostListHr />
         <Board_Team_EachPost_10 />
-        <PostListHr />
       </PostListContainer>
     </>
   );

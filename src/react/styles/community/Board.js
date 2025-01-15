@@ -17,6 +17,12 @@ export const TopSortOuterContiner = styled.div.attrs({
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: black;
+  }
 `;
 export const TopSortInnerContainer = styled.div.attrs({
   id: "topsortinnercontainer",
@@ -90,6 +96,7 @@ export const InputSearch = styled.input.attrs({
   width: 100%;
   height: 100%;
   margin-left: 55px;
+  padding-right: 20px;
   border: none;
   font-size: 14px;
   font-family: "medium", sans-serif;
@@ -142,6 +149,7 @@ export const TagSearch = styled.input.attrs({
   width: 100%;
   height: 100%;
   margin-left: 55px;
+  padding-right: 20px;
   border: none;
   font-size: 14px;
   font-family: "medium", sans-serif;
@@ -197,9 +205,17 @@ export const MiddleSortOuterContiner = styled.div.attrs({
   id: "middlesortoutercontainer",
 })`
   width: 100%;
+  height: 50px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  justify-content: space-between;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: black;
+  }
 `;
 export const MiddleSortInnerContainer = styled.div.attrs({
   id: "middlesortinnercontainer",
@@ -207,9 +223,42 @@ export const MiddleSortInnerContainer = styled.div.attrs({
   width: 100%;
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+`;
+export const MiddleWriteButton = styled.div.attrs({
+  id: "middlewritebutton",
+})`
+  width: 15%;
+  height: 100%;
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 14px;
+  font-family: "bold", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: #f1f1f1;
+  margin-bottom: 10px;
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+`;
+
+export const MiddleSortContentsBox = styled.div.attrs({
+  id: "middlesortcontentsbox",
+})`
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
   padding-left: 20px;
   gap: 20px;
+  position: relative;
 `;
 export const MiddleSortTitleActiveBox = styled.div.attrs({
   id: "middlesorttitleactivebox",
@@ -273,13 +322,6 @@ export const PostListContainer = styled.div.attrs({
   margin-bottom: 40px;
 `;
 
-export const PostListHr = styled.hr.attrs({
-  id: "postlisthr",
-})`
-  width: 100%;
-  color: black;
-`;
-
 export const PostEach = styled.div.attrs({
   id: "posteach",
 })`
@@ -287,13 +329,12 @@ export const PostEach = styled.div.attrs({
   display: flex;
   flex-direction: column;
   gap: 10px;
-  .menu-link {
-    text-decoration: none;
-    color: inherit;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  &::after {
+    margin-top: 10px;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: black;
   }
 `;
 export const PostTop = styled.div.attrs({

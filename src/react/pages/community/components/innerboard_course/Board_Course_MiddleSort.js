@@ -33,7 +33,6 @@ const Board_Course_MiddleSort = () => {
             <MiddleSortTitleInactiveText>좋아요순</MiddleSortTitleInactiveText>
           </MiddleSortTitleInactiveBox>
         </MiddleSortInnerContainer>
-        <hr />
       </MiddleSortOuterContiner>
     </>
   );

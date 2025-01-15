@@ -47,6 +47,8 @@ import Community_Course from "./react/pages/community/Community_Course";
 import Community_Study from "./react/pages/community/Community_Study";
 import Community_Team from "./react/pages/community/Community_Team";
 import Post_Read from "./react/pages/community/Post_Read";
+import Post_Write from "./react/pages/community/Post_Write";
+import User_Main from "./react/pages/community/User_Main";
 import { DataProvider } from "./util/monaco/MonacoContext";
 
 function App() {
@@ -60,6 +62,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/legal/terms" element={<Terms />} />
             <Route path="/legal/privacy" element={<Privacy />} />
+            <Route path="/community/write" element={<Post_Write />} />
             <Route path="/" element={<Layout />}>
               <Route path="/" element={<Main />} />
               <Route path="/about" element={<About />} />
@@ -126,6 +129,7 @@ function App() {
               <Route path="/community/course" element={<Community_Course />} />
               <Route path="/community/study" element={<Community_Study />} />
               <Route path="/community/team" element={<Community_Team />} />
+              <Route path="/community/testid01" element={<User_Main />} />
             </Route>
           </Routes>
         </DataProvider>

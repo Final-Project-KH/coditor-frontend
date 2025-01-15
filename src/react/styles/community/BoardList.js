@@ -20,6 +20,7 @@ export const BoardListTitle = styled.div.attrs({
   color: black;
   display: flex;
   position: relative;
+  margin-bottom: 10px;
   .menu-link {
     text-decoration: none;
     color: inherit;

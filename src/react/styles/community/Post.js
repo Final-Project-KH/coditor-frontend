@@ -101,6 +101,12 @@ export const MainPostContainer = styled.div.attrs({
   justify-content: center;
   align-items: center;
   gap: 20px;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: black;
+  }
 `;
 export const MainPostTop = styled.div.attrs({
   id: "mainposttop",
@@ -296,7 +302,8 @@ export const MainPostContentsText = styled.div.attrs({
   font-size: 16px;
   font-family: "regular", sans-serif;
   color: black;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  line-height: 30px;
 `;
 export const MainPostTagsBox = styled.div.attrs({
   id: "mainposttagsbox",
@@ -314,12 +321,6 @@ export const MainPostTag = styled.div.attrs({
   padding: 4px 6px;
   font-size: 11px;
   font-family: "medium", sans-serif;
-`;
-export const StyledHr = styled.hr.attrs({
-  id: "postlisthr",
-})`
-  width: 100%;
-  color: black;
 `;
 export const ReplyContainer = styled.div.attrs({
   id: "replycontainer",
@@ -380,6 +381,12 @@ export const ReplyEach = styled.div.attrs({
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: black;
+  }
 `;
 export const ReplyUserProfileBox = styled.div.attrs({
   id: "replyuserprofilebox",
@@ -399,7 +406,7 @@ export const ReplyUserProfileImg = styled.div.attrs({
   margin-top: 5px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 15px;
+  background-size: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 50%;
 `;
@@ -440,9 +447,10 @@ export const ReplyMiddle = styled.div.attrs({
 export const ReplyMiddleText = styled.div.attrs({
   id: "replymiddletext",
 })`
-  font-size: 16px;
+  font-size: 15px;
   font-family: "regular", sans-serif;
   color: black;
+  line-height: 25px;
 `;
 
 export const RightContainer = styled.div.attrs({
@@ -465,6 +473,8 @@ export const UserProfileBox = styled.div.attrs({
   gap: 25px;
   justify-content: flex-start;
   align-items: center;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
 `;
 export const UserProfileImg = styled.div.attrs({
   id: "userprofileimg",
@@ -473,9 +483,10 @@ export const UserProfileImg = styled.div.attrs({
   height: 80px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 30px;
+  background-size: cover;
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 50%;
+  border: 1px solid #f1f1f1;
 `;
 export const UserProfileTextBox = styled.div.attrs({
   id: "userprofiletextbox",
@@ -562,7 +573,7 @@ export const RelatedPostContentsText = styled.div.attrs({
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   font-family: "regular", sans-serif;
   font-size: 14px;
@@ -650,4 +661,159 @@ export const MiddleDot = styled.div.attrs({
   align-items: center;
   margin-left: 2px;
   margin-right: 2px;
+`;
+
+export const WriteContainer = styled.div.attrs({
+  id: "writecontainer",
+})`
+  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 25px;
+  padding-bottom: 30px;
+`;
+
+export const WriteSortOuterContiner = styled.div.attrs({
+  id: "writesortoutercontainer",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: black;
+  }
+`;
+export const WriteSortInnerContainer = styled.div.attrs({
+  id: "writesortinnercontainer",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+`;
+export const WriteSortTitleActive = styled.div.attrs({
+  id: "writesorttitleactive",
+})`
+  width: 150px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 24px;
+  font-family: "semibold", sans-serif;
+  border-bottom: 2px solid black;
+`;
+export const WriteSortTitleInactive = styled.div.attrs({
+  id: "writesorttitleinactive",
+})`
+  width: 150px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 24px;
+  font-family: "semibold", sans-serif;
+`;
+
+export const WriteTitleBox = styled.div.attrs({
+  id: "writetitlebox",
+})`
+  width: 100%;
+  height: 50px;
+`;
+export const WriteTitle = styled.input.attrs({
+  id: "writetitle",
+})`
+width: 100%;
+padding: 5px 20px;
+  font-family: "bold", sans-serif;
+  font-size: 32px;
+  color: black;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+`;
+export const WriteTagBox = styled.div.attrs({
+  id: "writetagbox",
+})`
+  width: 100%;
+  height: 35px;
+`;
+export const WriteTags = styled.input.attrs({
+  id: "writetags",
+})`
+width: 30%;
+padding: 5px 20px;
+  font-family: "medium", sans-serif;
+  font-size: 20px;
+  color: black;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+`;
+export const EditorArea = styled.div.attrs({
+  id: "editorarea",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  padding-bottom: 10px;
+`;
+export const WriteButtonsArea = styled.div.attrs({
+  id: "writebuttonsarea",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 15px;
+`;
+export const WriteCancelButton = styled.div.attrs({
+  id: "writecancelbutton",
+})`
+  width: 120px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 14px;
+  font-family: "bold", sans-serif;
+  cursor: pointer;
+`;
+
+export const WriteSubmitButton = styled.div.attrs({
+  id: "writesutmitbutton",
+})`
+  width: 120px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #f1f1f1;
+  font-size: 14px;
+  font-family: "bold", sans-serif;
+  cursor: pointer;
 `;

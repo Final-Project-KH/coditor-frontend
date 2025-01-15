@@ -14,7 +14,7 @@ const Board_Coding_TopSort = () => {
           <TopSortTitleInactive>미해결</TopSortTitleInactive>
           <TopSortTitleInactive>해결됨</TopSortTitleInactive>
         </TopSortInnerContainer>
-        <hr />
+
       </TopSortOuterContiner>
     </>
   );

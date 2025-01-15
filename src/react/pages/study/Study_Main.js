@@ -20,6 +20,7 @@ const Study_Main = () => {
   const location = useLocation();
   const { firstpath } = location.state || {};
 
+  // TopBox firstpath
   const handleRefresh = () => {
     navigate("/study", {
       state: {
@@ -27,6 +28,8 @@ const Study_Main = () => {
       },
     });
   };
+
+  // Java onClick
   const handleJavaCheck = () => {
     navigate("/study/java", {
       state: {
@@ -35,6 +38,8 @@ const Study_Main = () => {
       },
     });
   };
+
+  // Python onClick
   const handlePythonCheck = () => {
     navigate("/study/python", {
       state: {
@@ -43,6 +48,8 @@ const Study_Main = () => {
       },
     });
   };
+
+  // C onClick
   const handleCCheck = () => {
     navigate("/study/c", {
       state: {
@@ -51,6 +58,8 @@ const Study_Main = () => {
       },
     });
   };
+
+  // C++ onClick
   const handleCPlusCheck = () => {
     navigate("/study/cplus", {
       state: {
@@ -59,6 +68,8 @@ const Study_Main = () => {
       },
     });
   };
+
+  // JavaScript onClick
   const handleJavaScriptCheck = () => {
     navigate("/study/javascript", {
       state: {
@@ -67,6 +78,7 @@ const Study_Main = () => {
       },
     });
   };
+
   return (
     <>
       <Wrap>

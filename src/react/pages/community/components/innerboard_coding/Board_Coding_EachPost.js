@@ -1,3 +1,4 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   PostEach,
   PostTop,
@@ -24,11 +25,26 @@ import {
   PostMiddleContentsSolved,
 } from "../../../../styles/community/Board";
 
+
+
 export const Board_Coding_EachPost_01 = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { firstpath, secondpath, thirdpath } = location.state || {};
+
+  const handlePost = () => {
+    navigate("/community/coding/post1", {
+      state: {
+        firstpath: firstpath,
+        secondpath: secondpath,
+        thirdpath: "게시글",
+      },
+    });
+  };
+
   return (
     <>
-      <PostEach>
-        <a href="/community/coding/post1" className="menu-link">
+      <PostEach style={{ cursor: "pointer" }} onClick={() => handlePost()}>
           <PostTop>
             <PostTopUser>
               <PostTopUserImg
@@ -40,7 +56,7 @@ export const Board_Coding_EachPost_01 = () => {
               />
               <PostTopUserId>By: 김도현</PostTopUserId>
             </PostTopUser>
-            <PostTopDays>방금</PostTopDays>
+            <PostTopDays>2025.01.10. 15:59 작성</PostTopDays>
           </PostTop>
           <PostMiddle>
             <PostMiddleContentsUpper>
@@ -71,7 +87,6 @@ export const Board_Coding_EachPost_01 = () => {
               </PostBottomViewsBox>
             </PostBottomDataBox>
           </PostBottom>
-        </a>
       </PostEach>
     </>
   );
@@ -92,7 +107,7 @@ export const Board_Coding_EachPost_02 = () => {
             />
             <PostTopUserId>By: sun</PostTopUserId>
           </PostTopUser>
-          <PostTopDays>37분 전</PostTopDays>
+          <PostTopDays>2025.01.10. 15:22 작성</PostTopDays>
         </PostTop>
         <PostMiddle>
           <PostMiddleContentsUpper>
@@ -146,7 +161,7 @@ export const Board_Coding_EachPost_03 = () => {
             />
             <PostTopUserId>By: castinglife</PostTopUserId>
           </PostTopUser>
-          <PostTopDays>2일 전</PostTopDays>
+          <PostTopDays>2025.01.07. 13:00 작성</PostTopDays>
         </PostTop>
         <PostMiddle>
           <PostMiddleContentsUpper>
@@ -200,7 +215,7 @@ export const Board_Coding_EachPost_04 = () => {
             />
             <PostTopUserId>By: 비긴이계인</PostTopUserId>
           </PostTopUser>
-          <PostTopDays>5일 전</PostTopDays>
+          <PostTopDays>2025.01.04. 11:23 작성</PostTopDays>
         </PostTop>
         <PostMiddle>
           <PostMiddleContentsUpper>
