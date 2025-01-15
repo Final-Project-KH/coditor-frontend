@@ -365,8 +365,8 @@ const Login = () => {
                 <StyledLink to="#"></StyledLink>
               </ThirdLoginItem>
             </ThirdLogin>
-            <StyledP>SNS 계정으로 로그인하실 경우</StyledP>
-            <StyledP>일부 서비스 이용에 제한이 있을 수 있습니다.</StyledP>
+            {/* <StyledP>SNS 계정으로 로그인하실 경우</StyledP>
+            <StyledP>일부 서비스 이용에 제한이 있을 수 있습니다.</StyledP> */}
           </FloatingContainer>
           <NoticeContainer>
             <Notice>

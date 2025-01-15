@@ -142,6 +142,11 @@ export const InputId = styled.input.attrs({
   &:focus {
     outline: none;
   }
+  ${(props) =>
+    props.isUserId &&
+    css`
+      border: 2px solid black;
+    `}
 `;
 export const InputPwContainer = styled.div.attrs({
   id: "inputpwcontainer",
@@ -296,13 +301,12 @@ export const InputEmailButton = styled.button.attrs({
   transition: all 0.3s ease-in-out;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   ${(props) =>
-    props.enabled
-      ? css`
-          &:hover {
-            background-color: black;
-          }
-        `
-      : css``}
+    props.enabled &&
+    css`
+      &:hover {
+        background-color: black;
+      }
+    `}
   border: none;
 `;
 export const InputSecurityDiv = styled.div.attrs({
@@ -399,7 +403,7 @@ export const InputExtraContainer = styled.div.attrs({
   width: 400px;
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 30px;
   margin-bottom: 40px;
 `;
 export const InputExtra = styled.div.attrs({
@@ -419,10 +423,10 @@ export const InputExtraItemCheckBox = styled.input.attrs({
   id: "inputextraitemcheckbox",
 })`
   appearance: none;
-  width: 14px;
+  width: 13px;
   height: 13px;
   display: flex;
-  /* position: absolute; */
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -453,7 +457,7 @@ export const InputExtraItemCheckBox = styled.input.attrs({
 export const InputExtraItemP = styled.p.attrs({
   id: "inputextraitemleftp",
 })`
-  width: 400px;
+  width: 380px;
   height: 20px;
   display: flex;
   position: relative;
@@ -464,7 +468,7 @@ export const InputExtraItemP = styled.p.attrs({
   font-size: 14px;
   color: #313131;
   padding-left: 10px;
-  margin-top: -3px;
+  margin-top: 0px;
 `;
 export const SignUp = styled.button.attrs({
   id: "signup",
@@ -529,4 +533,21 @@ export const NoticeLink = styled(Link)`
   height: 100%;
   position: absolute;
   background-color: transparent;
+`;
+export const ValidMessage = styled.span.attrs({
+  id: "validmessage",
+})`
+  width: 400px;
+  height: 10px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 9px;
+  color: #313131;
+  padding-left: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 `;

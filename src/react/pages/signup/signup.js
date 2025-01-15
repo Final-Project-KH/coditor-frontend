@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import AxiosApi from "../../../api/AxiosApi";
 import {
@@ -32,6 +32,7 @@ import {
   NoticeContainer,
   Notice,
   NoticeLink,
+  ValidMessage,
 } from "../../styles/signup/signup";
 import {useDispatch} from "react-redux";
 import {setError} from "../../../redux/slice/authSlice";
@@ -76,6 +77,23 @@ const Signup = () => {
     setIsChecked14(e.target.checked);
     setIsCheckedMarketing(e.target.checked);
   };
+  useEffect(() => {
+    if (
+      !isCheckedTerms &&
+      !isCheckedUses &&
+      !isChecked14 &&
+      !isCheckedMarketing
+    ) {
+      setIsCheckedAll("");
+    } else if (
+      isCheckedTerms &&
+      isCheckedUses &&
+      isChecked14 &&
+      isCheckedMarketing
+    ) {
+      setIsCheckedAll("checked");
+    }
+  }, [isCheckedTerms, isCheckedUses, isChecked14, isCheckedMarketing]);
 
   const handleCheckTermsBox = (e) => {
     setIsCheckedTerms(e.target.checked);
@@ -238,16 +256,17 @@ const Signup = () => {
             <InputId
               autoComplete="off"
               type="userId"
-              placeholder="아이디 입력"
+              placeholder="영문자, 숫자 포함 6~16자"
               value={inputUserId}
               onChange={onChangeUserId}
+              isUserId={isUserId}
             ></InputId>
             <InputPwContainer>
               <InputIndex>비밀번호</InputIndex>
               <InputPwDiv>
                 <InputPw
                   type={isVisiblePwd ? "text" : "password"}
-                  placeholder="영문자,숫자,특수문자 포함 8~20자"
+                  placeholder="영문자, 숫자, 특수문자 포함 8~20자"
                   value={inputPw}
                   onChange={onChangePw}
                 ></InputPw>
@@ -268,13 +287,18 @@ const Signup = () => {
                   onClick={() => toggleVisibleConPwd()}
                 />
               </InputPwDiv>
+              {inputConPw.length > 0 && (
+                <span className={`messasge ${isConPw ? "success" : "error"}`}>
+                  {conPwMessage}
+                </span>
+              )}
             </InputPwContainer>
             <InputIndex>이메일</InputIndex>
             <InputEmailDiv>
               <InputEmail
                 autoComplete="off"
                 type="email"
-                placeholder="이메일 주소 입력"
+                placeholder="이메일 주소 입력 (@gmail.com)"
                 value={inputEmail}
                 onChange={onChangeEmail}
                 isEmailAvailable={isEmailAvailable}
@@ -358,7 +382,8 @@ const Signup = () => {
             isPw &&
             isConPw &&
             isName &&
-            isCheckedAll ? (
+            isCheckedTerms &&
+            isCheckedUses ? (
               <SignUp enabled onClick={onClickSignUp}>
                 회원가입하기
               </SignUp>
