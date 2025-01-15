@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import AxiosApi from "../../../api/AxiosApi";
-import { setLoginData, setError } from "../../../redux/slice/authSlice";
+import {setLoginData, setError} from "../../../redux/slice/authSlice";
 import JwtDecoding from "../../../api/JwtDecode";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Common from "../../../util/Common";
-import { GoogleOAuthProvider } from "@react-oauth/google"; // GoogleOAuthProvider 추가
+import {GoogleOAuthProvider} from "@react-oauth/google"; // GoogleOAuthProvider 추가
 import {
   Wrap,
   Container,
@@ -92,9 +92,9 @@ const Login = () => {
       setRsp(response); // 응답 데이터를 상태에 저장
 
       if (response.data.grantType === "Bearer") {
-        const nickname = JwtDecoding.getFieldFromToken(
-          response.data.accessToken,
-          "nickname"
+        const nickname = Common.getNewNickname(response.data.accessToken);
+        const accesstokenexpiresin = Common.getNewAccessTokenExpiresIn(
+          response.data.accessToken
         );
         console.log("액세스 토큰: ", response.data.accessToken);
         console.log("리프레쉬 토큰: ", response.data.refreshToken);
@@ -365,8 +365,8 @@ const Login = () => {
                 <StyledLink to="#"></StyledLink>
               </ThirdLoginItem>
             </ThirdLogin>
-            <StyledP>SNS 계정으로 로그인하실 경우</StyledP>
-            <StyledP>일부 서비스 이용에 제한이 있을 수 있습니다.</StyledP>
+            {/* <StyledP>SNS 계정으로 로그인하실 경우</StyledP>
+            <StyledP>일부 서비스 이용에 제한이 있을 수 있습니다.</StyledP> */}
           </FloatingContainer>
           <NoticeContainer>
             <Notice>
