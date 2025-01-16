@@ -545,9 +545,14 @@ export const ValidMessage = styled.span.attrs({
   align-items: center;
   justify-content: flex-start;
   user-select: none;
-  font-size: 9px;
-  color: #313131;
+  font-size: 10px;
+  color: red;
   padding-left: 10px;
   margin-top: 2px;
   margin-bottom: 2px;
+  ${(props) =>
+    props.isUserId &&
+    css`
+      display: none;
+    `}
 `;

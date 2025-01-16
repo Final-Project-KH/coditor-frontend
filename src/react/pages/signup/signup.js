@@ -70,6 +70,7 @@ const Signup = () => {
   // 이메일 수정 가능 / 불가능 여부
   const [isEmailAvailable, setIsEmailAvailable] = useState(true);
 
+  // 전체 동의 누를 시 모든 체크박스 선택
   const handleCheckAllBox = (e) => {
     setIsCheckedAll(e.target.checked);
     setIsCheckedTerms(e.target.checked);
@@ -77,6 +78,7 @@ const Signup = () => {
     setIsChecked14(e.target.checked);
     setIsCheckedMarketing(e.target.checked);
   };
+  // 전체 동의 누르지 않고 체크 박스 전부 체크/해제 시 전체 동의 란의 상태 결정
   useEffect(() => {
     if (
       !isCheckedTerms &&
@@ -111,15 +113,83 @@ const Signup = () => {
     setIsCheckedMarketing(e.target.checked);
   };
 
+  // 유효성 검사 나누기
+  // 1. ID 유효성 검사
+  // 특수 문자열 포함 여부 (포함 시 -> true)
+  function isIdContainsSpecialCharacter(input) {
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    return specialCharRegex.test(input);
+  }
+  // ID input 문자열 길이 검사 (6보다 작을 시 -> true)
+  function isIdTooShort(input) {
+    return input.length < 6;
+  }
+  // ID input 문자열 길이 검사 (16보다 클 시 -> true)
+  function isIdTooLong(input) {
+    return input.length > 16;
+  }
+
+  // 공통 공란 여부 검사 (공란 시 -> true)
+  function isBlank(input) {
+    return input.trim() === "";
+  }
+
   const onChangeUserId = (e) => {
     setInputUserId(e.target.value);
-    const idRegex = /^[a-zA-Z0-9]{6,16}$/;
-    if (!idRegex.test(e.target.value)) {
-      setUserIdMessage("아이디 형식이 올바르지 않습니다.");
+    const currentValue = e.target.value;
+    const idRegex = /^[a-zA-Z0-9]{6,16}$/; // 어떤 식으로 설정?
+    if (isIdContainsSpecialCharacter(currentValue)) {
+      setUserIdMessage("아이디는 특수문자가 포함될 수 없습니다.");
+      setIsUserId(false);
+      return;
+    }
+    if (isIdTooLong(currentValue)) {
+      setUserIdMessage("아이디는 16자 이하 6자 이상이어야 합니다.");
+      setIsUserId(false);
+      return;
+    }
+    if (!idRegex.test(currentValue)) {
       setIsUserId(false);
     } else {
-      setUserIdMessage("올바른 형식입니다.");
+      setUserIdMessage("");
       setIsUserId(true);
+    }
+  };
+  async function validate(key, data) {
+    // const data = inputUserId;
+    try {
+      const response = await AxiosApi.validate(key, data);
+      // console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return "다시 시도해주세요";
+    }
+  }
+  const onBlurUserId = async (e) => {
+    setInputUserId(e.target.value);
+    const currentValue = e.target.value;
+    if (isBlank(currentValue)) {
+      setUserIdMessage("아이디는 필수 입력 정보입니다.");
+      setIsUserId(false);
+      return;
+    }
+    if (isIdTooShort(currentValue)) {
+      setUserIdMessage("아이디는 6자 이상 16자 이하이어야 합니다.");
+      setIsUserId(false);
+      return;
+    }
+    try {
+      const isIdAvailable = await validate("userId", currentValue);
+      if (isIdAvailable) {
+        setUserIdMessage("");
+        setIsUserId(true);
+      } else {
+        setUserIdMessage("사용할 수 없는 아이디입니다.");
+        setIsUserId(false);
+      }
+    } catch (error) {
+      setUserIdMessage("ID 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      setIsUserId(false);
     }
   };
   const onChangeEmail = (e) => {
@@ -199,13 +269,6 @@ const Signup = () => {
       alert("서버가 응답하지 않습니다.");
     }
   };
-  const setViewportHeight = () => {
-    const vh = window.innerHeight * 0.01; // 1 vh에 해당하는 값 계산
-    document.documentElement.style.setProperty("--vh", `${vh}px`); // CSS 변수에 설ㄹ정
-  };
-
-  setViewportHeight();
-  window.addEventListener("resize", setViewportHeight);
 
   const [isVisiblePwd, setIsVisiblePwd] = useState(false);
   const [isVisibleConPwd, setIsVisibleConPwd] = useState(false);
@@ -259,8 +322,12 @@ const Signup = () => {
               placeholder="영문자, 숫자 포함 6~16자"
               value={inputUserId}
               onChange={onChangeUserId}
+              onBlur={onBlurUserId}
               isUserId={isUserId}
             ></InputId>
+            {!isUserId && (
+              <ValidMessage isUserId={isUserId}>{userIdMessage}</ValidMessage>
+            )}
             <InputPwContainer>
               <InputIndex>비밀번호</InputIndex>
               <InputPwDiv>

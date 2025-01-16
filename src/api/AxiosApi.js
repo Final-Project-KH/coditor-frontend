@@ -20,18 +20,33 @@ const AxiosApi = {
     };
     return await axios.post(SPRING_DOMAIN + "/auth/signup", user);
   },
+  validate: async (key, data) => {
+    const validate = {
+      params: {
+        key: key,
+        value: data,
+      },
+    };
+    return await axios.post(
+      SPRING_DOMAIN + "/auth/join/validate",
+      null,
+      validate
+    );
+  },
   verifyemail: async (email) => {
     const verify = {
       params: {
         email: email,
       },
     };
-    return await axios.post(SPRING_DOMAIN + "/join/verify", verify);
+    return await axios.post(SPRING_DOMAIN + "/auth/join/verify", null, verify);
   },
   verifyotp: async (otpnumber, email) => {
     const otp = otpnumber;
     const encodedemail = encodeURIComponent(email);
-    return await axios.post(SPRING_DOMAIN + `/join/${otp}/${encodedemail}`);
+    return await axios.post(
+      SPRING_DOMAIN + `/auth/join/${otp}/${encodedemail}`
+    );
   },
   // 구글 로그인 추가
   // 구글 로그인
