@@ -119,8 +119,16 @@ const Signup = () => {
   // 1. ID 유효성 검사
   // 특수 문자열 포함 여부 (포함 시 -> true)
   function isIdContainsSpecialCharacter(input) {
-    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    const specialCharRegex = /[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]/;
     return specialCharRegex.test(input);
+  }
+  function isIdContainsKorean(input) {
+    const koreanRegex = /[ㄱ-ㅎㅏ-ㅣ가-힣]/;
+    return koreanRegex.test(input);
+  }
+  function idAvailable(input) {
+    const idRegex = /^[a-zA-Z0-9]{6,16}$/;
+    return idRegex.test(input);
   }
   // ID input 문자열 길이 검사 (6보다 작을 시 -> true)
   function isIdTooShort(input) {
@@ -154,14 +162,19 @@ const Signup = () => {
     const charRegex = /[a-zA-Z]/;
     return charRegex.test(input);
   }
-  // 4. 이메일 유효성 검사
-
-  // 5. 인증번호 유효성 검사
-
   // 6. 닉네임 유효성 검사
   // Name input 문자열 길이 검사 (3보다 작을 시 -> true)
   function isNameTooShort(input) {
     return input.length < 3;
+  }
+  // 특수 문자열 포함 여부 (포함 시 -> true)
+  function isNameContainsSpecialCharacter(input) {
+    const specialCharRegex = /[!@#$%^&*(),?":{}|<>]/;
+    return specialCharRegex.test(input);
+  }
+  function nameAvailable(input) {
+    const nameRegex = /^[a-zA-Zㄱ-ㅎ가-힣0-9._-]{3,16}$/;
+    return nameRegex.test(input);
   }
 
   // 공통 공란 여부 검사 (공란 시 -> true)
@@ -172,20 +185,25 @@ const Signup = () => {
   const onChangeUserId = (e) => {
     setInputUserId(e.target.value);
     const currentValue = e.target.value;
-    const idRegex = /^[a-zA-Z0-9]{6,16}$/; // 어떤 식으로 설정?
     if (isIdContainsSpecialCharacter(currentValue)) {
       setUserIdMessage("아이디는 특수문자가 포함될 수 없습니다.");
       setIsUserId(false);
       return;
+    }
+    if (isIdContainsKorean(currentValue)) {
+      setUserIdMessage("아이디는 한글이 포함될 수 없습니다.");
+      setIsUserId(false);
     }
     if (isIdTooLong(currentValue)) {
       setUserIdMessage("아이디는 16자 이하 6자 이상이어야 합니다.");
       setIsUserId(false);
       return;
     }
-    if (idRegex.test(currentValue)) {
+    if (idAvailable(currentValue)) {
       setUserIdMessage("");
       setIsUserId(true);
+    } else {
+      setIsUserId(false);
     }
   };
   async function validate(key, data) {
@@ -213,7 +231,7 @@ const Signup = () => {
     }
     try {
       const isIdAvailable = await validate("userId", currentValue);
-      if (isIdAvailable) {
+      if (isIdAvailable && idAvailable(currentValue)) {
         setUserIdMessage("");
         setIsUserId(true);
       } else {
@@ -227,15 +245,40 @@ const Signup = () => {
   };
   const onChangeEmail = (e) => {
     setInputEmail(e.target.value);
+    const currentValue = e.target.value;
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (!emailRegex.test(e.target.value)) {
-      setEmailMessage("이메일 형식이 올바르지 않습니다.");
-      setIsEmail(false);
+    if (emailRegex.test(currentValue)) {
+      setEmailMessage("");
+      setIsEmail(true);
     } else {
-      setEmailMessage("올바른 형식입니다.");
-      setIsEmail(true); // 나중에 Email Check 추가해야함
+      setIsEmail(false);
     }
   };
+  const onBlurEmail = (e) => {
+    setInputEmail(e.target.value);
+    const currentValue = e.target.value;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (isBlank(currentValue)) {
+      setEmailMessage("이메일 인증이 필요합니다.");
+      setIsEmail(false);
+      return;
+    }
+    if (!emailRegex.test(currentValue)) {
+      setEmailMessage("이메일 형식이 올바르지 않습니다.");
+      setIsEmail(false);
+      return;
+    } else {
+      setIsEmail(true);
+    }
+  };
+  const onClickEmail = async (e) => {
+    setInputEmail(e.target.value);
+    const currentValue = e.target.value;
+    try {
+      const response = await AxiosApi.validate("email", currentValue);
+    } catch (error) {}
+  };
+
   const onChangeSecurity = (e) => {
     setInputSecurity(e.target.value);
     const securityRegex = /^[1-9][0-9]{5}$/;
@@ -255,6 +298,8 @@ const Signup = () => {
     if (passwordRegex.test(currentValue)) {
       setPwMessage("");
       setIsPw(true);
+    } else {
+      setIsPw(false);
     }
   };
   const onBlurPw = (e) => {
@@ -300,6 +345,8 @@ const Signup = () => {
     if (currentValue === inputPw) {
       setConPwMessage("");
       setIsConPw(true);
+    } else {
+      setIsConPw(false);
     }
   };
   const onBlurConPw = (e) => {
@@ -326,12 +373,13 @@ const Signup = () => {
   };
 
   const onChangeName = (e) => {
-    const nameRegex = /^[a-zA-Z가-힣]{3,16}$/;
     setInputName(e.target.value);
     const currentValue = e.target.value;
-    if (nameRegex.test(currentValue)) {
+    if (nameAvailable(currentValue)) {
       setNameMessage("");
       setIsName(true);
+    } else {
+      setIsName(false);
     }
   };
   const onBlurName = async (e) => {
