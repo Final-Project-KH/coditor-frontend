@@ -53,6 +53,7 @@ const Signup = () => {
   const [nameMessage, setNameMessage] = useState("");
   const [conPwMessage, setConPwMessage] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
+  const [securityMessage, setSecurityMessage] = useState("");
   // 유효성 검사
   const [isUserId, setIsUserId] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
@@ -152,6 +153,15 @@ const Signup = () => {
   function isPwContainsCharacter(input) {
     const charRegex = /[a-zA-Z]/;
     return charRegex.test(input);
+  }
+  // 4. 이메일 유효성 검사
+
+  // 5. 인증번호 유효성 검사
+
+  // 6. 닉네임 유효성 검사
+  // Name input 문자열 길이 검사 (3보다 작을 시 -> true)
+  function isNameTooShort(input) {
+    return input.length < 3;
   }
 
   // 공통 공란 여부 검사 (공란 시 -> true)
@@ -316,15 +326,39 @@ const Signup = () => {
   };
 
   const onChangeName = (e) => {
-    const nameRegex = /^[a-zA-Z가-힣]{4,16}$/;
-    const nameCurrent = e.target.value;
-    setInputName(nameCurrent);
-    if (!nameRegex.test(nameCurrent)) {
-      setNameMessage("닉네임 형식이 올바르지 않습니다.");
-      setIsName(false);
-    } else {
-      setNameMessage("올바른 형식입니다.");
+    const nameRegex = /^[a-zA-Z가-힣]{3,16}$/;
+    setInputName(e.target.value);
+    const currentValue = e.target.value;
+    if (nameRegex.test(currentValue)) {
+      setNameMessage("");
       setIsName(true);
+    }
+  };
+  const onBlurName = async (e) => {
+    setInputName(e.target.value);
+    const currentValue = e.target.value;
+    if (isBlank(currentValue)) {
+      setNameMessage("닉네임은 필수 입력 정보입니다.");
+      setIsName(false);
+      return;
+    }
+    if (isNameTooShort(currentValue)) {
+      setNameMessage("닉네임은 3자 이상 16자 이하이어야 합니다.");
+      setIsName(false);
+      return;
+    }
+    try {
+      const isNameAvailable = await validate("nickname", currentValue);
+      if (isNameAvailable) {
+        setNameMessage("");
+        setIsName(true);
+      } else {
+        setNameMessage("사용할 수 없는 닉네임입니다.");
+        setIsName(false);
+      }
+    } catch (error) {
+      setNameMessage("닉네임 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      setIsName(false);
     }
   };
   const onClickSignUp = async () => {
@@ -451,7 +485,7 @@ const Signup = () => {
               <InputEmail
                 autoComplete="off"
                 type="email"
-                placeholder="이메일 주소 입력 (@gmail.com)"
+                placeholder="이메일 주소 입력"
                 value={inputEmail}
                 onChange={onChangeEmail}
                 isEmailAvailable={isEmailAvailable}
@@ -479,7 +513,12 @@ const Signup = () => {
               placeholder="닉네임 입력"
               value={inputName}
               onChange={onChangeName}
+              onBlur={onBlurName}
+              isName={isName}
             ></InputNickName>
+            {!isName && (
+              <ValidIdMessage isName={isName}>{nameMessage}</ValidIdMessage>
+            )}
             <InputExtraContainer>
               <InputExtra>
                 <InputExtraItemCheckBox

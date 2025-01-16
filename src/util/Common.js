@@ -28,6 +28,7 @@ const Common = {
   getNewAccessTokenExpiresIn: (token) => {
     // 들어오는 token은 accesstoken
     const newaccesstokenexpiresin = JwtDecoding.getFieldFromToken(token, "exp");
+    console.log(JwtDecoding.getFieldFromToken(token, "exp"));
     return newaccesstokenexpiresin;
   },
 

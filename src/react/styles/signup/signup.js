@@ -407,6 +407,11 @@ export const InputNickName = styled.input.attrs({
   &:focus {
     outline: none;
   }
+  ${(props) =>
+    props.isName &&
+    css`
+      border: 2px solid black;
+    `}
 `;
 export const InputExtraContainer = styled.div.attrs({
   id: "inputextracontainer",
@@ -587,6 +592,29 @@ export const ValidPwMessage = styled.span.attrs({
   padding-bottom: 10px;
   ${(props) =>
     props.isPw &&
+    css`
+      display: none;
+    `}
+`;
+export const ValidNameMessage = styled.span.attrs({
+  id: "validnamemessage",
+})`
+  width: 400px;
+  height: 5px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  padding-left: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 10px;
+  ${(props) =>
+    props.isName &&
     css`
       display: none;
     `}
