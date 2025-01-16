@@ -32,7 +32,8 @@ import {
   NoticeContainer,
   Notice,
   NoticeLink,
-  ValidMessage,
+  ValidIdMessage,
+  ValidPwMessage,
 } from "../../styles/signup/signup";
 import {useDispatch} from "react-redux";
 import {setError} from "../../../redux/slice/authSlice";
@@ -52,6 +53,7 @@ const Signup = () => {
   const [nameMessage, setNameMessage] = useState("");
   const [conPwMessage, setConPwMessage] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
+  const [securityMessage, setSecurityMessage] = useState("");
   // 유효성 검사
   const [isUserId, setIsUserId] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
@@ -70,6 +72,7 @@ const Signup = () => {
   // 이메일 수정 가능 / 불가능 여부
   const [isEmailAvailable, setIsEmailAvailable] = useState(true);
 
+  // 전체 동의 누를 시 모든 체크박스 선택
   const handleCheckAllBox = (e) => {
     setIsCheckedAll(e.target.checked);
     setIsCheckedTerms(e.target.checked);
@@ -77,6 +80,7 @@ const Signup = () => {
     setIsChecked14(e.target.checked);
     setIsCheckedMarketing(e.target.checked);
   };
+  // 전체 동의 누르지 않고 체크 박스 전부 체크/해제 시 전체 동의 란의 상태 결정
   useEffect(() => {
     if (
       !isCheckedTerms &&
@@ -111,28 +115,170 @@ const Signup = () => {
     setIsCheckedMarketing(e.target.checked);
   };
 
+  // 유효성 검사 나누기
+  // 1. ID 유효성 검사
+  // 특수 문자열 포함 여부 (포함 시 -> true)
+  function isIdContainsSpecialCharacter(input) {
+    const specialCharRegex = /[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]/;
+    return specialCharRegex.test(input);
+  }
+  function isIdContainsKorean(input) {
+    const koreanRegex = /[ㄱ-ㅎㅏ-ㅣ가-힣]/;
+    return koreanRegex.test(input);
+  }
+  function idAvailable(input) {
+    const idRegex = /^[a-zA-Z0-9]{6,16}$/;
+    return idRegex.test(input);
+  }
+  // ID input 문자열 길이 검사 (6보다 작을 시 -> true)
+  function isIdTooShort(input) {
+    return input.length < 6;
+  }
+  // ID input 문자열 길이 검사 (16보다 클 시 -> true)
+  function isIdTooLong(input) {
+    return input.length > 16;
+  }
+  // 2. PW 유효성 검사
+  // PW input 문자열 길이 검사 (8보다 작을 시 -> true)
+  function isPwTooShort(input) {
+    return input.length < 8;
+  }
+  // PW input 문자열 길이 검사 (20보다 클 시 -> true)
+  function isPwTooLong(input) {
+    return input.length > 20;
+  }
+  //  특수 문자열 포함 여부 (포함 시 -> true)
+  function isPwContainsSpecialCharacter(input) {
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    return specialCharRegex.test(input);
+  }
+  //  숫자열 포함 여부 (포함 시 -> true)
+  function isPwContainsNumber(input) {
+    const numberRegex = /\d/;
+    return numberRegex.test(input);
+  }
+  //  문자열 포함 여부 (포함 시 -> true)
+  function isPwContainsCharacter(input) {
+    const charRegex = /[a-zA-Z]/;
+    return charRegex.test(input);
+  }
+  // 6. 닉네임 유효성 검사
+  // Name input 문자열 길이 검사 (3보다 작을 시 -> true)
+  function isNameTooShort(input) {
+    return input.length < 3;
+  }
+  // 특수 문자열 포함 여부 (포함 시 -> true)
+  function isNameContainsSpecialCharacter(input) {
+    const specialCharRegex = /[!@#$%^&*(),?":{}|<>]/;
+    return specialCharRegex.test(input);
+  }
+  function nameAvailable(input) {
+    const nameRegex = /^[a-zA-Zㄱ-ㅎ가-힣0-9._-]{3,16}$/;
+    return nameRegex.test(input);
+  }
+
+  // 공통 공란 여부 검사 (공란 시 -> true)
+  function isBlank(input) {
+    return input.trim() === "";
+  }
+
   const onChangeUserId = (e) => {
     setInputUserId(e.target.value);
-    const idRegex = /^[a-zA-Z0-9]{6,16}$/;
-    if (!idRegex.test(e.target.value)) {
-      setUserIdMessage("아이디 형식이 올바르지 않습니다.");
+    const currentValue = e.target.value;
+    if (isIdContainsSpecialCharacter(currentValue)) {
+      setUserIdMessage("아이디는 특수문자가 포함될 수 없습니다.");
       setIsUserId(false);
-    } else {
-      setUserIdMessage("올바른 형식입니다.");
+      return;
+    }
+    if (isIdContainsKorean(currentValue)) {
+      setUserIdMessage("아이디는 한글이 포함될 수 없습니다.");
+      setIsUserId(false);
+    }
+    if (isIdTooLong(currentValue)) {
+      setUserIdMessage("아이디는 16자 이하 6자 이상이어야 합니다.");
+      setIsUserId(false);
+      return;
+    }
+    if (idAvailable(currentValue)) {
+      setUserIdMessage("");
       setIsUserId(true);
+    } else {
+      setIsUserId(false);
+    }
+  };
+  async function validate(key, data) {
+    // const data = inputUserId;
+    try {
+      const response = await AxiosApi.validate(key, data);
+      // console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return "다시 시도해주세요";
+    }
+  }
+  const onBlurUserId = async (e) => {
+    setInputUserId(e.target.value);
+    const currentValue = e.target.value;
+    if (isBlank(currentValue)) {
+      setUserIdMessage("아이디는 필수 입력 정보입니다.");
+      setIsUserId(false);
+      return;
+    }
+    if (isIdTooShort(currentValue)) {
+      setUserIdMessage("아이디는 6자 이상 16자 이하이어야 합니다.");
+      setIsUserId(false);
+      return;
+    }
+    try {
+      const isIdAvailable = await validate("userId", currentValue);
+      if (isIdAvailable && idAvailable(currentValue)) {
+        setUserIdMessage("");
+        setIsUserId(true);
+      } else {
+        setUserIdMessage("사용할 수 없는 아이디입니다.");
+        setIsUserId(false);
+      }
+    } catch (error) {
+      setUserIdMessage("ID 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      setIsUserId(false);
     }
   };
   const onChangeEmail = (e) => {
     setInputEmail(e.target.value);
+    const currentValue = e.target.value;
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (!emailRegex.test(e.target.value)) {
-      setEmailMessage("이메일 형식이 올바르지 않습니다.");
-      setIsEmail(false);
+    if (emailRegex.test(currentValue)) {
+      setEmailMessage("");
+      setIsEmail(true);
     } else {
-      setEmailMessage("올바른 형식입니다.");
-      setIsEmail(true); // 나중에 Email Check 추가해야함
+      setIsEmail(false);
     }
   };
+  const onBlurEmail = (e) => {
+    setInputEmail(e.target.value);
+    const currentValue = e.target.value;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (isBlank(currentValue)) {
+      setEmailMessage("이메일 인증이 필요합니다.");
+      setIsEmail(false);
+      return;
+    }
+    if (!emailRegex.test(currentValue)) {
+      setEmailMessage("이메일 형식이 올바르지 않습니다.");
+      setIsEmail(false);
+      return;
+    } else {
+      setIsEmail(true);
+    }
+  };
+  const onClickEmail = async (e) => {
+    setInputEmail(e.target.value);
+    const currentValue = e.target.value;
+    try {
+      const response = await AxiosApi.validate("email", currentValue);
+    } catch (error) {}
+  };
+
   const onChangeSecurity = (e) => {
     setInputSecurity(e.target.value);
     const securityRegex = /^[1-9][0-9]{5}$/;
@@ -146,44 +292,127 @@ const Signup = () => {
   };
   const onChangePw = (e) => {
     const passwordRegex =
-      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-    const passwordCurrent = e.target.value;
-    setInputPw(passwordCurrent);
-    if (!passwordRegex.test(passwordCurrent)) {
-      setPwMessage("비밀번호 형식이 올바르지 않습니다.");
-      setIsPw(false);
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+    setInputPw(e.target.value);
+    const currentValue = e.target.value;
+    if (passwordRegex.test(currentValue)) {
+      setPwMessage("");
+      setIsPw(true);
     } else {
-      setPwMessage("올바른 형식입니다.");
+      setIsPw(false);
+    }
+  };
+  const onBlurPw = (e) => {
+    setInputPw(e.target.value);
+    const currentValue = e.target.value;
+    if (isBlank(currentValue)) {
+      setPwMessage("비밀번호는 필수 입력 정보입니다.");
+      setIsPw(false);
+      return;
+    }
+    if (!isPwContainsCharacter(currentValue)) {
+      setPwMessage("비밀번호는 1개 이상의 문자를 포함해야 합니다.");
+      setIsPw(false);
+      return;
+    }
+    if (!isPwContainsNumber(currentValue)) {
+      setPwMessage("비밀번호는 1개 이상의 숫자를 포함해야 합니다.");
+      setIsPw(false);
+      return;
+    }
+    if (!isPwContainsSpecialCharacter(currentValue)) {
+      setPwMessage("비밀번호는 1개 이상의 특수문자를 포함해야 합니다.");
+      setIsPw(false);
+      return;
+    }
+    if (isPwTooLong(currentValue)) {
+      setPwMessage("비밀번호는 20자 이하 8자 이상이어야 합니다.");
+      setIsPw(false);
+      return;
+    }
+    if (isPwTooShort(currentValue)) {
+      setPwMessage("비밀번호는 8자 이상 20자 이하이어야 합니다.");
+      setIsPw(false);
+      return;
+    } else {
+      setPwMessage("");
       setIsPw(true);
     }
   };
   const onChangeConPw = (e) => {
-    const passwordCurrent = e.target.value;
-    setInputConPw(passwordCurrent);
-    if (passwordCurrent !== inputPw) {
+    setInputConPw(e.target.value);
+    const currentValue = e.target.value;
+    if (currentValue === inputPw) {
+      setConPwMessage("");
+      setIsConPw(true);
+    } else {
+      setIsConPw(false);
+    }
+  };
+  const onBlurConPw = (e) => {
+    setInputConPw(e.target.value);
+    const currentValue = e.target.value;
+    if (isBlank(inputPw)) {
+      setConPwMessage("비밀번호 입력이 필요합니다.");
+      setIsConPw(false);
+      return;
+    }
+    if (isBlank(currentValue)) {
+      setConPwMessage("비밀번호 확인이 필요합니다.");
+      setIsConPw(false);
+      return;
+    }
+    if (currentValue !== inputPw) {
       setConPwMessage("비밀번호가 일치하지 않습니다.");
       setIsConPw(false);
+      return;
     } else {
-      setConPwMessage("비밀번호가 일치합니다.");
+      setConPwMessage("");
       setIsConPw(true);
     }
   };
+
   const onChangeName = (e) => {
-    const nameRegex = /^[a-zA-Z가-힣]{4,16}$/;
-    const nameCurrent = e.target.value;
-    setInputName(nameCurrent);
-    if (!nameRegex.test(nameCurrent)) {
-      setNameMessage("닉네임 형식이 올바르지 않습니다.");
-      setIsName(false);
-    } else {
-      setNameMessage("올바른 형식입니다.");
+    setInputName(e.target.value);
+    const currentValue = e.target.value;
+    if (nameAvailable(currentValue)) {
+      setNameMessage("");
       setIsName(true);
+    } else {
+      setIsName(false);
+    }
+  };
+  const onBlurName = async (e) => {
+    setInputName(e.target.value);
+    const currentValue = e.target.value;
+    if (isBlank(currentValue)) {
+      setNameMessage("닉네임은 필수 입력 정보입니다.");
+      setIsName(false);
+      return;
+    }
+    if (isNameTooShort(currentValue)) {
+      setNameMessage("닉네임은 3자 이상 16자 이하이어야 합니다.");
+      setIsName(false);
+      return;
+    }
+    try {
+      const isNameAvailable = await validate("nickname", currentValue);
+      if (isNameAvailable) {
+        setNameMessage("");
+        setIsName(true);
+      } else {
+        setNameMessage("사용할 수 없는 닉네임입니다.");
+        setIsName(false);
+      }
+    } catch (error) {
+      setNameMessage("닉네임 확인 중 오류가 발생했습니다. 다시 시도해주세요.");
+      setIsName(false);
     }
   };
   const onClickSignUp = async () => {
     try {
       const memberReg = await AxiosApi.signup(
-        inputUserId,
+        inputUserId.replace(/\s+/g, ""),
         inputEmail,
         inputPw,
         inputName
@@ -199,13 +428,6 @@ const Signup = () => {
       alert("서버가 응답하지 않습니다.");
     }
   };
-  const setViewportHeight = () => {
-    const vh = window.innerHeight * 0.01; // 1 vh에 해당하는 값 계산
-    document.documentElement.style.setProperty("--vh", `${vh}px`); // CSS 변수에 설ㄹ정
-  };
-
-  setViewportHeight();
-  window.addEventListener("resize", setViewportHeight);
 
   const [isVisiblePwd, setIsVisiblePwd] = useState(false);
   const [isVisibleConPwd, setIsVisibleConPwd] = useState(false);
@@ -256,11 +478,17 @@ const Signup = () => {
             <InputId
               autoComplete="off"
               type="userId"
-              placeholder="영문자, 숫자 포함 6~16자"
+              placeholder="아이디 입력"
               value={inputUserId}
               onChange={onChangeUserId}
+              onBlur={onBlurUserId}
               isUserId={isUserId}
             ></InputId>
+            {!isUserId && (
+              <ValidIdMessage isUserId={isUserId}>
+                {userIdMessage}
+              </ValidIdMessage>
+            )}
             <InputPwContainer>
               <InputIndex>비밀번호</InputIndex>
               <InputPwDiv>
@@ -269,28 +497,35 @@ const Signup = () => {
                   placeholder="영문자, 숫자, 특수문자 포함 8~20자"
                   value={inputPw}
                   onChange={onChangePw}
+                  onBlur={onBlurPw}
+                  isPw={isPw}
                 ></InputPw>
                 <InputPwDivToggle
                   isVisible={isVisiblePwd}
                   onClick={() => toggleVisiblePwd()}
                 />
               </InputPwDiv>
+              {!isPw && (
+                <ValidPwMessage isPw={isPw}>{pwMessage}</ValidPwMessage>
+              )}
               <InputPwDiv>
                 <InputPw
                   type={isVisibleConPwd ? "text" : "password"}
                   placeholder="비밀번호 확인"
                   value={inputConPw}
                   onChange={onChangeConPw}
+                  onBlur={onBlurConPw}
+                  isConPw={isConPw}
                 ></InputPw>
                 <InputPwDivToggle
                   isVisible={isVisibleConPwd}
                   onClick={() => toggleVisibleConPwd()}
                 />
               </InputPwDiv>
-              {inputConPw.length > 0 && (
-                <span className={`messasge ${isConPw ? "success" : "error"}`}>
+              {!isConPw && (
+                <ValidPwMessage isConPw={isConPw}>
                   {conPwMessage}
-                </span>
+                </ValidPwMessage>
               )}
             </InputPwContainer>
             <InputIndex>이메일</InputIndex>
@@ -298,7 +533,7 @@ const Signup = () => {
               <InputEmail
                 autoComplete="off"
                 type="email"
-                placeholder="이메일 주소 입력 (@gmail.com)"
+                placeholder="이메일 주소 입력"
                 value={inputEmail}
                 onChange={onChangeEmail}
                 isEmailAvailable={isEmailAvailable}
@@ -326,7 +561,12 @@ const Signup = () => {
               placeholder="닉네임 입력"
               value={inputName}
               onChange={onChangeName}
+              onBlur={onBlurName}
+              isName={isName}
             ></InputNickName>
+            {!isName && (
+              <ValidIdMessage isName={isName}>{nameMessage}</ValidIdMessage>
+            )}
             <InputExtraContainer>
               <InputExtra>
                 <InputExtraItemCheckBox

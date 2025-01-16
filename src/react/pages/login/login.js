@@ -93,19 +93,24 @@ const Login = () => {
 
       if (response.data.grantType === "Bearer") {
         const nickname = Common.getNewNickname(response.data.accessToken);
+        const keynumber = Common.getNewUserKeyNumber(response.data.accessToken);
         const accesstokenexpiresin = Common.getNewAccessTokenExpiresIn(
           response.data.accessToken
+        );
+        const refreshtokenexpiresin = Common.getNewRefreshTokenExpiresIn(
+          response.data.refreshToken
         );
         console.log("액세스 토큰: ", response.data.accessToken);
         console.log("리프레쉬 토큰: ", response.data.refreshToken);
 
         dispatch(
           setLoginData({
+            keynumber: keynumber,
             nickname: nickname,
             accesstoken: response.data.accessToken,
-            accesstokenexpiresin: response.data.accessTokenExpiresIn,
+            accesstokenexpiresin: accesstokenexpiresin,
             refreshtoken: response.data.refreshToken,
-            refreshtokenexpiresin: response.data.refreshTokenExpiresIn,
+            refreshtokenexpiresin: refreshtokenexpiresin,
           })
         );
 

@@ -166,6 +166,7 @@ export const InputPwDiv = styled.div.attrs({
   user-select: none;
   border-radius: 5px;
   margin-top: 10px;
+  margin-bottom: 10px;
 `;
 export const InputPw = styled.input.attrs({
   id: "inputpw",
@@ -192,6 +193,16 @@ export const InputPw = styled.input.attrs({
   &:focus {
     outline: none;
   }
+  ${(props) =>
+    props.isPw &&
+    css`
+      border: 2px solid black;
+    `}
+  ${(props) =>
+    props.isConPw &&
+    css`
+      border: 2px solid black;
+    `}
 `;
 export const InputPwDivToggle = styled.button.attrs({
   id: "inputpwdivtoggle",
@@ -396,6 +407,11 @@ export const InputNickName = styled.input.attrs({
   &:focus {
     outline: none;
   }
+  ${(props) =>
+    props.isName &&
+    css`
+      border: 2px solid black;
+    `}
 `;
 export const InputExtraContainer = styled.div.attrs({
   id: "inputextracontainer",
@@ -534,20 +550,72 @@ export const NoticeLink = styled(Link)`
   position: absolute;
   background-color: transparent;
 `;
-export const ValidMessage = styled.span.attrs({
-  id: "validmessage",
+export const ValidIdMessage = styled.span.attrs({
+  id: "valididmessage",
 })`
   width: 400px;
-  height: 10px;
+  height: 5px;
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   user-select: none;
-  font-size: 9px;
-  color: #313131;
+  font-size: 10px;
+  color: red;
   padding-left: 10px;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 10px;
+  ${(props) =>
+    props.isUserId &&
+    css`
+      display: none;
+    `}
+`;
+export const ValidPwMessage = styled.span.attrs({
+  id: "validpwmessage",
+})`
+  width: 400px;
+  height: 5px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  padding-left: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 10px;
+  ${(props) =>
+    props.isPw &&
+    css`
+      display: none;
+    `}
+`;
+export const ValidNameMessage = styled.span.attrs({
+  id: "validnamemessage",
+})`
+  width: 400px;
+  height: 5px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  padding-left: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 10px;
+  ${(props) =>
+    props.isName &&
+    css`
+      display: none;
+    `}
 `;

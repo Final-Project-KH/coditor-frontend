@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import {useState, useEffect, useRef} from "react";
 import React from "react";
 import {
   Wrap,
@@ -29,15 +29,16 @@ import {
 } from "../../../styles/codingtest/CoddingTestCommons";
 import AxiosApi from "../../../../api/AxiosApi";
 import Common from "../../../../util/Common";
-import { useLocation, useNavigate } from "react-router-dom";
-import { classJavaMenuData } from "../../../../util/codingtestpractice/ClassJavaMenuData";
+import {useLocation, useNavigate} from "react-router-dom";
+import {classJavaMenuData} from "../../../../util/codingtestpractice/ClassJavaMenuData";
+import {useDispatch, useSelector} from "react-redux";
 // User Nickname, 등급
 // Coding Test 난이도 받아와야함
 // 경로 받아와야함
 const CT_Java_Practice_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
+  const {firstpath, secondpath, thirdpath} = location.state || {};
 
   const handleCodingTest = () => {
     navigate("/codingtest", {
@@ -67,7 +68,7 @@ const CT_Java_Practice_Main = () => {
   };
 
   const handleNavigation = (navigatepath, data) => {
-    navigate(navigatepath, { state: data });
+    navigate(navigatepath, {state: data});
   };
 
   const [isToggleOpenId, setIsToggleOpenId] = useState([]);
@@ -90,6 +91,8 @@ const CT_Java_Practice_Main = () => {
       fourthpath: content.fourthpath,
     })),
   }));
+
+  const nickname = useSelector((state) => state.auth.nickname);
 
   return (
     <Wrap>
@@ -117,7 +120,7 @@ const CT_Java_Practice_Main = () => {
             <LeftSubjectSubContainer>
               <SubjectUserImgContainer />
               {/* User 정보 실제로는 받아와야함 */}
-              <SubjectTitle>User</SubjectTitle>
+              <SubjectTitle>{nickname}</SubjectTitle>
               <SubjectContent>Platinum</SubjectContent>
             </LeftSubjectSubContainer>
           </LeftTopSubjectContainer>
