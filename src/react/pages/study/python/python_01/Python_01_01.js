@@ -335,8 +335,8 @@ print("Hello World")
               <ClassContentsImage
                 style={{
                   backgroundImage: `url(${"/images/study/python/python_01_01_01.png"})`,
-                  width: "500px",
-                  height: "300px",
+                  width: "80%",
+
                 }}
               />
             </ClassContentsContainer>

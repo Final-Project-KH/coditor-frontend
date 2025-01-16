@@ -23,6 +23,7 @@ export const TopBoxWide = styled.div.attrs({
   align-items: center;
   background-color: #313131;
   position: fixed;
+  left: 0;
   top: 100px;
   z-index: 5;
 `;

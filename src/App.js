@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./react/pages/Layout";
 import Login from "./react/pages/login/login";
 import Signup from "./react/pages/signup/signup";
@@ -58,85 +53,68 @@ import Post_Write_Study from "./react/pages/community/Post_Write_Study";
 import Post_Write_Team from "./react/pages/community/Post_Write_Team";
 import User_Main from "./react/pages/community/User_Main";
 import { DataProvider } from "./util/monaco/MonacoContext";
-import { TransitionGroup } from "react-transition-group";
-import { CSSTransition } from "react-transition-group";
 
 const App = () => {
   return (
     <>
-      <GlobalStyle />
       <Router>
-        <DataProvider>
-          <Routes>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/legal/terms" element={<Terms />} />
-            <Route path="/legal/privacy" element={<Privacy />} />
-            <Route
-              path="/community/coding/write"
-              element={<Post_Write_Coding />}
-            />
-            <Route
-              path="/community/course/write"
-              element={<Post_Write_Course />}
-            />
-            <Route
-              path="/community/study/write"
-              element={<Post_Write_Study />}
-            />
-            <Route path="/community/team/write" element={<Post_Write_Team />} />
-            <Route path="/" element={<Layout />}>
-              <Route path="/" element={<Main />} />
-              <Route path="/about" element={<About />} />
-              
-              {StudyRoutes.map((route) => (
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  element={route.element}
-                />
-              ))}
-              <Route path="/codingtest" element={<CodingTest />} />
-              <Route path="/codingtest/java" element={<CT_Java_Main />} />
-              <Route
-                path="/codingtest/java/practice"
-                element={<CT_Java_Practice_Main />}
-              />
-              <Route
-                path="/codingtest/java/practice/01"
-                element={<CT_Java_Practice_01 />}
-              />
-              <Route
-                path="/codingtest/java/practice/01/01"
-                element={<CT_Java_Practice_01_01 />}
-              />
-              <Route
-                path="/codingtest/python/practice"
-                element={<CT_Python_Practice_Main />}
-              />
-              <Route
-                path="/codingtest/c/practice"
-                element={<CT_C_Practice_Main />}
-              />
-              <Route
-                path="/codingtest/cplus/practice"
-                element={<CT_CPlus_Practice_Main />}
-              />
-              <Route
-                path="/codingtest/javascript/practice"
-                element={<CT_JavaScript_Practice_Main />}
-              />
-              <Route path="/community" element={<Community_Main />} />
-              <Route path="/community/coding" element={<Community_Coding />} />
-              <Route path="/community/coding/post1" element={<Post_Read />} />
-              <Route path="/community/course" element={<Community_Course />} />
-              <Route path="/community/study" element={<Community_Study />} />
-              <Route path="/community/team" element={<Community_Team />} />
-              <Route path="/community/testid01" element={<User_Main />} />
-            </Route>
-          </Routes>
-        </DataProvider>
+        <GlobalStyle />
+        <AppContents />
       </Router>
+    </>
+  );
+};
+
+export default App;
+
+const AppContents = () => {
+  return (
+    <>
+      <DataProvider>
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/legal/terms" element={<Terms />} />
+          <Route path="/legal/privacy" element={<Privacy />} />
+          <Route
+            path="/community/coding/write"
+            element={<Post_Write_Coding />}
+          />
+          <Route
+            path="/community/course/write"
+            element={<Post_Write_Course />}
+          />
+          <Route path="/community/study/write" element={<Post_Write_Study />} />
+          <Route path="/community/team/write" element={<Post_Write_Team />} />
+
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<Main />} />
+            <Route path="/about" element={<About />} />
+
+            {StudyRoutes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+            {CodingTestRoutes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+            {CommunityRoutes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+          </Route>
+        </Routes>
+      </DataProvider>
     </>
   );
 };
@@ -168,4 +146,30 @@ const StudyRoutes = [
   { path: "/study/javascript/01/01", element: <JavaScript_01_01 /> },
 ];
 
-export default App;
+const CodingTestRoutes = [
+  { path: "/codingtest", element: <CodingTest /> },
+  { path: "/codingtest/java", element: <CT_Java_Main /> },
+  { path: "/codingtest/java/practice", element: <CT_Java_Practice_Main /> },
+  { path: "/codingtest/java/practice/01", element: <CT_Java_Practice_01 /> },
+  {
+    path: "/codingtest/java/practice/01/01",
+    element: <CT_Java_Practice_01_01 />,
+  },
+  { path: "/codingtest/python/practice", element: <CT_Python_Practice_Main /> },
+  { path: "/codingtest/c/practice", element: <CT_C_Practice_Main /> },
+  { path: "/codingtest/cplus/practice", element: <CT_CPlus_Practice_Main /> },
+  {
+    path: "/codingtest/javascript/practice",
+    element: <CT_JavaScript_Practice_Main />,
+  },
+];
+
+const CommunityRoutes = [
+  { path: "/community", element: <Community_Main /> },
+  { path: "/community/coding", element: <Community_Coding /> },
+  { path: "/community/coding/post1", element: <Post_Read /> },
+  { path: "/community/course", element: <Community_Course /> },
+  { path: "/community/study", element: <Community_Study /> },
+  { path: "/community/team", element: <Community_Team /> },
+  { path: "/community/testid01", element: <User_Main /> },
+];

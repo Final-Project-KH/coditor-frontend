@@ -23,24 +23,13 @@ const GlobalStyle = createGlobalStyle`
     font-size: 14px;
   } 
 
-  .page {
-  opacity: 1;
-  transition: opacity 0.5s ease;
+  
+.fade-enter {
+  opacity: 0.2;
+  transition: opacity 0.3s ease-in;
 }
 
-.page.fade-exit {
-  opacity: 1;
-}
-
-.page.fade-exit-active {
-  opacity: 0;
-}
-
-.page.fade-enter {
-  opacity: 0;
-}
-
-.page.fade-enter-active {
+.fade-enter-active {
   opacity: 1;
 }
 
