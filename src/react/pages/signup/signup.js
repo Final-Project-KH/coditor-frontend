@@ -32,7 +32,8 @@ import {
   NoticeContainer,
   Notice,
   NoticeLink,
-  ValidMessage,
+  ValidIdMessage,
+  ValidPwMessage,
 } from "../../styles/signup/signup";
 import {useDispatch} from "react-redux";
 import {setError} from "../../../redux/slice/authSlice";
@@ -128,6 +129,30 @@ const Signup = () => {
   function isIdTooLong(input) {
     return input.length > 16;
   }
+  // 2. PW 유효성 검사
+  // PW input 문자열 길이 검사 (8보다 작을 시 -> true)
+  function isPwTooShort(input) {
+    return input.length < 8;
+  }
+  // PW input 문자열 길이 검사 (20보다 클 시 -> true)
+  function isPwTooLong(input) {
+    return input.length > 20;
+  }
+  //  특수 문자열 포함 여부 (포함 시 -> true)
+  function isPwContainsSpecialCharacter(input) {
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    return specialCharRegex.test(input);
+  }
+  //  숫자열 포함 여부 (포함 시 -> true)
+  function isPwContainsNumber(input) {
+    const numberRegex = /\d/;
+    return numberRegex.test(input);
+  }
+  //  문자열 포함 여부 (포함 시 -> true)
+  function isPwContainsCharacter(input) {
+    const charRegex = /[a-zA-Z]/;
+    return charRegex.test(input);
+  }
 
   // 공통 공란 여부 검사 (공란 시 -> true)
   function isBlank(input) {
@@ -148,9 +173,7 @@ const Signup = () => {
       setIsUserId(false);
       return;
     }
-    if (!idRegex.test(currentValue)) {
-      setIsUserId(false);
-    } else {
+    if (idRegex.test(currentValue)) {
       setUserIdMessage("");
       setIsUserId(true);
     }
@@ -216,28 +239,82 @@ const Signup = () => {
   };
   const onChangePw = (e) => {
     const passwordRegex =
-      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-    const passwordCurrent = e.target.value;
-    setInputPw(passwordCurrent);
-    if (!passwordRegex.test(passwordCurrent)) {
-      setPwMessage("비밀번호 형식이 올바르지 않습니다.");
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+    setInputPw(e.target.value);
+    const currentValue = e.target.value;
+    if (passwordRegex.test(currentValue)) {
+      setPwMessage("");
+      setIsPw(true);
+    }
+  };
+  const onBlurPw = (e) => {
+    setInputPw(e.target.value);
+    const currentValue = e.target.value;
+    if (isBlank(currentValue)) {
+      setPwMessage("비밀번호는 필수 입력 정보입니다.");
       setIsPw(false);
+      return;
+    }
+    if (!isPwContainsCharacter(currentValue)) {
+      setPwMessage("비밀번호는 1개 이상의 문자를 포함해야 합니다.");
+      setIsPw(false);
+      return;
+    }
+    if (!isPwContainsNumber(currentValue)) {
+      setPwMessage("비밀번호는 1개 이상의 숫자를 포함해야 합니다.");
+      setIsPw(false);
+      return;
+    }
+    if (!isPwContainsSpecialCharacter(currentValue)) {
+      setPwMessage("비밀번호는 1개 이상의 특수문자를 포함해야 합니다.");
+      setIsPw(false);
+      return;
+    }
+    if (isPwTooLong(currentValue)) {
+      setPwMessage("비밀번호는 20자 이하 8자 이상이어야 합니다.");
+      setIsPw(false);
+      return;
+    }
+    if (isPwTooShort(currentValue)) {
+      setPwMessage("비밀번호는 8자 이상 20자 이하이어야 합니다.");
+      setIsPw(false);
+      return;
     } else {
-      setPwMessage("올바른 형식입니다.");
+      setPwMessage("");
       setIsPw(true);
     }
   };
   const onChangeConPw = (e) => {
-    const passwordCurrent = e.target.value;
-    setInputConPw(passwordCurrent);
-    if (passwordCurrent !== inputPw) {
-      setConPwMessage("비밀번호가 일치하지 않습니다.");
-      setIsConPw(false);
-    } else {
-      setConPwMessage("비밀번호가 일치합니다.");
+    setInputConPw(e.target.value);
+    const currentValue = e.target.value;
+    if (currentValue === inputPw) {
+      setConPwMessage("");
       setIsConPw(true);
     }
   };
+  const onBlurConPw = (e) => {
+    setInputConPw(e.target.value);
+    const currentValue = e.target.value;
+    if (isBlank(inputPw)) {
+      setConPwMessage("비밀번호 입력이 필요합니다.");
+      setIsConPw(false);
+      return;
+    }
+    if (isBlank(currentValue)) {
+      setConPwMessage("비밀번호 확인이 필요합니다.");
+      setIsConPw(false);
+      return;
+    }
+    if (currentValue !== inputPw) {
+      setConPwMessage("비밀번호가 일치하지 않습니다.");
+      setIsConPw(false);
+      return;
+    } else {
+      setConPwMessage("");
+      setIsConPw(true);
+    }
+  };
+
   const onChangeName = (e) => {
     const nameRegex = /^[a-zA-Z가-힣]{4,16}$/;
     const nameCurrent = e.target.value;
@@ -253,7 +330,7 @@ const Signup = () => {
   const onClickSignUp = async () => {
     try {
       const memberReg = await AxiosApi.signup(
-        inputUserId,
+        inputUserId.replace(/\s+/g, ""),
         inputEmail,
         inputPw,
         inputName
@@ -319,14 +396,16 @@ const Signup = () => {
             <InputId
               autoComplete="off"
               type="userId"
-              placeholder="영문자, 숫자 포함 6~16자"
+              placeholder="아이디 입력"
               value={inputUserId}
               onChange={onChangeUserId}
               onBlur={onBlurUserId}
               isUserId={isUserId}
             ></InputId>
             {!isUserId && (
-              <ValidMessage isUserId={isUserId}>{userIdMessage}</ValidMessage>
+              <ValidIdMessage isUserId={isUserId}>
+                {userIdMessage}
+              </ValidIdMessage>
             )}
             <InputPwContainer>
               <InputIndex>비밀번호</InputIndex>
@@ -336,28 +415,35 @@ const Signup = () => {
                   placeholder="영문자, 숫자, 특수문자 포함 8~20자"
                   value={inputPw}
                   onChange={onChangePw}
+                  onBlur={onBlurPw}
+                  isPw={isPw}
                 ></InputPw>
                 <InputPwDivToggle
                   isVisible={isVisiblePwd}
                   onClick={() => toggleVisiblePwd()}
                 />
               </InputPwDiv>
+              {!isPw && (
+                <ValidPwMessage isPw={isPw}>{pwMessage}</ValidPwMessage>
+              )}
               <InputPwDiv>
                 <InputPw
                   type={isVisibleConPwd ? "text" : "password"}
                   placeholder="비밀번호 확인"
                   value={inputConPw}
                   onChange={onChangeConPw}
+                  onBlur={onBlurConPw}
+                  isConPw={isConPw}
                 ></InputPw>
                 <InputPwDivToggle
                   isVisible={isVisibleConPwd}
                   onClick={() => toggleVisibleConPwd()}
                 />
               </InputPwDiv>
-              {inputConPw.length > 0 && (
-                <span className={`messasge ${isConPw ? "success" : "error"}`}>
+              {!isConPw && (
+                <ValidPwMessage isConPw={isConPw}>
                   {conPwMessage}
-                </span>
+                </ValidPwMessage>
               )}
             </InputPwContainer>
             <InputIndex>이메일</InputIndex>
