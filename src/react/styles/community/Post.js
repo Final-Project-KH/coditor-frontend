@@ -662,7 +662,17 @@ export const MiddleDot = styled.div.attrs({
   margin-left: 2px;
   margin-right: 2px;
 `;
-
+export const WriteWrap = styled.div.attrs({
+  id: "writewrap",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  overflow: none;
+`;
 export const WriteContainer = styled.div.attrs({
   id: "writecontainer",
 })`
@@ -673,6 +683,7 @@ export const WriteContainer = styled.div.attrs({
   justify-content: flex-start;
   gap: 25px;
   padding-bottom: 30px;
+  overflow: none;
 `;
 
 export const WriteSortOuterContiner = styled.div.attrs({
@@ -721,6 +732,23 @@ export const WriteSortTitleInactive = styled.div.attrs({
   font-family: "semibold", sans-serif;
 `;
 
+export const WriteBoardLink = styled.button.attrs({
+  id: "writeboardlink",
+})`
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  border: none;
+  color: inherit;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+`;
+
 export const WriteTitleBox = styled.div.attrs({
   id: "writetitlebox",
 })`
@@ -730,8 +758,8 @@ export const WriteTitleBox = styled.div.attrs({
 export const WriteTitle = styled.input.attrs({
   id: "writetitle",
 })`
-width: 100%;
-padding: 5px 20px;
+  width: 100%;
+  padding: 5px 25px;
   font-family: "bold", sans-serif;
   font-size: 32px;
   color: black;
@@ -752,8 +780,8 @@ export const WriteTagBox = styled.div.attrs({
 export const WriteTags = styled.input.attrs({
   id: "writetags",
 })`
-width: 30%;
-padding: 5px 20px;
+  width: 100%;
+  padding: 5px 25px;
   font-family: "medium", sans-serif;
   font-size: 20px;
   color: black;
@@ -765,17 +793,40 @@ padding: 5px 20px;
     color: rgba(0, 0, 0, 0.4);
   }
 `;
+export const TipTapBox = styled.div.attrs({
+  id: "tiptapbox",
+})`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+`;
 export const EditorArea = styled.div.attrs({
   id: "editorarea",
 })`
   width: 100%;
+  height: calc(100vh - 350px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
   border: 1px solid #f1f1f1;
   border-radius: 10px;
-  padding-bottom: 10px;
+  flex-wrap: wrap;
+  overflow: auto;
+`;
+export const ToolBarContainer = styled.div.attrs({
+  id: "toolbarcontainer",
+})`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 50px;
+  max-width: 1280px;
+  border-bottom: 1px solid #f1f1f1;
 `;
 export const WriteButtonsArea = styled.div.attrs({
   id: "writebuttonsarea",

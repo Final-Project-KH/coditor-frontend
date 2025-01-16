@@ -35,11 +35,17 @@ import { StickyClassBox } from "../../../../styles/study/Study";
 import Java_Title from "../Java_Title";
 import Java_ArrowNavigation from "../Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
+import ScrollToTopButton from "../../ScrollToTopButton";
 
 const Java_01_02 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
+
+  // 페이지 진입 시 스크롤 위치 초기화
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // TopBox firstpath
   const handleStudy = () => {
@@ -135,7 +141,8 @@ export PATH=\${PATH}:$JAVA_HOME/bin
                 환경(Integrated Development Environment)이 필요 합니다.
                 통합개발환경에는 이클립스, 인텔리제이, VS Code 등이 있으며,
                 인텔리제이를 주로 사용하도록 하겠습니다.
-              </ClassContentsText><br />
+              </ClassContentsText>
+              <br />
               <ClassContentsTitle2>프로그램 설치</ClassContentsTitle2>
               <hr />
               <ClassContentsTitle3>JDK 설치</ClassContentsTitle3>
@@ -165,7 +172,8 @@ export PATH=\${PATH}:$JAVA_HOME/bin
                   - 환경 설정 → 에디터 → 일반 → Ctrl + 마우스 휠로 글꼴 크기
                   변경
                 </ClassContentsTextTab>
-              </ClassContentsText><br />
+              </ClassContentsText>
+              <br />
               <ClassContentsTitle2>환경 변수 설정</ClassContentsTitle2>
               <hr />
               <ClassContentsText>
@@ -263,6 +271,7 @@ export PATH=\${PATH}:$JAVA_HOME/bin
           </ArrowContainer>
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

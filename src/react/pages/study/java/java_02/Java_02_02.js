@@ -35,11 +35,17 @@ import { StickyClassBox } from "../../../../styles/study/Study";
 import Java_Title from "../Java_Title";
 import Java_ArrowNavigation from "../Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
+import ScrollToTopButton from "../../ScrollToTopButton";
 
 const Java_02_02 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
+
+  // 페이지 진입 시 스크롤 위치 초기화
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // TopBox firstpath
   const handleStudy = () => {
@@ -1528,6 +1534,7 @@ public class Main {
           </ArrowContainer>
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

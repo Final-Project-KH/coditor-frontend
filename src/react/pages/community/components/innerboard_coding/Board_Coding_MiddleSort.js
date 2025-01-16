@@ -15,13 +15,14 @@ import {
 const Board_Coding_MiddleSort = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
+  const { firstpath, secondpath, thirdpath } = location.state || {};
 
   const handleWrite = () => {
-    navigate("/community/write", {
+    navigate("/community/coding/write", {
       state: {
         firstpath: firstpath,
-        secondpath: "write",
+        secondpath: secondpath,
+        thirdpath: "write",
       },
     });
   };

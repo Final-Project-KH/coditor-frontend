@@ -17,9 +17,33 @@ const GlobalStyle = createGlobalStyle`
   }
   button {
     font-family:'bold', sans-serif;
-  }
+  }*/
   p {
     font-family:'regular', sans-serif;
-  } */
+    font-size: 14px;
+  } 
+
+  .page {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.page.fade-exit {
+  opacity: 1;
+}
+
+.page.fade-exit-active {
+  opacity: 0;
+}
+
+.page.fade-enter {
+  opacity: 0;
+}
+
+.page.fade-enter-active {
+  opacity: 1;
+}
+
 `;
+
 export default GlobalStyle;

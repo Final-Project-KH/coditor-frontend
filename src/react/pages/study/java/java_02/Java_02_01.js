@@ -35,11 +35,17 @@ import { StickyClassBox } from "../../../../styles/study/Study";
 import Java_Title from "../Java_Title";
 import Java_ArrowNavigation from "../Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
+import ScrollToTopButton from "../../ScrollToTopButton";
 
 const Java_02_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
+
+  // 페이지 진입 시 스크롤 위치 초기화
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // TopBox firstpath
   const handleStudy = () => {
@@ -951,7 +957,8 @@ System.out.println(result1 + 10 + "10"); // 먼저 숫자형 타입이 계산되
                 <br />
                 <Java_02_01_Code16 />
                 <br />
-              </ClassContentsText><br />
+              </ClassContentsText>
+              <br />
               <ClassContentsTitle2>리터럴</ClassContentsTitle2>
               <ClassContentsText>
                 리터럴이한 프로그램에서 사용하는 모든 숫자, 문자, 논리값을
@@ -969,7 +976,8 @@ System.out.println(result1 + 10 + "10"); // 먼저 숫자형 타입이 계산되
                 <br />
                 <Java_02_01_Code17 />
                 <br />
-              </ClassContentsText><br />
+              </ClassContentsText>
+              <br />
               <ClassContentsTitle1>형 변환</ClassContentsTitle1>
               <hr />
               <ClassContentsTitle2>형 변환이란?</ClassContentsTitle2>
@@ -979,7 +987,8 @@ System.out.println(result1 + 10 + "10"); // 먼저 숫자형 타입이 계산되
                 자바에서는 다른 타입끼리 연산의 경우 모두 같은 타입으로 변환이
                 후 수행이 됩니다.
                 <br />
-              </ClassContentsText><br />
+              </ClassContentsText>
+              <br />
               <ClassContentsTitle2>묵시적 형 변환</ClassContentsTitle2>
               <ClassContentsText>
                 자동 타입 변환이라고도 하며 컴파일러가 유리한 방향으로 형을 변환
@@ -1014,6 +1023,7 @@ System.out.println(result1 + 10 + "10"); // 먼저 숫자형 타입이 계산되
           </ArrowContainer>
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -126,7 +126,8 @@ export const ClassHeader = styled.div.attrs({
   justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 30px 30px 0px 0px;
+  border-radius: ${(props) => (props.isOpen ? "30px" : "30px 30px 0px 0px")};
+  transition: border-radius 1s ease-in-out, background-color 1s ease-in-out;
 `;
 
 export const ClassHeaderTitle = styled.div.attrs({
@@ -166,13 +167,13 @@ export const ClassHeaderTitleButton = styled.div.attrs({
   color: white;
   cursor: pointer;
   &::before {
-     /* 토글 상태에 따라 아이콘 변경 */
-    content: ${(props) =>
-      props.isOpen ? '"◀"' : '"▼"'};
+    /* 토글 상태에 따라 아이콘 변경 */
+    content: ${(props) => (props.isOpen ? '"◀"' : '"▼"')};
     position: relative;
     margin-left: 7px;
   }
 `;
+
 export const ClassContents = styled.div.attrs({
   id: "classcontents",
 })`
@@ -182,11 +183,10 @@ export const ClassContents = styled.div.attrs({
   flex-direction: column;
   justify-content: center;
   user-select: none;
-
-   /* 토글 상태에 따라 표시/숨김 */
-  display: ${(props) =>
-    props.isOpen ? "none" : "block"};
+  /* 토글 상태에 따라 표시/숨김 */
+  display: ${(props) => (props.isOpen ? "none" : "block")};
 `;
+
 export const ClassSet = styled.div.attrs({
   id: "classset",
 })`
@@ -224,7 +224,6 @@ export const ClassName = styled.div.attrs({
   }
 `;
 
-
 export const NavigatePath = styled.button`
   text-decoration: none;
   display: flex;
@@ -235,4 +234,3 @@ export const NavigatePath = styled.button`
   border: none;
   cursor: pointer;
 `;
-

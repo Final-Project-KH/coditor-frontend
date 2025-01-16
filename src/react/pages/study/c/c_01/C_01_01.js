@@ -41,6 +41,11 @@ const C_01_01 = () => {
   const location = useLocation();
   const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
 
+  // 페이지 진입 시 스크롤 위치 초기화
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // TopBox firstpath
   const handleStudy = () => {
     navigate("/study", {

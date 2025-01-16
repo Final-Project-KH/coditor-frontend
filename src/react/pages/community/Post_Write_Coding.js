@@ -1,22 +1,18 @@
 import {
-  EditorArea,
-  Wrap,
-  WriteButtonsArea,
-  WriteCancelButton,
+  WriteWrap,
   WriteContainer,
-  WriteSubmitButton,
   WriteTagBox,
   WriteTags,
   WriteTitle,
   WriteTitleBox,
 } from "../../styles/community/Post";
-import Post_WriteEditor from "./components/post/Post_WriteEditor";
+import Post_WriteEditor_Coding from "./components/post/Post_WriteEditor_Coding";
 import Post_WriteSort from "./components/post/Post_WriteSort";
 
-const Post_Write = () => {
+const Post_Write_Coding = () => {
   return (
     <>
-      <Wrap>
+      <WriteWrap>
         <WriteContainer>
           <Post_WriteSort />
           <WriteTitleBox>
@@ -25,17 +21,12 @@ const Post_Write = () => {
           <WriteTagBox>
             <WriteTags placeholder="태그를 설정하세요. (최대 10개)" />
           </WriteTagBox>
-          <EditorArea>
-            <Post_WriteEditor />
-          </EditorArea>
-          <WriteButtonsArea>
-            <WriteCancelButton>취소</WriteCancelButton>
-            <WriteSubmitButton>등록</WriteSubmitButton>
-          </WriteButtonsArea>
+
+          <Post_WriteEditor_Coding />
         </WriteContainer>
-      </Wrap>
+      </WriteWrap>
     </>
   );
 };
 
-export default Post_Write;
+export default Post_Write_Coding;

@@ -12,11 +12,17 @@ import {
 } from "../../../../styles/study/Class_Main";
 import C_Title from "../C_Title";
 import C_ClassList_Filtered from "../C_ClassList_Filtered";
+import { useEffect } from "react";
 
 const C_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
+
+  // 페이지 진입 시 스크롤 위치 초기화
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // TopBox firstpath
   const handleStudy = () => {

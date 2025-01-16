@@ -12,11 +12,18 @@ import {
 } from "../../../../styles/study/Class_Main";
 import Java_Title from "../Java_Title";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
+import ScrollToTopButton from "../../ScrollToTopButton";
+import { useEffect } from "react";
 
 const Java_02 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
+
+  // 페이지 진입 시 스크롤 위치 초기화
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // TopBox firstpath
   const handleStudy = () => {
@@ -70,6 +77,7 @@ const Java_02 = () => {
           <Java_ClassList_Filtered chapter="02" />
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

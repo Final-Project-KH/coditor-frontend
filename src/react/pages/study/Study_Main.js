@@ -14,11 +14,18 @@ import Python_Title from "./python/Python_Title";
 import C_Title from "./c/C_Title";
 import CPlus_Title from "./cplus/CPlus_Title";
 import JavaScript_Title from "./javascript/JavaScript_Title";
+import ScrollToTopButton from "./ScrollToTopButton";
+import { useEffect } from "react";
 
 const Study_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath } = location.state || {};
+
+  // 페이지 진입 시 스크롤 위치 초기화
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // TopBox firstpath
   const handleRefresh = () => {
@@ -106,6 +113,7 @@ const Study_Main = () => {
             <JavaScript_Title />
           </SubjectLink>
         </Container>
+        <ScrollToTopButton />
       </Wrap>
     </>
   );

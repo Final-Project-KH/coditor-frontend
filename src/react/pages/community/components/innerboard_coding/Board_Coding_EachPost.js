@@ -25,8 +25,6 @@ import {
   PostMiddleContentsSolved,
 } from "../../../../styles/community/Board";
 
-
-
 export const Board_Coding_EachPost_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -45,48 +43,48 @@ export const Board_Coding_EachPost_01 = () => {
   return (
     <>
       <PostEach style={{ cursor: "pointer" }} onClick={() => handlePost()}>
-          <PostTop>
-            <PostTopUser>
-              <PostTopUserImg
-                style={{
-                  backgroundColor: "#313131",
-                  backgroundImage:
-                    "url(https://www.infostockdaily.co.kr/news/photo/202209/179815_152745_594.jpg)",
-                }}
-              />
-              <PostTopUserId>By: 김도현</PostTopUserId>
-            </PostTopUser>
-            <PostTopDays>2025.01.10. 15:59 작성</PostTopDays>
-          </PostTop>
-          <PostMiddle>
-            <PostMiddleContentsUpper>
-              <PostMiddleContentsPending>미해결</PostMiddleContentsPending>
-              <PostMiddleContentsTitle>
-                안녕하세요 Spring Batch의 트랜잭션 관련 질문이 있습니다.
-              </PostMiddleContentsTitle>
-            </PostMiddleContentsUpper>
-            <PostMiddleContentsText>
-              Spring Batch에서 트랜잭션을 관리하기 위해
-              `PlatformTransactionManger`와 같은 트랜잭션 매니저를 사용하는
-              것으로 알고 있습니다. 각 Job의 Step, Tasklet이 완료 될 때마다 DB에
-              상태를 업데이트하고 Commit을 하는 것인지 혹은 다른 방식으로 DB에
-              현재 처리중인 JO ..
-            </PostMiddleContentsText>
-          </PostMiddle>
-          <PostBottom>
-            <PostBottomTagsBox></PostBottomTagsBox>
-            <PostBottomDataBox>
-              <PostBottomRepliesBox>
-                <PostBottomRepliesImg />
-                <PostBottomRepliesText>0 replies</PostBottomRepliesText>
-              </PostBottomRepliesBox>
-              <PostBottomDot />
-              <PostBottomViewsBox>
-                <PostBottomViewsImg />
-                <PostBottomViewsText>1 views</PostBottomViewsText>
-              </PostBottomViewsBox>
-            </PostBottomDataBox>
-          </PostBottom>
+        <PostTop>
+          <PostTopUser>
+            <PostTopUserImg
+              style={{
+                backgroundColor: "#313131",
+                backgroundImage:
+                  "url(https://www.infostockdaily.co.kr/news/photo/202209/179815_152745_594.jpg)",
+              }}
+            />
+            <PostTopUserId>By: 김도현</PostTopUserId>
+          </PostTopUser>
+          <PostTopDays>2025.01.10. 15:59 작성</PostTopDays>
+        </PostTop>
+        <PostMiddle>
+          <PostMiddleContentsUpper>
+            <PostMiddleContentsPending>미해결</PostMiddleContentsPending>
+            <PostMiddleContentsTitle>
+              안녕하세요 Spring Batch의 트랜잭션 관련 질문이 있습니다.
+            </PostMiddleContentsTitle>
+          </PostMiddleContentsUpper>
+          <PostMiddleContentsText>
+            Spring Batch에서 트랜잭션을 관리하기 위해
+            `PlatformTransactionManger`와 같은 트랜잭션 매니저를 사용하는 것으로
+            알고 있습니다. 각 Job의 Step, Tasklet이 완료 될 때마다 DB에 상태를
+            업데이트하고 Commit을 하는 것인지 혹은 다른 방식으로 DB에 현재
+            처리중인 JO ..
+          </PostMiddleContentsText>
+        </PostMiddle>
+        <PostBottom>
+          <PostBottomTagsBox></PostBottomTagsBox>
+          <PostBottomDataBox>
+            <PostBottomRepliesBox>
+              <PostBottomRepliesImg />
+              <PostBottomRepliesText>0 replies</PostBottomRepliesText>
+            </PostBottomRepliesBox>
+            <PostBottomDot />
+            <PostBottomViewsBox>
+              <PostBottomViewsImg />
+              <PostBottomViewsText>1 views</PostBottomViewsText>
+            </PostBottomViewsBox>
+          </PostBottomDataBox>
+        </PostBottom>
       </PostEach>
     </>
   );
