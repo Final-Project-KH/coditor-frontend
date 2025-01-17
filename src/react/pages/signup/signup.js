@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import AxiosApi from "../../../api/AxiosApi";
 import {
   Wrap,
@@ -38,8 +38,8 @@ import {
   ValidNameMessage,
   InputExtraAll,
 } from "../../styles/signup/signup";
-import { useDispatch } from "react-redux";
-import { setError } from "../../../redux/slice/authSlice";
+import {useDispatch} from "react-redux";
+import {setError} from "../../../redux/slice/authSlice";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -518,43 +518,39 @@ const Signup = () => {
             )}
           </InputEach>
           <InputEach>
-              <InputIndex>비밀번호</InputIndex>
-              <InputPwDiv>
-                <InputPw
-                  type={isVisiblePwd ? "text" : "password"}
-                  placeholder="영문자, 숫자, 특수문자 포함 8~20자"
-                  value={inputPw}
-                  onChange={onChangePw}
-                  onBlur={onBlurPw}
-                  isPw={isPw}
-                ></InputPw>
-                <InputPwDivToggle
-                  isVisible={isVisiblePwd}
-                  onClick={() => toggleVisiblePwd()}
-                />
-              </InputPwDiv>
-              {!isPw && (
-                <ValidPwMessage isPw={isPw}>{pwMessage}</ValidPwMessage>
-              )}
-              <InputPwDiv>
+            <InputIndex>비밀번호</InputIndex>
+            <InputPwDiv>
+              <InputPw
+                type={isVisiblePwd ? "text" : "password"}
+                placeholder="영문자, 숫자, 특수문자 포함 8~20자"
+                value={inputPw}
+                onChange={onChangePw}
+                onBlur={onBlurPw}
+                isPw={isPw}
+              ></InputPw>
+              <InputPwDivToggle
+                isVisible={isVisiblePwd}
+                onClick={() => toggleVisiblePwd()}
+              />
+            </InputPwDiv>
+            {!isPw && <ValidPwMessage isPw={isPw}>{pwMessage}</ValidPwMessage>}
+            <InputPwDiv>
               <InputPwConfirm
-                  type={isVisibleConPwd ? "text" : "password"}
-                  placeholder="비밀번호 확인"
-                  value={inputConPw}
-                  onChange={onChangeConPw}
-                  onBlur={onBlurConPw}
-                  isConPw={isConPw}
-                ></InputPwConfirm>
-                <InputPwDivToggle
-                  isVisible={isVisibleConPwd}
-                  onClick={() => toggleVisibleConPwd()}
-                />
-              </InputPwDiv>
-              {!isConPw && (
-                <ValidPwMessage isConPw={isConPw}>
-                  {conPwMessage}
-                </ValidPwMessage>
-              )}
+                type={isVisibleConPwd ? "text" : "password"}
+                placeholder="비밀번호 확인"
+                value={inputConPw}
+                onChange={onChangeConPw}
+                onBlur={onBlurConPw}
+                isConPw={isConPw}
+              ></InputPwConfirm>
+              <InputPwDivToggle
+                isVisible={isVisibleConPwd}
+                onClick={() => toggleVisibleConPwd()}
+              />
+            </InputPwDiv>
+            {!isConPw && (
+              <ValidPwMessage isConPw={isConPw}>{conPwMessage}</ValidPwMessage>
+            )}
           </InputEach>
           <InputEach>
             <InputIndex>이메일</InputIndex>
@@ -574,7 +570,7 @@ const Signup = () => {
               {isEmail ? (
                 <InputEmailButton enabled onClick={(e) => handleVerify(e)}>
                   인증번호받기
-                  </InputEmailButton>
+                </InputEmailButton>
               ) : isEmail && !isEmailAvailable ? (
                 <InputEmailButton></InputEmailButton> // 타이머 및 새로고침 버튼
               ) : !isEmail && isEmailAvailable ? (
@@ -593,84 +589,83 @@ const Signup = () => {
                 <InputSecurityButton>이메일 인증</InputSecurityButton>
               </InputSecurityDiv>
             )}
-                      </InputEach>
-            <InputIndex>닉네임</InputIndex>
-            <InputNickName
-              autoComplete="off"
-              type="text"
-              placeholder="닉네임 입력"
-              value={inputName}
-              onChange={onChangeName}
-              onBlur={onBlurName}
-              isName={isName}
-            ></InputNickName>
-            {!isName && (
-              <ValidIdMessage isName={isName}>{nameMessage}</ValidIdMessage>
-            )}
-            <InputExtraContainer>
+          </InputEach>
+          <InputIndex>닉네임</InputIndex>
+          <InputNickName
+            autoComplete="off"
+            type="text"
+            placeholder="닉네임 입력"
+            value={inputName}
+            onChange={onChangeName}
+            onBlur={onBlurName}
+            isName={isName}
+          ></InputNickName>
+          {!isName && (
+            <ValidIdMessage isName={isName}>{nameMessage}</ValidIdMessage>
+          )}
+          <InputExtraContainer>
             <InputExtraAll>
-                <InputExtraItemCheckBox
-                  type="checkbox"
-                  id="agreeall"
-                  checked={isCheckedAll}
-                  onChange={handleCheckAllBox}
-                ></InputExtraItemCheckBox>
-                <InputExtraItemP>전체동의</InputExtraItemP>
-                </InputExtraAll>
-              {/* <hr style={{marginTop: "10px", marginBottom: "10px"}} /> */}
-              <InputExtraAll>
-                <InputExtraItemCheckBox
-                  type="checkbox"
-                  id="agreeterms"
-                  checked={isCheckedTerms}
-                  onChange={handleCheckTermsBox}
-                ></InputExtraItemCheckBox>
-                <InputExtraItemP>이용약관 동의</InputExtraItemP>
-              </InputExtraAll>
-              <InputExtra>
-                <InputExtraItemCheckBox
-                  type="checkbox"
-                  id="agreeuses"
-                  checked={isCheckedUses}
-                  onChange={handleCheckUsesBox}
-                ></InputExtraItemCheckBox>
-                <InputExtraItemP>개인정보 수집 및 이용 동의</InputExtraItemP>
-              </InputExtra>
-              <InputExtra>
-                <InputExtraItemCheckBox
-                  type="checkbox"
-                  id="agree14"
-                  checked={isChecked14}
-                  onChange={handleCheck14Box}
-                ></InputExtraItemCheckBox>
-                <InputExtraItemP>[선택] 만 14세 이상입니다.</InputExtraItemP>
-              </InputExtra>
-              <InputExtra>
-                <InputExtraItemCheckBox
-                  type="checkbox"
-                  id="agreemarketing"
-                  checked={isCheckedMarketing}
-                  onChange={handleCheckMarketingBox}
-                ></InputExtraItemCheckBox>
-                <InputExtraItemP>
-                  [선택] 마케팅 활용 동의 및 광고 수신 동의
-                </InputExtraItemP>
-              </InputExtra>
-            </InputExtraContainer>
-            {isUserId &&
-            isEmail &&
-            isPw &&
-            isConPw &&
-            isName &&
-            isCheckedTerms &&
-            isCheckedUses ? (
-              <SignUp enabled onClick={onClickSignUp}>
-                회원가입하기
-              </SignUp>
-            ) : (
-              <SignUp disabled>회원가입하기</SignUp>
-            )}
-          
+              <InputExtraItemCheckBox
+                type="checkbox"
+                id="agreeall"
+                checked={isCheckedAll}
+                onChange={handleCheckAllBox}
+              ></InputExtraItemCheckBox>
+              <InputExtraItemP>전체동의</InputExtraItemP>
+            </InputExtraAll>
+            {/* <hr style={{marginTop: "10px", marginBottom: "10px"}} /> */}
+            <InputExtraAll>
+              <InputExtraItemCheckBox
+                type="checkbox"
+                id="agreeterms"
+                checked={isCheckedTerms}
+                onChange={handleCheckTermsBox}
+              ></InputExtraItemCheckBox>
+              <InputExtraItemP>이용약관 동의</InputExtraItemP>
+            </InputExtraAll>
+            <InputExtra>
+              <InputExtraItemCheckBox
+                type="checkbox"
+                id="agreeuses"
+                checked={isCheckedUses}
+                onChange={handleCheckUsesBox}
+              ></InputExtraItemCheckBox>
+              <InputExtraItemP>개인정보 수집 및 이용 동의</InputExtraItemP>
+            </InputExtra>
+            <InputExtra>
+              <InputExtraItemCheckBox
+                type="checkbox"
+                id="agree14"
+                checked={isChecked14}
+                onChange={handleCheck14Box}
+              ></InputExtraItemCheckBox>
+              <InputExtraItemP>[선택] 만 14세 이상입니다.</InputExtraItemP>
+            </InputExtra>
+            <InputExtra>
+              <InputExtraItemCheckBox
+                type="checkbox"
+                id="agreemarketing"
+                checked={isCheckedMarketing}
+                onChange={handleCheckMarketingBox}
+              ></InputExtraItemCheckBox>
+              <InputExtraItemP>
+                [선택] 마케팅 활용 동의 및 광고 수신 동의
+              </InputExtraItemP>
+            </InputExtra>
+          </InputExtraContainer>
+          {isUserId &&
+          isEmail &&
+          isPw &&
+          isConPw &&
+          isName &&
+          isCheckedTerms &&
+          isCheckedUses ? (
+            <SignUp enabled onClick={onClickSignUp}>
+              회원가입하기
+            </SignUp>
+          ) : (
+            <SignUp disabled>회원가입하기</SignUp>
+          )}
         </FloatingContainer>
         <NoticeContainer>
           <Notice>
