@@ -1,5 +1,5 @@
-import styled, { css, keyframes } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {css, keyframes} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -71,6 +71,7 @@ export const BodyContainer = styled.div.attrs({
 })`
   width: 100%;
   height: calc(100vh - 100px);
+  padding-top: 50px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -92,23 +93,36 @@ export const BodyContainer = styled.div.attrs({
     background: rgba(0, 0, 0, 0.05);
   }
 `;
-
 export const FloatingContainer = styled.div.attrs({
   id: "floatingcontainer",
 })`
   width: 95%;
   max-width: 500px;
-  margin-top: 50px;
+  height: 518.27px;
   padding: 50px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   justify-content: flex-start;
   align-items: center;
   background-color: white;
   border-radius: 30px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 100%;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #333333;
+    border-radius: 30px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 `;
+
 export const FloatingTitle = styled.h1.attrs({
   id: "inputtitle",
 })`
@@ -340,7 +354,6 @@ export const InputEmailDiv = styled.div.attrs({
   id: "inputemaildiv",
 })`
   width: 100%;
-  margin-bottom: 15px;
   display: flex;
   position: relative;
   align-items: center;
@@ -371,13 +384,14 @@ export const InputEmail = styled.input.attrs({
   background-size: 10px auto;
   background-position: 20px center;
   background-image: url("/images/icon/mail.png");
+  transition: all 0.3s ease-in-out;
   &:focus {
     outline: none;
   }
   ${(props) =>
-    props.isEmail &&
+    props.isSecurityAvailable === false &&
     css`
-      border: 2px solid black;
+      width: 100%;
     `}
 `;
 export const InputEmailButton = styled.button.attrs({
@@ -395,13 +409,18 @@ export const InputEmailButton = styled.button.attrs({
   border: 1px solid rgba(0, 0, 0, 0.5);
   color: white;
   font-family: "medium", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   background-color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
   background-color: ${(props) => (props.disabled ? "#f1f1f1" : "#313131")};
   color: ${(props) => (props.disabled ? "#313131" : "white")};
   transition: all 0.3s ease-in-out;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  ${(props) =>
+    props.isSecurityAvailable === false &&
+    css`
+      display: none;
+    `}
   ${(props) =>
     props.enabled &&
     css`
@@ -410,6 +429,26 @@ export const InputEmailButton = styled.button.attrs({
       }
     `}
   border: none;
+`;
+export const ValidEmailMessage = styled.span.attrs({
+  id: "validemailmessage",
+})`
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  ${(props) =>
+    props.isEmail &&
+    css`
+      display: none;
+    `}
 `;
 export const InputSecurityDiv = styled.div.attrs({
   id: "inputsecuritydiv",
@@ -549,11 +588,12 @@ export const InputExtraAll = styled.div.attrs({
   align-items: center;
   justify-content: center;
   user-select: none;
+  margin-bottom: 14px;
   &::after {
     content: "";
-
-    bottom: 8px;
-    width: 11px;
+    position: absolute;
+    top: 30px;
+    width: 100%;
     height: 1px;
     background-color: #313131;
   }
@@ -596,8 +636,8 @@ export const InputExtraItemCheckBox = styled.input.attrs({
 export const InputExtraItemP = styled.p.attrs({
   id: "inputextraitemleftp",
 })`
-  width: 380px;
-  height: 20px;
+  width: 100%;
+  margin-left: 10px;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -608,6 +648,18 @@ export const InputExtraItemP = styled.p.attrs({
   color: #313131;
   padding-left: 10px;
   margin-top: 0px;
+`;
+export const ExtraLink = styled(Link).attrs({
+  id: "extralink",
+})`
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: black;
+  font-family: "bold", sans-serif;
+  display: inline;
+  position: relative;
+  margin-right: 4px;
+  background-color: transparent;
 `;
 export const SignUp = styled.button.attrs({
   id: "signup",
@@ -623,36 +675,35 @@ export const SignUp = styled.button.attrs({
   background-color: ${(props) => (props.disabled ? "#f1f1f1" : "#313131")};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   border: none;
-  margin-top: 20px;
-  margin-bottom: 50px;
+  font-size: 14px;
+  font-family: "medium", sans-serif;
   color: ${(props) => (props.disabled ? "#313131" : "white")};
   transition: all 0.3s ease-in-out;
 `;
 export const NoticeContainer = styled.div.attrs({
   id: "noticecontainer",
 })`
-  width: 241px;
-  height: 20px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   position: relative;
   justify-content: center;
   align-items: center;
   color: white;
-  margin-top: 20px;
+  margin-top: 30px;
 `;
 
 export const Notice = styled.div.attrs({
   id: "notice",
 })`
-  width: 120px;
-  height: 20px;
+  width: 150px;
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
   color: white;
   font-size: 14px;
+  font-family: "medium", sans-serif;
   user-select: none;
   & + &::before {
     content: "";

@@ -1,5 +1,5 @@
-import styled, { css, keyframes } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {css, keyframes} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -71,6 +71,7 @@ export const BodyContainer = styled.div.attrs({
 })`
   width: 100%;
   height: calc(100vh - 100px);
+  padding-top: 50px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -98,7 +99,6 @@ export const FloatingContainer = styled.div.attrs({
 })`
   width: 95%;
   max-width: 500px;
-  margin-top: 50px;
   padding: 50px;
   display: flex;
   flex-direction: column;
