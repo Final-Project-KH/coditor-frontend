@@ -37,6 +37,7 @@ import {
   InputPwConfirm,
   ValidNameMessage,
   InputExtraAll,
+  ExtraLink,
 } from "../../styles/signup/signup";
 import { useDispatch } from "react-redux";
 import { setError } from "../../../redux/slice/authSlice";
@@ -618,15 +619,15 @@ const Signup = () => {
                 <InputExtraItemP>전체동의</InputExtraItemP>
                 </InputExtraAll>
               {/* <hr style={{marginTop: "10px", marginBottom: "10px"}} /> */}
-              <InputExtraAll>
+              <InputExtra>
                 <InputExtraItemCheckBox
                   type="checkbox"
                   id="agreeterms"
                   checked={isCheckedTerms}
                   onChange={handleCheckTermsBox}
                 ></InputExtraItemCheckBox>
-                <InputExtraItemP>이용약관 동의</InputExtraItemP>
-              </InputExtraAll>
+                <InputExtraItemP><ExtraLink to="../legal/Terms">이용약관</ExtraLink> 동의</InputExtraItemP>
+              </InputExtra>
               <InputExtra>
                 <InputExtraItemCheckBox
                   type="checkbox"

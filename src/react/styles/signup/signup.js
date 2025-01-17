@@ -374,11 +374,6 @@ export const InputEmail = styled.input.attrs({
   &:focus {
     outline: none;
   }
-  ${(props) =>
-    props.isEmail &&
-    css`
-      border: 2px solid black;
-    `}
 `;
 export const InputEmailButton = styled.button.attrs({
   id: "inputemailbutton",
@@ -549,11 +544,12 @@ export const InputExtraAll = styled.div.attrs({
   align-items: center;
   justify-content: center;
   user-select: none;
-  &::after {
+  margin-bottom: 14px;
+    &::after {
     content: "";
-
-    bottom: 8px;
-    width: 11px;
+    position: absolute;
+    top: 30px;
+    width: 100%;
     height: 1px;
     background-color: #313131;
   }
@@ -596,8 +592,8 @@ export const InputExtraItemCheckBox = styled.input.attrs({
 export const InputExtraItemP = styled.p.attrs({
   id: "inputextraitemleftp",
 })`
-  width: 380px;
-  height: 20px;
+  width: 100%;
+  margin-left: 10px;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -608,6 +604,17 @@ export const InputExtraItemP = styled.p.attrs({
   color: #313131;
   padding-left: 10px;
   margin-top: 0px;
+`;
+export const ExtraLink = styled(Link).attrs({
+  id: "extralink",
+})`
+  text-decoration: underline;
+  color: black;
+  font-family: "bold", sans-serif;
+  display: inline;
+  position: relative;
+  margin-right: 4px;
+  background-color: transparent;
 `;
 export const SignUp = styled.button.attrs({
   id: "signup",
@@ -665,7 +672,9 @@ export const Notice = styled.div.attrs({
     transform: rotate(90deg);
   }
 `;
-export const NoticeLink = styled(Link)`
+export const NoticeLink = styled(Link).attrs({
+  id: "noticelink",
+})`
   text-decoration: none;
   display: flex;
   width: 100%;
