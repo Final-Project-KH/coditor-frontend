@@ -9,13 +9,26 @@ import {
   Container,
   Wrap,
   ItemTab,
+  LogoContainer,
+  Logo,
+  TopBoxInner,
+  BodyContainerOuter,
+  BodyContainer,
+  StyledLink,
 } from "../../styles/legal/Privacy";
 
 const Privacy = () => {
   return (
     <Wrap>
-      <TopBox />
-      <Container>
+      <TopBox>
+        <TopBoxInner>
+          <LogoContainer>
+            <Logo><StyledLink to="/" /></Logo>
+          </LogoContainer>
+        </TopBoxInner>
+      </TopBox>
+      <BodyContainerOuter>
+      <BodyContainer>
         <TermsTitle>개인정보 처리방침</TermsTitle>
         <Chapter>
           <Item>
@@ -563,7 +576,8 @@ const Privacy = () => {
           적용일: 2025년 1월 1일
           <br />
         </Item>
-      </Container>
+      </BodyContainer>
+      </BodyContainerOuter>
     </Wrap>
   );
 };

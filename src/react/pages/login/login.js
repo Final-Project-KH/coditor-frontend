@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AxiosApi from "../../../api/AxiosApi";
-import {setLoginData, setError} from "../../../redux/slice/authSlice";
+import { setLoginData, setError } from "../../../redux/slice/authSlice";
 import JwtDecoding from "../../../api/JwtDecode";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Common from "../../../util/Common";
-import {GoogleOAuthProvider} from "@react-oauth/google"; // GoogleOAuthProvider 추가
+import { GoogleOAuthProvider } from "@react-oauth/google"; // GoogleOAuthProvider 추가
 import {
   Wrap,
-  Container,
+  TopBarContainer,
   TopBar,
   LogoContainer,
   Logo,
@@ -24,11 +24,13 @@ import {
   SignUp,
   ThirdLogin,
   ThirdLoginItem,
-  StyledP,
   InputExtraItem,
   InputExtraItemCheckBox,
   InputExtraItemLeftP,
   InputExtraItemRightP,
+  BodyContainer,
+  InputExtraItem1,
+  InputExtraItem2,
 } from "../../styles/login/login";
 
 const Login = () => {
@@ -291,7 +293,7 @@ const Login = () => {
   return (
     <GoogleOAuthProvider clientId="159300514752-4da56n3as35i523kr5resdcqaba8e7t4.apps.googleusercontent.com">
       <Wrap>
-        <Container>
+        <TopBarContainer>
           <TopBar>
             <LogoContainer>
               <Logo>
@@ -299,6 +301,8 @@ const Login = () => {
               </Logo>
             </LogoContainer>
           </TopBar>
+        </TopBarContainer>
+        <BodyContainer>
           <FloatingContainer>
             <FloatingTitle>로그인</FloatingTitle>
             <Input
@@ -316,7 +320,7 @@ const Login = () => {
               onChange={(e) => handleInputChange(e, setInputPw, setIsPw)}
             ></Input>
             <InputExtra>
-              <InputExtraItem>
+              <InputExtraItem1>
                 <InputExtraItemCheckBox
                   type="checkbox"
                   id="autologin"
@@ -325,8 +329,8 @@ const Login = () => {
                 ></InputExtraItemCheckBox>
                 {/* 아이디 저장 관련 로직 아직 미구현 */}
                 <InputExtraItemLeftP>아이디 저장</InputExtraItemLeftP>
-              </InputExtraItem>
-              <InputExtraItem>
+              </InputExtraItem1>
+              <InputExtraItem2>
                 <InputExtraItemRightP>
                   {/* 아이디 찾기 페이지 링크 연결 미구현 */}
                   <StyledLink to="#"></StyledLink>
@@ -337,7 +341,7 @@ const Login = () => {
                   <StyledLink to="#"></StyledLink>
                   비밀번호 찾기
                 </InputExtraItemRightP>
-              </InputExtraItem>
+              </InputExtraItem2>
             </InputExtra>
             {isId && isPw ? (
               <SignIn enabled onClick={handleSubmit}>
@@ -355,7 +359,6 @@ const Login = () => {
                 icon="/images/sns/gmail.png"
                 onClick={handleGoogleLoginClick}
               >
-                <StyledP></StyledP>
               </ThirdLoginItem>
               <ThirdLoginItem
                 icon="/images/sns/kakao.png"
@@ -370,8 +373,6 @@ const Login = () => {
                 <StyledLink to="#"></StyledLink>
               </ThirdLoginItem>
             </ThirdLogin>
-            {/* <StyledP>SNS 계정으로 로그인하실 경우</StyledP>
-            <StyledP>일부 서비스 이용에 제한이 있을 수 있습니다.</StyledP> */}
           </FloatingContainer>
           <NoticeContainer>
             <Notice>
@@ -384,7 +385,7 @@ const Login = () => {
               개인정보 처리방침
             </Notice>
           </NoticeContainer>
-        </Container>
+        </BodyContainer>
       </Wrap>
     </GoogleOAuthProvider>
   );

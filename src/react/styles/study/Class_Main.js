@@ -23,6 +23,7 @@ export const TopBoxWide = styled.div.attrs({
   align-items: center;
   background-color: #313131;
   position: fixed;
+  left: 0;
   top: 100px;
   z-index: 5;
 `;
@@ -35,7 +36,6 @@ export const TopBox = styled.div.attrs({
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 10px;
 `;
 
 export const TopBoxText = styled.div.attrs({
@@ -74,7 +74,7 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
-  margin-top: 75px;
+  margin-top: 25px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -82,6 +82,8 @@ export const Container = styled.div.attrs({
   justify-content: center;
   margin-bottom: 0;
   gap: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
 `;
 
 export const LeftContainer = styled.div.attrs({
@@ -194,11 +196,12 @@ export const ClassSet = styled.div.attrs({
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
   & + &::before {
     content: "";
     position: absolute;
-    width: 710px;
-    left: 20px;
+    left: 3%;
+    width: 94%;
     height: 1px;
     background-color: black;
     transform: rotate(0deg);

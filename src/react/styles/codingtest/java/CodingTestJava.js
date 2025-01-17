@@ -34,7 +34,6 @@ export const TopBox = styled.div.attrs({
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 10px;
 `;
 export const TopBoxText = styled.div.attrs({
   id: "topboxtext",
@@ -74,7 +73,7 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
-  margin-top: 75px;
+  margin-top: 25px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -82,6 +81,8 @@ export const Container = styled.div.attrs({
   justify-content: center;
   margin-bottom: 0;
   gap: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
 `;
 export const LeftContainer = styled.div.attrs({
   id: "leftcontainer",

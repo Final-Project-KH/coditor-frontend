@@ -1,42 +1,41 @@
-import styled, {css, keyframes} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css, keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
-  width: 100vw;
-  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  /* height: calc(var(--vh, 1vh) * 100); */
+  height: 100%;
   display: flex;
-  flex-direction: row;
-  background-color: rgba(0, 0, 0, 0.8);
-  justify-content: center;
+  flex-direction: column;
+  /* background-color: rgba(0, 0, 0, 0.8); */
+  justify-content: flex-start;
   align-items: center;
 `;
-export const Container = styled.div.attrs({
-  id: "container",
+export const TopBarContainer = styled.div.attrs({
+  id: "topbarcontainer",
 })`
-  width: 1280px;
-  height: 100%;
+  width: 100%;
+  height: 100px;
   display: flex;
   position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
 `;
 export const TopBar = styled.div.attrs({
   id: "topbar",
 })`
+  max-width: 1280px;
   width: 100%;
-  height: 100px;
-  top: 0;
-  left: 0;
-  position: absolute;
-  margin: 0 auto;
+  height: 100%;
 `;
 export const LogoContainer = styled.div.attrs({
   id: "logocontainer",
 })`
-  margin-left: 25px;
+  margin-left: 10px;
   width: 186px;
   height: 100%;
   display: flex;
@@ -67,12 +66,40 @@ export const StyledLink = styled(Link)`
   position: absolute;
   background-color: transparent;
 `;
+export const BodyContainer = styled.div.attrs({
+  id: "bodycontainer",
+})`
+  width: 100%;
+  height: calc(100vh - 100px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding-bottom: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 100%;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 30px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+  }
+`;
+
 export const FloatingContainer = styled.div.attrs({
   id: "floatingcontainer",
 })`
-  width: 500px;
-  height: 682px;
+  width: 95%;
+  max-width: 500px;
   margin-top: 50px;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -85,21 +112,19 @@ export const FloatingContainer = styled.div.attrs({
 export const FloatingTitle = styled.h1.attrs({
   id: "inputtitle",
 })`
-  width: 400px;
-  height: 32px;
+  width: 100%;
   display: flex;
   position: relative;
   align-items: center;
   justify-content: center;
   user-select: none;
-  margin-top: 100px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   font-size: 30px;
 `;
 export const Input = styled.input.attrs({
   id: "input",
 })`
-  width: 400px;
+  width: 100%;
   height: 50px;
   display: flex;
   position: relative;
@@ -124,27 +149,35 @@ export const Input = styled.input.attrs({
 export const InputExtra = styled.div.attrs({
   id: "inputextra",
 })`
-  width: 400px;
-  height: 20px;
+  width: 100%;
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   user-select: none;
   margin-top: 10px;
 `;
-export const InputExtraItem = styled.div.attrs({
-  id: "inputextraitem",
+export const InputExtraItem1 = styled.div.attrs({
+  id: "inputextraitem1",
 })`
-  width: 200px;
-  height: 20px;
   display: flex;
   position: relative;
   flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
   user-select: none;
+`;
+export const InputExtraItem2 = styled.div.attrs({
+  id: "inputextraitem2",
+})`
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  user-select: none;
+  gap: 5px;
 `;
 export const InputExtraItemCheckBox = styled.input.attrs({
   id: "inputextraitemcheckbox",
@@ -184,18 +217,16 @@ export const InputExtraItemCheckBox = styled.input.attrs({
 export const InputExtraItemLeftP = styled.p.attrs({
   id: "inputextraitemleftp",
 })`
-  width: 100px;
-  height: 20px;
+  margin-bottom: 1px;
+  margin-left: 20px;
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   user-select: none;
-  font-size: 14px;
+  font-size: 12px;
   color: #313131;
-  margin-bottom: 2px;
-  margin-right: 50px;
 `;
 const checkmark = keyframes`
   0% {
@@ -211,15 +242,13 @@ const checkmark = keyframes`
 export const InputExtraItemRightP = styled.p.attrs({
   id: "inputextraitemrightp",
 })`
-  width: 100px;
-  height: 20px;
+  width: 70px;
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
   user-select: none;
-  font-size: 14px;
+  font-size: 12px;
   color: #313131;
   cursor: pointer;
   &:hover {
@@ -228,7 +257,7 @@ export const InputExtraItemRightP = styled.p.attrs({
   & + &::before {
     content: "";
     position: absolute;
-    left: 0px;
+    left: -14px;
     bottom: 8px;
     width: 11px;
     height: 1px;
@@ -239,7 +268,7 @@ export const InputExtraItemRightP = styled.p.attrs({
 export const SignIn = styled.button.attrs({
   id: "signin",
 })`
-  width: 400px;
+  width: 100%;
   height: 50px;
   display: flex;
   position: relative;
@@ -250,15 +279,16 @@ export const SignIn = styled.button.attrs({
   background-color: ${(props) => (props.disabled ? "#313131" : "#007bff")};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   border: none;
-  margin-top: 35px;
+  margin-top: 20px;
   color: white;
   transition: all 0.3s ease-in-out;
   font-size: 14px;
+  font-family: "medium", sans-serif;
 `;
 export const SignUp = styled.button.attrs({
   id: "signup",
 })`
-  width: 400px;
+  width: 100%;
   height: 50px;
   display: flex;
   position: relative;
@@ -271,13 +301,13 @@ export const SignUp = styled.button.attrs({
   margin-top: 10px;
   color: black;
   font-size: 14px;
+  font-family: "medium", sans-serif;
   transition: all 0.3s ease-in-out;
 `;
 export const ThirdLogin = styled.div.attrs({
   id: "thirdlogin",
 })`
-  width: 290px;
-  height: 50px;
+  width: 70%;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -285,7 +315,7 @@ export const ThirdLogin = styled.div.attrs({
   justify-content: space-between;
   user-select: none;
   border: none;
-  margin-top: 35px;
+  margin-top: 20px;
 `;
 export const ThirdLoginItem = styled.div.attrs({
   id: "thirdloginitem",
@@ -305,48 +335,31 @@ export const ThirdLoginItem = styled.div.attrs({
   background-position: center;
   background-image: url(${(props) => props.icon});
 `;
-export const StyledP = styled.p.attrs({
-  id: "announce",
-})`
-  width: 255px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  font-size: 14px;
-  font-family: "medium", sans-serif;
-  color: #313131;
-  & + & {
-    margin-top: 0px;
-  }
-`;
 
 export const NoticeContainer = styled.div.attrs({
   id: "noticecontainer",
 })`
-  width: 241px;
-  height: 20px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   position: relative;
   justify-content: center;
   align-items: center;
   color: white;
-  margin-top: 20px;
+  margin-top: 30px;
 `;
 
 export const Notice = styled.div.attrs({
   id: "notice",
 })`
-  width: 120px;
-  height: 20px;
+  width: 150px;
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
   color: white;
   font-size: 14px;
+  font-family: "medium", sans-serif;
   user-select: none;
   & + &::before {
     content: "";

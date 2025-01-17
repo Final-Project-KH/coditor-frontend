@@ -4,7 +4,8 @@ import {Link} from "react-router-dom";
 export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
-  width: 100vw;
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -35,7 +36,6 @@ export const TopBox = styled.div.attrs({
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 10px;
 `;
 export const TopBoxText = styled.div.attrs({
   id: "topboxtext",
@@ -88,7 +88,9 @@ export const Container = styled.div.attrs({
   max-width: 1280px;
   margin-top: 50px;
   width: 100%;
-  height: 550px;
+  height: calc(100vh - 50px);
+  padding-left: 10px;
+  padding-right: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,11 +99,13 @@ export const Container = styled.div.attrs({
   background-size: 500px 500px;
   background-position: bottom right;
   background-image: url("/images/general/aboutimg_50.png");
+  box-sizing: border-box;
 `;
 export const AboutTitle = styled.div.attrs({
   id: "abouttitle",
 })`
   width: 100%;
+  margin-top: 25px;
   margin-bottom: 50px;
   font-family: "bold", sans-serif;
   font-size: 30px;

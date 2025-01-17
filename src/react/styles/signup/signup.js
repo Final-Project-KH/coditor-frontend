@@ -1,41 +1,41 @@
-import styled, {css, keyframes} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css, keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
-  width: 100vw;
-  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  /* height: calc(var(--vh, 1vh) * 100); */
+  height: 100%;
   display: flex;
-  flex-direction: row;
-  background-color: rgba(0, 0, 0, 0.8);
-  justify-content: center;
+  flex-direction: column;
+  /* background-color: rgba(0, 0, 0, 0.8); */
+  justify-content: flex-start;
   align-items: center;
 `;
-export const Container = styled.div.attrs({
-  id: "container",
+export const TopBarContainer = styled.div.attrs({
+  id: "topbarcontainer",
 })`
-  width: 1280px;
-  height: 100%;
+  width: 100%;
+  height: 100px;
   display: flex;
   position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
 `;
 export const TopBar = styled.div.attrs({
   id: "topbar",
 })`
+  max-width: 1280px;
   width: 100%;
-  height: 100px;
-  top: 0;
-  left: 0;
-  position: absolute;
+  height: 100%;
 `;
 export const LogoContainer = styled.div.attrs({
   id: "logocontainer",
 })`
-  margin-left: 25px;
+  margin-left: 10px;
   width: 186px;
   height: 100%;
   display: flex;
@@ -66,12 +66,40 @@ export const StyledLink = styled(Link)`
   position: absolute;
   background-color: transparent;
 `;
-export const FloatingContainer = styled.div.attrs({
-  id: "inputcontainer",
+export const BodyContainer = styled.div.attrs({
+  id: "bodycontainer",
 })`
-  width: 500px;
-  height: 682px;
+  width: 100%;
+  height: calc(100vh - 100px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding-bottom: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 100%;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 30px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+  }
+`;
+
+export const FloatingContainer = styled.div.attrs({
+  id: "floatingcontainer",
+})`
+  width: 95%;
+  max-width: 500px;
   margin-top: 50px;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -80,47 +108,46 @@ export const FloatingContainer = styled.div.attrs({
   background-color: white;
   border-radius: 30px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  overflow-y: scroll; /* 세로 스크롤 활성화 */
-  -ms-overflow-style: none; /* IE/Edge */
-  scrollbar-width: none; /* Firefox */
-`;
-export const FloatingInnerContainer = styled.div.attrs({
-  id: "floatinginnercontainer",
-})`
-  width: 400px;
 `;
 export const FloatingTitle = styled.h1.attrs({
   id: "inputtitle",
 })`
-  width: 400px;
-  height: 32px;
+  width: 100%;
   display: flex;
   position: relative;
   align-items: center;
   justify-content: center;
   user-select: none;
-  margin-top: 100px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   font-size: 30px;
 `;
-export const InputIndex = styled.div`
-  width: 100px;
-  height: 20px;
+export const InputEach = styled.div.attrs({
+  id: "inputeach",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+`;
+export const InputIndex = styled.div.attrs({
+  id: "inputindex",
+})`
+  width: 100%;
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   user-select: none;
-  font-size: 13px;
-  margin-bottom: 0px;
-  margin-right: 300px;
-  margin-top: 10px;
+  font-size: 12px;
+  font-family: "medium", sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
 `;
 export const InputId = styled.input.attrs({
   id: "inputid",
 })`
-  width: 400px;
+  width: 100%;
   height: 50px;
   display: flex;
   position: relative;
@@ -129,8 +156,6 @@ export const InputId = styled.input.attrs({
   user-select: none;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  margin-top: 10px;
-  margin-bottom: 10px;
   color: #313131;
   font-family: "medium", sans-serif;
   font-size: 13px;
@@ -148,30 +173,41 @@ export const InputId = styled.input.attrs({
       border: 2px solid black;
     `}
 `;
-export const InputPwContainer = styled.div.attrs({
-  id: "inputpwcontainer",
+export const ValidIdMessage = styled.span.attrs({
+  id: "valididmessage",
 })`
-  width: 400px;
+  width: 100%;
+  margin-top: 5px;
   margin-bottom: 10px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  ${(props) =>
+    props.isUserId &&
+    css`
+      display: none;
+    `}
 `;
 export const InputPwDiv = styled.div.attrs({
   id: "inputpwdiv",
 })`
-  width: 400px;
-  height: 50px;
+  width: 100%;
   display: flex;
   position: relative;
   align-items: center;
   border: none;
   user-select: none;
   border-radius: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
 `;
 export const InputPw = styled.input.attrs({
   id: "inputpw",
 })`
-  width: 400px;
+  width: 100%;
   height: 50px;
   display: flex;
   position: relative;
@@ -180,8 +216,40 @@ export const InputPw = styled.input.attrs({
   user-select: none;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  margin-top: 10px;
-  margin-bottom: 10px;
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  background-position: 20px center;
+  background-image: url("/images/icon/pwd.png");
+  &:focus {
+    outline: none;
+  }
+  ${(props) =>
+    props.isPw &&
+    css`
+      border: 2px solid black;
+    `}
+  ${(props) =>
+    props.isConPw &&
+    css`
+      border: 2px solid black;
+    `}
+`;
+export const InputPwConfirm = styled.input.attrs({
+  id: "inputpwconfirm",
+})`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
   color: #313131;
   font-family: "medium", sans-serif;
   font-size: 13px;
@@ -248,11 +316,31 @@ export const InputPwDivToggle = styled.button.attrs({
           }
         `}
 `;
+export const ValidPwMessage = styled.span.attrs({
+  id: "validpwmessage",
+})`
+  width: 100%;
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  ${(props) =>
+    props.isPw &&
+    css`
+      display: none;
+    `}
+`;
 export const InputEmailDiv = styled.div.attrs({
   id: "inputemaildiv",
 })`
-  width: 400px;
-  height: 50px;
+  width: 100%;
+  margin-bottom: 15px;
   display: flex;
   position: relative;
   align-items: center;
@@ -260,15 +348,13 @@ export const InputEmailDiv = styled.div.attrs({
   user-select: none;
   border-radius: 5px;
   border: none;
-  margin-top: 10px;
-  margin-bottom: 10px;
   flex-direction: row;
 `;
 
 export const InputEmail = styled.input.attrs({
   id: "inputemail",
 })`
-  width: 290px;
+  width: 75%;
   height: 50px;
   display: flex;
   position: relative;
@@ -292,7 +378,7 @@ export const InputEmail = styled.input.attrs({
 export const InputEmailButton = styled.button.attrs({
   id: "inputemailbutton",
 })`
-  width: 100px;
+  width: 25%;
   height: 50px;
   display: flex;
   position: relative;
@@ -323,8 +409,7 @@ export const InputEmailButton = styled.button.attrs({
 export const InputSecurityDiv = styled.div.attrs({
   id: "inputsecuritydiv",
 })`
-  width: 400px;
-  height: 50px;
+  width: 100%;
   display: flex;
   position: relative;
   align-items: center;
@@ -332,14 +417,12 @@ export const InputSecurityDiv = styled.div.attrs({
   user-select: none;
   border-radius: 5px;
   border: none;
-  margin-top: 10px;
-  margin-bottom: 10px;
   flex-direction: row;
 `;
 export const InputSecurity = styled.input.attrs({
   id: "inputsecurity",
 })`
-  width: 290px;
+  width: 75%;
   height: 50px;
   display: flex;
   position: relative;
@@ -363,7 +446,7 @@ export const InputSecurity = styled.input.attrs({
 export const InputSecurityButton = styled.button.attrs({
   id: "inputsecuritybutton",
 })`
-  width: 100px;
+  width: 25%;
   height: 50px;
   display: flex;
   position: relative;
@@ -385,7 +468,7 @@ export const InputSecurityButton = styled.button.attrs({
 export const InputNickName = styled.input.attrs({
   id: "inputuser",
 })`
-  width: 400px;
+  width: 100%;
   height: 50px;
   display: flex;
   position: relative;
@@ -394,8 +477,6 @@ export const InputNickName = styled.input.attrs({
   user-select: none;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  margin-top: 10px;
-  margin-bottom: 10px;
   color: #313131;
   font-family: "medium", sans-serif;
   font-size: 13px;
@@ -413,27 +494,64 @@ export const InputNickName = styled.input.attrs({
       border: 2px solid black;
     `}
 `;
+export const ValidNameMessage = styled.span.attrs({
+  id: "validnamemessage",
+})`
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  ${(props) =>
+    props.isName &&
+    css`
+      display: none;
+    `}
+`;
+
 export const InputExtraContainer = styled.div.attrs({
   id: "inputextracontainer",
 })`
-  width: 400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  gap: 5px;
 `;
 export const InputExtra = styled.div.attrs({
   id: "inputextra",
 })`
-  width: 400px;
-  height: 20px;
+  width: 100%;
   display: flex;
   position: relative;
   align-items: center;
   justify-content: center;
   user-select: none;
-  margin-top: 5px;
-  margin-bottom: 5px;
+`;
+export const InputExtraAll = styled.div.attrs({
+  id: "inputextraall",
+})`
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  &::after {
+    content: "";
+
+    bottom: 8px;
+    width: 11px;
+    height: 1px;
+    background-color: #313131;
+  }
 `;
 export const InputExtraItemCheckBox = styled.input.attrs({
   id: "inputextraitemcheckbox",
@@ -549,73 +667,4 @@ export const NoticeLink = styled(Link)`
   height: 100%;
   position: absolute;
   background-color: transparent;
-`;
-export const ValidIdMessage = styled.span.attrs({
-  id: "valididmessage",
-})`
-  width: 400px;
-  height: 5px;
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  user-select: none;
-  font-size: 10px;
-  color: red;
-  padding-left: 10px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  padding-bottom: 10px;
-  ${(props) =>
-    props.isUserId &&
-    css`
-      display: none;
-    `}
-`;
-export const ValidPwMessage = styled.span.attrs({
-  id: "validpwmessage",
-})`
-  width: 400px;
-  height: 5px;
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  user-select: none;
-  font-size: 10px;
-  color: red;
-  padding-left: 10px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  padding-bottom: 10px;
-  ${(props) =>
-    props.isPw &&
-    css`
-      display: none;
-    `}
-`;
-export const ValidNameMessage = styled.span.attrs({
-  id: "validnamemessage",
-})`
-  width: 400px;
-  height: 5px;
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  user-select: none;
-  font-size: 10px;
-  color: red;
-  padding-left: 10px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  padding-bottom: 10px;
-  ${(props) =>
-    props.isName &&
-    css`
-      display: none;
-    `}
 `;

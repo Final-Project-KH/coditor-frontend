@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
-  width: 100vw;
+  width: 100%;
   height: 100px;
   display: flex;
   flex-direction: row;
@@ -32,7 +32,7 @@ export const Container = styled.div.attrs({
 export const LogoContainer = styled.div.attrs({
   id: "logocontainer",
 })`
-  margin-left: 25px;
+  margin-left: 10px;
   width: 186px;
   height: 100%;
   display: flex;
@@ -159,7 +159,7 @@ export const LoginContainer = styled.div.attrs({
   position: relative;
   justify-content: center;
   align-items: center;
-  margin-right: 30px;
+  margin-right: 10px;
 `;
 
 export const LoginBox = styled.div.attrs({

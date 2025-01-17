@@ -9,12 +9,12 @@ import {
   AboutTitle,
   AboutContents,
 } from "../../styles/about/About";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const About = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {firstpath, secondpath} = location.state || {};
+  const { firstpath, secondpath } = location.state || {};
 
   const handleRefresh = () => {
     navigate("/about", {

@@ -4,7 +4,6 @@ export const LeftSubjectContainer = styled.div.attrs({
   id: "leftsubjectcontainer",
 })`
   width: 100%;
-  height: 290.18px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +12,7 @@ export const LeftSubjectContainer = styled.div.attrs({
   border-radius: 30px;
   background-color: #f1f1f1;
   position: sticky;
-  top: 175px;
+  top: 25px;
   left: 0;
 `;
 

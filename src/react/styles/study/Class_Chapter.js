@@ -11,8 +11,8 @@ export const ChapterOuter = styled.div.attrs({
   padding-top: 5px;
   padding-bottom: 5px;
   position: sticky;
-  top: 490px;
-  height: calc(100vh - 515px);
+  top: 337px;
+  height: calc(100vh - 487px);
   overflow-y: scroll; /* 세로 스크롤 활성화 */
   -ms-overflow-style: none; /* IE/Edge */
   scrollbar-width: none; /* Firefox */
@@ -29,7 +29,6 @@ export const ChapterInner = styled.div.attrs({
   align-items: center;
   justify-content: center;
   top: 0;
-  padding-bottom: 5px;
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 30px;
 `;
