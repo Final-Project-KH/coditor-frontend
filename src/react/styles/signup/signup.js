@@ -288,6 +288,11 @@ export const InputEmail = styled.input.attrs({
   &:focus {
     outline: none;
   }
+  ${(props) =>
+    props.isEmail &&
+    css`
+      border: 2px solid black;
+    `}
 `;
 export const InputEmailButton = styled.button.attrs({
   id: "inputemailbutton",

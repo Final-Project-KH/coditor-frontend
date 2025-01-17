@@ -68,7 +68,7 @@ const Signup = () => {
   const [isChecked14, setIsChecked14] = useState("");
   const [isCheckedMarketing, setIsCheckedMarketing] = useState("");
   // 인증번호 입력 가능 / 불가능 여부
-  const [isSecurityAvailabe, setIsSecurityAvailable] = useState(false);
+  const [isSecurityAvailabe, setIsSecurityAvailable] = useState(false); // 현재만 true 시작 실제로는 false 시작
   // 이메일 수정 가능 / 불가능 여부
   const [isEmailAvailable, setIsEmailAvailable] = useState(true);
 
@@ -147,9 +147,14 @@ const Signup = () => {
   function isPwTooLong(input) {
     return input.length > 20;
   }
+  function pwAvailable(input) {
+    const passwordRegex =
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+    return passwordRegex.test(input);
+  }
   //  특수 문자열 포함 여부 (포함 시 -> true)
   function isPwContainsSpecialCharacter(input) {
-    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    const specialCharRegex = /[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]/;
     return specialCharRegex.test(input);
   }
   //  숫자열 포함 여부 (포함 시 -> true)
@@ -162,14 +167,22 @@ const Signup = () => {
     const charRegex = /[a-zA-Z]/;
     return charRegex.test(input);
   }
+  function eamilAvailable(input) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailRegex.test(input);
+  }
   // 6. 닉네임 유효성 검사
   // Name input 문자열 길이 검사 (3보다 작을 시 -> true)
   function isNameTooShort(input) {
     return input.length < 3;
   }
+  // Name input 문자열 길이 검사 (3보다 작을 시 -> true)
+  function isNameTooLong(input) {
+    return input.length > 16;
+  }
   // 특수 문자열 포함 여부 (포함 시 -> true)
   function isNameContainsSpecialCharacter(input) {
-    const specialCharRegex = /[!@#$%^&*(),?":{}|<>]/;
+    const specialCharRegex = /[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣._-]/;
     return specialCharRegex.test(input);
   }
   function nameAvailable(input) {
@@ -246,8 +259,7 @@ const Signup = () => {
   const onChangeEmail = (e) => {
     setInputEmail(e.target.value);
     const currentValue = e.target.value;
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (emailRegex.test(currentValue)) {
+    if (eamilAvailable(currentValue)) {
       setEmailMessage("");
       setIsEmail(true);
     } else {
@@ -276,6 +288,10 @@ const Signup = () => {
     const currentValue = e.target.value;
     try {
       const response = await AxiosApi.validate("email", currentValue);
+      if (response) {
+        try {
+        } catch (error) {}
+      }
     } catch (error) {}
   };
 
@@ -291,11 +307,9 @@ const Signup = () => {
     }
   };
   const onChangePw = (e) => {
-    const passwordRegex =
-      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
     setInputPw(e.target.value);
     const currentValue = e.target.value;
-    if (passwordRegex.test(currentValue)) {
+    if (pwAvailable(currentValue)) {
       setPwMessage("");
       setIsPw(true);
     } else {
@@ -311,7 +325,7 @@ const Signup = () => {
       return;
     }
     if (!isPwContainsCharacter(currentValue)) {
-      setPwMessage("비밀번호는 1개 이상의 문자를 포함해야 합니다.");
+      setPwMessage("비밀번호는 1개 이상의 영문자를 포함해야 합니다.");
       setIsPw(false);
       return;
     }
@@ -375,6 +389,14 @@ const Signup = () => {
   const onChangeName = (e) => {
     setInputName(e.target.value);
     const currentValue = e.target.value;
+    if (isNameContainsSpecialCharacter(currentValue)) {
+      setNameMessage("특수문자 기호는 (.),(-),(_) 만 사용 가능합니다.");
+      setIsName(false);
+    }
+    if (isNameTooLong(currentValue)) {
+      setNameMessage("닉네임은 16자 이하 3자 이상이어야 합니다.");
+      setIsName(false);
+    }
     if (nameAvailable(currentValue)) {
       setNameMessage("");
       setIsName(true);
@@ -397,7 +419,7 @@ const Signup = () => {
     }
     try {
       const isNameAvailable = await validate("nickname", currentValue);
-      if (isNameAvailable) {
+      if (isNameAvailable && nameAvailable(currentValue)) {
         setNameMessage("");
         setIsName(true);
       } else {
@@ -412,10 +434,10 @@ const Signup = () => {
   const onClickSignUp = async () => {
     try {
       const memberReg = await AxiosApi.signup(
-        inputUserId.replace(/\s+/g, ""),
-        inputEmail,
-        inputPw,
-        inputName
+        inputUserId.trim().replace(/\s+/g, ""),
+        inputEmail.trim().replace(/\s+/g, ""),
+        inputPw.trim().replace(/\s+/g, ""),
+        inputName.trim()
       );
       console.log(memberReg.data);
       if (memberReg.data) {
@@ -536,24 +558,34 @@ const Signup = () => {
                 placeholder="이메일 주소 입력"
                 value={inputEmail}
                 onChange={onChangeEmail}
+                onBlur={onBlurEmail}
                 isEmailAvailable={isEmailAvailable}
+                isEmail={isEmail}
+                isSecurityAvailabe={isSecurityAvailabe}
+                isSecurity={isSecurity}
               ></InputEmail>
-              {isEmail ? (
+              {isEmail && isEmailAvailable ? (
                 <InputEmailButton enabled onClick={(e) => handleVerify(e)}>
                   인증번호받기
                 </InputEmailButton>
+              ) : isEmail && !isEmailAvailable ? (
+                <InputEmailButton></InputEmailButton> // 타이머 및 새로고침 버튼
+              ) : !isEmail && isEmailAvailable ? (
+                <InputEmailButton>인증번호받기</InputEmailButton> // 기존의 disabled 역할
               ) : (
-                <InputEmailButton disabled>인증번호받기</InputEmailButton>
+                <InputEmailButton disabled>인증번호받기</InputEmailButton> // 필요없음
               )}
             </InputEmailDiv>
-            <InputSecurityDiv>
-              <InputSecurity
-                autoComplete="off"
-                type="text"
-                placeholder="인증번호 입력"
-              ></InputSecurity>
-              <InputSecurityButton>이메일 인증</InputSecurityButton>
-            </InputSecurityDiv>
+            {isSecurityAvailabe && (
+              <InputSecurityDiv>
+                <InputSecurity
+                  autoComplete="off"
+                  type="text"
+                  placeholder="인증번호 입력"
+                ></InputSecurity>
+                <InputSecurityButton>이메일 인증</InputSecurityButton>
+              </InputSecurityDiv>
+            )}
             <InputIndex>닉네임</InputIndex>
             <InputNickName
               autoComplete="off"
