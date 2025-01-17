@@ -71,6 +71,7 @@ export const BodyContainer = styled.div.attrs({
 })`
   width: 100%;
   height: calc(100vh - 100px);
+  padding-top: 50px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -92,23 +93,36 @@ export const BodyContainer = styled.div.attrs({
     background: rgba(0, 0, 0, 0.05);
   }
 `;
-
 export const FloatingContainer = styled.div.attrs({
   id: "floatingcontainer",
 })`
   width: 95%;
   max-width: 500px;
-  margin-top: 50px;
+  height: 518.27px;
   padding: 50px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   justify-content: flex-start;
   align-items: center;
   background-color: white;
   border-radius: 30px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 100%;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #333333;
+    border-radius: 30px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 `;
+
 export const FloatingTitle = styled.h1.attrs({
   id: "inputtitle",
 })`
@@ -609,6 +623,7 @@ export const ExtraLink = styled(Link).attrs({
   id: "extralink",
 })`
   text-decoration: underline;
+  text-underline-offset: 3px;
   color: black;
   font-family: "bold", sans-serif;
   display: inline;
@@ -630,36 +645,35 @@ export const SignUp = styled.button.attrs({
   background-color: ${(props) => (props.disabled ? "#f1f1f1" : "#313131")};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   border: none;
-  margin-top: 20px;
-  margin-bottom: 50px;
+  font-size: 14px;
+  font-family: "medium", sans-serif;
   color: ${(props) => (props.disabled ? "#313131" : "white")};
   transition: all 0.3s ease-in-out;
 `;
 export const NoticeContainer = styled.div.attrs({
   id: "noticecontainer",
 })`
-  width: 241px;
-  height: 20px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   position: relative;
   justify-content: center;
   align-items: center;
   color: white;
-  margin-top: 20px;
+  margin-top: 30px;
 `;
 
 export const Notice = styled.div.attrs({
   id: "notice",
 })`
-  width: 120px;
-  height: 20px;
+  width: 150px;
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
   color: white;
   font-size: 14px;
+  font-family: "medium", sans-serif;
   user-select: none;
   & + &::before {
     content: "";
@@ -672,9 +686,7 @@ export const Notice = styled.div.attrs({
     transform: rotate(90deg);
   }
 `;
-export const NoticeLink = styled(Link).attrs({
-  id: "noticelink",
-})`
+export const NoticeLink = styled(Link)`
   text-decoration: none;
   display: flex;
   width: 100%;
