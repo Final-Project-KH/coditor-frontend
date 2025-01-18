@@ -99,15 +99,27 @@ const Signup = () => {
         setEmailMessage("");
         return;
       }
+      if (!isEmail) {
+        clearInterval(interval);
+        resetTimer();
+        return;
+      }
     }, 1000);
 
     return () => clearInterval(interval); // 기존 타이머 정리
-  }, [isRunning]); // 타이머 상태가 변경될 때만 실행
+  }, [isRunning, isEmail]); // 타이머 상태가 변경될 때만 실행
 
   const startTimer = () => {
     timeLeftRef.current = 180;
     setTimeLeft(180);
     setIsRunning(true);
+  };
+  const resetTimer = () => {
+    timeLeftRef.current = 0;
+    setTimeLeft(0);
+    setEmailMessage("새로운 이메일을 입력해주세요.");
+    setIsRunning(false);
+    setIsSecurityAvailable(false);
   };
 
   const stopTimer = () => {
@@ -283,6 +295,16 @@ const Signup = () => {
       return "다시 시도해주세요";
     }
   }
+  async function verifyotp(otpnumber, email) {
+    try {
+      const response = await AxiosApi.verifyotp(otpnumber, email);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return "다시 시도해주세요";
+    }
+  }
+
   const onBlurUserId = async (e) => {
     setInputUserId(e.target.value);
     const currentValue = e.target.value;
@@ -323,13 +345,12 @@ const Signup = () => {
   const onBlurEmail = (e) => {
     setInputEmail(e.target.value);
     const currentValue = e.target.value;
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (isBlank(currentValue)) {
       setEmailMessage("이메일 인증이 필요합니다.");
       setIsEmail(false);
       return;
     }
-    if (!emailRegex.test(currentValue)) {
+    if (!eamilAvailable(currentValue)) {
       setEmailMessage("이메일 형식이 올바르지 않습니다.");
       setIsEmail(false);
       return;
@@ -373,7 +394,7 @@ const Signup = () => {
       setEmailMessage("인증번호 형식이 올바르지 않습니다.");
       setIsEmail(false);
     } else {
-      setEmailMessage("올바른 형식입니다.");
+      setEmailMessage("");
       setIsEmail(true); // 나중에 Email Check 추가해야함
     }
   };
@@ -626,23 +647,26 @@ const Signup = () => {
                   }}
                 >
                   인증번호받기
-                </InputEmailButton>
-              ) : isEmail &&
+                </InputEmailButton> // 인증번호 받기 버튼
+              ) : (
+                isEmail &&
                 isEmailAvailable &&
                 !isSecurity &&
                 isSecurityAvailable &&
-                isRunning ? (
-                <InputEmailButtonDiv>
-                  <InputEmailButtonTimer>
-                    {Math.floor(timeLeft / 60)}:
-                    {timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
-                  </InputEmailButtonTimer>
-                  <InputEmailButtonRefresh></InputEmailButtonRefresh>
-                </InputEmailButtonDiv>
-              ) : (
-                <InputEmailButton
-                  isSecurityAvailable={isSecurityAvailable}
-                ></InputEmailButton> // display:none
+                isRunning && (
+                  <InputEmailButtonDiv isEmail={isEmail}>
+                    <InputEmailButtonTimer>
+                      {Math.floor(timeLeft / 60)}:
+                      {timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
+                    </InputEmailButtonTimer>
+                    <InputEmailButtonRefresh
+                      onClick={(e) => {
+                        onClickEmail(e);
+                        startTimer();
+                      }}
+                    ></InputEmailButtonRefresh>
+                  </InputEmailButtonDiv> // 타이머 및 새로고침 버튼
+                )
               )}
             </InputEmailDiv>
             {!isEmail ? (
@@ -660,6 +684,7 @@ const Signup = () => {
                   autoComplete="off"
                   type="text"
                   placeholder="인증번호 입력"
+                  onChangeSecurity={onChangeSecurity}
                 ></InputSecurity>
                 <InputSecurityButton>이메일 인증</InputSecurityButton>
               </InputSecurityDiv>

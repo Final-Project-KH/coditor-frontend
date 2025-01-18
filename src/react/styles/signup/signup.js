@@ -389,7 +389,12 @@ export const InputEmail = styled.input.attrs({
     outline: none;
   }
   ${(props) =>
-    props.isSecurityAvailable === false &&
+    !props.isSecurityAvailable &&
+    css`
+      width: 100%;
+    `}
+  ${(props) =>
+    !props.isEmail &&
     css`
       width: 100%;
     `}
