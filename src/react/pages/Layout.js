@@ -1,9 +1,9 @@
-import {Outlet, useLocation} from "react-router-dom";
-import {Background, Header} from "../styles/Layout";
+import { Outlet, useLocation } from "react-router-dom";
+import { Background, Header } from "../styles/Layout";
 import NavBar from "./navBar/NavBar";
-import {TransitionGroup} from "react-transition-group";
-import {CSSTransition} from "react-transition-group";
-import {useRef} from "react";
+import { TransitionGroup } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
+import { useRef } from "react";
 
 const Layout = () => {
   const location = useLocation();

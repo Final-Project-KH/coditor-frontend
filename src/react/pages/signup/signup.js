@@ -43,6 +43,7 @@ import {
   InputEmailButtonDiv,
   InputEmailButtonTimer,
   InputEmailButtonRefresh,
+  ValidSecurityMessage,
 } from "../../styles/signup/signup";
 import { useDispatch } from "react-redux";
 import { setError } from "../../../redux/slice/authSlice";
@@ -225,7 +226,7 @@ const Signup = () => {
     const charRegex = /[a-zA-Z]/;
     return charRegex.test(input);
   }
-  function eamilAvailable(input) {
+  function emailAvailable(input) {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(input);
   }
@@ -335,7 +336,7 @@ const Signup = () => {
   const onChangeEmail = (e) => {
     setInputEmail(e.target.value);
     const currentValue = e.target.value;
-    if (eamilAvailable(currentValue)) {
+    if (emailAvailable(currentValue)) {
       setEmailMessage("");
       setIsEmail(true);
     } else {
@@ -343,14 +344,13 @@ const Signup = () => {
     }
   };
   const onBlurEmail = (e) => {
-    setInputEmail(e.target.value);
-    const currentValue = e.target.value;
+    const currentValue = inputEmail;
     if (isBlank(currentValue)) {
       setEmailMessage("이메일 인증이 필요합니다.");
       setIsEmail(false);
       return;
     }
-    if (!eamilAvailable(currentValue)) {
+    if (!emailAvailable(currentValue)) {
       setEmailMessage("이메일 형식이 올바르지 않습니다.");
       setIsEmail(false);
       return;
@@ -377,7 +377,9 @@ const Signup = () => {
         const res = await verifyemail(currentValue);
         console.log(res);
         if (res) {
+          setSecurityMessage("");
           setIsSecurityAvailable(true);
+          startTimer();
         }
       }
     } catch (error) {
@@ -389,15 +391,34 @@ const Signup = () => {
 
   const onChangeSecurity = (e) => {
     setInputSecurity(e.target.value);
-    const securityRegex = /^[1-9][0-9]{5}$/;
-    if (securityRegex.test(e.target.value)) {
-      setEmailMessage("인증번호 형식이 올바르지 않습니다.");
-      setIsEmail(false);
-    } else {
-      setEmailMessage("");
-      setIsEmail(true); // 나중에 Email Check 추가해야함
+  };
+
+  const onClickSecurity = async (e) => {
+    e.preventDefault();
+    if (isSubmitting) {
+      return;
+    }
+    setIsSubmitting(true);
+    const currentValue = inputSecurity;
+    console.log(currentValue);
+    try {
+      const otpAvailable = await verifyotp(currentValue, inputEmail);
+      if (!otpAvailable) {
+        setSecurityMessage("인증번호가 일치하지 않습니다.");
+        setIsSecurity(false);
+      } else {
+        setSecurityMessage("");
+        setIsSecurity(true);
+        setIsSecurityAvailable(false);
+        setIsEmailAvailable(false);
+        setIsRunning(false);
+      }
+    } catch (error) {
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
   const onChangePw = (e) => {
     setInputPw(e.target.value);
     const currentValue = e.target.value;
@@ -524,12 +545,15 @@ const Signup = () => {
     }
   };
   const onClickSignUp = async () => {
+    console.log(inputUserId);
+    console.log(inputUserId.trim().replace(/\s+/g, ""));
     try {
-      const memberReg = await AxiosApi.signup(
+      const memberReg = await AxiosApi.join(
         inputUserId.trim().replace(/\s+/g, ""),
         inputEmail.trim().replace(/\s+/g, ""),
         inputPw.trim().replace(/\s+/g, ""),
-        inputName.trim()
+        inputName.trim(),
+        inputSecurity.trim()
       );
       console.log(memberReg.data);
       if (memberReg.data) {
@@ -622,7 +646,7 @@ const Signup = () => {
           </InputEach>
           <InputEach>
             <InputIndex>이메일</InputIndex>
-            <InputEmailDiv>
+            <InputEmailDiv isSecurity={isSecurity}>
               <InputEmail
                 autoComplete="off"
                 type="email"
@@ -633,7 +657,7 @@ const Signup = () => {
                 isEmailAvailable={isEmailAvailable}
                 isEmail={isEmail}
                 isSecurityAvailable={isSecurityAvailable}
-                isSecurity={isSecurity}
+                readOnly={isSecurity}
               ></InputEmail>
               {isEmail &&
               isEmailAvailable &&
@@ -643,7 +667,6 @@ const Signup = () => {
                   enabled
                   onClick={(e) => {
                     onClickEmail(e);
-                    startTimer();
                   }}
                 >
                   인증번호받기
@@ -651,7 +674,7 @@ const Signup = () => {
               ) : (
                 isEmail &&
                 isEmailAvailable &&
-                !isSecurity &&
+                (!isSecurity || isSecurity) &&
                 isSecurityAvailable &&
                 isRunning && (
                   <InputEmailButtonDiv isEmail={isEmail}>
@@ -662,7 +685,6 @@ const Signup = () => {
                     <InputEmailButtonRefresh
                       onClick={(e) => {
                         onClickEmail(e);
-                        startTimer();
                       }}
                     ></InputEmailButtonRefresh>
                   </InputEmailButtonDiv> // 타이머 및 새로고침 버튼
@@ -684,10 +706,16 @@ const Signup = () => {
                   autoComplete="off"
                   type="text"
                   placeholder="인증번호 입력"
-                  onChangeSecurity={onChangeSecurity}
+                  value={inputSecurity}
+                  onChange={onChangeSecurity}
                 ></InputSecurity>
-                <InputSecurityButton>이메일 인증</InputSecurityButton>
+                <InputSecurityButton onClick={(e) => onClickSecurity(e)}>
+                  이메일 인증
+                </InputSecurityButton>
               </InputSecurityDiv>
+              {!isSecurity && (
+                <ValidSecurityMessage>{securityMessage}</ValidSecurityMessage>
+              )}
             </InputEach>
           )}
           <InputEach>
@@ -776,6 +804,7 @@ const Signup = () => {
           <InputEach>
             {isUserId &&
             isEmail &&
+            isSecurity &&
             isPw &&
             isConPw &&
             isName &&

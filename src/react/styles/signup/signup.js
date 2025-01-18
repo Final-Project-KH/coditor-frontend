@@ -449,7 +449,6 @@ export const InputEmailButtonDiv = styled.div.attrs({
   color: white;
   font-family: "medium", sans-serif;
   font-size: 10px;
-  background-color: pink;
   ${(props) =>
     props.isSecurityAvailable === false &&
     css`
@@ -470,7 +469,6 @@ export const InputEmailButtonTimer = styled.div.attrs({
   color: black;
   font-family: "medium", sans-serif;
   font-size: 10px;
-  background-color: yellow;
   ${(props) =>
     props.isSecurityAvailable === false &&
     css`
@@ -599,6 +597,26 @@ export const InputSecurityButton = styled.button.attrs({
   &:hover {
     background-color: black;
   }
+`;
+export const ValidSecurityMessage = styled.span.attrs({
+  id: "validesecuritymessage",
+})`
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  ${(props) =>
+    props.isSecurity &&
+    css`
+      display: none;
+    `}
 `;
 export const InputNickName = styled.input.attrs({
   id: "inputuser",

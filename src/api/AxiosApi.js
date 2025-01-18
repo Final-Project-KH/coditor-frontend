@@ -11,14 +11,15 @@ const AxiosApi = {
     };
     return await axios.post(SPRING_DOMAIN + "/auth/login", login);
   },
-  signup: async (userid, email, pwd, name) => {
+  join: async (userid, email, pwd, name, otp) => {
     const user = {
       userId: userid,
       email: email,
       password: pwd,
       nickname: name,
+      otp: otp,
     };
-    return await axios.post(SPRING_DOMAIN + "/auth/signup", user);
+    return await axios.post(SPRING_DOMAIN + "/auth/join", user);
   },
   validate: async (key, data) => {
     const validate = {
