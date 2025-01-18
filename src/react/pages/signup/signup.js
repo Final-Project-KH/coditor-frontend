@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import AxiosApi from "../../../api/AxiosApi";
 import {
   Wrap,
@@ -40,9 +40,12 @@ import {
   InputExtraAll,
   ExtraLink,
   FloatingInnerContainer,
+  InputEmailButtonDiv,
+  InputEmailButtonTimer,
+  InputEmailButtonRefresh,
 } from "../../styles/signup/signup";
-import {useDispatch} from "react-redux";
-import {setError} from "../../../redux/slice/authSlice";
+import { useDispatch } from "react-redux";
+import { setError } from "../../../redux/slice/authSlice";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -77,6 +80,43 @@ const Signup = () => {
   const [isSecurityAvailable, setIsSecurityAvailable] = useState(false); // 현재만 true 시작 실제로는 false 시작
   // 이메일 수정 가능 / 불가능 여부
   const [isEmailAvailable, setIsEmailAvailable] = useState(true);
+  // 타이머 설정
+  const [timeLeft, setTimeLeft] = useState(180);
+  const [isRunning, setIsRunning] = useState(false);
+  const timeLeftRef = useRef(180);
+
+  // 타이머 업데이트 함수 (정확한 1초 단위 실행)
+  useEffect(() => {
+    if (!isRunning) return;
+
+    const interval = setInterval(() => {
+      console.log("setInterval 실행됨", timeLeftRef.current);
+      timeLeftRef.current -= 1;
+      setTimeLeft(timeLeftRef.current);
+      if (timeLeftRef.current <= 0) {
+        clearInterval(interval);
+        stopTimer();
+        setEmailMessage("");
+        return;
+      }
+    }, 1000);
+
+    return () => clearInterval(interval); // 기존 타이머 정리
+  }, [isRunning]); // 타이머 상태가 변경될 때만 실행
+
+  const startTimer = () => {
+    timeLeftRef.current = 180;
+    setTimeLeft(180);
+    setIsRunning(true);
+  };
+
+  const stopTimer = () => {
+    timeLeftRef.current = 0;
+    setTimeLeft(0);
+    setSecurityMessage("요청시간이 지났습니다. 다시 시도해주세요.");
+    setIsRunning(false);
+    setIsSecurityAvailable(false);
+  };
 
   // 전체 동의 누를 시 모든 체크박스 선택
   const handleCheckAllBox = (e) => {
@@ -578,24 +618,43 @@ const Signup = () => {
               isEmailAvailable &&
               !isSecurity &&
               !isSecurityAvailable ? (
-                <InputEmailButton enabled onClick={(e) => onClickEmail(e)}>
+                <InputEmailButton
+                  enabled
+                  onClick={(e) => {
+                    onClickEmail(e);
+                    startTimer();
+                  }}
+                >
                   인증번호받기
                 </InputEmailButton>
               ) : isEmail &&
                 isEmailAvailable &&
                 !isSecurity &&
-                isSecurityAvailable ? (
-                <InputEmailButton></InputEmailButton> // 타이머 및 새로고침 버튼
+                isSecurityAvailable &&
+                isRunning ? (
+                <InputEmailButtonDiv>
+                  <InputEmailButtonTimer>
+                    {Math.floor(timeLeft / 60)}:
+                    {timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
+                  </InputEmailButtonTimer>
+                  <InputEmailButtonRefresh></InputEmailButtonRefresh>
+                </InputEmailButtonDiv>
               ) : (
                 <InputEmailButton
                   isSecurityAvailable={isSecurityAvailable}
                 ></InputEmailButton> // display:none
               )}
             </InputEmailDiv>
-            {!isEmail && <ValidEmailMessage>{emailMessage}</ValidEmailMessage>}
+            {!isEmail ? (
+              <ValidEmailMessage>{emailMessage}</ValidEmailMessage>
+            ) : (
+              !isSecurityAvailable && (
+                <ValidEmailMessage>{securityMessage}</ValidEmailMessage>
+              )
+            )}
           </InputEach>
-          <InputEach>
-            {isSecurityAvailable && (
+          {isSecurityAvailable && (
+            <InputEach>
               <InputSecurityDiv>
                 <InputSecurity
                   autoComplete="off"
@@ -604,8 +663,8 @@ const Signup = () => {
                 ></InputSecurity>
                 <InputSecurityButton>이메일 인증</InputSecurityButton>
               </InputSecurityDiv>
-            )}
-          </InputEach>
+            </InputEach>
+          )}
           <InputEach>
             <InputIndex>닉네임</InputIndex>
             <InputNickName

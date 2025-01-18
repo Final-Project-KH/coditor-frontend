@@ -1,5 +1,5 @@
-import styled, {css, keyframes} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css, keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -429,6 +429,92 @@ export const InputEmailButton = styled.button.attrs({
       }
     `}
   border: none;
+`;
+export const InputEmailButtonDiv = styled.div.attrs({
+  id: "inputemailbuttondiv",
+})`
+  width: 25%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  color: white;
+  font-family: "medium", sans-serif;
+  font-size: 10px;
+  background-color: pink;
+  ${(props) =>
+    props.isSecurityAvailable === false &&
+    css`
+      display: none;
+    `}
+  border: none;
+`;
+export const InputEmailButtonTimer = styled.div.attrs({
+  id: "inputemailbuttontimer",
+})`
+  width: 50%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  color: black;
+  font-family: "medium", sans-serif;
+  font-size: 10px;
+  background-color: yellow;
+  ${(props) =>
+    props.isSecurityAvailable === false &&
+    css`
+      display: none;
+    `}
+  border: none;
+`;
+export const InputEmailButtonRefresh = styled.div.attrs({
+  id: "inputemailbuttonrefresh",
+})`
+  width: 50%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  cursor: pointer;
+  ${(props) =>
+    props.isSecurityAvailable === false &&
+    css`
+      display: none;
+    `}
+  border: none;
+  &::before {
+    content: "";
+    width: 50%;
+    height: 50%;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: center;
+    background-image: url("/images/icon/refresh-1.png");
+    position: absolute;
+    z-index: 2;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+  }
+  &::after {
+    content: "";
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    background-color: #d6d6d6;
+    border-radius: 5px;
+  }
+  &:hover::before {
+    transform: rotate(180deg);
+  }
 `;
 export const ValidEmailMessage = styled.span.attrs({
   id: "validemailmessage",
