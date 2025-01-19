@@ -367,7 +367,7 @@ export const InputEmailDiv = styled.div.attrs({
 export const InputEmail = styled.input.attrs({
   id: "inputemail",
 })`
-  width: 75%;
+  width: 100%;
   height: 50px;
   display: flex;
   position: relative;
@@ -393,10 +393,24 @@ export const InputEmail = styled.input.attrs({
     css`
       width: 100%;
     `}
+
   ${(props) =>
     !props.isEmail &&
     css`
       width: 100%;
+    `}
+    ${(props) =>
+    props.isEmail &&
+    css`
+      border: 2px solid black;
+      width: 75%;
+    `}
+    ${(props) =>
+    !props.isEmailAvailable &&
+    css`
+      border: 2px solid black;
+      width: 100%;
+      background-color: #f1f1f1;
     `}
 `;
 export const InputEmailButton = styled.button.attrs({
@@ -449,11 +463,11 @@ export const InputEmailButtonDiv = styled.div.attrs({
   color: white;
   font-family: "medium", sans-serif;
   font-size: 10px;
-  ${(props) =>
+  /* ${(props) =>
     props.isSecurityAvailable === false &&
     css`
       display: none;
-    `}
+    `} */
   border: none;
 `;
 export const InputEmailButtonTimer = styled.div.attrs({
@@ -468,7 +482,7 @@ export const InputEmailButtonTimer = styled.div.attrs({
   user-select: none;
   color: black;
   font-family: "medium", sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   ${(props) =>
     props.isSecurityAvailable === false &&
     css`
@@ -503,7 +517,7 @@ export const InputEmailButtonRefresh = styled.div.attrs({
     background-position: center;
     background-image: url("/images/icon/refresh-1.png");
     position: absolute;
-    z-index: 2;
+    z-index: 5;
     border-radius: 5px;
     transition: transform 0.3s ease-in-out;
   }

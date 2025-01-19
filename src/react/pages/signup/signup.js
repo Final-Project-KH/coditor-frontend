@@ -47,6 +47,7 @@ import {
 } from "../../styles/signup/signup";
 import { useDispatch } from "react-redux";
 import { setError } from "../../../redux/slice/authSlice";
+import { RotatingLines } from "react-loader-spinner";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -85,6 +86,11 @@ const Signup = () => {
   const [timeLeft, setTimeLeft] = useState(180);
   const [isRunning, setIsRunning] = useState(false);
   const timeLeftRef = useRef(180);
+  // 로딩 설정
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const dispatch = useDispatch();
 
   // 타이머 업데이트 함수 (정확한 1초 단위 실행)
   useEffect(() => {
@@ -358,13 +364,13 @@ const Signup = () => {
       setIsEmail(true);
     }
   };
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const dispatch = useDispatch();
   const onClickEmail = async (e) => {
     e.preventDefault();
     if (isSubmitting) {
       return;
     }
+    setIsRunning(false);
+    setIsLoading(true);
     setIsSubmitting(true);
     const currentValue = inputEmail;
     try {
@@ -385,6 +391,7 @@ const Signup = () => {
     } catch (error) {
       dispatch(setError(error.response?.data?.message || "Verify Failed"));
     } finally {
+      setIsLoading(false);
       setIsSubmitting(false);
     }
   };
@@ -576,6 +583,12 @@ const Signup = () => {
   const toggleVisibleConPwd = () => {
     setIsVisibleConPwd(!isVisibleConPwd);
   };
+
+  useEffect(() => {
+    if (isLoading) {
+      console.log("로딩 상태가 변경됨: ", isLoading);
+    }
+  }, [isLoading]);
   return (
     <Wrap>
       <TopBarContainer>
@@ -662,7 +675,8 @@ const Signup = () => {
               {isEmail &&
               isEmailAvailable &&
               !isSecurity &&
-              !isSecurityAvailable ? (
+              !isSecurityAvailable &&
+              !isLoading ? (
                 <InputEmailButton
                   enabled
                   onClick={(e) => {
@@ -671,12 +685,26 @@ const Signup = () => {
                 >
                   인증번호받기
                 </InputEmailButton> // 인증번호 받기 버튼
+              ) : isEmail && isEmailAvailable && !isRunning && isLoading ? (
+                <InputEmailButtonDiv>
+                  <RotatingLines
+                    visible={true}
+                    height="30"
+                    width="30"
+                    strokeColor="black"
+                    strokeWidth="5"
+                    animationDuration="0.75"
+                    ariaLabel="rotating-lines-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                </InputEmailButtonDiv>
               ) : (
                 isEmail &&
                 isEmailAvailable &&
-                (!isSecurity || isSecurity) &&
                 isSecurityAvailable &&
-                isRunning && (
+                isRunning &&
+                !isLoading && (
                   <InputEmailButtonDiv isEmail={isEmail}>
                     <InputEmailButtonTimer>
                       {Math.floor(timeLeft / 60)}:
