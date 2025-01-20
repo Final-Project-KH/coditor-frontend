@@ -16,12 +16,15 @@ import {
   Notice,
   NoticeLink,
   FloatingTitle,
+  InputDiv,
   Input,
   SignIn,
   LinkDiv,
   SignUp,
   FindPw,
   BodyContainer,
+  FindIdButton,
+  ValidEmailMessage,
 } from "../../styles/login/FindId";
 
 const FindId = () => {
@@ -55,6 +58,18 @@ const FindId = () => {
     return input.trim() === "";
   }
 
+  async function confirmemail(email) {
+    try {
+      const response = await AxiosApi.findid(email);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      setEmailMessage("등록된 이메일이 없습니다.");
+      setIsEmail(false);
+      return null;
+    }
+  }
+
   const onChangeEmail = (e) => {
     // console.log(`handleInputChange 호출: ${e.target.value}`);
     setInputEmail(e.target.value);
@@ -83,8 +98,29 @@ const FindId = () => {
     }
   };
 
-  const onClickEmail = async (e) => {
+  const onClickFindId = async (e) => {
     e.preventDefault();
+    if (isSubmitting) {
+      return;
+    }
+    setIsLoading(true);
+    setIsSubmitting(true);
+    const currentValue = inputEmail;
+    try {
+      const emailExist = await confirmemail(currentValue);
+      console.log(emailExist);
+      console.log(emailExist.userId);
+      if (emailExist) {
+        // userId 저장할 장소 생성할 것 (setUserId)
+      } else {
+        setEmailMessage("등록된 이메일이 없습니다.");
+        setIsEmail(false);
+      }
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+      setIsSubmitting(false);
+    }
   };
 
   const setViewportHeight = () => {
@@ -110,14 +146,27 @@ const FindId = () => {
       <BodyContainer>
         <FloatingContainer>
           <FloatingTitle>아이디찾기</FloatingTitle>
-          <Input
-            autoComplete="off"
-            placeholder="등록한 이메일 주소 입력"
-            icon="/images/icon/mail.png"
-            value={inputEmail}
-            onChange={(e) => onChangeEmail(e)}
-            onBlur={(e) => onBlurEmail(e)}
-          ></Input>
+          <InputDiv>
+            <Input
+              autoComplete="off"
+              placeholder="등록한 이메일 주소 입력"
+              icon="/images/icon/mail.png"
+              value={inputEmail}
+              isEmail={isEmail}
+              onChange={(e) => onChangeEmail(e)}
+              onBlur={(e) => onBlurEmail(e)}
+            ></Input>
+            {isEmail && (
+              <FindIdButton isEmail={isEmail} onClick={(e) => onClickFindId(e)}>
+                아이디확인
+              </FindIdButton>
+            )}
+          </InputDiv>
+          {!isEmail && (
+            <ValidEmailMessage isEmail={isEmail}>
+              {emailMessage}
+            </ValidEmailMessage>
+          )}
           <Input
             type="password"
             placeholder=""

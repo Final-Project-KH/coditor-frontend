@@ -58,7 +58,7 @@ const AxiosApi = {
       },
     };
     return await axios.post(
-      SPRING_DOMAIN + "/auth/forgotId",
+      SPRING_DOMAIN + "/auth/forgotid",
       null,
       enrolledemail
     );

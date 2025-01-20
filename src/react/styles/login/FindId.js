@@ -121,6 +121,22 @@ export const FloatingTitle = styled.h1.attrs({
   margin-bottom: 30px;
   font-size: 30px;
 `;
+export const InputDiv = styled.div.attrs({
+  id: "inputdiv",
+})`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  user-select: none;
+  margin-bottom: 5px;
+  &:focus {
+    outline: none;
+  }
+`;
 export const Input = styled.input.attrs({
   id: "input",
 })`
@@ -133,7 +149,6 @@ export const Input = styled.input.attrs({
   user-select: none;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  margin-bottom: 10px;
   color: #313131;
   font-family: "medium", sans-serif;
   font-size: 13px;
@@ -142,9 +157,68 @@ export const Input = styled.input.attrs({
   background-size: 10px auto;
   background-position: 20px center;
   background-image: url(${(props) => props.icon});
+  transition: all 0.3s ease-in-out;
   &:focus {
     outline: none;
   }
+  ${(props) =>
+    props.isEmail &&
+    css`
+      border: 2px solid rgba(0, 0, 0, 0.5);
+      width: 75%;
+    `}
+`;
+export const FindIdButton = styled.button.attrs({
+  id: "findidbutton",
+})`
+  width: 25%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "medium", sans-serif;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  ${(props) =>
+    props.isEmail === false &&
+    css`
+      display: none;
+    `}
+  ${(props) =>
+    props.isEmail &&
+    css`
+      &:hover {
+        background-color: black;
+      }
+    `}
+  border: none;
+`;
+export const ValidEmailMessage = styled.span.attrs({
+  id: "validemailmessage",
+})`
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  ${(props) =>
+    props.isEmail &&
+    css`
+      display: none;
+    `}
 `;
 export const SignIn = styled.button.attrs({
   id: "signin",
