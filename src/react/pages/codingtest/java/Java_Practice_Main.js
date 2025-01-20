@@ -71,14 +71,6 @@ const CT_Java_Practice_Main = () => {
     navigate(navigatepath, {state: data});
   };
 
-  const [isToggleOpenId, setIsToggleOpenId] = useState([]);
-
-  const toggleVisibility = (id) => {
-    setIsToggleOpenId((prevId) =>
-      prevId.includes(id) ? prevId.filter((i) => i !== id) : [...prevId, id]
-    );
-  };
-
   const updatedJavaMenuData = classJavaMenuData.map((menu) => ({
     ...menu,
     contents: menu.contents.map((content) => ({
@@ -91,8 +83,21 @@ const CT_Java_Practice_Main = () => {
       fourthpath: content.fourthpath,
     })),
   }));
+  const initialIds = updatedJavaMenuData.map((menu) => menu.id);
+
+  const [isToggleOpenId, setIsToggleOpenId] = useState(initialIds);
+
+  const toggleVisibility = (id) => {
+    setIsToggleOpenId((prevId) =>
+      prevId.includes(id) ? prevId.filter((i) => i !== id) : [...prevId, id]
+    );
+  };
 
   const nickname = useSelector((state) => state.auth.nickname);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Wrap>

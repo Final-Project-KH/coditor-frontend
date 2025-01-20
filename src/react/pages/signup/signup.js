@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, {useEffect, useState, useRef} from "react";
+import {useNavigate} from "react-router-dom";
 import AxiosApi from "../../../api/AxiosApi";
 import {
   Wrap,
@@ -45,9 +45,9 @@ import {
   InputEmailButtonRefresh,
   ValidSecurityMessage,
 } from "../../styles/signup/signup";
-import { useDispatch } from "react-redux";
-import { setError } from "../../../redux/slice/authSlice";
-import { RotatingLines } from "react-loader-spinner";
+import {useDispatch} from "react-redux";
+import {setError} from "../../../redux/slice/authSlice";
+import {RotatingLines} from "react-loader-spinner";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -313,8 +313,7 @@ const Signup = () => {
   }
 
   const onBlurUserId = async (e) => {
-    setInputUserId(e.target.value);
-    const currentValue = e.target.value;
+    const currentValue = inputUserId;
     if (isBlank(currentValue)) {
       setUserIdMessage("아이디는 필수 입력 정보입니다.");
       setIsUserId(false);

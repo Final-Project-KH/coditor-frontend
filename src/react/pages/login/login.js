@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import AxiosApi from "../../../api/AxiosApi";
-import { setLoginData, setError } from "../../../redux/slice/authSlice";
+import {setLoginData, setError} from "../../../redux/slice/authSlice";
 import JwtDecoding from "../../../api/JwtDecode";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Common from "../../../util/Common";
-import { GoogleOAuthProvider } from "@react-oauth/google"; // GoogleOAuthProvider 추가
+import {GoogleOAuthProvider} from "@react-oauth/google"; // GoogleOAuthProvider 추가
 import {
   Wrap,
   TopBarContainer,
@@ -24,13 +24,13 @@ import {
   SignUp,
   ThirdLogin,
   ThirdLoginItem,
-  InputExtraItem,
   InputExtraItemCheckBox,
   InputExtraItemLeftP,
   InputExtraItemRightP,
   BodyContainer,
   InputExtraItem1,
   InputExtraItem2,
+  InputExtraItem3,
 } from "../../styles/login/login";
 
 const Login = () => {
@@ -50,31 +50,28 @@ const Login = () => {
   const [inputPw, setInputPw] = useState("");
   const [isId, setIsId] = useState("");
   const [isPw, setIsPw] = useState("");
-  const [isChecked, setIsChecked] = useState("");
+  const [isCheckedAutoId, setIsCheckedAutoId] = useState("");
+  const [isCheckedAutoLogin, setIsCheckedAutoLogin] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false); // 로그인 중 상태 관리
   const [rsp, setRsp] = useState(null); // rsp 상태 추가
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleInputChange = (e, setState, setValidState) => {
-    console.log(`handleInputChange 호출: ${e.target.value}`);
+    // console.log(`handleInputChange 호출: ${e.target.value}`);
     setState(e.target.value);
     setValidState(e.target.value.length >= 5);
   };
 
-  const handleCheckBox = (e) => {
-    console.log(`Checkbox 상태 변경: ${e.target.checked}`);
-    setIsChecked(e.target.checked);
+  const handleCheckAutoIdBox = (e) => {
+    // console.log(`CheckAutoIdbox 상태 변경: ${e.target.checked}`);
+    setIsCheckedAutoId(e.target.checked);
   };
 
-  const setViewportHeight = () => {
-    const vh = window.innerHeight * 0.01;
-    console.log(`Viewport height 설정: ${vh}`);
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  const handleCheckAutoLoginBox = (e) => {
+    // console.log(`CheckAutoLoginbox 상태 변경: ${e.target.checked}`);
+    setIsCheckedAutoLogin(e.target.checked);
   };
-
-  setViewportHeight();
-  window.addEventListener("resize", setViewportHeight);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -323,25 +320,35 @@ const Login = () => {
               <InputExtraItem1>
                 <InputExtraItemCheckBox
                   type="checkbox"
-                  id="autologin"
-                  checked={isChecked}
-                  onChange={handleCheckBox}
+                  id="autoid"
+                  checked={isCheckedAutoId}
+                  onChange={handleCheckAutoIdBox}
                 ></InputExtraItemCheckBox>
                 {/* 아이디 저장 관련 로직 아직 미구현 */}
                 <InputExtraItemLeftP>아이디 저장</InputExtraItemLeftP>
               </InputExtraItem1>
               <InputExtraItem2>
+                <InputExtraItemCheckBox
+                  type="checkbox"
+                  id="autologin"
+                  checked={isCheckedAutoLogin}
+                  onChange={handleCheckAutoLoginBox}
+                ></InputExtraItemCheckBox>
+                {/* 아이디 저장 관련 로직 아직 미구현 */}
+                <InputExtraItemLeftP>자동 로그인</InputExtraItemLeftP>
+              </InputExtraItem2>
+              <InputExtraItem3>
                 <InputExtraItemRightP>
                   {/* 아이디 찾기 페이지 링크 연결 미구현 */}
-                  <StyledLink to="#"></StyledLink>
+                  <StyledLink to="/findid"></StyledLink>
                   아이디 찾기
                 </InputExtraItemRightP>
                 {/* 비밀번호 찾기 페이지 링크 연결 미구현 */}
                 <InputExtraItemRightP>
-                  <StyledLink to="#"></StyledLink>
+                  <StyledLink to="/findpw"></StyledLink>
                   비밀번호 찾기
                 </InputExtraItemRightP>
-              </InputExtraItem2>
+              </InputExtraItem3>
             </InputExtra>
             {isId && isPw ? (
               <SignIn enabled onClick={handleSubmit}>
@@ -358,8 +365,7 @@ const Login = () => {
               <ThirdLoginItem
                 icon="/images/sns/gmail.png"
                 onClick={handleGoogleLoginClick}
-              >
-              </ThirdLoginItem>
+              ></ThirdLoginItem>
               <ThirdLoginItem
                 icon="/images/sns/kakao.png"
                 onClick={handleKakaoLoginClick} // 카카오 로그인 클릭 핸들러 적용

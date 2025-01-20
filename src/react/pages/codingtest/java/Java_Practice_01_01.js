@@ -18,12 +18,17 @@ import {
 import {useLocation, useNavigate} from "react-router-dom";
 import MonacoJava from "../../../../util/monaco/MonacoJava";
 import MonacoJavaOutput from "../../../../util/monaco/MonacoJavaOutput";
+import {useEffect} from "react";
 
 const CT_Java_Practice_01_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const {firstpath, secondpath, thirdpath, fourthpath, lowerpath} =
     location.state || {};
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleCodingTest = () => {
     navigate("/codingtest", {

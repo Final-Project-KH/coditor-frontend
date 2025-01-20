@@ -1,5 +1,5 @@
-import styled, { css, keyframes } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {css, keyframes} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -688,7 +688,7 @@ export const InputExtraContainer = styled.div.attrs({
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 0px;
   margin-bottom: 30px;
   gap: 5px;
 `;
