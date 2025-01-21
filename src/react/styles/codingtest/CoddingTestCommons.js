@@ -87,6 +87,7 @@ export const Container = styled.div.attrs({
   gap: 25px;
   padding-left: 10px;
   padding-right: 10px;
+  margin-top: 75px;
 `;
 export const LeftContainer = styled.div.attrs({
   id: "leftcontainer",
@@ -97,7 +98,6 @@ export const LeftContainer = styled.div.attrs({
   align-items: center;
   left: 0;
   gap: 25px;
-  margin-top: 25px;
 `;
 export const LeftTopSubjectContainer = styled.div.attrs({
   id: "leftsubjectcontainer",
@@ -248,7 +248,6 @@ export const RightContainer = styled.div.attrs({
   gap: 25px;
   padding-bottom: 50px;
   position: relative;
-  margin-top: 25px;
 `;
 export const EachClass = styled.div.attrs({
   id: "eachclass",

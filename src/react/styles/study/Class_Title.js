@@ -12,7 +12,7 @@ export const LeftSubjectContainer = styled.div.attrs({
   border-radius: 30px;
   background-color: #f1f1f1;
   position: sticky;
-  top: 25px;
+  top: 75px;
   left: 0;
 `;
 

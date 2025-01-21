@@ -76,6 +76,7 @@ export const Container = styled.div.attrs({
   justify-content: center;
   margin-bottom: 0;
   gap: 25px;
+  margin-top: 75px;
 `;
 
 export const LeftContainer = styled.div.attrs({
@@ -87,7 +88,6 @@ export const LeftContainer = styled.div.attrs({
   align-items: center;
   gap: 25px;
   left: 0;
-  margin-top: 25px;
 `;
 
 export const CenterContainer = styled.div.attrs({
@@ -99,7 +99,6 @@ export const CenterContainer = styled.div.attrs({
   align-items: center;
   gap: 25px;
   left: 0;
-  margin-top: 25px;
 `;
 export const RightContainer = styled.div.attrs({
   id: "rightcontainer",
@@ -110,7 +109,6 @@ export const RightContainer = styled.div.attrs({
   align-items: center;
   gap: 25px;
   left: 0;
-  margin-top: 25px;
 `;
 export const PathLink = styled.button.attrs({
   id: "pathlink",
