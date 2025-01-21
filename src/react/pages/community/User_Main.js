@@ -16,6 +16,7 @@ import Post_UserProfile from "./components/post/Post_UserProfile";
 import Post_RelatedPosts from "./components/post/Post_RelatedPosts";
 import User_Feed from "./components/User_Feed";
 import Board_Main from "./components/Board_Main";
+import ScrollToTopButton from "../../styles/ScrollToTopButton";
 
 const User_Main = () => {
   const navigate = useNavigate();
@@ -68,6 +69,7 @@ const User_Main = () => {
         
           </RightContainer>
         </Container>
+        <ScrollToTopButton />
       </Wrap>
     </>
   );

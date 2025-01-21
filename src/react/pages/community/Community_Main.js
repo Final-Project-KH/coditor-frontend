@@ -9,6 +9,7 @@ import {
   RightContainer,
   PathLink,
 } from "../../styles/community/Community";
+import ScrollToTopButton from "../../styles/ScrollToTopButton";
 import Board_Main from "./components/Board_Main";
 import BoardList from "./components/Side_BoardList";
 import PopularTags from "./components/Side_PopularTags";
@@ -51,6 +52,7 @@ const Community_Main = () => {
             <WeeklyBest />
           </RightContainer>
         </Container>
+        <ScrollToTopButton />
       </Wrap>
     </>
   );

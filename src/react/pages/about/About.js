@@ -10,6 +10,7 @@ import {
   AboutContents,
 } from "../../styles/about/About";
 import { useLocation, useNavigate } from "react-router-dom";
+import ScrollToTopButton from "../../styles/ScrollToTopButton";
 
 const About = () => {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ const About = () => {
           누구나 개발자가 될 수 있도록 coditor가 여러분을 도와드리겠습니다.
         </AboutContents>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

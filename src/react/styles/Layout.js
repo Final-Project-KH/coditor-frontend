@@ -15,14 +15,14 @@ export const Header = styled.div`
 export const LayoutWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh; /* 전체 화면 높이 차지 */
-  overflow: hidden; /* 화면에 스크롤이 생기지 않도록 */
+  height: 100vh;
+  overflow: hidden;
 `;
 
 export const MainContent = styled.div`
-  margin-top: 50px;
   flex: 1;
-  overflow-y: auto; /* Outlet에 스크롤 적용 */
+  overflow-y: auto;
+  scrollbar-gutter: stable;
   &::-webkit-scrollbar {
     width: 10px;
     height: 100%;
@@ -34,4 +34,25 @@ export const MainContent = styled.div`
   &::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.05);
   }
+`;
+
+export const ScrollToTop = styled.div.attrs({
+  id: "scrolltotop",
+})`
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center;
+  background-image: url("/images/icon/totop.png");
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
 `;

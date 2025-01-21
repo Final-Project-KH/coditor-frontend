@@ -21,10 +21,6 @@ export const BoardListTitle = styled.div.attrs({
   display: flex;
   position: relative;
   margin-bottom: 10px;
-  .menu-link {
-    text-decoration: none;
-    color: inherit;
-  }
 `;
 export const BoardListLink = styled.button.attrs({
   id: "boardlistlink",
@@ -50,10 +46,6 @@ export const BoardListActiveContents = styled.div.attrs({
   color: black;
   display: flex;
   position: relative;
-  .menu-link {
-    text-decoration: none;
-    color: inherit;
-  }
 `;
 export const BoardListInactiveContents = styled.div.attrs({
   id: "boardlistactivecontents",
@@ -64,8 +56,4 @@ export const BoardListInactiveContents = styled.div.attrs({
   color: rgba(0, 0, 0, 0.4);
   display: flex;
   position: relative;
-  .menu-link {
-    text-decoration: none;
-    color: inherit;
-  }
 `;

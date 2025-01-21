@@ -1,7 +1,7 @@
-import {useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 import store from "../../../redux/store/store";
-import {logout} from "../../../redux/slice/authSlice";
+import { logout } from "../../../redux/slice/authSlice";
 import {
   Wrap,
   Container,
@@ -22,8 +22,8 @@ import CommunityBar from "../sideBar/CommunityBar";
 import CsBar from "../sideBar/CsBar";
 import MoreBar from "../sideBar/MoreBar";
 import StudyBar from "../sideBar/StudyBar";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useLocation} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const [menuState, setMenuState] = useState({
@@ -83,7 +83,7 @@ const NavBar = () => {
 
   // 메뉴 닫기 (추가적인 상황에서 사용)
   const closeMenu = (menuName) => {
-    setMenuState((prev) => ({...prev, [menuName]: false}));
+    setMenuState((prev) => ({ ...prev, [menuName]: false }));
     setTimeout(() => {
       setAnimatingMenus((prev) => ({
         ...prev,
@@ -94,7 +94,7 @@ const NavBar = () => {
 
   // 메뉴 닫기 (떨림 방지용 -> Timeout 제거)
   const closeMenuIm = (menuName) => {
-    setMenuState((prev) => ({...prev, [menuName]: false}));
+    setMenuState((prev) => ({ ...prev, [menuName]: false }));
     setAnimatingMenus((prev) => ({
       ...prev,
       [`${menuName}Animating`]: false,
@@ -156,10 +156,17 @@ const NavBar = () => {
 
   const location = useLocation();
   const { firstpath } = location.state || {};
-  const handleRefresh = () => {
+  const handleStudy = () => {
     navigate("/study", {
       state: {
-        firstpath: firstpath,
+        firstpath: "study",
+      },
+    });
+  };
+  const handleCommunity = () => {
+    navigate("/community", {
+      state: {
+        firstpath: "comunity",
       },
     });
   };
@@ -194,7 +201,7 @@ const NavBar = () => {
             ref={(el) => (menuRefs.current["isStudyOpen"] = el)}
             onMouseEnter={() => toggleMenu("isStudyOpen")}
             onMouseLeave={() => toggleMenu("isStudyOpen")}
-            onClick={() => handleRefresh()}
+            onClick={() => handleStudy()}
           >
             <MenuBox isOpen={menuState.isStudyOpen}>
               <MenuButton isOpen={menuState.isStudyOpen}>study</MenuButton>
@@ -232,6 +239,7 @@ const NavBar = () => {
             ref={(el) => (menuRefs.current["isCommunityOpen"] = el)}
             onMouseEnter={() => toggleMenu("isCommunityOpen")}
             onMouseLeave={() => toggleMenu("isCommunityOpen")}
+            onClick={() => handleCommunity()}
           >
             <MenuBox isOpen={menuState.isCommunityOpen}>
               <MenuButton isOpen={menuState.isCommunityOpen}>

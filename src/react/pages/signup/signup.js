@@ -132,7 +132,7 @@ const Signup = () => {
   const stopTimer = () => {
     timeLeftRef.current = 0;
     setTimeLeft(0);
-    setSecurityMessage("요청시간이 지났습니다. 다시 시도해주세요.");
+    setEmailMessage("요청시간이 지났습니다. 다시 시도해주세요.");
     setIsRunning(false);
     setIsSecurityAvailable(false);
   };
@@ -299,7 +299,7 @@ const Signup = () => {
       console.log(response.data);
       return response.data;
     } catch (error) {
-      return "다시 시도해주세요";
+      return null;
     }
   }
   async function verifyotp(otpnumber, email) {
@@ -308,7 +308,7 @@ const Signup = () => {
       console.log(response.data);
       return response.data;
     } catch (error) {
-      return "다시 시도해주세요";
+      return null;
     }
   }
 
@@ -613,11 +613,12 @@ const Signup = () => {
               onBlur={onBlurUserId}
               isUserId={isUserId}
             ></InputId>
-            {!isUserId && (
+            {/* {!isUserId && (
               <ValidIdMessage isUserId={isUserId}>
                 {userIdMessage}
               </ValidIdMessage>
-            )}
+            )} */}
+            <ValidIdMessage isUserId={isUserId}>{userIdMessage}</ValidIdMessage>
           </InputEach>
           <InputEach>
             <InputIndex>비밀번호</InputIndex>
@@ -635,7 +636,8 @@ const Signup = () => {
                 onClick={() => toggleVisiblePwd()}
               />
             </InputPwDiv>
-            {!isPw && <ValidPwMessage isPw={isPw}>{pwMessage}</ValidPwMessage>}
+            {/* {!isPw && <ValidPwMessage isPw={isPw}>{pwMessage}</ValidPwMessage>} */}
+            <ValidPwMessage isPw={isPw}>{pwMessage}</ValidPwMessage>
           </InputEach>
           <InputEach>
             <InputPwDiv>
@@ -652,9 +654,10 @@ const Signup = () => {
                 onClick={() => toggleVisibleConPwd()}
               />
             </InputPwDiv>
-            {!isConPw && (
+            {/* {!isConPw && (
               <ValidPwMessage isConPw={isConPw}>{conPwMessage}</ValidPwMessage>
-            )}
+            )} */}
+            <ValidPwMessage isConPw={isConPw}>{conPwMessage}</ValidPwMessage>
           </InputEach>
           <InputEach>
             <InputIndex>이메일</InputIndex>
@@ -718,13 +721,14 @@ const Signup = () => {
                 )
               )}
             </InputEmailDiv>
-            {!isEmail ? (
+            {/* {!isEmail ? (
               <ValidEmailMessage>{emailMessage}</ValidEmailMessage>
             ) : (
               !isSecurityAvailable && (
                 <ValidEmailMessage>{securityMessage}</ValidEmailMessage>
               )
-            )}
+            )} */}
+            <ValidEmailMessage>{emailMessage}</ValidEmailMessage>
           </InputEach>
           {isSecurityAvailable && (
             <InputEach>
@@ -736,7 +740,10 @@ const Signup = () => {
                   value={inputSecurity}
                   onChange={onChangeSecurity}
                 ></InputSecurity>
-                <InputSecurityButton onClick={(e) => onClickSecurity(e)}>
+                <InputSecurityButton
+                  isSecurity={isSecurity}
+                  onClick={(e) => onClickSecurity(e)}
+                >
                   이메일 인증
                 </InputSecurityButton>
               </InputSecurityDiv>

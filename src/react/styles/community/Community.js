@@ -68,7 +68,7 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
-  margin-top: 25px;
+
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -76,6 +76,7 @@ export const Container = styled.div.attrs({
   justify-content: center;
   margin-bottom: 0;
   gap: 25px;
+  margin-top: 75px;
 `;
 
 export const LeftContainer = styled.div.attrs({

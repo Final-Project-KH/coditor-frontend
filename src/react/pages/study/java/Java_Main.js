@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 
 import {
   Wrap,
@@ -15,17 +15,20 @@ import {
 import Java_ChapterList from "./Java_ChapterList";
 import Java_Title from "./Java_Title";
 import Java_ClassList from "./Java_ClassList";
-import ScrollToTopButton from "../ScrollToTopButton";
+import ScrollToTopButton from "../../../styles/ScrollToTopButton";
 
 const Java_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
+  const { mainContentRef } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    if (mainContentRef?.current) {
+      mainContentRef.current.scrollTo(0, 0);
+    }
+  }, [mainContentRef]);
 
   // TopBox firstpath
   const handleStudy = () => {
@@ -71,7 +74,7 @@ const Java_Main = () => {
       <Container>
         <LeftContainer>
           <Java_Title />
-          <Java_ChapterList refs={sectionRefs} />
+          <Java_ChapterList refs={sectionRefs} mainContentRef={mainContentRef}/>
         </LeftContainer>
         <RightContainer>
           <Java_ClassList refs={sectionRefs} />

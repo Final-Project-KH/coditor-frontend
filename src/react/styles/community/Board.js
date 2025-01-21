@@ -253,8 +253,10 @@ export const MiddleSortContentsBox = styled.div.attrs({
   id: "middlesortcontentsbox",
 })`
   width: 85%;
+  height: 100%;
   display: flex;
   flex-direction: row;
+  align-items: center;
   margin-bottom: 15px;
   padding-left: 20px;
   gap: 20px;

@@ -12,6 +12,7 @@ const Common = {
 
   // 저장되어 있는 access token 가져오기
   getAccessToken: () => {
+    console.log("accessToken", store.getState().auth);
     const accesstoken = store.getState().auth.accesstoken; // Redux store에서 토큰 가져오기
     return accesstoken;
   },
@@ -76,15 +77,15 @@ const Common = {
   },
 
   setAccessToken: (token) => {
-    store.dispatch(setLoginData({accesstoken: token})); // Redux store에 토큰 저장
+    store.dispatch(setLoginData({ accesstoken: token })); // Redux store에 토큰 저장
   }, // accesstoken 데이터는 (response.data.accessToken) -> response는 지정한 변수명
 
   setAccessTokenExpiresIn: (expirationtime) => {
-    store.dispatch(setLoginData({accesstokenexpiresin: expirationtime}));
+    store.dispatch(setLoginData({ accesstokenexpiresin: expirationtime }));
   }, // accesstoken expiretime 데이터는 getNewAccessTokenExpiresIn 함수를 거친 데이터
 
   setNickname: (nickname) => {
-    store.dispatch(setLoginData({nickname: nickname}));
+    store.dispatch(setLoginData({ nickname: nickname }));
   },
 
   setTokens: (accessToken, refreshToken) => {
@@ -98,11 +99,11 @@ const Common = {
   },
 
   setRefreshToken: (token) => {
-    store.dispatch(setLoginData({refreshtoken: token})); // Redux store에 토큰 저장
+    store.dispatch(setLoginData({ refreshtoken: token })); // Redux store에 토큰 저장
   }, // refreshtoken 데이터는 (response.data.refreshToken) -> response는 지정한 변수명
 
   setRefreshTokenExpiresIn: (expirationtime) => {
-    store.dispatch(setLoginData({refreshtokenexpiresin: expirationtime}));
+    store.dispatch(setLoginData({ refreshtokenexpiresin: expirationtime }));
   }, // refreshtoken expiretime 데이터는 getNewRefreshTokenExpiresIn 함수를 거친 데이터
 
   clearAccessToken: () => {
@@ -141,7 +142,7 @@ const Common = {
     if (!refreshToken) {
       throw new Error(600);
     }
-    const response = await axios.post(`${Common.SPRING_DOMAIN}/auth/refresh`, {
+    const response = await axios.post(`${Common.SPRING_DOMAIN}/auth/reissue`, {
       refreshToken,
     });
     const accessToken = response.data.accessToken;

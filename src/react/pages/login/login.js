@@ -339,7 +339,6 @@ const Login = () => {
               </InputExtraItem2>
               <InputExtraItem3>
                 <InputExtraItemRightP>
-                  {/* 아이디 찾기 페이지 링크 연결 미구현 */}
                   <StyledLink to="/findid"></StyledLink>
                   아이디 찾기
                 </InputExtraItemRightP>

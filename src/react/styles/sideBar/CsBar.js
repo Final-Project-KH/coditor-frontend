@@ -79,7 +79,7 @@ export const MenuColumn = styled.div.attrs({
   id: "menucolumn",
 })`
   width: 33%;
-  padding-top: 55px;
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
 `;
@@ -104,19 +104,6 @@ export const MenuContents = styled.div.attrs({
   font-family: "medium", sans-serif;
   font-size: 15px;
   margin: 8px;
-
-  .menu-link {
-    display: inline-block;
-    text-decoration: none;
-    color: inherit;
-    padding: 5px 10px;
-    border-radius: 30px;
-  }
-  .menu-link:hover {
-    text-decoration: none;
-    background-color: black;
-    color: white;
-  }
 `;
 export const MenuLink = styled.button.attrs({
   id: "menulink",
@@ -135,5 +122,6 @@ export const MenuLink = styled.button.attrs({
     text-decoration: none;
     background-color: black;
     color: white;
+    transition: all 0.2s ease-in-out;
   }
 `;

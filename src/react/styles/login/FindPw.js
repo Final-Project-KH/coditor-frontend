@@ -1,5 +1,5 @@
-import styled, { css, keyframes } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {css, keyframes} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -120,10 +120,11 @@ export const FloatingTitle = styled.h1.attrs({
   user-select: none;
   margin-bottom: 30px;
   font-size: 30px;
+  transition: all 0.5s ease-in-out;
   ${(props) =>
     props.isUserIdAvailable &&
     css`
-      animation: ${moveSequence} 0.3s forwards;
+      animation: ${moveSequence} 0.5s ease-out forwards;
       font-size: 25px;
     `}
 `;
@@ -131,12 +132,12 @@ const moveSequence = keyframes`
     0% {
       transform: translateX(0) translateY(0);
     }
-    100%{
+    50%{
       transform: translateX(0) translateY(-80%);
     }
-    /* 100%{
+    100%{
       transform: translateX(-27%) translateY(-80%);
-    } */
+    }
   `;
 export const InputDiv = styled.div.attrs({
   id: "inputdiv",
@@ -148,6 +149,7 @@ export const InputDiv = styled.div.attrs({
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
+  user-select: none;
   &:focus {
     outline: none;
   }
@@ -183,6 +185,36 @@ export const Input = styled.input.attrs({
       width: 75%;
     `}
 `;
+export const InputSecurity = styled.input.attrs({
+  id: "inputsecurity",
+})`
+  width: 75%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  background-position: 20px center;
+  background-image: url(${(props) => props.icon});
+  transition: all 0.3s ease-in-out;
+  &:focus {
+    outline: none;
+  }
+  ${(props) =>
+    props.isSecurity &&
+    css`
+      border: 2px solid black;
+    `}
+`;
 export const FindIdOutput = styled.div.attrs({
   id: "findoutput",
 })`
@@ -192,17 +224,18 @@ export const FindIdOutput = styled.div.attrs({
   position: relative;
   align-items: center;
   justify-content: flex-start;
+  user-select: none;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   color: #313131;
-  padding-left: 10px;
   font-family: "medium", sans-serif;
   font-size: 13px;
-  transition: all 0.3s ease-in-out;
+  padding-left: 40px;
+  transition: all 1s ease-in-out;
   margin-bottom: 40px;
 `;
-export const FindIdButton = styled.button.attrs({
-  id: "findidbutton",
+export const FindPwButton = styled.button.attrs({
+  id: "findpwbutton",
 })`
   width: 25%;
   height: 50px;
@@ -248,6 +281,34 @@ export const ValidEmailMessage = styled.span.attrs({
   font-size: 10px;
   color: red;
 `;
+export const SecurityButton = styled.button.attrs({
+  id: "securitybutton",
+})`
+  width: 25%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  ${(props) =>
+    props.isSecurity &&
+    css`
+      &:hover {
+        background-color: black;
+      }
+    `}
+  border: none;
+`;
 export const SignIn = styled.button.attrs({
   id: "signin",
 })`
@@ -283,24 +344,6 @@ export const LinkDiv = styled.div.attrs({
 `;
 export const SignUp = styled.button.attrs({
   id: "signup",
-})`
-  width: 50%;
-  height: 50px;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  border-radius: 5px;
-  background-color: #f1f1f1;
-  border: none;
-  margin-top: 10px;
-  color: black;
-  font-size: 14px;
-  font-family: "medium", sans-serif;
-`;
-export const ToFindPw = styled.button.attrs({
-  id: "tofindpw",
 })`
   width: 50%;
   height: 50px;

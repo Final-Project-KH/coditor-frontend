@@ -22,6 +22,8 @@ import {
   WriteSubmitButton,
 } from "../../../../styles/community/Post";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import AxiosApi from "../../../../../api/AxiosApi";
 
 const lowlight = createLowlight(all);
 
@@ -266,15 +268,17 @@ const extensions = [
       keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
     },
   }),
-  Code,
-  CodeBlock,
+  // Code,
+  // CodeBlock,
   Image,
 ];
 
-export default () => {
+const Post_WriteEditor_Coding = ({ title, language }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
+  const [editorContent, setEditorContent] = useState("");
+  const [boardType, setBoardType] = useState("CODING");
 
   const editor = useEditor({
     extensions: [
@@ -282,10 +286,10 @@ export default () => {
       TextStyle,
       Color.configure({ types: [TextStyle.name] }), // TextStyle 확장과 연동
       Underline,
-      Code,
-      CodeBlockLowlight.configure({
-        lowlight,
-      }),
+      // Code,
+      // CodeBlockLowlight.configure({
+      //   lowlight,
+      // }),
       Image,
       Placeholder.configure({
         placeholder: `- 학습 관련 질문을 남겨주세요. 상세히 작성하면 더 좋아요!
@@ -307,6 +311,22 @@ export default () => {
     });
   };
 
+  const handleSubmit = async () => {
+    if (!editor.getHTML().trim() || !title.trim()) {
+      alert("제목과 내용을 모두 입력하세요!");
+      return;
+    }
+    try {
+      const response = await AxiosApi.writeCodingPost(boardType, title, language, editor.getHTML());
+      alert("내용이 성공적으로 제출되었습니다.");
+      console.log("서버 응답:", response);
+      navigate("/community/coding"); // 성공 후 이동
+    } catch (error) {
+      console.error("제출 실패:", error);
+      alert("제출에 실패했습니다. 다시 시도해주세요.");
+    }
+  };
+
   return (
     <>
       <TipTapBox>
@@ -318,18 +338,22 @@ export default () => {
             className="tiptap-editor"
             style={{
               width: "100%",
-              height: "calc(100vh - 452px)",
-              overflowY: "none",
+              height: "calc(100% - 50px)",
               padding: "30px",
+              overflowY: "auto", // 세로 스크롤 활성화
+              overflowX: "hidden", // 가로 스크롤 비활성화
+              boxSizing: "border-box", // 패딩 포함 계산
             }}
             editor={editor}
           />
         </EditorArea>
         <WriteButtonsArea>
           <WriteCancelButton onClick={handleGoBack}>취소</WriteCancelButton>
-          <WriteSubmitButton>등록</WriteSubmitButton>
+          <WriteSubmitButton onClick={handleSubmit}>등록</WriteSubmitButton>
         </WriteButtonsArea>
       </TipTapBox>
     </>
   );
 };
+
+export default Post_WriteEditor_Coding;

@@ -18,17 +18,18 @@ import {
   FloatingTitle,
   InputDiv,
   Input,
+  InputSecurity,
   SignIn,
   LinkDiv,
   SignUp,
-  ToFindPw,
   BodyContainer,
-  FindIdButton,
+  FindPwButton,
+  SecurityButton,
   ValidEmailMessage,
   FindIdOutput,
-} from "../../styles/login/FindId";
+} from "../../styles/login/FindPw";
 
-const FindId = () => {
+const FindPw = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const closeMadal = () => {
@@ -40,14 +41,17 @@ const FindId = () => {
     console.log("Confirm 버튼이 눌러졌습니다.");
     closeMadal();
   };
-
   const [inputEmail, setInputEmail] = useState("");
   const [isEmail, setIsEmail] = useState(false);
   const [emailMessage, setEmailMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false); // 로그인 중 상태 관리
-  const [userId, setUserId] = useState(""); // 가입일 추가해야함
-  const [isUserIdAvailable, setIsUserIdAvailable] = useState(false); // 아이디 찾기 상태 관련
+  const [inputSecurity, setInputSecurity] = useState("");
+  const [isSecurity, setIsSecurity] = useState(false);
+  const [securityMessage, setSecurityMessage] = useState("");
+  const [isSecurityAvailable, setIsSecurityAvailable] = useState(false);
+  const [isPwAvailable, setIsPwAvailable] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [rsp, setRsp] = useState(null); // rsp 상태 추가
   const navigate = useNavigate();
 
   function emailAvailable(input) {
@@ -59,14 +63,26 @@ const FindId = () => {
     return input.trim() === "";
   }
 
-  async function confirmemail(email) {
+  async function verifyemail(email) {
     try {
-      const response = await AxiosApi.findid(email);
+      const response = await AxiosApi.findpw(email);
       console.log(response.data);
       return response.data;
     } catch (error) {
       setEmailMessage("등록된 이메일이 없습니다.");
       setIsEmail(false);
+      return null;
+    }
+  }
+
+  async function verifysecurity(optnumber, email) {
+    try {
+      const response = await AxiosApi.verifypwsecurity(optnumber, email);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      setSecurityMessage("인증번호가 일치하지 않습니다.");
+      setIsSecurity(false);
       return null;
     }
   }
@@ -81,11 +97,10 @@ const FindId = () => {
       setIsEmail(false);
     }
   };
-
   const onBlurEmail = (e) => {
     const currentValue = inputEmail;
     if (isBlank(currentValue)) {
-      setEmailMessage("아이디를 찾기 위해서는 이메일이 필요합니다.");
+      setEmailMessage("비밀번호를 찾기 위해서는 이메일 인증이 필요합니다.");
       setIsEmail(false);
       return;
     }
@@ -97,8 +112,7 @@ const FindId = () => {
       setIsEmail(true);
     }
   };
-
-  const onClickFindId = async (e) => {
+  const onClickFindPw = async (e) => {
     e.preventDefault();
     if (isSubmitting) {
       return;
@@ -107,15 +121,9 @@ const FindId = () => {
     setIsSubmitting(true);
     const currentValue = inputEmail;
     try {
-      const emailExist = await confirmemail(currentValue);
-      console.log(emailExist);
-      console.log(emailExist.userId);
+      const emailExist = await verifyemail(currentValue);
       if (emailExist) {
-        setIsUserIdAvailable(true);
-        setUserId(emailExist.userId);
-      } else {
-        setEmailMessage("등록된 이메일이 없습니다.");
-        setIsEmail(false);
+        setIsSecurityAvailable(true);
       }
     } catch (error) {
     } finally {
@@ -126,6 +134,7 @@ const FindId = () => {
 
   const setViewportHeight = () => {
     const vh = window.innerHeight * 0.01;
+    // console.log(`Viewport height 설정: ${vh}`);
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   };
 
@@ -145,37 +154,44 @@ const FindId = () => {
       </TopBarContainer>
       <BodyContainer>
         <FloatingContainer>
-          <FloatingTitle isUserIdAvailable={isUserIdAvailable}>
-            {!isUserIdAvailable ? "아이디 찾기" : "아이디 찾기 결과"}
+          <FloatingTitle>
+            {!isSecurityAvailable ? "비밀번호 찾기" : "비밀번호 찾기 결과"}
           </FloatingTitle>
-          <InputDiv isUserIdAvailable={isUserIdAvailable}>
-            {!isUserIdAvailable ? (
-              <Input
-                autoComplete="off"
-                placeholder="등록한 이메일 주소 입력"
-                icon="/images/icon/mail.png"
-                value={inputEmail}
-                isEmail={isEmail}
-                onChange={(e) => onChangeEmail(e)}
-                onBlur={(e) => onBlurEmail(e)}
-              ></Input>
+          <InputDiv isSecurityAvailable={isSecurityAvailable}>
+            <Input
+              autoComplete="off"
+              placeholder="등록한 이메일 주소 입력"
+              icon="/images/icon/mail.png"
+              value={inputEmail}
+              isEmail={isEmail}
+              onChange={(e) => onChangeEmail(e)}
+              onBlur={(e) => onBlurEmail(e)}
+            ></Input>
+            {isEmail && !isSecurityAvailable && !isLoading ? (
+              <FindPwButton isEmail={isEmail} onClick={(e) => onClickFindPw(e)}>
+                인증번호 받기
+              </FindPwButton>
             ) : (
-              <FindIdOutput isUserIdAvailable={isUserIdAvailable}>
-                가입된 아이디 : {userId}
-              </FindIdOutput>
-              // 소셜 연동 로그인한 회원의 ID 찾기 같은 경우에는 로직이 달라져야함
-              // 로컬 회원과 소셜 연동 회원 구분하는 로직 필요
-            )}
-
-            {isEmail && !isUserIdAvailable && (
-              <FindIdButton isEmail={isEmail} onClick={(e) => onClickFindId(e)}>
-                아이디 확인
-              </FindIdButton>
+              isEmail &&
+              !isSecurityAvailable &&
+              isLoading && <FindPwButton></FindPwButton>
             )}
           </InputDiv>
           <ValidEmailMessage isEmail={isEmail}>
             {emailMessage}
           </ValidEmailMessage>
+          {isSecurityAvailable && (
+            <InputDiv>
+              <InputSecurity
+                autoComplete="off"
+                placeholder="인증번호 입력"
+                icon="/images/icon/mail.png"
+              ></InputSecurity>
+              <SecurityButton isSecurity={isSecurity}>
+                이메일 인증
+              </SecurityButton>
+            </InputDiv>
+          )}
           <SignIn>
             <StyledLink to="/login"></StyledLink>로그인 페이지 이동
           </SignIn>
@@ -184,10 +200,6 @@ const FindId = () => {
               <StyledLink to="/signup"></StyledLink>
               회원가입
             </SignUp>
-            <ToFindPw>
-              <StyledLink to="/findpw"></StyledLink>
-              비밀번호찾기
-            </ToFindPw>
           </LinkDiv>
         </FloatingContainer>
         <NoticeContainer>
@@ -204,4 +216,4 @@ const FindId = () => {
     </Wrap>
   );
 };
-export default FindId;
+export default FindPw;
