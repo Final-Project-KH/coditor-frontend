@@ -81,6 +81,7 @@ export const Container = styled.div.attrs({
   justify-content: center;
   gap: 25px;
   padding-bottom: 25px;
+  margin-top: 75px;
 `;
 export const SubjectLink = styled.button`
   text-decoration: none;

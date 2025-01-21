@@ -8,6 +8,6 @@ export const Wrap = styled.div.attrs({
   flex-direction: column;
   background-color: white;
   justify-content: center;
-  align-items: center;
+  align-items: top;
 `;
 

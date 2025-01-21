@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: white;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `;
 export const TopBoxWide = styled.div.attrs({
@@ -87,12 +87,13 @@ export const Container = styled.div.attrs({
 })`
   max-width: 1280px;
   width: 100%;
-  height: calc(100vh - 50px);
+  height: 100vh;
   padding-left: 10px;
   padding-right: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 75px;
   margin-bottom: 0;
   background-repeat: no-repeat;
   background-size: 500px 500px;
@@ -104,7 +105,6 @@ export const AboutTitle = styled.div.attrs({
   id: "abouttitle",
 })`
   width: 100%;
-  margin-top: 25px;
   margin-bottom: 50px;
   font-family: "bold", sans-serif;
   font-size: 30px;

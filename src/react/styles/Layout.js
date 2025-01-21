@@ -20,7 +20,6 @@ export const LayoutWrapper = styled.div`
 `;
 
 export const MainContent = styled.div`
-  margin-top: 50px;
   flex: 1;
   overflow-y: auto;
   scrollbar-gutter: stable;
