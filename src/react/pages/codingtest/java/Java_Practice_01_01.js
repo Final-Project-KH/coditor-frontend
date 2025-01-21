@@ -15,15 +15,15 @@ import {
   Wrap,
   StyledDiv,
 } from "../../../styles/codingtest/java/CodingTestJava";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MonacoJava from "../../../../util/monaco/MonacoJava";
 import MonacoJavaOutput from "../../../../util/monaco/MonacoJavaOutput";
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 const CT_Java_Practice_01_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {firstpath, secondpath, thirdpath, fourthpath, lowerpath} =
+  const { firstpath, secondpath, thirdpath, fourthpath, lowerpath } =
     location.state || {};
 
   useEffect(() => {
