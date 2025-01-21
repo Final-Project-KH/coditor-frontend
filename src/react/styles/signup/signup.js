@@ -1,5 +1,5 @@
-import styled, { css, keyframes } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {css, keyframes} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -354,7 +354,6 @@ export const InputEmailDiv = styled.div.attrs({
   id: "inputemaildiv",
 })`
   width: 100%;
-  margin-bottom: 15px;
   display: flex;
   position: relative;
   align-items: center;
@@ -368,7 +367,7 @@ export const InputEmailDiv = styled.div.attrs({
 export const InputEmail = styled.input.attrs({
   id: "inputemail",
 })`
-  width: 75%;
+  width: 100%;
   height: 50px;
   display: flex;
   position: relative;
@@ -385,9 +384,34 @@ export const InputEmail = styled.input.attrs({
   background-size: 10px auto;
   background-position: 20px center;
   background-image: url("/images/icon/mail.png");
+  transition: all 0.3s ease-in-out;
   &:focus {
     outline: none;
   }
+  ${(props) =>
+    !props.isSecurityAvailable &&
+    css`
+      width: 100%;
+    `}
+
+  ${(props) =>
+    !props.isEmail &&
+    css`
+      width: 100%;
+    `}
+    ${(props) =>
+    props.isEmail &&
+    css`
+      border: 2px solid black;
+      width: 75%;
+    `}
+    ${(props) =>
+    !props.isEmailAvailable &&
+    css`
+      border: 2px solid black;
+      width: 100%;
+      background-color: #f1f1f1;
+    `}
 `;
 export const InputEmailButton = styled.button.attrs({
   id: "inputemailbutton",
@@ -404,13 +428,18 @@ export const InputEmailButton = styled.button.attrs({
   border: 1px solid rgba(0, 0, 0, 0.5);
   color: white;
   font-family: "medium", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   background-color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
   background-color: ${(props) => (props.disabled ? "#f1f1f1" : "#313131")};
   color: ${(props) => (props.disabled ? "#313131" : "white")};
   transition: all 0.3s ease-in-out;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  ${(props) =>
+    props.isSecurityAvailable === false &&
+    css`
+      display: none;
+    `}
   ${(props) =>
     props.enabled &&
     css`
@@ -419,6 +448,110 @@ export const InputEmailButton = styled.button.attrs({
       }
     `}
   border: none;
+`;
+export const InputEmailButtonDiv = styled.div.attrs({
+  id: "inputemailbuttondiv",
+})`
+  width: 25%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  color: white;
+  font-family: "medium", sans-serif;
+  font-size: 10px;
+  /* ${(props) =>
+    props.isSecurityAvailable === false &&
+    css`
+      display: none;
+    `} */
+  border: none;
+`;
+export const InputEmailButtonTimer = styled.div.attrs({
+  id: "inputemailbuttontimer",
+})`
+  width: 50%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  color: black;
+  font-family: "medium", sans-serif;
+  font-size: 12px;
+  ${(props) =>
+    props.isSecurityAvailable === false &&
+    css`
+      display: none;
+    `}
+  border: none;
+`;
+export const InputEmailButtonRefresh = styled.div.attrs({
+  id: "inputemailbuttonrefresh",
+})`
+  width: 50%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  cursor: pointer;
+  ${(props) =>
+    props.isSecurityAvailable === false &&
+    css`
+      display: none;
+    `}
+  border: none;
+  &::before {
+    content: "";
+    width: 50%;
+    height: 50%;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: center;
+    background-image: url("/images/icon/refresh-1.png");
+    position: absolute;
+    z-index: 5;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+  }
+  &::after {
+    content: "";
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    background-color: #d6d6d6;
+    border-radius: 5px;
+  }
+  &:hover::before {
+    transform: rotate(180deg);
+  }
+`;
+export const ValidEmailMessage = styled.span.attrs({
+  id: "validemailmessage",
+})`
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  ${(props) =>
+    props.isEmail &&
+    css`
+      display: none;
+    `}
 `;
 export const InputSecurityDiv = styled.div.attrs({
   id: "inputsecuritydiv",
@@ -479,6 +612,26 @@ export const InputSecurityButton = styled.button.attrs({
     background-color: black;
   }
 `;
+export const ValidSecurityMessage = styled.span.attrs({
+  id: "validesecuritymessage",
+})`
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  ${(props) =>
+    props.isSecurity &&
+    css`
+      display: none;
+    `}
+`;
 export const InputNickName = styled.input.attrs({
   id: "inputuser",
 })`
@@ -535,7 +688,7 @@ export const InputExtraContainer = styled.div.attrs({
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 0px;
   margin-bottom: 30px;
   gap: 5px;
 `;
@@ -559,7 +712,7 @@ export const InputExtraAll = styled.div.attrs({
   justify-content: center;
   user-select: none;
   margin-bottom: 14px;
-    &::after {
+  &::after {
     content: "";
     position: absolute;
     top: 30px;

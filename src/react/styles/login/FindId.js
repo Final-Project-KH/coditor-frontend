@@ -121,6 +121,22 @@ export const FloatingTitle = styled.h1.attrs({
   margin-bottom: 30px;
   font-size: 30px;
 `;
+export const InputDiv = styled.div.attrs({
+  id: "inputdiv",
+})`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  user-select: none;
+  margin-bottom: 5px;
+  &:focus {
+    outline: none;
+  }
+`;
 export const Input = styled.input.attrs({
   id: "input",
 })`
@@ -133,7 +149,6 @@ export const Input = styled.input.attrs({
   user-select: none;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  margin-bottom: 10px;
   color: #313131;
   font-family: "medium", sans-serif;
   font-size: 13px;
@@ -142,139 +157,68 @@ export const Input = styled.input.attrs({
   background-size: 10px auto;
   background-position: 20px center;
   background-image: url(${(props) => props.icon});
+  transition: all 0.3s ease-in-out;
   &:focus {
     outline: none;
   }
-`;
-export const InputExtra = styled.div.attrs({
-  id: "inputextra",
-})`
-  width: 100%;
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  user-select: none;
-  margin-top: 10px;
-`;
-export const InputExtraItem1 = styled.div.attrs({
-  id: "inputextraitem1",
-})`
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  user-select: none;
-`;
-export const InputExtraItem2 = styled.div.attrs({
-  id: "inputextraitem2",
-})`
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  user-select: none;
-  margin-left: -50px;
-`;
-export const InputExtraItem3 = styled.div.attrs({
-  id: "inputextraitem3",
-})`
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  user-select: none;
-  gap: 5px;
-`;
-export const InputExtraItemCheckBox = styled.input.attrs({
-  id: "inputextraitemcheckbox",
-})`
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  display: flex;
-  position: absolute;
-  outline: none;
-  cursor: pointer;
-  left: 0px;
-  bottom: 2.5px;
-  background-color: white;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, border-color 0.3s ease;
-  &:hover {
-    border-color: black;
-  }
   ${(props) =>
-    props.checked &&
+    props.isEmail &&
     css`
-      &::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 8px;
-        height: 8px;
-        background-color: #313131;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-      }
+      border: 2px solid rgba(0, 0, 0, 0.5);
+      width: 75%;
     `}
 `;
-export const InputExtraItemLeftP = styled.p.attrs({
-  id: "inputextraitemleftp",
+export const FindIdButton = styled.button.attrs({
+  id: "findidbutton",
 })`
-  margin-bottom: 1px;
-  margin-left: 20px;
+  width: 25%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "medium", sans-serif;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  ${(props) =>
+    props.isEmail === false &&
+    css`
+      display: none;
+    `}
+  ${(props) =>
+    props.isEmail &&
+    css`
+      &:hover {
+        background-color: black;
+      }
+    `}
+  border: none;
+`;
+export const ValidEmailMessage = styled.span.attrs({
+  id: "validemailmessage",
+})`
+  width: 100%;
+  margin-bottom: 10px;
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   user-select: none;
-  font-size: 12px;
-  color: #313131;
-`;
-const checkmark = keyframes`
-  0% {
-    transform: translate(-50%, -50%) scale(0) rotate(45deg);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.1) rotate(45deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1) rotate(45deg);
-  }`;
-
-export const InputExtraItemRightP = styled.p.attrs({
-  id: "inputextraitemrightp",
-})`
-  width: 70px;
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: center;
-  user-select: none;
-  font-size: 12px;
-  color: #313131;
-  cursor: pointer;
-  &:hover {
-    font-weight: bold;
-  }
-  & + &::before {
-    content: "";
-    position: absolute;
-    left: -14px;
-    bottom: 8px;
-    width: 11px;
-    height: 1px;
-    background-color: #313131;
-    transform: rotate(90deg);
-  }
+  font-size: 10px;
+  color: red;
+  ${(props) =>
+    props.isEmail &&
+    css`
+      display: none;
+    `}
 `;
 export const SignIn = styled.button.attrs({
   id: "signin",
@@ -287,8 +231,8 @@ export const SignIn = styled.button.attrs({
   justify-content: center;
   user-select: none;
   border-radius: 5px;
-  background-color: ${(props) => (props.disabled ? "#313131" : "#007bff")};
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  background-color: #313131;
+  cursor: pointer;
   border: none;
   margin-top: 20px;
   color: white;
@@ -296,10 +240,23 @@ export const SignIn = styled.button.attrs({
   font-size: 14px;
   font-family: "medium", sans-serif;
 `;
+export const LinkDiv = styled.div.attrs({
+  id: "linkdiv",
+})`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 10px;
+  gap: 10px;
+`;
 export const SignUp = styled.button.attrs({
   id: "signup",
 })`
-  width: 100%;
+  width: 50%;
   height: 50px;
   display: flex;
   position: relative;
@@ -313,40 +270,25 @@ export const SignUp = styled.button.attrs({
   color: black;
   font-size: 14px;
   font-family: "medium", sans-serif;
-  transition: all 0.3s ease-in-out;
 `;
-export const ThirdLogin = styled.div.attrs({
-  id: "thirdlogin",
+export const FindPw = styled.button.attrs({
+  id: "findpw",
 })`
-  width: 70%;
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  user-select: none;
-  border: none;
-  margin-top: 20px;
-`;
-export const ThirdLoginItem = styled.div.attrs({
-  id: "thirdloginitem",
-})`
-  width: 50px;
+  width: 50%;
   height: 50px;
   display: flex;
   position: relative;
+  align-items: center;
+  justify-content: center;
   user-select: none;
-  background-color: blue;
+  border-radius: 5px;
+  background-color: #f1f1f1;
   border: none;
-  border-radius: 50%;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  background-image: url(${(props) => props.icon});
+  margin-top: 10px;
+  color: black;
+  font-size: 14px;
+  font-family: "medium", sans-serif;
 `;
-
 export const NoticeContainer = styled.div.attrs({
   id: "noticecontainer",
 })`

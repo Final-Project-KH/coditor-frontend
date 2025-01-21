@@ -11,16 +11,19 @@ const AxiosApi = {
     };
     return await axios.post(SPRING_DOMAIN + "/auth/login", login);
   },
-  signup: async (userid, email, pwd, name) => {
+  join: async (userid, email, pwd, name, otp) => {
+    // requestBody
     const user = {
       userId: userid,
       email: email,
       password: pwd,
       nickname: name,
+      otp: otp,
     };
-    return await axios.post(SPRING_DOMAIN + "/auth/signup", user);
+    return await axios.post(SPRING_DOMAIN + "/auth/join", user);
   },
   validate: async (key, data) => {
+    // requestParam
     const validate = {
       params: {
         key: key,
@@ -46,6 +49,18 @@ const AxiosApi = {
     const encodedemail = encodeURIComponent(email);
     return await axios.post(
       SPRING_DOMAIN + `/auth/join/${otp}/${encodedemail}`
+    );
+  },
+  findid: async (email) => {
+    const enrolledemail = {
+      params: {
+        email: email,
+      },
+    };
+    return await axios.post(
+      SPRING_DOMAIN + "/auth/forgotid",
+      null,
+      enrolledemail
     );
   },
   // 구글 로그인 추가

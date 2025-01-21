@@ -53,6 +53,7 @@ import Post_Write_Study from "./react/pages/community/Post_Write_Study";
 import Post_Write_Team from "./react/pages/community/Post_Write_Team";
 import User_Main from "./react/pages/community/User_Main";
 import {DataProvider} from "./util/monaco/MonacoContext";
+import FindId from "./react/pages/login/FindId";
 
 const App = () => {
   return (
@@ -74,6 +75,7 @@ const AppContents = () => {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/findid" element={<FindId />} />
           <Route path="/legal/terms" element={<Terms />} />
           <Route path="/legal/privacy" element={<Privacy />} />
           <Route
