@@ -126,7 +126,6 @@ const FindId = () => {
 
   const setViewportHeight = () => {
     const vh = window.innerHeight * 0.01;
-    // console.log(`Viewport height 설정: ${vh}`);
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   };
 
@@ -174,11 +173,9 @@ const FindId = () => {
               </FindIdButton>
             )}
           </InputDiv>
-          {!isEmail && !isUserIdAvailable && (
-            <ValidEmailMessage isEmail={isEmail}>
-              {emailMessage}
-            </ValidEmailMessage>
-          )}
+          <ValidEmailMessage isEmail={isEmail}>
+            {emailMessage}
+          </ValidEmailMessage>
           <SignIn>
             <StyledLink to="/login"></StyledLink>로그인 페이지 이동
           </SignIn>

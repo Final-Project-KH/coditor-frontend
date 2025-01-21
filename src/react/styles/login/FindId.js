@@ -148,7 +148,6 @@ export const InputDiv = styled.div.attrs({
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
-  margin-bottom: 5px;
   &:focus {
     outline: none;
   }
@@ -239,7 +238,7 @@ export const ValidEmailMessage = styled.span.attrs({
   id: "validemailmessage",
 })`
   width: 100%;
-  margin-bottom: 10px;
+  min-height: 20px;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -248,11 +247,6 @@ export const ValidEmailMessage = styled.span.attrs({
   user-select: none;
   font-size: 10px;
   color: red;
-  ${(props) =>
-    props.isEmail &&
-    css`
-      display: none;
-    `}
 `;
 export const SignIn = styled.button.attrs({
   id: "signin",

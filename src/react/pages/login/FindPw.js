@@ -23,7 +23,8 @@ import {
   LinkDiv,
   SignUp,
   BodyContainer,
-  FindIdButton,
+  FindPwButton,
+  SecurityButton,
   ValidEmailMessage,
   FindIdOutput,
 } from "../../styles/login/FindPw";
@@ -167,20 +168,18 @@ const FindPw = () => {
               onBlur={(e) => onBlurEmail(e)}
             ></Input>
             {isEmail && !isSecurityAvailable && !isLoading ? (
-              <FindIdButton isEmail={isEmail} onClick={(e) => onClickFindPw(e)}>
-                이메일 인증
-              </FindIdButton>
+              <FindPwButton isEmail={isEmail} onClick={(e) => onClickFindPw(e)}>
+                인증번호 받기
+              </FindPwButton>
             ) : (
               isEmail &&
               !isSecurityAvailable &&
-              isLoading && <FindIdButton></FindIdButton>
+              isLoading && <FindPwButton></FindPwButton>
             )}
           </InputDiv>
-          {!isEmail && (
-            <ValidEmailMessage isEmail={isEmail}>
-              {emailMessage}
-            </ValidEmailMessage>
-          )}
+          <ValidEmailMessage isEmail={isEmail}>
+            {emailMessage}
+          </ValidEmailMessage>
           {isSecurityAvailable && (
             <InputDiv>
               <InputSecurity
@@ -188,6 +187,9 @@ const FindPw = () => {
                 placeholder="인증번호 입력"
                 icon="/images/icon/mail.png"
               ></InputSecurity>
+              <SecurityButton isSecurity={isSecurity}>
+                이메일 인증
+              </SecurityButton>
             </InputDiv>
           )}
           <SignIn>

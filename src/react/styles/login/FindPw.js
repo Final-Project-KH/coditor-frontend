@@ -150,7 +150,6 @@ export const InputDiv = styled.div.attrs({
   justify-content: flex-start;
   flex-direction: row;
   user-select: none;
-  margin-bottom: 10px;
   &:focus {
     outline: none;
   }
@@ -235,8 +234,8 @@ export const FindIdOutput = styled.div.attrs({
   transition: all 1s ease-in-out;
   margin-bottom: 40px;
 `;
-export const FindIdButton = styled.button.attrs({
-  id: "findidbutton",
+export const FindPwButton = styled.button.attrs({
+  id: "findpwbutton",
 })`
   width: 25%;
   height: 50px;
@@ -272,7 +271,7 @@ export const ValidEmailMessage = styled.span.attrs({
   id: "validemailmessage",
 })`
   width: 100%;
-  margin-bottom: 10px;
+  min-height: 20px;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -281,11 +280,34 @@ export const ValidEmailMessage = styled.span.attrs({
   user-select: none;
   font-size: 10px;
   color: red;
+`;
+export const SecurityButton = styled.button.attrs({
+  id: "securitybutton",
+})`
+  width: 25%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
   ${(props) =>
-    props.isEmail &&
+    props.isSecurity &&
     css`
-      display: none;
+      &:hover {
+        background-color: black;
+      }
     `}
+  border: none;
 `;
 export const SignIn = styled.button.attrs({
   id: "signin",

@@ -141,7 +141,7 @@ export const InputEach = styled.div.attrs({
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 export const InputIndex = styled.div.attrs({
   id: "inputindex",
@@ -191,8 +191,8 @@ export const ValidIdMessage = styled.span.attrs({
   id: "valididmessage",
 })`
   width: 100%;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  background-color: pink;
+  min-height: 20px;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -201,11 +201,7 @@ export const ValidIdMessage = styled.span.attrs({
   user-select: none;
   font-size: 10px;
   color: red;
-  ${(props) =>
-    props.isUserId &&
-    css`
-      display: none;
-    `}
+  padding-bottom: 3px;
 `;
 export const InputPwDiv = styled.div.attrs({
   id: "inputpwdiv",
@@ -334,9 +330,9 @@ export const ValidPwMessage = styled.span.attrs({
   id: "validpwmessage",
 })`
   width: 100%;
+  background-color: pink;
+  min-height: 20px;
   display: flex;
-  margin-top: 5px;
-  margin-bottom: 10px;
   position: relative;
   flex-direction: row;
   align-items: center;
@@ -344,11 +340,7 @@ export const ValidPwMessage = styled.span.attrs({
   user-select: none;
   font-size: 10px;
   color: red;
-  ${(props) =>
-    props.isPw &&
-    css`
-      display: none;
-    `}
+  padding-bottom: 3px;
 `;
 export const InputEmailDiv = styled.div.attrs({
   id: "inputemaildiv",
@@ -532,8 +524,8 @@ export const ValidEmailMessage = styled.span.attrs({
   id: "validemailmessage",
 })`
   width: 100%;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  background-color: pink;
+  min-height: 20px;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -542,11 +534,7 @@ export const ValidEmailMessage = styled.span.attrs({
   user-select: none;
   font-size: 10px;
   color: red;
-  ${(props) =>
-    props.isEmail &&
-    css`
-      display: none;
-    `}
+  padding-bottom: 3px;
 `;
 export const InputSecurityDiv = styled.div.attrs({
   id: "inputsecuritydiv",
