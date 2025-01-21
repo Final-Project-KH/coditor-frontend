@@ -47,7 +47,7 @@ const FindId = () => {
   const [isSubmitting, setIsSubmitting] = useState(false); // 로그인 중 상태 관리
   const [userId, setUserId] = useState(""); // 가입일 추가해야함
   const [isUserIdAvailable, setIsUserIdAvailable] = useState(false); // 아이디 찾기 상태 관련
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   function emailAvailable(input) {
@@ -162,7 +162,7 @@ const FindId = () => {
               ></Input>
             ) : (
               <FindIdOutput isUserIdAvailable={isUserIdAvailable}>
-                {userId}
+                가입된 아이디 : {userId}
               </FindIdOutput>
               // 소셜 연동 로그인한 회원의 ID 찾기 같은 경우에는 로직이 달라져야함
               // 로컬 회원과 소셜 연동 회원 구분하는 로직 필요
@@ -170,7 +170,7 @@ const FindId = () => {
 
             {isEmail && !isUserIdAvailable && (
               <FindIdButton isEmail={isEmail} onClick={(e) => onClickFindId(e)}>
-                아이디확인
+                아이디 확인
               </FindIdButton>
             )}
           </InputDiv>
@@ -195,7 +195,6 @@ const FindId = () => {
         </FloatingContainer>
         <NoticeContainer>
           <Notice>
-            {/* 공지 및 안내 페이지 링크 연결 미구현 */}
             <NoticeLink to="../legal/Terms"></NoticeLink>
             서비스 이용약관
           </Notice>

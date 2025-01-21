@@ -120,11 +120,10 @@ export const FloatingTitle = styled.h1.attrs({
   user-select: none;
   margin-bottom: 30px;
   font-size: 30px;
-  transition: all 0.5s ease-in-out;
   ${(props) =>
     props.isUserIdAvailable &&
     css`
-      animation: ${moveSequence} 0.5s ease-out forwards;
+      animation: ${moveSequence} 0.3s forwards;
       font-size: 25px;
     `}
 `;
@@ -132,12 +131,12 @@ const moveSequence = keyframes`
     0% {
       transform: translateX(0) translateY(0);
     }
-    50%{
+    100%{
       transform: translateX(0) translateY(-80%);
     }
-    100%{
+    /* 100%{
       transform: translateX(-27%) translateY(-80%);
-    }
+    } */
   `;
 export const InputDiv = styled.div.attrs({
   id: "inputdiv",
@@ -197,6 +196,7 @@ export const FindIdOutput = styled.div.attrs({
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   color: #313131;
+  padding-left: 10px;
   font-family: "medium", sans-serif;
   font-size: 13px;
   transition: all 0.3s ease-in-out;
@@ -217,7 +217,7 @@ export const FindIdButton = styled.button.attrs({
   border: 1px solid rgba(0, 0, 0, 0.5);
   color: white;
   font-family: "medium", sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   background-color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
   transition: all 0.3s ease-in-out;

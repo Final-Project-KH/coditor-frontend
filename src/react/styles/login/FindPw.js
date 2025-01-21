@@ -150,7 +150,7 @@ export const InputDiv = styled.div.attrs({
   justify-content: flex-start;
   flex-direction: row;
   user-select: none;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   &:focus {
     outline: none;
   }
@@ -184,6 +184,36 @@ export const Input = styled.input.attrs({
     css`
       border: 2px solid black;
       width: 75%;
+    `}
+`;
+export const InputSecurity = styled.input.attrs({
+  id: "inputsecurity",
+})`
+  width: 75%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  background-position: 20px center;
+  background-image: url(${(props) => props.icon});
+  transition: all 0.3s ease-in-out;
+  &:focus {
+    outline: none;
+  }
+  ${(props) =>
+    props.isSecurity &&
+    css`
+      border: 2px solid black;
     `}
 `;
 export const FindIdOutput = styled.div.attrs({
@@ -220,7 +250,7 @@ export const FindIdButton = styled.button.attrs({
   border: 1px solid rgba(0, 0, 0, 0.5);
   color: white;
   font-family: "medium", sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   background-color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
   transition: all 0.3s ease-in-out;

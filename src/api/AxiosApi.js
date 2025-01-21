@@ -63,6 +63,17 @@ const AxiosApi = {
       enrolledemail
     );
   },
+  findpw: async (email) => {
+    const encodedemail = encodeURIComponent(email);
+    return await axios.post(SPRING_DOMAIN + `/auth/forgotpw/${encodedemail}`);
+  },
+  verifypwsecurity: async (otpnumber, email) => {
+    const otp = otpnumber;
+    const encodedemail = encodeURIComponent(email);
+    return await axios.post(
+      SPRING_DOMAIN + `/auth/forgotpw/${otp}/${encodedemail}`
+    );
+  },
   // 구글 로그인 추가
   // 구글 로그인
   googleLogin: async (token) => {

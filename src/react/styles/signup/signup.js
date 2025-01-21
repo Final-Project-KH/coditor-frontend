@@ -463,11 +463,6 @@ export const InputEmailButtonDiv = styled.div.attrs({
   color: white;
   font-family: "medium", sans-serif;
   font-size: 10px;
-  /* ${(props) =>
-    props.isSecurityAvailable === false &&
-    css`
-      display: none;
-    `} */
   border: none;
 `;
 export const InputEmailButtonTimer = styled.div.attrs({
