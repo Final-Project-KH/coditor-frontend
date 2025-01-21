@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router-dom";
-import { ScrollToTop } from "../../styles/study/Study";
+import { ScrollToTop } from "./Layout";
 
 const ScrollToTopButton = () => {
   const { mainContentRef } = useOutletContext();

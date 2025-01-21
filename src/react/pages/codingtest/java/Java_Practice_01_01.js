@@ -15,20 +15,24 @@ import {
   Wrap,
   StyledDiv,
 } from "../../../styles/codingtest/java/CodingTestJava";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate, useOutletContext} from "react-router-dom";
 import MonacoJava from "../../../../util/monaco/MonacoJava";
 import MonacoJavaOutput from "../../../../util/monaco/MonacoJavaOutput";
 import {useEffect} from "react";
-
+import ScrollToTopButton from "../../../styles/ScrollToTopButton";
 const CT_Java_Practice_01_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const {firstpath, secondpath, thirdpath, fourthpath, lowerpath} =
     location.state || {};
+    const { mainContentRef } = useOutletContext();  
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    // 페이지 진입 시 스크롤 위치 초기화
+      useEffect(() => {
+        if (mainContentRef?.current) {
+          mainContentRef.current.scrollTo(0, 0);
+        }
+      }, [mainContentRef]);
 
   const handleCodingTest = () => {
     navigate("/codingtest", {
@@ -109,6 +113,7 @@ const CT_Java_Practice_01_01 = () => {
         </LeftContainer>
         <RightContainer></RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

@@ -29,9 +29,11 @@ import {
 } from "../../../styles/codingtest/CoddingTestCommons";
 import AxiosApi from "../../../../api/AxiosApi";
 import Common from "../../../../util/Common";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate, useOutletContext} from "react-router-dom";
 import {classJavaMenuData} from "../../../../util/codingtestpractice/ClassJavaMenuData";
 import {useDispatch, useSelector} from "react-redux";
+import ScrollToTopButton from "../../../styles/ScrollToTopButton";
+
 // User Nickname, 등급
 // Coding Test 난이도 받아와야함
 // 경로 받아와야함
@@ -94,10 +96,14 @@ const CT_Java_Practice_Main = () => {
   };
 
   const nickname = useSelector((state) => state.auth.nickname);
+  const { mainContentRef } = useOutletContext();  
 
+// 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    if (mainContentRef?.current) {
+      mainContentRef.current.scrollTo(0, 0);
+    }
+  }, [mainContentRef]);
 
   return (
     <Wrap>
@@ -166,6 +172,7 @@ const CT_Java_Practice_Main = () => {
           ))}
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

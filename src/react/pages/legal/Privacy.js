@@ -16,6 +16,7 @@ import {
   BodyContainer,
   StyledLink,
 } from "../../styles/legal/Privacy";
+import ScrollToTopButton from "../../styles/ScrollToTopButton";
 
 const Privacy = () => {
   return (
@@ -578,6 +579,7 @@ const Privacy = () => {
         </Item>
       </BodyContainer>
       </BodyContainerOuter>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

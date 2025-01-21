@@ -35,3 +35,24 @@ export const MainContent = styled.div`
     background: rgba(0, 0, 0, 0.05);
   }
 `;
+
+export const ScrollToTop = styled.div.attrs({
+  id: "scrolltotop",
+})`
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center;
+  background-image: url("/images/icon/totop.png");
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+`;

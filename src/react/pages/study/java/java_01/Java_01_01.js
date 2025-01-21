@@ -35,7 +35,8 @@ import { StickyClassBox } from "../../../../styles/study/Study";
 import Java_Title from "../Java_Title";
 import Java_ArrowNavigation from "../Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
-import ScrollToTopButton from "../../ScrollToTopButton";
+import ScrollToTopButton from "../../../../styles/ScrollToTopButton";
+
 
 const Java_01_01 = () => {
   const navigate = useNavigate();

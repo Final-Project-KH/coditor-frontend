@@ -12,8 +12,8 @@ import {
 } from "../../../../styles/study/Class_Main";
 import Java_Title from "../Java_Title";
 import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
-import ScrollToTopButton from "../../ScrollToTopButton";
 import { useEffect } from "react";
+import ScrollToTopButton from "../../../../styles/ScrollToTopButton";
 
 const Java_02 = () => {
   const navigate = useNavigate();

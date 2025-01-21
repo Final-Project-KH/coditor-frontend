@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   WriteWrap,
   WriteContainer,
@@ -10,19 +11,30 @@ import Post_WriteEditor_Coding from "./components/post/Post_WriteEditor_Coding";
 import Post_WriteSort from "./components/post/Post_WriteSort";
 
 const Post_Write_Coding = () => {
+  const [title, setTitle] = useState("");
+  const [language, setLanguage] = useState("");
+
   return (
     <>
       <WriteWrap>
         <WriteContainer>
           <Post_WriteSort />
           <WriteTitleBox>
-            <WriteTitle placeholder="제목을 입력하세요." />
+            <WriteTitle
+              placeholder="제목을 입력하세요."
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </WriteTitleBox>
           <WriteTagBox>
-            <WriteTags placeholder="태그를 설정하세요. (최대 10개)" />
+            <WriteTags
+              placeholder="태그를 설정하세요. (최대 10개)"
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+            />
           </WriteTagBox>
 
-          <Post_WriteEditor_Coding />
+          <Post_WriteEditor_Coding title={title} language={language} />
         </WriteContainer>
       </WriteWrap>
     </>

@@ -20,6 +20,7 @@ import Post_RelatedPosts from "./components/post/Post_RelatedPosts";
 import Post_ReplyArea from "./components/post/Post_ReplyArea";
 import Post_UserProfile from "./components/post/Post_UserProfile";
 import { PathLink } from "../../styles/community/Community";
+import ScrollToTopButton from "../../styles/ScrollToTopButton";
 
 const Post_Read = () => {
   const navigate = useNavigate();
@@ -84,6 +85,7 @@ const Post_Read = () => {
             <Post_RelatedPosts />
           </RightContainer>
         </Container>
+        <ScrollToTopButton />
       </Wrap>
     </>
   );

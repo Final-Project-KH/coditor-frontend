@@ -114,7 +114,7 @@ AxiosInstance.interceptors.response.use(
         console.error("Refresh Token 실패:", refreshError);
         Common.clearRefreshToken();
         // 예시로 로그인 페이지로 리다이렉트
-        window.location.href = "/login";
+        // window.location.href = "/login";
       }
     }
 

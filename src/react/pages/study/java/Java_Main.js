@@ -15,7 +15,7 @@ import {
 import Java_ChapterList from "./Java_ChapterList";
 import Java_Title from "./Java_Title";
 import Java_ClassList from "./Java_ClassList";
-import ScrollToTopButton from "../ScrollToTopButton";
+import ScrollToTopButton from "../../../styles/ScrollToTopButton";
 
 const Java_Main = () => {
   const navigate = useNavigate();

@@ -1,5 +1,6 @@
 import axios from "axios";
 import AxiosInstance from "./AxiosInstance";
+import Common from "../util/Common";
 
 const SPRING_DOMAIN = "http://localhost:8111";
 
@@ -116,6 +117,67 @@ const AxiosApi = {
       throw error;
     }
   },
+
+  getBoard: async (boardType, page = 1, size = 10) => {
+    try {
+      const response = await axios.get(SPRING_DOMAIN + "/community/list/all", {
+        params: {
+          boardType, // 동적으로 받은 boardType 사용
+        },
+      });
+      return response.data; // 응답 데이터 반환
+    } catch (error) {
+      console.error("게시판 불러오기 오류 : ", error);
+      throw error; // 에러를 다시 던져서 호출하는 쪽에서 처리하도록 함
+    }
+  },
+
+//   writePost: async (boardType, title, language, content) => {
+//     try {
+//       const response = await axios.post(
+//         SPRING_DOMAIN + "/community/new", // URL
+//         { title, language, content }, // POST 요청 본문
+//         {
+//           params: { boardType }, // 쿼리 파라미터
+//           headers: {
+//             Authorization:
+//               "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNiIsIm5pY2tuYW1lIjoidGVzdHRlc3QiLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUiJ9XSwiaWF0IjoxNzM3NDU3NzI3LCJleHAiOjE3Mzc0NjEzMjd9.ZiiinPO2coqWdbCvyUkgHnDuKdYm43xoa3og-qaiZy8",
+//           },
+//         }
+//       );
+//       return response.data;
+//     } catch (error) {
+//       console.error("게시글 작성 중 오류 발생 : ", error);
+//       console.log("Request Params:", { boardType });
+// console.log("Request Body:", { title, language, content });
+//       throw error;
+//     }
+//   },
+
+  writeCodingPost: async (boardType, title, language, content) => {
+    try {
+      const response = await axios.post(
+        SPRING_DOMAIN + `/community/new/post?boardType=${boardType}`,
+        {
+
+          title,
+          language,
+          content,
+        },
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNiIsIm5pY2tuYW1lIjoidGVzdHRlc3QiLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUiJ9XSwiaWF0IjoxNzM3NDU3NzI3LCJleHAiOjE3Mzc0NjEzMjd9.ZiiinPO2coqWdbCvyUkgHnDuKdYm43xoa3og-qaiZy8",
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("게시글 작성 중 오류 발생 : ", error);
+      throw error;
+    }
+  },
+
 };
 
 export default AxiosApi;

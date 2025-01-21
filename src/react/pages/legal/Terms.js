@@ -15,6 +15,7 @@ import {
   TopBoxInner,
   StyledLink,
 } from "../../styles/legal/Terms";
+import ScrollToTopButton from "../../styles/ScrollToTopButton";
 
 const Terms = () => {
   return (
@@ -841,6 +842,7 @@ const Terms = () => {
         </Item>
       </BodyContainer>
       </BodyContainerOuter>
+      <ScrollToTopButton />
     </Wrap>
   );
 };
