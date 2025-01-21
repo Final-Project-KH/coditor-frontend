@@ -149,6 +149,7 @@ export const InputDiv = styled.div.attrs({
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
+  user-select: none;
   margin-bottom: 5px;
   &:focus {
     outline: none;
@@ -194,12 +195,14 @@ export const FindIdOutput = styled.div.attrs({
   position: relative;
   align-items: center;
   justify-content: flex-start;
+  user-select: none;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   color: #313131;
   font-family: "medium", sans-serif;
   font-size: 13px;
-  transition: all 0.3s ease-in-out;
+  padding-left: 40px;
+  transition: all 1s ease-in-out;
   margin-bottom: 40px;
 `;
 export const FindIdButton = styled.button.attrs({
@@ -289,24 +292,6 @@ export const LinkDiv = styled.div.attrs({
 `;
 export const SignUp = styled.button.attrs({
   id: "signup",
-})`
-  width: 50%;
-  height: 50px;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  border-radius: 5px;
-  background-color: #f1f1f1;
-  border: none;
-  margin-top: 10px;
-  color: black;
-  font-size: 14px;
-  font-family: "medium", sans-serif;
-`;
-export const ToFindPw = styled.button.attrs({
-  id: "tofindpw",
 })`
   width: 50%;
   height: 50px;

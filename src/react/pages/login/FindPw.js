@@ -21,14 +21,13 @@ import {
   SignIn,
   LinkDiv,
   SignUp,
-  ToFindPw,
   BodyContainer,
   FindIdButton,
   ValidEmailMessage,
   FindIdOutput,
-} from "../../styles/login/FindId";
+} from "../../styles/login/FindPw";
 
-const FindId = () => {
+const FindPw = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const closeMadal = () => {
@@ -40,14 +39,15 @@ const FindId = () => {
     console.log("Confirm 버튼이 눌러졌습니다.");
     closeMadal();
   };
-
+  const [inputUserId, setInputUserId] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [isEmail, setIsEmail] = useState(false);
   const [emailMessage, setEmailMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false); // 로그인 중 상태 관리
   const [userId, setUserId] = useState(""); // 가입일 추가해야함
-  const [isUserIdAvailable, setIsUserIdAvailable] = useState(false); // 아이디 찾기 상태 관련
+  const [isUserIdAvailable, setIsUserIdAvailable] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [rsp, setRsp] = useState(null); // rsp 상태 추가
   const navigate = useNavigate();
 
   function emailAvailable(input) {
@@ -161,11 +161,7 @@ const FindId = () => {
                 onBlur={(e) => onBlurEmail(e)}
               ></Input>
             ) : (
-              <FindIdOutput isUserIdAvailable={isUserIdAvailable}>
-                {userId}
-              </FindIdOutput>
-              // 소셜 연동 로그인한 회원의 ID 찾기 같은 경우에는 로직이 달라져야함
-              // 로컬 회원과 소셜 연동 회원 구분하는 로직 필요
+              <FindIdOutput>{userId}</FindIdOutput>
             )}
 
             {isEmail && !isUserIdAvailable && (
@@ -187,10 +183,6 @@ const FindId = () => {
               <StyledLink to="/signup"></StyledLink>
               회원가입
             </SignUp>
-            <ToFindPw>
-              <StyledLink to="/findpw"></StyledLink>
-              비밀번호찾기
-            </ToFindPw>
           </LinkDiv>
         </FloatingContainer>
         <NoticeContainer>
@@ -208,4 +200,4 @@ const FindId = () => {
     </Wrap>
   );
 };
-export default FindId;
+export default FindPw;

@@ -54,6 +54,7 @@ import Post_Write_Team from "./react/pages/community/Post_Write_Team";
 import User_Main from "./react/pages/community/User_Main";
 import {DataProvider} from "./util/monaco/MonacoContext";
 import FindId from "./react/pages/login/FindId";
+import FindPw from "./react/pages/login/FindPw";
 
 const App = () => {
   return (
@@ -76,6 +77,7 @@ const AppContents = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/findid" element={<FindId />} />
+          <Route path="/findpw" element={<FindPw />} />
           <Route path="/legal/terms" element={<Terms />} />
           <Route path="/legal/privacy" element={<Privacy />} />
           <Route
