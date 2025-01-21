@@ -7,13 +7,13 @@ import {
   StyledDiv,
 } from "../../react/styles/codingtest/java/CodingTestJava";
 
-import React, {useRef, useEffect, useState} from "react";
-import {Editor} from "@monaco-editor/react";
-import {useData} from "./MonacoContext";
+import React, { useRef, useEffect, useState } from "react";
+import { Editor } from "@monaco-editor/react";
+import { useData } from "./MonacoContext";
 import AxiosApi from "../../api/AxiosApi";
 import store from "../../redux/store/store";
 
-const MonacoJava = ({secondpath}) => {
+const MonacoJava = ({ secondpath }) => {
   const editorRef = useRef();
   const [value, setValue] = useState("");
 
@@ -22,14 +22,14 @@ const MonacoJava = ({secondpath}) => {
     editor.focus();
   };
 
-  const Upperlanguage = {secondpath};
+  const Upperlanguage = { secondpath };
 
-  const {setData} = useData();
+  const { setData } = useData();
 
-  const {data} = useData();
+  const { data } = useData();
 
   const handleUpdateData = () => {
-    setData({codingtest: editorRef.current.getValue()});
+    setData({ codingtest: editorRef.current.getValue() });
   };
   useEffect(() => {
     if (editorRef.current) {
@@ -79,11 +79,12 @@ const MonacoJava = ({secondpath}) => {
           }}
         />
       </InputClass>
+
       <ConsoleClass>
         <ClassHeader>
           <ClassHeaderTitle>CONSOLE</ClassHeaderTitle>
         </ClassHeader>
-        <StyledDiv>전달 받은 값 : {data.codingtest}</StyledDiv>
+        <StyledDiv>👉 전달받은 값 : {data.codingtest}</StyledDiv>
       </ConsoleClass>
     </>
   );

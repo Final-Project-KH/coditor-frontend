@@ -5,16 +5,20 @@ import {
   ChapterName,
 } from "../../../styles/study/Class_Chapter";
 
-const C_ChapterList = ({ refs }) => {
+const C_ChapterList = ({ refs, mainContentRef }) => {
 
   // Scrolling Action Set
   const handleScrollToSection = (clsId) => {
     const sectionElement = refs[clsId];
     const offset = 175;
-    if (sectionElement) {
-      const elementPosition = sectionElement.getBoundingClientRect().top + window.pageYOffset;
+    if (sectionElement && mainContentRef.current) {
+      const mainContent = mainContentRef.current;
+
+      // MainContent 내에서의 스크롤 위치 계산
+      const elementPosition = sectionElement.offsetTop; // MainContent 기준
       const offsetPosition = elementPosition - offset;
-      window.scrollTo({
+
+      mainContent.scrollTo({
         top: offsetPosition,
         behavior: "smooth",
       });

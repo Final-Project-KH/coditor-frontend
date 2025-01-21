@@ -15,14 +15,15 @@ export const Header = styled.div`
 export const LayoutWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh; /* 전체 화면 높이 차지 */
-  overflow: hidden; /* 화면에 스크롤이 생기지 않도록 */
+  height: 100vh;
+  overflow: hidden;
 `;
 
 export const MainContent = styled.div`
   margin-top: 50px;
   flex: 1;
-  overflow-y: auto; /* Outlet에 스크롤 적용 */
+  overflow-y: auto;
+  scrollbar-gutter: stable;
   &::-webkit-scrollbar {
     width: 10px;
     height: 100%;

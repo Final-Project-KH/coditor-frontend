@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import hljs from "highlight.js";
 import "highlight.js/styles/a11y-dark.css";
@@ -41,11 +41,14 @@ const Java_02_04 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
+  const { mainContentRef } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    if (mainContentRef?.current) {
+      mainContentRef.current.scrollTo(0, 0);
+    }
+  }, [mainContentRef]);
 
   // TopBox firstpath
   const handleStudy = () => {

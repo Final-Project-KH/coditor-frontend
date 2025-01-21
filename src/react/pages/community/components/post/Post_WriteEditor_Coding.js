@@ -318,9 +318,11 @@ export default () => {
             className="tiptap-editor"
             style={{
               width: "100%",
-              height: "calc(100vh - 452px)",
-              overflowY: "none",
+              height: "calc(100% - 50px)",
               padding: "30px",
+              overflowY: "auto", // 세로 스크롤 활성화
+              overflowX: "hidden", // 가로 스크롤 비활성화
+              boxSizing: "border-box", // 패딩 포함 계산
             }}
             editor={editor}
           />

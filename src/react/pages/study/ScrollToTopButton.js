@@ -1,13 +1,19 @@
+import { useOutletContext } from "react-router-dom";
 import { ScrollToTop } from "../../styles/study/Study";
 
 const ScrollToTopButton = () => {
+  const { mainContentRef } = useOutletContext();
+
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // 부드럽게 스크롤
-    });
+    if (mainContentRef?.current) {
+      mainContentRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
-  return <ScrollToTop onClick={scrollToTop} />
+
+  return <ScrollToTop onClick={scrollToTop} />;
 };
 
 export default ScrollToTopButton;

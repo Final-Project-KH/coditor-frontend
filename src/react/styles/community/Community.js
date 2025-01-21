@@ -68,7 +68,7 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
-  margin-top: 25px;
+
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -87,6 +87,7 @@ export const LeftContainer = styled.div.attrs({
   align-items: center;
   gap: 25px;
   left: 0;
+  margin-top: 25px;
 `;
 
 export const CenterContainer = styled.div.attrs({
@@ -98,6 +99,7 @@ export const CenterContainer = styled.div.attrs({
   align-items: center;
   gap: 25px;
   left: 0;
+  margin-top: 25px;
 `;
 export const RightContainer = styled.div.attrs({
   id: "rightcontainer",
@@ -108,6 +110,7 @@ export const RightContainer = styled.div.attrs({
   align-items: center;
   gap: 25px;
   left: 0;
+  margin-top: 25px;
 `;
 export const PathLink = styled.button.attrs({
   id: "pathlink",

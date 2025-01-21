@@ -32,13 +32,13 @@ const expandHeight = keyframes`
     opacity: 0;
   }
   100% {
-    height: 280px;
+    height: 230px;
     opacity: 1;
   }
 `;
 const collapseHeight = keyframes`
   0% {
-    height: 280px;
+    height: 230px;
     opacity: 1;
   }
   100% {
@@ -85,19 +85,6 @@ export const MenuColumn = styled.div.attrs({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .menu-link {
-    display: inline-block; /* 텍스트 길이에 맞춰 너비가 설정되도록 */
-    text-decoration: none;
-    color: inherit;
-    padding: 5px 10px; /* 텍스트 주변에 여백을 추가하여 배경색이 더 커지도록 */
-  }
-  .menu-link:hover {
-    text-decoration: none; /* 호버 시 밑줄 추가 */
-    border-bottom: 2px solid black;
-    & > #menutitle {
-      font-family: "extrabold", sans-serif;
-    }
-  }
 `;
 export const MenuLink = styled.button.attrs({
   id: "menulink",
@@ -111,7 +98,7 @@ export const MenuLink = styled.button.attrs({
   cursor: pointer;
   &:hover {
     text-decoration: none;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #333333;
     & > #menutitle {
       font-family: "extrabold", sans-serif;
     }
@@ -184,7 +171,7 @@ export const MenuTitle = styled.div.attrs({
   display: inline-block;
   position: relative;
   align-items: left;
-  font-family: "medium", sans-serif;
+  font-family: "bold", sans-serif;
   font-size: 18px;
   margin: 10px;
   text-align: center;

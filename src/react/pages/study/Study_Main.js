@@ -20,7 +20,7 @@ import { useEffect } from "react";
 const Study_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath } = location.state || {};
+  const { firstpath, secondpath } = location.state || {};
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {

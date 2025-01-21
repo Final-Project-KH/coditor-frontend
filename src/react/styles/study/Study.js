@@ -34,6 +34,7 @@ export const TopBox = styled.div.attrs({
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding-left: 10px;
 `;
 export const TopBoxText = styled.div.attrs({
   id: "topboxtext",
@@ -69,14 +70,17 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
-  margin-top: 75px;
+  margin-top: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   flex-direction: row;
   align-items: top;
   justify-content: center;
-  margin-bottom: 0;
   gap: 25px;
+  padding-bottom: 25px;
 `;
 export const SubjectLink = styled.button`
   text-decoration: none;
@@ -96,9 +100,9 @@ export const StickyClassBox = styled.div.attrs({
   id: "stickyclassbox",
 })`
   width: 100%;
-  height: calc(100vh - 510px);
+  height: calc(100vh - 492px);
   position: sticky;
-  top: 490px;
+  top: 340px;
   bottom: 50px;
   overflow-y: scroll; /* 세로 스크롤 활성화 */
   -ms-overflow-style: none; /* IE/Edge */

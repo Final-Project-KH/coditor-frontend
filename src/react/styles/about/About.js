@@ -86,7 +86,6 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
-  margin-top: 50px;
   width: 100%;
   height: calc(100vh - 50px);
   padding-left: 10px;
@@ -115,6 +114,6 @@ export const AboutContents = styled.div.attrs({
 })`
   width: 100%;
   font-family: "regular", sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 30px;
 `;

@@ -77,7 +77,7 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
-  margin-top: 25px;
+
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -97,6 +97,7 @@ export const LeftContainer = styled.div.attrs({
   align-items: center;
   left: 0;
   gap: 25px;
+  margin-top: 25px;
 `;
 export const LeftTopSubjectContainer = styled.div.attrs({
   id: "leftsubjectcontainer",
@@ -247,6 +248,7 @@ export const RightContainer = styled.div.attrs({
   gap: 25px;
   padding-bottom: 50px;
   position: relative;
+  margin-top: 25px;
 `;
 export const EachClass = styled.div.attrs({
   id: "eachclass",

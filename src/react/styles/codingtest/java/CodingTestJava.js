@@ -50,14 +50,6 @@ export const TopBoxText = styled.div.attrs({
   cursor: pointer;
   color: white;
   background-color: #313131;
-  .menu-link {
-    text-decoration: none;
-    color: inherit;
-  }
-  &:hover {
-    color: #313131;
-    background-color: white;
-  }
 `;
 export const TopBoxArrow = styled.div.attrs({
   id: "topboxarrow",
@@ -73,7 +65,6 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
-  margin-top: 25px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -83,6 +74,7 @@ export const Container = styled.div.attrs({
   gap: 25px;
   padding-left: 10px;
   padding-right: 10px;
+  margin-top: 50px;
 `;
 export const LeftContainer = styled.div.attrs({
   id: "leftcontainer",
@@ -93,6 +85,7 @@ export const LeftContainer = styled.div.attrs({
   align-items: center;
   left: 0;
   gap: 25px;
+  margin-top: 25px;
 `;
 
 export const ClassHeader = styled.div.attrs({
@@ -103,7 +96,8 @@ export const ClassHeader = styled.div.attrs({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 30px 30px 0 0;
+  background-color: #333333;
 `;
 
 export const ClassHeaderTitle = styled.div.attrs({
@@ -142,7 +136,6 @@ export const InputClass = styled.div.attrs({
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
   position: relative;
   overflow: hidden;
 `;
@@ -154,6 +147,9 @@ export const StyledDiv = styled.div.attrs({
   display: flex;
   position: relative;
   overflow: hidden;
+  background-color: black;
+  color: white;
+  padding: 20px;
 `;
 export const InputClassInner = styled.textarea.attrs({
   id: "inputclassinner",
@@ -172,7 +168,7 @@ export const ConsoleClass = styled.div.attrs({
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  position: relative;
 `;
 
 export const ConsoleClassInner = styled.div.attrs({
@@ -191,4 +187,5 @@ export const RightContainer = styled.div.attrs({
   gap: 25px;
   padding-bottom: 50px;
   position: relative;
+  margin-top: 25px;
 `;
