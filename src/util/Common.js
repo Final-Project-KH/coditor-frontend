@@ -138,7 +138,7 @@ const Common = {
   },
 
   refreshAccessToken: async () => {
-    const refreshToken = Common.getRefreshToken;
+    const refreshToken = Common.getRefreshToken();
     if (!refreshToken) {
       throw new Error(600);
     }

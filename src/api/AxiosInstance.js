@@ -32,12 +32,16 @@ AxiosInstance.interceptors.request.use(
     const accessToken = Common.getAccessToken(); // Access Token
     const expirationTime = Common.getAccessTokenExpiresIn(); // 만료 시간
     if (accessToken && expirationTime) {
-      const currentTime = new Date().getTime();
+      const currentTime = Math.floor(new Date().getTime() / 1000); // 자리수 차이로 인한 에러...
+      console.log(expirationTime);
+      console.log(currentTime);
       if (currentTime > expirationTime) {
         console.log("Access Token 만료");
         Common.clearAccessToken();
       } else {
         config.headers.Authorization = `Bearer ${accessToken}`;
+        console.log(config);
+        console.log(accessToken);
       }
     }
     return config;
@@ -101,7 +105,6 @@ AxiosInstance.interceptors.response.use(
       try {
         // Refresh Token을 사용하여 새로운 Access Token을 발급 받음
         const newAccessToken = await Common.refreshAccessToken();
-
         if (newAccessToken) {
           // 새로운 Access Token을 헤더에 설정
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
