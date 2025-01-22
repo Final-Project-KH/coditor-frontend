@@ -317,7 +317,12 @@ const Post_WriteEditor_Coding = ({ title, language }) => {
       return;
     }
     try {
-      const response = await AxiosApi.writeCodingPost(boardType, title, language, editor.getHTML());
+      const response = await AxiosApi.writePost(
+        boardType,
+        title,
+        language,
+        editor.getHTML()
+      );
       alert("내용이 성공적으로 제출되었습니다.");
       console.log("서버 응답:", response);
       navigate("/community/coding"); // 성공 후 이동

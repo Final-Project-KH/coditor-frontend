@@ -1,5 +1,5 @@
-import styled, {css, keyframes} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css, keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
