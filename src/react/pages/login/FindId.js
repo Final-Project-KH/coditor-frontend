@@ -29,18 +29,6 @@ import {
 } from "../../styles/login/FindId";
 
 const FindId = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState("");
-  const closeMadal = () => {
-    console.log("closeMadal 호출됨");
-    setModalOpen(false);
-  };
-
-  const confirmModal = () => {
-    console.log("Confirm 버튼이 눌러졌습니다.");
-    closeMadal();
-  };
-
   const [inputEmail, setInputEmail] = useState("");
   const [isEmail, setIsEmail] = useState(false);
   const [emailMessage, setEmailMessage] = useState("");
@@ -186,7 +174,7 @@ const FindId = () => {
             </SignUp>
             <ToFindPw>
               <StyledLink to="/findpw"></StyledLink>
-              비밀번호찾기
+              비밀번호 재설정
             </ToFindPw>
           </LinkDiv>
         </FloatingContainer>

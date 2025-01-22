@@ -253,7 +253,7 @@ const checkmark = keyframes`
 export const InputExtraItemRightP = styled.p.attrs({
   id: "inputextraitemrightp",
 })`
-  width: 70px;
+  width: 80px;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -268,8 +268,8 @@ export const InputExtraItemRightP = styled.p.attrs({
   & + &::before {
     content: "";
     position: absolute;
-    left: -14px;
-    bottom: 8px;
+    left: -18px;
+    bottom: 7px;
     width: 11px;
     height: 1px;
     background-color: #313131;

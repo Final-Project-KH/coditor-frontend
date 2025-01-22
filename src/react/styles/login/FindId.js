@@ -1,5 +1,5 @@
-import styled, { css, keyframes } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {css, keyframes} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -279,7 +279,7 @@ export const LinkDiv = styled.div.attrs({
   justify-content: center;
   flex-direction: row;
   margin-top: 10px;
-  gap: 10px;
+  gap: 15px;
 `;
 export const SignUp = styled.button.attrs({
   id: "signup",

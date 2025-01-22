@@ -150,6 +150,7 @@ export const InputDiv = styled.div.attrs({
   justify-content: flex-start;
   flex-direction: row;
   user-select: none;
+  margin-top: 10px;
   &:focus {
     outline: none;
   }
@@ -267,6 +268,75 @@ export const FindPwButton = styled.button.attrs({
     `}
   border: none;
 `;
+export const FindPwButtonDiv = styled.div.attrs({
+  id: "findpwbutton",
+})`
+  width: 25%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  color: white;
+  font-family: "medium", sans-serif;
+  font-size: 10px;
+  border: none;
+`;
+export const FindPwButtonTimer = styled.div.attrs({
+  id: "findpwbuttontimer",
+})`
+  width: 50%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  color: black;
+  font-family: "medium", sans-serif;
+  font-size: 12px;
+  border: none;
+`;
+export const FindPwButtonRefresh = styled.div.attrs({
+  id: "findpwbuttonrefresh",
+})`
+  width: 50%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  &::before {
+    content: "";
+    width: 50%;
+    height: 50%;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: center;
+    background-image: url("/images/icon/refresh-1.png");
+    position: absolute;
+    z-index: 5;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+  }
+  &::after {
+    content: "";
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    background-color: #d6d6d6;
+    border-radius: 5px;
+  }
+  &:hover::before {
+    transform: rotate(180deg);
+  }
+`;
 export const ValidEmailMessage = styled.span.attrs({
   id: "validemailmessage",
 })`
@@ -280,6 +350,7 @@ export const ValidEmailMessage = styled.span.attrs({
   user-select: none;
   font-size: 10px;
   color: red;
+  padding-bottom: 3px;
 `;
 export const SecurityButton = styled.button.attrs({
   id: "securitybutton",
@@ -308,6 +379,21 @@ export const SecurityButton = styled.button.attrs({
       }
     `}
   border: none;
+`;
+export const ValidSecurityMessage = styled.span.attrs({
+  id: "validsecuritymessage",
+})`
+  width: 100%;
+  min-height: 20px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  padding-bottom: 3px;
 `;
 export const SignIn = styled.button.attrs({
   id: "signin",

@@ -342,10 +342,9 @@ const Login = () => {
                   <StyledLink to="/findid"></StyledLink>
                   아이디 찾기
                 </InputExtraItemRightP>
-                {/* 비밀번호 찾기 페이지 링크 연결 미구현 */}
                 <InputExtraItemRightP>
                   <StyledLink to="/findpw"></StyledLink>
-                  비밀번호 찾기
+                  비밀번호 재설정
                 </InputExtraItemRightP>
               </InputExtraItem3>
             </InputExtra>
