@@ -19,9 +19,7 @@ import {
   FindPwButtonDiv,
   FindPwButtonTimer,
   FindPwButtonRefresh,
-  SignIn,
-  LinkDiv,
-  SignUp,
+  ModifyPw,
   BodyContainer,
   FindPwButton,
   SecurityButton,
@@ -40,7 +38,14 @@ const FindPw = () => {
   const [isSecurity, setIsSecurity] = useState(false);
   const [securityMessage, setSecurityMessage] = useState("");
   const [isSecurityAvailable, setIsSecurityAvailable] = useState(false);
+  const [inputPw, setInputPw] = useState("");
+  const [pwMessage, setPwMessage] = useState("");
+  const [inputConPw, setInputConPw] = useState("");
+  const [conPwMessage, setConPwMessage] = useState("");
+  const [isPw, setIsPw] = useState(false);
+  const [isConPw, setIsConPw] = useState(false);
   const [isPwAvailable, setIsPwAvailable] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
   // 타이머 설정
   const [timeLeft, setTimeLeft] = useState(180);
@@ -75,6 +80,7 @@ const FindPw = () => {
       return response.data;
     } catch (error) {
       setSecurityMessage("인증번호가 일치하지 않습니다.");
+      // 인증 번호 유효시간 등에 대한 에러 처리를 위해서는 구분이 필요함
       setIsSecurity(false);
       return null;
     }
@@ -114,6 +120,7 @@ const FindPw = () => {
     setEmailMessage("새로운 이메일을 입력해주세요.");
     setIsRunning(false);
     setIsSecurityAvailable(false);
+    setIsLoading(false);
   };
 
   const stopTimer = () => {
@@ -122,6 +129,7 @@ const FindPw = () => {
     setEmailMessage("요청시간이 지났습니다. 다시 시도해주세요.");
     setIsRunning(false);
     setIsSecurityAvailable(false);
+    setIsLoading(false);
   };
 
   const onChangeEmail = (e) => {
@@ -162,6 +170,7 @@ const FindPw = () => {
     try {
       const emailExist = await verifyemail(currentValue);
       if (emailExist) {
+        setEmailMessage("");
         setSecurityMessage("");
         setIsSecurityAvailable(true);
         startTimer();
@@ -200,6 +209,7 @@ const FindPw = () => {
         setIsRunning(false);
         setIsSecurityAvailable(false);
         setIsEmailAvailable(false);
+        setIsPwAvailable(true);
       }
     } catch (error) {
     } finally {
@@ -232,62 +242,74 @@ const FindPw = () => {
           <FloatingTitle>
             {!isSecurityAvailable ? "비밀번호 재설정" : "비밀번호 찾기 결과"}
           </FloatingTitle>
-          <InputDiv isSecurityAvailable={isSecurityAvailable}>
-            <Input
-              autoComplete="off"
-              placeholder="등록한 이메일 주소 입력"
-              icon="/images/icon/mail.png"
-              value={inputEmail}
-              isEmail={isEmail}
-              isLoading={isLoading}
-              onChange={(e) => onChangeEmail(e)}
-              onBlur={(e) => onBlurEmail(e)}
-            ></Input>
-            {isEmail &&
-            isEmailAvailable &&
-            !isSecurity &&
-            !isSecurityAvailable &&
-            !isLoading ? (
-              <FindPwButton isEmail={isEmail} onClick={(e) => onClickFindPw(e)}>
-                인증번호 받기
-              </FindPwButton>
-            ) : isEmail && isEmailAvailable && !isRunning && isLoading ? (
-              <FindPwButtonDiv>
-                <RotatingLines
-                  visible={true}
-                  height="30"
-                  width="30"
-                  strokeColor="black"
-                  strokeWidth="5"
-                  animationDuration="0.75"
-                  ariaLabel="rotating-lines-loading"
-                  wrapperStyle={{}}
-                  wrapperClass=""
-                />
-              </FindPwButtonDiv>
-            ) : (
-              isEmail &&
-              isEmailAvailable &&
-              isSecurityAvailable &&
-              isRunning &&
-              !isLoading && (
-                <FindPwButtonDiv>
-                  <FindPwButtonTimer>
-                    {Math.floor(timeLeft / 60)}:
-                    {timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
-                  </FindPwButtonTimer>
-                  <FindPwButtonRefresh
-                    onClick={(e) => {
-                      onClickFindPw(e);
-                    }}
-                  ></FindPwButtonRefresh>
-                </FindPwButtonDiv>
-              )
-            )}
-          </InputDiv>
-          <ValidEmailMessage isEmail={isEmail}>
-            {emailMessage}
-          </ValidEmailMessage>
+          {isEmailAvailable ? (
+            <>
+              <InputDiv isSecurityAvailable={isSecurityAvailable}>
+                <Input
+                  autoComplete="off"
+                  placeholder="등록한 이메일 주소 입력"
+                  icon="/images/icon/mail.png"
+                  value={inputEmail}
+                  isEmail={isEmail}
+                  isEmailAvailable={isEmailAvailable}
+                  isLoading={isLoading}
+                  onChange={(e) => onChangeEmail(e)}
+                  onBlur={(e) => onBlurEmail(e)}
+                ></Input>
+                {isEmail &&
+                isEmailAvailable &&
+                !isSecurity &&
+                !isSecurityAvailable &&
+                !isLoading ? (
+                  <FindPwButton
+                    isEmail={isEmail}
+                    onClick={(e) => onClickFindPw(e)}
+                  >
+                    인증번호 받기
+                  </FindPwButton>
+                ) : isEmail && isEmailAvailable && !isRunning && isLoading ? (
+                  <FindPwButtonDiv>
+                    <RotatingLines
+                      visible={true}
+                      height="30"
+                      width="30"
+                      strokeColor="black"
+                      strokeWidth="5"
+                      animationDuration="0.75"
+                      ariaLabel="rotating-lines-loading"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                    />
+                  </FindPwButtonDiv>
+                ) : (
+                  isEmail &&
+                  isEmailAvailable &&
+                  isSecurityAvailable &&
+                  isRunning &&
+                  !isLoading && (
+                    <FindPwButtonDiv>
+                      <FindPwButtonTimer>
+                        {Math.floor(timeLeft / 60)}:
+                        {timeLeft % 60 < 10
+                          ? `0${timeLeft % 60}`
+                          : timeLeft % 60}
+                      </FindPwButtonTimer>
+                      <FindPwButtonRefresh
+                        onClick={(e) => {
+                          onClickFindPw(e);
+                        }}
+                      ></FindPwButtonRefresh>
+                    </FindPwButtonDiv>
+                  )
+                )}
+              </InputDiv>
+              <ValidEmailMessage isEmail={isEmail}>
+                {emailMessage}
+              </ValidEmailMessage>
+            </>
+          ) : (
+            <InputDiv></InputDiv>
+          )}
           {isSecurityAvailable && (
             <>
               <InputDiv>
@@ -311,9 +333,8 @@ const FindPw = () => {
               </ValidSecurityMessage>
             </>
           )}
-          <SignIn>
-            <StyledLink to="/login"></StyledLink>비밀번호 재설정하기
-          </SignIn>
+          {}
+          <ModifyPw>비밀번호 재설정하기</ModifyPw>
         </FloatingContainer>
         <NoticeContainer>
           <Notice>

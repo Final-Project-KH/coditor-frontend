@@ -185,6 +185,12 @@ export const Input = styled.input.attrs({
       border: 2px solid black;
       width: 75%;
     `}
+  ${(props) =>
+    !props.isEmailAvailable &&
+    css`
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      width: 100%;
+    `}
 `;
 export const InputSecurity = styled.input.attrs({
   id: "inputsecurity",
@@ -395,8 +401,8 @@ export const ValidSecurityMessage = styled.span.attrs({
   color: red;
   padding-bottom: 3px;
 `;
-export const SignIn = styled.button.attrs({
-  id: "signin",
+export const ModifyPw = styled.button.attrs({
+  id: "modifypw",
 })`
   width: 100%;
   height: 50px;
@@ -406,43 +412,12 @@ export const SignIn = styled.button.attrs({
   justify-content: center;
   user-select: none;
   border-radius: 5px;
-  background-color: #313131;
+  background-color: ${(props) => (props.disabled ? "#f1f1f1" : "#313131")};
   cursor: pointer;
   border: none;
   margin-top: 10px;
   color: white;
   transition: all 0.3s ease-in-out;
-  font-size: 14px;
-  font-family: "medium", sans-serif;
-`;
-export const LinkDiv = styled.div.attrs({
-  id: "linkdiv",
-})`
-  width: 100%;
-  height: 50px;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  margin-top: 10px;
-  gap: 10px;
-`;
-export const SignUp = styled.button.attrs({
-  id: "signup",
-})`
-  width: 50%;
-  height: 50px;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  border-radius: 5px;
-  background-color: #f1f1f1;
-  border: none;
-  margin-top: 10px;
-  color: black;
   font-size: 14px;
   font-family: "medium", sans-serif;
 `;
