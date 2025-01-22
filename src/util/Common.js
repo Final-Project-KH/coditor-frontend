@@ -84,6 +84,10 @@ const Common = {
     store.dispatch(setLoginData({ accesstokenexpiresin: expirationtime }));
   }, // accesstoken expiretime 데이터는 getNewAccessTokenExpiresIn 함수를 거친 데이터
 
+  setKeyNumber: (keynumber) => {
+    store.dispatch(setLoginData({ keynumber: keynumber }));
+  },
+
   setNickname: (nickname) => {
     store.dispatch(setLoginData({ nickname: nickname }));
   },

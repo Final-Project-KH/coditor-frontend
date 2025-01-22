@@ -1,5 +1,5 @@
-import React, {useEffect, useState, useRef} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import AxiosApi from "../../../api/AxiosApi";
 import {
   Wrap,
@@ -45,9 +45,9 @@ import {
   InputEmailButtonRefresh,
   ValidSecurityMessage,
 } from "../../styles/signup/signup";
-import {useDispatch} from "react-redux";
-import {setError} from "../../../redux/slice/authSlice";
-import {RotatingLines} from "react-loader-spinner";
+import { useDispatch } from "react-redux";
+import { setError } from "../../../redux/slice/authSlice";
+import { RotatingLines } from "react-loader-spinner";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -312,7 +312,7 @@ const Signup = () => {
     }
   }
 
-  const onBlurUserId = async (e) => {
+  const onBlurUserId = async () => {
     const currentValue = inputUserId;
     if (isBlank(currentValue)) {
       setUserIdMessage("아이디는 필수 입력 정보입니다.");
@@ -348,7 +348,7 @@ const Signup = () => {
       setIsEmail(false);
     }
   };
-  const onBlurEmail = (e) => {
+  const onBlurEmail = () => {
     const currentValue = inputEmail;
     if (isBlank(currentValue)) {
       setEmailMessage("이메일 인증이 필요합니다.");
@@ -435,9 +435,8 @@ const Signup = () => {
       setIsPw(false);
     }
   };
-  const onBlurPw = (e) => {
-    setInputPw(e.target.value);
-    const currentValue = e.target.value;
+  const onBlurPw = () => {
+    const currentValue = inputPw;
     if (isBlank(currentValue)) {
       setPwMessage("비밀번호는 필수 입력 정보입니다.");
       setIsPw(false);
@@ -482,9 +481,8 @@ const Signup = () => {
       setIsConPw(false);
     }
   };
-  const onBlurConPw = (e) => {
-    setInputConPw(e.target.value);
-    const currentValue = e.target.value;
+  const onBlurConPw = () => {
+    const currentValue = inputConPw;
     if (isBlank(inputPw)) {
       setConPwMessage("비밀번호 입력이 필요합니다.");
       setIsConPw(false);
@@ -523,9 +521,8 @@ const Signup = () => {
       setIsName(false);
     }
   };
-  const onBlurName = async (e) => {
-    setInputName(e.target.value);
-    const currentValue = e.target.value;
+  const onBlurName = async () => {
+    const currentValue = inputName;
     if (isBlank(currentValue)) {
       setNameMessage("닉네임은 필수 입력 정보입니다.");
       setIsName(false);
@@ -590,11 +587,6 @@ const Signup = () => {
     setIsVisibleConPwd(!isVisibleConPwd);
   };
 
-  // useEffect(() => {
-  //   if (isLoading) {
-  //     console.log("로딩 상태가 변경됨: ", isLoading);
-  //   }
-  // }, [isLoading]);
   return (
     <Wrap>
       <TopBarContainer>
@@ -630,7 +622,10 @@ const Signup = () => {
                 placeholder="영문자, 숫자, 특수문자 포함 8~20자"
                 value={inputPw}
                 onChange={onChangePw}
-                onBlur={onBlurPw}
+                onBlur={() => {
+                  onBlurPw();
+                  onBlurConPw();
+                }}
                 isPw={isPw}
               ></InputPw>
               <InputPwDivToggle
@@ -647,7 +642,10 @@ const Signup = () => {
                 placeholder="비밀번호 확인"
                 value={inputConPw}
                 onChange={onChangeConPw}
-                onBlur={onBlurConPw}
+                onBlur={() => {
+                  onBlurConPw();
+                  onBlurPw();
+                }}
                 isConPw={isConPw}
               ></InputPwConfirm>
               <InputPwDivToggle

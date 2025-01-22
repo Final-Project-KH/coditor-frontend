@@ -1,5 +1,5 @@
-import styled, {css, keyframes} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css, keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -416,7 +416,7 @@ export const ModifyPw = styled.button.attrs({
   cursor: pointer;
   border: none;
   margin-top: 10px;
-  color: white;
+  color: ${(props) => (props.disabled ? "#313131" : "white")};
   transition: all 0.3s ease-in-out;
   font-size: 14px;
   font-family: "medium", sans-serif;
@@ -464,4 +464,155 @@ export const NoticeLink = styled(Link)`
   height: 100%;
   position: absolute;
   background-color: transparent;
+`;
+export const InputEach = styled.div.attrs({
+  id: "inputeach",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+`;
+export const InputIndex = styled.div.attrs({
+  id: "inputindex",
+})`
+  width: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 12px;
+  font-family: "medium", sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
+`;
+export const InputPwDiv = styled.div.attrs({
+  id: "inputpwdiv",
+})`
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  border: none;
+  user-select: none;
+  border-radius: 5px;
+`;
+export const InputPw = styled.input.attrs({
+  id: "inputpw",
+})`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  background-position: 20px center;
+  background-image: url("/images/icon/pwd.png");
+  &:focus {
+    outline: none;
+  }
+  ${(props) =>
+    props.isPw &&
+    css`
+      border: 2px solid black;
+    `}
+`;
+export const InputPwConfirm = styled.input.attrs({
+  id: "inputpwconfirm",
+})`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  background-position: 20px center;
+  background-image: url("/images/icon/pwd.png");
+  &:focus {
+    outline: none;
+  }
+  ${(props) =>
+    props.isConPw &&
+    css`
+      border: 2px solid black;
+    `}
+`;
+export const InputPwDivToggle = styled.button.attrs({
+  id: "inputpwdivtoggle",
+})`
+  display: flex;
+  position: absolute;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  border-radius: 5px;
+  right: 10px;
+  ${(props) =>
+    props.isVisible
+      ? css`
+          &::before {
+            content: "";
+            position: absolute;
+            background-repeat: no-repeat;
+            background-size: contain;
+            right: 10px;
+            margin-top: 5px;
+            width: 15px;
+            height: 15px;
+            background-image: url("/images/icon/eye_open.png");
+            z-index: 5;
+            cursor: pointer;
+          }
+        `
+      : css`
+          &::before {
+            content: "";
+            position: absolute;
+            background-repeat: no-repeat;
+            background-size: contain;
+            right: 10px;
+            top: -11px;
+            margin-top: 5px;
+            width: 15px;
+            height: 15px;
+            background-image: url("/images/icon/eye_close.png");
+            z-index: 5;
+            cursor: pointer;
+          }
+        `}
+`;
+export const ValidPwMessage = styled.span.attrs({
+  id: "validpwmessage",
+})`
+  width: 100%;
+  min-height: 20px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  font-size: 10px;
+  color: red;
+  padding-bottom: 3px;
 `;

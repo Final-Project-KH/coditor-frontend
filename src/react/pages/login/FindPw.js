@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import AxiosApi from "../../../api/AxiosApi";
 import Common from "../../../util/Common";
 import {
@@ -25,8 +25,16 @@ import {
   SecurityButton,
   ValidEmailMessage,
   ValidSecurityMessage,
+  InputEach,
+  InputIndex,
+  InputPwDiv,
+  InputPw,
+  InputPwConfirm,
+  InputPwDivToggle,
+  ValidPwMessage,
 } from "../../styles/login/FindPw";
-import {RotatingLines} from "react-loader-spinner";
+import { RotatingLines } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 
 const FindPw = () => {
   const [inputEmail, setInputEmail] = useState("");
@@ -52,6 +60,18 @@ const FindPw = () => {
   const [isRunning, setIsRunning] = useState(false);
   const timeLeftRef = useRef(180);
 
+  const [isVisiblePwd, setIsVisiblePwd] = useState(false);
+  const [isVisibleConPwd, setIsVisibleConPwd] = useState(false);
+
+  const navigate = useNavigate();
+
+  const toggleVisiblePwd = () => {
+    setIsVisiblePwd(!isVisiblePwd);
+  };
+  const toggleVisibleConPwd = () => {
+    setIsVisibleConPwd(!isVisibleConPwd);
+  };
+
   function emailAvailable(input) {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(input);
@@ -59,6 +79,35 @@ const FindPw = () => {
   // 공통 공란 여부 검사 (공란 시 -> true)
   function isBlank(input) {
     return input.trim() === "";
+  }
+  // 2. PW 유효성 검사
+  // PW input 문자열 길이 검사 (8보다 작을 시 -> true)
+  function isPwTooShort(input) {
+    return input.length < 8;
+  }
+  // PW input 문자열 길이 검사 (20보다 클 시 -> true)
+  function isPwTooLong(input) {
+    return input.length > 20;
+  }
+  function pwAvailable(input) {
+    const passwordRegex =
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+    return passwordRegex.test(input);
+  }
+  //  특수 문자열 포함 여부 (포함 시 -> true)
+  function isPwContainsSpecialCharacter(input) {
+    const specialCharRegex = /[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣 ]/;
+    return specialCharRegex.test(input);
+  }
+  //  숫자열 포함 여부 (포함 시 -> true)
+  function isPwContainsNumber(input) {
+    const numberRegex = /\d/;
+    return numberRegex.test(input);
+  }
+  //  문자열 포함 여부 (포함 시 -> true)
+  function isPwContainsCharacter(input) {
+    const charRegex = /[a-zA-Z]/;
+    return charRegex.test(input);
   }
 
   async function verifyemail(email) {
@@ -82,6 +131,33 @@ const FindPw = () => {
       setSecurityMessage("인증번호가 일치하지 않습니다.");
       // 인증 번호 유효시간 등에 대한 에러 처리를 위해서는 구분이 필요함
       setIsSecurity(false);
+      return null;
+    }
+  }
+
+  async function validatenewpw(email, newpassword) {
+    try {
+      const response = await AxiosApi.validatenewpassword(email, newpassword);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      setPwMessage(
+        "새 비밀번호 확인 중 오류가 발생했습니다. 다시 시도해주세요."
+      );
+      setIsPw(false);
+      return null;
+    }
+  }
+
+  async function resetpw(email, newpassword) {
+    try {
+      const response = await AxiosApi.resetpassword(email, newpassword);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      setConPwMessage(
+        "비밀번호 변경 중 오류가 발생했습니다. 다시 시도해주세요."
+      );
       return null;
     }
   }
@@ -142,10 +218,12 @@ const FindPw = () => {
       setIsEmail(false);
     }
   };
-  const onBlurEmail = (e) => {
+  const onBlurEmail = () => {
     const currentValue = inputEmail;
     if (isBlank(currentValue)) {
-      setEmailMessage("비밀번호를 찾기 위해서는 이메일 인증이 필요합니다.");
+      setEmailMessage(
+        "비밀번호를 재설정하기 위해서는 이메일 인증이 필요합니다."
+      );
       setIsEmail(false);
       return;
     }
@@ -212,6 +290,126 @@ const FindPw = () => {
         setIsPwAvailable(true);
       }
     } catch (error) {
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  const onChangePw = (e) => {
+    setInputPw(e.target.value);
+    const currentValue = e.target.value;
+    if (pwAvailable(currentValue)) {
+      setPwMessage("");
+      setIsPw(true);
+    } else {
+      setIsPw(false);
+    }
+  };
+  const onBlurPw = async () => {
+    const currentValuePw = inputPw;
+    const currentValueEmail = inputEmail;
+    if (isBlank(currentValuePw)) {
+      setPwMessage("비밀번호는 필수 입력 정보입니다.");
+      setIsPw(false);
+      return;
+    }
+    if (!isPwContainsCharacter(currentValuePw)) {
+      setPwMessage("비밀번호는 1개 이상의 영문자를 포함해야 합니다.");
+      setIsPw(false);
+      return;
+    }
+    if (!isPwContainsNumber(currentValuePw)) {
+      setPwMessage("비밀번호는 1개 이상의 숫자를 포함해야 합니다.");
+      setIsPw(false);
+      return;
+    }
+    if (!isPwContainsSpecialCharacter(currentValuePw)) {
+      setPwMessage("비밀번호는 1개 이상의 특수문자를 포함해야 합니다.");
+      setIsPw(false);
+      return;
+    }
+    if (isPwTooLong(currentValuePw)) {
+      setPwMessage("비밀번호는 20자 이하 8자 이상이어야 합니다.");
+      setIsPw(false);
+      return;
+    }
+    if (isPwTooShort(currentValuePw)) {
+      setPwMessage("비밀번호는 8자 이상 20자 이하이어야 합니다.");
+      setIsPw(false);
+      return;
+    } else {
+      setPwMessage("");
+      setIsPw(true);
+    }
+    try {
+      const newPwAvailable = await validatenewpw(
+        currentValueEmail,
+        currentValuePw
+      );
+      if (newPwAvailable) {
+        setPwMessage("");
+        setIsPw(true);
+      } else {
+        setPwMessage("동일한 비밀번호를 사용할 수 없습니다.");
+        setIsPw(false);
+      }
+    } catch (error) {
+      setPwMessage(
+        "새 비밀번호 확인 중 오류가 발생했습니다. 다시 시도해주세요."
+      );
+      setIsPw(false);
+    }
+  };
+  const onChangeConPw = (e) => {
+    setInputConPw(e.target.value);
+    const currentValue = e.target.value;
+    if (currentValue === inputPw) {
+      setConPwMessage("");
+      setIsConPw(true);
+    } else {
+      setIsConPw(false);
+    }
+  };
+  const onBlurConPw = () => {
+    const currentValue = inputConPw;
+    if (isBlank(inputPw)) {
+      setConPwMessage("비밀번호 입력이 필요합니다.");
+      setIsConPw(false);
+      return;
+    }
+    if (isBlank(currentValue)) {
+      setConPwMessage("비밀번호 확인이 필요합니다.");
+      setIsConPw(false);
+      return;
+    }
+    if (currentValue !== inputPw) {
+      setConPwMessage("비밀번호가 일치하지 않습니다.");
+      setIsConPw(false);
+      return;
+    } else {
+      setConPwMessage("");
+      setIsConPw(true);
+    }
+  };
+
+  const onClickResetPw = async (e) => {
+    e.preventDefault();
+    if (isSubmitting) {
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      const email = inputEmail.trim().replace(/\s+/g, "");
+      const newPw = inputPw.trim().replace(/\s+/g, "");
+      const resetPassword = await resetpw(email, newPw);
+      console.log(resetPassword);
+      if (resetPassword) {
+        alert("비밀번호 변경에 성공했습니다.");
+        navigate("/login");
+      } else {
+        alert("비밀번호 변경에 실패했습니다. 다시 시도해주세요.");
+      }
+    } catch (error) {
+      alert("서버가 응답하지 않습니다.");
     } finally {
       setIsSubmitting(false);
     }
@@ -308,7 +506,49 @@ const FindPw = () => {
               </ValidEmailMessage>
             </>
           ) : (
-            <InputDiv></InputDiv>
+            <>
+              <InputEach>
+                <InputIndex>비밀번호 변경</InputIndex>
+                <InputPwDiv>
+                  <InputPw
+                    type={isVisiblePwd ? "text" : "password"}
+                    placeholder="영문자, 숫자, 특수문자 포함 8~20자"
+                    value={inputPw}
+                    onChange={onChangePw}
+                    onBlur={() => {
+                      onBlurPw();
+                      onBlurConPw();
+                    }}
+                    isPw={isPw}
+                  ></InputPw>
+                  <InputPwDivToggle
+                    isVisible={isVisiblePwd}
+                    onClick={() => toggleVisiblePwd()}
+                  />
+                </InputPwDiv>
+                <ValidPwMessage>{pwMessage}</ValidPwMessage>
+              </InputEach>
+              <InputEach>
+                <InputPwDiv>
+                  <InputPwConfirm
+                    type={isVisibleConPwd ? "text" : "password"}
+                    placeholder="비밀번호 확인"
+                    value={inputConPw}
+                    onChange={onChangeConPw}
+                    onBlur={() => {
+                      onBlurConPw();
+                      onBlurPw();
+                    }}
+                    isConPw={isConPw}
+                  ></InputPwConfirm>
+                  <InputPwDivToggle
+                    isVisible={isVisibleConPwd}
+                    onClick={() => toggleVisibleConPwd()}
+                  />
+                </InputPwDiv>
+                <ValidPwMessage>{conPwMessage}</ValidPwMessage>
+              </InputEach>
+            </>
           )}
           {isSecurityAvailable && (
             <>
@@ -333,8 +573,13 @@ const FindPw = () => {
               </ValidSecurityMessage>
             </>
           )}
-          {}
-          <ModifyPw>비밀번호 재설정하기</ModifyPw>
+          {isEmail && isSecurity && isPw && isConPw ? (
+            <ModifyPw enabled onClick={(e) => onClickResetPw(e)}>
+              비밀번호 재설정하기
+            </ModifyPw>
+          ) : (
+            <ModifyPw disabled>비밀번호 재설정하기</ModifyPw>
+          )}
         </FloatingContainer>
         <NoticeContainer>
           <Notice>

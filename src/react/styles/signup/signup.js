@@ -1,5 +1,5 @@
-import styled, {css, keyframes} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css, keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -241,11 +241,6 @@ export const InputPw = styled.input.attrs({
     css`
       border: 2px solid black;
     `}
-  ${(props) =>
-    props.isConPw &&
-    css`
-      border: 2px solid black;
-    `}
 `;
 export const InputPwConfirm = styled.input.attrs({
   id: "inputpwconfirm",
@@ -270,11 +265,6 @@ export const InputPwConfirm = styled.input.attrs({
   &:focus {
     outline: none;
   }
-  ${(props) =>
-    props.isPw &&
-    css`
-      border: 2px solid black;
-    `}
   ${(props) =>
     props.isConPw &&
     css`
