@@ -21,6 +21,8 @@ import Post_ReplyArea from "./components/post/Post_ReplyArea";
 import Post_UserProfile from "./components/post/Post_UserProfile";
 import { PathLink } from "../../styles/community/Community";
 import ScrollToTopButton from "../../styles/ScrollToTopButton";
+import { useEffect, useState } from "react";
+import AxiosApi from "../../../api/AxiosApi";
 
 const Post_Read = () => {
   const navigate = useNavigate();
