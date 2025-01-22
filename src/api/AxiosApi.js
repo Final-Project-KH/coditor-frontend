@@ -143,6 +143,23 @@ const AxiosApi = {
     }
   },
 
+  getPost: async (boardId, boardType) => {
+    try {
+      const response = await axios.get(SPRING_DOMAIN + "/community/list/one", {
+        params: {
+          boardId,
+          boardType, // 동적으로 받은 boardType 사용
+        },
+      });
+      return response.data; // 응답 데이터 반환
+    } catch (error) {
+      console.error("게시글 불러오기 오류 : ", error);
+      console.log("axios: ", boardId, boardType);
+      throw error; // 에러를 다시 던져서 호출하는 쪽에서 처리하도록 함
+
+    }
+  },
+
 //   writePost: async (boardType, title, language, content) => {
 //     try {
 //       const response = await axios.post(

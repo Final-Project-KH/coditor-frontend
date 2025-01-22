@@ -25,18 +25,6 @@ import {
   PostTopUserId,
   PostTopUserImg,
 } from "../../../../styles/community/Board";
-import {
-  Board_Coding_EachPost_01,
-  Board_Coding_EachPost_02,
-  Board_Coding_EachPost_03,
-  Board_Coding_EachPost_04,
-  Board_Coding_EachPost_05,
-  Board_Coding_EachPost_06,
-  Board_Coding_EachPost_07,
-  Board_Coding_EachPost_08,
-  Board_Coding_EachPost_09,
-  Board_Coding_EachPost_10,
-} from "./Board_Coding_EachPost";
 import AxiosApi from "../../../../../api/AxiosApi";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -48,6 +36,7 @@ const Board_Coding_PostList = () => {
   const [boards, setBoards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [boardType, setBoardType] = useState("CODING");
+  const [boardId, setBoardId] = useState("");
 
   // Get Board from Backend
   useEffect(() => {
@@ -56,9 +45,8 @@ const Board_Coding_PostList = () => {
       try {
         const response = await AxiosApi.getBoard(boardType); // boardType을 전달
         setBoards(response.content); // Page 객체의 content 사용
-        console.log("데이터 : ", response);
       } catch (error) {
-        console.error("게시글을 가져오는 중 오류가 발생했습니다.", error);
+        console.error("게시글 리스트 가져오는 중 오류 발생 : ", error);
       } finally {
         setLoading(false);
       }
@@ -67,12 +55,13 @@ const Board_Coding_PostList = () => {
   }, [boardType]); // boardType이 변경될 때마다 API 호출
 
   // TopBox PathSet
-  const handlePost = () => {
-    navigate("/community/coding/post1", {
+  const handlePost = (boardId) => {
+    navigate(`/community/coding/post/${boardId}`, {
       state: {
         firstpath: firstpath,
         secondpath: secondpath,
         thirdpath: "게시글",
+        boardId: boardId,
       },
     });
   };
@@ -89,7 +78,7 @@ const Board_Coding_PostList = () => {
           <PostEach
             key={index}
             style={{ cursor: "pointer" }}
-            onClick={() => handlePost()}
+            onClick={() => handlePost(board.boardId)}
           >
             <PostTop>
               <PostTopUser>
@@ -144,16 +133,6 @@ const Board_Coding_PostList = () => {
             </PostBottom>
           </PostEach>
         ))}
-        {/*<Board_Coding_EachPost_01 />
-        <Board_Coding_EachPost_02 />
-        <Board_Coding_EachPost_03 />
-        <Board_Coding_EachPost_04 />
-        <Board_Coding_EachPost_05 />
-        <Board_Coding_EachPost_06 />
-        <Board_Coding_EachPost_07 />
-        <Board_Coding_EachPost_08 />
-        <Board_Coding_EachPost_09 />
-        <Board_Coding_EachPost_10 /> */}
       </PostListContainer>
     </>
   );

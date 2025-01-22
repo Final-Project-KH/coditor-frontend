@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   MainPostContainer,
   MainPostTop,
@@ -24,14 +25,38 @@ import {
   MainPostTagsBox,
   MainPostTag,
 } from "../../../../styles/community/Post";
+import AxiosApi from "../../../../../api/AxiosApi";
+import { useLocation, useParams } from "react-router-dom";
 
 export const Post_MainContents_01 = () => {
+  const [post, setPost] = useState([]);
+  const [boards, setBoards] = useState([]);
+  const { boardId } = useParams();
+  const [boardType, setBoardType] = useState("CODING");
+  const location = useLocation();
+  const { firstpath, secondpath, thirdpath } = location.state || {};
+
+  // Get Post from Backend
+  useEffect(() => {
+    const readPost = async () => {
+      try {
+        const response = await AxiosApi.getPost(boardId);
+        setBoards(response);
+      } catch (error) {
+        console.error("게시글 가져오는 중 오류 발생 : ", error);
+      }
+    };
+    readPost();
+  }, [boardId, boardType]);
+
   return (
     <>
-      <MainPostContainer>
-        <MainPostTop>
+    {boards.map((board, index) => (
+      <MainPostContainer key={index}>
+          <MainPostTop>
           <MainPostTitle>
-            안녕하세요 Spring Batch의 트랜잭션 관련 질문이 있습니다.
+            {/* 안녕하세요 Spring Batch의 트랜잭션 관련 질문이 있습니다. */}
+            {board.title}
           </MainPostTitle>
           <MainPostInformation>
             <MainPostDate>작성 2025.01.10. 15:59</MainPostDate>
@@ -80,6 +105,7 @@ export const Post_MainContents_01 = () => {
           </MainPostContentsBox>
         </MainPostMiddle>
       </MainPostContainer>
+      ))}
     </>
   );
 };
