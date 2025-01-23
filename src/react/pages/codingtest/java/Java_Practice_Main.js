@@ -32,7 +32,7 @@ import Common from "../../../../util/Common";
 import {useLocation, useNavigate, useOutletContext} from "react-router-dom";
 import {classJavaMenuData} from "../../../../util/codingtestpractice/ClassJavaMenuData";
 import {useDispatch, useSelector} from "react-redux";
-import ScrollToTopButton from "../../../styles/ScrollToTopButton";
+import ScrollToTopButton from "../../ScrollToTopButton";
 
 // User Nickname, 등급
 // Coding Test 난이도 받아와야함

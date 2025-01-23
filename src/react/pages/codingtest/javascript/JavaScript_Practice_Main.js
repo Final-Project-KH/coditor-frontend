@@ -31,6 +31,7 @@ import AxiosApi from "../../../../api/AxiosApi";
 import Common from "../../../../util/Common";
 import { useLocation, useNavigate } from "react-router-dom";
 import { classJavaScriptMenuData } from "../../../../util/codingtestpractice/ClassJSMenuData";
+import ScrollToTopButton from "../../ScrollToTopButton";
 // User Nickname, 등급
 // Coding Test 난이도 받아와야함
 // 경로 받아와야함
@@ -158,6 +159,7 @@ const CT_JavaScript_Practice_Main = () => {
           ))}
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

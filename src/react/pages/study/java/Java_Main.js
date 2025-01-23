@@ -12,10 +12,10 @@ import {
   RightContainer,
 } from "../../../styles/study/Class_Main";
 
-import Java_ChapterList from "./Java_ChapterList";
-import Java_Title from "./Java_Title";
-import Java_ClassList from "./Java_ClassList";
-import ScrollToTopButton from "../../../styles/ScrollToTopButton";
+import Java_ChapterList from "./java_components/Java_ChapterList";
+import Java_Title from "./java_components/Java_Title";
+import Java_ClassList from "./java_components/Java_ClassList";
+import ScrollToTopButton from "../../ScrollToTopButton";
 
 const Java_Main = () => {
   const navigate = useNavigate();
@@ -74,7 +74,10 @@ const Java_Main = () => {
       <Container>
         <LeftContainer>
           <Java_Title />
-          <Java_ChapterList refs={sectionRefs} mainContentRef={mainContentRef}/>
+          <Java_ChapterList
+            refs={sectionRefs}
+            mainContentRef={mainContentRef}
+          />
         </LeftContainer>
         <RightContainer>
           <Java_ClassList refs={sectionRefs} />

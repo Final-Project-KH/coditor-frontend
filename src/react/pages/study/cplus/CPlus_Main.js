@@ -12,9 +12,10 @@ import {
   RightContainer,
 } from "../../../styles/study/Class_Main";
 
-import CPlus_ChapterList from "./CPlus_ChapterList";
-import CPlus_Title from "./CPlus_Title";
-import CPlus_ClassList from "./CPlus_ClassList";
+import CPlus_ChapterList from "./cplus_components/CPlus_ChapterList";
+import CPlus_Title from "./cplus_components/CPlus_Title";
+import CPlus_ClassList from "./cplus_components/CPlus_ClassList";
+import ScrollToTopButton from "../../ScrollToTopButton";
 
 const CPlus_Main = () => {
   const navigate = useNavigate();
@@ -74,12 +75,16 @@ const CPlus_Main = () => {
       <Container>
         <LeftContainer>
           <CPlus_Title />
-          <CPlus_ChapterList refs={sectionRefs} mainContentRef={mainContentRef} />
+          <CPlus_ChapterList
+            refs={sectionRefs}
+            mainContentRef={mainContentRef}
+          />
         </LeftContainer>
         <RightContainer>
           <CPlus_ClassList refs={sectionRefs} />
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

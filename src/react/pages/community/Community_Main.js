@@ -1,3 +1,5 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
 import {
   TopBoxText,
   TopBox,
@@ -9,11 +11,11 @@ import {
   RightContainer,
   PathLink,
 } from "../../styles/community/Community";
-import ScrollToTopButton from "../../styles/ScrollToTopButton";
 import Board_Community_Main from "./components/common/Board_Community_Main";
 import BoardList from "./components/common/Side_BoardList";
 import TopWriters from "./components/common/Side_TopWriters";
-import { useLocation, useNavigate } from "react-router-dom";
+import ScrollToTopButton from "../ScrollToTopButton";
+
 const Community_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();

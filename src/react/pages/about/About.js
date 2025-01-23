@@ -10,7 +10,7 @@ import {
   AboutContents,
 } from "../../styles/about/About";
 import { useLocation, useNavigate } from "react-router-dom";
-import ScrollToTopButton from "../../styles/ScrollToTopButton";
+import ScrollToTopButton from "../ScrollToTopButton";
 
 const About = () => {
   const navigate = useNavigate();

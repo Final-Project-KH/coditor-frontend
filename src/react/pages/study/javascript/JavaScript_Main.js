@@ -12,9 +12,10 @@ import {
   RightContainer,
 } from "../../../styles/study/Class_Main";
 
-import JavaScript_ChapterList from "./JavaScript_ChapterList";
-import JavaScript_Title from "./JavaScript_Title";
-import JavaScript_ClassList from "./JavaScript_ClassList";
+import JavaScript_ChapterList from "./javascript_components/JavaScript_ChapterList";
+import JavaScript_Title from "./javascript_components/JavaScript_Title";
+import JavaScript_ClassList from "./javascript_components/JavaScript_ClassList";
+import ScrollToTopButton from "../../ScrollToTopButton";
 
 const JavaScript_Main = () => {
   const navigate = useNavigate();
@@ -75,6 +76,7 @@ const JavaScript_Main = () => {
           <JavaScript_ClassList refs={sectionRefs} />
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

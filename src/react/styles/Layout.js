@@ -10,6 +10,9 @@ export const Background = styled.div`
 export const Header = styled.div`
   width: 100%;
   height: 100px;
+  @media (max-width: 768px) {
+    height: 65px;
+  }
 `;
 
 export const LayoutWrapper = styled.div`

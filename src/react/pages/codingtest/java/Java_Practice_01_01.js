@@ -19,7 +19,7 @@ import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import MonacoJava from "../../../../util/monaco/MonacoJava";
 import MonacoJavaOutput from "../../../../util/monaco/MonacoJavaOutput";
 import { useEffect } from "react";
-import ScrollToTopButton from "../../../styles/ScrollToTopButton";
+import ScrollToTopButton from "../../ScrollToTopButton";
 const CT_Java_Practice_01_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
