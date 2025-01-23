@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AxiosApi from "../../../api/AxiosApi";
-import {setLoginData, setError} from "../../../redux/slice/authSlice";
+import { setLoginData, setError } from "../../../redux/slice/authSlice";
 import JwtDecoding from "../../../api/JwtDecode";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Common from "../../../util/Common";
-import {GoogleOAuthProvider} from "@react-oauth/google"; // GoogleOAuthProvider 추가
+import { GoogleOAuthProvider } from "@react-oauth/google"; // GoogleOAuthProvider 추가
 import {
   Wrap,
   TopBarContainer,
@@ -168,6 +168,7 @@ const Login = () => {
         const keynumber = Common.getNewUserKeyNumber(data.accessToken);
         const nickname = Common.getNewNickname(data.accessToken);
 
+        Common.setKeyNumber(keynumber);
         Common.setAccessToken(data.accessToken);
         Common.setRefreshToken(data.refreshToken);
         Common.setAccessTokenExpiresIn(accessTokenExpirationTime);
@@ -342,10 +343,9 @@ const Login = () => {
                   <StyledLink to="/findid"></StyledLink>
                   아이디 찾기
                 </InputExtraItemRightP>
-                {/* 비밀번호 찾기 페이지 링크 연결 미구현 */}
                 <InputExtraItemRightP>
                   <StyledLink to="/findpw"></StyledLink>
-                  비밀번호 찾기
+                  비밀번호 재설정
                 </InputExtraItemRightP>
               </InputExtraItem3>
             </InputExtra>

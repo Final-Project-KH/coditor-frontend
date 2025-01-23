@@ -1,5 +1,5 @@
-import styled, {css, keyframes} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css, keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -191,7 +191,6 @@ export const ValidIdMessage = styled.span.attrs({
   id: "valididmessage",
 })`
   width: 100%;
-  background-color: pink;
   min-height: 20px;
   display: flex;
   position: relative;
@@ -242,11 +241,6 @@ export const InputPw = styled.input.attrs({
     css`
       border: 2px solid black;
     `}
-  ${(props) =>
-    props.isConPw &&
-    css`
-      border: 2px solid black;
-    `}
 `;
 export const InputPwConfirm = styled.input.attrs({
   id: "inputpwconfirm",
@@ -271,11 +265,6 @@ export const InputPwConfirm = styled.input.attrs({
   &:focus {
     outline: none;
   }
-  ${(props) =>
-    props.isPw &&
-    css`
-      border: 2px solid black;
-    `}
   ${(props) =>
     props.isConPw &&
     css`
@@ -330,7 +319,6 @@ export const ValidPwMessage = styled.span.attrs({
   id: "validpwmessage",
 })`
   width: 100%;
-  background-color: pink;
   min-height: 20px;
   display: flex;
   position: relative;
@@ -524,7 +512,6 @@ export const ValidEmailMessage = styled.span.attrs({
   id: "validemailmessage",
 })`
   width: 100%;
-  background-color: pink;
   min-height: 20px;
   display: flex;
   position: relative;
@@ -599,8 +586,7 @@ export const ValidSecurityMessage = styled.span.attrs({
   id: "validesecuritymessage",
 })`
   width: 100%;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  min-height: 20px;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -609,11 +595,7 @@ export const ValidSecurityMessage = styled.span.attrs({
   user-select: none;
   font-size: 10px;
   color: red;
-  ${(props) =>
-    props.isSecurity &&
-    css`
-      display: none;
-    `}
+  padding-bottom: 3px;
 `;
 export const InputNickName = styled.input.attrs({
   id: "inputuser",
@@ -648,8 +630,7 @@ export const ValidNameMessage = styled.span.attrs({
   id: "validnamemessage",
 })`
   width: 100%;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  min-height: 20px;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -658,11 +639,7 @@ export const ValidNameMessage = styled.span.attrs({
   user-select: none;
   font-size: 10px;
   color: red;
-  ${(props) =>
-    props.isName &&
-    css`
-      display: none;
-    `}
+  padding-bottom: 3px;
 `;
 
 export const InputExtraContainer = styled.div.attrs({

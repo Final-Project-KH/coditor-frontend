@@ -75,6 +75,33 @@ const AxiosApi = {
       SPRING_DOMAIN + `/auth/forgotpw/${otp}/${encodedemail}`
     );
   },
+  validatenewpassword: async (email, newpassword) => {
+    // requestParam
+    const validate = {
+      params: {
+        email: email,
+        newpassword: newpassword,
+      },
+    };
+    return await axios.post(
+      SPRING_DOMAIN + "/auth/forgotpw/validate",
+      null,
+      validate
+    );
+  },
+  resetpassword: async (email, newpassword) => {
+    const encodedemail = encodeURIComponent(email);
+    const reset = {
+      params: {
+        newPw: newpassword,
+      },
+    };
+    return await axios.put(
+      SPRING_DOMAIN + `/auth/resetpw/${encodedemail}`,
+      null,
+      reset
+    );
+  },
   // 구글 로그인 추가
   // 구글 로그인
   googleLogin: async (token) => {
@@ -231,6 +258,8 @@ const AxiosApi = {
       return response.data;
     } catch (error) {
       console.error("게시글 작성 중 오류 발생 : ", error);
+      console.log("Request Params:", { boardType });
+      console.log("Request Body:", { title, team, content });
       throw error;
     }
   },

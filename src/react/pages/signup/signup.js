@@ -1,5 +1,5 @@
-import React, {useEffect, useState, useRef} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import AxiosApi from "../../../api/AxiosApi";
 import {
   Wrap,
@@ -45,9 +45,9 @@ import {
   InputEmailButtonRefresh,
   ValidSecurityMessage,
 } from "../../styles/signup/signup";
-import {useDispatch} from "react-redux";
-import {setError} from "../../../redux/slice/authSlice";
-import {RotatingLines} from "react-loader-spinner";
+import { useDispatch } from "react-redux";
+import { setError } from "../../../redux/slice/authSlice";
+import { RotatingLines } from "react-loader-spinner";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -87,7 +87,8 @@ const Signup = () => {
   const [isRunning, setIsRunning] = useState(false);
   const timeLeftRef = useRef(180);
   // 로딩 설정
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // 이메일 otp 번호 전송 과정 로딩
+  const [isLoadingSignUp, setIsLoadingSignUp] = useState(false); // 회원가입 로딩
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const dispatch = useDispatch();
@@ -103,7 +104,6 @@ const Signup = () => {
       if (timeLeftRef.current <= 0) {
         clearInterval(interval);
         stopTimer();
-        setEmailMessage("");
         return;
       }
       if (!isEmail) {
@@ -219,7 +219,7 @@ const Signup = () => {
   }
   //  특수 문자열 포함 여부 (포함 시 -> true)
   function isPwContainsSpecialCharacter(input) {
-    const specialCharRegex = /[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]/;
+    const specialCharRegex = /[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣 ]/;
     return specialCharRegex.test(input);
   }
   //  숫자열 포함 여부 (포함 시 -> true)
@@ -264,7 +264,7 @@ const Signup = () => {
     setInputUserId(e.target.value);
     const currentValue = e.target.value;
     if (isIdContainsSpecialCharacter(currentValue)) {
-      setUserIdMessage("아이디는 특수문자가 포함될 수 없습니다.");
+      setUserIdMessage("아이디는 공백을 포함한 특수문자가 포함될 수 없습니다.");
       setIsUserId(false);
       return;
     }
@@ -312,7 +312,7 @@ const Signup = () => {
     }
   }
 
-  const onBlurUserId = async (e) => {
+  const onBlurUserId = async () => {
     const currentValue = inputUserId;
     if (isBlank(currentValue)) {
       setUserIdMessage("아이디는 필수 입력 정보입니다.");
@@ -348,7 +348,7 @@ const Signup = () => {
       setIsEmail(false);
     }
   };
-  const onBlurEmail = (e) => {
+  const onBlurEmail = () => {
     const currentValue = inputEmail;
     if (isBlank(currentValue)) {
       setEmailMessage("이메일 인증이 필요합니다.");
@@ -435,9 +435,8 @@ const Signup = () => {
       setIsPw(false);
     }
   };
-  const onBlurPw = (e) => {
-    setInputPw(e.target.value);
-    const currentValue = e.target.value;
+  const onBlurPw = () => {
+    const currentValue = inputPw;
     if (isBlank(currentValue)) {
       setPwMessage("비밀번호는 필수 입력 정보입니다.");
       setIsPw(false);
@@ -482,9 +481,8 @@ const Signup = () => {
       setIsConPw(false);
     }
   };
-  const onBlurConPw = (e) => {
-    setInputConPw(e.target.value);
-    const currentValue = e.target.value;
+  const onBlurConPw = () => {
+    const currentValue = inputConPw;
     if (isBlank(inputPw)) {
       setConPwMessage("비밀번호 입력이 필요합니다.");
       setIsConPw(false);
@@ -523,9 +521,8 @@ const Signup = () => {
       setIsName(false);
     }
   };
-  const onBlurName = async (e) => {
-    setInputName(e.target.value);
-    const currentValue = e.target.value;
+  const onBlurName = async () => {
+    const currentValue = inputName;
     if (isBlank(currentValue)) {
       setNameMessage("닉네임은 필수 입력 정보입니다.");
       setIsName(false);
@@ -550,9 +547,13 @@ const Signup = () => {
       setIsName(false);
     }
   };
-  const onClickSignUp = async () => {
-    console.log(inputUserId);
-    console.log(inputUserId.trim().replace(/\s+/g, ""));
+  const onClickSignUp = async (e) => {
+    e.preventDefault();
+    if (isSubmitting) {
+      return;
+    }
+    setIsLoadingSignUp(true);
+    setIsSubmitting(true);
     try {
       const memberReg = await AxiosApi.join(
         inputUserId.trim().replace(/\s+/g, ""),
@@ -570,6 +571,9 @@ const Signup = () => {
       }
     } catch (e) {
       alert("서버가 응답하지 않습니다.");
+    } finally {
+      setIsLoadingSignUp(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -583,11 +587,6 @@ const Signup = () => {
     setIsVisibleConPwd(!isVisibleConPwd);
   };
 
-  useEffect(() => {
-    if (isLoading) {
-      console.log("로딩 상태가 변경됨: ", isLoading);
-    }
-  }, [isLoading]);
   return (
     <Wrap>
       <TopBarContainer>
@@ -613,12 +612,7 @@ const Signup = () => {
               onBlur={onBlurUserId}
               isUserId={isUserId}
             ></InputId>
-            {/* {!isUserId && (
-              <ValidIdMessage isUserId={isUserId}>
-                {userIdMessage}
-              </ValidIdMessage>
-            )} */}
-            <ValidIdMessage isUserId={isUserId}>{userIdMessage}</ValidIdMessage>
+            <ValidIdMessage>{userIdMessage}</ValidIdMessage>
           </InputEach>
           <InputEach>
             <InputIndex>비밀번호</InputIndex>
@@ -628,7 +622,10 @@ const Signup = () => {
                 placeholder="영문자, 숫자, 특수문자 포함 8~20자"
                 value={inputPw}
                 onChange={onChangePw}
-                onBlur={onBlurPw}
+                onBlur={() => {
+                  onBlurPw();
+                  onBlurConPw();
+                }}
                 isPw={isPw}
               ></InputPw>
               <InputPwDivToggle
@@ -636,8 +633,7 @@ const Signup = () => {
                 onClick={() => toggleVisiblePwd()}
               />
             </InputPwDiv>
-            {/* {!isPw && <ValidPwMessage isPw={isPw}>{pwMessage}</ValidPwMessage>} */}
-            <ValidPwMessage isPw={isPw}>{pwMessage}</ValidPwMessage>
+            <ValidPwMessage>{pwMessage}</ValidPwMessage>
           </InputEach>
           <InputEach>
             <InputPwDiv>
@@ -646,7 +642,10 @@ const Signup = () => {
                 placeholder="비밀번호 확인"
                 value={inputConPw}
                 onChange={onChangeConPw}
-                onBlur={onBlurConPw}
+                onBlur={() => {
+                  onBlurConPw();
+                  onBlurPw();
+                }}
                 isConPw={isConPw}
               ></InputPwConfirm>
               <InputPwDivToggle
@@ -654,10 +653,7 @@ const Signup = () => {
                 onClick={() => toggleVisibleConPwd()}
               />
             </InputPwDiv>
-            {/* {!isConPw && (
-              <ValidPwMessage isConPw={isConPw}>{conPwMessage}</ValidPwMessage>
-            )} */}
-            <ValidPwMessage isConPw={isConPw}>{conPwMessage}</ValidPwMessage>
+            <ValidPwMessage>{conPwMessage}</ValidPwMessage>
           </InputEach>
           <InputEach>
             <InputIndex>이메일</InputIndex>
@@ -721,13 +717,6 @@ const Signup = () => {
                 )
               )}
             </InputEmailDiv>
-            {/* {!isEmail ? (
-              <ValidEmailMessage>{emailMessage}</ValidEmailMessage>
-            ) : (
-              !isSecurityAvailable && (
-                <ValidEmailMessage>{securityMessage}</ValidEmailMessage>
-              )
-            )} */}
             <ValidEmailMessage>{emailMessage}</ValidEmailMessage>
           </InputEach>
           {isSecurityAvailable && (
@@ -747,9 +736,7 @@ const Signup = () => {
                   이메일 인증
                 </InputSecurityButton>
               </InputSecurityDiv>
-              {!isSecurity && (
-                <ValidSecurityMessage>{securityMessage}</ValidSecurityMessage>
-              )}
+              <ValidSecurityMessage>{securityMessage}</ValidSecurityMessage>
             </InputEach>
           )}
           <InputEach>
@@ -763,9 +750,7 @@ const Signup = () => {
               onBlur={onBlurName}
               isName={isName}
             ></InputNickName>
-            {!isName && (
-              <ValidNameMessage isName={isName}>{nameMessage}</ValidNameMessage>
-            )}
+            <ValidNameMessage>{nameMessage}</ValidNameMessage>
           </InputEach>
           <InputExtraContainer>
             <InputExtraAll>
@@ -777,7 +762,6 @@ const Signup = () => {
               ></InputExtraItemCheckBox>
               <InputExtraItemP>전체동의</InputExtraItemP>
             </InputExtraAll>
-            {/* <hr style={{marginTop: "10px", marginBottom: "10px"}} /> */}
             <InputExtra>
               <InputExtraItemCheckBox
                 type="checkbox"
@@ -843,9 +827,32 @@ const Signup = () => {
             isConPw &&
             isName &&
             isCheckedTerms &&
-            isCheckedUses ? (
+            isCheckedUses &&
+            !isLoadingSignUp ? (
               <SignUp enabled onClick={onClickSignUp}>
                 회원가입하기
+              </SignUp>
+            ) : isUserId &&
+              isEmail &&
+              isSecurity &&
+              isPw &&
+              isConPw &&
+              isName &&
+              isCheckedTerms &&
+              isCheckedUses &&
+              isLoadingSignUp ? (
+              <SignUp disabled>
+                <RotatingLines
+                  visible={true}
+                  height="30"
+                  width="30"
+                  strokeColor="black"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  ariaLabel="rotating-lines-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
               </SignUp>
             ) : (
               <SignUp disabled>회원가입하기</SignUp>
