@@ -10,7 +10,9 @@ const AxiosApi = {
       userId: userid,
       password: pwd,
     };
-    return await axios.post(SPRING_DOMAIN + "/auth/login", login);
+    return await axios.post(SPRING_DOMAIN + "/auth/login", login, {
+      withCredentials: true,
+    });
   },
   join: async (userid, email, pwd, name, otp) => {
     // requestBody
@@ -202,9 +204,9 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        { title, language, content }, // POST 요청 본문
+        {title, language, content}, // POST 요청 본문
         {
-          params: { boardType }, // 쿼리 파라미터
+          params: {boardType}, // 쿼리 파라미터
         }
       );
       return response.data;
@@ -218,9 +220,9 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        { title, course, content }, // POST 요청 본문
+        {title, course, content}, // POST 요청 본문
         {
-          params: { boardType }, // 쿼리 파라미터
+          params: {boardType}, // 쿼리 파라미터
         }
       );
       return response.data;
@@ -234,9 +236,9 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        { title, study, content }, // POST 요청 본문
+        {title, study, content}, // POST 요청 본문
         {
-          params: { boardType }, // 쿼리 파라미터
+          params: {boardType}, // 쿼리 파라미터
         }
       );
       return response.data;
@@ -250,16 +252,16 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        { title, team, content }, // POST 요청 본문
+        {title, team, content}, // POST 요청 본문
         {
-          params: { boardType }, // 쿼리 파라미터
+          params: {boardType}, // 쿼리 파라미터
         }
       );
       return response.data;
     } catch (error) {
       console.error("게시글 작성 중 오류 발생 : ", error);
-      console.log("Request Params:", { boardType });
-      console.log("Request Body:", { title, team, content });
+      console.log("Request Params:", {boardType});
+      console.log("Request Body:", {title, team, content});
       throw error;
     }
   },
@@ -268,8 +270,7 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/add/comment", // URL
-        { content }, // POST 요청 본문
-
+        {content} // POST 요청 본문
       );
       return response.data;
     } catch (error) {
@@ -277,8 +278,6 @@ const AxiosApi = {
       throw error;
     }
   },
-
 };
-
 
 export default AxiosApi;

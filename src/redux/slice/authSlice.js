@@ -10,6 +10,7 @@ export const authSlice = createSlice({
     accesstokenexpiresin: "",
     refreshtoken: "",
     refreshtokenexpiresin: "",
+    authorities: "",
     error: "",
   },
   reducers: {
@@ -28,8 +29,9 @@ export const authSlice = createSlice({
       state.accesstoken = "";
       state.accesstokenexpiresin = "";
       state.refreshtoken = "";
-      state.error = "";
       state.refreshtokenexpiresin = "";
+      state.authorities = "";
+      state.error = "";
     },
     clearAccessToken: (state) => {
       state.accesstoken = "";
