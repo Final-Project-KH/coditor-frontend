@@ -15,6 +15,7 @@ import {
   ArrowSlash,
   RightArrow,
 } from "../../styles/main/Carousel_M";
+import { useSwipeable } from "react-swipeable";
 
 const Carousel_M = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -75,10 +76,18 @@ const Carousel_M = () => {
     return () => clearTimeout(timer);
   }, [currentIndex]);
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: handleNext, // 왼쪽으로 스와이프하면 다음 슬라이드
+    onSwipedRight: handlePrev, // 오른쪽으로 스와이프하면 이전 슬라이드
+    preventDefaultTouchmoveEvent: true,
+    trackTouch: true,
+    trackMouse: false,
+  });
+
   const currentSlide = slides[currentIndex];
 
   return (
-    <CarouselContainer>
+    <CarouselContainer {...swipeHandlers}>
       <CarouselOuter
         style={{
           backgroundColor: currentSlide.backgroundColor,

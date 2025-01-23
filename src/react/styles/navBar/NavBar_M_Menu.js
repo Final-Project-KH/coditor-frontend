@@ -30,6 +30,12 @@ export const MenuLeftContainer = styled.div.attrs({
   flex-direction: column;
 `;
 
+export const MenuLeftItems = styled.div.attrs({
+  id: "menuleftitems",
+})`
+  width: 100%;
+  height: 100%;
+`;
 export const MenuLeftActive = styled.div.attrs({
   id: "menuleftactive",
 })`
@@ -118,7 +124,7 @@ export const MenuRightColumn = styled.div.attrs({
   flex-direction: column;
   justify-content: flex-start;
   align-items: left;
-  gap: 15px;
+  gap: 10px;
 `;
 export const MenuRightColumnTitle = styled.div.attrs({
   id: "menurightcolumntitle",
@@ -128,12 +134,12 @@ export const MenuRightColumnTitle = styled.div.attrs({
   font-family: "semibold", sans-serif;
   font-size: 20px;
   color: black;
+  margin-bottom: 5px;
 `;
 
 export const MenuRightColumnContents = styled.div.attrs({
   id: "menurightcolumncontents",
 })`
-  width: 100%;
   padding-left: 20px;
   font-family: "medium", sans-serif;
   font-size: 16px;
@@ -147,14 +153,12 @@ export const MenuRightLink = styled.div.attrs({
   text-decoration: none;
   color: inherit;
   padding: 3px 10px;
-  background-color: transparent;
+  border-radius: 30px;
   font-family: "medium", sans-serif;
   font-size: 16px;
   cursor: pointer;
   &:hover {
-    display: inline-block;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    border-radius: 30px;
   }
 `;

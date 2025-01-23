@@ -50,7 +50,7 @@ export const CarouselImage = styled.div.attrs({
 export const CarouselTextBox = styled.div.attrs({
   id: "carouseltextbox",
 })`
-  margin-left: 50px;
+  margin-left: 20px;
   margin-top: 10px;
   width: 100%;
   display: flex;
