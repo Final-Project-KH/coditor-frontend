@@ -264,17 +264,95 @@ const AxiosApi = {
     }
   },
 
-  writeReply: async (content) => {
+  getReplies: async (
+    page = 1,
+    size = 10,
+    sortBy = "createdAt",
+    order = "DESC"
+  ) => {
+    try {
+      const response = await axios.get(SPRING_DOMAIN + "/community/list/comment", {
+        params: {
+          page,
+          size,
+          sortBy,
+          order,
+        },
+      });
+      return response.data; // 응답 데이터 반환
+    } catch (error) {
+      console.error(
+        "댓글 불러오기 오류 : ",
+        error.response?.data || error.message
+      );
+      throw error; // 에러를 다시 던져서 호출하는 쪽에서 처리하도록 함
+    }
+  },
+
+  writeReply: async (boardId, content) => {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/add/comment", // URL
-        { content }, // POST 요청 본문
-
+        { boardId, content }, // POST 요청 본문
       );
       return response.data;
     } catch (error) {
-      console.error("게시글 작성 중 오류 발생 : ", error);
+      console.error("댓글 작성 중 오류 발생 : ", error);
       throw error;
+    }
+  },
+
+  getActiveBoard: async (
+    boardType,
+    page = 1,
+    size = 10,
+    sortBy = "active",
+    order = "DESC"
+  ) => {
+    try {
+      const response = await axios.get(SPRING_DOMAIN + "/community/list/all", {
+        params: {
+          boardType,
+          page,
+          size,
+          sortBy,
+          order,
+        },
+      });
+      return response.data; // 응답 데이터 반환
+    } catch (error) {
+      console.error(
+        "게시판 불러오기 오류 : ",
+        error.response?.data || error.message
+      );
+      throw error; // 에러를 다시 던져서 호출하는 쪽에서 처리하도록 함
+    }
+  },
+
+  getInctiveBoard: async (
+    boardType,
+    page = 1,
+    size = 10,
+    sortBy = "inactive",
+    order = "DESC"
+  ) => {
+    try {
+      const response = await axios.get(SPRING_DOMAIN + "/community/list/all", {
+        params: {
+          boardType,
+          page,
+          size,
+          sortBy,
+          order,
+        },
+      });
+      return response.data; // 응답 데이터 반환
+    } catch (error) {
+      console.error(
+        "게시판 불러오기 오류 : ",
+        error.response?.data || error.message
+      );
+      throw error; // 에러를 다시 던져서 호출하는 쪽에서 처리하도록 함
     }
   },
 

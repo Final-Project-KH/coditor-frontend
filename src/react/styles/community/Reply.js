@@ -1,20 +1,5 @@
 import styled from "styled-components";
 
-export const EditorArea = styled.div.attrs({
-  id: "editorarea",
-})`
-  width: 100%;
-  height: calc(100vh - 350px);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  position: relative;
-  border: 1px solid #f1f1f1;
-  border-radius: 10px;
-  flex-wrap: wrap;
-  overflow: auto;
-`;
-
 export const TipTapBox = styled.div.attrs({
   id: "tiptapbox",
 })`
@@ -22,10 +7,27 @@ export const TipTapBox = styled.div.attrs({
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  padding-bottom: 10px;
 `;
+
+
+export const EditorArea = styled.div.attrs({
+  id: "editorarea",
+})`
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  overflow: auto;
+`;
+
 
 export const ToolBarContainer = styled.div.attrs({
   id: "toolbarcontainer",
@@ -35,7 +37,7 @@ export const ToolBarContainer = styled.div.attrs({
   width: 100%;
   height: 50px;
   max-width: 1280px;
-  border-bottom: 1px solid #f1f1f1;
+
 `;
 
 export const WriteButtonsArea = styled.div.attrs({
@@ -50,8 +52,8 @@ export const WriteButtonsArea = styled.div.attrs({
 export const WriteCancelButton = styled.div.attrs({
   id: "writecancelbutton",
 })`
-  width: 120px;
-  height: 50px;
+  width: 60px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,8 +68,8 @@ export const WriteCancelButton = styled.div.attrs({
 export const WriteSubmitButton = styled.div.attrs({
   id: "writesutmitbutton",
 })`
-  width: 120px;
-  height: 50px;
+  width: 60px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;

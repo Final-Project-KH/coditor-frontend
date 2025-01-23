@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
@@ -7,12 +6,10 @@ import { TextStyle } from "@tiptap/extension-text-style";
 import { Color } from "@tiptap/extension-color";
 import Underline from "@tiptap/extension-underline";
 import Code from "@tiptap/extension-code";
-import CodeBlock from "@tiptap/extension-code-block";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 import ListItem from "@tiptap/extension-list-item";
 import { Image } from "@tiptap/extension-image";
-import "./../../../../styles/community/Reply_WriteEditor.css";
 import {
   EditorArea,
   TipTapBox,
@@ -21,7 +18,7 @@ import {
   WriteCancelButton,
   WriteSubmitButton,
 } from "../../../../styles/community/Reply";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import AxiosApi from "../../../../../api/AxiosApi";
 
 const lowlight = createLowlight(all);
@@ -254,28 +251,13 @@ const ToolBar = ({ editor }) => {
   );
 };
 
-const extensions = [
-  Color.configure({ types: [TextStyle.name, ListItem.name] }),
-  TextStyle.configure({ types: [ListItem.name] }),
-  StarterKit.configure({
-    bulletList: {
-      keepMarks: true,
-      keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
-    },
-    orderedList: {
-      keepMarks: true,
-      keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
-    },
-  }),
-  Code,
-  CodeBlock,
-  Image,
-];
-
-const Post_Reply_WriteEditor = ({ handleCloseEditor }) => {
+const Post_ReplyEditor = ({ handleCloseEditor }) => {
+  const { boardId } = useParams();
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        codeBlock: false, // 기본 코드 블록 비활성화
+      }),
       TextStyle,
       Color.configure({ types: [TextStyle.name] }), // TextStyle 확장과 연동
       Underline,
@@ -285,11 +267,7 @@ const Post_Reply_WriteEditor = ({ handleCloseEditor }) => {
       }),
       Image,
       Placeholder.configure({
-        placeholder: `- 학습 관련 질문을 남겨주세요. 상세히 작성하면 더 좋아요!
-- 마크다운, 단축키를 이용해서 편리하게 글을 작성할 수 있어요.
-- 먼저 유사한 질문이 있었는지 검색해보세요.
-- 서로 예의를 지키며 존중하는 문화를 만들어가요.
-- 서비스 운영 관련 문의는 홈페이지 우측 CS 메뉴를 이용해주세요.`,
+        placeholder: `답변을 작성해보세요.`,
       }),
     ],
     content: "",
@@ -297,13 +275,24 @@ const Post_Reply_WriteEditor = ({ handleCloseEditor }) => {
 
   // submit button
   const handleSubmit = async () => {
+    const htmlContent = editor.getHTML().trim();
+
+    // HTML 태그를 제거한 텍스트만 확인
+    const textContent = htmlContent.replace(/<[^>]+>/g, "").trim(); // HTML 태그 제거 후 남은 텍스트를 확인
+
+    // 텍스트가 비어있거나 공백만 있는 경우 유효하지 않음
+    if (!textContent) {
+      alert("내용을 입력하세요!");
+      return;
+    }
     try {
-      const response = await AxiosApi.writeReply(editor.getHTML());
+      const response = await AxiosApi.writeReply(boardId, editor.getHTML());
       alert("내용이 성공적으로 제출되었습니다.");
       window.location.reload();
     } catch (error) {
       console.error("제출 실패:", error);
       alert("제출에 실패했습니다. 다시 시도해주세요.");
+      console.error(boardId);
     }
   };
 
@@ -315,10 +304,9 @@ const Post_Reply_WriteEditor = ({ handleCloseEditor }) => {
             <ToolBar editor={editor} />
           </ToolBarContainer>
           <EditorContent
-            className="tiptap-editor"
             style={{
               width: "100%",
-              height: "calc(100% - 50px)",
+              height: "100%",
               padding: "30px",
               overflowY: "auto", // 세로 스크롤 활성화
               overflowX: "hidden", // 가로 스크롤 비활성화
@@ -338,4 +326,4 @@ const Post_Reply_WriteEditor = ({ handleCloseEditor }) => {
   );
 };
 
-export default Post_Reply_WriteEditor;
+export default Post_ReplyEditor;
