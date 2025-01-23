@@ -32,12 +32,7 @@ import {
   InputExtraItem2,
   InputExtraItem3,
 } from "../../styles/login/login";
-import {
-  setLoginCondition,
-  setSaveUserId,
-  setUserId,
-  setAutoLogin,
-} from "../../../redux/slice/loginSlice";
+import {setLoginCondition} from "../../../redux/slice/loginSlice";
 
 const Login = () => {
   const [modalOpen, setModalOpen] = useState(false);

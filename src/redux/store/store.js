@@ -1,6 +1,7 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {persistStore, persistReducer} from "redux-persist";
-import storage from "redux-persist/lib/storage/session";
+import sessionStorage from "redux-persist/lib/storage/session";
+import localStorage from "redux-persist/lib/storage";
 import authReducer from "../slice/authSlice";
 import loginReducer from "../slice/loginSlice";
 // LocalStorage에 저장
@@ -18,11 +19,11 @@ const loggerMiddleware = (store) => (next) => (action) => {
 
 const persistAuthConfig = {
   key: "auth",
-  storage,
+  storage: sessionStorage,
 };
 const persistLoginConfig = {
   key: "login",
-  storage,
+  storage: localStorage,
 };
 
 const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);

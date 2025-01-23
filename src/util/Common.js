@@ -77,19 +77,19 @@ const Common = {
   },
 
   setAccessToken: (token) => {
-    store.dispatch(setLoginData({ accesstoken: token })); // Redux store에 토큰 저장
+    store.dispatch(setLoginData({accesstoken: token})); // Redux store에 토큰 저장
   }, // accesstoken 데이터는 (response.data.accessToken) -> response는 지정한 변수명
 
   setAccessTokenExpiresIn: (expirationtime) => {
-    store.dispatch(setLoginData({ accesstokenexpiresin: expirationtime }));
+    store.dispatch(setLoginData({accesstokenexpiresin: expirationtime}));
   }, // accesstoken expiretime 데이터는 getNewAccessTokenExpiresIn 함수를 거친 데이터
 
   setKeyNumber: (keynumber) => {
-    store.dispatch(setLoginData({ keynumber: keynumber }));
+    store.dispatch(setLoginData({keynumber: keynumber}));
   },
 
   setNickname: (nickname) => {
-    store.dispatch(setLoginData({ nickname: nickname }));
+    store.dispatch(setLoginData({nickname: nickname}));
   },
 
   setTokens: (accessToken, refreshToken) => {
@@ -103,11 +103,11 @@ const Common = {
   },
 
   setRefreshToken: (token) => {
-    store.dispatch(setLoginData({ refreshtoken: token })); // Redux store에 토큰 저장
+    store.dispatch(setLoginData({refreshtoken: token})); // Redux store에 토큰 저장
   }, // refreshtoken 데이터는 (response.data.refreshToken) -> response는 지정한 변수명
 
   setRefreshTokenExpiresIn: (expirationtime) => {
-    store.dispatch(setLoginData({ refreshtokenexpiresin: expirationtime }));
+    store.dispatch(setLoginData({refreshtokenexpiresin: expirationtime}));
   }, // refreshtoken expiretime 데이터는 getNewRefreshTokenExpiresIn 함수를 거친 데이터
 
   clearAccessToken: () => {
@@ -140,24 +140,46 @@ const Common = {
       return false;
     }
   },
+  // 쿠키 방식 이전
+  //   refreshAccessToken: async () => {
+  //     const refreshToken = Common.getRefreshToken();
+  //     if (!refreshToken) {
+  //       throw new Error(600);
+  //     }
+  //     const response = await axios.post(`${Common.SPRING_DOMAIN}/auth/reissue`, {
+  //       refreshToken,
+  //     });
+  //     const accessToken = response.data.accessToken;
+  //     const accessTokenExpirationTime = Common.getNewAccessTokenExpiresIn(
+  //       response.data.accessToken
+  //     );
 
+  //     Common.setAccessToken(accessToken);
+  //     Common.setAccessTokenExpiresIn(accessTokenExpirationTime);
+
+  //     return accessToken;
+  //   },
+  // };
   refreshAccessToken: async () => {
-    const refreshToken = Common.getRefreshToken();
-    if (!refreshToken) {
+    try {
+      const response = await axios.post(
+        `${Common.SPRING_DOMAIN}/auth/reissue`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      const accessToken = response.data.accessToken;
+      const accessTokenExpirationTime = Common.getNewAccessTokenExpiresIn(
+        response.data.accessToken
+      );
+      Common.setAccessToken(accessToken);
+      Common.setAccessTokenExpiresIn(accessTokenExpirationTime);
+      return accessToken;
+    } catch (error) {
+      console.error("Failed to refresh access token:", error);
       throw new Error(600);
     }
-    const response = await axios.post(`${Common.SPRING_DOMAIN}/auth/reissue`, {
-      refreshToken,
-    });
-    const accessToken = response.data.accessToken;
-    const accessTokenExpirationTime = Common.getNewAccessTokenExpiresIn(
-      response.data.accessToken
-    );
-
-    Common.setAccessToken(accessToken);
-    Common.setAccessTokenExpiresIn(accessTokenExpirationTime);
-
-    return accessToken;
   },
 };
 
