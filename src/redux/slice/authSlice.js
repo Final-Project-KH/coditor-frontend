@@ -1,16 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 // 슬라이스 생성
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    keynumber: null,
-    nickname: null,
-    accesstoken: null,
-    accesstokenexpiresin: null,
-    refreshtoken: null,
-    refreshtokenexpiresin: null,
-    error: null,
+    keynumber: "",
+    nickname: "",
+    accesstoken: "",
+    accesstokenexpiresin: "",
+    refreshtoken: "",
+    refreshtokenexpiresin: "",
+    error: "",
   },
   reducers: {
     setLoginData: (state, action) => {
@@ -22,22 +22,22 @@ export const authSlice = createSlice({
     setError: (state, action) => {
       state.error = action.payload;
     },
-    logout: (state) => {
-      state.keynumber = null;
-      state.nickname = null;
-      state.accesstoken = null;
-      state.accesstokenexpiresin = null;
-      state.refreshtoken = null;
-      state.error = null;
-      state.refreshtokenexpiresin = null;
+    logoutAuth: (state) => {
+      state.keynumber = "";
+      state.nickname = "";
+      state.accesstoken = "";
+      state.accesstokenexpiresin = "";
+      state.refreshtoken = "";
+      state.error = "";
+      state.refreshtokenexpiresin = "";
     },
     clearAccessToken: (state) => {
-      state.accesstoken = null;
-      state.accesstokenexpiresin = null;
+      state.accesstoken = "";
+      state.accesstokenexpiresin = "";
     },
     clearRefreshToken: (state) => {
-      state.refreshtoken = null;
-      state.refreshtokenexpiresin = null;
+      state.refreshtoken = "";
+      state.refreshtokenexpiresin = "";
     },
   },
 });
@@ -45,7 +45,7 @@ export const authSlice = createSlice({
 export const {
   setLoginData,
   setError,
-  logout,
+  logoutAuth,
   clearAccessToken,
   clearRefreshToken,
 } = authSlice.actions;
