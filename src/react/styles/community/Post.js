@@ -303,6 +303,7 @@ export const MainPostContentsText = styled.div.attrs({
   color: black;
   margin-bottom: 50px;
   line-height: 30px;
+  padding-left: 10px;
 `;
 export const MainPostTagsBox = styled.div.attrs({
   id: "mainposttagsbox",
@@ -352,7 +353,6 @@ export const SuggestBox = styled.div.attrs({
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 15px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   font-family: "medium", sans-serif;
@@ -360,16 +360,21 @@ export const SuggestBox = styled.div.attrs({
   color: rgba(0, 0, 0, 0.5);
   text-align: left;
   transition: all 0.3s ease;
-  cursor: pointer;
-  ${({ expanded }) => expanded && `
-    max-height: 300px;
+  /* cursor: pointer; */
+  ${({ expanded }) =>
+    expanded &&
+    `
+    max-height: 400px;
     flex-direction: column;
     padding-top: 10px;
   `}
-    /* 확장 후 내부 텍스트 숨기기 */
-    ${({ expanded }) => expanded && `
+  /* 확장 후 내부 텍스트 숨기기 */
+    ${({ expanded }) =>
+    expanded &&
+    `
     > span {
       display: none;
+      transition: all 0.3s ease;
     }
   `}
 `;
@@ -378,8 +383,8 @@ export const EditorBox = styled.div.attrs({
   id: "editorbox",
 })`
   width: 100%;
-  display: ${({ expanded }) => (expanded ? 'block' : 'none')};
-  margin-top: 10px;
+  transition: all 0.3s ease;
+  display: ${({ expanded }) => (expanded ? "block" : "none")};
 `;
 
 export const ReplyList = styled.div.attrs({
@@ -400,7 +405,7 @@ export const ReplyEach = styled.div.attrs({
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
+  gap: 0px;
   &::after {
     content: "";
     width: 100%;

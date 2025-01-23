@@ -14,7 +14,7 @@ import {
   PaginationNumberBox,
 } from "../../../../styles/community/Pagination";
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+const Board_Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
   return (
     <PaginationContainer>
@@ -87,4 +87,4 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   );
 };
 
-export default Pagination;
+export default Board_Pagination;

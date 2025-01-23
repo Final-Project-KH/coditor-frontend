@@ -12,7 +12,7 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 import ListItem from "@tiptap/extension-list-item";
 import { Image } from "@tiptap/extension-image";
-import "./../../../../styles/community/Post_WriteEditor.css";
+import "./../../../../styles/community/PostEditor.css";
 import {
   EditorArea,
   TipTapBox,

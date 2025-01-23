@@ -17,22 +17,26 @@ import TopWriters from "./components/common/Side_TopWriters";
 import WeeklyBest from "./components/common/Side_WeeklyBest";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BoardContainer } from "../../styles/community/Board";
-import Board_Team_TopSort from "./components/team/Board_Team_TopSort";
-import Board_Team_MiddleSort from "./components/team/Board_Team_MiddleSort";
 import Board_Team_Search from "./components/team/Board_Team_Search";
 import Board_PostList from "./components/common/Board_PostList";
+import { useState } from "react";
+import Board_TopSort from "./components/common/Board_TopSort";
+import Board_Order from "./components/common/Board_Order";
 const Community_Team = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
   const queryParams = new URLSearchParams(location.search);
 
-  // params for pagination
+  // Pagination and sorting params
+  const [page, setPage] = useState(queryParams.get("page") || 1);
+  const [size, setSize] = useState(queryParams.get("size") || 10);
+  const [sortBy, setSortBy] = useState(
+    queryParams.get("sortBy") || "createdAt"
+  );
+  const [order, setOrder] = useState(queryParams.get("order") || "desc");
+
   const boardType = "team";
-  const page = queryParams.get("page");
-  const size = queryParams.get("size");
-  const sortBy = queryParams.get("sortBy");
-  const order = queryParams.get("order");
 
   // TopBox firstpath
   const handleCommunity = () => {
@@ -51,6 +55,11 @@ const Community_Team = () => {
         secondpath: secondpath,
       },
     });
+  };
+
+  // Update sorting parameters
+  const handleSortChange = (newSortBy) => {
+    setSortBy(newSortBy);
   };
 
   return (
@@ -75,9 +84,12 @@ const Community_Team = () => {
           </LeftContainer>
           <CenterContainer>
             <BoardContainer>
-              <Board_Team_TopSort />
+              <Board_TopSort
+                onSortChange={handleSortChange}
+                boardType={boardType}
+              />
               <Board_Team_Search />
-              <Board_Team_MiddleSort />
+              <Board_Order boardType={boardType} />
               <Board_PostList
                 boardType={boardType}
                 page={page}
@@ -88,7 +100,7 @@ const Community_Team = () => {
             </BoardContainer>
           </CenterContainer>
           <RightContainer>
-          <TopWriters />
+            <TopWriters />
           </RightContainer>
         </Container>
         <ScrollToTopButton />
