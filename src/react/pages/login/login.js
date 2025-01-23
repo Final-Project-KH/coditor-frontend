@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import AxiosApi from "../../../api/AxiosApi";
-import { setLoginData, setError } from "../../../redux/slice/authSlice";
+import {setLoginData, setError} from "../../../redux/slice/authSlice";
 import JwtDecoding from "../../../api/JwtDecode";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Common from "../../../util/Common";
-import { GoogleOAuthProvider } from "@react-oauth/google"; // GoogleOAuthProvider 추가
+import {GoogleOAuthProvider} from "@react-oauth/google"; // GoogleOAuthProvider 추가
 import {
   Wrap,
   TopBarContainer,
@@ -32,6 +32,12 @@ import {
   InputExtraItem2,
   InputExtraItem3,
 } from "../../styles/login/login";
+import {
+  setLoginCondition,
+  setSaveUserId,
+  setUserId,
+  setAutoLogin,
+} from "../../../redux/slice/loginSlice";
 
 const Login = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -50,12 +56,28 @@ const Login = () => {
   const [inputPw, setInputPw] = useState("");
   const [isId, setIsId] = useState("");
   const [isPw, setIsPw] = useState("");
-  const [isCheckedAutoId, setIsCheckedAutoId] = useState("");
-  const [isCheckedAutoLogin, setIsCheckedAutoLogin] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false); // 로그인 중 상태 관리
   const [rsp, setRsp] = useState(null); // rsp 상태 추가
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [isCheckedAutoId, setIsCheckedAutoId] = useState(false);
+  const [isCheckedAutoLogin, setIsCheckedAutoLogin] = useState(false);
+
+  const issaveuserid = useSelector((state) => state.login.issaveuserid);
+  const userid = useSelector((state) => state.login.userid);
+
+  useEffect(() => {
+    if (issaveuserid) {
+      setIsCheckedAutoId(issaveuserid);
+      setInputUserId(userid ?? ""); // NULL-safe ??
+      setIsId(true);
+    } else {
+      setIsCheckedAutoId(false);
+      setInputUserId("");
+      setIsId(false);
+    }
+  }, []);
 
   const handleInputChange = (e, setState, setValidState) => {
     // console.log(`handleInputChange 호출: ${e.target.value}`);
@@ -64,12 +86,10 @@ const Login = () => {
   };
 
   const handleCheckAutoIdBox = (e) => {
-    // console.log(`CheckAutoIdbox 상태 변경: ${e.target.checked}`);
     setIsCheckedAutoId(e.target.checked);
   };
 
   const handleCheckAutoLoginBox = (e) => {
-    // console.log(`CheckAutoLoginbox 상태 변경: ${e.target.checked}`);
     setIsCheckedAutoLogin(e.target.checked);
   };
 
@@ -110,6 +130,13 @@ const Login = () => {
             accesstokenexpiresin: accesstokenexpiresin,
             refreshtoken: response.data.refreshToken,
             refreshtokenexpiresin: refreshtokenexpiresin,
+          })
+        );
+        dispatch(
+          setLoginCondition({
+            issaveuserid: isCheckedAutoId,
+            userid: inputUserId,
+            autologin: isCheckedAutoLogin,
           })
         );
 

@@ -1,7 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { persistStore, persistReducer } from "redux-persist";
+import {configureStore} from "@reduxjs/toolkit";
+import {persistStore, persistReducer} from "redux-persist";
 import storage from "redux-persist/lib/storage/session";
 import authReducer from "../slice/authSlice";
+import loginReducer from "../slice/loginSlice";
 // LocalStorage에 저장
 
 // "redux-persist/lib/storage" -> 브라우저 껏다 켜도 state 계속 저장 및 유지
@@ -15,19 +16,25 @@ const loggerMiddleware = (store) => (next) => (action) => {
   return result;
 };
 
-const persistConfig = {
-  key: "root",
+const persistAuthConfig = {
+  key: "auth",
+  storage,
+};
+const persistLoginConfig = {
+  key: "login",
   storage,
 };
 
-const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
+const persistedLoginReducer = persistReducer(persistLoginConfig, loginReducer);
 
 const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    login: persistedLoginReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(loggerMiddleware),
+    getDefaultMiddleware({serializableCheck: false}).concat(loggerMiddleware),
   devTools: process.env.NODE_ENV !== "production",
 });
 
