@@ -10,11 +10,9 @@ import {
   PathLink,
 } from "../../styles/community/Community";
 import ScrollToTopButton from "../../styles/ScrollToTopButton";
-import Board_Main from "./components/Board_Main";
-import BoardList from "./components/Side_BoardList";
-import PopularTags from "./components/Side_PopularTags";
-import TopWriters from "./components/Side_TopWriters";
-import WeeklyBest from "./components/Side_WeeklyBest";
+import Board_Community_Main from "./components/common/Board_Community_Main";
+import BoardList from "./components/common/Side_BoardList";
+import TopWriters from "./components/common/Side_TopWriters";
 import { useLocation, useNavigate } from "react-router-dom";
 const Community_Main = () => {
   const navigate = useNavigate();
@@ -42,14 +40,12 @@ const Community_Main = () => {
         <Container>
           <LeftContainer>
             <BoardList firstpath={firstpath} />
-            <TopWriters />
           </LeftContainer>
           <CenterContainer>
-            <Board_Main />
+            <Board_Community_Main />
           </CenterContainer>
           <RightContainer>
-            <PopularTags />
-            <WeeklyBest />
+          <TopWriters />
           </RightContainer>
         </Container>
         <ScrollToTopButton />

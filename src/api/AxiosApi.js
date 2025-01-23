@@ -129,16 +129,29 @@ const AxiosApi = {
     }
   },
 
-  getBoard: async (boardType, page = 1, size = 10) => {
+  getBoard: async (
+    boardType,
+    page = 1,
+    size = 10,
+    sortBy = "createdAt",
+    order = "DESC"
+  ) => {
     try {
       const response = await axios.get(SPRING_DOMAIN + "/community/list/all", {
         params: {
-          boardType, // 동적으로 받은 boardType 사용
+          boardType,
+          page,
+          size,
+          sortBy,
+          order,
         },
       });
       return response.data; // 응답 데이터 반환
     } catch (error) {
-      console.error("게시판 불러오기 오류 : ", error);
+      console.error(
+        "게시판 불러오기 오류 : ",
+        error.response?.data || error.message
+      );
       throw error; // 에러를 다시 던져서 호출하는 쪽에서 처리하도록 함
     }
   },
@@ -147,56 +160,24 @@ const AxiosApi = {
     try {
       const response = await axios.get(SPRING_DOMAIN + "/community/list/one", {
         params: {
-          boardId,
+          id: boardId,
           boardType, // 동적으로 받은 boardType 사용
         },
       });
       return response.data; // 응답 데이터 반환
     } catch (error) {
       console.error("게시글 불러오기 오류 : ", error);
-      console.log("axios: ", boardId, boardType);
       throw error; // 에러를 다시 던져서 호출하는 쪽에서 처리하도록 함
-
     }
   },
 
-//   writePost: async (boardType, title, language, content) => {
-//     try {
-//       const response = await axios.post(
-//         SPRING_DOMAIN + "/community/new", // URL
-//         { title, language, content }, // POST 요청 본문
-//         {
-//           params: { boardType }, // 쿼리 파라미터
-//           headers: {
-//             Authorization:
-//               "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNiIsIm5pY2tuYW1lIjoidGVzdHRlc3QiLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUiJ9XSwiaWF0IjoxNzM3NDU3NzI3LCJleHAiOjE3Mzc0NjEzMjd9.ZiiinPO2coqWdbCvyUkgHnDuKdYm43xoa3og-qaiZy8",
-//           },
-//         }
-//       );
-//       return response.data;
-//     } catch (error) {
-//       console.error("게시글 작성 중 오류 발생 : ", error);
-//       console.log("Request Params:", { boardType });
-// console.log("Request Body:", { title, language, content });
-//       throw error;
-//     }
-//   },
-
   writeCodingPost: async (boardType, title, language, content) => {
     try {
-      const response = await axios.post(
-        SPRING_DOMAIN + `/community/new/post?boardType=${boardType}`,
+      const response = await AxiosInstance.post(
+        SPRING_DOMAIN + "/community/new/post", // URL
+        { title, language, content }, // POST 요청 본문
         {
-
-          title,
-          language,
-          content,
-        },
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNiIsIm5pY2tuYW1lIjoidGVzdHRlc3QiLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUiJ9XSwiaWF0IjoxNzM3NDU3NzI3LCJleHAiOjE3Mzc0NjEzMjd9.ZiiinPO2coqWdbCvyUkgHnDuKdYm43xoa3og-qaiZy8",
-          },
+          params: { boardType }, // 쿼리 파라미터
         }
       );
       return response.data;
@@ -206,6 +187,69 @@ const AxiosApi = {
     }
   },
 
+  writeCoursePost: async (boardType, title, course, content) => {
+    try {
+      const response = await AxiosInstance.post(
+        SPRING_DOMAIN + "/community/new/post", // URL
+        { title, course, content }, // POST 요청 본문
+        {
+          params: { boardType }, // 쿼리 파라미터
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("게시글 작성 중 오류 발생 : ", error);
+      throw error;
+    }
+  },
+
+  writeStudyPost: async (boardType, title, study, content) => {
+    try {
+      const response = await AxiosInstance.post(
+        SPRING_DOMAIN + "/community/new/post", // URL
+        { title, study, content }, // POST 요청 본문
+        {
+          params: { boardType }, // 쿼리 파라미터
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("게시글 작성 중 오류 발생 : ", error);
+      throw error;
+    }
+  },
+
+  writeTeamPost: async (boardType, title, team, content) => {
+    try {
+      const response = await AxiosInstance.post(
+        SPRING_DOMAIN + "/community/new/post", // URL
+        { title, team, content }, // POST 요청 본문
+        {
+          params: { boardType }, // 쿼리 파라미터
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("게시글 작성 중 오류 발생 : ", error);
+      throw error;
+    }
+  },
+
+  writeReply: async (content) => {
+    try {
+      const response = await AxiosInstance.post(
+        SPRING_DOMAIN + "/community/add/comment", // URL
+        { content }, // POST 요청 본문
+
+      );
+      return response.data;
+    } catch (error) {
+      console.error("게시글 작성 중 오류 발생 : ", error);
+      throw error;
+    }
+  },
+
 };
+
 
 export default AxiosApi;

@@ -134,7 +134,7 @@ export const MainPostInformation = styled.div.attrs({
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 5px;
   align-items: center;
   margin-bottom: 20px;
 `;
@@ -348,7 +348,7 @@ export const SuggestBox = styled.div.attrs({
   id: "suggestbox",
 })`
   width: 100%;
-  height: 50px;
+  min-height: 50px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -359,6 +359,27 @@ export const SuggestBox = styled.div.attrs({
   font-size: 16px;
   color: rgba(0, 0, 0, 0.5);
   text-align: left;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  ${({ expanded }) => expanded && `
+    max-height: 300px;
+    flex-direction: column;
+    padding-top: 10px;
+  `}
+    /* 확장 후 내부 텍스트 숨기기 */
+    ${({ expanded }) => expanded && `
+    > span {
+      display: none;
+    }
+  `}
+`;
+
+export const EditorBox = styled.div.attrs({
+  id: "editorbox",
+})`
+  width: 100%;
+  display: ${({ expanded }) => (expanded ? 'block' : 'none')};
+  margin-top: 10px;
 `;
 
 export const ReplyList = styled.div.attrs({
@@ -658,8 +679,8 @@ export const MiddleDot = styled.div.attrs({
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: 1px;
+  margin-right: 1px;
 `;
 export const WriteWrap = styled.div.attrs({
   id: "writewrap",

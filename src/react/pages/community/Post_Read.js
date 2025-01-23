@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   Wrap,
   TopBoxArrow,
@@ -9,28 +9,22 @@ import {
   LeftContainer,
   RightContainer,
 } from "../../styles/community/Post";
-import {
-  Post_MainContents_01,
-  Post_MainContents_02,
-  Post_MainContents_03,
-  Post_MainContents_04,
-  Post_MainContents_05,
-} from "./components/post/Post_MainContents";
-import Post_RelatedPosts from "./components/post/Post_RelatedPosts";
-import Post_ReplyArea from "./components/post/Post_ReplyArea";
-import Post_UserProfile from "./components/post/Post_UserProfile";
+import Post_ReplyArea from "./components/common/Post_ReplyArea";
+import Post_UserProfile from "./components/common/Post_UserProfile";
 import { PathLink } from "../../styles/community/Community";
 import ScrollToTopButton from "../../styles/ScrollToTopButton";
-import { useEffect, useState } from "react";
-import AxiosApi from "../../../api/AxiosApi";
+import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
+import Post_MainContents from "./components/common/Post_MainContents";
 
 const Post_Read = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
+  const { boardType, boardId } = useParams();
 
   // TopBox firstpath
   const handleCommunity = () => {
+    console.log(boardType);
     navigate("/community", {
       state: {
         firstpath: firstpath,
@@ -40,7 +34,8 @@ const Post_Read = () => {
 
   // TopBox secondpath
   const handleCommunityCoding = () => {
-    navigate("/community/coding", {
+    console.log(boardType);
+    navigate(`/community/${boardType}`, {
       state: {
         firstpath: firstpath,
         secondpath: secondpath,
@@ -50,7 +45,8 @@ const Post_Read = () => {
 
   // TopBox thirdpath
   const handleRefresh = () => {
-    navigate("/community/coding/post1", {
+    console.log(boardType);
+    navigate(`/community/${boardType}/post/${boardId}`, {
       state: {
         firstpath: firstpath,
         secondpath: secondpath,
@@ -79,8 +75,8 @@ const Post_Read = () => {
         </TopBoxWide>
         <Container>
           <LeftContainer>
-            <Post_MainContents_01 />
-            <Post_ReplyArea />
+            <Post_MainContents boardType={boardType} />
+            <Post_ReplyArea boardType={boardType} />
           </LeftContainer>
           <RightContainer>
             <Post_UserProfile />
