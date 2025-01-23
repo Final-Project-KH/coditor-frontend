@@ -170,7 +170,7 @@ const CodingTestRoutes = [
 const CommunityRoutes = [
   {path: "/community", element: <Community_Main />},
   {path: "/community/coding", element: <Community_Coding />},
-  {path: "/community/coding/post/:boardId", element: <Post_Read />},
+  {path: "/community/:boardType/post/:boardId", element: <Post_Read />},
   {path: "/community/course", element: <Community_Course />},
   {path: "/community/study", element: <Community_Study />},
   {path: "/community/team", element: <Community_Team />},

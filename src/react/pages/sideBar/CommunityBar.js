@@ -48,15 +48,6 @@ const CommunityBar = ({ isOpen, closeMenu, path }) => {
     });
   };
 
-  const handleMentoringClick = () => {
-    navigate("/community/mentoring", {
-      state: {
-        firstpath: path,
-        secondpath: "코디터 멘토링 서비스",
-      },
-    });
-  };
-
   return (
     <Container isOpen={isOpen}>
       <MenuContainer>
@@ -64,29 +55,23 @@ const CommunityBar = ({ isOpen, closeMenu, path }) => {
           <MenuTitle>커뮤니티</MenuTitle>
 
           <MenuContents onClick={closeMenu}>
-            <MenuLink onClick={() => handleCodingClick()}>코딩 질문</MenuLink>
+            <MenuLink onClick={() => handleCodingClick()}>💻 코딩 질문</MenuLink>
           </MenuContents>
 
           <MenuContents onClick={closeMenu}>
-            <MenuLink onClick={() => handleCourseClick()}>진로 질문</MenuLink>
+            <MenuLink onClick={() => handleCourseClick()}>🎓 진로 질문</MenuLink>
           </MenuContents>
         </MenuColumn>
         <MenuColumn>
-          <MenuTitle style={{ minHeight: "26px" }} />
+          <MenuTitle style={{ minHeight: "37px" }} />
           <MenuContents onClick={closeMenu}>
-            <MenuLink onClick={() => handleStudyClick()}>스터디</MenuLink>
+            <MenuLink onClick={() => handleStudyClick()}>✏️ 스터디</MenuLink>
           </MenuContents>
           <MenuContents onClick={closeMenu}>
-            <MenuLink onClick={() => handleTeamClick()}>팀 프로젝트</MenuLink>
+            <MenuLink onClick={() => handleTeamClick()}>📋 팀 프로젝트</MenuLink>
           </MenuContents>
         </MenuColumn>
         <MenuColumn>
-          <MenuTitle style={{ minHeight: "26px" }} />
-          <MenuContents onClick={closeMenu}>
-            <MenuLink onClick={() => handleMentoringClick()}>
-              ✨ 코디터 멘토링 서비스
-            </MenuLink>
-          </MenuContents>
         </MenuColumn>
       </MenuContainer>
     </Container>

@@ -11,17 +11,30 @@ import {
   PathLink,
 } from "../../styles/community/Community";
 import ScrollToTopButton from "../../styles/ScrollToTopButton";
-import Board_Team from "./components/Board_Study";
-import BoardList from "./components/Side_BoardList";
-import PopularTags from "./components/Side_PopularTags";
-import TopWriters from "./components/Side_TopWriters";
-import WeeklyBest from "./components/Side_WeeklyBest";
+import BoardList from "./components/common/Side_BoardList";
+import PopularTags from "./components/common/Side_PopularTags";
+import TopWriters from "./components/common/Side_TopWriters";
+import WeeklyBest from "./components/common/Side_WeeklyBest";
 import { useLocation, useNavigate } from "react-router-dom";
+import { BoardContainer } from "../../styles/community/Board";
+import Board_Team_TopSort from "./components/team/Board_Team_TopSort";
+import Board_Team_MiddleSort from "./components/team/Board_Team_MiddleSort";
+import Board_Team_Search from "./components/team/Board_Team_Search";
+import Board_PostList from "./components/common/Board_PostList";
 const Community_Team = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
+  const queryParams = new URLSearchParams(location.search);
 
+  // params for pagination
+  const boardType = "team";
+  const page = queryParams.get("page");
+  const size = queryParams.get("size");
+  const sortBy = queryParams.get("sortBy");
+  const order = queryParams.get("order");
+
+  // TopBox firstpath
   const handleCommunity = () => {
     navigate("/community", {
       state: {
@@ -29,14 +42,17 @@ const Community_Team = () => {
       },
     });
   };
+
+  // TopBox secondpath
   const handleRefresh = () => {
-    navigate("/community/team", {
+    navigate(`/community/${boardType}`, {
       state: {
         firstpath: firstpath,
         secondpath: secondpath,
       },
     });
   };
+
   return (
     <>
       <Wrap>
@@ -54,14 +70,25 @@ const Community_Team = () => {
         <Container>
           <LeftContainer>
             <BoardList firstpath={firstpath} />
-            <TopWriters />
-          </LeftContainer>
-          <CenterContainer>
-            <Board_Team />
-          </CenterContainer>
-          <RightContainer>
             <PopularTags />
             <WeeklyBest />
+          </LeftContainer>
+          <CenterContainer>
+            <BoardContainer>
+              <Board_Team_TopSort />
+              <Board_Team_Search />
+              <Board_Team_MiddleSort />
+              <Board_PostList
+                boardType={boardType}
+                page={page}
+                size={size}
+                sortBy={sortBy}
+                order={order}
+              />
+            </BoardContainer>
+          </CenterContainer>
+          <RightContainer>
+          <TopWriters />
           </RightContainer>
         </Container>
         <ScrollToTopButton />

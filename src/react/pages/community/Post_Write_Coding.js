@@ -7,8 +7,8 @@ import {
   WriteTitle,
   WriteTitleBox,
 } from "../../styles/community/Post";
-import Post_WriteEditor_Coding from "./components/post/Post_WriteEditor_Coding";
-import Post_WriteSort from "./components/post/Post_WriteSort";
+import Post_WriteSort from "./components/common/Post_WriteSort";
+import Post_WriteEditor_Coding from "./components/coding/Post_WriteEditor_Coding";
 
 const Post_Write_Coding = () => {
   const [title, setTitle] = useState("");
@@ -33,7 +33,6 @@ const Post_Write_Coding = () => {
               onChange={(e) => setLanguage(e.target.value)}
             />
           </WriteTagBox>
-
           <Post_WriteEditor_Coding title={title} language={language} />
         </WriteContainer>
       </WriteWrap>

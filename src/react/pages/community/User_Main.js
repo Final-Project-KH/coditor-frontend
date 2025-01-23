@@ -12,10 +12,10 @@ import {
   Wrap,
 } from "../../styles/community/User";
 import { PathLink } from "../../styles/community/Community";
-import Post_UserProfile from "./components/post/Post_UserProfile";
-import Post_RelatedPosts from "./components/post/Post_RelatedPosts";
-import User_Feed from "./components/User_Feed";
-import Board_Main from "./components/Board_Main";
+import Post_UserProfile from "./components/common/Post_UserProfile";
+import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
+import User_Feed from "./components/common/User_Feed";
+import Board_Community_Main from "./components/common/Board_Community_Main";
 import ScrollToTopButton from "../../styles/ScrollToTopButton";
 
 const User_Main = () => {
@@ -58,15 +58,14 @@ const User_Main = () => {
         </TopBoxWide>
         <Container>
           <LeftContainer>
-          <Post_UserProfile />
+            <Post_UserProfile />
           </LeftContainer>
           <RightContainer>
-          <User_Feed />
-          <PostContainer>
-            <PostTitle>작성글</PostTitle>
-            <Board_Main />
-          </PostContainer>
-        
+            <User_Feed />
+            <PostContainer>
+              <PostTitle>작성글</PostTitle>
+              <Board_Community_Main />
+            </PostContainer>
           </RightContainer>
         </Container>
         <ScrollToTopButton />
