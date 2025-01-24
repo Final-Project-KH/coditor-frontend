@@ -59,7 +59,6 @@ AxiosInstance.interceptors.response.use(
       } catch (refreshError) {
         // Refresh Token이 실패하면 로그인 페이지로 리다이렉트하거나 로그아웃 처리
         console.error("Refresh Token 실패:", refreshError);
-        Common.clearRefreshToken();
         // 예시로 로그인 페이지로 리다이렉트
         window.location.href = "/login";
         // refreshToken 만료 -> 재로그인 관련 알림 필요

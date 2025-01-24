@@ -80,7 +80,7 @@ const Login = () => {
   const [isCheckedAutoId, setIsCheckedAutoId] = useState(false);
   const [isCheckedAutoLogin, setIsCheckedAutoLogin] = useState(false);
 
-  const issaveuserid = useSelector((state) => state.login.issaveuserid);
+  const issaveuserid = useSelector((state) => state.login.saveuserid);
   const userid = useSelector((state) => state.login.userid);
 
   useEffect(() => {
@@ -106,6 +106,7 @@ const Login = () => {
   };
 
   const handleCheckAutoLoginBox = (e) => {
+    console.log(isCheckedAutoLogin);
     setIsCheckedAutoLogin(e.target.checked);
   };
 
@@ -132,11 +133,7 @@ const Login = () => {
         const accesstokenexpiresin = Common.getNewAccessTokenExpiresIn(
           response.data.accessToken
         );
-        const refreshtokenexpiresin = Common.getNewRefreshTokenExpiresIn(
-          response.data.refreshToken
-        );
         console.log("액세스 토큰: ", response.data.accessToken);
-        console.log("리프레쉬 토큰: ", response.data.refreshToken);
 
         dispatch(
           setLoginData({
@@ -144,13 +141,11 @@ const Login = () => {
             nickname: nickname,
             accesstoken: response.data.accessToken,
             accesstokenexpiresin: accesstokenexpiresin,
-            refreshtoken: response.data.refreshToken,
-            refreshtokenexpiresin: refreshtokenexpiresin,
           })
         );
         dispatch(
           setLoginCondition({
-            issaveuserid: isCheckedAutoId,
+            saveuserid: isCheckedAutoId,
             userid: inputUserId,
             autologin: isCheckedAutoLogin,
           })
@@ -205,17 +200,12 @@ const Login = () => {
         const accessTokenExpirationTime = Common.getNewAccessTokenExpiresIn(
           data.accessToken
         );
-        const refreshTokenExpirationTime = Common.getNewRefreshTokenExpiresIn(
-          data.refreshToken
-        );
         const keynumber = Common.getNewUserKeyNumber(data.accessToken);
         const nickname = Common.getNewNickname(data.accessToken);
 
         Common.setKeyNumber(keynumber);
         Common.setAccessToken(data.accessToken);
-        Common.setRefreshToken(data.refreshToken);
         Common.setAccessTokenExpiresIn(accessTokenExpirationTime);
-        Common.setRefreshTokenExpiresIn(refreshTokenExpirationTime);
         Common.setNickname(nickname);
 
         navigate("/");
