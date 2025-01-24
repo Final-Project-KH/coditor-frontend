@@ -12,7 +12,7 @@ import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import MonacoEditor from "../../components/MonacoEditor";
 import Console from "../../components/Console";
 import { useEffect, useState, useCallback } from "react";
-import ScrollToTopButton from "../../../../styles/ScrollToTopButton";
+import ScrollToTopButton from "../../../ScrollToTopButton";
 import useSse from "../../customhook/useSse";
 import AxiosApi from "../../../../../api/AxiosApi";
 
