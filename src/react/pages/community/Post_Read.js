@@ -1,4 +1,5 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+
 import {
   Wrap,
   TopBoxArrow,
@@ -12,10 +13,10 @@ import {
 import Post_ReplyArea from "./components/common/Post_ReplyArea";
 import Post_UserProfile from "./components/common/Post_UserProfile";
 import { PathLink } from "../../styles/community/Community";
-import ScrollToTopButton from "../../styles/ScrollToTopButton";
 import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
 import Post_MainContents from "./components/common/Post_MainContents";
 import { useState } from "react";
+import ScrollToTopButton from "../ScrollToTopButton";
 
 const Post_Read = () => {
   const navigate = useNavigate();

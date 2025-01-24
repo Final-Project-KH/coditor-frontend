@@ -16,7 +16,7 @@ import {
   BodyContainer,
   StyledLink,
 } from "../../styles/legal/Privacy";
-import ScrollToTopButton from "../../styles/ScrollToTopButton";
+import ScrollToTopButton from "../ScrollToTopButton";
 
 const Privacy = () => {
   return (

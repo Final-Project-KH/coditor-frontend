@@ -32,9 +32,10 @@ import {
   ArrowContainer,
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
-import C_Title from "../C_Title";
-import C_ArrowNavigation from "../C_ArrowNavigation";
-import C_ClassList_Filtered from "../C_ClassList_Filtered";
+import C_Title from "../c_components/C_Title";
+import C_ArrowNavigation from "../c_components/C_ArrowNavigation";
+import C_ClassList_Filtered from "../c_components/C_ClassList_Filtered";
+import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const C_01_01 = () => {
   const navigate = useNavigate();
@@ -240,6 +241,7 @@ const C_01_01 = () => {
           </ArrowContainer>
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

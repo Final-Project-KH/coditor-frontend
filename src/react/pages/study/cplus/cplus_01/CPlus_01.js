@@ -10,9 +10,10 @@ import {
   LeftContainer,
   RightContainer,
 } from "../../../../styles/study/Class_Main";
-import CPlus_Title from "../CPlus_Title";
-import CPlus_ClassList_Filtered from "../CPlus_ClassList_Filtered";
+import CPlus_Title from "../cplus_components/CPlus_Title";
+import CPlus_ClassList_Filtered from "../cplus_components/CPlus_ClassList_Filtered";
 import { useEffect } from "react";
+import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const CPlus_01 = () => {
   const navigate = useNavigate();
@@ -79,6 +80,7 @@ const CPlus_01 = () => {
           <CPlus_ClassList_Filtered chapter="01" />
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

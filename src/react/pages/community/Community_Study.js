@@ -1,3 +1,6 @@
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 import {
   TopBoxArrow,
   TopBoxText,
@@ -10,18 +13,16 @@ import {
   RightContainer,
   PathLink,
 } from "../../styles/community/Community";
-import ScrollToTopButton from "../../styles/ScrollToTopButton";
 import BoardList from "./components/common/Side_BoardList";
 import PopularTags from "./components/common/Side_PopularTags";
 import TopWriters from "./components/common/Side_TopWriters";
 import WeeklyBest from "./components/common/Side_WeeklyBest";
-import { useLocation, useNavigate } from "react-router-dom";
 import { BoardContainer } from "../../styles/community/Board";
 import Board_Study_Search from "./components/study/Board_Study_Search";
 import Board_PostList from "./components/common/Board_PostList";
-import { useState } from "react";
 import Board_TopSort from "./components/common/Board_TopSort";
 import Board_Order from "./components/common/Board_Order";
+import ScrollToTopButton from "../ScrollToTopButton";
 
 const Community_Study = () => {
   const navigate = useNavigate();

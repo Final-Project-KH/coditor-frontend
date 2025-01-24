@@ -1,4 +1,5 @@
 import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
+import { useEffect } from "react";
 
 import {
   Wrap,
@@ -10,10 +11,9 @@ import {
   LeftContainer,
   RightContainer,
 } from "../../../../styles/study/Class_Main";
-import Java_Title from "../Java_Title";
-import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
-import { useEffect } from "react";
-import ScrollToTopButton from "../../../../styles/ScrollToTopButton";
+import Java_Title from "../java_components/Java_Title";
+import Java_ClassList_Filtered from "../java_components/Java_ClassList_Filtered";
+import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const Java_01 = () => {
   const navigate = useNavigate();

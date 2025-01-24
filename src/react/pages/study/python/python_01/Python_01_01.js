@@ -32,9 +32,10 @@ import {
   ArrowContainer,
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
-import Python_Title from "../Python_Title";
-import Python_ArrowNavigation from "../Python_ArrowNavigation";
-import Python_ClassList_Filtered from "../Python_ClassList_Filtered";
+import Python_Title from "../python_components/Python_Title";
+import Python_ArrowNavigation from "../python_components/Python_ArrowNavigation";
+import Python_ClassList_Filtered from "../python_components/Python_ClassList_Filtered";
+import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const Python_01_01 = () => {
   const navigate = useNavigate();
@@ -350,6 +351,7 @@ print("Hello World")
           </ArrowContainer>
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

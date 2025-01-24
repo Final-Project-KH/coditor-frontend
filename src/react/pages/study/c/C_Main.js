@@ -12,9 +12,10 @@ import {
   RightContainer,
 } from "../../../styles/study/Class_Main";
 
-import C_ChapterList from "./C_ChapterList";
-import C_Title from "./C_Title";
-import C_ClassList from "./C_ClassList";
+import C_ChapterList from "./c_components/C_ChapterList";
+import C_Title from "./c_components/C_Title";
+import C_ClassList from "./c_components/C_ClassList";
+import ScrollToTopButton from "../../ScrollToTopButton";
 
 const C_Main = () => {
   const navigate = useNavigate();
@@ -75,6 +76,7 @@ const C_Main = () => {
           <C_ClassList refs={sectionRefs} />
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

@@ -10,9 +10,10 @@ import {
   LeftContainer,
   RightContainer,
 } from "../../../../styles/study/Class_Main";
-import JavaScript_Title from "../JavaScript_Title";
-import JavaScript_ClassList_Filtered from "../JavaScript_ClassList_Filtered";
+import JavaScript_Title from "../javascript_components/JavaScript_Title";
+import JavaScript_ClassList_Filtered from "../javascript_components/JavaScript_ClassList_Filtered";
 import { useEffect } from "react";
+import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const JavaScript_01 = () => {
   const navigate = useNavigate();
@@ -79,6 +80,7 @@ const JavaScript_01 = () => {
           <JavaScript_ClassList_Filtered chapter="01" />
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };
