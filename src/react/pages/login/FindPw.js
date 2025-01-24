@@ -34,8 +34,9 @@ import {
   InputPwDivToggle,
   ValidPwMessage,
 } from "../../styles/login/FindPw";
-import { RotatingLines } from "react-loader-spinner";
-import { useNavigate } from "react-router-dom";
+
+import AxiosApi from "../../../api/AxiosApi";
+import FindPw_M from "./FindPw_M";
 
 const FindPw = () => {
   const [inputEmail, setInputEmail] = useState("");
