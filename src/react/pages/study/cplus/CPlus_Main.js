@@ -10,7 +10,7 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../styles/study/Class_Main";
+} from "../../../styles/study/Language_Main";
 
 import CPlus_ChapterList from "./cplus_components/CPlus_ChapterList";
 import CPlus_Title from "./cplus_components/CPlus_Title";

@@ -7,7 +7,7 @@ export const LeftSubjectContainer = styled.div.attrs({
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 29px 18px;
+  padding: 30px 20px;
   gap: 5px;
   border-radius: 30px;
   background-color: #f1f1f1;

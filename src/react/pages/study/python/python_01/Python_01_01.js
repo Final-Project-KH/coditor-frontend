@@ -15,8 +15,8 @@ import {
   EachClass,
   ClassHeader,
   ClassHeaderTitle,
-} from "../../../../styles/study/Class_Main";
-import {
+  ClassHeaderTitlePathLink,
+  ClassHeaderTitleButton,
   ClassContentsTitle1,
   ClassContentsText,
   ClassContentsContainer,
@@ -29,9 +29,10 @@ import {
   ClassTable,
   ClassTableTd,
   ClassTableTr,
-  ArrowContainer,
-} from "../../../../styles/study/Class_Each";
-import { StickyClassBox } from "../../../../styles/study/Study";
+  StickyClassBox,
+} from "../../../../styles/study/Language_00_00";
+import { ArrowContainer } from "../../../../styles/study/Language_ArrowNavigation";
+
 import Python_Title from "../python_components/Python_Title";
 import Python_ArrowNavigation from "../python_components/Python_ArrowNavigation";
 import Python_ClassList_Filtered from "../python_components/Python_ClassList_Filtered";

@@ -9,7 +9,8 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../../styles/study/Class_Main";
+} from "../../../../styles/study/Language_00";
+
 import Python_Title from "../python_components/Python_Title";
 import Python_ClassList_Filtered from "../python_components/Python_ClassList_Filtered";
 import { useEffect } from "react";

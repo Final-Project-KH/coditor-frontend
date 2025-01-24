@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import AxiosApi from "../../../api/AxiosApi";
+import { useDispatch } from "react-redux";
+import { RotatingLines } from "react-loader-spinner";
+
 import {
   Wrap,
   TopBar,
@@ -45,12 +47,31 @@ import {
   InputEmailButtonRefresh,
   ValidSecurityMessage,
 } from "../../styles/signup/signup";
-import { useDispatch } from "react-redux";
+
+import AxiosApi from "../../../api/AxiosApi";
 import { setError } from "../../../redux/slice/authSlice";
-import { RotatingLines } from "react-loader-spinner";
+import Signup_M from "./Signup_M";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // 초기 화면 크기 체크
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+    window.addEventListener("resize", handleResize); // 화면 크기 변화에 따른 상태 업데이트
+    handleResize(); // 컴포넌트 마운트 시 초기 상태 설정
+    return () => {
+      window.removeEventListener("resize", handleResize); // 클린업
+    };
+  }, []);
+
   // 키보드 입력
   const [inputUserId, setInputUserId] = useState("");
   const [inputPw, setInputPw] = useState("");
@@ -588,289 +609,297 @@ const Signup = () => {
   };
 
   return (
-    <Wrap>
-      <TopBarContainer>
-        <TopBar>
-          <LogoContainer>
-            <Logo>
-              <StyledLink to="/"></StyledLink>
-            </Logo>
-          </LogoContainer>
-        </TopBar>
-      </TopBarContainer>
-      <BodyContainer>
-        <FloatingContainer>
-          <FloatingTitle>회원가입</FloatingTitle>
-          <InputEach>
-            <InputIndex>아이디</InputIndex>
-            <InputId
-              autoComplete="off"
-              type="userId"
-              placeholder="아이디 입력"
-              value={inputUserId}
-              onChange={onChangeUserId}
-              onBlur={onBlurUserId}
-              isUserId={isUserId}
-            ></InputId>
-            <ValidIdMessage>{userIdMessage}</ValidIdMessage>
-          </InputEach>
-          <InputEach>
-            <InputIndex>비밀번호</InputIndex>
-            <InputPwDiv>
-              <InputPw
-                type={isVisiblePwd ? "text" : "password"}
-                placeholder="영문자, 숫자, 특수문자 포함 8~20자"
-                value={inputPw}
-                onChange={onChangePw}
-                onBlur={() => {
-                  onBlurPw();
-                  onBlurConPw();
-                }}
-                isPw={isPw}
-              ></InputPw>
-              <InputPwDivToggle
-                isVisible={isVisiblePwd}
-                onClick={() => toggleVisiblePwd()}
-              />
-            </InputPwDiv>
-            <ValidPwMessage>{pwMessage}</ValidPwMessage>
-          </InputEach>
-          <InputEach>
-            <InputPwDiv>
-              <InputPwConfirm
-                type={isVisibleConPwd ? "text" : "password"}
-                placeholder="비밀번호 확인"
-                value={inputConPw}
-                onChange={onChangeConPw}
-                onBlur={() => {
-                  onBlurConPw();
-                  onBlurPw();
-                }}
-                isConPw={isConPw}
-              ></InputPwConfirm>
-              <InputPwDivToggle
-                isVisible={isVisibleConPwd}
-                onClick={() => toggleVisibleConPwd()}
-              />
-            </InputPwDiv>
-            <ValidPwMessage>{conPwMessage}</ValidPwMessage>
-          </InputEach>
-          <InputEach>
-            <InputIndex>이메일</InputIndex>
-            <InputEmailDiv isSecurity={isSecurity}>
-              <InputEmail
-                autoComplete="off"
-                type="email"
-                placeholder="이메일 주소 입력"
-                value={inputEmail}
-                onChange={onChangeEmail}
-                onBlur={onBlurEmail}
-                isEmailAvailable={isEmailAvailable}
-                isEmail={isEmail}
-                isSecurityAvailable={isSecurityAvailable}
-                readOnly={isSecurity}
-              ></InputEmail>
-              {isEmail &&
-              isEmailAvailable &&
-              !isSecurity &&
-              !isSecurityAvailable &&
-              !isLoading ? (
-                <InputEmailButton
-                  enabled
-                  onClick={(e) => {
-                    onClickEmail(e);
-                  }}
-                >
-                  인증번호받기
-                </InputEmailButton> // 인증번호 받기 버튼
-              ) : isEmail && isEmailAvailable && !isRunning && isLoading ? (
-                <InputEmailButtonDiv>
-                  <RotatingLines
-                    visible={true}
-                    height="30"
-                    width="30"
-                    strokeColor="black"
-                    strokeWidth="5"
-                    animationDuration="0.75"
-                    ariaLabel="rotating-lines-loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
+    <>
+      {isMobile ? (
+        <Signup_M />
+      ) : (
+        <Wrap>
+          <TopBarContainer>
+            <TopBar>
+              <LogoContainer>
+                <Logo>
+                  <StyledLink to="/"></StyledLink>
+                </Logo>
+              </LogoContainer>
+            </TopBar>
+          </TopBarContainer>
+          <BodyContainer>
+            <FloatingContainer>
+              <FloatingTitle>회원가입</FloatingTitle>
+              <InputEach>
+                <InputIndex>아이디</InputIndex>
+                <InputId
+                  autoComplete="off"
+                  type="userId"
+                  placeholder="아이디 입력"
+                  value={inputUserId}
+                  onChange={onChangeUserId}
+                  onBlur={onBlurUserId}
+                  isUserId={isUserId}
+                ></InputId>
+                <ValidIdMessage>{userIdMessage}</ValidIdMessage>
+              </InputEach>
+              <InputEach>
+                <InputIndex>비밀번호</InputIndex>
+                <InputPwDiv>
+                  <InputPw
+                    type={isVisiblePwd ? "text" : "password"}
+                    placeholder="영문자, 숫자, 특수문자 포함 8~20자"
+                    value={inputPw}
+                    onChange={onChangePw}
+                    onBlur={() => {
+                      onBlurPw();
+                      onBlurConPw();
+                    }}
+                    isPw={isPw}
+                  ></InputPw>
+                  <InputPwDivToggle
+                    isVisible={isVisiblePwd}
+                    onClick={() => toggleVisiblePwd()}
                   />
-                </InputEmailButtonDiv>
-              ) : (
-                isEmail &&
-                isEmailAvailable &&
-                isSecurityAvailable &&
-                isRunning &&
-                !isLoading && (
-                  <InputEmailButtonDiv isEmail={isEmail}>
-                    <InputEmailButtonTimer>
-                      {Math.floor(timeLeft / 60)}:
-                      {timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
-                    </InputEmailButtonTimer>
-                    <InputEmailButtonRefresh
+                </InputPwDiv>
+                <ValidPwMessage>{pwMessage}</ValidPwMessage>
+              </InputEach>
+              <InputEach>
+                <InputPwDiv>
+                  <InputPwConfirm
+                    type={isVisibleConPwd ? "text" : "password"}
+                    placeholder="비밀번호 확인"
+                    value={inputConPw}
+                    onChange={onChangeConPw}
+                    onBlur={() => {
+                      onBlurConPw();
+                      onBlurPw();
+                    }}
+                    isConPw={isConPw}
+                  ></InputPwConfirm>
+                  <InputPwDivToggle
+                    isVisible={isVisibleConPwd}
+                    onClick={() => toggleVisibleConPwd()}
+                  />
+                </InputPwDiv>
+                <ValidPwMessage>{conPwMessage}</ValidPwMessage>
+              </InputEach>
+              <InputEach>
+                <InputIndex>이메일</InputIndex>
+                <InputEmailDiv isSecurity={isSecurity}>
+                  <InputEmail
+                    autoComplete="off"
+                    type="email"
+                    placeholder="이메일 주소 입력"
+                    value={inputEmail}
+                    onChange={onChangeEmail}
+                    onBlur={onBlurEmail}
+                    isEmailAvailable={isEmailAvailable}
+                    isEmail={isEmail}
+                    isSecurityAvailable={isSecurityAvailable}
+                    readOnly={isSecurity}
+                  ></InputEmail>
+                  {isEmail &&
+                  isEmailAvailable &&
+                  !isSecurity &&
+                  !isSecurityAvailable &&
+                  !isLoading ? (
+                    <InputEmailButton
+                      enabled
                       onClick={(e) => {
                         onClickEmail(e);
                       }}
-                    ></InputEmailButtonRefresh>
-                  </InputEmailButtonDiv> // 타이머 및 새로고침 버튼
-                )
+                    >
+                      인증번호받기
+                    </InputEmailButton> // 인증번호 받기 버튼
+                  ) : isEmail && isEmailAvailable && !isRunning && isLoading ? (
+                    <InputEmailButtonDiv>
+                      <RotatingLines
+                        visible={true}
+                        height="30"
+                        width="30"
+                        strokeColor="black"
+                        strokeWidth="5"
+                        animationDuration="0.75"
+                        ariaLabel="rotating-lines-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                      />
+                    </InputEmailButtonDiv>
+                  ) : (
+                    isEmail &&
+                    isEmailAvailable &&
+                    isSecurityAvailable &&
+                    isRunning &&
+                    !isLoading && (
+                      <InputEmailButtonDiv isEmail={isEmail}>
+                        <InputEmailButtonTimer>
+                          {Math.floor(timeLeft / 60)}:
+                          {timeLeft % 60 < 10
+                            ? `0${timeLeft % 60}`
+                            : timeLeft % 60}
+                        </InputEmailButtonTimer>
+                        <InputEmailButtonRefresh
+                          onClick={(e) => {
+                            onClickEmail(e);
+                          }}
+                        ></InputEmailButtonRefresh>
+                      </InputEmailButtonDiv> // 타이머 및 새로고침 버튼
+                    )
+                  )}
+                </InputEmailDiv>
+                <ValidEmailMessage>{emailMessage}</ValidEmailMessage>
+              </InputEach>
+              {isSecurityAvailable && (
+                <InputEach>
+                  <InputSecurityDiv>
+                    <InputSecurity
+                      autoComplete="off"
+                      type="text"
+                      placeholder="인증번호 입력"
+                      value={inputSecurity}
+                      onChange={onChangeSecurity}
+                    ></InputSecurity>
+                    <InputSecurityButton
+                      isSecurity={isSecurity}
+                      onClick={(e) => onClickSecurity(e)}
+                    >
+                      이메일 인증
+                    </InputSecurityButton>
+                  </InputSecurityDiv>
+                  <ValidSecurityMessage>{securityMessage}</ValidSecurityMessage>
+                </InputEach>
               )}
-            </InputEmailDiv>
-            <ValidEmailMessage>{emailMessage}</ValidEmailMessage>
-          </InputEach>
-          {isSecurityAvailable && (
-            <InputEach>
-              <InputSecurityDiv>
-                <InputSecurity
+              <InputEach>
+                <InputIndex>닉네임</InputIndex>
+                <InputNickName
                   autoComplete="off"
                   type="text"
-                  placeholder="인증번호 입력"
-                  value={inputSecurity}
-                  onChange={onChangeSecurity}
-                ></InputSecurity>
-                <InputSecurityButton
-                  isSecurity={isSecurity}
-                  onClick={(e) => onClickSecurity(e)}
-                >
-                  이메일 인증
-                </InputSecurityButton>
-              </InputSecurityDiv>
-              <ValidSecurityMessage>{securityMessage}</ValidSecurityMessage>
-            </InputEach>
-          )}
-          <InputEach>
-            <InputIndex>닉네임</InputIndex>
-            <InputNickName
-              autoComplete="off"
-              type="text"
-              placeholder="닉네임 입력"
-              value={inputName}
-              onChange={onChangeName}
-              onBlur={onBlurName}
-              isName={isName}
-            ></InputNickName>
-            <ValidNameMessage>{nameMessage}</ValidNameMessage>
-          </InputEach>
-          <InputExtraContainer>
-            <InputExtraAll>
-              <InputExtraItemCheckBox
-                type="checkbox"
-                id="agreeall"
-                checked={isCheckedAll}
-                onChange={handleCheckAllBox}
-              ></InputExtraItemCheckBox>
-              <InputExtraItemP>전체동의</InputExtraItemP>
-            </InputExtraAll>
-            <InputExtra>
-              <InputExtraItemCheckBox
-                type="checkbox"
-                id="agreeterms"
-                checked={isCheckedTerms}
-                onChange={handleCheckTermsBox}
-              ></InputExtraItemCheckBox>
-              <InputExtraItemP>
-                <ExtraLink to="../legal/Terms" target="_blank">
-                  이용약관
-                </ExtraLink>{" "}
-                동의
-              </InputExtraItemP>
-            </InputExtra>
-            <InputExtra>
-              <InputExtraItemCheckBox
-                type="checkbox"
-                id="agreeuses"
-                checked={isCheckedUses}
-                onChange={handleCheckUsesBox}
-              ></InputExtraItemCheckBox>
-              <InputExtraItemP>
-                <ExtraLink to="../legal/Privacy" target="_blank">
-                  개인정보 수집 및 이용
-                </ExtraLink>{" "}
-                동의
-              </InputExtraItemP>
-            </InputExtra>
-            <InputExtra>
-              <InputExtraItemCheckBox
-                type="checkbox"
-                id="agree14"
-                checked={isChecked14}
-                onChange={handleCheck14Box}
-              ></InputExtraItemCheckBox>
-              <InputExtraItemP>
-                <font color="black">
-                  <b>[선택]</b>
-                </font>
-                &nbsp;만 14세 이상입니다.
-              </InputExtraItemP>
-            </InputExtra>
-            <InputExtra>
-              <InputExtraItemCheckBox
-                type="checkbox"
-                id="agreemarketing"
-                checked={isCheckedMarketing}
-                onChange={handleCheckMarketingBox}
-              ></InputExtraItemCheckBox>
-              <InputExtraItemP>
-                <font color="black">
-                  <b>[선택]</b>
-                </font>
-                &nbsp;마케팅 활용 동의 및 광고 수신 동의
-              </InputExtraItemP>
-            </InputExtra>
-          </InputExtraContainer>
-          <InputEach>
-            {isUserId &&
-            isEmail &&
-            isSecurity &&
-            isPw &&
-            isConPw &&
-            isName &&
-            isCheckedTerms &&
-            isCheckedUses &&
-            !isLoadingSignUp ? (
-              <SignUp enabled onClick={onClickSignUp}>
-                회원가입하기
-              </SignUp>
-            ) : isUserId &&
-              isEmail &&
-              isSecurity &&
-              isPw &&
-              isConPw &&
-              isName &&
-              isCheckedTerms &&
-              isCheckedUses &&
-              isLoadingSignUp ? (
-              <SignUp disabled>
-                <RotatingLines
-                  visible={true}
-                  height="30"
-                  width="30"
-                  strokeColor="black"
-                  strokeWidth="5"
-                  animationDuration="0.75"
-                  ariaLabel="rotating-lines-loading"
-                  wrapperStyle={{}}
-                  wrapperClass=""
-                />
-              </SignUp>
-            ) : (
-              <SignUp disabled>회원가입하기</SignUp>
-            )}
-          </InputEach>
-        </FloatingContainer>
-        <NoticeContainer>
-          <Notice>
-            <NoticeLink to="../legal/Terms"></NoticeLink>
-            서비스 이용약관
-          </Notice>
-          <Notice>
-            <NoticeLink to="../legal/Privacy"></NoticeLink>
-            개인정보 처리방침
-          </Notice>
-        </NoticeContainer>
-      </BodyContainer>
-    </Wrap>
+                  placeholder="닉네임 입력"
+                  value={inputName}
+                  onChange={onChangeName}
+                  onBlur={onBlurName}
+                  isName={isName}
+                ></InputNickName>
+                <ValidNameMessage>{nameMessage}</ValidNameMessage>
+              </InputEach>
+              <InputExtraContainer>
+                <InputExtraAll>
+                  <InputExtraItemCheckBox
+                    type="checkbox"
+                    id="agreeall"
+                    checked={isCheckedAll}
+                    onChange={handleCheckAllBox}
+                  ></InputExtraItemCheckBox>
+                  <InputExtraItemP>전체동의</InputExtraItemP>
+                </InputExtraAll>
+                <InputExtra>
+                  <InputExtraItemCheckBox
+                    type="checkbox"
+                    id="agreeterms"
+                    checked={isCheckedTerms}
+                    onChange={handleCheckTermsBox}
+                  ></InputExtraItemCheckBox>
+                  <InputExtraItemP>
+                    <ExtraLink to="../legal/Terms" target="_blank">
+                      이용약관
+                    </ExtraLink>{" "}
+                    동의
+                  </InputExtraItemP>
+                </InputExtra>
+                <InputExtra>
+                  <InputExtraItemCheckBox
+                    type="checkbox"
+                    id="agreeuses"
+                    checked={isCheckedUses}
+                    onChange={handleCheckUsesBox}
+                  ></InputExtraItemCheckBox>
+                  <InputExtraItemP>
+                    <ExtraLink to="../legal/Privacy" target="_blank">
+                      개인정보 수집 및 이용
+                    </ExtraLink>{" "}
+                    동의
+                  </InputExtraItemP>
+                </InputExtra>
+                <InputExtra>
+                  <InputExtraItemCheckBox
+                    type="checkbox"
+                    id="agree14"
+                    checked={isChecked14}
+                    onChange={handleCheck14Box}
+                  ></InputExtraItemCheckBox>
+                  <InputExtraItemP>
+                    <font color="black">
+                      <b>[선택]</b>
+                    </font>
+                    &nbsp;만 14세 이상입니다.
+                  </InputExtraItemP>
+                </InputExtra>
+                <InputExtra>
+                  <InputExtraItemCheckBox
+                    type="checkbox"
+                    id="agreemarketing"
+                    checked={isCheckedMarketing}
+                    onChange={handleCheckMarketingBox}
+                  ></InputExtraItemCheckBox>
+                  <InputExtraItemP>
+                    <font color="black">
+                      <b>[선택]</b>
+                    </font>
+                    &nbsp;마케팅 활용 동의 및 광고 수신 동의
+                  </InputExtraItemP>
+                </InputExtra>
+              </InputExtraContainer>
+              <InputEach>
+                {isUserId &&
+                isEmail &&
+                isSecurity &&
+                isPw &&
+                isConPw &&
+                isName &&
+                isCheckedTerms &&
+                isCheckedUses &&
+                !isLoadingSignUp ? (
+                  <SignUp enabled onClick={onClickSignUp}>
+                    회원가입하기
+                  </SignUp>
+                ) : isUserId &&
+                  isEmail &&
+                  isSecurity &&
+                  isPw &&
+                  isConPw &&
+                  isName &&
+                  isCheckedTerms &&
+                  isCheckedUses &&
+                  isLoadingSignUp ? (
+                  <SignUp disabled>
+                    <RotatingLines
+                      visible={true}
+                      height="30"
+                      width="30"
+                      strokeColor="black"
+                      strokeWidth="5"
+                      animationDuration="0.75"
+                      ariaLabel="rotating-lines-loading"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                    />
+                  </SignUp>
+                ) : (
+                  <SignUp disabled>회원가입하기</SignUp>
+                )}
+              </InputEach>
+            </FloatingContainer>
+            <NoticeContainer>
+              <Notice>
+                <NoticeLink to="../legal/Terms"></NoticeLink>
+                서비스 이용약관
+              </Notice>
+              <Notice>
+                <NoticeLink to="../legal/Privacy"></NoticeLink>
+                개인정보 처리방침
+              </Notice>
+            </NoticeContainer>
+          </BodyContainer>
+        </Wrap>
+      )}
+    </>
   );
 };
 export default Signup;

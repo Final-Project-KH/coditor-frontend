@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import {
   Container,
   MenuContainer,
@@ -15,7 +17,6 @@ import {
   StyledLink,
   NavigatePath,
 } from "../../styles/sideBar/CodingTestBar";
-import { useNavigate, useLocation } from "react-router-dom";
 
 const CodingTestBar = ({ isOpen, closeMenu, path }) => {
   const navigate = useNavigate();

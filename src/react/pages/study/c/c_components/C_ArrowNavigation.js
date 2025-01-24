@@ -1,10 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { CStudyChapter } from "../../../../../util/study/CStudyChapter";
+
 import {
   ArrowLink,
   LeftArrow,
   RightArrow,
-} from "../../../../styles/study/Class_Each";
+} from "../../../../styles/study/Language_ArrowNavigation";
+
+import { CStudyChapter } from "../../../../../util/study/CStudyChapter";
 
 const C_ArrowNavigation = ({ direction }) => {
   const location = useLocation();

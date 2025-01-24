@@ -31,7 +31,7 @@ const expandHeight = keyframes`
     opacity: 0;
   }
   100% {
-    height: 180px;
+    height: 110px;
     opacity: 1;
   }
 `;

@@ -10,7 +10,8 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../../styles/study/Class_Main";
+} from "../../../../styles/study/Language_00";
+
 import Java_Title from "../java_components/Java_Title";
 import Java_ClassList_Filtered from "../java_components/Java_ClassList_Filtered";
 import ScrollToTopButton from "../../../ScrollToTopButton";

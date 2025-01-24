@@ -176,64 +176,120 @@ export const ClassHeaderTitleButton = styled.div.attrs({
   }
 `;
 
-export const ClassContents = styled.div.attrs({
-  id: "classcontents",
+export const ClassContentsContainer = styled.div.attrs({
+  id: "classcontentscontainer",
 })`
-  width: 100%;
+  width: 90%;
+  margin-top: 50px;
+  padding-bottom: 50px;
+  gap: 20px;
   display: flex;
-  position: relative;
   flex-direction: column;
   justify-content: center;
-  user-select: none;
-  /* 토글 상태에 따라 표시/숨김 */
-  display: ${(props) => (props.isOpen ? "none" : "block")};
-`;
-
-export const ClassSet = styled.div.attrs({
-  id: "classset",
-})`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   position: relative;
-  & + &::before {
-    content: "";
-    position: absolute;
-    left: 3%;
-    width: 94%;
-    height: 1px;
-    background-color: black;
-    transform: rotate(0deg);
-  }
 `;
-export const ClassName = styled.div.attrs({
-  id: "classname",
+export const ClassContentsTitle1 = styled.div.attrs({
+  id: "classcontentstitle1",
 })`
-  color: black;
+  width: 100%;
   font-size: 20px;
+  font-family: "bold", sans-serif;
+  color: black;
+`;
+export const ClassContentsTitle2 = styled.div.attrs({
+  id: "classcontentstitle2",
+})`
+  width: 100%;
+  font-size: 18px;
   font-family: "medium", sans-serif;
-  margin-left: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-decoration: none;
-  padding: 5px 10px;
-  border-radius: 30px;
-  cursor: pointer;
-  &:hover {
-    text-decoration: none;
-    background-color: #313131;
-    color: white;
-  }
+  color: #2c79c1;
+`;
+export const ClassContentsTitle3 = styled.div.attrs({
+  id: "classcontentstitle3",
+})`
+  width: 100%;
+  font-size: 16px;
+  font-family: "medium", sans-serif;
+  color: #fe9226;
+`;
+export const ClassContentsText = styled.div.attrs({
+  id: "classcontentstext",
+})`
+  width: 100%;
+  font-size: 14px;
+  font-family: "regular", sans-serif;
+  color: black;
+`;
+export const ClassContentsTextTab = styled.div.attrs({
+  id: "classcontentstexttab",
+})`
+  padding-left: 25px;
+  font-family: "regular", sans-serif;
+`;
+export const ClassContentsImage = styled.div.attrs({
+  id: "classcontentsimage",
+})`
+  width: 600px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top left;
 `;
 
-export const NavigatePath = styled.button`
-  text-decoration: none;
-  display: flex;
+export const ClassContentsCodeBox = styled.div.attrs({
+  id: "classcontentscodebox",
+})`
   width: 100%;
-  height: 30px;
-  position: absolute;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  overflow-x: auto;
+  padding: 20px 25px;
+  font-size: 12px;
+  font-family: "regular", sans-serif;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+`;
+
+export const ClassContentsCode = styled.div.attrs({
+  id: "classcontentscode",
+})`
+  width: 100%;
+  font-size: 12px;
+  font-family: "regular", sans-serif;
+  color: #313131;
+`;
+
+export const ClassTable = styled.table.attrs({
+  id: "classtable",
+})`
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px;
+`;
+
+export const ClassTableTr = styled.tr.attrs({
+  id: "classtabletr",
+})`
+  border: 1px solid black;
+`;
+
+export const ClassTableTd = styled.td.attrs({
+  id: "classtabletd",
+})`
+  border: 1px solid black;
+  padding: 10px;
+`;
+
+export const StickyClassBox = styled.div.attrs({
+  id: "stickyclassbox",
+})`
+  width: 100%;
+  height: calc(100vh - 492px);
+  position: sticky;
+  top: 390px;
+  bottom: 50px;
+  overflow-y: scroll; /* 세로 스크롤 활성화 */
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+  overflow-x: hidden;
 `;

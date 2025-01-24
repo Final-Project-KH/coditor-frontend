@@ -32,6 +32,7 @@ export const ChapterInner = styled.div.attrs({
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 30px;
 `;
+
 export const ChapterName = styled.div.attrs({
   id: "ChapterName",
 })`
@@ -58,10 +59,4 @@ export const ChapterName = styled.div.attrs({
     background-color: white;
     transform: rotate(0deg);
   }
-`;
-export const ClassIndexHr = styled.hr.attrs({
-  id: "classindexhr",
-})`
-  width: 90%;
-  color: white;
 `;

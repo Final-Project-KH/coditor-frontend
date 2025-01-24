@@ -1,5 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import React, { useState, forwardRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import {
   EachClass,
@@ -9,7 +9,8 @@ import {
   ClassContents,
   ClassSet,
   ClassName,
-} from "../../../../styles/study/Class_Main";
+} from "../../../../styles/study/Language_ClassList";
+
 import { JavaStudyChapter } from "../../../../../util/study/JavaStudyChapter";
 
 const Java_ClassList = forwardRef(({ refs }, ref) => {

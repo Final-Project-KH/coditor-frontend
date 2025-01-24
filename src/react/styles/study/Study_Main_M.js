@@ -1,14 +1,15 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: white;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `;
 export const TopBoxWide = styled.div.attrs({
@@ -23,67 +24,81 @@ export const TopBoxWide = styled.div.attrs({
   align-items: center;
   background-color: #313131;
   position: fixed;
-  top: 100px;
+  top: 65px;
   z-index: 5;
 `;
 export const TopBox = styled.div.attrs({
   id: "topbox",
 })`
-  max-width: 1280px;
   width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
+
 export const TopBoxText = styled.div.attrs({
   id: "topboxtext",
 })`
   display: inline-block;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 30px;
-  border: 1px solid #313131;
-  font-family: "bold", sans-serif;
+  font-family: "medium", sans-serif;
   font-size: 18px;
+  text-align: left;
   align-items: center;
-  padding-bottom: 3px;
   cursor: pointer;
   color: white;
   background-color: #313131;
   &:hover {
-    color: #313131;
-    background-color: white;
+    /* text-decoration: underline;
+    text-underline-offset: 5px; */
+    font-family: "black", sans-serif;
   }
 `;
+
 export const TopBoxArrow = styled.div.attrs({
   id: "topboxarrow",
 })`
   color: white;
   font-size: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
   font-family: "light", sans-serif;
   padding-bottom: 3px;
+`;
+export const TopBoxLink = styled.button.attrs({
+  id: "topboxlink",
+})`
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
 `;
 export const Container = styled.div.attrs({
   id: "container",
 })`
-  max-width: 1280px;
-  margin-top: 25px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 20px;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   flex-direction: row;
   align-items: top;
   justify-content: center;
-  gap: 25px;
+  gap: 20px;
   padding-bottom: 25px;
-  margin-top: 75px;
+  margin-top: 50px;
 `;
-export const SubjectLink = styled.button`
+export const SubjectLink = styled.button.attrs({
+  id: "subjectlink",
+})`
   text-decoration: none;
   display: flex;
   width: 100%;
@@ -126,4 +141,3 @@ export const PathLink = styled.button.attrs({
     color: white;
   }
 `;
-

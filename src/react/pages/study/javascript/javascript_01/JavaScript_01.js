@@ -9,7 +9,8 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../../styles/study/Class_Main";
+} from "../../../../styles/study/Language_00";
+
 import JavaScript_Title from "../javascript_components/JavaScript_Title";
 import JavaScript_ClassList_Filtered from "../javascript_components/JavaScript_ClassList_Filtered";
 import { useEffect } from "react";

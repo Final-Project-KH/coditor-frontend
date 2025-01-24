@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import AxiosApi from "../../../api/AxiosApi";
-import Common from "../../../util/Common";
+import { RotatingLines } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
+
 import {
   Wrap,
   TopBarContainer,
@@ -33,8 +34,10 @@ import {
   InputPwDivToggle,
   ValidPwMessage,
 } from "../../styles/login/FindPw";
-import { RotatingLines } from "react-loader-spinner";
-import { useNavigate } from "react-router-dom";
+
+import AxiosApi from "../../../api/AxiosApi";
+import Common from "../../../util/Common";
+import FindPw_M from "./FindPw_M";
 
 const FindPw = () => {
   const [inputEmail, setInputEmail] = useState("");
@@ -53,8 +56,25 @@ const FindPw = () => {
   const [isPw, setIsPw] = useState(false);
   const [isConPw, setIsConPw] = useState(false);
   const [isPwAvailable, setIsPwAvailable] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // 초기 화면 크기 체크
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+    window.addEventListener("resize", handleResize); // 화면 크기 변화에 따른 상태 업데이트
+    handleResize(); // 컴포넌트 마운트 시 초기 상태 설정
+    return () => {
+      window.removeEventListener("resize", handleResize); // 클린업
+    };
+  }, []);
+
   // 타이머 설정
   const [timeLeft, setTimeLeft] = useState(180);
   const [isRunning, setIsRunning] = useState(false);
@@ -425,174 +445,185 @@ const FindPw = () => {
   window.addEventListener("resize", setViewportHeight);
 
   return (
-    <Wrap>
-      <TopBarContainer>
-        <TopBar>
-          <LogoContainer>
-            <Logo>
-              <StyledLink to="/"></StyledLink>
-            </Logo>
-          </LogoContainer>
-        </TopBar>
-      </TopBarContainer>
-      <BodyContainer>
-        <FloatingContainer>
-          <FloatingTitle>
-            {!isSecurityAvailable ? "비밀번호 재설정" : "비밀번호 찾기 결과"}
-          </FloatingTitle>
-          {isEmailAvailable ? (
-            <>
-              <InputDiv isSecurityAvailable={isSecurityAvailable}>
-                <Input
-                  autoComplete="off"
-                  placeholder="등록한 이메일 주소 입력"
-                  icon="/images/icon/mail.png"
-                  value={inputEmail}
-                  isEmail={isEmail}
-                  isEmailAvailable={isEmailAvailable}
-                  isLoading={isLoading}
-                  onChange={(e) => onChangeEmail(e)}
-                  onBlur={(e) => onBlurEmail(e)}
-                ></Input>
-                {isEmail &&
-                isEmailAvailable &&
-                !isSecurity &&
-                !isSecurityAvailable &&
-                !isLoading ? (
-                  <FindPwButton
-                    isEmail={isEmail}
-                    onClick={(e) => onClickFindPw(e)}
-                  >
-                    인증번호 받기
-                  </FindPwButton>
-                ) : isEmail && isEmailAvailable && !isRunning && isLoading ? (
-                  <FindPwButtonDiv>
-                    <RotatingLines
-                      visible={true}
-                      height="30"
-                      width="30"
-                      strokeColor="black"
-                      strokeWidth="5"
-                      animationDuration="0.75"
-                      ariaLabel="rotating-lines-loading"
-                      wrapperStyle={{}}
-                      wrapperClass=""
-                    />
-                  </FindPwButtonDiv>
-                ) : (
-                  isEmail &&
-                  isEmailAvailable &&
-                  isSecurityAvailable &&
-                  isRunning &&
-                  !isLoading && (
-                    <FindPwButtonDiv>
-                      <FindPwButtonTimer>
-                        {Math.floor(timeLeft / 60)}:
-                        {timeLeft % 60 < 10
-                          ? `0${timeLeft % 60}`
-                          : timeLeft % 60}
-                      </FindPwButtonTimer>
-                      <FindPwButtonRefresh
-                        onClick={(e) => {
-                          onClickFindPw(e);
+    <>
+      {isMobile ? (
+        <FindPw_M />
+      ) : (
+        <Wrap>
+          <TopBarContainer>
+            <TopBar>
+              <LogoContainer>
+                <Logo>
+                  <StyledLink to="/"></StyledLink>
+                </Logo>
+              </LogoContainer>
+            </TopBar>
+          </TopBarContainer>
+          <BodyContainer>
+            <FloatingContainer>
+              <FloatingTitle>
+                {!isSecurityAvailable
+                  ? "비밀번호 재설정"
+                  : "비밀번호 찾기 결과"}
+              </FloatingTitle>
+              {isEmailAvailable ? (
+                <>
+                  <InputDiv isSecurityAvailable={isSecurityAvailable}>
+                    <Input
+                      autoComplete="off"
+                      placeholder="등록한 이메일 주소 입력"
+                      icon="/images/icon/mail.png"
+                      value={inputEmail}
+                      isEmail={isEmail}
+                      isEmailAvailable={isEmailAvailable}
+                      isLoading={isLoading}
+                      onChange={(e) => onChangeEmail(e)}
+                      onBlur={(e) => onBlurEmail(e)}
+                    ></Input>
+                    {isEmail &&
+                    isEmailAvailable &&
+                    !isSecurity &&
+                    !isSecurityAvailable &&
+                    !isLoading ? (
+                      <FindPwButton
+                        isEmail={isEmail}
+                        onClick={(e) => onClickFindPw(e)}
+                      >
+                        인증번호 받기
+                      </FindPwButton>
+                    ) : isEmail &&
+                      isEmailAvailable &&
+                      !isRunning &&
+                      isLoading ? (
+                      <FindPwButtonDiv>
+                        <RotatingLines
+                          visible={true}
+                          height="30"
+                          width="30"
+                          strokeColor="black"
+                          strokeWidth="5"
+                          animationDuration="0.75"
+                          ariaLabel="rotating-lines-loading"
+                          wrapperStyle={{}}
+                          wrapperClass=""
+                        />
+                      </FindPwButtonDiv>
+                    ) : (
+                      isEmail &&
+                      isEmailAvailable &&
+                      isSecurityAvailable &&
+                      isRunning &&
+                      !isLoading && (
+                        <FindPwButtonDiv>
+                          <FindPwButtonTimer>
+                            {Math.floor(timeLeft / 60)}:
+                            {timeLeft % 60 < 10
+                              ? `0${timeLeft % 60}`
+                              : timeLeft % 60}
+                          </FindPwButtonTimer>
+                          <FindPwButtonRefresh
+                            onClick={(e) => {
+                              onClickFindPw(e);
+                            }}
+                          ></FindPwButtonRefresh>
+                        </FindPwButtonDiv>
+                      )
+                    )}
+                  </InputDiv>
+                  <ValidEmailMessage isEmail={isEmail}>
+                    {emailMessage}
+                  </ValidEmailMessage>
+                </>
+              ) : (
+                <>
+                  <InputEach>
+                    <InputIndex>비밀번호 변경</InputIndex>
+                    <InputPwDiv>
+                      <InputPw
+                        type={isVisiblePwd ? "text" : "password"}
+                        placeholder="영문자, 숫자, 특수문자 포함 8~20자"
+                        value={inputPw}
+                        onChange={onChangePw}
+                        onBlur={() => {
+                          onBlurPw();
+                          onBlurConPw();
                         }}
-                      ></FindPwButtonRefresh>
-                    </FindPwButtonDiv>
-                  )
-                )}
-              </InputDiv>
-              <ValidEmailMessage isEmail={isEmail}>
-                {emailMessage}
-              </ValidEmailMessage>
-            </>
-          ) : (
-            <>
-              <InputEach>
-                <InputIndex>비밀번호 변경</InputIndex>
-                <InputPwDiv>
-                  <InputPw
-                    type={isVisiblePwd ? "text" : "password"}
-                    placeholder="영문자, 숫자, 특수문자 포함 8~20자"
-                    value={inputPw}
-                    onChange={onChangePw}
-                    onBlur={() => {
-                      onBlurPw();
-                      onBlurConPw();
-                    }}
-                    isPw={isPw}
-                  ></InputPw>
-                  <InputPwDivToggle
-                    isVisible={isVisiblePwd}
-                    onClick={() => toggleVisiblePwd()}
-                  />
-                </InputPwDiv>
-                <ValidPwMessage>{pwMessage}</ValidPwMessage>
-              </InputEach>
-              <InputEach>
-                <InputPwDiv>
-                  <InputPwConfirm
-                    type={isVisibleConPwd ? "text" : "password"}
-                    placeholder="비밀번호 확인"
-                    value={inputConPw}
-                    onChange={onChangeConPw}
-                    onBlur={() => {
-                      onBlurConPw();
-                      onBlurPw();
-                    }}
-                    isConPw={isConPw}
-                  ></InputPwConfirm>
-                  <InputPwDivToggle
-                    isVisible={isVisibleConPwd}
-                    onClick={() => toggleVisibleConPwd()}
-                  />
-                </InputPwDiv>
-                <ValidPwMessage>{conPwMessage}</ValidPwMessage>
-              </InputEach>
-            </>
-          )}
-          {isSecurityAvailable && (
-            <>
-              <InputDiv>
-                <InputSecurity
-                  autoComplete="off"
-                  placeholder="인증번호 입력"
-                  icon="/images/icon/mail.png"
-                  onChange={onChangeSecurity}
-                ></InputSecurity>
-                <SecurityButton
-                  isSecurity={isSecurity}
-                  onClick={(e) => {
-                    onClickVerifySecurity(e);
-                  }}
-                >
-                  이메일 인증
-                </SecurityButton>
-              </InputDiv>
-              <ValidSecurityMessage isSecurity={isSecurity}>
-                {securityMessage}
-              </ValidSecurityMessage>
-            </>
-          )}
-          {isEmail && isSecurity && isPw && isConPw ? (
-            <ModifyPw enabled onClick={(e) => onClickResetPw(e)}>
-              비밀번호 재설정하기
-            </ModifyPw>
-          ) : (
-            <ModifyPw disabled>비밀번호 재설정하기</ModifyPw>
-          )}
-        </FloatingContainer>
-        <NoticeContainer>
-          <Notice>
-            <NoticeLink to="../legal/Terms"></NoticeLink>
-            서비스 이용약관
-          </Notice>
-          <Notice>
-            <NoticeLink to="../legal/Privacy"></NoticeLink>
-            개인정보 처리방침
-          </Notice>
-        </NoticeContainer>
-      </BodyContainer>
-    </Wrap>
+                        isPw={isPw}
+                      ></InputPw>
+                      <InputPwDivToggle
+                        isVisible={isVisiblePwd}
+                        onClick={() => toggleVisiblePwd()}
+                      />
+                    </InputPwDiv>
+                    <ValidPwMessage>{pwMessage}</ValidPwMessage>
+                  </InputEach>
+                  <InputEach>
+                    <InputPwDiv>
+                      <InputPwConfirm
+                        type={isVisibleConPwd ? "text" : "password"}
+                        placeholder="비밀번호 확인"
+                        value={inputConPw}
+                        onChange={onChangeConPw}
+                        onBlur={() => {
+                          onBlurConPw();
+                          onBlurPw();
+                        }}
+                        isConPw={isConPw}
+                      ></InputPwConfirm>
+                      <InputPwDivToggle
+                        isVisible={isVisibleConPwd}
+                        onClick={() => toggleVisibleConPwd()}
+                      />
+                    </InputPwDiv>
+                    <ValidPwMessage>{conPwMessage}</ValidPwMessage>
+                  </InputEach>
+                </>
+              )}
+              {isSecurityAvailable && (
+                <>
+                  <InputDiv>
+                    <InputSecurity
+                      autoComplete="off"
+                      placeholder="인증번호 입력"
+                      icon="/images/icon/mail.png"
+                      onChange={onChangeSecurity}
+                    ></InputSecurity>
+                    <SecurityButton
+                      isSecurity={isSecurity}
+                      onClick={(e) => {
+                        onClickVerifySecurity(e);
+                      }}
+                    >
+                      이메일 인증
+                    </SecurityButton>
+                  </InputDiv>
+                  <ValidSecurityMessage isSecurity={isSecurity}>
+                    {securityMessage}
+                  </ValidSecurityMessage>
+                </>
+              )}
+              {isEmail && isSecurity && isPw && isConPw ? (
+                <ModifyPw enabled onClick={(e) => onClickResetPw(e)}>
+                  비밀번호 재설정하기
+                </ModifyPw>
+              ) : (
+                <ModifyPw disabled>비밀번호 재설정하기</ModifyPw>
+              )}
+            </FloatingContainer>
+            <NoticeContainer>
+              <Notice>
+                <NoticeLink to="../legal/Terms"></NoticeLink>
+                서비스 이용약관
+              </Notice>
+              <Notice>
+                <NoticeLink to="../legal/Privacy"></NoticeLink>
+                개인정보 처리방침
+              </Notice>
+            </NoticeContainer>
+          </BodyContainer>
+        </Wrap>
+      )}
+    </>
   );
 };
 export default FindPw;

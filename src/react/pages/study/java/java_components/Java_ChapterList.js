@@ -1,9 +1,10 @@
-import { JavaStudyChapter } from "../../../../../util/study/JavaStudyChapter";
 import {
   ChapterOuter,
   ChapterInner,
   ChapterName,
-} from "../../../../styles/study/Class_Chapter";
+} from "../../../../styles/study/Language_ChapterList";
+
+import { JavaStudyChapter } from "../../../../../util/study/JavaStudyChapter";
 
 const Java_ChapterList = ({ refs, mainContentRef }) => {
   // Scrolling Action Set

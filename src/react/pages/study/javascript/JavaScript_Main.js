@@ -10,7 +10,7 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../styles/study/Class_Main";
+} from "../../../styles/study/Language_Main";
 
 import JavaScript_ChapterList from "./javascript_components/JavaScript_ChapterList";
 import JavaScript_Title from "./javascript_components/JavaScript_Title";

@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { PythonStudyChapter } from "../../../../../util/study/PythonStudyChapter";
 import {
   ChapterOuter,
   ChapterInner,
   ChapterName,
-} from "../../../../styles/study/Class_Chapter";
+} from "../../../../styles/study/Language_ChapterList";
+
+import { PythonStudyChapter } from "../../../../../util/study/PythonStudyChapter";
 
 const Python_ChapterList = ({ refs, mainContentRef }) => {
   // Scrolling Action Set

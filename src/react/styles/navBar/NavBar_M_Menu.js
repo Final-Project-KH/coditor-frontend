@@ -94,6 +94,20 @@ export const MenuLeftLogin = styled.div.attrs({
   }
 `;
 
+export const MenuLeftLoginLink = styled.div.attrs({
+  id: "menuleftloginlink",
+})`
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  color: white;
+`;
+
 export const MenuRightContainer = styled.div.attrs({
   id: "menurightcontainer",
 })`
@@ -131,10 +145,13 @@ export const MenuRightColumnTitle = styled.div.attrs({
 })`
   width: 100%;
   padding-left: 30px;
-  font-family: "semibold", sans-serif;
+  font-family: "medium", sans-serif;
   font-size: 20px;
   color: black;
   margin-bottom: 5px;
+  &:hover {
+    font-family: "black", sans-serif;
+  }
 `;
 
 export const MenuRightColumnContents = styled.div.attrs({

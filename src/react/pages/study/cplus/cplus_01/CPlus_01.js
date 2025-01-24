@@ -9,7 +9,8 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../../styles/study/Class_Main";
+} from "../../../../styles/study/Language_00";
+
 import CPlus_Title from "../cplus_components/CPlus_Title";
 import CPlus_ClassList_Filtered from "../cplus_components/CPlus_ClassList_Filtered";
 import { useEffect } from "react";

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSwipeable } from "react-swipeable";
 
 import {
   CarouselContainer,
@@ -15,7 +16,6 @@ import {
   ArrowSlash,
   RightArrow,
 } from "../../styles/main/Carousel_M";
-import { useSwipeable } from "react-swipeable";
 
 const Carousel_M = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

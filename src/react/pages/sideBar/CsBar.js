@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   Container,
   MenuContainer,
@@ -7,7 +9,6 @@ import {
   MenuContents,
   MenuLink,
 } from "../../styles/sideBar/CsBar";
-import { useNavigate } from "react-router-dom";
 
 const CsBar = ({ isOpen, closeMenu, path }) => {
   const navigate = useNavigate();
@@ -34,7 +35,6 @@ const CsBar = ({ isOpen, closeMenu, path }) => {
     <Container isOpen={isOpen}>
       <MenuContainer>
         <MenuColumn>
-          <MenuTitle>CS</MenuTitle>
           <MenuContents onClick={closeMenu}>
             <MenuLink onClick={() => handleReportClick()}>
               악성 사용자 신고

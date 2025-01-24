@@ -1,8 +1,7 @@
-import {useState, useEffect, useRef} from "react";
-import React from "react";
-import store from "../../../redux/store/store";
-import {logoutAuth} from "../../../redux/slice/authSlice";
-import {logoutCondition} from "../../../redux/slice/loginSlice";
+import React, {useState, useEffect, useRef} from "react";
+import {useNavigate, useLocation} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+
 import {
   Wrap,
   Container,
@@ -17,14 +16,16 @@ import {
   LoginBox,
   LoginLink,
 } from "../../styles/navBar/NavBar";
+
+import store from "../../../redux/store/store";
+import {logoutAuth} from "../../../redux/slice/authSlice";
+import {logoutCondition} from "../../../redux/slice/loginSlice";
 import AboutBar from "../sideBar/AboutBar";
+import StudyBar from "../sideBar/StudyBar";
 import CodingTestBar from "../sideBar/CodingTestBar";
 import CommunityBar from "../sideBar/CommunityBar";
-import CsBar from "../sideBar/CsBar";
 import MoreBar from "../sideBar/MoreBar";
-import StudyBar from "../sideBar/StudyBar";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useLocation} from "react-router-dom";
+import CsBar from "../sideBar/CsBar";
 
 const NavBar = () => {
   const [menuState, setMenuState] = useState({
@@ -299,8 +300,6 @@ const NavBar = () => {
             ) : (
               <LoginLink onClick={() => handleLogin()}>login</LoginLink>
             )}
-            {/* <StyledLink to="/login"></StyledLink>
-            login */}
           </LoginBox>
         </LoginContainer>
       </Container>

@@ -5,10 +5,8 @@ export const menus = [
     link: "/about",
     columns: [
       {
-        title: { text: "About", link: "/about" },
-        contents: [
-          { text: "코디터 소개", link: "/about" },
-        ],
+        title: { text: "🔥 코디터 소개", link: "/about" },
+        contents: [],
       },
     ],
   },
@@ -100,13 +98,20 @@ export const menus = [
     link: "/community",
     columns: [
       {
-        title: { text: "커뮤니티", link: "/community" },
-        contents: [
-          { text: "💻 코딩 질문", link: "/community/coding" },
-          { text: "🎓 진로 질문", link: "/community/course" },
-          { text: "✏️ 스터디", link: "/community/study" },
-          { text: "📋 팀 프로젝트", link: "/community/team" },
-        ],
+        title: { text: "💻 코딩 질문", link: "/community/coding" },
+        contents: [],
+      },
+      {
+        title: { text: "🎓 진로 질문", link: "/community/course" },
+        contents: [],
+      },
+      {
+        title: { text: "✏️ 스터디", link: "/community/study" },
+        contents: [],
+      },
+      {
+        title: { text: "📋 팀 프로젝트", link: "/community/team" },
+        contents: [],
       },
     ],
   },
@@ -163,6 +168,21 @@ export const menus = [
             text: "연도별 언어 인기 순위",
             link: "/more/roadmap/languagesrank",
           },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "cs",
+    label: "cs",
+    link: "/cs",
+    columns: [
+      {
+        title: {},
+        contents: [
+          { text: "악성 사용자 신고", link: "/cs/report" },
+          { text: "건의사항", link: "/cs/question" },
         ],
       },
     ],

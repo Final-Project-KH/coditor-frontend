@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import {
   Container,
   MenuContainer,
@@ -7,8 +9,6 @@ import {
   MenuContents,
   MenuLink,
 } from "../../styles/sideBar/AboutBar";
-import About from "../about/About";
-import { useNavigate, useLocation } from "react-router-dom";
 
 const AboutBar = ({ isOpen, closeMenu, path }) => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const AboutBar = ({ isOpen, closeMenu, path }) => {
     navigate("/about", {
       state: {
         firstpath: path,
-        secondpath: "코디터 소개",
+        secondpath: "🔥 코디터 소개",
       },
     });
   };
@@ -25,13 +25,9 @@ const AboutBar = ({ isOpen, closeMenu, path }) => {
     <Container isOpen={isOpen}>
       <MenuContainer>
         <MenuColumn>
-          <MenuTitle>About</MenuTitle>
           <MenuContents onClick={closeMenu}>
-            {/* <a href="/about" className="menu-link" onClick={handleSubmenuClick}>
-              코디터 소개
-            </a> */}
             <MenuLink onClick={() => handleSubmenuClick()}>
-              코디터 소개
+              🔥 코디터 소개
             </MenuLink>
           </MenuContents>
         </MenuColumn>

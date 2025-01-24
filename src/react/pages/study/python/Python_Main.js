@@ -10,7 +10,7 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../styles/study/Class_Main";
+} from "../../../styles/study/Language_Main";
 
 import Python_ChapterList from "./python_components/Python_ChapterList";
 import Python_Title from "./python_components/Python_Title";

@@ -1,10 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { JavaStudyChapter } from "../../../../../util/study/JavaStudyChapter";
+
 import {
   ArrowLink,
   LeftArrow,
   RightArrow,
-} from "../../../../styles/study/Class_Each";
+} from "../../../../styles/study/Language_ArrowNavigation";
+
+import { JavaStudyChapter } from "../../../../../util/study/JavaStudyChapter";
 
 const Java_ArrowNavigation = ({ direction }) => {
   const location = useLocation();

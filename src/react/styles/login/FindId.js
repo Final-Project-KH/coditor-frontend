@@ -120,24 +120,8 @@ export const FloatingTitle = styled.h1.attrs({
   user-select: none;
   margin-bottom: 30px;
   font-size: 30px;
-  ${(props) =>
-    props.isUserIdAvailable &&
-    css`
-      animation: ${moveSequence} 0.3s forwards;
-      font-size: 25px;
-    `}
 `;
-const moveSequence = keyframes`
-    0% {
-      transform: translateX(0) translateY(0);
-    }
-    100%{
-      transform: translateX(0) translateY(-80%);
-    }
-    /* 100%{
-      transform: translateX(-27%) translateY(-80%);
-    } */
-  `;
+
 export const InputDiv = styled.div.attrs({
   id: "inputdiv",
 })`
@@ -187,20 +171,51 @@ export const FindIdOutput = styled.div.attrs({
   id: "findoutput",
 })`
   width: 100%;
-  height: 100px;
+  height: 150px;
   display: flex;
   position: relative;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  color: #313131;
   padding-left: 10px;
-  font-family: "medium", sans-serif;
-  font-size: 13px;
   transition: all 0.3s ease-in-out;
   margin-bottom: 40px;
+  margin-top: 40px;
+  gap: 20px;
 `;
+
+export const CheckedIcon = styled.div.attrs({
+  id: "checkedicon",
+})`
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/checked.png");
+`;
+
+export const CheckedText = styled.div.attrs({
+  id: "checkedtext",
+})`
+color: rgba(0, 0, 0, 0.4);
+font-size: 20px;
+font-family: "medium", sans-serif;
+text-align: center;
+display: inline-block;
+`;
+
+export const OutputText = styled.div.attrs({
+  id: "outputtext",
+})`
+display: inline-block;
+color: black;
+font-size: 20px;
+font-family: "bold", sans-serif;
+border-radius: 30px;
+`;
+
 export const FindIdButton = styled.button.attrs({
   id: "findidbutton",
 })`

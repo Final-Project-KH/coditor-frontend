@@ -1,9 +1,10 @@
-import { CPlusStudyChapter } from "../../../../../util/study/CPlusStudyChapter";
 import {
   ChapterOuter,
   ChapterInner,
   ChapterName,
-} from "../../../../styles/study/Class_Chapter";
+} from "../../../../styles/study/Language_ChapterList";
+
+import { CPlusStudyChapter } from "../../../../../util/study/CPlusStudyChapter";
 
 const CPlus_ChapterList = ({ refs, mainContentRef }) => {
   // Scrolling Action Set

@@ -1,10 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { PythonStudyChapter } from "../../../../../util/study/PythonStudyChapter";
+
 import {
   ArrowLink,
   LeftArrow,
   RightArrow,
-} from "../../../../styles/study/Class_Each";
+} from "../../../../styles/study/Language_ArrowNavigation";
+
+import { PythonStudyChapter } from "../../../../../util/study/PythonStudyChapter";
 
 const Python_ArrowNavigation = ({ direction }) => {
   const location = useLocation();
