@@ -14,6 +14,13 @@ const AxiosApi = {
       withCredentials: true,
     });
   },
+  autologin: async () => {
+    return await AxiosInstance.post(
+      SPRING_DOMAIN + "/auth/autologin",
+      {},
+      {withCredentials: true}
+    );
+  },
   join: async (userid, email, pwd, name, otp) => {
     // requestBody
     const user = {
@@ -204,7 +211,7 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        {title, language, content}, // POST 요청 본문
+        {title, language: [language], content}, // POST 요청 본문
         {
           params: {boardType}, // 쿼리 파라미터
         }
@@ -220,7 +227,7 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        {title, course, content}, // POST 요청 본문
+        {title, coures: [course], content}, // POST 요청 본문
         {
           params: {boardType}, // 쿼리 파라미터
         }
@@ -236,7 +243,7 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        {title, study, content}, // POST 요청 본문
+        {title, study: [study], content}, // POST 요청 본문
         {
           params: {boardType}, // 쿼리 파라미터
         }
@@ -252,7 +259,7 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        {title, team, content}, // POST 요청 본문
+        {title, team: [team], content}, // POST 요청 본문
         {
           params: {boardType}, // 쿼리 파라미터
         }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, {useEffect, useState, useRef} from "react";
 import AxiosApi from "../../../api/AxiosApi";
 import Common from "../../../util/Common";
 import {
@@ -33,8 +33,8 @@ import {
   InputPwDivToggle,
   ValidPwMessage,
 } from "../../styles/login/FindPw";
-import { RotatingLines } from "react-loader-spinner";
-import { useNavigate } from "react-router-dom";
+import {RotatingLines} from "react-loader-spinner";
+import {useNavigate} from "react-router-dom";
 
 const FindPw = () => {
   const [inputEmail, setInputEmail] = useState("");

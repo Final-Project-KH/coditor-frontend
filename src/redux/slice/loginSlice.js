@@ -3,7 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 export const loginSlice = createSlice({
   name: "login",
   initialState: {
-    issaveuserid: false,
+    saveuserid: false,
     userid: "",
     autologin: false,
   },
@@ -15,7 +15,7 @@ export const loginSlice = createSlice({
       };
     },
     setSaveUserId: (state, action) => {
-      state.issaveuserid = action.payload;
+      state.saveuserid = action.payload;
     },
     setUserId: (state, action) => {
       state.userid = action.payload;
