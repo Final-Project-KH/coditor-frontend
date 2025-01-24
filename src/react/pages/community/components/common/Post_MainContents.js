@@ -108,9 +108,9 @@ const Post_MainContents = ({ boardType }) => {
             </LeftEvBox>
             <MainPostContentsBox>
               <MainPostContentsText
+                className="main-post-content"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
-              {/* <MainPostContentsText>{post.content}</MainPostContentsText> */}
               <MainPostTagsBox>
                 {(post.language || post.course || post.study || post.team) && (
                   <MainPostTag>

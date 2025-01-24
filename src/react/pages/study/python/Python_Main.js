@@ -12,9 +12,10 @@ import {
   RightContainer,
 } from "../../../styles/study/Class_Main";
 
-import Python_ChapterList from "./Python_ChapterList";
-import Python_Title from "./Python_Title";
-import Python_ClassList from "./Python_ClassList";
+import Python_ChapterList from "./python_components/Python_ChapterList";
+import Python_Title from "./python_components/Python_Title";
+import Python_ClassList from "./python_components/Python_ClassList";
+import ScrollToTopButton from "../../ScrollToTopButton";
 
 const Python_Main = () => {
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ const Python_Main = () => {
           <Python_ClassList refs={sectionRefs} />
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

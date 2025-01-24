@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+
 import {
   Container,
   LeftContainer,
@@ -16,7 +17,7 @@ import Post_UserProfile from "./components/common/Post_UserProfile";
 import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
 import User_Feed from "./components/common/User_Feed";
 import Board_Community_Main from "./components/common/Board_Community_Main";
-import ScrollToTopButton from "../../styles/ScrollToTopButton";
+import ScrollToTopButton from "../ScrollToTopButton";
 
 const User_Main = () => {
   const navigate = useNavigate();

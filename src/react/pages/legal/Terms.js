@@ -15,7 +15,7 @@ import {
   TopBoxInner,
   StyledLink,
 } from "../../styles/legal/Terms";
-import ScrollToTopButton from "../../styles/ScrollToTopButton";
+import ScrollToTopButton from "../ScrollToTopButton";
 
 const Terms = () => {
   return (

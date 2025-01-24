@@ -32,10 +32,10 @@ import {
   ArrowContainer,
 } from "../../../../styles/study/Class_Each";
 import { StickyClassBox } from "../../../../styles/study/Study";
-import Java_Title from "../Java_Title";
-import Java_ArrowNavigation from "../Java_ArrowNavigation";
-import Java_ClassList_Filtered from "../Java_ClassList_Filtered";
-import ScrollToTopButton from "../../../../styles/ScrollToTopButton";
+import Java_Title from "../java_components/Java_Title";
+import Java_ArrowNavigation from "../java_components/Java_ArrowNavigation";
+import Java_ClassList_Filtered from "../java_components/Java_ClassList_Filtered";
+import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const Java_02_04 = () => {
   const navigate = useNavigate();

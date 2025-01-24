@@ -10,9 +10,10 @@ import {
   LeftContainer,
   RightContainer,
 } from "../../../../styles/study/Class_Main";
-import Python_Title from "../Python_Title";
-import Python_ClassList_Filtered from "../Python_ClassList_Filtered";
+import Python_Title from "../python_components/Python_Title";
+import Python_ClassList_Filtered from "../python_components/Python_ClassList_Filtered";
 import { useEffect } from "react";
+import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const Python_01 = () => {
   const navigate = useNavigate();
@@ -79,6 +80,7 @@ const Python_01 = () => {
           <Python_ClassList_Filtered chapter="01" />
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

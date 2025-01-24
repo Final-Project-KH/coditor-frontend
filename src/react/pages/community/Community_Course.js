@@ -1,3 +1,6 @@
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 import { BoardContainer } from "../../styles/community/Board";
 import {
   TopBoxArrow,
@@ -11,28 +14,32 @@ import {
   RightContainer,
   PathLink,
 } from "../../styles/community/Community";
-import ScrollToTopButton from "../../styles/ScrollToTopButton";
 import BoardList from "./components/common/Side_BoardList";
 import PopularTags from "./components/common/Side_PopularTags";
 import TopWriters from "./components/common/Side_TopWriters";
 import WeeklyBest from "./components/common/Side_WeeklyBest";
-import { useLocation, useNavigate } from "react-router-dom";
 import Board_Course_Search from "./components/course/Board_Course_Search";
-import Board_Course_MiddleSort from "./components/course/Board_Course_MiddleSort";
 import Board_PostList from "./components/common/Board_PostList";
+import Board_TopSort from "./components/common/Board_TopSort";
+import Board_Order from "./components/common/Board_Order";
+import ScrollToTopButton from "../ScrollToTopButton";
 
 const Community_Course = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
   const queryParams = new URLSearchParams(location.search);
+  
 
-  // params for pagination
+  // Pagination and sorting params
+  const [page, setPage] = useState(queryParams.get("page") || 1);
+  const [size, setSize] = useState(queryParams.get("size") || 10);
+  const [sortBy, setSortBy] = useState(
+    queryParams.get("sortBy") || "createdAt"
+  );
+  const [order, setOrder] = useState(queryParams.get("order") || "desc");
+
   const boardType = "course";
-  const page = queryParams.get("page");
-  const size = queryParams.get("size");
-  const sortBy = queryParams.get("sortBy");
-  const order = queryParams.get("order");
 
   // TopBox firstpath
   const handleCommunity = () => {
@@ -52,6 +59,11 @@ const Community_Course = () => {
       },
     });
   };
+
+    // Update sorting parameters
+    const handleSortChange = (newSortBy) => {
+      setSortBy(newSortBy);
+    };
 
   return (
     <>
@@ -75,8 +87,12 @@ const Community_Course = () => {
           </LeftContainer>
           <CenterContainer>
             <BoardContainer>
+            <Board_TopSort
+                onSortChange={handleSortChange}
+                boardType={boardType}
+              />
               <Board_Course_Search />
-              <Board_Course_MiddleSort />
+              <Board_Order boardType={boardType} />
               <Board_PostList
                 boardType={boardType}
                 page={page}

@@ -27,7 +27,7 @@ import {
 } from "../../../../styles/community/Board";
 import AxiosApi from "../../../../../api/AxiosApi";
 import { useLocation, useNavigate } from "react-router-dom";
-import Pagination from "./Pagination";
+import Board_Pagination from "./Board_Pagination";
 import {
   LanguageDisplayNames,
   CourseDisplayNames,
@@ -98,8 +98,8 @@ const Board_PostList = ({ boardType, page, size, sortBy, order }) => {
                   style={{
                     backgroundColor: "#313131",
                     backgroundImage: `url(${
-                      board.profileUrl
-                        ? board.profileUrl
+                      board.imgUrl
+                        ? board.imgUrl
                         : "/images/general/default_profile.png"
                     })`,
                   }}
@@ -157,7 +157,7 @@ const Board_PostList = ({ boardType, page, size, sortBy, order }) => {
           </PostEach>
         ))}
       </PostListContainer>
-      <Pagination
+      <Board_Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}

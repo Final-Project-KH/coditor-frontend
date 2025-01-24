@@ -1,4 +1,5 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+
 import {
   Wrap,
   TopBoxArrow,
@@ -12,15 +13,25 @@ import {
 import Post_ReplyArea from "./components/common/Post_ReplyArea";
 import Post_UserProfile from "./components/common/Post_UserProfile";
 import { PathLink } from "../../styles/community/Community";
-import ScrollToTopButton from "../../styles/ScrollToTopButton";
 import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
 import Post_MainContents from "./components/common/Post_MainContents";
+import { useState } from "react";
+import ScrollToTopButton from "../ScrollToTopButton";
 
 const Post_Read = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
   const { boardType, boardId } = useParams();
+  const queryParams = new URLSearchParams(location.search);
+
+  // Pagination and sorting params
+  const [page, setPage] = useState(queryParams.get("page") || 1);
+  const [size, setSize] = useState(queryParams.get("size") || 10);
+  const [sortBy, setSortBy] = useState(
+    queryParams.get("sortBy") || "createdAt"
+  );
+  const [order, setOrder] = useState(queryParams.get("order") || "desc");
 
   // TopBox firstpath
   const handleCommunity = () => {
@@ -76,7 +87,13 @@ const Post_Read = () => {
         <Container>
           <LeftContainer>
             <Post_MainContents boardType={boardType} />
-            <Post_ReplyArea boardType={boardType} />
+            <Post_ReplyArea
+              boardType={boardType}
+              page={page}
+              size={size}
+              sortBy={sortBy}
+              order={order}
+            />
           </LeftContainer>
           <RightContainer>
             <Post_UserProfile />

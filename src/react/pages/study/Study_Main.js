@@ -9,21 +9,21 @@ import {
   SubjectLink,
   PathLink,
 } from "../../styles/study/Study";
-import Java_Title from "./java/Java_Title";
-import Python_Title from "./python/Python_Title";
-import C_Title from "./c/C_Title";
-import CPlus_Title from "./cplus/CPlus_Title";
-import JavaScript_Title from "./javascript/JavaScript_Title";
+import Java_Title from "./java/java_components/Java_Title";
+import Python_Title from "./python/python_components/Python_Title";
+import C_Title from "./c/c_components/C_Title";
+import CPlus_Title from "./cplus/cplus_components/CPlus_Title";
+import JavaScript_Title from "./javascript/javascript_components/JavaScript_Title";
 import { useEffect } from "react";
-import ScrollToTopButton from "../../styles/ScrollToTopButton";
+import ScrollToTopButton from "../ScrollToTopButton";
 
 const Study_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
-  const { mainContentRef } = useOutletContext();  
+  const { mainContentRef } = useOutletContext();
 
-// 페이지 진입 시 스크롤 위치 초기화
+  // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
     if (mainContentRef?.current) {
       mainContentRef.current.scrollTo(0, 0);

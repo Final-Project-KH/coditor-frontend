@@ -10,7 +10,9 @@ const AxiosApi = {
       userId: userid,
       password: pwd,
     };
-    return await axios.post(SPRING_DOMAIN + "/auth/login", login);
+    return await axios.post(SPRING_DOMAIN + "/auth/login", login, {
+      withCredentials: true,
+    });
   },
   join: async (userid, email, pwd, name, otp) => {
     // requestBody
@@ -202,9 +204,9 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        { title, language, content }, // POST 요청 본문
+        {title, language, content}, // POST 요청 본문
         {
-          params: { boardType }, // 쿼리 파라미터
+          params: {boardType}, // 쿼리 파라미터
         }
       );
       return response.data;
@@ -218,9 +220,9 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        { title, course, content }, // POST 요청 본문
+        {title, course, content}, // POST 요청 본문
         {
-          params: { boardType }, // 쿼리 파라미터
+          params: {boardType}, // 쿼리 파라미터
         }
       );
       return response.data;
@@ -234,9 +236,9 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        { title, study, content }, // POST 요청 본문
+        {title, study, content}, // POST 요청 본문
         {
-          params: { boardType }, // 쿼리 파라미터
+          params: {boardType}, // 쿼리 파라미터
         }
       );
       return response.data;
@@ -250,68 +252,112 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        { title, team, content }, // POST 요청 본문
+        {title, team, content}, // POST 요청 본문
         {
-          params: { boardType }, // 쿼리 파라미터
+          params: {boardType}, // 쿼리 파라미터
         }
       );
       return response.data;
     } catch (error) {
       console.error("게시글 작성 중 오류 발생 : ", error);
-      console.log("Request Params:", { boardType });
-      console.log("Request Body:", { title, team, content });
+      console.log("Request Params:", {boardType});
+      console.log("Request Body:", {title, team, content});
       throw error;
     }
   },
 
-  writeReply: async (content) => {
+  getReplies: async (
+    page = 1,
+    size = 10,
+    sortBy = "createdAt",
+    order = "DESC"
+  ) => {
+    try {
+      const response = await axios.get(
+        SPRING_DOMAIN + "/community/list/comment",
+        {
+          params: {
+            page,
+            size,
+            sortBy,
+            order,
+          },
+        }
+      );
+      return response.data; // 응답 데이터 반환
+    } catch (error) {
+      console.error(
+        "댓글 불러오기 오류 : ",
+        error.response?.data || error.message
+      );
+      throw error; // 에러를 다시 던져서 호출하는 쪽에서 처리하도록 함
+    }
+  },
+
+  writeReply: async (boardId, content) => {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/add/comment", // URL
-        { content } // POST 요청 본문
+        {boardId, content} // POST 요청 본문
       );
       return response.data;
     } catch (error) {
-      console.error("게시글 작성 중 오류 발생 : ", error);
+      console.error("댓글 작성 중 오류 발생 : ", error);
       throw error;
     }
   },
 
-  submitCode: async ({ code, codeLanguage, questionId }) => {
+  getActiveBoard: async (
+    boardType,
+    page = 1,
+    size = 10,
+    sortBy = "active",
+    order = "DESC"
+  ) => {
     try {
-      const response = await AxiosInstance.post(
-        `${SPRING_DOMAIN}/api/code-challenge/submit`,
-        { codeLanguage, code, questionId }
-      );
-      return response.data;
+      const response = await axios.get(SPRING_DOMAIN + "/community/list/all", {
+        params: {
+          boardType,
+          page,
+          size,
+          sortBy,
+          order,
+        },
+      });
+      return response.data; // 응답 데이터 반환
     } catch (error) {
-      const data = {};
-
-      if (error.request && !error.response) {
-        data["error"] =
-          "서버가 응답하지 않습니다. 네트워크 상태를 확인해주세요.";
-      } else if (error.response) {
-        Object.assign(data, error.response.data);
-        if (!data["error"])
-          data["error"] =
-            "코드 제출 과정에서 예기치 못한 문제가 발생하였습니다.";
-      } else {
-        data["error"] = "알 수 없는 문제가 발생했습니다";
-        console.error(error.message);
-      }
-
-      return data;
+      console.error(
+        "게시판 불러오기 오류 : ",
+        error.response?.data || error.message
+      );
+      throw error; // 에러를 다시 던져서 호출하는 쪽에서 처리하도록 함
     }
   },
 
-  executeCode: async (jobId) => {
+  getInctiveBoard: async (
+    boardType,
+    page = 1,
+    size = 10,
+    sortBy = "inactive",
+    order = "DESC"
+  ) => {
     try {
-      const response = await AxiosInstance.get(
-        `${SPRING_DOMAIN}/api/code-challenge/execute?jobid=${jobId}`
-      );
+      const response = await axios.get(SPRING_DOMAIN + "/community/list/all", {
+        params: {
+          boardType,
+          page,
+          size,
+          sortBy,
+          order,
+        },
+      });
+      return response.data; // 응답 데이터 반환
     } catch (error) {
-      alert("실행 실패");
-      console.log(error);
+      console.error(
+        "게시판 불러오기 오류 : ",
+        error.response?.data || error.message
+      );
+      throw error; // 에러를 다시 던져서 호출하는 쪽에서 처리하도록 함
     }
   },
 };
