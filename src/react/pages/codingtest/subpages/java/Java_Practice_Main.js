@@ -7,7 +7,7 @@ import {
   LeftTopSubjectContainer,
   LeftMiddleSubjectContainer,
   LeftSubjectSubContainer,
-  SubjectImgContainerCPlus,
+  SubjectImgContainerJava,
   SubjectUserImgContainer,
   SubjectTitle,
   SubjectContent,
@@ -26,15 +26,18 @@ import {
   TopBoxText,
   TopBoxArrow,
   NavigatiePath,
-} from "../../../styles/codingtest/CoddingTestCommons";
-import AxiosApi from "../../../../api/AxiosApi";
-import Common from "../../../../util/Common";
-import { useLocation, useNavigate } from "react-router-dom";
-import { classCPlusMenuData } from "../../../../util/codingtestpractice/ClassCPlusMenuData";
+} from "../../../../styles/codingtest/CoddingTestCommons";
+import AxiosApi from "../../../../../api/AxiosApi";
+import Common from "../../../../../util/Common";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
+import { classJavaMenuData } from "../../../../../util/codingtestpractice/ClassJavaMenuData";
+import { useDispatch, useSelector } from "react-redux";
+import ScrollToTopButton from "../../../../styles/ScrollToTopButton";
+
 // User Nickname, 등급
 // Coding Test 난이도 받아와야함
 // 경로 받아와야함
-const CT_CPlus_Practice_Main = () => {
+const CT_Java_Practice_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
@@ -47,8 +50,8 @@ const CT_CPlus_Practice_Main = () => {
     });
   };
 
-  const handleCodingTestC = () => {
-    navigate("/codingtest/cplus", {
+  const handleCodingTestJava = () => {
+    navigate("/codingtest/java", {
       state: {
         firstpath: firstpath,
         secondpath: secondpath,
@@ -57,7 +60,7 @@ const CT_CPlus_Practice_Main = () => {
   };
 
   const handleRefresh = () => {
-    navigate(`/codingtest/cplus/practice`, {
+    navigate(`/codingtest/java/practice`, {
       state: {
         firstpath: firstpath,
         secondpath: secondpath,
@@ -70,15 +73,7 @@ const CT_CPlus_Practice_Main = () => {
     navigate(navigatepath, { state: data });
   };
 
-  const [isToggleOpenId, setIsToggleOpenId] = useState([]);
-
-  const toggleVisibility = (id) => {
-    setIsToggleOpenId((prevId) =>
-      prevId.includes(id) ? prevId.filter((i) => i !== id) : [...prevId, id]
-    );
-  };
-
-  const updatedCPlusMenuData = classCPlusMenuData.map((menu) => ({
+  const updatedJavaMenuData = classJavaMenuData.map((menu) => ({
     ...menu,
     contents: menu.contents.map((content) => ({
       ...content,
@@ -90,6 +85,25 @@ const CT_CPlus_Practice_Main = () => {
       fourthpath: content.fourthpath,
     })),
   }));
+  const initialIds = updatedJavaMenuData.map((menu) => menu.id);
+
+  const [isToggleOpenId, setIsToggleOpenId] = useState(initialIds);
+
+  const toggleVisibility = (id) => {
+    setIsToggleOpenId((prevId) =>
+      prevId.includes(id) ? prevId.filter((i) => i !== id) : [...prevId, id]
+    );
+  };
+
+  const nickname = useSelector((state) => state.auth.nickname);
+  const { mainContentRef } = useOutletContext();
+
+  // 페이지 진입 시 스크롤 위치 초기화
+  useEffect(() => {
+    if (mainContentRef?.current) {
+      mainContentRef.current.scrollTo(0, 0);
+    }
+  }, [mainContentRef]);
 
   return (
     <Wrap>
@@ -99,7 +113,7 @@ const CT_CPlus_Practice_Main = () => {
             {firstpath}
           </TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleCodingTestC()}>
+          <TopBoxText onClick={() => handleCodingTestJava()}>
             {secondpath}
           </TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
@@ -110,14 +124,14 @@ const CT_CPlus_Practice_Main = () => {
         <LeftContainer>
           <LeftTopSubjectContainer>
             <LeftSubjectSubContainer>
-              <SubjectImgContainerCPlus />
+              <SubjectImgContainerJava />
               <SubjectTitle>{secondpath}</SubjectTitle>
               <SubjectContent>{thirdpath}</SubjectContent>
             </LeftSubjectSubContainer>
             <LeftSubjectSubContainer>
               <SubjectUserImgContainer />
               {/* User 정보 실제로는 받아와야함 */}
-              <SubjectTitle>User</SubjectTitle>
+              <SubjectTitle>{nickname}</SubjectTitle>
               <SubjectContent>Platinum</SubjectContent>
             </LeftSubjectSubContainer>
           </LeftTopSubjectContainer>
@@ -125,7 +139,7 @@ const CT_CPlus_Practice_Main = () => {
           <LeftMiddleSubjectContainer></LeftMiddleSubjectContainer>
         </LeftContainer>
         <RightContainer>
-          {updatedCPlusMenuData.map((cls) => (
+          {updatedJavaMenuData.map((cls) => (
             <EachClass key={cls.id}>
               <ClassHeader isOpen={isToggleOpenId.includes(cls.id)}>
                 <ClassHeaderTitle>{cls.title}</ClassHeaderTitle>
@@ -158,7 +172,8 @@ const CT_CPlus_Practice_Main = () => {
           ))}
         </RightContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };
-export default CT_CPlus_Practice_Main;
+export default CT_Java_Practice_Main;

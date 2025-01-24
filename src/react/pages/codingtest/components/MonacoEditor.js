@@ -3,17 +3,12 @@ import {
   ClassHeader,
   ClassHeaderTitle,
   ClassHeaderButton,
-  ConsoleClass,
-  StyledDiv,
-} from "../../react/styles/codingtest/java/CodingTestJava";
+} from "../../../styles/codingtest/java/CodingTestJava";
 
 import React, { useRef, useEffect, useState } from "react";
 import { Editor } from "@monaco-editor/react";
-import { useData } from "./MonacoContext";
-import AxiosApi from "../../api/AxiosApi";
-import store from "../../redux/store/store";
 
-const MonacoJava = ({ secondpath }) => {
+const MonacoEditor = ({ codeLanguage }) => {
   const editorRef = useRef();
   const [value, setValue] = useState("");
 
@@ -22,15 +17,6 @@ const MonacoJava = ({ secondpath }) => {
     editor.focus();
   };
 
-  const Upperlanguage = { secondpath };
-
-  const { setData } = useData();
-
-  const { data } = useData();
-
-  const handleUpdateData = () => {
-    setData({ codingtest: editorRef.current.getValue() });
-  };
   useEffect(() => {
     if (editorRef.current) {
       const resizeObserver = new ResizeObserver(() => {
@@ -58,9 +44,7 @@ const MonacoJava = ({ secondpath }) => {
       <InputClass>
         <ClassHeader>
           <ClassHeaderTitle>INPUT</ClassHeaderTitle>
-          <ClassHeaderButton onClick={() => handleUpdateData()}>
-            Submit
-          </ClassHeaderButton>
+          {/* <ClassHeaderButton onClick={1}>Submit</ClassHeaderButton> */}
         </ClassHeader>
         <Editor
           height="100%"
@@ -79,15 +63,8 @@ const MonacoJava = ({ secondpath }) => {
           }}
         />
       </InputClass>
-
-      <ConsoleClass>
-        <ClassHeader>
-          <ClassHeaderTitle>CONSOLE</ClassHeaderTitle>
-        </ClassHeader>
-        <StyledDiv>👉 전달받은 값 : {data.codingtest}</StyledDiv>
-      </ConsoleClass>
     </>
   );
 };
 
-export default MonacoJava;
+export default MonacoEditor;
