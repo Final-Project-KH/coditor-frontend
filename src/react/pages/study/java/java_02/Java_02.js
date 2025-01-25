@@ -14,6 +14,7 @@ import {
 
 import Java_Title from "../java_components/Java_Title";
 import Java_ClassList_Filtered from "../java_components/Java_ClassList_Filtered";
+import Java_02_M from "./Java_02_M";
 import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const Java_02 = () => {
@@ -21,6 +22,7 @@ const Java_02 = () => {
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
+  const { isMobile } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
@@ -61,6 +63,10 @@ const Java_02 = () => {
   };
 
   return (
+    <>
+    {isMobile ? (
+      <Java_02_M />
+    ) : (
     <Wrap>
       <TopBoxWide>
         <TopBox>
@@ -83,6 +89,8 @@ const Java_02 = () => {
       </Container>
       <ScrollToTopButton />
     </Wrap>
+          )}
+    </>
   );
 };
 

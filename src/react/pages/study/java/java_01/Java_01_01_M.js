@@ -6,9 +6,13 @@ import "highlight.js/styles/a11y-dark.css";
 import {
   Wrap,
   TopBoxWide,
+  TopBoxWide2,
   TopBox,
+  TopBox2,
   TopBoxText,
+  TopBoxText2,
   TopBoxArrow,
+  TopBoxArrow2,
   TopBoxLink,
   Container,
   EachClass,
@@ -25,6 +29,7 @@ import {
   ClassContentsImage,
   ClassContentsCodeBox,
   ClassContentsCode,
+  ClassTableBox,
   ClassTable,
   ClassTableTd,
   ClassTableTr,
@@ -94,29 +99,32 @@ const Java_01_01_M = () => {
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxLink>
-            <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+          <TopBoxLink onClick={() => handleStudy()}>
+            <TopBoxText>{firstpath}</TopBoxText>
           </TopBoxLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxLink>
-            <TopBoxText onClick={() => handleStudyJava()}>
+          <TopBoxLink onClick={() => handleStudyJava()}>
+            <TopBoxText>
               {secondpath}
             </TopBoxText>
           </TopBoxLink>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxLink>
-            <TopBoxText onClick={() => handleStudyJava01()}>
+          </TopBox>
+          </TopBoxWide>
+          <TopBoxWide2>
+          <TopBox2>
+          <TopBoxLink onClick={() => handleStudyJava01()}>
+            <TopBoxText2>
               {thirdpath}
-            </TopBoxText>
+            </TopBoxText2>
           </TopBoxLink>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxLink>
-            <TopBoxText onClick={() => handleRefresh()}>
+          <TopBoxArrow2>{`>`}</TopBoxArrow2>
+          <TopBoxLink onClick={() => handleRefresh()}>
+            <TopBoxText2>
               {fourthpath}
-            </TopBoxText>
+            </TopBoxText2>
           </TopBoxLink>
-        </TopBox>
-      </TopBoxWide>
+        </TopBox2>
+      </TopBoxWide2>
       <Container>
         <EachClass>
           <ClassHeader>

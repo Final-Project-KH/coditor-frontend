@@ -10,6 +10,9 @@ export const EachClass = styled.div.attrs({
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-left: ${(props) => (props.isOpen ? "none" : "1px solid #313131")};
+  border-right: ${(props) => (props.isOpen ? "none" : "1px solid #313131")};
+  border-bottom: ${(props) => (props.isOpen ? "none" : "1px solid #313131")};
 `;
 
 export const ClassHeader = styled.div.attrs({
@@ -46,11 +49,25 @@ export const ClassHeaderTitleButton = styled.div.attrs({
   margin-right: 30px;
   color: white;
   cursor: pointer;
+  
   &::before {
-    /* 토글 상태에 따라 아이콘 변경 */
-    content: ${(props) => (props.isOpen ? '"◀"' : '"▼"')};
-    position: relative;
-    margin-left: 15px;
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 100%;
+    transform: translate(-50%, -50%) ${(props) => (props.isOpen ? "rotate(90deg)" : "rotate(0deg)")};
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid white;
+    transition: transform 0.3s ease, border-top-color 0.3s ease;
+    transform-origin: center center;
+  }
+
+  /* 변경된 아이콘 스타일에 추가 */
+  &:hover::before {
+    border-top-color: #f0f0f0;  /* 호버 시 색상 변화를 추가 */
   }
 `;
 
@@ -85,6 +102,7 @@ export const ClassSet = styled.div.attrs({
     transform: rotate(0deg);
   }
 `;
+
 export const ClassName = styled.div.attrs({
   id: "classname",
 })`
@@ -96,11 +114,20 @@ export const ClassName = styled.div.attrs({
   margin-bottom: 5px;
   text-decoration: none;
   padding: 5px 15px;
-  border-radius: 30px;
   cursor: pointer;
+  position: relative;
   &:hover {
-    text-decoration: none;
-    background-color: #313131;
-    color: white;
+    font-family: "extrabold", sans-serif;
+  }
+  &:hover::before {
+    content: "<";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: red;
+    font-size: 18px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
   }
 `;

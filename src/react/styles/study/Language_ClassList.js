@@ -48,9 +48,17 @@ export const ClassHeaderTitleButton = styled.div.attrs({
   cursor: pointer;
   &::before {
     /* 토글 상태에 따라 아이콘 변경 */
-    content: ${(props) => (props.isOpen ? '"◀"' : '"▼"')};
-    position: relative;
-    margin-left: 7px;
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 90%;
+    transform: translate(-50%, -50%) ${(props) => (props.isOpen ? "rotate(90deg)" : "rotate(0deg)")};
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid white;
+    transition: transform 0.3s ease;
   }
 `;
 
@@ -97,10 +105,20 @@ export const ClassName = styled.div.attrs({
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 30px;
+  position: relative;
   cursor: pointer;
   &:hover {
-    text-decoration: none;
-    background-color: #313131;
-    color: white;
+    font-family: "extrabold", sans-serif;
+  }
+  &:hover::before {
+    content: "<";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: red;
+    font-size: 18px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
   }
 `;

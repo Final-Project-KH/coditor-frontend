@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
-  width: 100%;
+  width: 100vw;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -43,17 +43,15 @@ export const TopBoxText = styled.div.attrs({
   id: "topboxtext",
 })`
   display: inline-block;
-  font-family: "medium", sans-serif;
+  font-family: "bold", sans-serif;
   font-size: 18px;
   text-align: left;
   align-items: center;
   cursor: pointer;
   color: white;
-  background-color: #313131;
   &:hover {
-    /* text-decoration: underline;
-    text-underline-offset: 5px; */
-    font-family: "black", sans-serif;
+    text-decoration: underline;
+    text-underline-offset: 5px;
   }
 `;
 
@@ -62,9 +60,9 @@ export const TopBoxArrow = styled.div.attrs({
 })`
   color: white;
   font-size: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  font-family: "light", sans-serif;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-family: "medium", sans-serif;
   padding-bottom: 3px;
 `;
 export const TopBoxLink = styled.button.attrs({

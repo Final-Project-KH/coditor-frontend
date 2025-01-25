@@ -30,7 +30,6 @@ export const SubjectImgContainerJava = styled.div.attrs({
   background-image: url("/images/program/java_full.png");
   margin-top: 10px;
   margin-bottom: 10px;
-
 `;
 
 export const SubjectImgContainerPython = styled.div.attrs({
@@ -101,7 +100,8 @@ export const SubjectTitle = styled.div.attrs({
   id: "subjecttitle",
 })`
   width: 100%;
-  font-family: "medium", sans-serif;
+  font-family: "semibold", sans-serif;
+  color: #313131;
   font-size: 20px;
   text-align: center;
   display: flex;

@@ -22,32 +22,32 @@ export const JavaStudyChapter = [
   },
   {
     id: "02",
-    title: "02. 기본 자료형과 연산자 / 제어문",
+    title: "02. 기본 자료형과 연산자",
     contents: [
       {
         label: "변수와 자료형",
         navigatepath: "/study/java/02/01",
-        thirdpath: "02. 기본 자료형과 연산자 / 제어문",
+        thirdpath: "02. 기본 자료형과 연산자",
       },
       {
         label: "변수와 시스템 입출력",
         navigatepath: "/study/java/02/02",
-        thirdpath: "02. 기본 자료형과 연산자 / 제어문",
+        thirdpath: "02. 기본 자료형과 연산자",
       },
       {
         label: "연산자",
         navigatepath: "/study/java/02/03",
-        thirdpath: "02. 기본 자료형과 연산자 / 제어문",
+        thirdpath: "02. 기본 자료형과 연산자",
       },
       {
         label: "조건문",
         navigatepath: "/study/java/02/04",
-        thirdpath: "02. 기본 자료형과 연산자 / 제어문",
+        thirdpath: "02. 기본 자료형과 연산자",
       },
       {
         label: "반복문",
         navigatepath: "/study/java/02/05",
-        thirdpath: "02. 기본 자료형과 연산자 / 제어문",
+        thirdpath: "02. 기본 자료형과 연산자",
       },
     ],
   },

@@ -15,7 +15,7 @@ const CPlus_Title_M = () => {
     <>
       <LeftSubjectContainer>
         <SubjectImgContainerCPlus />
-        <SubjectTitle>C++ Study</SubjectTitle>
+        <SubjectTitle>C++</SubjectTitle>
         <SubjectContents>학습전</SubjectContents>
         <SubjectRateContainer>
           <SubjectRateBox>

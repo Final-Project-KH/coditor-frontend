@@ -37,12 +37,14 @@ import Java_Title from "../java_components/Java_Title";
 import Java_ArrowNavigation from "../java_components/Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../java_components/Java_ClassList_Filtered";
 import ScrollToTopButton from "../../../ScrollToTopButton";
+import Java_01_02_M from "./Java_01_02_M";
 
 const Java_01_02 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
+  const { isMobile } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
@@ -111,6 +113,10 @@ export PATH=\${PATH}:$JAVA_HOME/bin
   };
 
   return (
+    <>
+    {isMobile ? (
+      <Java_01_02_M />
+    ) : (
     <Wrap>
       <TopBoxWide>
         <TopBox>
@@ -277,6 +283,8 @@ export PATH=\${PATH}:$JAVA_HOME/bin
       </Container>
       <ScrollToTopButton />
     </Wrap>
+          )}
+    </>
   );
 };
 

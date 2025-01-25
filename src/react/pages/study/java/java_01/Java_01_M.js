@@ -4,9 +4,13 @@ import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import {
   Wrap,
   TopBoxWide,
+  TopBoxWide2,
   TopBox,
+  TopBox2,
   TopBoxText,
+  TopBoxText2,
   TopBoxArrow,
+  TopBoxArrow2,
   TopBoxLink,
   Container,
 } from "../../../../styles/study/Language_00_M";
@@ -70,12 +74,15 @@ const Java_01_M = () => {
           <TopBoxLink onClick={() => handleStudyJava()}>
             <TopBoxText>{secondpath}</TopBoxText>
           </TopBoxLink>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
+          </TopBox>
+          </TopBoxWide>
+          <TopBoxWide2>
+          <TopBox2>
           <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText>{thirdpath}</TopBoxText>
+            <TopBoxText2>{thirdpath}</TopBoxText2>
           </TopBoxLink>
-        </TopBox>
-      </TopBoxWide>
+        </TopBox2>
+      </TopBoxWide2>
       <Container>
         <Java_Title_M />
         <Java_ClassList_Filtered_M chapter="01" />

@@ -15,7 +15,7 @@ const Python_Title = () => {
     <>
       <LeftSubjectContainer>
         <SubjectImgContainerPython />
-        <SubjectTitle>Python Study</SubjectTitle>
+        <SubjectTitle>Python</SubjectTitle>
         <SubjectContents>학습전</SubjectContents>
         <SubjectRateContainer>
           <SubjectRateBox>

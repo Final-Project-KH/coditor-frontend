@@ -8,6 +8,7 @@ export const ArrowContainer = styled.div.attrs({
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 50px;
 `;
 export const LeftArrow = styled.div.attrs({
   id: "leftarrow",

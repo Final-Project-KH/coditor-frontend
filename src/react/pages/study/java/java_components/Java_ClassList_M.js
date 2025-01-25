@@ -1,7 +1,6 @@
 import React, { useState, forwardRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-
 import {
   EachClass,
   ClassHeader,
@@ -45,7 +44,7 @@ const Java_ClassList_M = forwardRef(({ refs }, ref) => {
 
   // Class List Set
   const EachClassComponent = ({ cls, isOpen, onToggle }) => (
-    <EachClass key={cls.id} ref={(el) => (refs[cls.id.toString()] = el)}>
+    <EachClass isOpen={isOpen} key={cls.id} ref={(el) => (refs[cls.id.toString()] = el)}>
       <ClassHeader isOpen={isOpen}>
         <ClassHeaderTitle onClick={() => handleNext(cls)}>
           {cls.title}

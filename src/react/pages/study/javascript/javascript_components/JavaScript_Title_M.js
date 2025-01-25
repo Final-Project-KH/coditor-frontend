@@ -15,7 +15,7 @@ const JavaScript_Title_M = () => {
     <>
       <LeftSubjectContainer>
         <SubjectImgContainerJavaScript />
-        <SubjectTitle>JavaScript Study</SubjectTitle>
+        <SubjectTitle>JavaScript</SubjectTitle>
         <SubjectContents>학습전</SubjectContents>
         <SubjectRateContainer>
           <SubjectRateBox>

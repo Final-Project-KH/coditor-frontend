@@ -100,7 +100,8 @@ export const SubjectTitle = styled.div.attrs({
   id: "subjecttitle",
 })`
   width: 100%;
-  font-family: "medium", sans-serif;
+  font-family: "semibold", sans-serif;
+  color: #313131;
   font-size: 20px;
   text-align: center;
   display: flex;
