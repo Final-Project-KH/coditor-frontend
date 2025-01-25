@@ -18,7 +18,7 @@ const AxiosApi = {
     return await AxiosInstance.post(
       SPRING_DOMAIN + "/auth/autologin",
       {},
-      {withCredentials: true}
+      { withCredentials: true }
     );
   },
   join: async (userid, email, pwd, name, otp) => {
@@ -206,14 +206,53 @@ const AxiosApi = {
       throw error; // 에러를 다시 던져서 호출하는 쪽에서 처리하도록 함
     }
   },
+  boardreactionstatus: async (boardNum, userKey) => {
+    const data = {
+      params: {
+        boardId: boardNum,
+        userId: userKey,
+      },
+    };
+    try {
+      const response = await AxiosInstance.get(
+        SPRING_DOMAIN + "/community/reaction/status",
+        data
+      );
+      return response.data;
+    } catch (error) {
+      console.error("게시글 reaction 상태 불러오기 실패 : ", error);
+      throw error;
+    }
+  },
+
+  boardreaction: async (boardNum, userKey, reaction) => {
+    const data = {
+      params: {
+        boardId: boardNum,
+        userId: userKey,
+        reaction: reaction,
+      },
+    };
+    try {
+      const response = await AxiosInstance.post(
+        SPRING_DOMAIN + "/community/reaction/voting",
+        null,
+        data
+      );
+      return response.data;
+    } catch (error) {
+      console.error("게시글 반응 실패 :", error);
+      throw error;
+    }
+  },
 
   writeCodingPost: async (boardType, title, language, content) => {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        {title, language: [language], content}, // POST 요청 본문
+        { title, language: [language], content }, // POST 요청 본문
         {
-          params: {boardType}, // 쿼리 파라미터
+          params: { boardType }, // 쿼리 파라미터
         }
       );
       return response.data;
@@ -227,9 +266,9 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        {title, course, content}, // POST 요청 본문
+        { title, course, content }, // POST 요청 본문
         {
-          params: {boardType}, // 쿼리 파라미터
+          params: { boardType }, // 쿼리 파라미터
         }
       );
       return response.data;
@@ -243,9 +282,9 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        {title, study: [study], content}, // POST 요청 본문
+        { title, study: [study], content }, // POST 요청 본문
         {
-          params: {boardType}, // 쿼리 파라미터
+          params: { boardType }, // 쿼리 파라미터
         }
       );
       return response.data;
@@ -259,16 +298,16 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        {title, team: [team], content}, // POST 요청 본문
+        { title, team: [team], content }, // POST 요청 본문
         {
-          params: {boardType}, // 쿼리 파라미터
+          params: { boardType }, // 쿼리 파라미터
         }
       );
       return response.data;
     } catch (error) {
       console.error("게시글 작성 중 오류 발생 : ", error);
-      console.log("Request Params:", {boardType});
-      console.log("Request Body:", {title, team, content});
+      console.log("Request Params:", { boardType });
+      console.log("Request Body:", { title, team, content });
       throw error;
     }
   },
@@ -305,7 +344,7 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/add/comment", // URL
-        {boardId, content} // POST 요청 본문
+        { boardId, content } // POST 요청 본문
       );
       return response.data;
     } catch (error) {
@@ -368,11 +407,11 @@ const AxiosApi = {
     }
   },
 
-  submitCode: async ({code, codeLanguage, questionId}) => {
+  submitCode: async ({ code, codeLanguage, questionId }) => {
     try {
       const response = await AxiosInstance.post(
         `${SPRING_DOMAIN}/api/code-challenge/submit`,
-        {codeLanguage, code, questionId}
+        { codeLanguage, code, questionId }
       );
       return response.data;
     } catch (error) {

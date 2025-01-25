@@ -6,6 +6,7 @@ import {
   UserId,
   UserPostAmount,
 } from "../../../../styles/community/Post";
+import { useSelector } from "react-redux";
 
 const Post_UserProfile = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const Post_UserProfile = () => {
       },
     });
   };
+  const nickname = useSelector((state) => state.auth.nickname);
 
   return (
     <>
@@ -34,7 +36,7 @@ const Post_UserProfile = () => {
           }}
         />
         <UserProfileTextBox>
-          <UserId>김도현</UserId>
+          <UserId>{nickname}</UserId>
           <UserPostAmount>작성한 질문수 28</UserPostAmount>
         </UserProfileTextBox>
       </UserProfileBox>

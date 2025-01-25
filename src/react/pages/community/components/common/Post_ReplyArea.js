@@ -20,6 +20,7 @@ import { Editor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Post_Reply_WriteEditor from "./Post_ReplyEditor";
 import Board_Pagination from "./Board_Pagination";
+import { useSelector } from "react-redux";
 
 const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
   const { boardId } = useParams();
@@ -81,68 +82,75 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
     setEditorOpen(false);
   };
 
+  const nickname = useSelector((state) => state.auth.nickname);
+
   return (
     <>
-    {posts.map((post, index) => (
-      <ReplyContainer key={index}>
-        <ReplyTitle>답변 {post.commentCnt}</ReplyTitle>
-        <SuggestBox expanded={editorOpen} onClick={handleBoxClick}>
-          <span style={{ marginLeft: "15px", cursor: "pointer" }}>
-            💡testid01님, 답변을 작성해보세요.
-          </span>
-          {editorOpen && (
-            <EditorBox expanded={editorOpen}>
-              <Post_Reply_WriteEditor
-                handleCloseEditor={handleCloseEditor}
-                boardID={boardId}
-              />
-            </EditorBox>
-          )}
-        </SuggestBox>
-        <ReplyList>
-          {replies
-            .filter((reply) => reply.boardId === post.boardId) // boardId가 같은 것만 필터링
-            .map((reply, index) => (
-              <ReplyEach key={index}>
-                <ReplyUserProfileBox>
-                  <ReplyUserProfileImg
-                    style={{
-                      backgroundColor: "#313131",
-                      backgroundImage: `url(${
-                        post.profileUrl
-                          ? post.profileUrl
-                          : "/images/general/default_profile.png"
-                      })`,
-                    }}
-                  />
-                  <ReplyUserProfileTextBox>
-                    <ReplyUserId>{reply.name}</ReplyUserId>
-                    <ReplyUserDate>
-                      {new Date(reply.createdAt)
-                        .toISOString()
-                        .slice(0, 16)
-                        .replace("T", ".")
-                        .replace(/-/g, ".")}{" "}
-                      작성
-                    </ReplyUserDate>
-                  </ReplyUserProfileTextBox>
-                </ReplyUserProfileBox>
-                <ReplyMiddle>
-                  <ReplyMiddleText
-                    dangerouslySetInnerHTML={{ __html: reply.content }}
-                  />
-                </ReplyMiddle>
-              </ReplyEach>
-            ))}
-        </ReplyList>
-        <Board_Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
-      </ReplyContainer>
-    ))}
-  </>
+      {posts.map((post, index) => (
+        <ReplyContainer key={index}>
+          <ReplyTitle>답변 {post.commentCnt}</ReplyTitle>
+          <SuggestBox expanded={editorOpen} onClick={handleBoxClick}>
+            <span style={{ marginLeft: "15px", cursor: "pointer" }}>
+              💡{nickname}님, 답변을 작성해보세요.
+            </span>
+            {editorOpen && (
+              <EditorBox expanded={editorOpen}>
+                <Post_Reply_WriteEditor
+                  handleCloseEditor={handleCloseEditor}
+                  boardID={boardId}
+                />
+              </EditorBox>
+            )}
+          </SuggestBox>
+          <ReplyList>
+            {replies
+              .filter((reply) => reply.boardId === post.boardId) // boardId가 같은 것만 필터링
+              .map((reply, index) => (
+                <ReplyEach key={index}>
+                  <ReplyUserProfileBox>
+                    <ReplyUserProfileImg
+                      style={{
+                        backgroundColor: "#313131",
+                        backgroundImage: `url(${
+                          post.profileUrl
+                            ? post.profileUrl
+                            : "/images/general/default_profile.png"
+                        })`,
+                      }}
+                    />
+                    <ReplyUserProfileTextBox>
+                      <ReplyUserId>{reply.name}</ReplyUserId>
+                      <ReplyUserDate>
+                        {new Date(post.createdAt)
+                          .toLocaleString("ko-KR", {
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            hour12: false,
+                          })
+                          .replace(/\. /g, ".")}
+                        작성
+                      </ReplyUserDate>
+                    </ReplyUserProfileTextBox>
+                  </ReplyUserProfileBox>
+                  <ReplyMiddle>
+                    <ReplyMiddleText
+                      dangerouslySetInnerHTML={{ __html: reply.content }}
+                    />
+                  </ReplyMiddle>
+                </ReplyEach>
+              ))}
+          </ReplyList>
+          {/* <Board_Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          /> */}
+        </ReplyContainer>
+      ))}
+    </>
   );
 };
 
