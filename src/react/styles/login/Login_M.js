@@ -1,5 +1,5 @@
-import styled, {css, keyframes} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css, keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -367,7 +367,6 @@ export const ThirdLoginItem = styled.div.attrs({
   display: flex;
   position: relative;
   user-select: none;
-  background-color: blue;
   border: none;
   border-radius: 50%;
   transition: all 0.3s ease-in-out;

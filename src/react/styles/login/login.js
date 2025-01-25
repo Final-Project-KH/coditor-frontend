@@ -336,7 +336,6 @@ export const ThirdLoginItem = styled.div.attrs({
   display: flex;
   position: relative;
   user-select: none;
-  background-color: blue;
   border: none;
   border-radius: 50%;
   transition: all 0.3s ease-in-out;

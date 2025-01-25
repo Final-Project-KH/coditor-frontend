@@ -116,6 +116,7 @@ export const MenuRightContainer = styled.div.attrs({
   display: flex;
   flex-direction: column;
   border-left: 1px solid #ddd;
+  overflow-y: auto;
 `;
 
 export const MenuRightContentsWrap = styled.div.attrs({
@@ -145,7 +146,8 @@ export const MenuRightColumnTitle = styled.div.attrs({
 })`
   width: 100%;
   padding-left: 30px;
-  font-family: "medium", sans-serif;
+  padding-right: 30px;
+  font-family: "bold", sans-serif;
   font-size: 20px;
   color: black;
   margin-bottom: 5px;
