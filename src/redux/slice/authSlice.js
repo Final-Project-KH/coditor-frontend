@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 // 슬라이스 생성
 export const authSlice = createSlice({
@@ -9,6 +9,7 @@ export const authSlice = createSlice({
     accesstoken: "",
     accesstokenexpiresin: "",
     authorities: "",
+    profile: "",
     error: "",
   },
   reducers: {
@@ -17,6 +18,9 @@ export const authSlice = createSlice({
         ...state,
         ...action.payload,
       };
+    },
+    setProfile: (state, action) => {
+      state.profile = action.payload;
     },
     setError: (state, action) => {
       state.error = action.payload;
@@ -27,6 +31,7 @@ export const authSlice = createSlice({
       state.accesstoken = "";
       state.accesstokenexpiresin = "";
       state.authorities = "";
+      state.profile = "";
       state.error = "";
     },
     clearAccessToken: (state) => {
@@ -36,7 +41,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const {setLoginData, setError, logoutAuth, clearAccessToken} =
+export const { setLoginData, setError, logoutAuth, clearAccessToken } =
   authSlice.actions;
 
 export default authSlice.reducer;
