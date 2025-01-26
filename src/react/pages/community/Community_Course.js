@@ -1,7 +1,6 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import { useState } from "react";
 
-import { BoardContainer } from "../../styles/community/Board";
 import {
   TopBoxArrow,
   TopBoxText,
@@ -13,6 +12,7 @@ import {
   CenterContainer,
   RightContainer,
   PathLink,
+  BoardContainer,
 } from "../../styles/community/Community";
 import BoardList from "./components/common/Side_BoardList";
 import PopularTags from "./components/common/Side_PopularTags";
@@ -23,13 +23,14 @@ import Board_PostList from "./components/common/Board_PostList";
 import Board_TopSort from "./components/common/Board_TopSort";
 import Board_Order from "./components/common/Board_Order";
 import ScrollToTopButton from "../ScrollToTopButton";
+import Community_Course_M from "./Community_Course_M";
 
 const Community_Course = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
   const queryParams = new URLSearchParams(location.search);
-  
+  const { isMobile } = useOutletContext();
 
   // Pagination and sorting params
   const [page, setPage] = useState(queryParams.get("page") || 1);
@@ -60,54 +61,58 @@ const Community_Course = () => {
     });
   };
 
-    // Update sorting parameters
-    const handleSortChange = (newSortBy) => {
-      setSortBy(newSortBy);
-    };
+  // Update sorting parameters
+  const handleSortChange = (newSortBy) => {
+    setSortBy(newSortBy);
+  };
 
   return (
     <>
-      <Wrap>
-        <TopBoxWide>
-          <TopBox>
-            <PathLink onClick={() => handleCommunity()}>
-              <TopBoxText>{firstpath}</TopBoxText>
-            </PathLink>
-            <TopBoxArrow>{`>`}</TopBoxArrow>
-            <PathLink onClick={() => handleRefresh()}>
-              <TopBoxText>{secondpath}</TopBoxText>
-            </PathLink>
-          </TopBox>
-        </TopBoxWide>
-        <Container>
-          <LeftContainer>
-            <BoardList firstpath={firstpath} />
-            <PopularTags />
-            <WeeklyBest />
-          </LeftContainer>
-          <CenterContainer>
-            <BoardContainer>
-            <Board_TopSort
-                onSortChange={handleSortChange}
-                boardType={boardType}
-              />
-              <Board_Course_Search />
-              <Board_Order boardType={boardType} />
-              <Board_PostList
-                boardType={boardType}
-                page={page}
-                size={size}
-                sortBy={sortBy}
-                order={order}
-              />
-            </BoardContainer>
-          </CenterContainer>
-          <RightContainer>
-            <TopWriters />
-          </RightContainer>
-        </Container>
-        <ScrollToTopButton />
-      </Wrap>
+      {isMobile ? (
+        <Community_Course_M />
+      ) : (
+        <Wrap>
+          <TopBoxWide>
+            <TopBox>
+              <PathLink onClick={() => handleCommunity()}>
+                <TopBoxText>{firstpath}</TopBoxText>
+              </PathLink>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <PathLink onClick={() => handleRefresh()}>
+                <TopBoxText>{secondpath}</TopBoxText>
+              </PathLink>
+            </TopBox>
+          </TopBoxWide>
+          <Container>
+            <LeftContainer>
+              <BoardList firstpath={firstpath} />
+              <PopularTags />
+              <WeeklyBest />
+            </LeftContainer>
+            <CenterContainer>
+              <BoardContainer>
+                <Board_TopSort
+                  onSortChange={handleSortChange}
+                  boardType={boardType}
+                />
+                <Board_Course_Search />
+                <Board_Order boardType={boardType} />
+                <Board_PostList
+                  boardType={boardType}
+                  page={page}
+                  size={size}
+                  sortBy={sortBy}
+                  order={order}
+                />
+              </BoardContainer>
+            </CenterContainer>
+            <RightContainer>
+              <TopWriters />
+            </RightContainer>
+          </Container>
+          <ScrollToTopButton />
+        </Wrap>
+      )}
     </>
   );
 };

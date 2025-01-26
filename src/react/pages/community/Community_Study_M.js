@@ -12,13 +12,13 @@ import {
   BoardContainer,
 } from "../../styles/community/Community_M";
 
+import Board_Study_Search from "./components/study/Board_Study_Search";
 import Board_PostList from "./components/common/Board_PostList";
-import Board_Coding_Search from "./components/coding/Board_Coding_Search";
 import Board_TopSort from "./components/common/Board_TopSort";
 import Board_Order from "./components/common/Board_Order";
 import ScrollToTopButton from "../ScrollToTopButton";
 
-const Community_Coding_M = () => {
+const Community_Study_M = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
@@ -32,7 +32,7 @@ const Community_Coding_M = () => {
   );
   const [order, setOrder] = useState(queryParams.get("order") || "desc");
 
-  const boardType = "coding";
+  const boardType = "study";
 
   // TopBox firstpath
   const handleCommunity = () => {
@@ -61,33 +61,33 @@ const Community_Coding_M = () => {
   return (
     <>
       <Wrap>
-      <TopBoxWide>
-        <TopBox>
-          <TopBoxLink onClick={() => handleCommunity()}>
-            <TopBoxText>{firstpath}</TopBoxText>
-          </TopBoxLink>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText>{secondpath}</TopBoxText>
-          </TopBoxLink>
-        </TopBox>
-      </TopBoxWide>
+        <TopBoxWide>
+          <TopBox>
+            <TopBoxLink onClick={() => handleCommunity()}>
+              <TopBoxText>{firstpath}</TopBoxText>
+            </TopBoxLink>
+            <TopBoxArrow>{`>`}</TopBoxArrow>
+            <TopBoxLink onClick={() => handleRefresh()}>
+              <TopBoxText>{secondpath}</TopBoxText>
+            </TopBoxLink>
+          </TopBox>
+        </TopBoxWide>
         <Container>
-            <BoardContainer>
-              <Board_TopSort
-                onSortChange={handleSortChange}
-                boardType={boardType}
-              />
-              <Board_Coding_Search />
-              <Board_Order boardType={boardType} />
-              <Board_PostList
-                boardType={boardType}
-                page={page}
-                size={size}
-                sortBy={sortBy}
-                order={order}
-              />
-            </BoardContainer>
+          <BoardContainer>
+            <Board_TopSort
+              onSortChange={handleSortChange}
+              boardType={boardType}
+            />
+            <Board_Study_Search />
+            <Board_Order boardType={boardType} />
+            <Board_PostList
+              boardType={boardType}
+              page={page}
+              size={size}
+              sortBy={sortBy}
+              order={order}
+            />
+          </BoardContainer>
         </Container>
         <ScrollToTopButton />
       </Wrap>
@@ -95,4 +95,4 @@ const Community_Coding_M = () => {
   );
 };
 
-export default Community_Coding_M;
+export default Community_Study_M;

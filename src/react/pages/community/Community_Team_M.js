@@ -12,13 +12,13 @@ import {
   BoardContainer,
 } from "../../styles/community/Community_M";
 
+import Board_Team_Search from "./components/team/Board_Team_Search";
 import Board_PostList from "./components/common/Board_PostList";
-import Board_Coding_Search from "./components/coding/Board_Coding_Search";
 import Board_TopSort from "./components/common/Board_TopSort";
 import Board_Order from "./components/common/Board_Order";
 import ScrollToTopButton from "../ScrollToTopButton";
 
-const Community_Coding_M = () => {
+const Community_Team_M = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
@@ -32,7 +32,7 @@ const Community_Coding_M = () => {
   );
   const [order, setOrder] = useState(queryParams.get("order") || "desc");
 
-  const boardType = "coding";
+  const boardType = "team";
 
   // TopBox firstpath
   const handleCommunity = () => {
@@ -78,7 +78,7 @@ const Community_Coding_M = () => {
                 onSortChange={handleSortChange}
                 boardType={boardType}
               />
-              <Board_Coding_Search />
+              <Board_Team_Search />
               <Board_Order boardType={boardType} />
               <Board_PostList
                 boardType={boardType}
@@ -95,4 +95,4 @@ const Community_Coding_M = () => {
   );
 };
 
-export default Community_Coding_M;
+export default Community_Team_M;
