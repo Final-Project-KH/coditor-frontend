@@ -478,11 +478,11 @@ public class GreetingEx {
         </TopBox2>
       </TopBoxWide2>
       <Container>
-          <EachClass>
+          {/* <EachClass>
             <ClassHeader>
               <ClassHeaderTitle>조건문</ClassHeaderTitle>
             </ClassHeader>
-            <ClassContentsContainer>
+            <ClassContentsContainer> */}
               <ClassContentsTitle1>제어문이란?</ClassContentsTitle1>
               <ClassContentsText>
                 프로그램이 원하는 결과를 얻기 위해서는 프로그램의 순차적인
@@ -670,8 +670,8 @@ public class GreetingEx {
                 <Java_02_04_Code12 />
                 <br />
               </ClassContentsText>
-            </ClassContentsContainer>
-          </EachClass>
+            {/* </ClassContentsContainer>
+          </EachClass> */}
           <ArrowContainer>
             <Java_ArrowNavigation direction="left" />
             <Java_ArrowNavigation direction="right" />

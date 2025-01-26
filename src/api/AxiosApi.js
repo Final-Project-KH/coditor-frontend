@@ -186,6 +186,7 @@ const AxiosApi = {
     } catch (error) {
       console.error(
         "게시판 불러오기 오류 : ",
+        
         error.response?.data || error.message
       );
       throw error; // 에러를 다시 던져서 호출하는 쪽에서 처리하도록 함

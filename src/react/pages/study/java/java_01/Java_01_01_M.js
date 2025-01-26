@@ -114,7 +114,7 @@ const Java_01_01_M = () => {
           <TopBox2>
           <TopBoxLink onClick={() => handleStudyJava01()}>
             <TopBoxText2>
-              {thirdpath}
+            {thirdpath}
             </TopBoxText2>
           </TopBoxLink>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
@@ -126,11 +126,11 @@ const Java_01_01_M = () => {
         </TopBox2>
       </TopBoxWide2>
       <Container>
-        <EachClass>
+        {/* <EachClass>
           <ClassHeader>
             <ClassHeaderTitle>Java 시작하기</ClassHeaderTitle>
-          </ClassHeader>
-          <ClassContentsContainer>
+          </ClassHeader> */}
+          {/* <ClassContentsContainer> */}
             <ClassContentsTitle1>프로그래밍이란?</ClassContentsTitle1>
             <ClassContentsText>
               프로그래밍은 문제를 해결하기 위해 컴퓨터 프로그램을 설계하고
@@ -308,8 +308,8 @@ const Java_01_01_M = () => {
               빌드 툴은 프로젝트의 의존성 관리, 빌드 설정, 테스트 실행, 배포
               등을 자동화하여 일관된 방식으로 작업할 수 있도록 도와줍니다.
             </ClassContentsText>
-          </ClassContentsContainer>
-        </EachClass>
+          {/* </ClassContentsContainer> */}
+        {/* </EachClass> */}
         <ArrowContainer>
           <Java_ArrowNavigation direction="left" />
           <Java_ArrowNavigation direction="right" />

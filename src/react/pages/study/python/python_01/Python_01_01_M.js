@@ -169,7 +169,7 @@ print("Hello World")
           <TopBox2>
           <TopBoxLink onClick={() => handleStudyPython01()}>
             <TopBoxText2>
-              {thirdpath}
+            {thirdpath}
             </TopBoxText2>
           </TopBoxLink>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
@@ -181,11 +181,11 @@ print("Hello World")
         </TopBox2>
       </TopBoxWide2>
       <Container>
-          <EachClass>
+          {/* <EachClass>
             <ClassHeader>
               <ClassHeaderTitle>Python?</ClassHeaderTitle>
             </ClassHeader>
-            <ClassContentsContainer>
+            <ClassContentsContainer> */}
               <ClassContentsText>
                 <font color="red">
                   <b>
@@ -351,8 +351,8 @@ print("Hello World")
 
                 }}
               />
-            </ClassContentsContainer>
-          </EachClass>
+            {/* </ClassContentsContainer>
+          </EachClass> */}
           <ArrowContainer>
             <Python_ArrowNavigation direction="left" />
             <Python_ArrowNavigation direction="right" />

@@ -120,11 +120,11 @@ const JavaScript_01_01_M = () => {
         </TopBox2>
       </TopBoxWide2>
       <Container>
-        <EachClass>
+        {/* <EachClass>
           <ClassHeader>
             <ClassHeaderTitle>자바스크립트 개요</ClassHeaderTitle>
           </ClassHeader>
-          <ClassContentsContainer>
+          <ClassContentsContainer> */}
             <ClassContentsText>
               <i>
                 자바스크립트는 동적으로 웹 페이지를 변경하고 조작하는 데 사용될
@@ -235,8 +235,8 @@ const JavaScript_01_01_M = () => {
               있습니다. 이를 통해 웹 애플리케이션의 프론트엔드와 백엔드를 모두
               자바스크립트로 개발할 수 있게 되었습니다.
             </ClassContentsText>
-          </ClassContentsContainer>
-        </EachClass>
+          {/* </ClassContentsContainer>
+        </EachClass> */}
         <ArrowContainer>
           <JavaScript_ArrowNavigation direction="left" />
           <JavaScript_ArrowNavigation direction="right" />

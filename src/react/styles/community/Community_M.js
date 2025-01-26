@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -26,27 +26,6 @@ export const TopBoxWide = styled.div.attrs({
   top: 65px;
   z-index: 5;
 `;
-
-export const TopBoxWide2 = styled.div.attrs({
-  id: "topboxwide2",
-})`
-  width: 100%;
-  height: 50px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f1f1f1;
-  position: fixed;
-  top: 115px;
-  z-index: 5;
-  border-bottom: 1px solid #313131;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap; /* 줄바꿈 방지 */
-`;
-
 export const TopBox = styled.div.attrs({
   id: "topbox",
 })`
@@ -57,17 +36,6 @@ export const TopBox = styled.div.attrs({
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
-`;
-
-export const TopBox2 = styled.div.attrs({
-  id: "topbox2",
-})`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 20px;
 `;
 
 export const TopBoxText = styled.div.attrs({
@@ -86,22 +54,6 @@ export const TopBoxText = styled.div.attrs({
   }
 `;
 
-export const TopBoxText2 = styled.div.attrs({
-  id: "topboxtext2",
-})`
-  display: inline-block;
-  font-family: "semibold", sans-serif;
-  font-size: 16px;
-  text-align: left;
-  align-items: center;
-  cursor: pointer;
-  color: #313131;
-  &:hover {
-    text-decoration: underline;
-    text-underline-offset: 5px;
-  }
-`;
-
 export const TopBoxArrow = styled.div.attrs({
   id: "topboxarrow",
 })`
@@ -111,16 +63,6 @@ export const TopBoxArrow = styled.div.attrs({
   margin-right: 5px;
   font-family: "medium", sans-serif;
   padding-bottom: 3px;
-`;
-
-export const TopBoxArrow2 = styled.div.attrs({
-  id: "topboxarrow2",
-})`
-  color: white;
-  font-size: 18px;
-  margin-left: 5px;
-  margin-right: 5px;
-  font-family: "medium", sans-serif;
 `;
 
 export const TopBoxLink = styled.button.attrs({
@@ -149,5 +91,16 @@ export const Container = styled.div.attrs({
   justify-content: center;
   gap: 20px;
   padding-bottom: 25px;
-  margin-top: 100px;
+  margin-top: 50px;
+`;
+
+export const BoardContainer = styled.div.attrs({
+  id: "boardcontainer",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 40px;
 `;

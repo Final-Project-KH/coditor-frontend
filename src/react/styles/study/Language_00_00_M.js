@@ -42,6 +42,9 @@ export const TopBoxWide2 = styled.div.attrs({
   top: 115px;
   z-index: 5;
   border-bottom: 1px solid #313131;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap; /* 줄바꿈 방지 */
 `;
 
 export const TopBox = styled.div.attrs({
@@ -88,7 +91,7 @@ export const TopBoxText2 = styled.div.attrs({
   id: "topboxtext2",
 })`
   display: inline-block;
-  font-family: "bold", sans-serif;
+  font-family: "semibold", sans-serif;
   font-size: 16px;
   text-align: left;
   align-items: center;
@@ -119,7 +122,6 @@ export const TopBoxArrow2 = styled.div.attrs({
   margin-left: 5px;
   margin-right: 5px;
   font-family: "bold", sans-serif;
-  padding-bottom: 3px;
 `;
 export const TopBoxLink = styled.button.attrs({
   id: "topboxlink",

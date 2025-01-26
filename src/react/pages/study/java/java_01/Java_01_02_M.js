@@ -136,11 +136,11 @@ export PATH=\${PATH}:$JAVA_HOME/bin
         </TopBox2>
       </TopBoxWide2>
       <Container>
-        <EachClass>
+        {/* <EachClass>
           <ClassHeader>
             <ClassHeaderTitle>Java 프로젝트 생성 및 기본</ClassHeaderTitle>
           </ClassHeader>
-          <ClassContentsContainer>
+          <ClassContentsContainer> */}
             <ClassContentsText>
               자바 개발을 위해 자바와 자바 프로그래밍을 위한 통합 개발
               환경(Integrated Development Environment)이 필요 합니다.
@@ -267,8 +267,8 @@ export PATH=\${PATH}:$JAVA_HOME/bin
                 변수를 설정해주어야 합니다.
               </ClassContentsCodeBox>{" "}
             </ClassContentsText>
-          </ClassContentsContainer>
-        </EachClass>
+          {/* </ClassContentsContainer>
+        </EachClass> */}
         <ArrowContainer>
           <Java_ArrowNavigation direction="left" />
           <Java_ArrowNavigation direction="right" />
