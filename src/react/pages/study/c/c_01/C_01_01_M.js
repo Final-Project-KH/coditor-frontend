@@ -120,11 +120,11 @@ const C_01_01_M = () => {
         </TopBox2>
       </TopBoxWide2>
       <Container>
-        <EachClass>
+        {/* <EachClass>
           <ClassHeader>
             <ClassHeaderTitle>C언어의 특징</ClassHeaderTitle>
           </ClassHeader>
-          <ClassContentsContainer>
+          <ClassContentsContainer> */}
             <ClassContentsTitle2>C언어란?</ClassContentsTitle2>
             <ClassContentsText>
               <b>C언어</b>는 1972년 벨 연구소의{" "}
@@ -237,8 +237,8 @@ const C_01_01_M = () => {
                 <br />
               </ClassContentsTextTab>
             </ClassContentsText>
-          </ClassContentsContainer>
-        </EachClass>
+          {/* </ClassContentsContainer>
+        </EachClass> */}
         <ArrowContainer>
           <C_ArrowNavigation direction="left" />
           <C_ArrowNavigation direction="right" />

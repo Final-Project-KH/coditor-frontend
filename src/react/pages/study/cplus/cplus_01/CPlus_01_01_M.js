@@ -114,7 +114,7 @@ const CPlus_01_01_M = () => {
           <TopBox2>
           <TopBoxLink onClick={() => handleStudyCPlus01()}>
             <TopBoxText2>
-              {thirdpath}
+            {thirdpath}
             </TopBoxText2>
           </TopBoxLink>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
@@ -126,11 +126,11 @@ const CPlus_01_01_M = () => {
         </TopBox2>
       </TopBoxWide2>
       <Container>
-          <EachClass>
+          {/* <EachClass>
             <ClassHeader>
               <ClassHeaderTitle>C++?</ClassHeaderTitle>
             </ClassHeader>
-            <ClassContentsContainer>
+            <ClassContentsContainer> */}
               <ClassContentsText>
                 <i>
                   C++은 C 언어를 기반으로 하는 객체 지향 프로그래밍 언어입니다.
@@ -250,8 +250,8 @@ const CPlus_01_01_M = () => {
                 · 설계 시 시간과 노력이 많이 든다. (클래스 설계)
                 <br />
               </ClassContentsText>
-            </ClassContentsContainer>
-          </EachClass>
+            {/* </ClassContentsContainer>
+          </EachClass> */}
           <ArrowContainer>
             <CPlus_ArrowNavigation direction="left" />
             <CPlus_ArrowNavigation direction="right" />

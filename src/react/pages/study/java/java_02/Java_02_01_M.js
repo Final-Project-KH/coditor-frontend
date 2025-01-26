@@ -499,7 +499,7 @@ System.out.println(result1 + 10 + "10"); // 먼저 숫자형 타입이 계산되
           <TopBox2>
           <TopBoxLink onClick={() => handleStudyJava02()}>
             <TopBoxText2>
-              {thirdpath}
+            {thirdpath}
             </TopBoxText2>
           </TopBoxLink>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
@@ -511,11 +511,11 @@ System.out.println(result1 + 10 + "10"); // 먼저 숫자형 타입이 계산되
         </TopBox2>
       </TopBoxWide2>
       <Container>
-          <EachClass>
+          {/* <EachClass>
             <ClassHeader>
               <ClassHeaderTitle>변수와 자료형</ClassHeaderTitle>
             </ClassHeader>
-            <ClassContentsContainer>
+            <ClassContentsContainer> */}
               <ClassContentsText>
                 기계가 정보를 이해하는 방법은 사람과 다를 수밖에 없습니다.
                 우리가 평소에 사용하는 숫자나 문자를 컴퓨터 내부에 어떻게
@@ -1027,8 +1027,8 @@ System.out.println(result1 + 10 + "10"); // 먼저 숫자형 타입이 계산되
                 문자열을 실수 double 타입으로 변환 합니다.
                 <br />
               </ClassContentsText>
-            </ClassContentsContainer>
-          </EachClass>
+            {/* </ClassContentsContainer>
+          </EachClass> */}
           <ArrowContainer>
             <Java_ArrowNavigation direction="left" />
             <Java_ArrowNavigation direction="right" />

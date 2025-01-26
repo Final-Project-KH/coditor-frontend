@@ -434,11 +434,11 @@ public class Test {
         </TopBox2>
       </TopBoxWide2>
       <Container>
-          <EachClass>
+          {/* <EachClass>
             <ClassHeader>
               <ClassHeaderTitle>반복문</ClassHeaderTitle>
             </ClassHeader>
-            <ClassContentsContainer>
+            <ClassContentsContainer> */}
               <ClassContentsText>
                 반복문이란 주어진 조건이 참인 경우 혹은 주어진 횟수만큼
                 반복적으로 프로그램을 수행 합니다.
@@ -630,8 +630,8 @@ public class Test {
                 <br />
                 <Java_02_05_Code13 />
               </ClassContentsText>
-            </ClassContentsContainer>
-          </EachClass>
+            {/* </ClassContentsContainer>
+          </EachClass> */}
           <ArrowContainer>
             <Java_ArrowNavigation direction="left" />
             <Java_ArrowNavigation direction="right" />

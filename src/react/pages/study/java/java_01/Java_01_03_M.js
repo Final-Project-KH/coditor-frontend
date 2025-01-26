@@ -193,11 +193,11 @@ System.out.printf("%d", 3); // 서식 지정자 사용
         </TopBox2>
       </TopBoxWide2>
       <Container>
-        <EachClass>
+        {/* <EachClass>
           <ClassHeader>
             <ClassHeaderTitle>Java 개발 환경 구축</ClassHeaderTitle>
           </ClassHeader>
-          <ClassContentsContainer>
+          <ClassContentsContainer> */}
             <ClassContentsTitle2>
               자바 학습을 위한 폴더 생성
             </ClassContentsTitle2>
@@ -313,8 +313,8 @@ System.out.printf("%d", 3); // 서식 지정자 사용
                 <br />
               </ClassContentsTextTab>
             </ClassContentsText>
-          </ClassContentsContainer>
-        </EachClass>
+          {/* </ClassContentsContainer>
+        </EachClass> */}
         <ArrowContainer>
           <Java_ArrowNavigation direction="left" />
           <Java_ArrowNavigation direction="right" />

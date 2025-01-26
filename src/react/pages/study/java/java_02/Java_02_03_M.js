@@ -371,11 +371,11 @@ System.out.println(num1 >> 1);
         </TopBox2>
       </TopBoxWide2>
       <Container>
-        <EachClass>
+        {/* <EachClass>
           <ClassHeader>
             <ClassHeaderTitle>연산자</ClassHeaderTitle>
           </ClassHeader>
-          <ClassContentsContainer>
+          <ClassContentsContainer> */}
             <ClassContentsText>
               프로그램에서 사용하는 값을 연산해야 하는 경우가 자주 있습니다. 이
               때 사용하는 연산자는 간단한 사칙 연산 부터 값을 비교하는 연산자,
@@ -899,8 +899,8 @@ System.out.println(num1 >> 1);
               <Java_02_03_Code12 />
               <br />
             </ClassContentsText>
-          </ClassContentsContainer>
-        </EachClass>
+          {/* </ClassContentsContainer>
+        </EachClass> */}
         <ArrowContainer>
           <Java_ArrowNavigation direction="left" />
           <Java_ArrowNavigation direction="right" />

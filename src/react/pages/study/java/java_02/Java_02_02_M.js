@@ -291,7 +291,7 @@ public class Main {
           <TopBox2>
           <TopBoxLink onClick={() => handleStudyJava02()}>
             <TopBoxText2>
-              {thirdpath}
+            {thirdpath}
             </TopBoxText2>
           </TopBoxLink>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
@@ -303,11 +303,11 @@ public class Main {
         </TopBox2>
       </TopBoxWide2>
       <Container>
-          <EachClass>
+          {/* <EachClass>
             <ClassHeader>
               <ClassHeaderTitle>변수와 시스템 입출력</ClassHeaderTitle>
             </ClassHeader>
-            <ClassContentsContainer>
+            <ClassContentsContainer> */}
               <ClassContentsTitle2>
                 자바 표준 입출력 클래스 (System)
               </ClassContentsTitle2>
@@ -1540,8 +1540,8 @@ public class Main {
                 <br />
               </ClassContentsText>
               <Java_02_02_Code06 />
-            </ClassContentsContainer>
-          </EachClass>
+            {/* </ClassContentsContainer>
+          </EachClass> */}
           <ArrowContainer>
             <Java_ArrowNavigation direction="left" />
             <Java_ArrowNavigation direction="right" />
