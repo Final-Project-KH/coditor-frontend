@@ -190,7 +190,7 @@ const Post_MainContents = ({boardType}) => {
                 <MainPostViewsImg />
                 <MainPostViewsText>{post.viewCnt}</MainPostViewsText>
               </MainPostViewsBox>
-              {/* <MiddleDot />
+              <MiddleDot />
               {post.updatedAt && (
                 <>
                   <MainPostEditedText>
@@ -208,7 +208,7 @@ const Post_MainContents = ({boardType}) => {
                   </MainPostEditedText>
                   <MiddleDot />
                 </>
-              )} */}
+              )}
               <MainPostThumbsUpBox>
                 <MainPostThumbsUpImg />
                 <MainPostThumbsUpText>{post.likeCnt}</MainPostThumbsUpText>

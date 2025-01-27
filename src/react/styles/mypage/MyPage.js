@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -148,8 +148,222 @@ export const ProfileContainer = styled.div.attrs({
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: sticky;
+  justify-content: center;
   left: 0px;
   box-sizing: border-box;
   background-color: pink;
+`;
+export const ProfileImage = styled.div.attrs({
+  id: "profileimage",
+})`
+  width: 50%;
+  height: 50%;
+  display: flex;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: gray;
+  ${(props) =>
+    props.isProfile === "" &&
+    css`
+      background-image: url("/images/general/default_profile.png");
+    `}
+  ${(props) =>
+    props.isProfile !== "" &&
+    css`
+      background-image: url(${(props) => props.isProfile});
+    `}
+`;
+export const UserNickName = styled.div.attrs({
+  id: "usernickname",
+})`
+  width: 50%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: bold;
+`;
+export const UserRating = styled.div.attrs({
+  id: "userrating",
+})`
+  width: 50%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 15px;
+  font-weight: bold;
+`;
+export const UserTier = styled.div.attrs({
+  id: "usertier",
+})`
+  width: 50%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: bold;
+`;
+export const UserContentsContainer = styled.div.attrs({
+  id: "usercontentscontainer",
+})`
+  max-width: 1280px;
+  width: 320px;
+  height: calc(100vh - 320px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  background-color: violet;
+`;
+
+export const UserContentsHeader = styled.div.attrs({
+  id: "usercontentsheader",
+})`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 30px 30px 0px 0px;
+`;
+export const UserContentsHeaderTitle = styled.div.attrs({
+  id: "usercontentsheadertitle",
+})`
+  width: 90%;
+  padding-left: 30px;
+  color: white;
+  font-size: 18px;
+  font-family: "bold", sans-serif;
+  cursor: pointer;
+`;
+export const UserContents = styled.div.attrs({
+  id: "usercontents",
+})`
+  width: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  user-select: none;
+`;
+export const UserContentsSet = styled.div.attrs({
+  id: "usercontentsset",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  background-color: #f1f1f1;
+  & + &::before {
+    content: "";
+    position: absolute;
+    left: 3%;
+    width: 94%;
+    height: 1px;
+    background-color: black;
+    transform: rotate(0deg);
+  }
+  &:last-child {
+    border-radius: 0px 0px 30px 30px;
+  }
+`;
+export const UserContentsName = styled.div.attrs({
+  id: "usercontentsname",
+})`
+  color: black;
+  font-size: 15px;
+  font-family: "medium", sans-serif;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 30px;
+  position: relative;
+  cursor: pointer;
+  &:hover {
+    font-family: "extrabold", sans-serif;
+  }
+  &:hover::before {
+    content: "<";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: red;
+    font-size: 18px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
+  }
+`;
+export const StudyContainer = styled.div.attrs({
+  id: "studycontainer",
+})`
+  max-width: 1280px;
+  width: 480px;
+  height: 50vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  background-color: yellowgreen;
+`;
+export const CodingTestContainer = styled.div.attrs({
+  id: "codingtestcontainer",
+})`
+  max-width: 1280px;
+  width: 480px;
+  height: 50vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  background-color: orange;
+`;
+export const CommunityContainer = styled.div.attrs({
+  id: "communitycontainer",
+})`
+  max-width: 1280px;
+  width: 480px;
+  height: 50vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  background-color: blueviolet;
+`;
+export const CSContainer = styled.div.attrs({
+  id: "cscontainer",
+})`
+  max-width: 1280px;
+  width: 480px;
+  height: 50vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  background-color: red;
 `;

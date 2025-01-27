@@ -49,6 +49,7 @@ import User_Main from "./react/pages/community/User_Main";
 import FindId from "./react/pages/login/FindId";
 import FindPw from "./react/pages/login/FindPw";
 import MyPage from "./react/pages/mypage/MyPage";
+import ProfileModify from "./react/pages/mypage/ProfileModify";
 
 const App = () => {
   return (
@@ -81,6 +82,7 @@ const AppContents = () => {
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/profile/modify" element={<ProfileModify />} />
 
           {StudyRoutes.map((route) => (
             <Route key={route.path} path={route.path} element={route.element} />

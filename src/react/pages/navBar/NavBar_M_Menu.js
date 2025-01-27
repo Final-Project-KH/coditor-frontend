@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import {useEffect, useState} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
 import {
   MenuContainer,
@@ -20,22 +20,22 @@ import {
   MenuWrapper,
 } from "../../styles/navBar/NavBar_M_Menu";
 
-import { logoutAuth } from "../../../redux/slice/authSlice";
-import { logoutCondition } from "../../../redux/slice/loginSlice";
-import { menus } from "../../../util/mobilemenu/MobileMenu";
+import {logoutAuth} from "../../../redux/slice/authSlice";
+import {logoutCondition} from "../../../redux/slice/loginSlice";
+import {menus} from "../../../util/mobilemenu/MobileMenu";
 
-const NavBar_M_Menu = ({ closeMenu }) => {
+const NavBar_M_Menu = ({closeMenu}) => {
   const [activeMenu, setActiveMenu] = useState("about");
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const { firstpath } = location.state || {};
+  const {firstpath} = location.state || {};
   const activeMenuData = menus.find((menu) => menu.id === activeMenu);
   const nickname = useSelector((state) => state.auth.nickname);
   const [isUser, setIsUser] = useState(null);
 
   const handleNavigation = (navigatepath, data) => {
-    navigate(navigatepath, { state: data });
+    navigate(navigatepath, {state: data});
     closeMenu();
   };
 
@@ -56,64 +56,68 @@ const NavBar_M_Menu = ({ closeMenu }) => {
   }, [nickname]);
 
   return (
-<MenuWrapper>
-  <MenuContainer>
-    <MenuLeftContainer>
-      {menus.map((menu) => (
-        <MenuLeftItems
-          key={menu.id}
-          as={menu.id === activeMenu ? MenuLeftActive : MenuLeftInctive}
-          onClick={() => setActiveMenu(menu.id)}
-        >
-          {menu.label}
-        </MenuLeftItems>
-      ))}
-      <MenuLeftLogin>
-        {isUser !== "" ? (
-          <MenuLeftLoginLink onClick={() => handleLogout()}>logout</MenuLeftLoginLink>
-        ) : (
-          <MenuLeftLoginLink onClick={() => handleLogin()}>login</MenuLeftLoginLink>
-        )}
-      </MenuLeftLogin>
-    </MenuLeftContainer>
-    <MenuRightContainer>
-      <MenuRightContentsWrap>
-        {activeMenuData?.columns?.map((column, idx) => (
-          <MenuRightColumn key={idx}>
-            <MenuRightColumnTitle
-              onClick={() =>
-                handleNavigation(column.title.link, {
-                  firstpath: activeMenuData.label, // 최상위 label(coding test)
-                  secondpath: column.title.text,  // 각 title.text(Java, Python, C 등)
-                })
-              }
-              style={{ cursor: "pointer" }}
+    <MenuWrapper>
+      <MenuContainer>
+        <MenuLeftContainer>
+          {menus.map((menu) => (
+            <MenuLeftItems
+              key={menu.id}
+              as={menu.id === activeMenu ? MenuLeftActive : MenuLeftInctive}
+              onClick={() => setActiveMenu(menu.id)}
             >
-              {column.title.text}
-            </MenuRightColumnTitle>
-
-            {column.contents.map((content, idx) => (
-              <MenuRightColumnContents key={idx}>
-                <MenuRightLink
+              {menu.label}
+            </MenuLeftItems>
+          ))}
+          <MenuLeftLogin>
+            {isUser !== "" ? (
+              <MenuLeftLoginLink onClick={() => handleLogout()}>
+                logout
+              </MenuLeftLoginLink>
+            ) : (
+              <MenuLeftLoginLink onClick={() => handleLogin()}>
+                login
+              </MenuLeftLoginLink>
+            )}
+          </MenuLeftLogin>
+        </MenuLeftContainer>
+        <MenuRightContainer>
+          <MenuRightContentsWrap>
+            {activeMenuData?.columns?.map((column, idx) => (
+              <MenuRightColumn key={idx}>
+                <MenuRightColumnTitle
                   onClick={() =>
-                    handleNavigation(content.link, {
-                      firstpath: activeMenuData.label,    // 최상위 label(coding test)
-                      secondpath: column.title.text,      // 각 title.text(Java, Python, C 등)
-                      thirdpath: content.text,            // 각 content.text(Practice, Basic 등)
+                    handleNavigation(column.title.link, {
+                      firstpath: activeMenuData.label, // 최상위 label(coding test)
+                      secondpath: column.title.text, // 각 title.text(Java, Python, C 등)
                     })
                   }
-                  style={{ cursor: "pointer" }}
+                  style={{cursor: "pointer"}}
                 >
-                  {content.text}
-                </MenuRightLink>
-              </MenuRightColumnContents>
+                  {column.title.text}
+                </MenuRightColumnTitle>
+
+                {column.contents.map((content, idx) => (
+                  <MenuRightColumnContents key={idx}>
+                    <MenuRightLink
+                      onClick={() =>
+                        handleNavigation(content.link, {
+                          firstpath: activeMenuData.label, // 최상위 label(coding test)
+                          secondpath: column.title.text, // 각 title.text(Java, Python, C 등)
+                          thirdpath: content.text, // 각 content.text(Practice, Basic 등)
+                        })
+                      }
+                      style={{cursor: "pointer"}}
+                    >
+                      {content.text}
+                    </MenuRightLink>
+                  </MenuRightColumnContents>
+                ))}
+              </MenuRightColumn>
             ))}
-          </MenuRightColumn>
-        ))}
-      </MenuRightContentsWrap>
-    </MenuRightContainer>
-  </MenuContainer>
-</MenuWrapper>
+          </MenuRightContentsWrap>
+        </MenuRightContainer>
+      </MenuContainer>
+    </MenuWrapper>
   );
 };
 

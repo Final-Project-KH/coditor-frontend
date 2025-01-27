@@ -289,8 +289,7 @@ export const MyPageButton = styled.button.attrs({
       display: none;
     `}
   &::before,
-  &::after,
-  & span {
+  &::after {
     content: "";
     width: 30px;
     height: 2px;
@@ -303,11 +302,20 @@ export const MyPageButton = styled.button.attrs({
   &::before {
     top: 12px; /* 위쪽 선 */
   }
-  & span {
-    top: 24px;
-  }
   &::after {
     bottom: 12px; /* 아래쪽 선 */
+  }
+
+  & div::before {
+    content: "";
+    width: 30px;
+    height: 2px;
+    background-color: black;
+    border-radius: 5px;
+    position: absolute;
+    top: 24px;
+    left: 10px;
+    transition: 0.3s;
   }
 `;
 export const MyPageMenu = styled.div.attrs({

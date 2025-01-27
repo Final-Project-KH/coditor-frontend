@@ -268,7 +268,7 @@ const AxiosApi = {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/community/new/post", // URL
-        {title, course, content}, // POST 요청 본문
+        {title, coures: [course], content}, // POST 요청 본문
         {
           params: {boardType}, // 쿼리 파라미터
         }

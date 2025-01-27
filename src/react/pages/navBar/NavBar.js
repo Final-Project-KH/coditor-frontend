@@ -62,7 +62,6 @@ const NavBar = () => {
     pathCs: "cs",
     pathMypage: "my page", // 추후 추가할 마이페이지용
   };
-
   const [isToggleMyPage, setIsToggleMyPage] = useState(false);
 
   const onClickToggleMyPage = () => {
@@ -220,7 +219,7 @@ const NavBar = () => {
   const handleMyPage = () => {
     navigate("/mypage", {
       state: {
-        firstpath: "my page",
+        firstpath: paths.pathMypage,
       },
     });
   };
@@ -361,8 +360,9 @@ const NavBar = () => {
                     ref={myPageRef}
                     isUser={isUser}
                     onClick={() => onClickToggleMyPage()}
+                    // 선 두께 안맞음 수정해야함
                   >
-                    <span></span>
+                    <div />
                   </MyPageButton>
                   <MyPageMenu ref={myPageRef} isToggleMyPage={isToggleMyPage}>
                     <MyPageMenuContents isToggleMyPage={isToggleMyPage}>
