@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -266,12 +266,25 @@ export const LeftEvUp = styled.div.attrs({
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #0c8450;
-  background-repeat: no-repeat;
-  background-size: 15px;
-  background-position: center;
-  background-image: url("/images/icon/thumbsup_w.png");
   cursor: pointer;
+  ${(props) =>
+    props.userLikeCnt === 1 &&
+    css`
+      background-color: black;
+      background-repeat: no-repeat;
+      background-size: 15px;
+      background-position: center;
+      background-image: url("/images/icon/thumbsup_g.png");
+    `}
+  ${(props) =>
+    props.userLikeCnt === 0 &&
+    css`
+      background-color: black;
+      background-repeat: no-repeat;
+      background-size: 15px;
+      background-position: center;
+      background-image: url("/images/icon/thumbsup_w.png");
+    `}
 `;
 export const LeftEvDown = styled.div.attrs({
   id: "leftevdown",
@@ -279,12 +292,25 @@ export const LeftEvDown = styled.div.attrs({
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #ff0000;
-  background-repeat: no-repeat;
-  background-size: 15px;
-  background-position: center;
-  background-image: url("/images/icon/thumbsdown_w.png");
   cursor: pointer;
+  ${(props) =>
+    props.userDisLikeCnt === 1 &&
+    css`
+      background-color: black;
+      background-repeat: no-repeat;
+      background-size: 15px;
+      background-position: center;
+      background-image: url("/images/icon/thumbsdown_r.png");
+    `}
+  ${(props) =>
+    props.userDisLikeCnt === 0 &&
+    css`
+      background-color: black;
+      background-repeat: no-repeat;
+      background-size: 15px;
+      background-position: center;
+      background-image: url("/images/icon/thumbsdown_w.png");
+    `}
 `;
 export const MainPostContentsBox = styled.div.attrs({
   id: "mainpostcontentsbox",
@@ -361,7 +387,7 @@ export const SuggestBox = styled.div.attrs({
   text-align: left;
   transition: all 0.3s ease;
   /* cursor: pointer; */
-  ${({ expanded }) =>
+  ${({expanded}) =>
     expanded &&
     `
     max-height: 400px;
@@ -369,7 +395,7 @@ export const SuggestBox = styled.div.attrs({
     padding-top: 10px;
   `}
   /* 확장 후 내부 텍스트 숨기기 */
-    ${({ expanded }) =>
+    ${({expanded}) =>
     expanded &&
     `
     > span {
@@ -384,7 +410,7 @@ export const EditorBox = styled.div.attrs({
 })`
   width: 100%;
   transition: all 0.3s ease;
-  display: ${({ expanded }) => (expanded ? "block" : "none")};
+  display: ${({expanded}) => (expanded ? "block" : "none")};
 `;
 
 export const ReplyList = styled.div.attrs({

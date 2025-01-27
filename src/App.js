@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Layout from "./react/pages/Layout";
 import Login from "./react/pages/login/login";
 import Signup from "./react/pages/signup/signup";
@@ -48,6 +48,7 @@ import Post_Write_Team from "./react/pages/community/Post_Write_Team";
 import User_Main from "./react/pages/community/User_Main";
 import FindId from "./react/pages/login/FindId";
 import FindPw from "./react/pages/login/FindPw";
+import MyPage from "./react/pages/mypage/MyPage";
 
 const App = () => {
   return (
@@ -79,6 +80,7 @@ const AppContents = () => {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
+          <Route path="/mypage" element={<MyPage />} />
 
           {StudyRoutes.map((route) => (
             <Route key={route.path} path={route.path} element={route.element} />
@@ -96,35 +98,35 @@ const AppContents = () => {
 };
 
 const StudyRoutes = [
-  { path: "/study", element: <Study_Main /> },
-  { path: "/study/java", element: <Java_Main /> },
-  { path: "/study/java/01", element: <Java_01 /> },
-  { path: "/study/java/01/01", element: <Java_01_01 /> },
-  { path: "/study/java/01/02", element: <Java_01_02 /> },
-  { path: "/study/java/01/03", element: <Java_01_03 /> },
-  { path: "/study/java/02", element: <Java_02 /> },
-  { path: "/study/java/02/01", element: <Java_02_01 /> },
-  { path: "/study/java/02/02", element: <Java_02_02 /> },
-  { path: "/study/java/02/03", element: <Java_02_03 /> },
-  { path: "/study/java/02/04", element: <Java_02_04 /> },
-  { path: "/study/java/02/05", element: <Java_02_05 /> },
-  { path: "/study/python", element: <Python_Main /> },
-  { path: "/study/python/01", element: <Python_01 /> },
-  { path: "/study/python/01/01", element: <Python_01_01 /> },
-  { path: "/study/c", element: <C_Main /> },
-  { path: "/study/c/01", element: <C_01 /> },
-  { path: "/study/c/01/01", element: <C_01_01 /> },
-  { path: "/study/cplus", element: <CPlus_Main /> },
-  { path: "/study/cplus/01", element: <CPlus_01 /> },
-  { path: "/study/cplus/01/01", element: <CPlus_01_01 /> },
-  { path: "/study/javascript", element: <JavaScript_Main /> },
-  { path: "/study/javascript/01", element: <JavaScript_01 /> },
-  { path: "/study/javascript/01/01", element: <JavaScript_01_01 /> },
+  {path: "/study", element: <Study_Main />},
+  {path: "/study/java", element: <Java_Main />},
+  {path: "/study/java/01", element: <Java_01 />},
+  {path: "/study/java/01/01", element: <Java_01_01 />},
+  {path: "/study/java/01/02", element: <Java_01_02 />},
+  {path: "/study/java/01/03", element: <Java_01_03 />},
+  {path: "/study/java/02", element: <Java_02 />},
+  {path: "/study/java/02/01", element: <Java_02_01 />},
+  {path: "/study/java/02/02", element: <Java_02_02 />},
+  {path: "/study/java/02/03", element: <Java_02_03 />},
+  {path: "/study/java/02/04", element: <Java_02_04 />},
+  {path: "/study/java/02/05", element: <Java_02_05 />},
+  {path: "/study/python", element: <Python_Main />},
+  {path: "/study/python/01", element: <Python_01 />},
+  {path: "/study/python/01/01", element: <Python_01_01 />},
+  {path: "/study/c", element: <C_Main />},
+  {path: "/study/c/01", element: <C_01 />},
+  {path: "/study/c/01/01", element: <C_01_01 />},
+  {path: "/study/cplus", element: <CPlus_Main />},
+  {path: "/study/cplus/01", element: <CPlus_01 />},
+  {path: "/study/cplus/01/01", element: <CPlus_01_01 />},
+  {path: "/study/javascript", element: <JavaScript_Main />},
+  {path: "/study/javascript/01", element: <JavaScript_01 />},
+  {path: "/study/javascript/01/01", element: <JavaScript_01_01 />},
 ];
 
 const CodingTestRoutes = [
-  { path: "/codingtest/java/practice", element: <CT_Java_Practice_Main /> },
-  { path: "/codingtest/java/practice/01", element: <CT_Java_Practice_01 /> },
+  {path: "/codingtest/java/practice", element: <CT_Java_Practice_Main />},
+  {path: "/codingtest/java/practice/01", element: <CT_Java_Practice_01 />},
   {
     path: "/codingtest/java/practice/01/01",
     element: <CT_Java_Practice_01_01 />,
@@ -132,11 +134,11 @@ const CodingTestRoutes = [
 ];
 
 const CommunityRoutes = [
-  { path: "/community", element: <Community_Main /> },
-  { path: "/community/coding", element: <Community_Coding /> },
-  { path: "/community/:boardType/post/:boardId", element: <Post_Read /> },
-  { path: "/community/course", element: <Community_Course /> },
-  { path: "/community/study", element: <Community_Study /> },
-  { path: "/community/team", element: <Community_Team /> },
-  { path: "/community/testid01", element: <User_Main /> },
+  {path: "/community", element: <Community_Main />},
+  {path: "/community/coding", element: <Community_Coding />},
+  {path: "/community/:boardType/post/:boardId", element: <Post_Read />},
+  {path: "/community/course", element: <Community_Course />},
+  {path: "/community/study", element: <Community_Study />},
+  {path: "/community/team", element: <Community_Team />},
+  {path: "/community/testid01", element: <User_Main />},
 ];

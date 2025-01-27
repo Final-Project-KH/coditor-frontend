@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useState, useEffect, useRef} from "react";
+import {useNavigate, useLocation} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
 import {
   Wrap,
@@ -20,11 +20,12 @@ import {
   MyPageButton,
   MyPageMenu,
   MyPageMenuContents,
+  StyledNavigate,
 } from "../../styles/navBar/NavBar";
 
 import store from "../../../redux/store/store";
-import { logoutAuth } from "../../../redux/slice/authSlice";
-import { logoutCondition } from "../../../redux/slice/loginSlice";
+import {logoutAuth} from "../../../redux/slice/authSlice";
+import {logoutCondition} from "../../../redux/slice/loginSlice";
 import AboutBar from "../sideBar/AboutBar";
 import StudyBar from "../sideBar/StudyBar";
 import CodingTestBar from "../sideBar/CodingTestBar";
@@ -96,7 +97,7 @@ const NavBar = () => {
 
   // 메뉴 닫기 (추가적인 상황에서 사용)
   const closeMenu = (menuName) => {
-    setMenuState((prev) => ({ ...prev, [menuName]: false }));
+    setMenuState((prev) => ({...prev, [menuName]: false}));
     setTimeout(() => {
       setAnimatingMenus((prev) => ({
         ...prev,
@@ -107,11 +108,15 @@ const NavBar = () => {
 
   // 메뉴 닫기 (떨림 방지용 -> Timeout 제거)
   const closeMenuIm = (menuName) => {
-    setMenuState((prev) => ({ ...prev, [menuName]: false }));
+    setMenuState((prev) => ({...prev, [menuName]: false}));
     setAnimatingMenus((prev) => ({
       ...prev,
       [`${menuName}Animating`]: false,
     }));
+  };
+
+  const closeMyPage = () => {
+    setIsToggleMyPage(false);
   };
 
   // 버블링 방지용 함수 (효과는 잘 모르겠음)
@@ -151,16 +156,20 @@ const NavBar = () => {
   const myPageRef = useRef(null);
 
   useEffect(() => {
+    if (!isToggleMyPage) return;
+
     const handleClickOutside = (event) => {
-      if (myPageRef.current && !myPageRef.current.contains(event.target)) {
-        setIsToggleMyPage(false);
-      }
+      setTimeout(() => {
+        if (myPageRef.current && !myPageRef.current.contains(event.target)) {
+          setIsToggleMyPage(false);
+        }
+      }, 100);
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isToggleMyPage]);
 
   const nickname = useSelector((state) => state.auth.nickname);
   const [isUser, setIsUser] = useState(null);
@@ -184,6 +193,7 @@ const NavBar = () => {
   const handleLogout = () => {
     dispatch(logoutAuth());
     dispatch(logoutCondition());
+    setIsUser(null);
     navigate("/");
   };
 
@@ -192,7 +202,7 @@ const NavBar = () => {
   };
 
   const location = useLocation();
-  const { firstpath } = location.state || {};
+  const {firstpath} = location.state || {};
   const handleStudy = () => {
     navigate("/study", {
       state: {
@@ -204,6 +214,13 @@ const NavBar = () => {
     navigate("/community", {
       state: {
         firstpath: "comunity",
+      },
+    });
+  };
+  const handleMyPage = () => {
+    navigate("/mypage", {
+      state: {
+        firstpath: "my page",
       },
     });
   };
@@ -332,13 +349,17 @@ const NavBar = () => {
         <LoginContainer>
           {!isLoading && (
             <LoginBox isUser={isUser}>
-              {isUser !== "" ? (
+              {isUser !== null ? (
                 <>
                   <ProfileImgDiv>
-                    <ProfileImg isProfile={profile}></ProfileImg>
+                    <ProfileImg
+                      isUser={isUser}
+                      isProfile={profile}
+                    ></ProfileImg>
                   </ProfileImgDiv>
                   <MyPageButton
                     ref={myPageRef}
+                    isUser={isUser}
                     onClick={() => onClickToggleMyPage()}
                   >
                     <span></span>
@@ -351,6 +372,12 @@ const NavBar = () => {
                       {nickname}
                     </MyPageMenuContents>
                     <MyPageMenuContents isToggleMyPage={isToggleMyPage}>
+                      <StyledNavigate
+                        onClick={() => {
+                          handleMyPage();
+                          closeMyPage();
+                        }}
+                      ></StyledNavigate>
                       마이 페이지
                     </MyPageMenuContents>
                     <MyPageMenuContents

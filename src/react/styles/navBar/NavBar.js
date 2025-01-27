@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {css} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -185,9 +185,8 @@ export const LoginBox = styled.div.attrs({
   ${(props) =>
     props.isUser &&
     css`
-      width: 200px;
+      width: 100px;
       height: 50px;
-      background-color: transparent;
       user-select: none;
       &:hover {
         background-color: none;
@@ -195,7 +194,7 @@ export const LoginBox = styled.div.attrs({
       }
     `}
   ${(props) =>
-    !props.isUser &&
+    props.isUser === null &&
     css`
       width: 100px;
       height: 50px;
@@ -209,6 +208,7 @@ export const LoginBox = styled.div.attrs({
       font-size: 25px;
       font-family: "cocogoose-md";
       padding-top: 5px;
+      cursor: pointer;
       &:hover {
         background-color: white;
         border: 1px solid #313131;
@@ -220,7 +220,7 @@ export const LoginBox = styled.div.attrs({
 export const ProfileImgDiv = styled.div.attrs({
   id: "profileimgdiv",
 })`
-  width: 100px;
+  width: 50px;
   height: 50px;
   display: flex;
   position: absolute;
@@ -260,11 +260,18 @@ export const ProfileImg = styled.div.attrs({
       border-radius: 50%;
       background-image: url(${(props) => props.isProfile});
     `}
+    ${(props) =>
+    props.isUser === null &&
+    css`
+      width: 50px;
+      height: 50px;
+      display: none;
+    `}
 `;
 export const MyPageButton = styled.button.attrs({
   id: "mypagebutton",
 })`
-  width: 100px;
+  width: 50px;
   height: 50px;
   display: flex;
   position: absolute;
@@ -276,6 +283,11 @@ export const MyPageButton = styled.button.attrs({
   border-radius: 30px;
   border: none;
   cursor: pointer;
+  ${(props) =>
+    props.isUser === null &&
+    css`
+      display: none;
+    `}
   &::before,
   &::after,
   & span {
@@ -285,7 +297,7 @@ export const MyPageButton = styled.button.attrs({
     background-color: black;
     border-radius: 5px;
     position: absolute;
-    left: 33px;
+    left: 10px;
     transition: 0.3s;
   }
   &::before {
@@ -310,6 +322,7 @@ export const MyPageMenu = styled.div.attrs({
   align-items: center;
   background-color: white;
   border-radius: 5px;
+  right: 0px;
   transition: 0.2s ease-in-out;
   flex-direction: column;
 
@@ -367,4 +380,12 @@ export const MyPageMenuContents = styled.div.attrs({
     padding-top: 5px;
     cursor: pointer;
   }
+`;
+export const StyledNavigate = styled.div`
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  cursor: pointer;
 `;
