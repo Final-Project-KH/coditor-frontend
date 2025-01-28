@@ -30,6 +30,7 @@ import {
   ClassTableTd,
   ClassTableTr,
   StickyClassBox,
+  ClassLinkBox,
 } from "../../../../styles/study/Language_00_00";
 import { ArrowContainer } from "../../../../styles/study/Language_ArrowNavigation";
 
