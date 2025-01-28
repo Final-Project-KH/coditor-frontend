@@ -60,6 +60,10 @@ import {
   MiddleSessionContainer,
   MiddleSessionTitle,
   MiddleSessionContentsContainer,
+  MiddleSessionTypesContainer,
+  MiddleSessionIcon,
+  MiddleSessionDiv,
+  MiddleSessionButton,
 } from "../../styles/mypage/MyPage";
 
 const MyPage = () => {
@@ -173,7 +177,23 @@ const MyPage = () => {
           </MiddleAlertContainer>
           <MiddleSessionContainer>
             <MiddleSessionTitle>SNS 계정 연동</MiddleSessionTitle>
-            <MiddleSessionContentsContainer></MiddleSessionContentsContainer>
+            <MiddleSessionContentsContainer>
+              <MiddleSessionTypesContainer>
+                <MiddleSessionIcon icon="/images/sns/gmail.png"></MiddleSessionIcon>
+                <MiddleSessionDiv>Google</MiddleSessionDiv>
+                <MiddleSessionButton>연결하기</MiddleSessionButton>
+              </MiddleSessionTypesContainer>
+              <MiddleSessionTypesContainer>
+                <MiddleSessionIcon icon="/images/sns/kakao.png"></MiddleSessionIcon>
+                <MiddleSessionDiv>Kakao</MiddleSessionDiv>
+                <MiddleSessionButton>연결하기</MiddleSessionButton>
+              </MiddleSessionTypesContainer>
+              <MiddleSessionTypesContainer>
+                <MiddleSessionIcon icon="/images/sns/naver.png"></MiddleSessionIcon>
+                <MiddleSessionDiv>Naver</MiddleSessionDiv>
+                <MiddleSessionButton>연결하기</MiddleSessionButton>
+              </MiddleSessionTypesContainer>
+            </MiddleSessionContentsContainer>
           </MiddleSessionContainer>
         </MiddleContainer>
         <RightContainer>

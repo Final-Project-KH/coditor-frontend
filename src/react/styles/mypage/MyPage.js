@@ -309,9 +309,8 @@ export const MiddleContainer = styled.div.attrs({
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 0;
+  margin-bottom: 20px;
   box-sizing: border-box;
-  background-color: red;
 `;
 export const MiddleUserContainer = styled.div.attrs({
   id: "middleusercontainer",
@@ -323,7 +322,6 @@ export const MiddleUserContainer = styled.div.attrs({
   flex-direction: column;
   margin-bottom: 0;
   box-sizing: border-box;
-  background-color: blue;
 `;
 export const MiddleUserContentsTitle = styled.div.attrs({
   id: "middleusercontentstitle",
@@ -342,7 +340,6 @@ export const MiddleUserContentsContainer = styled.div.attrs({
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background-color: white;
   justify-content: space-evenly;
   margin-top: 13.75px;
   border-radius: 20px;
@@ -367,7 +364,6 @@ export const MiddleUserContents = styled.div.attrs({
   flex-direction: column;
   margin-left: 4%;
   font-size: 15px;
-  cursor: pointer;
 `;
 export const MiddleUserIDInput = styled.input.attrs({
   id: "middleuseridinput",
@@ -388,8 +384,8 @@ export const MiddleUserIDInput = styled.input.attrs({
   font-size: 13px;
   padding-left: 40px;
   background-repeat: no-repeat;
-  background-size: 10px auto;
-  background-position: 20px center;
+  background-size: 15px auto;
+  background-position: 15px center;
   background-image: url("/images/icon/user.png");
   &:focus {
     outline: none;
@@ -414,7 +410,6 @@ export const MiddleEmailContents = styled.div.attrs({
   flex-direction: column;
   margin-left: 4%;
   font-size: 15px;
-  cursor: pointer;
 `;
 export const MiddleInputDiv = styled.div.attrs({
   id: "middleinputdiv",
@@ -431,7 +426,7 @@ export const MiddleInputDiv = styled.div.attrs({
 export const MiddleEmailInput = styled.input.attrs({
   id: "middleemailinput",
 })`
-  width: 69%;
+  width: 71%;
   height: 50px;
   display: flex;
   position: relative;
@@ -446,8 +441,8 @@ export const MiddleEmailInput = styled.input.attrs({
   font-size: 13px;
   padding-left: 40px;
   background-repeat: no-repeat;
-  background-size: 10px auto;
-  background-position: 20px center;
+  background-size: 15px auto;
+  background-position: 15px center;
   background-image: url("/images/icon/mail.png");
   &:focus {
     outline: none;
@@ -456,11 +451,11 @@ export const MiddleEmailInput = styled.input.attrs({
 export const MiddleEmailInputButton = styled.button.attrs({
   id: "middleeamilinputbutton",
 })`
-  width: 22%;
+  width: 18%;
   height: 50px;
   display: flex;
   position: relative;
-  margin-left: 1%;
+  margin-left: 3%;
   align-items: center;
   justify-content: center;
   user-select: none;
@@ -503,12 +498,11 @@ export const MiddleNicknameContents = styled.div.attrs({
   flex-direction: column;
   margin-left: 4%;
   font-size: 15px;
-  cursor: pointer;
 `;
 export const MiddleNicknameInput = styled.input.attrs({
   id: "middlenicknameinput",
 })`
-  width: 69%;
+  width: 71%;
   height: 50px;
   display: flex;
   position: relative;
@@ -524,8 +518,8 @@ export const MiddleNicknameInput = styled.input.attrs({
   font-size: 13px;
   padding-left: 40px;
   background-repeat: no-repeat;
-  background-size: 10px auto;
-  background-position: 20px center;
+  background-size: 15px auto;
+  background-position: 15px center;
   background-image: url("/images/icon/user.png");
   &:focus {
     outline: none;
@@ -534,11 +528,11 @@ export const MiddleNicknameInput = styled.input.attrs({
 export const MiddleNicknameInputButton = styled.button.attrs({
   id: "middlenicknamenputbutton",
 })`
-  width: 22%;
+  width: 18%;
   height: 50px;
   display: flex;
   position: relative;
-  margin-left: 1%;
+  margin-left: 3%;
   align-items: center;
   justify-content: center;
   user-select: none;
@@ -573,7 +567,6 @@ export const MiddleAlertContainer = styled.div.attrs({
   margin-bottom: 0;
   position: relative;
   box-sizing: border-box;
-  background-color: yellow;
   margin-top: 30px;
 `;
 export const MiddleAlertTitle = styled.div.attrs({
@@ -593,7 +586,6 @@ export const MiddleAlertContentsContainer = styled.div.attrs({
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background-color: white;
   justify-content: space-evenly;
   position: relative;
   margin-top: 13.75px;
@@ -681,7 +673,6 @@ export const MiddleSessionContainer = styled.div.attrs({
   flex-direction: column;
   position: relative;
   box-sizing: border-box;
-  background-color: pink;
   margin-top: 30px;
 `;
 export const MiddleSessionTitle = styled.div.attrs({
@@ -708,6 +699,82 @@ export const MiddleSessionContentsContainer = styled.div.attrs({
   border-radius: 20px;
   border: 1px solid black;
 `;
+export const MiddleSessionTypesContainer = styled.div.attrs({
+  id: "middlesessiontypescontainer",
+})`
+  max-width: 1280px;
+  width: calc(1280px - 500px);
+  height: 100px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: row;
+  box-sizing: border-box;
+  & + &::before {
+    content: "";
+    position: absolute;
+    top: -5%;
+    left: 2.5%;
+    width: 95%;
+    height: 1px;
+    background-color: #313131;
+  }
+`;
+export const MiddleSessionIcon = styled.div.attrs({
+  id: "middlesessionicon",
+})`
+  width: 60px;
+  height: 60px;
+  display: flex;
+  position: relative;
+  margin-left: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(${(props) => props.icon});
+`;
+export const MiddleSessionButton = styled.button.attrs({
+  id: "middlenicknamenputbutton",
+})`
+  width: 18%;
+  height: 50px;
+  display: flex;
+  position: absolute;
+  right: 4%;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  background-color: ${(props) => (props.disabled ? "#f1f1f1" : "#313131")};
+  color: ${(props) => (props.disabled ? "#313131" : "white")};
+  transition: all 0.3s ease-in-out;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  ${(props) =>
+    props.enabled &&
+    css`
+      &:hover {
+        background-color: black;
+      }
+    `}
+  border: none;
+`;
+export const MiddleSessionDiv = styled.div.attrs({
+  id: "middlesessiontypescontainer",
+})`
+  max-width: 1280px;
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 20px;
+`;
 export const RightContainer = styled.div.attrs({
   id: "rightcontainer",
 })`
@@ -719,7 +786,6 @@ export const RightContainer = styled.div.attrs({
   align-items: center;
   justify-content: flex-start;
   box-sizing: border-box;
-  background-color: green;
   margin-left: 50px;
 `;
 export const ProfileContainerModify = styled.div.attrs({
