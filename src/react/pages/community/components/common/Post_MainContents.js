@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import {
   MainPostContainer,
   MainPostTop,
@@ -26,21 +26,21 @@ import {
   MainPostTag,
 } from "../../../../styles/community/Post";
 import AxiosApi from "../../../../../api/AxiosApi";
-import {useLocation, useParams} from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import {
   LanguageDisplayNames,
   CourseDisplayNames,
   StudyDisplayNames,
   TeamDisplayNames,
 } from "../common/DisplayNames";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
-const Post_MainContents = ({boardType}) => {
-  const {boardId} = useParams();
+const Post_MainContents = ({ boardType }) => {
+  const { boardId } = useParams();
   // const [boardType, setBoardType] = useState("CODING");
   const [posts, setPosts] = useState([]);
   const location = useLocation();
-  const {firstpath, secondpath, thirdpath} = location.state || {};
+  const { firstpath, secondpath, thirdpath } = location.state || {};
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userDisLikeCnt, setUserDisLikeCnt] = useState("");
   const [userLikeCnt, setUserLikeCnt] = useState("");
@@ -52,7 +52,7 @@ const Post_MainContents = ({boardType}) => {
   useEffect(() => {
     const readPost = async () => {
       try {
-        const response = await AxiosApi.getPost(boardId, boardType);
+        const response = await AxiosApi.getPost(boardId);
         setPosts([response]);
         console.log("post : ", posts);
         console.log("보드 아이디 : ", boardId);
@@ -61,7 +61,7 @@ const Post_MainContents = ({boardType}) => {
       }
     };
     readPost();
-  }, [boardId, boardType]);
+  }, [boardId]);
 
   useEffect(() => {
     if (!accesstoken) {
@@ -101,7 +101,7 @@ const Post_MainContents = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, likeCnt: post.likeCnt + 1}
+              ? { ...post, likeCnt: post.likeCnt + 1 }
               : post
           )
         );
@@ -111,7 +111,7 @@ const Post_MainContents = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, likeCnt: post.likeCnt - 1}
+              ? { ...post, likeCnt: post.likeCnt - 1 }
               : post
           )
         );
@@ -142,7 +142,7 @@ const Post_MainContents = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, dislikeCnt: post.dislikeCnt + 1}
+              ? { ...post, dislikeCnt: post.dislikeCnt + 1 }
               : post
           )
         );
@@ -152,7 +152,7 @@ const Post_MainContents = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, dislikeCnt: post.dislikeCnt - 1}
+              ? { ...post, dislikeCnt: post.dislikeCnt - 1 }
               : post
           )
         );
@@ -236,7 +236,7 @@ const Post_MainContents = ({boardType}) => {
             <MainPostContentsBox>
               <MainPostContentsText
                 className="main-post-content"
-                dangerouslySetInnerHTML={{__html: post.content}}
+                dangerouslySetInnerHTML={{ __html: post.content }}
               />
               <MainPostTagsBox>
                 {(post.language || post.course || post.study || post.team) && (
