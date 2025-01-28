@@ -49,7 +49,7 @@ const CPlus_ArrowNavigation = ({ direction }) => {
             previousChapter.contents[previousChapter.contents.length - 1];
           nextNavigatePath = nextContent.navigatepath; // 이전 챕터의 마지막 콘텐츠로 이동
         } else {
-          console.error("이전 챕터가 없습니다.");
+          alert("이전 챕터가 없습니다.");
           return;
         }
       } else {
@@ -73,7 +73,7 @@ const CPlus_ArrowNavigation = ({ direction }) => {
           nextContent = nextChapter.contents[0]; // 다음 챕터의 첫 번째 콘텐츠로 이동
           nextNavigatePath = nextContent.navigatepath;
         } else {
-          console.error("다음 챕터가 없습니다.");
+          alert("다음 챕터가 없습니다.");
           return;
         }
       } else {

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 export const Wrap = styled.div.attrs({
@@ -327,14 +328,37 @@ export const ClassTable = styled.table.attrs({
 export const ClassTableTr = styled.tr.attrs({
   id: "classtabletr",
 })`
-width: auto;
+  width: auto;
   border: 1px solid black;
 `;
 
 export const ClassTableTd = styled.td.attrs({
   id: "classtabletd",
 })`
-width: auto;
+  width: auto;
   border: 1px solid black;
   padding: 10px;
+`;
+
+export const ClassLinkBox = styled(Link).attrs({
+  id: "classlinkbox",
+})`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 40px;
+  color: black;
+  text-decoration: none;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: "medium", sans-serif;
+  background-color: #f1f1f1;
+  text-align: center;
+  &:hover {
+    font-family: "bold", sans-serif;
+    background-color: #313131;
+    color: white;
+  }
 `;
