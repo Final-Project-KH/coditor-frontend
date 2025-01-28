@@ -27,12 +27,39 @@ import {
   PostContainer,
   PostTitle,
   PostContents,
-  CommunityContainer,
-  CSContainer,
   ProfileContainerModify,
+  ProfileTitle,
   ProfileImageModify,
   HiddenInput,
   ProfileEditButton,
+  ProfileModifyButton,
+  MiddleInputDiv,
+  MiddleUserContainer,
+  MiddleUserContentsTitle,
+  MiddleUserContentsContainer,
+  MiddleUserIDContainer,
+  MiddleUserContents,
+  MiddleUserIDInput,
+  MiddleEmailContainer,
+  MiddleEmailContents,
+  MiddleEmailInput,
+  MiddleEmailInputButton,
+  MiddleNicknameContainer,
+  MiddleNicknameContents,
+  MiddleNicknameInput,
+  MiddleNicknameInputButton,
+  MiddleAlertContainer,
+  MiddleAlertTitle,
+  MiddleAlertContentsContainer,
+  MiddleAlertCommentContainer,
+  MiddleAlertCommentTitle,
+  MiddleAlertCommentContents,
+  MiddleAlertADContainer,
+  MiddleAlertADTitle,
+  MiddleAlertADContents,
+  MiddleSessionContainer,
+  MiddleSessionTitle,
+  MiddleSessionContentsContainer,
 } from "../../styles/mypage/MyPage";
 
 const MyPage = () => {
@@ -97,9 +124,61 @@ const MyPage = () => {
             <PostContents>문의하기</PostContents>
           </PostContainer>
         </LeftContainer>
-        <MiddleContainer></MiddleContainer>
+        <MiddleContainer>
+          {/* 계정 관리 누를 시 나올 컨텐츠 */}
+          <MiddleUserContainer>
+            <MiddleUserContentsTitle>계정 관리</MiddleUserContentsTitle>
+            <MiddleUserContentsContainer>
+              <MiddleUserIDContainer>
+                <MiddleUserContents>아이디</MiddleUserContents>
+                <MiddleUserIDInput disabled></MiddleUserIDInput>
+              </MiddleUserIDContainer>
+              <MiddleEmailContainer>
+                <MiddleEmailContents>이메일</MiddleEmailContents>
+                <MiddleInputDiv>
+                  <MiddleEmailInput></MiddleEmailInput>
+                  <MiddleEmailInputButton>이메일 변경</MiddleEmailInputButton>
+                </MiddleInputDiv>
+              </MiddleEmailContainer>
+              <MiddleNicknameContainer>
+                <MiddleNicknameContents>닉네임</MiddleNicknameContents>
+                <MiddleInputDiv>
+                  <MiddleNicknameInput></MiddleNicknameInput>
+                  <MiddleNicknameInputButton>
+                    닉네임 변경
+                  </MiddleNicknameInputButton>
+                </MiddleInputDiv>
+              </MiddleNicknameContainer>
+            </MiddleUserContentsContainer>
+          </MiddleUserContainer>
+          <MiddleAlertContainer>
+            <MiddleAlertTitle>이메일 알림 설정</MiddleAlertTitle>
+            <MiddleAlertContentsContainer>
+              <MiddleAlertCommentContainer>
+                <MiddleAlertCommentTitle>댓글 알림</MiddleAlertCommentTitle>
+                <MiddleAlertCommentContents>
+                  내 질문에 댓글이 등록되면 알림을 받겠습니다.
+                </MiddleAlertCommentContents>
+              </MiddleAlertCommentContainer>
+              <MiddleAlertADContainer>
+                <MiddleAlertADTitle>
+                  마케팅 활용 동의 및 광고 수신 동의
+                </MiddleAlertADTitle>
+                <MiddleAlertADContents>
+                  강의 오픈, 신규 테스트 등록, 각종 이벤트, 회원 혜택 등 코디터
+                  마케팅 알림을 받겠습니다.
+                </MiddleAlertADContents>
+              </MiddleAlertADContainer>
+            </MiddleAlertContentsContainer>
+          </MiddleAlertContainer>
+          <MiddleSessionContainer>
+            <MiddleSessionTitle>SNS 계정 연동</MiddleSessionTitle>
+            <MiddleSessionContentsContainer></MiddleSessionContentsContainer>
+          </MiddleSessionContainer>
+        </MiddleContainer>
         <RightContainer>
           <ProfileContainerModify>
+            <ProfileTitle>프로필 이미지</ProfileTitle>
             <ProfileImageModify
               isProfile={profile}
               isPreview={preview}
@@ -113,6 +192,7 @@ const MyPage = () => {
             <ProfileEditButton
               onClick={() => fileInputRef.current.click()}
             ></ProfileEditButton>
+            <ProfileModifyButton>이미지 수정</ProfileModifyButton>
           </ProfileContainerModify>
         </RightContainer>
       </Container>

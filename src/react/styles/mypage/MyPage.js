@@ -92,10 +92,8 @@ export const Container = styled.div.attrs({
 })`
   max-width: 1280px;
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: row;
-  align-items: center;
   margin-top: 75px;
   box-sizing: border-box;
 `;
@@ -105,39 +103,11 @@ export const LeftContainer = styled.div.attrs({
 })`
   max-width: 1280px;
   width: 200px;
-  height: 100vh;
   margin-right: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-`;
-export const MiddleContainer = styled.div.attrs({
-  id: "middlecontainer",
-})`
-  max-width: 1280px;
-  width: calc(1280px - 500px);
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 0;
-  box-sizing: border-box;
-  background-color: red;
-`;
-export const RightContainer = styled.div.attrs({
-  id: "rightcontainer",
-})`
-  max-width: 1280px;
-  width: 200px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 0;
-  box-sizing: border-box;
-  background-color: green;
-  margin-left: 50px;
 `;
 export const ProfileContainer = styled.div.attrs({
   id: "profilecontainer",
@@ -330,49 +300,454 @@ export const PostContents = styled.div.attrs({
   font-size: 15px;
   cursor: pointer;
 `;
-export const CommunityContainer = styled.div.attrs({
-  id: "communitycontainer",
+export const MiddleContainer = styled.div.attrs({
+  id: "middlecontainer",
 })`
   max-width: 1280px;
-  width: 480px;
-  height: 50vh;
-  position: relative;
+  width: calc(1280px - 500px);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
-  box-sizing: border-box;
-  background-color: blueviolet;
-`;
-export const CSContainer = styled.div.attrs({
-  id: "cscontainer",
-})`
-  max-width: 1280px;
-  width: 480px;
-  height: 50vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  margin-bottom: 0;
   box-sizing: border-box;
   background-color: red;
+`;
+export const MiddleUserContainer = styled.div.attrs({
+  id: "middleusercontainer",
+})`
+  max-width: 1280px;
+  width: calc(1280px - 500px);
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  box-sizing: border-box;
+  background-color: blue;
+`;
+export const MiddleUserContentsTitle = styled.div.attrs({
+  id: "middleusercontentstitle",
+})`
+  position: relative;
+  display: flex;
+  font-size: 25px;
+  font-weight: bold;
+`;
+export const MiddleUserContentsContainer = styled.div.attrs({
+  id: "middleusercontentscontainer",
+})`
+  max-width: 1280px;
+  width: calc(1280px - 500px);
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: white;
+  justify-content: space-evenly;
+  margin-top: 13.75px;
+  border-radius: 20px;
+  border: 1px solid black;
+`;
+export const MiddleUserIDContainer = styled.div.attrs({
+  id: "middleuseridcontainer",
+})`
+  max-width: 1280px;
+  width: calc(1280px - 500px);
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: space-evenly;
+`;
+export const MiddleUserContents = styled.div.attrs({
+  id: "middleusercontents",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 4%;
+  font-size: 15px;
+  cursor: pointer;
+`;
+export const MiddleUserIDInput = styled.input.attrs({
+  id: "middleuseridinput",
+})`
+  width: 92%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+  margin-left: 4%;
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  background-position: 20px center;
+  background-image: url("/images/icon/user.png");
+  &:focus {
+    outline: none;
+  }
+`;
+export const MiddleEmailContainer = styled.div.attrs({
+  id: "middleemailcontainer",
+})`
+  max-width: 1280px;
+  width: calc(1280px - 500px);
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: space-evenly;
+`;
+export const MiddleEmailContents = styled.div.attrs({
+  id: "middleemailcontents",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 4%;
+  font-size: 15px;
+  cursor: pointer;
+`;
+export const MiddleInputDiv = styled.div.attrs({
+  id: "middleinputdiv",
+})`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  user-select: none;
+  flex-direction: row;
+  margin-bottom: 10px;
+  font-family: "medium", sans-serif;
+`;
+export const MiddleEmailInput = styled.input.attrs({
+  id: "middleemailinput",
+})`
+  width: 69%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-left: 4%;
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  background-position: 20px center;
+  background-image: url("/images/icon/mail.png");
+  &:focus {
+    outline: none;
+  }
+`;
+export const MiddleEmailInputButton = styled.button.attrs({
+  id: "middleeamilinputbutton",
+})`
+  width: 22%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  margin-left: 1%;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  background-color: ${(props) => (props.disabled ? "#f1f1f1" : "#313131")};
+  color: ${(props) => (props.disabled ? "#313131" : "white")};
+  transition: all 0.3s ease-in-out;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  ${(props) =>
+    props.enabled &&
+    css`
+      &:hover {
+        background-color: black;
+      }
+    `}
+  border: none;
+`;
+export const MiddleNicknameContainer = styled.div.attrs({
+  id: "middlenicknamecontainer",
+})`
+  max-width: 1280px;
+  width: calc(1280px - 500px);
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: space-evenly;
+`;
+export const MiddleNicknameContents = styled.div.attrs({
+  id: "middlenicknamecontents",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 4%;
+  font-size: 15px;
+  cursor: pointer;
+`;
+export const MiddleNicknameInput = styled.input.attrs({
+  id: "middlenicknameinput",
+})`
+  width: 69%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+  margin-left: 4%;
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  background-position: 20px center;
+  background-image: url("/images/icon/user.png");
+  &:focus {
+    outline: none;
+  }
+`;
+export const MiddleNicknameInputButton = styled.button.attrs({
+  id: "middlenicknamenputbutton",
+})`
+  width: 22%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  margin-left: 1%;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  background-color: ${(props) => (props.disabled ? "#f1f1f1" : "#313131")};
+  color: ${(props) => (props.disabled ? "#313131" : "white")};
+  transition: all 0.3s ease-in-out;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  ${(props) =>
+    props.enabled &&
+    css`
+      &:hover {
+        background-color: black;
+      }
+    `}
+  border: none;
+`;
+export const MiddleAlertContainer = styled.div.attrs({
+  id: "middlealertcontainer",
+})`
+  max-width: 1280px;
+  width: calc(1280px - 500px);
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  position: relative;
+  box-sizing: border-box;
+  background-color: yellow;
+  margin-top: 30px;
+`;
+export const MiddleAlertTitle = styled.div.attrs({
+  id: "middlealerttitle",
+})`
+  position: relative;
+  display: flex;
+  font-size: 25px;
+  font-weight: bold;
+`;
+export const MiddleAlertContentsContainer = styled.div.attrs({
+  id: "middlealertcontentscontainer",
+})`
+  max-width: 1280px;
+  width: calc(1280px - 500px);
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: white;
+  justify-content: space-evenly;
+  position: relative;
+  margin-top: 13.75px;
+  border-radius: 20px;
+  border: 1px solid black;
+`;
+export const MiddleAlertCommentContainer = styled.div.attrs({
+  id: "middlealertcommentcontainer",
+})`
+  max-width: 1280px;
+  width: calc(1280px - 500px);
+  height: 100px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: space-evenly;
+`;
+export const MiddleAlertCommentTitle = styled.div.attrs({
+  id: "middlealertcommenttitle",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 4%;
+  font-size: 20px;
+  font-weight: bold;
+`;
+export const MiddleAlertCommentContents = styled.div.attrs({
+  id: "middlealertcommentcontents",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 4%;
+  font-size: 15px;
+`;
+export const MiddleAlertADContainer = styled.div.attrs({
+  id: "middlealertadcontainer",
+})`
+  max-width: 1280px;
+  width: calc(1280px - 500px);
+  height: 100px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: space-evenly;
+  &::before {
+    content: "";
+    position: absolute;
+    top: -5%;
+    left: 2.5%;
+    width: 95%;
+    height: 1px;
+    background-color: #313131;
+  }
+`;
+export const MiddleAlertADTitle = styled.div.attrs({
+  id: "middlealertadtitle",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 4%;
+  font-size: 20px;
+  font-weight: bold;
+`;
+export const MiddleAlertADContents = styled.div.attrs({
+  id: "middlealertadcontents",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 4%;
+  font-size: 15px;
+`;
+export const MiddleSessionContainer = styled.div.attrs({
+  id: "middlesessioncontainer",
+})`
+  max-width: 1280px;
+  width: calc(1280px - 500px);
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  background-color: pink;
+  margin-top: 30px;
+`;
+export const MiddleSessionTitle = styled.div.attrs({
+  id: "middlesessiontitle",
+})`
+  position: relative;
+  display: flex;
+  font-size: 25px;
+  font-weight: bold;
+`;
+export const MiddleSessionContentsContainer = styled.div.attrs({
+  id: "middlesessioncontentscontainer",
+})`
+  max-width: 1280px;
+  width: calc(1280px - 500px);
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: white;
+  justify-content: space-evenly;
+  position: relative;
+  margin-top: 13.75px;
+  border-radius: 20px;
+  border: 1px solid black;
+`;
+export const RightContainer = styled.div.attrs({
+  id: "rightcontainer",
+})`
+  max-width: 1280px;
+  width: 200px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  background-color: green;
+  margin-left: 50px;
 `;
 export const ProfileContainerModify = styled.div.attrs({
   id: "profilecontainermodify",
 })`
   max-width: 1280px;
   width: 200px;
-  height: 200px;
+  height: 350px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   position: relative;
   box-sizing: border-box;
   background-color: white;
   border-radius: 15px;
   border: 1px solid black;
+`;
+export const ProfileTitle = styled.div.attrs({
+  id: "profiletitle",
+})`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
 `;
 export const ProfileImageModify = styled.div.attrs({
   id: "profileimagemodify",
@@ -416,7 +791,7 @@ export const ProfileEditButton = styled.button.attrs({
   border-radius: 50%;
   position: absolute;
   right: 35px;
-  bottom: 35px;
+  bottom: 125px;
   z-index: 3;
   border: 1px solid black;
   cursor: pointer;
@@ -428,4 +803,22 @@ export const ProfileEditButton = styled.button.attrs({
   &:hover {
     background-color: #f1f1f1;
   }
+`;
+export const ProfileModifyButton = styled.button.attrs({
+  id: "middlenicknameinput",
+})`
+  width: 140px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
+  cursor: pointer;
 `;

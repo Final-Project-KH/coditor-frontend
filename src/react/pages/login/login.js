@@ -342,7 +342,7 @@ const Login = () => {
               <Input
                 autoComplete="off"
                 placeholder="아이디 입력"
-                icon="c"
+                icon="/images/icon/user.png"
                 value={inputUserId}
                 onChange={(e) => handleInputChange(e, setInputUserId, setIsId)}
               ></Input>
