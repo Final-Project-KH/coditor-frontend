@@ -57,7 +57,7 @@ const Login = () => {
       window.removeEventListener("resize", handleResize); // 클린업
     };
   }, []);
-  
+
   const closeMadal = () => {
     console.log("closeMadal 호출됨");
     setModalOpen(false);
@@ -342,7 +342,7 @@ const Login = () => {
               <Input
                 autoComplete="off"
                 placeholder="아이디 입력"
-                icon="/images/icon/user.png"
+                icon="c"
                 value={inputUserId}
                 onChange={(e) => handleInputChange(e, setInputUserId, setIsId)}
               ></Input>

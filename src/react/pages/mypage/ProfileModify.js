@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useRef} from "react";
-import {useNavigate, useLocation} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import store from "../../../redux/store/store";
 import {
   Wrap,
@@ -14,12 +14,15 @@ import {
   ProfileImage,
   HiddenInput,
   ProfileEditButton,
+  UserContainer,
+  IDContainer,
+  IDInput,
 } from "../../styles/mypage/ProfileModify";
 
 const ProfileModify = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {firstpath, secondpath} = location.state || {};
+  const { firstpath, secondpath } = location.state || {};
 
   const profile = useSelector((state) => state.auth.profile);
   const nickname = useSelector((state) => state.auth.nickname);
@@ -77,6 +80,11 @@ const ProfileModify = () => {
             onClick={() => fileInputRef.current.click()}
           ></ProfileEditButton>
         </ProfileContainer>
+        <UserContainer>
+          <IDContainer>
+            <IDInput></IDInput>
+          </IDContainer>
+        </UserContainer>
       </Container>
     </Wrap>
   );

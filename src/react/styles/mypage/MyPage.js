@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -98,26 +98,25 @@ export const Container = styled.div.attrs({
   align-items: center;
   margin-top: 75px;
   box-sizing: border-box;
-  background-color: yellow;
 `;
 
 export const LeftContainer = styled.div.attrs({
   id: "leftcontainer",
 })`
   max-width: 1280px;
-  width: 320px;
+  width: 200px;
   height: 100vh;
+  margin-right: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  background-color: blue;
 `;
 export const MiddleContainer = styled.div.attrs({
   id: "middlecontainer",
 })`
   max-width: 1280px;
-  width: 480px;
+  width: calc(1280px - 500px);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -130,7 +129,7 @@ export const RightContainer = styled.div.attrs({
   id: "rightcontainer",
 })`
   max-width: 1280px;
-  width: 480px;
+  width: 200px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -138,26 +137,29 @@ export const RightContainer = styled.div.attrs({
   margin-bottom: 0;
   box-sizing: border-box;
   background-color: green;
+  margin-left: 50px;
 `;
 export const ProfileContainer = styled.div.attrs({
   id: "profilecontainer",
 })`
   max-width: 1280px;
-  width: 320px;
-  height: 320px;
+  width: 200px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   left: 0px;
   box-sizing: border-box;
-  background-color: pink;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid black;
 `;
 export const ProfileImage = styled.div.attrs({
   id: "profileimage",
 })`
-  width: 50%;
-  height: 50%;
+  width: 80px;
+  height: 80px;
   display: flex;
   border-radius: 50%;
   background-position: center;
@@ -218,126 +220,115 @@ export const UserContentsContainer = styled.div.attrs({
   id: "usercontentscontainer",
 })`
   max-width: 1280px;
-  width: 320px;
-  height: calc(100vh - 320px);
+  width: 200px;
+  height: 200px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   box-sizing: border-box;
-  background-color: violet;
+  border-radius: 15px;
+  border: 1px solid black;
+  margin-top: 25px;
 `;
-
-export const UserContentsHeader = styled.div.attrs({
-  id: "usercontentsheader",
+export const UserContentsTitle = styled.div.attrs({
+  id: "usercontentstitle",
 })`
-  width: 100%;
-  height: 40px;
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 30px 30px 0px 0px;
-`;
-export const UserContentsHeaderTitle = styled.div.attrs({
-  id: "usercontentsheadertitle",
-})`
-  width: 90%;
-  padding-left: 30px;
-  color: white;
-  font-size: 18px;
-  font-family: "bold", sans-serif;
-  cursor: pointer;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
 `;
 export const UserContents = styled.div.attrs({
   id: "usercontents",
 })`
-  width: 100%;
-  display: flex;
   position: relative;
+  display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  user-select: none;
-`;
-export const UserContentsSet = styled.div.attrs({
-  id: "usercontentsset",
-})`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  position: relative;
-  background-color: #f1f1f1;
-  & + &::before {
-    content: "";
-    position: absolute;
-    left: 3%;
-    width: 94%;
-    height: 1px;
-    background-color: black;
-    transform: rotate(0deg);
-  }
-  &:last-child {
-    border-radius: 0px 0px 30px 30px;
-  }
-`;
-export const UserContentsName = styled.div.attrs({
-  id: "usercontentsname",
-})`
-  color: black;
   font-size: 15px;
-  font-family: "medium", sans-serif;
-  margin-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  text-decoration: none;
-  padding: 5px 10px;
-  border-radius: 30px;
-  position: relative;
   cursor: pointer;
-  &:hover {
-    font-family: "extrabold", sans-serif;
-  }
-  &:hover::before {
-    content: "<";
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    color: red;
-    font-size: 18px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    opacity: 1;
-  }
 `;
-export const StudyContainer = styled.div.attrs({
-  id: "studycontainer",
+export const DashboardContainer = styled.div.attrs({
+  id: "dashboardcontainer",
 })`
   max-width: 1280px;
-  width: 480px;
-  height: 50vh;
+  width: 200px;
+  height: 200px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   box-sizing: border-box;
-  background-color: yellowgreen;
+  border-radius: 15px;
+  border: 1px solid black;
+  margin-top: 25px;
 `;
-export const CodingTestContainer = styled.div.attrs({
-  id: "codingtestcontainer",
+export const DashboardTitle = styled.div.attrs({
+  id: "dashboardtitle",
 })`
-  max-width: 1280px;
-  width: 480px;
-  height: 50vh;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+`;
+export const DashboardContents = styled.div.attrs({
+  id: "dashboardcontents",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+`;
+export const PostContainer = styled.div.attrs({
+  id: "postcontainer",
+})`
+  max-width: 1280px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   box-sizing: border-box;
-  background-color: orange;
+  border-radius: 15px;
+  border: 1px solid black;
+  margin-top: 25px;
+`;
+export const PostTitle = styled.div.attrs({
+  id: "posttitle",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+`;
+export const PostContents = styled.div.attrs({
+  id: "postcontents",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
 `;
 export const CommunityContainer = styled.div.attrs({
   id: "communitycontainer",
@@ -366,4 +357,75 @@ export const CSContainer = styled.div.attrs({
   justify-content: flex-start;
   box-sizing: border-box;
   background-color: red;
+`;
+export const ProfileContainerModify = styled.div.attrs({
+  id: "profilecontainermodify",
+})`
+  max-width: 1280px;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid black;
+`;
+export const ProfileImageModify = styled.div.attrs({
+  id: "profileimagemodify",
+})`
+  width: 140px;
+  height: 140px;
+  display: flex;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+  ${(props) =>
+    props.isProfile === "" &&
+    props.isPreview === null &&
+    css`
+      background-image: url("/images/general/default_profile.png");
+    `}
+  ${(props) =>
+    props.isProfile === "" &&
+    props.isPreview !== null &&
+    css`
+      background-image: url(${(props) => props.isPreview});
+    `}
+  ${(props) =>
+    props.isProfile !== "" &&
+    css`
+      background-image: url(${(props) => props.isProfile});
+    `}
+`;
+export const HiddenInput = styled.input`
+  display: none;
+`;
+
+export const ProfileEditButton = styled.button.attrs({
+  id: "profileeditbutton",
+})`
+  width: 30px;
+  height: 30px;
+  display: flex;
+  border-radius: 50%;
+  position: absolute;
+  right: 35px;
+  bottom: 35px;
+  z-index: 3;
+  border: 1px solid black;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: white;
+  background-image: url("/images/icon/edit.png");
+  &:hover {
+    background-color: #f1f1f1;
+  }
 `;

@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -114,6 +114,8 @@ export const ProfileContainer = styled.div.attrs({
   position: relative;
   box-sizing: border-box;
   background-color: pink;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `;
 export const ProfileImage = styled.div.attrs({
   id: "profileimage",
@@ -124,7 +126,7 @@ export const ProfileImage = styled.div.attrs({
   border-radius: 50%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-color: white;
   ${(props) =>
     props.isProfile === "" &&
@@ -168,5 +170,56 @@ export const ProfileEditButton = styled.button.attrs({
   background-image: url("/images/icon/edit.png");
   &:hover {
     background-color: #f1f1f1;
+  }
+`;
+export const UserContainer = styled.div.attrs({
+  id: "usercontainer",
+})`
+  max-width: 1280px;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: blue;
+`;
+export const IDContainer = styled.div.attrs({
+  id: "usercontainer",
+})`
+  max-width: 1280px;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: gray;
+`;
+export const IDInput = styled.input.attrs({
+  id: "idinput",
+})`
+  width: 80%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  background-position: 20px center;
+  background-image: url("/images/icon/user.png");
+  &:focus {
+    outline: none;
   }
 `;
