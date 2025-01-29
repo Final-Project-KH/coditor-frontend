@@ -268,6 +268,56 @@ export const ProfileImg = styled.div.attrs({
       display: none;
     `}
 `;
+// export const MyPageButton = styled.button.attrs({
+//   id: "mypagebutton",
+// })`
+//   width: 50px;
+//   height: 50px;
+//   display: flex;
+//   position: absolute;
+//   right: 0px;
+//   margin-bottom: 5px;
+//   justify-content: center;
+//   align-items: center;
+//   background-color: transparent;
+//   border-radius: 30px;
+//   border: none;
+//   cursor: pointer;
+//   ${(props) =>
+//     props.isUser === null &&
+//     css`
+//       display: none;
+//     `}
+//   &::before,
+//   &::after {
+//     content: "";
+//     width: 30px;
+//     height: 2px;
+//     background-color: black;
+//     border-radius: 5px;
+//     position: absolute;
+//     left: 10px;
+//     transition: 0.3s;
+//   }
+//   &::before {
+//     top: 12px; /* 위쪽 선 */
+//   }
+//   &::after {
+//     bottom: 12px; /* 아래쪽 선 */
+//   }
+
+//   & div::before {
+//     content: "";
+//     width: 30px;
+//     height: 2px;
+//     background-color: black;
+//     border-radius: 5px;
+//     position: absolute;
+//     top: 24px;
+//     left: 10px;
+//     transition: 0.3s;
+//   }
+// `;
 export const MyPageButton = styled.button.attrs({
   id: "mypagebutton",
 })`
@@ -276,11 +326,13 @@ export const MyPageButton = styled.button.attrs({
   display: flex;
   position: absolute;
   right: 0px;
-  margin-bottom: 5px;
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  border-radius: 30px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/bugger_button.png");
   border: none;
   cursor: pointer;
   ${(props) =>
@@ -288,35 +340,6 @@ export const MyPageButton = styled.button.attrs({
     css`
       display: none;
     `}
-  &::before,
-  &::after {
-    content: "";
-    width: 30px;
-    height: 2px;
-    background-color: black;
-    border-radius: 5px;
-    position: absolute;
-    left: 10px;
-    transition: 0.3s;
-  }
-  &::before {
-    top: 12px; /* 위쪽 선 */
-  }
-  &::after {
-    bottom: 12px; /* 아래쪽 선 */
-  }
-
-  & div::before {
-    content: "";
-    width: 30px;
-    height: 2px;
-    background-color: black;
-    border-radius: 5px;
-    position: absolute;
-    top: 24px;
-    left: 10px;
-    transition: 0.3s;
-  }
 `;
 export const MyPageMenu = styled.div.attrs({
   id: "mypagemenu",

@@ -79,6 +79,26 @@ import {
   ProfileModalContents,
   ProfileModalImage,
   ProfileModalImageAddButton,
+  ProfileUploadModal,
+  ProfileUploadModalHeader,
+  ProfileUploadModalCloseButton,
+  ProfileUploadModalLogo,
+  ProfileUploadModalTitle,
+  ProfileUploadModalContainer,
+  ProfileModalImageModifyButton,
+  ProfileModalImageDeleteButton,
+  ProfileUploadModalImage,
+  ProfileUploadModalContents,
+  ProfileUploadModalContentsDiv,
+  ProfileUploadModalImageAddButton,
+  ProfileCropModal,
+  ProfileCropModalHeader,
+  ProfileCropModalCloseButton,
+  ProfileCropModalLogo,
+  ProfileCropModalTitle,
+  ProfileCropModalContainer,
+  ProfileCropModalButtonContainer,
+  ProfileCropContainer,
 } from "../../styles/mypage/MyPage";
 import Cropper from "react-easy-crop";
 
@@ -106,20 +126,123 @@ const MyPage = () => {
   const [croppedImage, setCroppedImage] = useState(null);
   const [croppedPreview, setCroppedPreview] = useState(null);
   const [isProfileImgModalOpen, setIsProfileImgModalOpen] = useState(false);
+  const [isProfileUploadModalOpen, setIsProfileUploadModalOpen] =
+    useState(false);
+  const [isProfileCropModalOpen, setIsProfileCropModalOpen] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [rotation, setRotation] = useState(0);
   const fileInputRef = useRef(null);
+
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const handleRotate = () => {
+    setRotation((prev) => (prev + 90) % 360);
+  };
+
+  const handleSaveCroppedImage = (croppedImage) => {
+    setPreview(croppedImage); // 최종 크롭된 이미지 적용
+    setIsProfileCropModalOpen(false); // CropModal 닫기
+  };
+
+  const handleCrop = async () => {
+    if (!croppedAreaPixels || !preview) return;
+
+    const croppedImage = await getCroppedImg(
+      preview,
+      croppedAreaPixels,
+      rotation
+    );
+    handleSaveCroppedImage(croppedImage);
+  };
+  const getCroppedImg = async (imageSrc, croppedAreaPixels, rotation = 0) => {
+    const newImage = new Image();
+    newImage.src = imageSrc;
+    await new Promise((resolve) => {
+      newImage.onload = resolve;
+    });
+
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const size = croppedAreaPixels.width;
+    canvas.width = size;
+    canvas.height = size;
+
+    ctx.save();
+    ctx.translate(size / 2, size / 2);
+    ctx.rotate((rotation * Math.PI) / 180);
+    ctx.drawImage(
+      newImage,
+      croppedAreaPixels.x - size / 2,
+      croppedAreaPixels.y - size / 2,
+      croppedAreaPixels.width,
+      croppedAreaPixels.height
+    );
+    ctx.restore();
+
+    ctx.beginPath();
+    ctx.arc(size / 2, size / 2, size / 2, 0, 2 * Math.PI);
+    ctx.clip();
+
+    return new Promise((resolve) => {
+      canvas.toBlob((blob) => {
+        resolve(URL.createObjectURL(blob));
+      }, "image/png");
+    });
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImage(URL.createObjectURL(file));
+      setPreview(URL.createObjectURL(file));
+      onClickProfileCropOpen(e);
     }
   };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      setPreview(URL.createObjectURL(file));
+      onClickProfileCropOpen(e);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = () => setIsDragging(false);
 
   const onClickProfileOpen = () => {
     setIsProfileImgModalOpen(true);
   };
+  const onClickProfileUploadOpen = () => {
+    setIsProfileUploadModalOpen(true);
+  };
+  const onClickProfileCropOpen = () => {
+    setIsProfileCropModalOpen(true);
+  };
   const onClickProfileClose = () => {
     setIsProfileImgModalOpen(false);
+  };
+  const onClickProfileUploadClose = () => {
+    setIsProfileUploadModalOpen(false);
+    setPreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = null;
+    }
+  };
+  const onClickProfileCropClose = () => {
+    setIsProfileCropModalOpen(false);
+    setPreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = null;
+    }
   };
 
   return (
@@ -170,7 +293,7 @@ const MyPage = () => {
               <MiddleEmailContainer>
                 <MiddleEmailContents>이메일</MiddleEmailContents>
                 <MiddleInputDiv>
-                  <MiddleEmailInput></MiddleEmailInput>
+                  <MiddleEmailInput autoComplete="off"></MiddleEmailInput>
                   <MiddleEmailInputButton>이메일 변경</MiddleEmailInputButton>
                 </MiddleInputDiv>
               </MiddleEmailContainer>
@@ -233,16 +356,9 @@ const MyPage = () => {
               isProfile={profile}
               isPreview={preview}
             ></ProfileImageModify>
-            <HiddenInput
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              ref={fileInputRef}
-            />
             <ProfileEditButton
               onClick={() => onClickProfileOpen()}
             ></ProfileEditButton>
-            <ProfileModifyButton></ProfileModifyButton>
           </ProfileContainerModify>
         </RightContainer>
         {isProfileImgModalOpen && (
@@ -265,11 +381,97 @@ const MyPage = () => {
               ></ProfileModalImage>
             </ProfileModalContainer>
             <ProfileModalButtonContainer>
-              <ProfileModalImageAddButton>
-                프로필 사진 추가
-              </ProfileModalImageAddButton>
+              {profile ? (
+                <>
+                  <ProfileModalImageModifyButton
+                    onClick={() => onClickProfileUploadOpen()}
+                  >
+                    프로필 사진 변경
+                  </ProfileModalImageModifyButton>
+                  <ProfileModalImageDeleteButton>
+                    프로필 사진 삭제
+                  </ProfileModalImageDeleteButton>
+                </>
+              ) : (
+                <ProfileModalImageAddButton
+                  onClick={() => onClickProfileUploadOpen()}
+                >
+                  프로필 사진 추가
+                </ProfileModalImageAddButton>
+              )}
             </ProfileModalButtonContainer>
           </ProfileModal>
+        )}
+        {isProfileUploadModalOpen && (
+          <ProfileUploadModal>
+            <ProfileUploadModalHeader>
+              <ProfileUploadModalCloseButton
+                onClick={() => onClickProfileUploadClose()}
+              ></ProfileUploadModalCloseButton>
+              <ProfileUploadModalLogo></ProfileUploadModalLogo>
+              <ProfileUploadModalTitle>
+                프로필 사진 추가
+              </ProfileUploadModalTitle>
+            </ProfileUploadModalHeader>
+            <ProfileUploadModalContainer
+              isDragging={isDragging}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
+              <ProfileUploadModalImage
+                isProfile={profile}
+                isPreview={preview}
+              ></ProfileUploadModalImage>
+              <HiddenInput
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                ref={fileInputRef}
+              />
+              <ProfileUploadModalContents>
+                여기로 사진 드래그
+              </ProfileUploadModalContents>
+              <ProfileUploadModalContentsDiv>
+                - 또는 -{" "}
+              </ProfileUploadModalContentsDiv>
+              <ProfileUploadModalImageAddButton
+                onClick={() => fileInputRef.current.click()}
+              >
+                업로드
+              </ProfileUploadModalImageAddButton>
+            </ProfileUploadModalContainer>
+          </ProfileUploadModal>
+        )}
+        {isProfileCropModalOpen && (
+          <ProfileCropModal>
+            <ProfileCropModalHeader>
+              <ProfileCropModalCloseButton
+                onClick={() => onClickProfileCropClose()}
+              ></ProfileCropModalCloseButton>
+              <ProfileCropModalLogo></ProfileCropModalLogo>
+              <ProfileCropModalTitle>자르기 및 회전</ProfileCropModalTitle>
+            </ProfileCropModalHeader>
+            <ProfileCropModalContainer>
+              <ProfileCropContainer>
+                <Cropper
+                  image={preview}
+                  crop={crop}
+                  zoom={zoom}
+                  rotation={rotation}
+                  aspect={1}
+                  minZoom={1}
+                  maxZoom={5}
+                  zoomSpeed={0.2}
+                  onCropChange={setCrop}
+                  onZoomChange={setZoom}
+                  onRotationChange={setRotation}
+                  onCropComplete={onCropComplete}
+                />
+              </ProfileCropContainer>
+            </ProfileCropModalContainer>
+            <ProfileCropModalButtonContainer></ProfileCropModalButtonContainer>
+          </ProfileCropModal>
         )}
       </Container>
     </Wrap>

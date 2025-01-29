@@ -823,6 +823,7 @@ export const ProfileImageModify = styled.div.attrs({
   height: 140px;
   display: flex;
   border-radius: 50%;
+  margin-bottom: 90px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -895,16 +896,17 @@ export const ProfileModalHeader = styled.div.attrs({
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding-bottom: 20px;
 `;
 export const ProfileModalCloseButton = styled.div.attrs({
-  id: "profilemodalCloseButton",
+  id: "profilemodalclosebutton",
 })`
   width: 30px;
   height: 30px;
   display: flex;
   position: absolute;
   border-radius: 50%;
-  left: 10px;
+  left: 15px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -918,7 +920,7 @@ export const ProfileModalCloseButton = styled.div.attrs({
   }
 `;
 export const ProfileModalLogo = styled.div.attrs({
-  id: "profilemodalCloseButton",
+  id: "profilemodallogo",
 })`
   width: 200px;
   height: 40px;
@@ -1025,6 +1027,313 @@ export const ProfileModalImageAddButton = styled.button.attrs({
   font-size: 15px;
   cursor: pointer;
 `;
+export const ProfileModalImageModifyButton = styled.button.attrs({
+  id: "profilemodalimagemodifybutton",
+})`
+  width: 180px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
+  margin-right: 10px;
+  cursor: pointer;
+`;
+export const ProfileModalImageDeleteButton = styled.button.attrs({
+  id: "profilemodalimagedeletebutton",
+})`
+  width: 180px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
+  margin-left: 10px;
+  cursor: pointer;
+`;
+export const ProfileUploadModal = styled.div.attrs({
+  id: "profileuploadmodal",
+})`
+  width: 800px;
+  height: 840px;
+  display: flex;
+  border-radius: 20px;
+  flex-direction: column;
+  position: fixed;
+  border: 1px solid black;
+  background-color: white;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+export const ProfileUploadModalHeader = styled.div.attrs({
+  id: "profileuploadmodalheader",
+})`
+  width: 100%;
+  height: 120px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+`;
+export const ProfileUploadModalCloseButton = styled.div.attrs({
+  id: "profileuploadmodalclosebutton",
+})`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  border-radius: 50%;
+  left: 10px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 35px 40px;
+  background-image: url("/images/icon/back.png");
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.3);
+  }
+`;
+export const ProfileUploadModalLogo = styled.div.attrs({
+  id: "profileuploadmodallogo",
+})`
+  width: 50px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("/images/logo/logo.png");
+`;
+export const ProfileUploadModalTitle = styled.div.attrs({
+  id: "profileuploadmodaltitle",
+})`
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 10px;
+`;
+export const ProfileUploadModalContainer = styled.div.attrs({
+  id: "profileuploadmodalcontainer",
+})`
+  width: 100%;
+  height: 720px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  background-color: rgba(128, 128, 128, 0.2);
+
+  ${({ isDragging }) =>
+    isDragging && "background-color: rgba(74, 144, 226, 0.2);"}
+`;
+export const ProfileUploadModalImage = styled.div.attrs({
+  id: "profileuploadmodalimage",
+})`
+  width: 200px;
+  height: 200px;
+  display: flex;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+  ${(props) =>
+    props.isProfile === "" &&
+    props.isPreview === null &&
+    css`
+      background-image: url("/images/general/default_profile.png");
+    `}
+  ${(props) =>
+    props.isProfile === "" &&
+    props.isPreview !== null &&
+    css`
+      background-image: url(${(props) => props.isPreview});
+    `}
+  ${(props) =>
+    props.isProfile !== "" &&
+    css`
+      background-image: url(${(props) => props.isProfile});
+    `}
+`;
+export const ProfileUploadModalContents = styled.div.attrs({
+  id: "profileuploadmodalcontents",
+})`
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 20px;
+`;
+export const ProfileUploadModalContentsDiv = styled.div.attrs({
+  id: "profileuploadmodalcontentsdiv",
+})`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  margin-top: 5px;
+`;
+export const ProfileUploadModalImageAddButton = styled.button.attrs({
+  id: "profileuploadmodalimageaddbutton",
+})`
+  width: 240px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+  }
+`;
+export const ProfileCropModal = styled.div.attrs({
+  id: "profilecropmodal",
+})`
+  width: 800px;
+  height: 840px;
+  display: flex;
+  border-radius: 20px;
+  flex-direction: column;
+  position: fixed;
+  border: 1px solid black;
+  background-color: #131314;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+export const ProfileCropModalHeader = styled.div.attrs({
+  id: "profilecropmodalheader",
+})`
+  width: 100%;
+  height: 120px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+`;
+export const ProfileCropModalCloseButton = styled.div.attrs({
+  id: "profilecropmodalclosebutton",
+})`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  border-radius: 50%;
+  left: 10px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 35px 40px;
+  background-image: url("/images/icon/back_white.png");
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.3);
+  }
+`;
+export const ProfileCropModalLogo = styled.div.attrs({
+  id: "profilecropmodallogo",
+})`
+  width: 50px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("/images/logo/logo_white.png");
+`;
+export const ProfileCropModalTitle = styled.div.attrs({
+  id: "profilecropmodaltitle",
+})`
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 10px;
+  color: white;
+`;
+export const ProfileCropModalContainer = styled.div.attrs({
+  id: "profilecropmodalcontainer",
+})`
+  width: 100%;
+  height: 600px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: pink;
+`;
+export const ProfileCropContainer = styled.div.attrs({
+  id: "profilecropcontainer",
+})`
+  width: 100%;
+  height: 600px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+`;
+export const ProfileCropModalButtonContainer = styled.div.attrs({
+  id: "profilecropmodalcontainer",
+})`
+  width: 100%;
+  height: 120px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: yellow;
+`;
 export const ProfileModifyButton = styled.button.attrs({
   id: "middlenicknameinput",
 })`
@@ -1053,6 +1362,7 @@ export const CropContainer = styled.div.attrs({
   overflow: hidden; /* 원형 마스크 */
   background: #ddd;
 `;
+
 export const Controls = styled.div.attrs({
   id: "controls",
 })`
