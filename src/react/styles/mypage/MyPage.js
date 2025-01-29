@@ -1071,11 +1071,13 @@ export const ProfileUploadModal = styled.div.attrs({
   display: flex;
   border-radius: 20px;
   flex-direction: column;
-  position: fixed;
+  position: absolute;
   border: 1px solid black;
   background-color: white;
   justify-content: space-evenly;
   align-items: center;
+  top: 100px;
+  z-index: 10;
 `;
 export const ProfileUploadModalHeader = styled.div.attrs({
   id: "profileuploadmodalheader",
@@ -1161,7 +1163,7 @@ export const ProfileUploadModalImage = styled.div.attrs({
   border-radius: 50%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-color: white;
   ${(props) =>
     props.isProfile === "" &&
@@ -1234,11 +1236,13 @@ export const ProfileCropModal = styled.div.attrs({
   display: flex;
   border-radius: 20px;
   flex-direction: column;
-  position: fixed;
+  position: absolute;
   border: 1px solid black;
   background-color: #131314;
   justify-content: space-evenly;
   align-items: center;
+  top: 100px;
+  z-index: 10;
 `;
 export const ProfileCropModalHeader = styled.div.attrs({
   id: "profilecropmodalheader",
@@ -1268,7 +1272,7 @@ export const ProfileCropModalCloseButton = styled.div.attrs({
   background-position: center;
   background-repeat: no-repeat;
   background-size: 35px 40px;
-  background-image: url("/images/icon/back_white.png");
+  background-image: url("/images/icon/back_w.png");
   &:hover {
     background-color: rgba(128, 128, 128, 0.3);
   }
@@ -1309,7 +1313,6 @@ export const ProfileCropModalContainer = styled.div.attrs({
   position: relative;
   justify-content: center;
   align-items: center;
-  background-color: pink;
 `;
 export const ProfileCropContainer = styled.div.attrs({
   id: "profilecropcontainer",
@@ -1320,7 +1323,14 @@ export const ProfileCropContainer = styled.div.attrs({
   position: relative;
   justify-content: center;
   align-items: center;
-  background-color: blue;
+  overflow: hidden;
+`;
+export const ProfileCropOverlay = styled.div`
+  position: absolute;
+  width: ${(props) => props.cropSize.width}px;
+  height: ${(props) => props.cropSize.height}px;
+  border-radius: 50%;
+  pointer-events: none;
 `;
 export const ProfileCropModalButtonContainer = styled.div.attrs({
   id: "profilecropmodalcontainer",
@@ -1332,7 +1342,30 @@ export const ProfileCropModalButtonContainer = styled.div.attrs({
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: yellow;
+`;
+export const ProfileCropModalButton = styled.button.attrs({
+  id: "profilecropmodalbutton",
+})`
+  width: 240px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+  }
 `;
 export const ProfileModifyButton = styled.button.attrs({
   id: "middlenicknameinput",

@@ -12,7 +12,7 @@ export const Wrap = styled.div.attrs({
   justify-content: center;
   border-bottom: 1px solid #ddd;
   background-color: white;
-  position: fixed;
+  position: absolute;
   z-index: 10;
 `;
 

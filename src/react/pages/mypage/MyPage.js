@@ -99,6 +99,9 @@ import {
   ProfileCropModalContainer,
   ProfileCropModalButtonContainer,
   ProfileCropContainer,
+  ProfileCropOverlay,
+  ProfileCropResizeHandle,
+  ProfileCropModalButton,
 } from "../../styles/mypage/MyPage";
 import Cropper from "react-easy-crop";
 
@@ -132,6 +135,30 @@ const MyPage = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [rotation, setRotation] = useState(0);
   const fileInputRef = useRef(null);
+  const [cropSize, setCropSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    if (!preview) return;
+
+    setCropSize({ width: 0, height: 0 });
+
+    const img = new Image();
+    img.src = preview;
+    img.onload = () => {
+      console.log("이미지 로드 완료:", img.naturalWidth, img.naturalHeight);
+
+      const { naturalWidth, naturalHeight } = img;
+      const minSize = Math.min(naturalWidth, naturalHeight); // 가장 짧은 쪽 선택
+      setCropSize({ width: minSize, height: minSize }); // 동적 크롭 크기 설정
+    };
+  }, [preview, isProfileCropModalOpen]);
+
+  useEffect(() => {
+    if (croppedImage) {
+      setPreview(croppedImage);
+      console.log("이미지 : ", croppedImage);
+    }
+  }, [croppedImage]);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -141,72 +168,105 @@ const MyPage = () => {
     setRotation((prev) => (prev + 90) % 360);
   };
 
-  const handleSaveCroppedImage = (croppedImage) => {
+  const handleSaveCroppedImage = () => {
     setPreview(croppedImage); // 최종 크롭된 이미지 적용
+    setCropSize({ width: 0, height: 0 });
     setIsProfileCropModalOpen(false); // CropModal 닫기
   };
 
   const handleCrop = async () => {
     if (!croppedAreaPixels || !preview) return;
 
-    const croppedImage = await getCroppedImg(
+    const croppedImageURL = await getCroppedImg(
       preview,
       croppedAreaPixels,
       rotation
     );
-    handleSaveCroppedImage(croppedImage);
+    setCroppedImage(croppedImageURL);
+    handleSaveCroppedImage();
   };
-  const getCroppedImg = async (imageSrc, croppedAreaPixels, rotation = 0) => {
-    const newImage = new Image();
-    newImage.src = imageSrc;
-    await new Promise((resolve) => {
-      newImage.onload = resolve;
+  const getCroppedImg = async (imageSrc, croppedAreaPixels, rotation) => {
+    return new Promise((resolve, reject) => {
+      const newImage = new Image();
+      newImage.src = imageSrc;
+      newImage.crossOrigin = "anonymous"; // CORS 문제 방지
+      newImage.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        const { width, height, x, y } = croppedAreaPixels;
+        canvas.width = width;
+        canvas.height = height;
+
+        // 🔥 캔버스 회전 적용
+        ctx.save();
+        ctx.translate(width / 2, height / 2);
+        ctx.rotate((rotation * Math.PI) / 180);
+        ctx.translate(-width / 2, -height / 2);
+
+        // 🔥 크롭 영역을 기준으로 이미지 그리기
+        ctx.drawImage(newImage, -x, -y, newImage.width, newImage.height);
+
+        ctx.restore();
+
+        // 🔥 크롭된 이미지 반환
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            reject(new Error("Canvas toBlob failed"));
+            return;
+          }
+          resolve(URL.createObjectURL(blob)); // 실제로 이미지 넘길 때 파일 형태로 변환 필요
+        }, "image/png");
+      };
+
+      newImage.onerror = (err) => reject(err);
     });
+  };
 
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-
-    const size = croppedAreaPixels.width;
-    canvas.width = size;
-    canvas.height = size;
-
-    ctx.save();
-    ctx.translate(size / 2, size / 2);
-    ctx.rotate((rotation * Math.PI) / 180);
-    ctx.drawImage(
-      newImage,
-      croppedAreaPixels.x - size / 2,
-      croppedAreaPixels.y - size / 2,
-      croppedAreaPixels.width,
-      croppedAreaPixels.height
-    );
-    ctx.restore();
-
-    ctx.beginPath();
-    ctx.arc(size / 2, size / 2, size / 2, 0, 2 * Math.PI);
-    ctx.clip();
-
+  const resizeImage = (file, maxWidth = 500, maxHeight = 500) => {
     return new Promise((resolve) => {
-      canvas.toBlob((blob) => {
-        resolve(URL.createObjectURL(blob));
-      }, "image/png");
+      const resizingImage = new Image();
+      resizingImage.src = URL.createObjectURL(file);
+      resizingImage.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        let { width, height } = resizingImage;
+
+        if (width > maxWidth || height > maxHeight) {
+          const scale = Math.min(maxWidth / width, maxHeight / height);
+          width *= scale;
+          height *= scale;
+        }
+        canvas.width = width;
+        canvas.height = height;
+        ctx.drawImage(resizingImage, 0, 0, width, height);
+
+        canvas.toBlob((blob) => {
+          resolve(blob);
+        }, "image/png");
+      };
     });
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
+    fileInputRef.current.value = null;
     if (file) {
-      setPreview(URL.createObjectURL(file));
+      const resizedBlob = await resizeImage(file);
+      setPreview(URL.createObjectURL(resizedBlob));
       onClickProfileCropOpen(e);
     }
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = async (e) => {
     e.preventDefault();
     setIsDragging(false);
     const file = e.dataTransfer.files[0];
+    fileInputRef.current.value = null;
     if (file) {
-      setPreview(URL.createObjectURL(file));
+      const resizedBlob = await resizeImage(file);
+      setPreview(URL.createObjectURL(resizedBlob));
       onClickProfileCropOpen(e);
     }
   };
@@ -457,8 +517,22 @@ const MyPage = () => {
                 <Cropper
                   image={preview}
                   crop={crop}
+                  cropShape="rect"
+                  style={{
+                    containerStyle: { backgroundColor: "black" }, // 컨테이너 배경색 변경
+                    cropAreaStyle: {
+                      border: "3px solid rgba(154, 160, 166)", // 크롭 테두리
+                      backgroundColor: "rgba(0,0,0,0.5)",
+                      maskImage:
+                        "radial-gradient(circle, rgba(0,0,0,0) 69%, rgba(0,0,0,0.8) 31%)",
+                      WebkitMaskImage:
+                        "radial-gradient(circle, rgba(0,0,0,0) 69%, rgba(0,0,0,0.8) 0%)",
+                    },
+                  }}
+                  showGrid={false}
                   zoom={zoom}
                   rotation={rotation}
+                  cropSize={cropSize}
                   aspect={1}
                   minZoom={1}
                   maxZoom={5}
@@ -468,9 +542,14 @@ const MyPage = () => {
                   onRotationChange={setRotation}
                   onCropComplete={onCropComplete}
                 />
+                <ProfileCropOverlay cropSize={cropSize} />
               </ProfileCropContainer>
             </ProfileCropModalContainer>
-            <ProfileCropModalButtonContainer></ProfileCropModalButtonContainer>
+            <ProfileCropModalButtonContainer>
+              <ProfileCropModalButton onClick={() => handleCrop()}>
+                적용
+              </ProfileCropModalButton>
+            </ProfileCropModalButtonContainer>
           </ProfileCropModal>
         )}
       </Container>
