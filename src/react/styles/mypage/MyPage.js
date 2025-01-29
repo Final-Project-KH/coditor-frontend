@@ -96,6 +96,7 @@ export const Container = styled.div.attrs({
   flex-direction: row;
   margin-top: 75px;
   box-sizing: border-box;
+  justify-content: center;
 `;
 
 export const LeftContainer = styled.div.attrs({
@@ -848,7 +849,7 @@ export const HiddenInput = styled.input`
   display: none;
 `;
 
-export const ProfileEditButton = styled.button.attrs({
+export const ProfileEditButton = styled.div.attrs({
   id: "profileeditbutton",
 })`
   width: 30px;
@@ -870,6 +871,160 @@ export const ProfileEditButton = styled.button.attrs({
     background-color: #f1f1f1;
   }
 `;
+export const ProfileModal = styled.div.attrs({
+  id: "profilemodal",
+})`
+  width: 400px;
+  height: 600px;
+  display: flex;
+  border-radius: 20px;
+  flex-direction: column;
+  position: fixed;
+  border: 1px solid black;
+  background-color: white;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+export const ProfileModalHeader = styled.div.attrs({
+  id: "profilemodalheader",
+})`
+  width: 400px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+export const ProfileModalCloseButton = styled.div.attrs({
+  id: "profilemodalCloseButton",
+})`
+  width: 30px;
+  height: 30px;
+  display: flex;
+  position: absolute;
+  border-radius: 50%;
+  left: 10px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 15px 15px;
+  background-image: url("/images/icon/m_menu_close.png");
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.3);
+  }
+`;
+export const ProfileModalLogo = styled.div.attrs({
+  id: "profilemodalCloseButton",
+})`
+  width: 200px;
+  height: 40px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("/images/logo/fulllogo_black.png");
+`;
+export const ProfileModalContainer = styled.div.attrs({
+  id: "profilemodalcontainer",
+})`
+  width: 400px;
+  height: 440px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`;
+export const ProfileModalTitle = styled.div.attrs({
+  id: "profilemodaltitle",
+})`
+  width: 400px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 30px;
+`;
+export const ProfileModalContents = styled.div.attrs({
+  id: "profilemodalcontents",
+})`
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+`;
+export const ProfileModalImage = styled.div.attrs({
+  id: "profilemodalimage",
+})`
+  width: 300px;
+  height: 300px;
+  display: flex;
+  border-radius: 50%;
+  margin-top: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+  ${(props) =>
+    props.isProfile === "" &&
+    props.isPreview === null &&
+    css`
+      background-image: url("/images/general/default_profile.png");
+    `}
+  ${(props) =>
+    props.isProfile === "" &&
+    props.isPreview !== null &&
+    css`
+      background-image: url(${(props) => props.isPreview});
+    `}
+  ${(props) =>
+    props.isProfile !== "" &&
+    css`
+      background-image: url(${(props) => props.isProfile});
+    `}
+`;
+export const ProfileModalButtonContainer = styled.div.attrs({
+  id: "profilemodalbuttoncontainer",
+})`
+  width: 400px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+export const ProfileModalImageAddButton = styled.button.attrs({
+  id: "profilemodalimageaddbutton",
+})`
+  width: 360px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+`;
 export const ProfileModifyButton = styled.button.attrs({
   id: "middlenicknameinput",
 })`
@@ -887,4 +1042,46 @@ export const ProfileModifyButton = styled.button.attrs({
   font-family: "medium", sans-serif;
   font-size: 15px;
   cursor: pointer;
+`;
+export const CropContainer = styled.div.attrs({
+  id: "cropcontainer",
+})`
+  width: 140px;
+  height: 140px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden; /* 원형 마스크 */
+  background: #ddd;
+`;
+export const Controls = styled.div.attrs({
+  id: "controls",
+})`
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+`;
+export const Input = styled.input.attrs({
+  id: "input",
+})`
+  width: 100%;
+`;
+
+export const Button = styled.button`
+  padding: 8px 12px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #357ab7;
+  }
+`;
+export const Preview = styled.img`
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-top: 10px;
+  border: 2px solid #4a90e2;
 `;

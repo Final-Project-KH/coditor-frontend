@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import store from "../../../redux/store/store";
@@ -33,6 +33,9 @@ import {
   HiddenInput,
   ProfileEditButton,
   ProfileModifyButton,
+  CropContainer,
+  Controls,
+  Preview,
   MiddleInputDiv,
   MiddleUserContainer,
   MiddleUserContentsTitle,
@@ -64,7 +67,20 @@ import {
   MiddleSessionIcon,
   MiddleSessionDiv,
   MiddleSessionButton,
+  Input,
+  Button,
+  ProfileModal,
+  ProfileModalHeader,
+  ProfileModalCloseButton,
+  ProfileModalLogo,
+  ProfileModalContainer,
+  ProfileModalButtonContainer,
+  ProfileModalTitle,
+  ProfileModalContents,
+  ProfileModalImage,
+  ProfileModalImageAddButton,
 } from "../../styles/mypage/MyPage";
+import Cropper from "react-easy-crop";
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -84,14 +100,28 @@ const MyPage = () => {
   };
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [croppedImage, setCroppedImage] = useState(null);
+  const [croppedPreview, setCroppedPreview] = useState(null);
+  const [isProfileImgModalOpen, setIsProfileImgModalOpen] = useState(false);
   const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setPreview(URL.createObjectURL(file));
+      setImage(URL.createObjectURL(file));
     }
   };
+
+  const onClickProfileOpen = () => {
+    setIsProfileImgModalOpen(true);
+  };
+  const onClickProfileClose = () => {
+    setIsProfileImgModalOpen(false);
+  };
+
   return (
     <Wrap>
       <TopBoxWide>
@@ -210,11 +240,37 @@ const MyPage = () => {
               ref={fileInputRef}
             />
             <ProfileEditButton
-              onClick={() => fileInputRef.current.click()}
+              onClick={() => onClickProfileOpen()}
             ></ProfileEditButton>
-            <ProfileModifyButton>이미지 수정</ProfileModifyButton>
+            <ProfileModifyButton></ProfileModifyButton>
           </ProfileContainerModify>
         </RightContainer>
+        {isProfileImgModalOpen && (
+          <ProfileModal>
+            <ProfileModalHeader>
+              <ProfileModalCloseButton
+                onClick={() => onClickProfileClose()}
+              ></ProfileModalCloseButton>
+              <ProfileModalLogo></ProfileModalLogo>
+            </ProfileModalHeader>
+            <ProfileModalContainer>
+              <ProfileModalTitle>프로필 사진</ProfileModalTitle>
+              <ProfileModalContents>
+                사진을 추가하면 다른 사람이 나를 알아보기 쉬워지며 내가 계정에
+                로그인되어 있는지 확인할 수 있습니다.
+              </ProfileModalContents>
+              <ProfileModalImage
+                isProfile={profile}
+                isPreview={preview}
+              ></ProfileModalImage>
+            </ProfileModalContainer>
+            <ProfileModalButtonContainer>
+              <ProfileModalImageAddButton>
+                프로필 사진 추가
+              </ProfileModalImageAddButton>
+            </ProfileModalButtonContainer>
+          </ProfileModal>
+        )}
       </Container>
     </Wrap>
   );
