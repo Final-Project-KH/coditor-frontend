@@ -242,7 +242,7 @@ export const ClassContentsTitle1 = styled.div.attrs({
   id: "classcontentstitle1",
 })`
   width: 100%;
-  font-size: 20px;
+  font-size: 24px;
   font-family: "bold", sans-serif;
   color: black;
 `;
@@ -250,16 +250,16 @@ export const ClassContentsTitle2 = styled.div.attrs({
   id: "classcontentstitle2",
 })`
   width: 100%;
-  font-size: 18px;
-  font-family: "medium", sans-serif;
+  font-size: 20px;
+  font-family: "bold", sans-serif;
   color: #2c79c1;
 `;
 export const ClassContentsTitle3 = styled.div.attrs({
   id: "classcontentstitle3",
 })`
   width: 100%;
-  font-size: 16px;
-  font-family: "medium", sans-serif;
+  font-size: 18px;
+  font-family: "bold", sans-serif;
   color: #fe9226;
 `;
 export const ClassContentsText = styled.div.attrs({
@@ -293,7 +293,7 @@ export const ClassContentsCodeBox = styled.div.attrs({
   border: 1px solid rgba(0, 0, 0, 0.2);
   overflow-x: auto;
   padding: 20px 25px;
-  font-size: 12px;
+  font-size: 14px;
   font-family: "regular", sans-serif;
   color: black;
   background-color: white;
@@ -314,6 +314,8 @@ export const ClassTableBox = styled.div.attrs({
 })`
   width: 100%;
   overflow-x: auto;
+  font-size: 14px;
+  font-family: "regular", sans-serif;
 `;
 
 export const ClassTable = styled.table.attrs({

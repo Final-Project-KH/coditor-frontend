@@ -173,11 +173,11 @@ print(year, month, day, sep="/")
       <pre>
         <code className="language-python">
           {`
-name = "정경수"
+name = "Coditor"
 age = 20
 gender = "남성"
 jobs = "소프트웨어 개발자"
-addr = "경기도 수원시"
+addr = "서울시 역삼동"
 
 # C언어 스타일, %방식
 print("====== C 스타일 ======")

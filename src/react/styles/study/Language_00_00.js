@@ -202,7 +202,7 @@ export const ClassContentsTitle2 = styled.div.attrs({
 })`
   width: 100%;
   font-size: 18px;
-  font-family: "medium", sans-serif;
+  font-family: "bold", sans-serif;
   color: #2c79c1;
 `;
 export const ClassContentsTitle3 = styled.div.attrs({
@@ -210,7 +210,7 @@ export const ClassContentsTitle3 = styled.div.attrs({
 })`
   width: 100%;
   font-size: 16px;
-  font-family: "medium", sans-serif;
+  font-family: "bold", sans-serif;
   color: #fe9226;
 `;
 export const ClassContentsText = styled.div.attrs({
@@ -249,6 +249,7 @@ export const ClassContentsCodeBox = styled.div.attrs({
   color: black;
   background-color: white;
   border-radius: 10px;
+  margin: 10px 0;
 `;
 
 export const ClassContentsCode = styled.div.attrs({
@@ -258,6 +259,15 @@ export const ClassContentsCode = styled.div.attrs({
   font-size: 12px;
   font-family: "regular", sans-serif;
   color: #313131;
+`;
+
+export const ClassTableBox = styled.div.attrs({
+  id: "classtablebox",
+})`
+  width: 100%;
+  overflow-x: auto;
+  font-size: 14px;
+  font-family: "regular", sans-serif;
 `;
 
 export const ClassTable = styled.table.attrs({
