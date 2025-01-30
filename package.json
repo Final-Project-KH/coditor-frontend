@@ -39,7 +39,6 @@
     "monaco-editor": "^0.52.2",
     "monaco-editor-webpack-plugin": "^7.1.0",
     "react": "^19.0.0",
-    "react-advanced-cropper": "^0.20.0",
     "react-dom": "^19.0.0",
     "react-easy-crop": "^5.2.0",
     "react-loader-spinner": "^6.1.6",

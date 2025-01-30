@@ -99,9 +99,12 @@ import {
   ProfileCropModalRotateButton,
 } from "../../styles/mypage/MyPage";
 import Cropper from "react-easy-crop";
+import AxiosApi from "../../../api/AxiosApi";
+import { setLoginData } from "../../../redux/slice/authSlice";
 
 const MyPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const location = useLocation();
   const { firstpath } = location.state || {};
 
@@ -116,13 +119,13 @@ const MyPage = () => {
       },
     });
   };
-  const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(null);
+  const [image, setImage] = useState(null); // 현재 프로필 이미지 용도
+  const [preview, setPreview] = useState(null); // 변경 프로필 이미지 용도
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [croppedImage, setCroppedImage] = useState(null);
-  const [croppedPreview, setCroppedPreview] = useState(null);
+  const [croppedImage, setCroppedImage] = useState(null); // 저장 용도
+  const [croppedPreview, setCroppedPreview] = useState(null); // 미리보기 용도
   const [isProfileImgModalOpen, setIsProfileImgModalOpen] = useState(false);
   const [isProfileUploadModalOpen, setIsProfileUploadModalOpen] =
     useState(false);
@@ -131,6 +134,7 @@ const MyPage = () => {
   const [rotation, setRotation] = useState(0);
   const fileInputRef = useRef(null);
   const [cropSize, setCropSize] = useState({ width: 0, height: 0 });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (!preview) return;
@@ -146,11 +150,11 @@ const MyPage = () => {
   }, [preview, isProfileCropModalOpen]);
 
   useEffect(() => {
-    if (croppedImage) {
-      setPreview(croppedImage);
-      console.log("이미지 : ", croppedImage);
+    if (croppedPreview) {
+      setPreview(croppedPreview);
+      console.log("이미지 : ", croppedPreview);
     }
-  }, [croppedImage]);
+  }, [croppedPreview]);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -160,8 +164,47 @@ const MyPage = () => {
     setRotation((prev) => (prev - 90) % 360);
   };
 
+  const convertUrlToFile = async (url, fileName) => {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return new File([blob], fileName, { type: "image/png" });
+  };
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    if (isSubmitting) {
+      return;
+    }
+    setIsSubmitting(true);
+    const finalImage = await convertUrlToFile(
+      croppedPreview,
+      `${nickname}_profile.png`
+    );
+    setCroppedImage(finalImage);
+
+    try {
+      const formData = new FormData();
+      formData.append("file", finalImage);
+      formData.append("fileName", `${nickname}_profile.png`);
+
+      const response = await AxiosApi.uploadprofile(formData);
+      console.log(response);
+      console.log(response.data);
+      if (response.data) {
+        alert("프로필 사진 설정이 완료되었습니다.");
+        setIsProfileUploadModalOpen(false);
+        setIsProfileImgModalOpen(false);
+        dispatch(setLoginData({ profile: response.data }));
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const handleSaveCroppedImage = () => {
-    setPreview(croppedImage); // 최종 크롭된 이미지 적용
+    setPreview(croppedPreview); // 최종 크롭된 이미지 적용
     setIsProfileCropModalOpen(false); // CropModal 닫기
     setRotation(0);
   };
@@ -174,7 +217,7 @@ const MyPage = () => {
       croppedAreaPixels,
       rotation
     );
-    setCroppedImage(croppedImageURL);
+    setCroppedPreview(croppedImageURL);
     handleSaveCroppedImage();
   };
   const getCroppedImg = async (imageSrc, croppedAreaPixels, rotation) => {
@@ -212,20 +255,17 @@ const MyPage = () => {
         );
         ctx.restore();
 
-        // 🔥 크롭 영역을 캔버스 좌표계로 변환
         const cropX = croppedAreaPixels.x;
         const cropY = croppedAreaPixels.y;
         const cropWidth = croppedAreaPixels.width;
         const cropHeight = croppedAreaPixels.height;
 
-        // 크롭된 이미지 캔버스 생성
         const croppedCanvas = document.createElement("canvas");
         const croppedCtx = croppedCanvas.getContext("2d");
 
         croppedCanvas.width = cropWidth;
         croppedCanvas.height = cropHeight;
 
-        // 🔥 크롭된 영역을 그리기
         croppedCtx.drawImage(
           canvas,
           cropX,
@@ -238,7 +278,6 @@ const MyPage = () => {
           cropHeight
         );
 
-        // 🔥 크롭된 이미지 반환
         croppedCanvas.toBlob((blob) => {
           if (!blob) {
             reject(new Error("Canvas toBlob failed"));
@@ -322,6 +361,7 @@ const MyPage = () => {
   const onClickProfileUploadClose = () => {
     setIsProfileUploadModalOpen(false);
     setPreview(null);
+    setCroppedPreview(null);
     setRotation(0);
     if (fileInputRef.current) {
       fileInputRef.current.value = null;
@@ -330,6 +370,7 @@ const MyPage = () => {
   const onClickProfileCropClose = () => {
     setIsProfileCropModalOpen(false);
     setPreview(null);
+    setCroppedPreview(null);
     setRotation(0);
     if (fileInputRef.current) {
       fileInputRef.current.value = null;
@@ -500,9 +541,15 @@ const MyPage = () => {
                 onClick={() => onClickProfileUploadClose()}
               ></ProfileUploadModalCloseButton>
               <ProfileUploadModalLogo></ProfileUploadModalLogo>
-              <ProfileUploadModalTitle>
-                프로필 사진 추가
-              </ProfileUploadModalTitle>
+              {!image ? (
+                <ProfileUploadModalTitle>
+                  프로필 사진 추가
+                </ProfileUploadModalTitle>
+              ) : (
+                <ProfileUploadModalTitle>
+                  프로필 사진 변경
+                </ProfileUploadModalTitle>
+              )}
             </ProfileUploadModalHeader>
             <ProfileUploadModalContainer
               isDragging={isDragging}
@@ -520,17 +567,51 @@ const MyPage = () => {
                 onChange={handleFileChange}
                 ref={fileInputRef}
               />
-              <ProfileUploadModalContents>
-                여기로 사진 드래그
-              </ProfileUploadModalContents>
-              <ProfileUploadModalContentsDiv>
-                - 또는 -{" "}
-              </ProfileUploadModalContentsDiv>
-              <ProfileUploadModalImageAddButton
-                onClick={() => fileInputRef.current.click()}
-              >
-                업로드
-              </ProfileUploadModalImageAddButton>
+              {!image && !croppedPreview ? (
+                <>
+                  <ProfileUploadModalContents>
+                    여기로 사진 드래그
+                  </ProfileUploadModalContents>
+                  <ProfileUploadModalContentsDiv>
+                    - 또는 -
+                  </ProfileUploadModalContentsDiv>
+                  <ProfileUploadModalImageAddButton
+                    onClick={() => fileInputRef.current.click()}
+                  >
+                    업로드
+                  </ProfileUploadModalImageAddButton>
+                </>
+              ) : croppedPreview ? (
+                <>
+                  <ProfileUploadModalContents>
+                    적용된 프로필 사진
+                  </ProfileUploadModalContents>
+                  <ProfileUploadModalImageAddButton
+                    onClick={() => fileInputRef.current.click()}
+                  >
+                    사진 변경
+                  </ProfileUploadModalImageAddButton>
+                  <ProfileUploadModalImageAddButton
+                    onClick={(e) => handleUpload(e)}
+                  >
+                    프로필 사진 적용
+                  </ProfileUploadModalImageAddButton>
+                </>
+              ) : (
+                image && (
+                  <>
+                    <ProfileUploadModalContents>
+                      현재 프로필 사진
+                    </ProfileUploadModalContents>
+                    <ProfileUploadModalImageAddButton
+                      onClick={() => fileInputRef.current.click()}
+                    >
+                      사진 변경
+                    </ProfileUploadModalImageAddButton>
+                    )
+                  </>
+                )
+              )}
             </ProfileUploadModalContainer>
           </ProfileUploadModal>
         )}

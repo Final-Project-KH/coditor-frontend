@@ -111,6 +111,25 @@ const AxiosApi = {
       reset
     );
   },
+  uploadprofile: async (formData) => {
+    try {
+      console.log(SPRING_DOMAIN);
+
+      const response = await AxiosInstance.post(
+        SPRING_DOMAIN + "/my/profile/imageupload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  },
+
   getprofile: async () => {
     return await AxiosInstance.get(SPRING_DOMAIN + "/my/profile");
   },
