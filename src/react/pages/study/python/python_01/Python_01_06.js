@@ -31,6 +31,7 @@ import {
   ClassTableTr,
   StickyClassBox,
   ClassLinkBox,
+  ClassTableBox,
 } from "../../../../styles/study/Language_00_00";
 import { ArrowContainer } from "../../../../styles/study/Language_ArrowNavigation";
 
@@ -39,7 +40,6 @@ import Python_ArrowNavigation from "../python_components/Python_ArrowNavigation"
 import Python_ClassList_Filtered from "../python_components/Python_ClassList_Filtered";
 import ScrollToTopButton from "../../../ScrollToTopButton";
 import Python_01_06_M from "./Python_01_06_M";
-import { ClassTableBox } from "../../../../styles/study/Language_00_00_M";
 
 const Python_01_06 = () => {
   const navigate = useNavigate();

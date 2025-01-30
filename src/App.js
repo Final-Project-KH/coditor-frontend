@@ -35,6 +35,10 @@ import Python_01_03 from "./react/pages/study/python/python_01/Python_01_03";
 import Python_01_04 from "./react/pages/study/python/python_01/Python_01_04";
 import Python_01_05 from "./react/pages/study/python/python_01/Python_01_05";
 import Python_01_06 from "./react/pages/study/python/python_01/Python_01_06";
+import Python_01_07 from "./react/pages/study/python/python_01/Python_01_07";
+import Python_01_08 from "./react/pages/study/python/python_01/Python_01_08";
+import Python_01_09 from "./react/pages/study/python/python_01/Python_01_09";
+import Python_01_10 from "./react/pages/study/python/python_01/Python_01_10";
 import Python_02 from "./react/pages/study/python/python_02/Python_02";
 import Python_03 from "./react/pages/study/python/python_03/Python_03";
 import Python_04 from "./react/pages/study/python/python_04/Python_04";
@@ -62,6 +66,8 @@ import CPlus_10 from "./react/pages/study/cplus/cplus_10/CPlus_10";
 import JavaScript_Main from "./react/pages/study/javascript/JavaScript_Main";
 import JavaScript_01 from "./react/pages/study/javascript/javascript_01/JavaScript_01";
 import JavaScript_01_01 from "./react/pages/study/javascript/javascript_01/JavaScript_01_01";
+import JavaScript_01_02 from "./react/pages/study/javascript/javascript_01/JavaScript_01_02";
+import JavaScript_01_03 from "./react/pages/study/javascript/javascript_01/JavaScript_01_03";
 import JavaScript_02 from "./react/pages/study/javascript/javascript_02/JavaScript_02";
 import JavaScript_03 from "./react/pages/study/javascript/javascript_03/JavaScript_03";
 import JavaScript_04 from "./react/pages/study/javascript/javascript_04/JavaScript_04";
@@ -161,6 +167,10 @@ const StudyRoutes = [
   { path: "/study/python/01/04", element: <Python_01_04 /> },
   { path: "/study/python/01/05", element: <Python_01_05 /> },
   { path: "/study/python/01/06", element: <Python_01_06 /> },
+  { path: "/study/python/01/07", element: <Python_01_07 /> },
+  { path: "/study/python/01/08", element: <Python_01_08 /> },
+  { path: "/study/python/01/09", element: <Python_01_09 /> },
+  { path: "/study/python/01/10", element: <Python_01_10 /> },
   { path: "/study/python/02", element: <Python_02 /> },
   { path: "/study/python/03", element: <Python_03 /> },
   { path: "/study/python/04", element: <Python_04 /> },
@@ -188,6 +198,8 @@ const StudyRoutes = [
   { path: "/study/javascript", element: <JavaScript_Main /> },
   { path: "/study/javascript/01", element: <JavaScript_01 /> },
   { path: "/study/javascript/01/01", element: <JavaScript_01_01 /> },
+  { path: "/study/javascript/01/02", element: <JavaScript_01_02 /> },
+  { path: "/study/javascript/01/03", element: <JavaScript_01_03 /> },
   { path: "/study/javascript/02", element: <JavaScript_02 /> },
   { path: "/study/javascript/03", element: <JavaScript_03 /> },
   { path: "/study/javascript/04", element: <JavaScript_04 /> },

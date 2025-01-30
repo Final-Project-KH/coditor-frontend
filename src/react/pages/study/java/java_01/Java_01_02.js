@@ -105,7 +105,7 @@ const Java_01_02 = () => {
       <pre>
         <code className="language-java">
           {`
-export JAVA_HOME=/Users/kyungsoojeong/Library/Java/JavaVirtualMachines/corretto-17.0.9/Contents/Home
+export JAVA_HOME=/Users/Coditor/Library/Java/JavaVirtualMachines/corretto-17.0.9/Contents/Home
 export PATH=\${PATH}:$JAVA_HOME/bin
           `}
         </code>
@@ -221,7 +221,7 @@ export PATH=\${PATH}:$JAVA_HOME/bin
                   <ClassContentsCodeBox>
                     <ClassContentsCode>
                       export
-                      JAVA_HOME=/Users/kyungsoojeong/Library/Java/JavaVirtualMachines/corretto-17.0.9/Contents/Home
+                      JAVA_HOME=/Users/Coditor/Library/Java/JavaVirtualMachines/corretto-17.0.9/Contents/Home
                       <br />
                       export PATH=${`{PATH}`}:$JAVA_HOME/bin
                     </ClassContentsCode>
