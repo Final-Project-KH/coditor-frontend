@@ -33,9 +33,6 @@ import {
   HiddenInput,
   ProfileEditButton,
   ProfileModifyButton,
-  CropContainer,
-  Controls,
-  Preview,
   MiddleInputDiv,
   MiddleUserContainer,
   MiddleUserContentsTitle,
@@ -67,8 +64,6 @@ import {
   MiddleSessionIcon,
   MiddleSessionDiv,
   MiddleSessionButton,
-  Input,
-  Button,
   ProfileModal,
   ProfileModalHeader,
   ProfileModalCloseButton,
@@ -100,8 +95,8 @@ import {
   ProfileCropModalButtonContainer,
   ProfileCropContainer,
   ProfileCropOverlay,
-  ProfileCropResizeHandle,
   ProfileCropModalButton,
+  ProfileCropModalRotateButton,
 } from "../../styles/mypage/MyPage";
 import Cropper from "react-easy-crop";
 
@@ -140,13 +135,10 @@ const MyPage = () => {
   useEffect(() => {
     if (!preview) return;
 
-    setCropSize({ width: 0, height: 0 });
-
     const img = new Image();
     img.src = preview;
     img.onload = () => {
       console.log("이미지 로드 완료:", img.naturalWidth, img.naturalHeight);
-
       const { naturalWidth, naturalHeight } = img;
       const minSize = Math.min(naturalWidth, naturalHeight); // 가장 짧은 쪽 선택
       setCropSize({ width: minSize, height: minSize }); // 동적 크롭 크기 설정
@@ -165,13 +157,13 @@ const MyPage = () => {
   }, []);
 
   const handleRotate = () => {
-    setRotation((prev) => (prev + 90) % 360);
+    setRotation((prev) => (prev - 90) % 360);
   };
 
   const handleSaveCroppedImage = () => {
     setPreview(croppedImage); // 최종 크롭된 이미지 적용
-    setCropSize({ width: 0, height: 0 });
     setIsProfileCropModalOpen(false); // CropModal 닫기
+    setRotation(0);
   };
 
   const handleCrop = async () => {
@@ -194,23 +186,60 @@ const MyPage = () => {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
 
-        const { width, height, x, y } = croppedAreaPixels;
-        canvas.width = width;
-        canvas.height = height;
+        const radians = (rotation * Math.PI) / 180;
+        const cos = Math.cos(radians);
+        const sin = Math.sin(radians);
 
-        // 🔥 캔버스 회전 적용
+        const { width: imageWidth, height: imageHeight } = newImage;
+
+        const rotatedWidth =
+          Math.abs(imageWidth * cos) + Math.abs(imageHeight * sin);
+        const rotatedHeight =
+          Math.abs(imageWidth * sin) + Math.abs(imageHeight * cos);
+
+        canvas.width = rotatedWidth;
+        canvas.height = rotatedHeight;
+
         ctx.save();
-        ctx.translate(width / 2, height / 2);
-        ctx.rotate((rotation * Math.PI) / 180);
-        ctx.translate(-width / 2, -height / 2);
-
-        // 🔥 크롭 영역을 기준으로 이미지 그리기
-        ctx.drawImage(newImage, -x, -y, newImage.width, newImage.height);
-
+        ctx.translate(rotatedWidth / 2, rotatedHeight / 2);
+        ctx.rotate(radians);
+        ctx.drawImage(
+          newImage,
+          -imageWidth / 2,
+          -imageHeight / 2,
+          imageWidth,
+          imageHeight
+        );
         ctx.restore();
 
+        // 🔥 크롭 영역을 캔버스 좌표계로 변환
+        const cropX = croppedAreaPixels.x;
+        const cropY = croppedAreaPixels.y;
+        const cropWidth = croppedAreaPixels.width;
+        const cropHeight = croppedAreaPixels.height;
+
+        // 크롭된 이미지 캔버스 생성
+        const croppedCanvas = document.createElement("canvas");
+        const croppedCtx = croppedCanvas.getContext("2d");
+
+        croppedCanvas.width = cropWidth;
+        croppedCanvas.height = cropHeight;
+
+        // 🔥 크롭된 영역을 그리기
+        croppedCtx.drawImage(
+          canvas,
+          cropX,
+          cropY,
+          cropWidth,
+          cropHeight,
+          0,
+          0,
+          cropWidth,
+          cropHeight
+        );
+
         // 🔥 크롭된 이미지 반환
-        canvas.toBlob((blob) => {
+        croppedCanvas.toBlob((blob) => {
           if (!blob) {
             reject(new Error("Canvas toBlob failed"));
             return;
@@ -293,6 +322,7 @@ const MyPage = () => {
   const onClickProfileUploadClose = () => {
     setIsProfileUploadModalOpen(false);
     setPreview(null);
+    setRotation(0);
     if (fileInputRef.current) {
       fileInputRef.current.value = null;
     }
@@ -300,6 +330,7 @@ const MyPage = () => {
   const onClickProfileCropClose = () => {
     setIsProfileCropModalOpen(false);
     setPreview(null);
+    setRotation(0);
     if (fileInputRef.current) {
       fileInputRef.current.value = null;
     }
@@ -524,12 +555,12 @@ const MyPage = () => {
                       border: "3px solid rgba(154, 160, 166)", // 크롭 테두리
                       backgroundColor: "rgba(0,0,0,0.5)",
                       maskImage:
-                        "radial-gradient(circle, rgba(0,0,0,0) 69%, rgba(0,0,0,0.8) 31%)",
+                        "radial-gradient(circle, rgba(0,0,0,0.2) 69%, rgba(0,0,0,0.8) 31%)",
                       WebkitMaskImage:
-                        "radial-gradient(circle, rgba(0,0,0,0) 69%, rgba(0,0,0,0.8) 0%)",
+                        "radial-gradient(circle, rgba(0,0,0,0.2) 69%, rgba(0,0,0,0.8) 0%)",
                     },
                   }}
-                  showGrid={false}
+                  showGrid={true}
                   zoom={zoom}
                   rotation={rotation}
                   cropSize={cropSize}
@@ -546,8 +577,11 @@ const MyPage = () => {
               </ProfileCropContainer>
             </ProfileCropModalContainer>
             <ProfileCropModalButtonContainer>
+              <ProfileCropModalRotateButton
+                onClick={() => handleRotate()}
+              ></ProfileCropModalRotateButton>
               <ProfileCropModalButton onClick={() => handleCrop()}>
-                적용
+                이미지 적용
               </ProfileCropModalButton>
             </ProfileCropModalButtonContainer>
           </ProfileCropModal>

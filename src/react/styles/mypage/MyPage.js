@@ -1343,10 +1343,29 @@ export const ProfileCropModalButtonContainer = styled.div.attrs({
   justify-content: center;
   align-items: center;
 `;
+export const ProfileCropModalRotateButton = styled.button.attrs({
+  id: "profilecropmodalrotatebutton",
+})`
+  width: 50px;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  margin-right: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  background-image: url("/images/icon/rotate.png");
+`;
 export const ProfileCropModalButton = styled.button.attrs({
   id: "profilecropmodalbutton",
 })`
-  width: 240px;
+  width: 180px;
   height: 50px;
   display: flex;
   position: relative;
@@ -1359,7 +1378,6 @@ export const ProfileCropModalButton = styled.button.attrs({
   font-family: "medium", sans-serif;
   font-size: 15px;
   font-weight: bold;
-  margin-top: 20px;
   cursor: pointer;
   &:hover {
     background-color: black;
