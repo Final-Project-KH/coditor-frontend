@@ -22,6 +22,7 @@ const Post_UserProfile = () => {
     });
   };
   const nickname = useSelector((state) => state.auth.nickname);
+  const profile = useSelector((state) => state.auth.profile);
 
   return (
     <>
@@ -29,12 +30,7 @@ const Post_UserProfile = () => {
         style={{ cursor: "pointer" }}
         onClick={() => handleUserProfile()}
       >
-        <UserProfileImg
-          style={{
-            backgroundImage:
-              "url(https://www.infostockdaily.co.kr/news/photo/202209/179815_152745_594.jpg)",
-          }}
-        />
+        <UserProfileImg isProfile={profile} />
         <UserProfileTextBox>
           <UserId>{nickname}</UserId>
           <UserPostAmount>작성한 질문수 28</UserPostAmount>

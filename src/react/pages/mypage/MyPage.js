@@ -111,8 +111,6 @@ const MyPage = () => {
   const profile = useSelector((state) => state.auth.profile);
   const nickname = useSelector((state) => state.auth.nickname);
 
-  console.log(profile);
-
   const navigateProfileModify = () => {
     navigate("/profile/modify", {
       state: {

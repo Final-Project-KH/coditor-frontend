@@ -195,21 +195,16 @@ const AxiosApi = {
     }
   },
 
-  getBoard: async (
-    boardType,
-    page = 1,
-    size = 10,
-    sortBy = "createdAt",
-    order = "DESC"
-  ) => {
+  getBoard: async (page, size, boardType, sortBy, order, status) => {
     try {
       const response = await axios.get(SPRING_DOMAIN + "/community/list/all", {
         params: {
-          boardType,
           page,
           size,
+          boardType,
           sortBy,
           order,
+          status,
         },
       });
       return response.data; // 응답 데이터 반환
@@ -343,17 +338,13 @@ const AxiosApi = {
     }
   },
 
-  getReplies: async (
-    page = 1,
-    size = 10,
-    sortBy = "createdAt",
-    order = "DESC"
-  ) => {
+  getReplies: async (boardId, page, size, sortBy, order) => {
     try {
       const response = await axios.get(
         SPRING_DOMAIN + "/community/list/comment",
         {
           params: {
+            boardId,
             page,
             size,
             sortBy,
@@ -411,7 +402,7 @@ const AxiosApi = {
     }
   },
 
-  getInctiveBoard: async (
+  getInactiveBoard: async (
     boardType,
     page = 1,
     size = 10,

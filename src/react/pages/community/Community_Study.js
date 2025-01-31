@@ -38,8 +38,13 @@ const Community_Study = () => {
   const [size, setSize] = useState(queryParams.get("size") || 10);
   const [sortBy, setSortBy] = useState(
     queryParams.get("sortBy") || "createdAt"
-  );
-  const [order, setOrder] = useState(queryParams.get("order") || "desc");
+  ); // 기본 타입은 createdAt / 조회순 / 좋아요순 / 댓글많은순 가능
+  const [order, setOrder] = useState(queryParams.get("order") || "desc"); // 타입은 desc / asc
+  const [status, setStatus] = useState(queryParams.get("status") || null); // 타입은 active / inactive
+  const [enumFilter, setEnumFilter] = useState(
+    queryParams.get("enumfilter") || null
+  ); // 해쉬태그
+  const [serach, setSearch] = useState(queryParams.get("search") || null); // 검색
 
   const boardType = "study";
 
@@ -65,6 +70,14 @@ const Community_Study = () => {
   // Update sorting parameters
   const handleSortChange = (newSortBy) => {
     setSortBy(newSortBy);
+  };
+
+  const handleOrderChange = (newOrder) => {
+    setOrder(newOrder);
+  };
+
+  const handleStatusChange = (newStatus) => {
+    setStatus(newStatus);
   };
 
   return (
@@ -93,17 +106,21 @@ const Community_Study = () => {
             <CenterContainer>
               <BoardContainer>
                 <Board_TopSort
-                  onSortChange={handleSortChange}
+                  onStatusChange={handleStatusChange}
                   boardType={boardType}
                 />
                 <Board_Study_Search />
-                <Board_Order boardType={boardType} />
+                <Board_Order
+                  boardType={boardType}
+                  onSortChange={handleSortChange}
+                />
                 <Board_PostList
                   boardType={boardType}
                   page={page}
                   size={size}
                   sortBy={sortBy}
                   order={order}
+                  status={status}
                 />
               </BoardContainer>
             </CenterContainer>

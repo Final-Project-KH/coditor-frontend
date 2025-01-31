@@ -55,6 +55,7 @@ const Post_MainContents = ({ boardType }) => {
         const response = await AxiosApi.getPost(boardId);
         setPosts([response]);
         console.log("post : ", posts);
+        console.log(response);
         console.log("보드 아이디 : ", boardId);
       } catch (error) {
         console.error("게시글 가져오는 중 오류 발생 : ", error);

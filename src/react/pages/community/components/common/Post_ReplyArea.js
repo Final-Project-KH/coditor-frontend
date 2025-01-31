@@ -34,28 +34,35 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
   useEffect(() => {
     const readPost = async () => {
       try {
-        const response = await AxiosApi.getPost(boardId, boardType);
+        const response = await AxiosApi.getPost(boardId);
         setPosts([response]);
       } catch (error) {
         console.error("게시글 가져오는 중 오류 발생 : ", error);
       }
     };
     readPost();
-  }, [boardId, boardType]);
+  }, [boardId]);
 
   // Get Replies from Backend (getReplies)
   useEffect(() => {
     const loadReplies = async () => {
       try {
-        const response = await AxiosApi.getReplies(currentPage);
+        const response = await AxiosApi.getReplies(
+          boardId,
+          currentPage,
+          size,
+          sortBy,
+          order
+        );
         setReplies(response.content);
         setTotalPages(response.totalPages);
+        console.log(response);
       } catch (error) {
         console.error("댓글 리스트 가져오는 중 오류 발생 : ", error);
       }
     };
     loadReplies();
-  }, [boardId, currentPage]);
+  }, [boardId, page]);
 
   // paging handler
   const handlePageChange = (page) => {
@@ -143,11 +150,11 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
                 </ReplyEach>
               ))}
           </ReplyList>
-          {/* <Board_Pagination
+          <Board_Pagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
-          /> */}
+          />
         </ReplyContainer>
       ))}
     </>

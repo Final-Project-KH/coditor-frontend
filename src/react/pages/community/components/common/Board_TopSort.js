@@ -7,12 +7,12 @@ import {
   TopSortTitleInactive,
 } from "../../../../styles/community/Board";
 
-const Board_TopSort = ({ onSortChange, boardType }) => {
-  const [activeSort, setActiveSort] = useState("All");
+const Board_TopSort = ({ onStatusChange, boardType }) => {
+  const [activeStatus, setActiveStatus] = useState(null);
 
-  const handleSort = (sort) => {
-    setActiveSort(sort);
-    onSortChange(sort);
+  const handleStatus = (status) => {
+    setActiveStatus(status);
+    onStatusChange(status);
   };
 
   const renderSortOptions = () => {
@@ -21,30 +21,30 @@ const Board_TopSort = ({ onSortChange, boardType }) => {
         return (
           <TopSortOuterContiner>
             <TopSortInnerContainer>
-              {activeSort === "All" ? (
-                <TopSortTitleActive onClick={() => handleSort("All")}>
+              {activeStatus === null ? (
+                <TopSortTitleActive onClick={() => handleStatus(null)}>
                   전체
                 </TopSortTitleActive>
               ) : (
-                <TopSortTitleInactive onClick={() => handleSort("All")}>
+                <TopSortTitleInactive onClick={() => handleStatus(null)}>
                   전체
                 </TopSortTitleInactive>
               )}
-              {activeSort === "Active" ? (
-                <TopSortTitleActive onClick={() => handleSort("Active")}>
+              {activeStatus === "ACTIVE" ? (
+                <TopSortTitleActive onClick={() => handleStatus("ACTIVE")}>
                   미해결
                 </TopSortTitleActive>
               ) : (
-                <TopSortTitleInactive onClick={() => handleSort("Active")}>
+                <TopSortTitleInactive onClick={() => handleStatus("ACTIVE")}>
                   미해결
                 </TopSortTitleInactive>
               )}
-              {activeSort === "Inactive" ? (
-                <TopSortTitleActive onClick={() => handleSort("Inactive")}>
+              {activeStatus === "INACTIVE" ? (
+                <TopSortTitleActive onClick={() => handleStatus("INACTIVE")}>
                   해결됨
                 </TopSortTitleActive>
               ) : (
-                <TopSortTitleInactive onClick={() => handleSort("Inactive")}>
+                <TopSortTitleInactive onClick={() => handleStatus("INACTIVE")}>
                   해결됨
                 </TopSortTitleInactive>
               )}
@@ -56,30 +56,30 @@ const Board_TopSort = ({ onSortChange, boardType }) => {
         return (
           <TopSortOuterContiner>
             <TopSortInnerContainer>
-              {activeSort === "createdAt" ? (
-                <TopSortTitleActive onClick={() => handleSort("createdAt")}>
+              {activeStatus === null ? (
+                <TopSortTitleActive onClick={() => handleStatus(null)}>
                   전체
                 </TopSortTitleActive>
               ) : (
-                <TopSortTitleInactive onClick={() => handleSort("createdAt")}>
+                <TopSortTitleInactive onClick={() => handleStatus(null)}>
                   전체
                 </TopSortTitleInactive>
               )}
-              {activeSort === "Recruiting" ? (
-                <TopSortTitleActive onClick={() => handleSort("Recruiting")}>
+              {activeStatus === "ACTIVE" ? (
+                <TopSortTitleActive onClick={() => handleStatus("ACTIVE")}>
                   모집중
                 </TopSortTitleActive>
               ) : (
-                <TopSortTitleInactive onClick={() => handleSort("Recruiting")}>
+                <TopSortTitleInactive onClick={() => handleStatus("ACTIVE")}>
                   모집중
                 </TopSortTitleInactive>
               )}
-              {activeSort === "Completed" ? (
-                <TopSortTitleActive onClick={() => handleSort("Completed")}>
+              {activeStatus === "INACTIVE" ? (
+                <TopSortTitleActive onClick={() => handleStatus("INACTIVE")}>
                   모집완료
                 </TopSortTitleActive>
               ) : (
-                <TopSortTitleInactive onClick={() => handleSort("Completed")}>
+                <TopSortTitleInactive onClick={() => handleStatus("INACTIVE")}>
                   모집완료
                 </TopSortTitleInactive>
               )}
