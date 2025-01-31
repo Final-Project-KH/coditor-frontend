@@ -8,9 +8,8 @@ export const authSlice = createSlice({
     nickname: "",
     accesstoken: "",
     accesstokenexpiresin: "",
-    refreshtoken: "",
-    refreshtokenexpiresin: "",
     authorities: "",
+    profile: "",
     error: "",
   },
   reducers: {
@@ -20,6 +19,9 @@ export const authSlice = createSlice({
         ...action.payload,
       };
     },
+    setProfile: (state, action) => {
+      state.profile = action.payload;
+    },
     setError: (state, action) => {
       state.error = action.payload;
     },
@@ -28,28 +30,18 @@ export const authSlice = createSlice({
       state.nickname = "";
       state.accesstoken = "";
       state.accesstokenexpiresin = "";
-      state.refreshtoken = "";
-      state.refreshtokenexpiresin = "";
       state.authorities = "";
+      state.profile = "";
       state.error = "";
     },
     clearAccessToken: (state) => {
       state.accesstoken = "";
       state.accesstokenexpiresin = "";
     },
-    clearRefreshToken: (state) => {
-      state.refreshtoken = "";
-      state.refreshtokenexpiresin = "";
-    },
   },
 });
 
-export const {
-  setLoginData,
-  setError,
-  logoutAuth,
-  clearAccessToken,
-  clearRefreshToken,
-} = authSlice.actions;
+export const { setLoginData, setError, logoutAuth, clearAccessToken } =
+  authSlice.actions;
 
 export default authSlice.reducer;

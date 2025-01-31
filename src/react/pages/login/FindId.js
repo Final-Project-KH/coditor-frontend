@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import AxiosApi from "../../../api/AxiosApi";
-import {setLoginData, setError} from "../../../redux/slice/authSlice";
-import {useNavigate} from "react-router-dom";
-import Common from "../../../util/Common";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   Wrap,
   TopBarContainer,
@@ -26,7 +24,15 @@ import {
   FindIdButton,
   ValidEmailMessage,
   FindIdOutput,
+  CheckedIcon,
+  CheckedText,
+  OutputText,
 } from "../../styles/login/FindId";
+
+import AxiosApi from "../../../api/AxiosApi";
+import { setLoginData, setError } from "../../../redux/slice/authSlice";
+import Common from "../../../util/Common";
+import FindId_M from "./FindId_M";
 
 const FindId = () => {
   const [inputEmail, setInputEmail] = useState("");
@@ -37,6 +43,23 @@ const FindId = () => {
   const [isUserIdAvailable, setIsUserIdAvailable] = useState(false); // 아이디 찾기 상태 관련
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // 초기 화면 크기 체크
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+    window.addEventListener("resize", handleResize); // 화면 크기 변화에 따른 상태 업데이트
+    handleResize(); // 컴포넌트 마운트 시 초기 상태 설정
+    return () => {
+      window.removeEventListener("resize", handleResize); // 클린업
+    };
+  }, []);
 
   function emailAvailable(input) {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -121,75 +144,89 @@ const FindId = () => {
   window.addEventListener("resize", setViewportHeight);
 
   return (
-    <Wrap>
-      <TopBarContainer>
-        <TopBar>
-          <LogoContainer>
-            <Logo>
-              <StyledLink to="/"></StyledLink>
-            </Logo>
-          </LogoContainer>
-        </TopBar>
-      </TopBarContainer>
-      <BodyContainer>
-        <FloatingContainer>
-          <FloatingTitle isUserIdAvailable={isUserIdAvailable}>
-            {!isUserIdAvailable ? "아이디 찾기" : "아이디 찾기 결과"}
-          </FloatingTitle>
-          <InputDiv isUserIdAvailable={isUserIdAvailable}>
-            {!isUserIdAvailable ? (
-              <Input
-                autoComplete="off"
-                placeholder="등록한 이메일 주소 입력"
-                icon="/images/icon/mail.png"
-                value={inputEmail}
-                isEmail={isEmail}
-                onChange={(e) => onChangeEmail(e)}
-                onBlur={(e) => onBlurEmail(e)}
-              ></Input>
-            ) : (
-              <FindIdOutput isUserIdAvailable={isUserIdAvailable}>
-                가입된 아이디 : {userId}
-              </FindIdOutput>
-              // 소셜 연동 로그인한 회원의 ID 찾기 같은 경우에는 로직이 달라져야함
-              // 로컬 회원과 소셜 연동 회원 구분하는 로직 필요
-            )}
+    <>
+      {isMobile ? (
+        <FindId_M />
+      ) : (
+        <Wrap>
+          <TopBarContainer>
+            <TopBar>
+              <LogoContainer>
+                <Logo>
+                  <StyledLink to="/"></StyledLink>
+                </Logo>
+              </LogoContainer>
+            </TopBar>
+          </TopBarContainer>
+          <BodyContainer>
+            <FloatingContainer>
+              <FloatingTitle isUserIdAvailable={isUserIdAvailable}>
+                {!isUserIdAvailable ? "아이디 찾기" : ""}
+              </FloatingTitle>
+              <InputDiv isUserIdAvailable={isUserIdAvailable}>
+                {!isUserIdAvailable ? (
+                  <Input
+                    autoComplete="off"
+                    placeholder="등록한 이메일 주소 입력"
+                    icon="/images/icon/mail.png"
+                    value={inputEmail}
+                    isEmail={isEmail}
+                    onChange={(e) => onChangeEmail(e)}
+                    onBlur={(e) => onBlurEmail(e)}
+                  ></Input>
+                ) : (
+                  <FindIdOutput isUserIdAvailable={isUserIdAvailable}>
+                    <CheckedIcon />
+                    <CheckedText>
+                      회원님의 아이디는
+                      <br />
+                      <OutputText>{userId}</OutputText> 입니다.
+                    </CheckedText>
+                  </FindIdOutput>
+                  // 소셜 연동 로그인한 회원의 ID 찾기 같은 경우에는 로직이 달라져야함
+                  // 로컬 회원과 소셜 연동 회원 구분하는 로직 필요
+                )}
 
-            {isEmail && !isUserIdAvailable && (
-              <FindIdButton isEmail={isEmail} onClick={(e) => onClickFindId(e)}>
-                아이디 확인
-              </FindIdButton>
-            )}
-          </InputDiv>
-          <ValidEmailMessage isEmail={isEmail}>
-            {emailMessage}
-          </ValidEmailMessage>
-          <SignIn>
-            <StyledLink to="/login"></StyledLink>로그인 페이지 이동
-          </SignIn>
-          <LinkDiv>
-            <SignUp>
-              <StyledLink to="/signup"></StyledLink>
-              회원가입
-            </SignUp>
-            <ToFindPw>
-              <StyledLink to="/findpw"></StyledLink>
-              비밀번호 재설정
-            </ToFindPw>
-          </LinkDiv>
-        </FloatingContainer>
-        <NoticeContainer>
-          <Notice>
-            <NoticeLink to="../legal/Terms"></NoticeLink>
-            서비스 이용약관
-          </Notice>
-          <Notice>
-            <NoticeLink to="../legal/Privacy"></NoticeLink>
-            개인정보 처리방침
-          </Notice>
-        </NoticeContainer>
-      </BodyContainer>
-    </Wrap>
+                {isEmail && !isUserIdAvailable && (
+                  <FindIdButton
+                    isEmail={isEmail}
+                    onClick={(e) => onClickFindId(e)}
+                  >
+                    아이디 확인
+                  </FindIdButton>
+                )}
+              </InputDiv>
+              <ValidEmailMessage isEmail={isEmail}>
+                {emailMessage}
+              </ValidEmailMessage>
+              <SignIn>
+                <StyledLink to="/login"></StyledLink>로그인 페이지 이동
+              </SignIn>
+              <LinkDiv>
+                <SignUp>
+                  <StyledLink to="/signup"></StyledLink>
+                  회원가입
+                </SignUp>
+                <ToFindPw>
+                  <StyledLink to="/findpw"></StyledLink>
+                  비밀번호 재설정
+                </ToFindPw>
+              </LinkDiv>
+            </FloatingContainer>
+            <NoticeContainer>
+              <Notice>
+                <NoticeLink to="../legal/Terms"></NoticeLink>
+                서비스 이용약관
+              </Notice>
+              <Notice>
+                <NoticeLink to="../legal/Privacy"></NoticeLink>
+                개인정보 처리방침
+              </Notice>
+            </NoticeContainer>
+          </BodyContainer>
+        </Wrap>
+      )}
+    </>
   );
 };
 export default FindId;

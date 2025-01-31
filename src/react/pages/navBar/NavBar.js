@@ -1,8 +1,7 @@
-import {useState, useEffect, useRef} from "react";
-import React from "react";
-import store from "../../../redux/store/store";
-import {logoutAuth} from "../../../redux/slice/authSlice";
-import {logoutCondition} from "../../../redux/slice/loginSlice";
+import React, {useState, useEffect, useRef} from "react";
+import {useNavigate, useLocation} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+
 import {
   Wrap,
   Container,
@@ -16,15 +15,23 @@ import {
   MenuButton,
   LoginBox,
   LoginLink,
+  ProfileImgDiv,
+  ProfileImg,
+  MyPageButton,
+  MyPageMenu,
+  MyPageMenuContents,
+  StyledNavigate,
 } from "../../styles/navBar/NavBar";
+
+import store from "../../../redux/store/store";
+import {logoutAuth} from "../../../redux/slice/authSlice";
+import {logoutCondition} from "../../../redux/slice/loginSlice";
 import AboutBar from "../sideBar/AboutBar";
+import StudyBar from "../sideBar/StudyBar";
 import CodingTestBar from "../sideBar/CodingTestBar";
 import CommunityBar from "../sideBar/CommunityBar";
-import CsBar from "../sideBar/CsBar";
 import MoreBar from "../sideBar/MoreBar";
-import StudyBar from "../sideBar/StudyBar";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useLocation} from "react-router-dom";
+import CsBar from "../sideBar/CsBar";
 
 const NavBar = () => {
   const [menuState, setMenuState] = useState({
@@ -54,6 +61,11 @@ const NavBar = () => {
     pathMore: "more",
     pathCs: "cs",
     pathMypage: "my page", // 추후 추가할 마이페이지용
+  };
+  const [isToggleMyPage, setIsToggleMyPage] = useState(false);
+
+  const onClickToggleMyPage = () => {
+    setIsToggleMyPage(!isToggleMyPage);
   };
 
   // 메뉴 열기, 닫기
@@ -102,6 +114,10 @@ const NavBar = () => {
     }));
   };
 
+  const closeMyPage = () => {
+    setIsToggleMyPage(false);
+  };
+
   // 버블링 방지용 함수 (효과는 잘 모르겠음)
   const handleContentClick = (menuName, event) => {
     event.stopPropagation();
@@ -136,11 +152,38 @@ const NavBar = () => {
     };
   }, [menuState]);
 
-  const nickname = useSelector((state) => state.auth.nickname);
-  const [isUser, setIsUser] = useState(null);
+  const myPageRef = useRef(null);
 
   useEffect(() => {
-    setIsUser(nickname);
+    if (!isToggleMyPage) return;
+
+    const handleClickOutside = (event) => {
+      setTimeout(() => {
+        if (myPageRef.current && !myPageRef.current.contains(event.target)) {
+          setIsToggleMyPage(false);
+        }
+      }, 100);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isToggleMyPage]);
+
+  const nickname = useSelector((state) => state.auth.nickname);
+  const [isUser, setIsUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (isUser) {
+      return;
+    }
+    if (nickname) {
+      setIsUser(nickname);
+    } else {
+      setIsUser(null);
+    }
+    setIsLoading(false);
   }, [nickname]);
 
   const dispatch = useDispatch();
@@ -149,6 +192,7 @@ const NavBar = () => {
   const handleLogout = () => {
     dispatch(logoutAuth());
     dispatch(logoutCondition());
+    setIsUser(null);
     navigate("/");
   };
 
@@ -172,6 +216,15 @@ const NavBar = () => {
       },
     });
   };
+  const handleMyPage = () => {
+    navigate("/mypage", {
+      state: {
+        firstpath: paths.pathMypage,
+      },
+    });
+  };
+
+  const profile = useSelector((state) => state.auth.profile);
 
   return (
     <Wrap>
@@ -293,15 +346,55 @@ const NavBar = () => {
           </MenuTitle>
         </MenuContainer>
         <LoginContainer>
-          <LoginBox>
-            {isUser !== "" ? (
-              <LoginLink onClick={() => handleLogout()}>logout</LoginLink>
-            ) : (
-              <LoginLink onClick={() => handleLogin()}>login</LoginLink>
-            )}
-            {/* <StyledLink to="/login"></StyledLink>
-            login */}
-          </LoginBox>
+          {!isLoading && (
+            <LoginBox isUser={isUser}>
+              {isUser !== null ? (
+                <>
+                  <ProfileImgDiv>
+                    <ProfileImg
+                      isUser={isUser}
+                      isProfile={profile}
+                    ></ProfileImg>
+                  </ProfileImgDiv>
+                  <MyPageButton
+                    ref={myPageRef}
+                    isUser={isUser}
+                    onClick={() => onClickToggleMyPage()}
+                    // 선 두께 안맞음 수정해야함
+                  >
+                    <div />
+                  </MyPageButton>
+                  <MyPageMenu ref={myPageRef} isToggleMyPage={isToggleMyPage}>
+                    <MyPageMenuContents isToggleMyPage={isToggleMyPage}>
+                      내 정보
+                    </MyPageMenuContents>
+                    <MyPageMenuContents isToggleMyPage={isToggleMyPage}>
+                      {nickname}
+                    </MyPageMenuContents>
+                    <MyPageMenuContents isToggleMyPage={isToggleMyPage}>
+                      <StyledNavigate
+                        onClick={() => {
+                          handleMyPage();
+                          closeMyPage();
+                        }}
+                      ></StyledNavigate>
+                      마이 페이지
+                    </MyPageMenuContents>
+                    <MyPageMenuContents
+                      isToggleMyPage={isToggleMyPage}
+                      onClick={() => handleLogout()}
+                    >
+                      로그아웃
+                    </MyPageMenuContents>
+                  </MyPageMenu>
+                </>
+              ) : (
+                <LoginLink isUser={isUser} onClick={() => handleLogin()}>
+                  login
+                </LoginLink>
+              )}
+            </LoginBox>
+          )}
         </LoginContainer>
       </Container>
     </Wrap>

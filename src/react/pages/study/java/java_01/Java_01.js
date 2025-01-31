@@ -1,5 +1,5 @@
-import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 
 import {
   Wrap,
@@ -10,9 +10,11 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../../styles/study/Class_Main";
+} from "../../../../styles/study/Language_00";
+
 import Java_Title from "../java_components/Java_Title";
 import Java_ClassList_Filtered from "../java_components/Java_ClassList_Filtered";
+import Java_01_M from "./Java_01_M";
 import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const Java_01 = () => {
@@ -20,6 +22,7 @@ const Java_01 = () => {
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
+  const { isMobile } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
@@ -60,28 +63,36 @@ const Java_01 = () => {
   };
 
   return (
-    <Wrap>
-      <TopBoxWide>
-        <TopBox>
-          <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleStudyJava()}>
-            {secondpath}
-          </TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{thirdpath}</TopBoxText>
-        </TopBox>
-      </TopBoxWide>
-      <Container>
-        <LeftContainer>
-          <Java_Title />
-        </LeftContainer>
-        <RightContainer>
-          <Java_ClassList_Filtered chapter="01" />
-        </RightContainer>
-      </Container>
-      <ScrollToTopButton />
-    </Wrap>
+    <>
+      {isMobile ? (
+        <Java_01_M />
+      ) : (
+        <Wrap>
+          <TopBoxWide>
+            <TopBox>
+              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleStudyJava()}>
+                {secondpath}
+              </TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleRefresh()}>
+                {thirdpath}
+              </TopBoxText>
+            </TopBox>
+          </TopBoxWide>
+          <Container>
+            <LeftContainer>
+              <Java_Title />
+            </LeftContainer>
+            <RightContainer>
+              <Java_ClassList_Filtered chapter="01" />
+            </RightContainer>
+          </Container>
+          <ScrollToTopButton />
+        </Wrap>
+      )}
+    </>
   );
 };
 

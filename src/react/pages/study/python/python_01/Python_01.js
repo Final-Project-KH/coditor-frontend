@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 
 import {
@@ -9,17 +10,19 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../../styles/study/Class_Main";
+} from "../../../../styles/study/Language_00";
+
 import Python_Title from "../python_components/Python_Title";
 import Python_ClassList_Filtered from "../python_components/Python_ClassList_Filtered";
-import { useEffect } from "react";
 import ScrollToTopButton from "../../../ScrollToTopButton";
+import Python_01_M from "./Python_01_M";
 
 const Python_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
+  const { isMobile } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
@@ -27,7 +30,7 @@ const Python_01 = () => {
       mainContentRef.current.scrollTo(0, 0);
     }
   }, [mainContentRef]);
-  
+
   // TopBox firstpath
   const handleStudy = () => {
     navigate("/study", {
@@ -60,28 +63,36 @@ const Python_01 = () => {
   };
 
   return (
-    <Wrap>
-      <TopBoxWide>
-        <TopBox>
-          <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleStudyPython()}>
-            {secondpath}
-          </TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{thirdpath}</TopBoxText>
-        </TopBox>
-      </TopBoxWide>
-      <Container>
-        <LeftContainer>
-          <Python_Title />
-        </LeftContainer>
-        <RightContainer>
-          <Python_ClassList_Filtered chapter="01" />
-        </RightContainer>
-      </Container>
-      <ScrollToTopButton />
-    </Wrap>
+    <>
+      {isMobile ? (
+        <Python_01_M />
+      ) : (
+        <Wrap>
+          <TopBoxWide>
+            <TopBox>
+              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleStudyPython()}>
+                {secondpath}
+              </TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleRefresh()}>
+                {thirdpath}
+              </TopBoxText>
+            </TopBox>
+          </TopBoxWide>
+          <Container>
+            <LeftContainer>
+              <Python_Title />
+            </LeftContainer>
+            <RightContainer>
+              <Python_ClassList_Filtered chapter="01" />
+            </RightContainer>
+          </Container>
+          <ScrollToTopButton />
+        </Wrap>
+      )}
+    </>
   );
 };
 

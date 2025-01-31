@@ -1,5 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import {
   EachClass,
@@ -8,7 +8,8 @@ import {
   ClassContents,
   ClassSet,
   ClassName,
-} from "../../../../styles/study/Class_Main";
+} from "../../../../styles/study/Language_ClassList";
+
 import { CStudyChapter } from "../../../../../util/study/CStudyChapter";
 
 // 특정 챕터 진입시 해당 챕터의 클래스 리스트만 출력

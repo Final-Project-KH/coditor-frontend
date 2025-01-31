@@ -3,19 +3,19 @@ import {
   SubjectImgContainerC,
   SubjectTitle,
   SubjectContents,
-  SubjectRateBlack,
-  SubjectRateWhite,
-  SubjectRateContents,
   SubjectRateContainer,
   SubjectRateBox,
-} from "../../../../styles/study/Class_Title";
+  SubjectRateWhite,
+  SubjectRateBlack,
+  SubjectRateContents,
+} from "../../../../styles/study/Language_Title";
 
 const C_Title = () => {
   return (
     <>
       <LeftSubjectContainer>
         <SubjectImgContainerC />
-        <SubjectTitle>C Study</SubjectTitle>
+        <SubjectTitle>C</SubjectTitle>
         <SubjectContents>학습전</SubjectContents>
         <SubjectRateContainer>
           <SubjectRateBox>

@@ -221,6 +221,7 @@ export const SubjectTitle = styled.div.attrs({
   width: 100%;
   height: 30px;
   font-family: "semibold", sans-serif;
+  color: #313131;
   font-size: 20px;
   text-align: center;
   display: flex;

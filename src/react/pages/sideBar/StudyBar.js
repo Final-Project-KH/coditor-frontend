@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import {
   Container,
   MenuContainer,
@@ -14,7 +16,6 @@ import {
   MenuImgCss,
   MenuLink,
 } from "../../styles/sideBar/StudyBar";
-import { useNavigate, useLocation } from "react-router-dom";
 
 const StudyBar = ({ isOpen, closeMenu, path }) => {
   const navigate = useNavigate();

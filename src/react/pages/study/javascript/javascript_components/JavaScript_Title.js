@@ -3,19 +3,19 @@ import {
   SubjectImgContainerJavaScript,
   SubjectTitle,
   SubjectContents,
-  SubjectRateBlack,
-  SubjectRateWhite,
-  SubjectRateContents,
   SubjectRateContainer,
   SubjectRateBox,
-} from "../../../../styles/study/Class_Title";
+  SubjectRateWhite,
+  SubjectRateBlack,
+  SubjectRateContents,
+} from "../../../../styles/study/Language_Title";
 
 const JavaScript_Title = () => {
   return (
     <>
       <LeftSubjectContainer>
         <SubjectImgContainerJavaScript />
-        <SubjectTitle>JavaScript Study</SubjectTitle>
+        <SubjectTitle>JavaScript</SubjectTitle>
         <SubjectContents>학습전</SubjectContents>
         <SubjectRateContainer>
           <SubjectRateBox>

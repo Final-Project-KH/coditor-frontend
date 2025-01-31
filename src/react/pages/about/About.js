@@ -1,3 +1,5 @@
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
+
 import {
   Wrap,
   TopBoxWide,
@@ -9,9 +11,9 @@ import {
   AboutTitle,
   AboutContents,
 } from "../../styles/about/About";
-import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
-import ScrollToTopButton from "../ScrollToTopButton";
+
 import About_M from "./About_M";
+import ScrollToTopButton from "../ScrollToTopButton";
 
 const About = () => {
   const { isMobile } = useOutletContext();
@@ -23,7 +25,7 @@ const About = () => {
     navigate("/about", {
       state: {
         firstpath: firstpath,
-        secondpath: "코디터 소개",
+        secondpath: "🔥 코디터 소개",
       },
     });
   };

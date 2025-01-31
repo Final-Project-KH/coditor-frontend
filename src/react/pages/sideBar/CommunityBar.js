@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import {
   Container,
   MenuContainer,
@@ -7,7 +9,6 @@ import {
   MenuContents,
   MenuLink,
 } from "../../styles/sideBar/CommunityBar";
-import { useNavigate, useLocation } from "react-router-dom";
 
 const CommunityBar = ({ isOpen, closeMenu, path }) => {
   const navigate = useNavigate();
@@ -52,8 +53,6 @@ const CommunityBar = ({ isOpen, closeMenu, path }) => {
     <Container isOpen={isOpen}>
       <MenuContainer>
         <MenuColumn>
-          <MenuTitle>커뮤니티</MenuTitle>
-
           <MenuContents onClick={closeMenu}>
             <MenuLink onClick={() => handleCodingClick()}>💻 코딩 질문</MenuLink>
           </MenuContents>
@@ -63,7 +62,6 @@ const CommunityBar = ({ isOpen, closeMenu, path }) => {
           </MenuContents>
         </MenuColumn>
         <MenuColumn>
-          <MenuTitle style={{ minHeight: "37px" }} />
           <MenuContents onClick={closeMenu}>
             <MenuLink onClick={() => handleStudyClick()}>✏️ 스터디</MenuLink>
           </MenuContents>

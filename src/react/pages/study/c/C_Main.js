@@ -10,11 +10,12 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../styles/study/Class_Main";
+} from "../../../styles/study/Language_Main";
 
 import C_ChapterList from "./c_components/C_ChapterList";
 import C_Title from "./c_components/C_Title";
 import C_ClassList from "./c_components/C_ClassList";
+import C_Main_M from "./C_Main_M";
 import ScrollToTopButton from "../../ScrollToTopButton";
 
 const C_Main = () => {
@@ -22,6 +23,7 @@ const C_Main = () => {
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
+  const { isMobile } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
@@ -59,25 +61,36 @@ const C_Main = () => {
   };
 
   return (
-    <Wrap>
-      <TopBoxWide>
-        <TopBox>
-          <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{secondpath}</TopBoxText>
-        </TopBox>
-      </TopBoxWide>
-      <Container>
-        <LeftContainer>
-          <C_Title />
-          <C_ChapterList refs={sectionRefs} mainContentRef={mainContentRef} />
-        </LeftContainer>
-        <RightContainer>
-          <C_ClassList refs={sectionRefs} />
-        </RightContainer>
-      </Container>
-      <ScrollToTopButton />
-    </Wrap>
+    <>
+      {isMobile ? (
+        <C_Main_M />
+      ) : (
+        <Wrap>
+          <TopBoxWide>
+            <TopBox>
+              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleRefresh()}>
+                {secondpath}
+              </TopBoxText>
+            </TopBox>
+          </TopBoxWide>
+          <Container>
+            <LeftContainer>
+              <C_Title />
+              <C_ChapterList
+                refs={sectionRefs}
+                mainContentRef={mainContentRef}
+              />
+            </LeftContainer>
+            <RightContainer>
+              <C_ClassList refs={sectionRefs} />
+            </RightContainer>
+          </Container>
+          <ScrollToTopButton />
+        </Wrap>
+      )}
+    </>
   );
 };
 

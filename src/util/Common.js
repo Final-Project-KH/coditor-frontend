@@ -1,9 +1,5 @@
 import store from "../redux/store/store";
-import {
-  setLoginData,
-  clearAccessToken,
-  clearRefreshToken,
-} from "../redux/slice/authSlice"; // Redux 액션 가져오기
+import { setLoginData, clearAccessToken } from "../redux/slice/authSlice"; // Redux 액션 가져오기
 import axios from "axios";
 import JwtDecoding from "../api/JwtDecode";
 
@@ -33,32 +29,6 @@ const Common = {
     return newaccesstokenexpiresin;
   },
 
-  // 저장되어 있는  refresh token 가져오기
-  getRefreshToken: () => {
-    const refreshtoken = store.getState().auth.refreshtoken;
-    return refreshtoken;
-  },
-  // 저장되어 있는 refresh token 만료시간 가져오기
-  getRefreshTokenExpiresIn: () => {
-    const refreshtokenexpiresin = parseInt(
-      store.getState().auth.refreshtokenexpiresin
-    );
-    return refreshtokenexpiresin;
-  },
-
-  //  들어온 토큰 기반 만료 시간 추출하기
-  // 위의 함수와 같은 함수이므로 하나의 함수로 사용해도 됨
-  // 들어가는 토큰 값만 잘 조절해서 변수명 다르게 설정하고 사용하면 됨
-  // 통합시킬지 말지는 나중에 생각
-  getNewRefreshTokenExpiresIn: (token) => {
-    // 들어오는 token은 refreshtoken
-    const newrefreshtokenexpiresin = JwtDecoding.getFieldFromToken(
-      token,
-      "exp"
-    );
-    return newrefreshtokenexpiresin;
-  },
-
   // 들어온 토큰 기반 키값 추출하기
   getNewUserKeyNumber: (token) => {
     // 들어오는 token은 accesstoken
@@ -77,69 +47,29 @@ const Common = {
   },
 
   setAccessToken: (token) => {
-    store.dispatch(setLoginData({accesstoken: token})); // Redux store에 토큰 저장
+    store.dispatch(setLoginData({ accesstoken: token })); // Redux store에 토큰 저장
   }, // accesstoken 데이터는 (response.data.accessToken) -> response는 지정한 변수명
 
   setAccessTokenExpiresIn: (expirationtime) => {
-    store.dispatch(setLoginData({accesstokenexpiresin: expirationtime}));
+    store.dispatch(setLoginData({ accesstokenexpiresin: expirationtime }));
   }, // accesstoken expiretime 데이터는 getNewAccessTokenExpiresIn 함수를 거친 데이터
 
   setKeyNumber: (keynumber) => {
-    store.dispatch(setLoginData({keynumber: keynumber}));
+    store.dispatch(setLoginData({ keynumber: keynumber }));
   },
 
   setNickname: (nickname) => {
-    store.dispatch(setLoginData({nickname: nickname}));
+    store.dispatch(setLoginData({ nickname: nickname }));
   },
 
-  setTokens: (accessToken, refreshToken) => {
-    // 여기에 추가
-    store.dispatch(
-      setLoginData({
-        accesstoken: accessToken,
-        refreshtoken: refreshToken,
-      })
-    );
+  setProfile: (profile) => {
+    store.dispatch(setLoginData({ profile: profile }));
   },
-
-  setRefreshToken: (token) => {
-    store.dispatch(setLoginData({refreshtoken: token})); // Redux store에 토큰 저장
-  }, // refreshtoken 데이터는 (response.data.refreshToken) -> response는 지정한 변수명
-
-  setRefreshTokenExpiresIn: (expirationtime) => {
-    store.dispatch(setLoginData({refreshtokenexpiresin: expirationtime}));
-  }, // refreshtoken expiretime 데이터는 getNewRefreshTokenExpiresIn 함수를 거친 데이터
 
   clearAccessToken: () => {
     store.dispatch(clearAccessToken());
   },
-  clearRefreshToken: () => {
-    store.dispatch(clearRefreshToken());
-  },
 
-  handleUnauthorized: async () => {
-    console.log("handleUnauthorized");
-    const refreshtoken = Common.getRefreshToken();
-    const accesstoken = Common.getAccessToken();
-    const config = {
-      headers: {
-        Authorization: `Bearer ${accesstoken}`,
-      },
-    };
-    try {
-      const res = await axios.post(
-        `${Common.SPRING_DOMAIN}/auth/refresh`, // 컨트롤러 경로 수정 필요
-        refreshtoken,
-        config
-      );
-      console.log(res.data);
-      Common.setAccessToken(res.data); // data.accessToken (?)
-      return true;
-    } catch (err) {
-      console.log(err);
-      return false;
-    }
-  },
   // 쿠키 방식 이전
   //   refreshAccessToken: async () => {
   //     const refreshToken = Common.getRefreshToken();
@@ -173,8 +103,10 @@ const Common = {
       const accessTokenExpirationTime = Common.getNewAccessTokenExpiresIn(
         response.data.accessToken
       );
+      const profile = response.data.profileUrl;
       Common.setAccessToken(accessToken);
       Common.setAccessTokenExpiresIn(accessTokenExpirationTime);
+      Common.setProfile(profile);
       return accessToken;
     } catch (error) {
       console.error("Failed to refresh access token:", error);

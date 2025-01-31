@@ -1,9 +1,10 @@
-import { JavaScriptStudyChapter } from "../../../../../util/study/JavaScriptStudyChapter";
 import {
   ChapterOuter,
   ChapterInner,
   ChapterName,
-} from "../../../../styles/study/Class_Chapter";
+} from "../../../../styles/study/Language_ChapterList";
+
+import { JavaScriptStudyChapter } from "../../../../../util/study/JavaScriptStudyChapter";
 
 const JavaScript_ChapterList = ({ refs, mainContentRef }) => {
   // Scrolling Action Set

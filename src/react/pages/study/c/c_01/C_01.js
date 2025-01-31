@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 
 import {
@@ -9,17 +10,19 @@ import {
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../../styles/study/Class_Main";
+} from "../../../../styles/study/Language_00";
+
 import C_Title from "../c_components/C_Title";
 import C_ClassList_Filtered from "../c_components/C_ClassList_Filtered";
-import { useEffect } from "react";
 import ScrollToTopButton from "../../../ScrollToTopButton";
+import C_01_M from "./C_01_M";
 
 const C_01 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
+  const { isMobile } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
@@ -60,26 +63,36 @@ const C_01 = () => {
   };
 
   return (
-    <Wrap>
-      <TopBoxWide>
-        <TopBox>
-          <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleStudyC()}>{secondpath}</TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{thirdpath}</TopBoxText>
-        </TopBox>
-      </TopBoxWide>
-      <Container>
-        <LeftContainer>
-          <C_Title />
-        </LeftContainer>
-        <RightContainer>
-          <C_ClassList_Filtered chapter="01" />
-        </RightContainer>
-      </Container>
-      <ScrollToTopButton />
-    </Wrap>
+    <>
+      {isMobile ? (
+        <C_01_M />
+      ) : (
+        <Wrap>
+          <TopBoxWide>
+            <TopBox>
+              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleStudyC()}>
+                {secondpath}
+              </TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleRefresh()}>
+                {thirdpath}
+              </TopBoxText>
+            </TopBox>
+          </TopBoxWide>
+          <Container>
+            <LeftContainer>
+              <C_Title />
+            </LeftContainer>
+            <RightContainer>
+              <C_ClassList_Filtered chapter="01" />
+            </RightContainer>
+          </Container>
+          <ScrollToTopButton />
+        </Wrap>
+      )}
+    </>
   );
 };
 

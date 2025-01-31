@@ -3,28 +3,29 @@ import {
   SubjectImgContainerJava,
   SubjectTitle,
   SubjectContents,
-  SubjectRateBlack,
-  SubjectRateWhite,
-  SubjectRateContents,
   SubjectRateContainer,
   SubjectRateBox,
-} from "../../../../styles/study/Class_Title";
+  SubjectRateWhite,
+  SubjectRateBlack,
+  SubjectRateContents,
+} from "../../../../styles/study/Language_Title";
 
 const Java_Title = () => {
+
   return (
     <>
-      <LeftSubjectContainer>
-        <SubjectImgContainerJava />
-        <SubjectTitle>Java Study</SubjectTitle>
-        <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
-        <SubjectRateContainer>
-          <SubjectRateBox>
-            <SubjectRateWhite />
-            <SubjectRateBlack />
-          </SubjectRateBox>
-          <SubjectRateContents>52%</SubjectRateContents>
-        </SubjectRateContainer>
-      </LeftSubjectContainer>
+        <LeftSubjectContainer>
+          <SubjectImgContainerJava />
+          <SubjectTitle>Java</SubjectTitle>
+          <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
+          <SubjectRateContainer>
+            <SubjectRateBox>
+              <SubjectRateWhite />
+              <SubjectRateBlack />
+            </SubjectRateBox>
+            <SubjectRateContents>52%</SubjectRateContents>
+          </SubjectRateContainer>
+        </LeftSubjectContainer>
     </>
   );
 };

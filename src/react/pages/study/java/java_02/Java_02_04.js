@@ -15,8 +15,8 @@ import {
   EachClass,
   ClassHeader,
   ClassHeaderTitle,
-} from "../../../../styles/study/Class_Main";
-import {
+  ClassHeaderTitlePathLink,
+  ClassHeaderTitleButton,
   ClassContentsTitle1,
   ClassContentsText,
   ClassContentsContainer,
@@ -29,19 +29,23 @@ import {
   ClassTable,
   ClassTableTd,
   ClassTableTr,
-  ArrowContainer,
-} from "../../../../styles/study/Class_Each";
-import { StickyClassBox } from "../../../../styles/study/Study";
+  StickyClassBox,
+  ClassLinkBox,
+} from "../../../../styles/study/Language_00_00";
+import { ArrowContainer } from "../../../../styles/study/Language_ArrowNavigation";
+
 import Java_Title from "../java_components/Java_Title";
 import Java_ArrowNavigation from "../java_components/Java_ArrowNavigation";
 import Java_ClassList_Filtered from "../java_components/Java_ClassList_Filtered";
 import ScrollToTopButton from "../../../ScrollToTopButton";
+import Java_02_04_M from "./Java_02_04_M";
 
 const Java_02_04 = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
+  const { isMobile } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
@@ -452,233 +456,251 @@ public class GreetingEx {
   };
 
   return (
-    <Wrap>
-      <TopBoxWide>
-        <TopBox>
-          <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleStudyJava()}>
-            {secondpath}
-          </TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleStudyJava02()}>
-            {thirdpath}
-          </TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{fourthpath}</TopBoxText>
-        </TopBox>
-      </TopBoxWide>
-      <Container>
-        <LeftContainer>
-          <Java_Title />
-          <StickyClassBox>
-            <Java_ClassList_Filtered chapter="02" />
-          </StickyClassBox>
-        </LeftContainer>
+    <>
+      {isMobile ? (
+        <Java_02_04_M />
+      ) : (
+        <Wrap>
+          <TopBoxWide>
+            <TopBox>
+              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleStudyJava()}>
+                {secondpath}
+              </TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleStudyJava02()}>
+                {thirdpath}
+              </TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleRefresh()}>
+                {fourthpath}
+              </TopBoxText>
+            </TopBox>
+          </TopBoxWide>
+          <Container>
+            <LeftContainer>
+              <Java_Title />
+              <StickyClassBox>
+                <Java_ClassList_Filtered chapter="02" />
+              </StickyClassBox>
+            </LeftContainer>
 
-        <RightContainer>
-          <EachClass>
-            <ClassHeader>
-              <ClassHeaderTitle>조건문</ClassHeaderTitle>
-            </ClassHeader>
-            <ClassContentsContainer>
-              <ClassContentsTitle1>제어문이란?</ClassContentsTitle1>
-              <ClassContentsText>
-                프로그램이 원하는 결과를 얻기 위해서는 프로그램의 순차적인
-                흐름을 제어해야만 할 경우가 생깁니다.
-                <br />
-                이때, 사용하는 명령문을 제어문이라고 하며, 이러한 제어문에는{" "}
-                <b>조건문, 반복문</b> 등이 있습니다.
-                <br />
-                이러한 제어문에 속하는 명령문들은 중괄호{}로 둘러싸여 있으며,
-                이러한 중괄호 영역을 블록(block)이라고 합니다.
-                <br />
-                <br />
-                <ClassContentsTextTab>
-                  - <i>순차 구조 : 명령이 순차적으로 수행되는 구조</i>
-                  <br />-{" "}
-                  <i>
-                    선택 구조 : 입력 받은 값에 따라 선택하여 실행되는 구조
-                    (조건문)
-                  </i>
-                  <br />-{" "}
-                  <i>반복 구조 : 입력 값에 따라 반복 실행되는 구조 (반복문)</i>
+            <RightContainer>
+              <EachClass>
+                <ClassHeader>
+                  <ClassHeaderTitle>조건문</ClassHeaderTitle>
+                </ClassHeader>
+                <ClassContentsContainer>
+                  <ClassContentsTitle1>제어문이란?</ClassContentsTitle1>
+                  <ClassContentsText>
+                    프로그램이 원하는 결과를 얻기 위해서는 프로그램의 순차적인
+                    흐름을 제어해야만 할 경우가 생깁니다.
+                    <br />
+                    이때, 사용하는 명령문을 제어문이라고 하며, 이러한 제어문에는{" "}
+                    <b>조건문, 반복문</b> 등이 있습니다.
+                    <br />
+                    이러한 제어문에 속하는 명령문들은 중괄호{}로 둘러싸여
+                    있으며, 이러한 중괄호 영역을 블록(block)이라고 합니다.
+                    <br />
+                    <br />
+                    <ClassContentsTextTab>
+                      - <i>순차 구조 : 명령이 순차적으로 수행되는 구조</i>
+                      <br />-{" "}
+                      <i>
+                        선택 구조 : 입력 받은 값에 따라 선택하여 실행되는 구조
+                        (조건문)
+                      </i>
+                      <br />-{" "}
+                      <i>
+                        반복 구조 : 입력 값에 따라 반복 실행되는 구조 (반복문)
+                      </i>
+                      <br />
+                    </ClassContentsTextTab>
+                  </ClassContentsText>
                   <br />
-                </ClassContentsTextTab>
-              </ClassContentsText>
-              <br />
-              <ClassContentsTitle2>조건문</ClassContentsTitle2>
-              <ClassContentsText>
-                조건문은 주어진 조건식의 결과에 따라 별도의 명령을 수행하도록
-                제어하는 명령문입니다. <br />
-                조건문 중에서도 가장 기본이 되는 명령문은 바로 if 문입니다.
-                <br />
-                자바에서 사용하는 대표적인 조건문의 형태는 다음과 같습니다.
-              </ClassContentsText>
-              <ClassContentsTitle3>if ~ else 문</ClassContentsTitle3>
-              <ClassContentsText>
-                if 문은 조건식의 결과가 참(true)이면 주어진 명령문을 실행하며,
-                거짓(false)이면 아무것도 실행하지 않습니다.
-                <br />
-                <br />
-                <Java_02_04_Code01 />
-                <br />
-                <Java_02_04_Code02 />
-                <br />
-              </ClassContentsText>
-              <ClassContentsTitle3>if ~ else if ~ else 문</ClassContentsTitle3>
-              <ClassContentsText>
-                <Java_02_04_Code03 />
+                  <ClassContentsTitle2>조건문</ClassContentsTitle2>
+                  <ClassContentsText>
+                    조건문은 주어진 조건식의 결과에 따라 별도의 명령을
+                    수행하도록 제어하는 명령문입니다. <br />
+                    조건문 중에서도 가장 기본이 되는 명령문은 바로 if 문입니다.
+                    <br />
+                    자바에서 사용하는 대표적인 조건문의 형태는 다음과 같습니다.
+                  </ClassContentsText>
+                  <ClassContentsTitle3>if ~ else 문</ClassContentsTitle3>
+                  <ClassContentsText>
+                    if 문은 조건식의 결과가 참(true)이면 주어진 명령문을
+                    실행하며, 거짓(false)이면 아무것도 실행하지 않습니다.
+                    <br />
+                    <br />
+                    <Java_02_04_Code01 />
+                    <br />
+                    <Java_02_04_Code02 />
+                    <br />
+                  </ClassContentsText>
+                  <ClassContentsTitle3>
+                    if ~ else if ~ else 문
+                  </ClassContentsTitle3>
+                  <ClassContentsText>
+                    <Java_02_04_Code03 />
 
-                <br />
-                <br />
-                <b>[예제1]</b>
-                <br />
-                <br />
-                <Java_02_04_Code04 />
+                    <br />
+                    <br />
+                    <b>[예제1]</b>
+                    <br />
+                    <br />
+                    <Java_02_04_Code04 />
 
-                <br />
-                <br />
-                <b>[예제2]</b>
-                <br />
-                <br />
-                <Java_02_04_Code05 />
+                    <br />
+                    <br />
+                    <b>[예제2]</b>
+                    <br />
+                    <br />
+                    <Java_02_04_Code05 />
 
-                <br />
-              </ClassContentsText>
-              <br />
-              <ClassContentsTitle2>switch문</ClassContentsTitle2>
-              <ClassContentsText>
-                switch문은 if문과 마찬가지로 조건 제어문 입니다. switch문의 if문
-                처럼 조건식이 true일 때 블록 내부의 실행문을 실행하는 것이
-                아니라, 변수가 어떤 값을 갖는냐에 따라 실행문이 선택 됩니다.
-                <br />
-                <br />
-                <ClassContentsTextTab>
-                  - if문에 비해 코드의 가독성을 높여주며 코드가 간결해 집니다.
+                    <br />
+                  </ClassContentsText>
                   <br />
-                  - if문과 달리 조건식을 넣을수가 없고 값만 올 수 있다는 부분에
-                  유의해야 합니다. (실수형은 안됨)
-                  <br />
-                  <br />
-                </ClassContentsTextTab>
-                <Java_02_04_Code06 />
-                <br />
-              </ClassContentsText>
-              <ClassContentsTitle3>스위치문 기본</ClassContentsTitle3>
-              <ClassContentsText>
-                <Java_02_04_Code07 />
+                  <ClassContentsTitle2>switch문</ClassContentsTitle2>
+                  <ClassContentsText>
+                    switch문은 if문과 마찬가지로 조건 제어문 입니다. switch문의
+                    if문 처럼 조건식이 true일 때 블록 내부의 실행문을 실행하는
+                    것이 아니라, 변수가 어떤 값을 갖는냐에 따라 실행문이 선택
+                    됩니다.
+                    <br />
+                    <br />
+                    <ClassContentsTextTab>
+                      - if문에 비해 코드의 가독성을 높여주며 코드가 간결해
+                      집니다.
+                      <br />
+                      - if문과 달리 조건식을 넣을수가 없고 값만 올 수 있다는
+                      부분에 유의해야 합니다. (실수형은 안됨)
+                      <br />
+                      <br />
+                    </ClassContentsTextTab>
+                    <Java_02_04_Code06 />
+                    <br />
+                  </ClassContentsText>
+                  <ClassContentsTitle3>스위치문 기본</ClassContentsTitle3>
+                  <ClassContentsText>
+                    <Java_02_04_Code07 />
 
-                <br />
-              </ClassContentsText>
-              <ClassContentsTitle3>계산기 만들기</ClassContentsTitle3>
-              <ClassContentsText>
-                <Java_02_04_Code08 />
-                <br />
-              </ClassContentsText>
-              <ClassContentsTitle3>연습문제(1)</ClassContentsTitle3>
-              <ClassContentsText>
-                · 시험 성적을 입력 받아 90 ~ 100점은 A, 80 ~ 89점은 B, 70 ~
-                79점은 C, 60 ~ 69점은 D, 나머지는 F를 출력하는 프로그램
-                <br />
-                · 0 ~ 100 사이가 아니면 성적이 잘못 입력 되었다고 출력
-                <br />
-                <br />
-                <b>[선택사항]</b> 성적이 잘못 입력된 경우 다시 입력 받도록 수정
-                <br />
-                <br />
-                <Java_02_04_Code09 />
-                <br />
-              </ClassContentsText>
-              <ClassContentsTitle3>연습문제(2)</ClassContentsTitle3>
-              <ClassContentsText>
-                · 세자리의 정수를 입력 받아 가장 큰 수 출력
-                <br />
-                <br />
-                <Java_02_04_Code10 />
-                <br />
-              </ClassContentsText>
-              <ClassContentsTitle3>연습문제(3)</ClassContentsTitle3>
-              <ClassContentsText>
-                · 행사 안내 메일 발송하기
-                <br />
-                <br />
-                <hr />
-                <br />
-                <ClassContentsTextTab>
-                  1. 사용자로부터 이름, 제목, 날짜(20230817), 시간(17) 정보를
-                  입력받습니다.
-                  <br />
-                  2. 입력된 날짜의 월을 추출하여 해당하는 계절을 판단합니다.
-                  <br />
-                  3. 계절에 따라 적절한 인사말과 입력된 일정 정보를 출력합니다.
-                  <br />
-                  <br />
-                </ClassContentsTextTab>
-                <hr />
-                <br />
-                · 프로그램은 다음과 같은 방식으로 동작해야 합니다.
-                <br />
-                · 1월부터 12월까지의 월 정보를 입력 받습니다.
-                <br />
-                · 입력된 월에 따라 다음과 같은 계절에 맞는 인사말을 출력합니다.
-                <br />
-                <ClassContentsTextTab>
-                  - 12월, 1월, 2월 → "한파의 연속인 1월 입니다."
-                  <br />
-                  - 3월 → "봄의 기운이 느껴지는 3월 입니다."
-                  <br />
-                  - 4월 → "새싹이 피어나는 4월 입니다."
-                  <br />
-                  - 5월 → "계절의 여왕 5월 입니다."
-                  <br />
-                  - 6월 → "활동하기 좋은 6월 입니다."
-                  <br />
-                  - 7월 → "휴가가 기다려지는 7월 입니다."
-                  <br />
-                  - 8월 → "무더운 8월 입니다."
-                  <br />
-                  - 9월 → "선선한 9월 입니다."
-                  <br />
-                  - 10월 → "천고마비의 계절 10월 입니다."
-                  <br />
-                  - 11월 → "쓸쓸한 늦가을 11월 입니다."
-                  <br />
-                </ClassContentsTextTab>
-                · 입력된 이름, 제목, 날짜, 시간 정보와 계절 정보를 이용하여
-                다음과 같은 형식으로 일정 정보를 출력합니다.
-                <br />
-                <br />
-                <b>[힌트]</b>
-                <br />
-                · 문자열의 substring을 이용하면 원하는 문자를 추출 할 수 있음
-                <br />
-                <ClassContentsTextTab>
-                  - date = “20230817”;
-                  <br />
-                  - month = date.substring(4, 6); // 인덱스는 0부터 시작, 그리고
-                  두번째 인덱스는 미만 개념
-                  <br />
-                  <br />
-                </ClassContentsTextTab>
-                <b>[출력 형식]</b>
-                <br />
-                <br />
-                <Java_02_04_Code11 />
-                <br />
-                <Java_02_04_Code12 />
-                <br />
-              </ClassContentsText>
-            </ClassContentsContainer>
-          </EachClass>
-          <ArrowContainer>
-            <Java_ArrowNavigation direction="left" />
-            <Java_ArrowNavigation direction="right" />
-          </ArrowContainer>
-        </RightContainer>
-      </Container>
-      <ScrollToTopButton />
-    </Wrap>
+                    <br />
+                  </ClassContentsText>
+                  <ClassContentsTitle3>계산기 만들기</ClassContentsTitle3>
+                  <ClassContentsText>
+                    <Java_02_04_Code08 />
+                    <br />
+                  </ClassContentsText>
+                  <ClassContentsTitle3>연습문제(1)</ClassContentsTitle3>
+                  <ClassContentsText>
+                    · 시험 성적을 입력 받아 90 ~ 100점은 A, 80 ~ 89점은 B, 70 ~
+                    79점은 C, 60 ~ 69점은 D, 나머지는 F를 출력하는 프로그램
+                    <br />
+                    · 0 ~ 100 사이가 아니면 성적이 잘못 입력 되었다고 출력
+                    <br />
+                    <br />
+                    <b>[선택사항]</b> 성적이 잘못 입력된 경우 다시 입력 받도록
+                    수정
+                    <br />
+                    <br />
+                    <Java_02_04_Code09 />
+                    <br />
+                  </ClassContentsText>
+                  <ClassContentsTitle3>연습문제(2)</ClassContentsTitle3>
+                  <ClassContentsText>
+                    · 세자리의 정수를 입력 받아 가장 큰 수 출력
+                    <br />
+                    <br />
+                    <Java_02_04_Code10 />
+                    <br />
+                  </ClassContentsText>
+                  <ClassContentsTitle3>연습문제(3)</ClassContentsTitle3>
+                  <ClassContentsText>
+                    · 행사 안내 메일 발송하기
+                    <br />
+                    <br />
+                    <hr />
+                    <br />
+                    <ClassContentsTextTab>
+                      1. 사용자로부터 이름, 제목, 날짜(20230817), 시간(17)
+                      정보를 입력받습니다.
+                      <br />
+                      2. 입력된 날짜의 월을 추출하여 해당하는 계절을 판단합니다.
+                      <br />
+                      3. 계절에 따라 적절한 인사말과 입력된 일정 정보를
+                      출력합니다.
+                      <br />
+                      <br />
+                    </ClassContentsTextTab>
+                    <hr />
+                    <br />
+                    · 프로그램은 다음과 같은 방식으로 동작해야 합니다.
+                    <br />
+                    · 1월부터 12월까지의 월 정보를 입력 받습니다.
+                    <br />
+                    · 입력된 월에 따라 다음과 같은 계절에 맞는 인사말을
+                    출력합니다.
+                    <br />
+                    <ClassContentsTextTab>
+                      - 12월, 1월, 2월 → "한파의 연속인 1월 입니다."
+                      <br />
+                      - 3월 → "봄의 기운이 느껴지는 3월 입니다."
+                      <br />
+                      - 4월 → "새싹이 피어나는 4월 입니다."
+                      <br />
+                      - 5월 → "계절의 여왕 5월 입니다."
+                      <br />
+                      - 6월 → "활동하기 좋은 6월 입니다."
+                      <br />
+                      - 7월 → "휴가가 기다려지는 7월 입니다."
+                      <br />
+                      - 8월 → "무더운 8월 입니다."
+                      <br />
+                      - 9월 → "선선한 9월 입니다."
+                      <br />
+                      - 10월 → "천고마비의 계절 10월 입니다."
+                      <br />
+                      - 11월 → "쓸쓸한 늦가을 11월 입니다."
+                      <br />
+                    </ClassContentsTextTab>
+                    · 입력된 이름, 제목, 날짜, 시간 정보와 계절 정보를 이용하여
+                    다음과 같은 형식으로 일정 정보를 출력합니다.
+                    <br />
+                    <br />
+                    <b>[힌트]</b>
+                    <br />
+                    · 문자열의 substring을 이용하면 원하는 문자를 추출 할 수
+                    있음
+                    <br />
+                    <ClassContentsTextTab>
+                      - date = “20230817”;
+                      <br />
+                      - month = date.substring(4, 6); // 인덱스는 0부터 시작,
+                      그리고 두번째 인덱스는 미만 개념
+                      <br />
+                      <br />
+                    </ClassContentsTextTab>
+                    <b>[출력 형식]</b>
+                    <br />
+                    <br />
+                    <Java_02_04_Code11 />
+                    <br />
+                    <Java_02_04_Code12 />
+                    <br />
+                  </ClassContentsText>
+                </ClassContentsContainer>
+              </EachClass>
+              <ArrowContainer>
+                <Java_ArrowNavigation direction="left" />
+                <Java_ArrowNavigation direction="right" />
+              </ArrowContainer>
+            </RightContainer>
+          </Container>
+          <ScrollToTopButton />
+        </Wrap>
+      )}
+    </>
   );
 };
 

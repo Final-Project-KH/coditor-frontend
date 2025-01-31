@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import {
   Wrap,
   Container,
@@ -8,6 +9,7 @@ import {
   MenuButtonContainer,
   StyledLink,
 } from "../../styles/navBar/NavBar_M";
+
 import NavBar_M_Menu from "./NavBar_M_Menu";
 
 const NavBar_M = () => {
@@ -23,11 +25,18 @@ const NavBar_M = () => {
       <Container>
         <LogoContainer>
           <Logo>
-            <StyledLink to="/" />
+            <StyledLink
+              to="/"
+              className={menuOpen ? "open" : "closed"}
+              onClick={closeMenu}
+            />
           </Logo>
         </LogoContainer>
         <MenuButtonContainer>
-        <MenuButton className={menuOpen ? "open" : "closed"} onClick={toggleMenu} />
+          <MenuButton
+            className={menuOpen ? "open" : "closed"}
+            onClick={toggleMenu}
+          />
         </MenuButtonContainer>
       </Container>
       {menuOpen && <NavBar_M_Menu closeMenu={closeMenu} />}

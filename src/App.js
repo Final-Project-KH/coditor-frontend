@@ -20,15 +20,49 @@ import Java_02_02 from "./react/pages/study/java/java_02/Java_02_02";
 import Java_02_03 from "./react/pages/study/java/java_02/Java_02_03";
 import Java_02_04 from "./react/pages/study/java/java_02/Java_02_04";
 import Java_02_05 from "./react/pages/study/java/java_02/Java_02_05";
+import Java_03 from "./react/pages/study/java/java_03/Java_03";
+import Java_04 from "./react/pages/study/java/java_04/Java_04";
+import Java_05 from "./react/pages/study/java/java_05/Java_05";
+import Java_06 from "./react/pages/study/java/java_06/Java_06";
+import Java_07 from "./react/pages/study/java/java_07/Java_07";
+import Java_08 from "./react/pages/study/java/java_08/Java_08";
+import Java_09 from "./react/pages/study/java/java_09/Java_09";
 import Python_Main from "./react/pages/study/python/Python_Main";
 import Python_01 from "./react/pages/study/python/python_01/Python_01";
 import Python_01_01 from "./react/pages/study/python/python_01/Python_01_01";
+import Python_01_02 from "./react/pages/study/python/python_01/Python_01_02";
+import Python_01_03 from "./react/pages/study/python/python_01/Python_01_03";
+import Python_01_04 from "./react/pages/study/python/python_01/Python_01_04";
+import Python_01_05 from "./react/pages/study/python/python_01/Python_01_05";
+import Python_01_06 from "./react/pages/study/python/python_01/Python_01_06";
+import Python_01_07 from "./react/pages/study/python/python_01/Python_01_07";
+import Python_01_08 from "./react/pages/study/python/python_01/Python_01_08";
+import Python_01_09 from "./react/pages/study/python/python_01/Python_01_09";
+import Python_01_10 from "./react/pages/study/python/python_01/Python_01_10";
+import Python_02 from "./react/pages/study/python/python_02/Python_02";
+import Python_03 from "./react/pages/study/python/python_03/Python_03";
+import Python_04 from "./react/pages/study/python/python_04/Python_04";
+import Python_05 from "./react/pages/study/python/python_05/Python_05";
+import Python_06 from "./react/pages/study/python/python_06/Python_06";
 import C_Main from "./react/pages/study/c/C_Main";
 import C_01 from "./react/pages/study/c/c_01/C_01";
 import C_01_01 from "./react/pages/study/c/c_01/C_01_01";
+import C_02 from "./react/pages/study/c/c_02/C_02";
+import C_03 from "./react/pages/study/c/c_03/C_03";
+import C_04 from "./react/pages/study/c/c_04/C_04";
+import C_05 from "./react/pages/study/c/c_05/C_05";
 import CPlus_Main from "./react/pages/study/cplus/CPlus_Main";
 import CPlus_01 from "./react/pages/study/cplus/cplus_01/CPlus_01";
 import CPlus_01_01 from "./react/pages/study/cplus/cplus_01/CPlus_01_01";
+import CPlus_02 from "./react/pages/study/cplus/cplus_02/CPlus_02";
+import CPlus_03 from "./react/pages/study/cplus/cplus_03/CPlus_03";
+import CPlus_04 from "./react/pages/study/cplus/cplus_04/CPlus_04";
+import CPlus_05 from "./react/pages/study/cplus/cplus_05/CPlus_05";
+import CPlus_06 from "./react/pages/study/cplus/cplus_06/CPlus_06";
+import CPlus_07 from "./react/pages/study/cplus/cplus_07/CPlus_07";
+import CPlus_08 from "./react/pages/study/cplus/cplus_08/CPlus_08";
+import CPlus_09 from "./react/pages/study/cplus/cplus_09/CPlus_09";
+import CPlus_10 from "./react/pages/study/cplus/cplus_10/CPlus_10";
 import JavaScript_Main from "./react/pages/study/javascript/JavaScript_Main";
 import JavaScript_01 from "./react/pages/study/javascript/javascript_01/JavaScript_01";
 import JavaScript_01_01 from "./react/pages/study/javascript/javascript_01/JavaScript_01_01";
@@ -47,6 +81,8 @@ import Post_Write_Team from "./react/pages/community/Post_Write_Team";
 import User_Main from "./react/pages/community/User_Main";
 import FindId from "./react/pages/login/FindId";
 import FindPw from "./react/pages/login/FindPw";
+import MyPage from "./react/pages/mypage/MyPage";
+import ProfileModify from "./react/pages/mypage/ProfileModify";
 
 const App = () => {
   return (
@@ -78,6 +114,8 @@ const AppContents = () => {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/profile/modify" element={<ProfileModify />} />
 
           {StudyRoutes.map((route) => (
             <Route key={route.path} path={route.path} element={route.element} />
@@ -107,18 +145,58 @@ const StudyRoutes = [
   { path: "/study/java/02/03", element: <Java_02_03 /> },
   { path: "/study/java/02/04", element: <Java_02_04 /> },
   { path: "/study/java/02/05", element: <Java_02_05 /> },
+  { path: "/study/java/03", element: <Java_03 /> },
+  { path: "/study/java/04", element: <Java_04 /> },
+  { path: "/study/java/05", element: <Java_05 /> },
+  { path: "/study/java/06", element: <Java_06 /> },
+  { path: "/study/java/07", element: <Java_07 /> },
+  { path: "/study/java/08", element: <Java_08 /> },
+  { path: "/study/java/09", element: <Java_09 /> },
   { path: "/study/python", element: <Python_Main /> },
   { path: "/study/python/01", element: <Python_01 /> },
   { path: "/study/python/01/01", element: <Python_01_01 /> },
+  { path: "/study/python/01/02", element: <Python_01_02 /> },
+  { path: "/study/python/01/03", element: <Python_01_03 /> },
+  { path: "/study/python/01/04", element: <Python_01_04 /> },
+  { path: "/study/python/01/05", element: <Python_01_05 /> },
+  { path: "/study/python/01/06", element: <Python_01_06 /> },
+  { path: "/study/python/01/07", element: <Python_01_07 /> },
+  { path: "/study/python/01/08", element: <Python_01_08 /> },
+  { path: "/study/python/01/09", element: <Python_01_09 /> },
+  { path: "/study/python/01/10", element: <Python_01_10 /> },
+  { path: "/study/python/02", element: <Python_02 /> },
+  { path: "/study/python/03", element: <Python_03 /> },
+  { path: "/study/python/04", element: <Python_04 /> },
+  { path: "/study/python/05", element: <Python_05 /> },
+  { path: "/study/python/06", element: <Python_06 /> },
   { path: "/study/c", element: <C_Main /> },
   { path: "/study/c/01", element: <C_01 /> },
   { path: "/study/c/01/01", element: <C_01_01 /> },
+  { path: "/study/c/02", element: <C_02 /> },
+  { path: "/study/c/03", element: <C_03 /> },
+  { path: "/study/c/04", element: <C_04 /> },
+  { path: "/study/c/05", element: <C_05 /> },
   { path: "/study/cplus", element: <CPlus_Main /> },
   { path: "/study/cplus/01", element: <CPlus_01 /> },
   { path: "/study/cplus/01/01", element: <CPlus_01_01 /> },
+  { path: "/study/cplus/02", element: <CPlus_02 /> },
+  { path: "/study/cplus/03", element: <CPlus_03 /> },
+  { path: "/study/cplus/04", element: <CPlus_04 /> },
+  { path: "/study/cplus/05", element: <CPlus_05 /> },
+  { path: "/study/cplus/06", element: <CPlus_06 /> },
+  { path: "/study/cplus/07", element: <CPlus_07 /> },
+  { path: "/study/cplus/08", element: <CPlus_08 /> },
+  { path: "/study/cplus/09", element: <CPlus_09 /> },
+  { path: "/study/cplus/10", element: <CPlus_10 /> },
   { path: "/study/javascript", element: <JavaScript_Main /> },
   { path: "/study/javascript/01", element: <JavaScript_01 /> },
   { path: "/study/javascript/01/01", element: <JavaScript_01_01 /> },
+  { path: "/study/javascript/01/02", element: <JavaScript_01_02 /> },
+  { path: "/study/javascript/01/03", element: <JavaScript_01_03 /> },
+  { path: "/study/javascript/02", element: <JavaScript_02 /> },
+  { path: "/study/javascript/03", element: <JavaScript_03 /> },
+  { path: "/study/javascript/04", element: <JavaScript_04 /> },
+  { path: "/study/javascript/05", element: <JavaScript_05 /> },
 ];
 
 const CodingTestRoutes = [

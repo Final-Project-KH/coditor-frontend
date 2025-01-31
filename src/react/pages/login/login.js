@@ -1,11 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import AxiosApi from "../../../api/AxiosApi";
-import {setLoginData, setError} from "../../../redux/slice/authSlice";
-import JwtDecoding from "../../../api/JwtDecode";
-import {useNavigate} from "react-router-dom";
-import Common from "../../../util/Common";
-import {GoogleOAuthProvider} from "@react-oauth/google"; // GoogleOAuthProvider 추가
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { GoogleOAuthProvider } from "@react-oauth/google"; // GoogleOAuthProvider 추가
+
 import {
   Wrap,
   TopBarContainer,
@@ -32,11 +29,35 @@ import {
   InputExtraItem2,
   InputExtraItem3,
 } from "../../styles/login/login";
-import {setLoginCondition} from "../../../redux/slice/loginSlice";
+
+import AxiosApi from "../../../api/AxiosApi";
+import { setLoginData, setError } from "../../../redux/slice/authSlice";
+import { setLoginCondition } from "../../../redux/slice/loginSlice";
+import JwtDecoding from "../../../api/JwtDecode";
+import Common from "../../../util/Common";
+import Login_M from "./Login_M";
 
 const Login = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // 초기 화면 크기 체크
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+    window.addEventListener("resize", handleResize); // 화면 크기 변화에 따른 상태 업데이트
+    handleResize(); // 컴포넌트 마운트 시 초기 상태 설정
+    return () => {
+      window.removeEventListener("resize", handleResize); // 클린업
+    };
+  }, []);
+
   const closeMadal = () => {
     console.log("closeMadal 호출됨");
     setModalOpen(false);
@@ -59,7 +80,7 @@ const Login = () => {
   const [isCheckedAutoId, setIsCheckedAutoId] = useState(false);
   const [isCheckedAutoLogin, setIsCheckedAutoLogin] = useState(false);
 
-  const issaveuserid = useSelector((state) => state.login.issaveuserid);
+  const issaveuserid = useSelector((state) => state.login.saveuserid);
   const userid = useSelector((state) => state.login.userid);
 
   useEffect(() => {
@@ -85,6 +106,7 @@ const Login = () => {
   };
 
   const handleCheckAutoLoginBox = (e) => {
+    console.log(isCheckedAutoLogin);
     setIsCheckedAutoLogin(e.target.checked);
   };
 
@@ -111,11 +133,8 @@ const Login = () => {
         const accesstokenexpiresin = Common.getNewAccessTokenExpiresIn(
           response.data.accessToken
         );
-        const refreshtokenexpiresin = Common.getNewRefreshTokenExpiresIn(
-          response.data.refreshToken
-        );
+        const profile = response.data.profileUrl;
         console.log("액세스 토큰: ", response.data.accessToken);
-        console.log("리프레쉬 토큰: ", response.data.refreshToken);
 
         dispatch(
           setLoginData({
@@ -123,13 +142,12 @@ const Login = () => {
             nickname: nickname,
             accesstoken: response.data.accessToken,
             accesstokenexpiresin: accesstokenexpiresin,
-            refreshtoken: response.data.refreshToken,
-            refreshtokenexpiresin: refreshtokenexpiresin,
+            profile: profile,
           })
         );
         dispatch(
           setLoginCondition({
-            issaveuserid: isCheckedAutoId,
+            saveuserid: isCheckedAutoId,
             userid: inputUserId,
             autologin: isCheckedAutoLogin,
           })
@@ -184,18 +202,15 @@ const Login = () => {
         const accessTokenExpirationTime = Common.getNewAccessTokenExpiresIn(
           data.accessToken
         );
-        const refreshTokenExpirationTime = Common.getNewRefreshTokenExpiresIn(
-          data.refreshToken
-        );
         const keynumber = Common.getNewUserKeyNumber(data.accessToken);
         const nickname = Common.getNewNickname(data.accessToken);
+        const profile = data.profileUrl;
 
         Common.setKeyNumber(keynumber);
         Common.setAccessToken(data.accessToken);
-        Common.setRefreshToken(data.refreshToken);
         Common.setAccessTokenExpiresIn(accessTokenExpirationTime);
-        Common.setRefreshTokenExpiresIn(refreshTokenExpirationTime);
         Common.setNickname(nickname);
+        Common.setProfile(profile);
 
         navigate("/");
       } else {
@@ -312,108 +327,112 @@ const Login = () => {
 
   return (
     <GoogleOAuthProvider clientId="159300514752-4da56n3as35i523kr5resdcqaba8e7t4.apps.googleusercontent.com">
-      <Wrap>
-        <TopBarContainer>
-          <TopBar>
-            <LogoContainer>
-              <Logo>
-                <StyledLink to="/"></StyledLink>
-              </Logo>
-            </LogoContainer>
-          </TopBar>
-        </TopBarContainer>
-        <BodyContainer>
-          <FloatingContainer>
-            <FloatingTitle>로그인</FloatingTitle>
-            <Input
-              autoComplete="off"
-              placeholder="아이디 입력"
-              icon="/images/icon/user.png"
-              value={inputUserId}
-              onChange={(e) => handleInputChange(e, setInputUserId, setIsId)}
-            ></Input>
-            <Input
-              type="password"
-              placeholder="비밀번호 입력"
-              icon="/images/icon/pwd.png"
-              value={inputPw}
-              onChange={(e) => handleInputChange(e, setInputPw, setIsPw)}
-            ></Input>
-            <InputExtra>
-              <InputExtraItem1>
-                <InputExtraItemCheckBox
-                  type="checkbox"
-                  id="autoid"
-                  checked={isCheckedAutoId}
-                  onChange={handleCheckAutoIdBox}
-                ></InputExtraItemCheckBox>
-                {/* 아이디 저장 관련 로직 아직 미구현 */}
-                <InputExtraItemLeftP>아이디 저장</InputExtraItemLeftP>
-              </InputExtraItem1>
-              <InputExtraItem2>
-                <InputExtraItemCheckBox
-                  type="checkbox"
-                  id="autologin"
-                  checked={isCheckedAutoLogin}
-                  onChange={handleCheckAutoLoginBox}
-                ></InputExtraItemCheckBox>
-                {/* 아이디 저장 관련 로직 아직 미구현 */}
-                <InputExtraItemLeftP>자동 로그인</InputExtraItemLeftP>
-              </InputExtraItem2>
-              <InputExtraItem3>
-                <InputExtraItemRightP>
-                  <StyledLink to="/findid"></StyledLink>
-                  아이디 찾기
-                </InputExtraItemRightP>
-                <InputExtraItemRightP>
-                  <StyledLink to="/findpw"></StyledLink>
-                  비밀번호 재설정
-                </InputExtraItemRightP>
-              </InputExtraItem3>
-            </InputExtra>
-            {isId && isPw ? (
-              <SignIn enabled onClick={handleSubmit}>
-                로그인하기
-              </SignIn>
-            ) : (
-              <SignIn disabled>로그인하기</SignIn>
-            )}
-            <SignUp>
-              <StyledLink to="/signup"></StyledLink>
-              회원가입
-            </SignUp>
-            <ThirdLogin>
-              <ThirdLoginItem
-                icon="/images/sns/gmail.png"
-                onClick={handleGoogleLoginClick}
-              ></ThirdLoginItem>
-              <ThirdLoginItem
-                icon="/images/sns/kakao.png"
-                onClick={handleKakaoLoginClick} // 카카오 로그인 클릭 핸들러 적용
-              >
-                <StyledLink to="#"></StyledLink>
-              </ThirdLoginItem>
-              <ThirdLoginItem icon="/images/sns/naver.png">
-                <StyledLink to="#"></StyledLink>
-              </ThirdLoginItem>
-              <ThirdLoginItem icon="/images/sns/facebook.png">
-                <StyledLink to="#"></StyledLink>
-              </ThirdLoginItem>
-            </ThirdLogin>
-          </FloatingContainer>
-          <NoticeContainer>
-            <Notice>
-              {/* 공지 및 안내 페이지 링크 연결 미구현 */}
-              <NoticeLink to="../legal/Terms"></NoticeLink>
-              서비스 이용약관
-            </Notice>
-            <Notice>
-              <NoticeLink to="../legal/Privacy"></NoticeLink>
-              개인정보 처리방침
-            </Notice>
-          </NoticeContainer>
-        </BodyContainer>
-      </Wrap>
+      {isMobile ? (
+        <Login_M />
+      ) : (
+        <Wrap>
+          <TopBarContainer>
+            <TopBar>
+              <LogoContainer>
+                <Logo>
+                  <StyledLink to="/"></StyledLink>
+                </Logo>
+              </LogoContainer>
+            </TopBar>
+          </TopBarContainer>
+          <BodyContainer>
+            <FloatingContainer>
+              <FloatingTitle>로그인</FloatingTitle>
+              <Input
+                autoComplete="off"
+                placeholder="아이디 입력"
+                icon="/images/icon/user.png"
+                value={inputUserId}
+                onChange={(e) => handleInputChange(e, setInputUserId, setIsId)}
+              ></Input>
+              <Input
+                type="password"
+                placeholder="비밀번호 입력"
+                icon="/images/icon/pwd.png"
+                value={inputPw}
+                onChange={(e) => handleInputChange(e, setInputPw, setIsPw)}
+              ></Input>
+              <InputExtra>
+                <InputExtraItem1>
+                  <InputExtraItemCheckBox
+                    type="checkbox"
+                    id="autoid"
+                    checked={isCheckedAutoId}
+                    onChange={handleCheckAutoIdBox}
+                  ></InputExtraItemCheckBox>
+                  {/* 아이디 저장 관련 로직 아직 미구현 */}
+                  <InputExtraItemLeftP>아이디 저장</InputExtraItemLeftP>
+                </InputExtraItem1>
+                <InputExtraItem2>
+                  <InputExtraItemCheckBox
+                    type="checkbox"
+                    id="autologin"
+                    checked={isCheckedAutoLogin}
+                    onChange={handleCheckAutoLoginBox}
+                  ></InputExtraItemCheckBox>
+                  {/* 아이디 저장 관련 로직 아직 미구현 */}
+                  <InputExtraItemLeftP>자동 로그인</InputExtraItemLeftP>
+                </InputExtraItem2>
+                <InputExtraItem3>
+                  <InputExtraItemRightP>
+                    <StyledLink to="/findid"></StyledLink>
+                    아이디 찾기
+                  </InputExtraItemRightP>
+                  <InputExtraItemRightP>
+                    <StyledLink to="/findpw"></StyledLink>
+                    비밀번호 재설정
+                  </InputExtraItemRightP>
+                </InputExtraItem3>
+              </InputExtra>
+              {isId && isPw ? (
+                <SignIn enabled onClick={handleSubmit}>
+                  로그인하기
+                </SignIn>
+              ) : (
+                <SignIn disabled>로그인하기</SignIn>
+              )}
+              <SignUp>
+                <StyledLink to="/signup"></StyledLink>
+                회원가입
+              </SignUp>
+              <ThirdLogin>
+                <ThirdLoginItem
+                  icon="/images/sns/gmail.png"
+                  onClick={handleGoogleLoginClick}
+                ></ThirdLoginItem>
+                <ThirdLoginItem
+                  icon="/images/sns/kakao.png"
+                  onClick={handleKakaoLoginClick} // 카카오 로그인 클릭 핸들러 적용
+                >
+                  <StyledLink to="#"></StyledLink>
+                </ThirdLoginItem>
+                <ThirdLoginItem icon="/images/sns/naver.png">
+                  <StyledLink to="#"></StyledLink>
+                </ThirdLoginItem>
+                <ThirdLoginItem icon="/images/sns/facebook.png">
+                  <StyledLink to="#"></StyledLink>
+                </ThirdLoginItem>
+              </ThirdLogin>
+            </FloatingContainer>
+            <NoticeContainer>
+              <Notice>
+                {/* 공지 및 안내 페이지 링크 연결 미구현 */}
+                <NoticeLink to="../legal/Terms"></NoticeLink>
+                서비스 이용약관
+              </Notice>
+              <Notice>
+                <NoticeLink to="../legal/Privacy"></NoticeLink>
+                개인정보 처리방침
+              </Notice>
+            </NoticeContainer>
+          </BodyContainer>
+        </Wrap>
+      )}
     </GoogleOAuthProvider>
   );
 };

@@ -1,6 +1,6 @@
 import Carousel from "./Carousel_M";
-import { Wrap } from "../../styles/main/Main_M";
 import ScrollToTopButton from "../ScrollToTopButton";
+import { Wrap } from "../../styles/main/Main_M";
 
 const Main_M = () => {
   return (

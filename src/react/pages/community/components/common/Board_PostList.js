@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import {
   PostBottom,
   PostBottomDataBox,
@@ -26,7 +26,7 @@ import {
   PostTopUserImg,
 } from "../../../../styles/community/Board";
 import AxiosApi from "../../../../../api/AxiosApi";
-import { useLocation, useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import Board_Pagination from "./Board_Pagination";
 import {
   LanguageDisplayNames,
@@ -35,10 +35,10 @@ import {
   TeamDisplayNames,
 } from "../common/DisplayNames";
 
-const Board_PostList = ({ boardType, page, size, sortBy, order }) => {
+const Board_PostList = ({boardType, page, size, sortBy, order}) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
+  const {firstpath, secondpath, thirdpath} = location.state || {};
   const [boards, setBoards] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -79,17 +79,17 @@ const Board_PostList = ({ boardType, page, size, sortBy, order }) => {
 
   // contents conversion
   const getTextFromHTML = (html) => {
-    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const doc = new DOMParser().parseFromString(html, "text/html");
     return doc.body.textContent || "";
   };
-  
+
   return (
     <>
       <PostListContainer>
         {boards.map((board) => (
           <PostEach
             key={board.boardId}
-            style={{ cursor: "pointer" }}
+            style={{cursor: "pointer"}}
             onClick={() => handlePost(boardType, board)}
           >
             <PostTop>
@@ -124,7 +124,9 @@ const Board_PostList = ({ boardType, page, size, sortBy, order }) => {
                 )}
                 <PostMiddleContentsTitle>{board.title}</PostMiddleContentsTitle>
               </PostMiddleContentsUpper>
-              <PostMiddleContentsText>{getTextFromHTML(board.content)}</PostMiddleContentsText>
+              <PostMiddleContentsText>
+                {getTextFromHTML(board.content)}
+              </PostMiddleContentsText>
             </PostMiddle>
             <PostBottom>
               {(board.language ||

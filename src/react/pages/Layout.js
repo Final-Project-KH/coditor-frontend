@@ -1,12 +1,14 @@
+import { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
+
 import {
   Background,
   Header,
   LayoutWrapper,
   MainContent,
 } from "../styles/Layout";
+
 import NavBar from "./navBar/NavBar";
-import { useEffect, useRef, useState } from "react";
 import NavBar_M from "./navBar/NavBar_M";
 
 const Layout = () => {

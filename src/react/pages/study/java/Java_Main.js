@@ -3,18 +3,20 @@ import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 
 import {
   Wrap,
+  TopBoxWide,
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxWide,
+  TopBoxLink,
   Container,
   LeftContainer,
   RightContainer,
-} from "../../../styles/study/Class_Main";
+} from "../../../styles/study/Language_Main";
 
 import Java_ChapterList from "./java_components/Java_ChapterList";
 import Java_Title from "./java_components/Java_Title";
 import Java_ClassList from "./java_components/Java_ClassList";
+import Java_Main_M from "./Java_Main_M";
 import ScrollToTopButton from "../../ScrollToTopButton";
 
 const Java_Main = () => {
@@ -22,6 +24,7 @@ const Java_Main = () => {
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
+  const { isMobile } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
@@ -63,28 +66,36 @@ const Java_Main = () => {
   };
 
   return (
-    <Wrap>
-      <TopBoxWide>
-        <TopBox>
-          <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{secondpath}</TopBoxText>
-        </TopBox>
-      </TopBoxWide>
-      <Container>
-        <LeftContainer>
-          <Java_Title />
-          <Java_ChapterList
-            refs={sectionRefs}
-            mainContentRef={mainContentRef}
-          />
-        </LeftContainer>
-        <RightContainer>
-          <Java_ClassList refs={sectionRefs} />
-        </RightContainer>
-      </Container>
-      <ScrollToTopButton />
-    </Wrap>
+    <>
+      {isMobile ? (
+        <Java_Main_M />
+      ) : (
+        <Wrap>
+          <TopBoxWide>
+            <TopBox>
+              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxText onClick={() => handleRefresh()}>
+                {secondpath}
+              </TopBoxText>
+            </TopBox>
+          </TopBoxWide>
+          <Container>
+            <LeftContainer>
+              <Java_Title />
+              <Java_ChapterList
+                refs={sectionRefs}
+                mainContentRef={mainContentRef}
+              />
+            </LeftContainer>
+            <RightContainer>
+              <Java_ClassList refs={sectionRefs} />
+            </RightContainer>
+          </Container>
+          <ScrollToTopButton />
+        </Wrap>
+      )}
+    </>
   );
 };
 
