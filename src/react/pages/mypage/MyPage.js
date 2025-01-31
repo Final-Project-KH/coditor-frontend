@@ -111,6 +111,8 @@ const MyPage = () => {
   const profile = useSelector((state) => state.auth.profile);
   const nickname = useSelector((state) => state.auth.nickname);
 
+  console.log(profile);
+
   const navigateProfileModify = () => {
     navigate("/profile/modify", {
       state: {
@@ -123,7 +125,6 @@ const MyPage = () => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [croppedImage, setCroppedImage] = useState(null); // 저장 용도
   const [croppedPreview, setCroppedPreview] = useState(null); // 미리보기 용도
   const [isProfileImgModalOpen, setIsProfileImgModalOpen] = useState(false);
   const [isProfileUploadModalOpen, setIsProfileUploadModalOpen] =
@@ -179,8 +180,6 @@ const MyPage = () => {
       croppedPreview,
       `${nickname}_profile.png`
     );
-    setCroppedImage(finalImage);
-
     try {
       const formData = new FormData();
       formData.append("file", finalImage);
@@ -194,6 +193,28 @@ const MyPage = () => {
         setIsProfileUploadModalOpen(false);
         setIsProfileImgModalOpen(false);
         dispatch(setLoginData({ profile: response.data }));
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    if (isSubmitting) {
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      const response = await AxiosApi.deleteprofile();
+      if (response) {
+        alert("프로필 사진 삭제가 완료되었습니다.");
+        dispatch(setLoginData({ profile: null }));
+        setPreview(null);
+        setCroppedPreview(null);
+        setIsProfileImgModalOpen(false);
       }
     } catch (error) {
       console.log(error);
@@ -519,7 +540,9 @@ const MyPage = () => {
                   >
                     프로필 사진 변경
                   </ProfileModalImageModifyButton>
-                  <ProfileModalImageDeleteButton>
+                  <ProfileModalImageDeleteButton
+                    onClick={(e) => handleDelete(e)}
+                  >
                     프로필 사진 삭제
                   </ProfileModalImageDeleteButton>
                 </>
@@ -607,7 +630,6 @@ const MyPage = () => {
                     >
                       사진 변경
                     </ProfileUploadModalImageAddButton>
-                    )
                   </>
                 )
               )}

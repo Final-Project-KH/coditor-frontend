@@ -113,8 +113,6 @@ const AxiosApi = {
   },
   uploadprofile: async (formData) => {
     try {
-      console.log(SPRING_DOMAIN);
-
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/my/profile/imageupload",
         formData,
@@ -125,6 +123,16 @@ const AxiosApi = {
         }
       );
       return response;
+    } catch (error) {
+      throw error;
+    }
+  },
+  deleteprofile: async () => {
+    try {
+      const response = await AxiosInstance.post(
+        SPRING_DOMAIN + "/my/profile/imagedelete"
+      );
+      return response.data;
     } catch (error) {
       throw error;
     }

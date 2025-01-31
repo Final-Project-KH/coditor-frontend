@@ -74,18 +74,18 @@ const JavaScript_05_M = () => {
           <TopBoxLink onClick={() => handleStudyJavaScript()}>
             <TopBoxText>{secondpath}</TopBoxText>
           </TopBoxLink>
-          </TopBox>
-          </TopBoxWide>
-          <TopBoxWide2>
-          <TopBox2>
+        </TopBox>
+      </TopBoxWide>
+      <TopBoxWide2>
+        <TopBox2>
           <TopBoxLink onClick={() => handleRefresh()}>
             <TopBoxText2>{thirdpath}</TopBoxText2>
           </TopBoxLink>
         </TopBox2>
       </TopBoxWide2>
       <Container>
-          <JavaScript_Title_M />
-          <JavaScript_ClassList_Filtered_M chapter="05" />
+        <JavaScript_Title_M />
+        <JavaScript_ClassList_Filtered_M chapter="05" />
       </Container>
       <ScrollToTopButton />
     </Wrap>

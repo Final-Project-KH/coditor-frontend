@@ -9,7 +9,7 @@ export const authSlice = createSlice({
     accesstoken: "",
     accesstokenexpiresin: "",
     authorities: "",
-    profile: "",
+    profile: null,
     error: "",
   },
   reducers: {
