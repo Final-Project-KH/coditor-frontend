@@ -3,16 +3,17 @@ import {
   ClassHeaderTitle,
   ConsoleClass,
   StyledDiv,
-} from "../../../styles/codingtest/java/CodingTestJava";
+} from "../../../styles/codingtest/ChallengeStyles";
 
-const Console = () => {
+const Console = ({ message }) => {
+  console.log(message);
   return (
     <>
       <ConsoleClass>
         <ClassHeader>
           <ClassHeaderTitle>CONSOLE</ClassHeaderTitle>
         </ClassHeader>
-        <StyledDiv>👉 전달받은 값 : </StyledDiv>
+        <StyledDiv style={{ whiteSpace: "pre-wrap" }}>{message}</StyledDiv>
       </ConsoleClass>
     </>
   );

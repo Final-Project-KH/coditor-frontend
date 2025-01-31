@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import React from "react";
 import {
   Wrap,
@@ -15,29 +15,36 @@ import {
   EachClass,
   ClassHeader,
   ClassHeaderTitle,
-  ClassHeaderTitleButton,
   ClassContents,
   ClassSet,
   ClassName,
-  StyledLink,
   TopBox,
-  Navigator,
   TopBoxWide,
   TopBoxText,
   TopBoxArrow,
   NavigatiePath,
-} from "../../../../styles/codingtest/CoddingTestCommons";
-import AxiosApi from "../../../../../api/AxiosApi";
-import Common from "../../../../../util/Common";
+} from "../../../styles/codingtest/CoddingTestCommons";
 import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
-import { classJavaMenuData } from "../../../../../util/codingtestpractice/ClassJavaMenuData";
-import { useDispatch, useSelector } from "react-redux";
-import ScrollToTopButton from "../../../ScrollToTopButton";
+import { useSelector } from "react-redux";
+import ScrollToTopButton from "../../ScrollToTopButton";
+
+// 서버에서 가져올 것
+const MENU_ITEMS = [
+  {
+    category: "기본 연산자 활용",
+    contents: [
+      {
+        title: "두 정수의 덧셈",
+        questionId: 1,
+      },
+    ],
+  },
+];
 
 // User Nickname, 등급
 // Coding Test 난이도 받아와야함
 // 경로 받아와야함
-const CT_Java_Practice_Main = () => {
+const Practice = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
@@ -71,28 +78,6 @@ const CT_Java_Practice_Main = () => {
 
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
-  };
-
-  const updatedJavaMenuData = classJavaMenuData.map((menu) => ({
-    ...menu,
-    contents: menu.contents.map((content) => ({
-      ...content,
-      label: content.label,
-      navigatepath: content.navigatepath,
-      firstpath: firstpath,
-      secondpath: secondpath,
-      thirdpath: thirdpath,
-      fourthpath: content.fourthpath,
-    })),
-  }));
-  const initialIds = updatedJavaMenuData.map((menu) => menu.id);
-
-  const [isToggleOpenId, setIsToggleOpenId] = useState(initialIds);
-
-  const toggleVisibility = (id) => {
-    setIsToggleOpenId((prevId) =>
-      prevId.includes(id) ? prevId.filter((i) => i !== id) : [...prevId, id]
-    );
   };
 
   const nickname = useSelector((state) => state.auth.nickname);
@@ -139,31 +124,23 @@ const CT_Java_Practice_Main = () => {
           <LeftMiddleSubjectContainer></LeftMiddleSubjectContainer>
         </LeftContainer>
         <RightContainer>
-          {updatedJavaMenuData.map((cls) => (
-            <EachClass key={cls.id}>
-              <ClassHeader isOpen={isToggleOpenId.includes(cls.id)}>
-                <ClassHeaderTitle>{cls.title}</ClassHeaderTitle>
-                <ClassHeaderTitleButton
-                  isOpen={isToggleOpenId.includes(cls.id)}
-                  onClick={() => toggleVisibility(cls.id)}
-                />
+          {MENU_ITEMS.map((item, idx) => (
+            <EachClass key={idx}>
+              <ClassHeader>
+                <ClassHeaderTitle>{item.category}</ClassHeaderTitle>
               </ClassHeader>
-              <ClassContents isOpen={isToggleOpenId.includes(cls.id)}>
-                {cls.contents.map((content, index) => (
-                  <ClassSet key={index}>
+              <ClassContents isOpen={true}>
+                {item.contents.map((content) => (
+                  <ClassSet key={content.questionId}>
                     <ClassName>
                       <NavigatiePath
                         onClick={() =>
-                          handleNavigation(content.navigatepath, {
-                            firstpath: content.firstpath,
-                            secondpath: content.secondpath,
-                            thirdpath: content.thirdpath,
-                            fourthpath: content.fourthpath,
-                            lowerpath: content.label,
-                          })
+                          navigate(
+                            `/codingtest/challenge/${content.questionId}`
+                          )
                         }
                       ></NavigatiePath>
-                      {content.label}
+                      {content.title}
                     </ClassName>
                   </ClassSet>
                 ))}
@@ -176,4 +153,4 @@ const CT_Java_Practice_Main = () => {
     </Wrap>
   );
 };
-export default CT_Java_Practice_Main;
+export default Practice;

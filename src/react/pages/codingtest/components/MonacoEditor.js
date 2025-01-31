@@ -3,16 +3,15 @@ import {
   ClassHeader,
   ClassHeaderTitle,
   ClassHeaderButton,
-} from "../../../styles/codingtest/java/CodingTestJava";
+} from "../../../styles/codingtest/ChallengeStyles";
 
 import React, { useRef, useEffect, useState } from "react";
 import { Editor } from "@monaco-editor/react";
 
-const MonacoEditor = ({ codeLanguage }) => {
+const MonacoEditor = ({ codeLanguage, value, setValue }) => {
   const editorRef = useRef();
-  const [value, setValue] = useState("");
 
-  const handleEditorDidMount = (editor) => {
+  const focusToEditor = (editor) => {
     editorRef.current = editor;
     editor.focus();
   };
@@ -48,9 +47,8 @@ const MonacoEditor = ({ codeLanguage }) => {
         </ClassHeader>
         <Editor
           height="100%"
-          defaultLanguage="java"
-          defaultValue={`public class Main{\n\tpublic static void main(String[] args){\n\t\t// 입력해보세요.\n\t}\n}`}
-          onMount={handleEditorDidMount}
+          defaultLanguage={codeLanguage.toLowerCase()}
+          onMount={focusToEditor}
           theme="vs-dark"
           value={value}
           onChange={(value) => setValue(value)}

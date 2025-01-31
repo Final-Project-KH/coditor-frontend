@@ -1,34 +1,84 @@
 // useSse.jsx
 import { useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { EventSourcePolyfill } from "event-source-polyfill";
-import Common from "../../../../util/Common";
 import AxiosApi from "../../../../api/AxiosApi";
 
-const useSse = ({ url, jobId, onMessage, onError }) => {
-  const [shouldReconnect, setShouldReconnect] = useState(false);
-  const [retryCount, setRetryCount] = useState(0);
-  const [connectionStatus, setConnectionStatus] = useState("idle");
+const SPRING_DOMAIN = "http://localhost:8111";
+const OPEN_TIMEOUT = 10000; // onopen 타임아웃 (10초)
+const MESSAGE_TIMEOUT = 20000; // onmessage 타임아웃 (20초)
 
-  // SSE 메시지 수신을 외부 컴포넌트로 전달하기 위한 콜백
-  // 콜백은 ref로 관리하여, 재연결 시도를 방지
-  const onMessageRef = useRef(onMessage);
-  const onErrorRef = useRef(onError);
+const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
+  // useEffect 내부에서 RECONNECT를 발생 시키기 위한 state
+  const [shouldConnect, setShouldConnect] = useState(false);
 
   // SSE 연결 객체 초기화
   const eventSource = useRef(null);
+
+  // 전체 메시지 수(테스트 케이스 수) 유지
+  const numOfTestcaseRef = useRef(null);
 
   // 마지막 수신 받은 메시지의 ID를 유지
   // 네트워크 장애로 메시지가 누락된 경우 서버로 전송하여 누락된 데이터 fetch 용도
   const lastEventIdRef = useRef(null);
 
-  // 최신 콜백을 ref에 저장
-  useEffect(() => {
-    onMessageRef.current = onMessage;
-  }, [onMessage]);
+  // 토큰 state 추적
+  // 실제로 바뀌지 않았으면 업데이트 되지 않음
+  const accessToken = useSelector((state) => state.auth.accesstoken);
+
+  // 타임아웃 ID 추적
+  const openTimeoutIdRef = useRef(null);
+  const messageTimeoutIdRef = useRef(null);
+
+  // 새로고침 여부 추적
+  const isReloading = useRef(false);
 
   useEffect(() => {
-    onErrorRef.current = onError;
-  }, [onError]);
+    // 새로고침 여부 감지 (sessionStorage 활용)
+    if (sessionStorage.getItem("isReloading") === "true") {
+      isReloading.current = true;
+      sessionStorage.removeItem("isReloading"); // 플래그 초기화
+    }
+
+    // 새로고침 이벤트 감지
+    const handleBeforeUnload = () => {
+      isReloading.current = true;
+      sessionStorage.setItem("isReloading", "true");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  // 타임아웃 처리 함수
+  const handleTimeout = (type) => {
+    if (eventSource.current) {
+      eventSource.current.close();
+    }
+
+    onError(
+      type === "onopen"
+        ? "Connection could not be established within 10 seconds"
+        : "No message received within 20 seconds"
+    );
+  };
+
+  // onopen 타임아웃 설정
+  const startOpenTimeout = () => {
+    openTimeoutIdRef.current = setTimeout(() => {
+      handleTimeout("onopen");
+    }, OPEN_TIMEOUT);
+  };
+
+  // onmessage 타임아웃 설정
+  const startMessageTimeout = () => {
+    messageTimeoutIdRef.current = setTimeout(() => {
+      handleTimeout("onmessage");
+    }, MESSAGE_TIMEOUT);
+  };
 
   useEffect(() => {
     // 최초 실행 방지
@@ -36,14 +86,16 @@ const useSse = ({ url, jobId, onMessage, onError }) => {
 
     const connectToSse = () => {
       const headers = {
-        Authorization: `Bearer ${Common.getAccessToken()}`,
+        Authorization: `Bearer ${accessToken}`,
       };
 
-      if (lastEventIdRef.current) {
-        headers["Last-Event-ID"] = lastEventIdRef.current;
-      }
+      // if (lastEventIdRef.current) {
+      //   headers["Last-Event-ID"] = lastEventIdRef.current;
+      // }
 
-      const eventSourceUrl = new URL(url);
+      const eventSourceUrl = new URL(
+        `${SPRING_DOMAIN}/api/code-challenge/subscribe`
+      );
       eventSourceUrl.searchParams.append("jobId", jobId);
 
       // 기본으로 제공되는 EventSource 클래스는 custom http header 설정을 지원하지 않음
@@ -53,58 +105,100 @@ const useSse = ({ url, jobId, onMessage, onError }) => {
         withCredentials: true, // 쿠키를 자동으로 포함하도록 설정, 필요 시 사용
       });
 
-      eventSource.current.onopen = () => {
-        console.log("SSE 연결 성공");
-        setConnectionStatus("connected");
-        setRetryCount(0);
-        const executeResponseData = AxiosApi.executeCode(jobId);
+      // onopen 타임아웃 시작
+      startOpenTimeout();
+
+      eventSource.current.onopen = async () => {
+        if (openTimeoutIdRef.current) {
+          clearTimeout(openTimeoutIdRef.current);
+        }
+
+        const responseData = await AxiosApi.executeCode(jobId);
+        // 조건문 내부 값이 undefined면 falsy 값
+        if (!responseData["numOfTestcase"]) {
+          const errorMessage = responseData["error"];
+          eventSource.current.close();
+          onError(errorMessage);
+          console.error(
+            "SSE 연결에 성공했지만, 테스트 케이스의 갯수를 확인할 수 없습니다."
+          );
+          return;
+        }
+
+        // 테스트 케이스 수 업데이트
+        numOfTestcaseRef.current = parseInt(responseData["numOfTestcase"]);
+
+        onOpen(numOfTestcaseRef.current);
+
+        // onmessage 타임아웃 시작
+        startMessageTimeout();
+        return;
       };
 
-      eventSource.current.onmessage = (event) => {
-        console.log("Received message:", event.data);
-        if (event?.data === "connected") return;
+      eventSource.current.onmessage = async (event) => {
+        // SSE 연결 open 전용 메시지는 무시
+        if (event.data === "Connection Established") {
+          return;
+        }
+
+        if (messageTimeoutIdRef.current) {
+          clearTimeout(messageTimeoutIdRef.current);
+        }
 
         // Event ID 업데이트
-        lastEventIdRef.current = event.id;
+        lastEventIdRef.current = parseInt(event.lastEventId);
 
         // 받은 메시지를 파싱하여 외부 콜백으로 전달 후 컴포넌트 업데이트
-        if (onMessageRef.current) {
-          try {
-            const parsedData = JSON.parse(event.data);
-            onMessageRef.current(parsedData);
-          } catch (e) {
-            console.error("JSON parse error:", e);
-            // 연결 종료하고 외부 컴포넌트로 알려야 하지 않나
+        const parsedData = JSON.parse(event.data);
+        parsedData["idx"] = event.lastEventId;
+        onMessage(parsedData);
+
+        // 모두 수신한 경우 완료 처리
+        if (lastEventIdRef.current === numOfTestcaseRef.current) {
+          if (messageTimeoutIdRef.current) {
+            clearTimeout(messageTimeoutIdRef.current);
           }
+
+          eventSource.current.close();
+
+          // 추적 값 초기화
+          lastEventIdRef.current = null;
+          numOfTestcaseRef.current = null;
+
+          onComplete();
+          return;
         }
+
+        startMessageTimeout();
       };
 
       eventSource.current.onerror = (err) => {
-        console.error("SSE error:", err);
-        setConnectionStatus("error");
+        if (openTimeoutIdRef.current) {
+          clearTimeout(openTimeoutIdRef.current);
+        }
 
-        if (onErrorRef.current) {
-          onErrorRef.current(err);
+        if (messageTimeoutIdRef.current) {
+          clearTimeout(messageTimeoutIdRef.current);
         }
 
         // EventSource 연결을 수동으로
         // 종료하여 브라우저의 자동 재연결 메커니즘이 시도되지 않도록 처리
         eventSource.current.close();
 
-        if (retryCount >= 2) {
-          alert(
-            "코드 실행 결과를 확인 할 수 없습니다. 잠시 후 다시 시도해주세요. 문제가 지속될 경우 관리자에게 문의 부탁드립니다."
+        // 새로고침된 경우 onError 실행 방지
+        if (isReloading.current) {
+          console.warn(
+            "새로고침으로 인해 SSE 연결이 종료됨. onError 실행 안 함."
           );
-          eventSource.current.close();
+          isReloading.current = false;
           return;
         }
 
-        // 직접 재연결 시도
-        const retryDelay = Math.min(3000 * 2 ** retryCount, 30000);
-        setTimeout(() => {
-          setRetryCount((prev) => prev + 1);
-          setShouldReconnect((prev) => !prev);
-        }, retryDelay);
+        console.error(err);
+        onError(
+          "서버와 연결이 불안정합니다. 네트워크 연결 상태를 확인해주세요."
+        );
+        return;
       };
     };
 
@@ -112,16 +206,21 @@ const useSse = ({ url, jobId, onMessage, onError }) => {
 
     // 컴포넌트 언마운트, useEffect의 재실행 시 아래 return 수행
     return () => {
+      if (openTimeoutIdRef.current) {
+        clearTimeout(openTimeoutIdRef.current);
+      }
+
+      if (messageTimeoutIdRef.current) {
+        clearTimeout(messageTimeoutIdRef.current);
+      }
+
       if (eventSource.current) {
         eventSource.current.close();
       }
     };
-  }, [url, jobId, shouldReconnect, retryCount]);
+  }, [shouldConnect]);
 
-  // useSse 훅이 호출된 컴포넌트에 마지막 이벤트 값을 반환
-  // eventSource.onmessage 시점에 컴포넌트의 onMessage 콜백을 사용하고
-  // 컴포넌트는 내부적으로 UI 업데이트를 위해 state를 업데이트 한다면, 아래 값은 최신화가 보장됨
-  return { lastEventId: lastEventIdRef.current, connectionStatus };
+  return { connect: () => setShouldConnect((prev) => !prev) };
 };
 
 export default useSse;

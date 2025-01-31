@@ -32,9 +32,8 @@ import CPlus_01_01 from "./react/pages/study/cplus/cplus_01/CPlus_01_01";
 import JavaScript_Main from "./react/pages/study/javascript/JavaScript_Main";
 import JavaScript_01 from "./react/pages/study/javascript/javascript_01/JavaScript_01";
 import JavaScript_01_01 from "./react/pages/study/javascript/javascript_01/JavaScript_01_01";
-import CT_Java_Practice_Main from "./react/pages/codingtest/subpages/java/Java_Practice_Main";
-import CT_Java_Practice_01 from "./react/pages/codingtest/subpages/java/Java_Practice_01";
-import CT_Java_Practice_01_01 from "./react/pages/codingtest/subpages/java/Java_Practice_01_01";
+import Practice from "./react/pages/codingtest/subpages/Practice";
+import CodeChallenge from "./react/pages/codingtest/subpages/CodeChallenge";
 import Community_Main from "./react/pages/community/Community_Main";
 import Community_Coding from "./react/pages/community/Community_Coding";
 import Community_Course from "./react/pages/community/Community_Course";
@@ -123,12 +122,8 @@ const StudyRoutes = [
 ];
 
 const CodingTestRoutes = [
-  { path: "/codingtest/java/practice", element: <CT_Java_Practice_Main /> },
-  { path: "/codingtest/java/practice/01", element: <CT_Java_Practice_01 /> },
-  {
-    path: "/codingtest/java/practice/01/01",
-    element: <CT_Java_Practice_01_01 />,
-  },
+  { path: "/codingtest/practice", element: <Practice /> },
+  { path: "/codingtest/challenge/:questionId", element: <CodeChallenge /> },
 ];
 
 const CommunityRoutes = [

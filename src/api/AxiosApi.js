@@ -363,6 +363,8 @@ const AxiosApi = {
 
   submitCode: async ({ code, codeLanguage, questionId }) => {
     try {
+      // sse 연결 과정에서 Access Token이 만료되지 않도록 재발급
+      Common.clearAccessToken();
       const response = await AxiosInstance.post(
         `${SPRING_DOMAIN}/api/code-challenge/submit`,
         { codeLanguage, code, questionId }
@@ -373,15 +375,17 @@ const AxiosApi = {
 
       if (error.request && !error.response) {
         data["error"] =
-          "서버가 응답하지 않습니다. 네트워크 상태를 확인해주세요.";
+          "서버가 응답하지 않습니다. 네트워크 연결 상태를 확인해주세요.";
       } else if (error.response) {
+        // 단순 토큰 재발급 이므로
+        if (error.response.status === 401) {
+          return null;
+        }
+
         Object.assign(data, error.response.data);
         if (!data["error"])
           data["error"] =
-            "코드 제출 과정에서 문제가 발생하였습니다. 문제가 반복될 경우 관리자에게 문의바랍니다.";
-      } else {
-        data["error"] = "알 수 없는 문제가 발생했습니다";
-        console.error(error.message);
+            "코드 제출 과정에서 예기치 못한 문제가 발생하였습니다😭. 문제가 반복될 경우 관리자에게 문의해주세요.";
       }
       return data;
     }
@@ -392,9 +396,20 @@ const AxiosApi = {
       const response = await AxiosInstance.get(
         `${SPRING_DOMAIN}/api/code-challenge/execute?jobid=${jobId}`
       );
+      return response.data;
     } catch (error) {
-      alert("실행 실패");
-      console.log(error);
+      const data = {};
+
+      if (error.request && !error.response) {
+        data["error"] =
+          "서버가 응답하지 않습니다. 네트워크 연결 상태를 확인해주세요.";
+      } else if (error.response) {
+        Object.assign(data, error.response.data);
+        if (!data["error"])
+          data["error"] =
+            "코드 실행 과정에서 예기치 못한 문제가 발생하였습니다😭. 문제가 반복될 경우 관리자에게 문의해주세요.";
+      }
+      return data;
     }
   },
 };

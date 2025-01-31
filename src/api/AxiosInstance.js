@@ -61,8 +61,13 @@ AxiosInstance.interceptors.response.use(
         console.error("Refresh Token 실패:", refreshError);
         Common.clearRefreshToken();
         // 예시로 로그인 페이지로 리다이렉트
-        window.location.href = "/login";
+        // window.location.href = "/login";
         // refreshToken 만료 -> 재로그인 관련 알림 필요
+
+        if (originalRequest.url.includes("/code-challenge/submit")) {
+          alert("로그인이 만료되었습니다. 로그인 후 다시 시도해주세요");
+          window.location.href = "/login";
+        }
       }
     }
 
