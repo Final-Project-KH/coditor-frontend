@@ -133,6 +133,7 @@ const Login = () => {
         const accesstokenexpiresin = Common.getNewAccessTokenExpiresIn(
           response.data.accessToken
         );
+        const profile = response.data.profileUrl;
         console.log("액세스 토큰: ", response.data.accessToken);
 
         dispatch(
@@ -141,6 +142,7 @@ const Login = () => {
             nickname: nickname,
             accesstoken: response.data.accessToken,
             accesstokenexpiresin: accesstokenexpiresin,
+            profile: profile,
           })
         );
         dispatch(
@@ -202,11 +204,13 @@ const Login = () => {
         );
         const keynumber = Common.getNewUserKeyNumber(data.accessToken);
         const nickname = Common.getNewNickname(data.accessToken);
+        const profile = data.profileUrl;
 
         Common.setKeyNumber(keynumber);
         Common.setAccessToken(data.accessToken);
         Common.setAccessTokenExpiresIn(accessTokenExpirationTime);
         Common.setNickname(nickname);
+        Common.setProfile(profile);
 
         navigate("/");
       } else {

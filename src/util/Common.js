@@ -1,5 +1,5 @@
 import store from "../redux/store/store";
-import {setLoginData, clearAccessToken} from "../redux/slice/authSlice"; // Redux 액션 가져오기
+import { setLoginData, clearAccessToken } from "../redux/slice/authSlice"; // Redux 액션 가져오기
 import axios from "axios";
 import JwtDecoding from "../api/JwtDecode";
 
@@ -47,19 +47,23 @@ const Common = {
   },
 
   setAccessToken: (token) => {
-    store.dispatch(setLoginData({accesstoken: token})); // Redux store에 토큰 저장
+    store.dispatch(setLoginData({ accesstoken: token })); // Redux store에 토큰 저장
   }, // accesstoken 데이터는 (response.data.accessToken) -> response는 지정한 변수명
 
   setAccessTokenExpiresIn: (expirationtime) => {
-    store.dispatch(setLoginData({accesstokenexpiresin: expirationtime}));
+    store.dispatch(setLoginData({ accesstokenexpiresin: expirationtime }));
   }, // accesstoken expiretime 데이터는 getNewAccessTokenExpiresIn 함수를 거친 데이터
 
   setKeyNumber: (keynumber) => {
-    store.dispatch(setLoginData({keynumber: keynumber}));
+    store.dispatch(setLoginData({ keynumber: keynumber }));
   },
 
   setNickname: (nickname) => {
-    store.dispatch(setLoginData({nickname: nickname}));
+    store.dispatch(setLoginData({ nickname: nickname }));
+  },
+
+  setProfile: (profile) => {
+    store.dispatch(setLoginData({ profile: profile }));
   },
 
   clearAccessToken: () => {
@@ -99,8 +103,10 @@ const Common = {
       const accessTokenExpirationTime = Common.getNewAccessTokenExpiresIn(
         response.data.accessToken
       );
+      const profile = response.data.profileUrl;
       Common.setAccessToken(accessToken);
       Common.setAccessTokenExpiresIn(accessTokenExpirationTime);
+      Common.setProfile(profile);
       return accessToken;
     } catch (error) {
       console.error("Failed to refresh access token:", error);

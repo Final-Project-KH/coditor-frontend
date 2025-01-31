@@ -119,7 +119,6 @@ const MyPage = () => {
       },
     });
   };
-  const [image, setImage] = useState(null); // 현재 프로필 이미지 용도
   const [preview, setPreview] = useState(null); // 변경 프로필 이미지 용도
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
@@ -541,7 +540,7 @@ const MyPage = () => {
                 onClick={() => onClickProfileUploadClose()}
               ></ProfileUploadModalCloseButton>
               <ProfileUploadModalLogo></ProfileUploadModalLogo>
-              {!image ? (
+              {!profile ? (
                 <ProfileUploadModalTitle>
                   프로필 사진 추가
                 </ProfileUploadModalTitle>
@@ -567,7 +566,7 @@ const MyPage = () => {
                 onChange={handleFileChange}
                 ref={fileInputRef}
               />
-              {!image && !croppedPreview ? (
+              {!profile && !croppedPreview ? (
                 <>
                   <ProfileUploadModalContents>
                     여기로 사진 드래그
@@ -598,7 +597,7 @@ const MyPage = () => {
                   </ProfileUploadModalImageAddButton>
                 </>
               ) : (
-                image && (
+                profile && (
                   <>
                     <ProfileUploadModalContents>
                       현재 프로필 사진
