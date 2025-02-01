@@ -21,8 +21,10 @@ const Post_UserProfile = () => {
       },
     });
   };
-  const nickname = useSelector((state) => state.auth.nickname);
-  const profile = useSelector((state) => state.auth.profile);
+  const nickname = useSelector((state) => state.auth.nickname); // 이거 아님
+  // 작성자 닉네임으로 설정해야됨
+  const profile = useSelector((state) => state.auth.profile); // 이거 아님
+  // 작성자 profile로 설정해야됨
 
   return (
     <>

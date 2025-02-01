@@ -74,8 +74,17 @@ const Post_MainContents = ({ boardType }) => {
           boardId,
           userkeynumber
         );
-        setUserLikeCnt(response.likeCnt);
-        setUserDisLikeCnt(response.dislikeCnt);
+        console.log("response", response);
+        if (response.reaction === "LIKE") {
+          setUserLikeCnt(1);
+          setUserDisLikeCnt(0);
+        } else if (response.reaction === "DISLIKE") {
+          setUserLikeCnt(0);
+          setUserDisLikeCnt(1);
+        } else {
+          setUserLikeCnt(0);
+          setUserDisLikeCnt(0);
+        }
         console.log("Like : ", userLikeCnt);
         console.log("Dislike : ", userDisLikeCnt);
       } catch (error) {
@@ -83,7 +92,7 @@ const Post_MainContents = ({ boardType }) => {
       }
     };
     reactionState();
-  }, [userDisLikeCnt, userLikeCnt]);
+  }, []);
 
   const onClickLike = async (e) => {
     e.preventDefault();
@@ -239,18 +248,35 @@ const Post_MainContents = ({ boardType }) => {
                 className="main-post-content"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
-              <MainPostTagsBox>
-                {(post.language || post.course || post.study || post.team) && (
+              {(post.language || post.course || post.study || post.team) && (
+                <MainPostTagsBox>
+                  {/* {(post.language || post.course || post.study || post.team) && (
                   <MainPostTag>
-                    {" "}
                     {LanguageDisplayNames[post.language] ||
                       CourseDisplayNames[post.course] ||
                       StudyDisplayNames[post.study] ||
                       TeamDisplayNames[post.team]}
                   </MainPostTag>
-                )}
-                {/* {post.language && <MainPostTag>{post.language}</MainPostTag>} */}
-              </MainPostTagsBox>
+                )} */}
+                  {post.language && post.language.length > 0
+                    ? post.language.map((lang, index) => (
+                        <MainPostTag>{LanguageDisplayNames[lang]}</MainPostTag>
+                      ))
+                    : post.course && post.course.length > 0
+                    ? post.course.map((lang, index) => (
+                        <MainPostTag>{CourseDisplayNames[lang]}</MainPostTag>
+                      ))
+                    : post.study && post.study.length > 0
+                    ? post.study.map((lang, index) => (
+                        <MainPostTag>{StudyDisplayNames[lang]}</MainPostTag>
+                      ))
+                    : post.team &&
+                      post.team.length > 0 &&
+                      post.team.map((lang, index) => (
+                        <MainPostTag>{TeamDisplayNames[lang]}</MainPostTag>
+                      ))}
+                </MainPostTagsBox>
+              )}
             </MainPostContentsBox>
           </MainPostMiddle>
         </MainPostContainer>

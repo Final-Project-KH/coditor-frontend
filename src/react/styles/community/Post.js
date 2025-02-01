@@ -458,8 +458,17 @@ export const ReplyUserProfileImg = styled.div.attrs({
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
   border-radius: 50%;
+  ${(props) =>
+    props.isProfile === null &&
+    css`
+      background-image: url("/images/general/default_profile.png");
+    `}
+  ${(props) =>
+    props.isProfile !== null &&
+    css`
+      background-image: url(${(props) => props.isProfile});
+    `}
 `;
 export const ReplyUserProfileTextBox = styled.div.attrs({
   id: "replyuserprofiletextbox",

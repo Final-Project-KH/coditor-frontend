@@ -65,6 +65,8 @@ const Board_PostList = ({ boardType, page, size, sortBy, order, status }) => {
     loadBoard();
   }, [boardType, currentPage, sortBy, order, status]); // boardType 또는 currentPage가 변경될 때마다 실행
 
+  console.log("게시글 확인 : ", boards);
+
   // view post
   const handlePost = (boardType, board) => {
     navigate(`/community/${boardType}/post/${board.boardId}`, {
@@ -142,12 +144,33 @@ const Board_PostList = ({ boardType, page, size, sortBy, order, status }) => {
                 board.study ||
                 board.team) && (
                 <PostBottomTagsBox>
-                  <PostBottomTag>
+                  {/* <PostBottomTag>
                     {LanguageDisplayNames[board.language] ||
                       CourseDisplayNames[board.course] ||
                       StudyDisplayNames[board.study] ||
                       TeamDisplayNames[board.team]}
-                  </PostBottomTag>
+                  </PostBottomTag> */}
+                  {board.language && board.language.length > 0
+                    ? board.language.map((lang, index) => (
+                        <PostBottomTag>
+                          {LanguageDisplayNames[lang]}
+                        </PostBottomTag>
+                      ))
+                    : board.course && board.course.length > 0
+                    ? board.course.map((lang, index) => (
+                        <PostBottomTag>
+                          {CourseDisplayNames[lang]}
+                        </PostBottomTag>
+                      ))
+                    : board.study && board.study.length > 0
+                    ? board.study.map((lang, index) => (
+                        <PostBottomTag>{StudyDisplayNames[lang]}</PostBottomTag>
+                      ))
+                    : board.team &&
+                      board.team.length > 0 &&
+                      board.team.map((lang, index) => (
+                        <PostBottomTag>{TeamDisplayNames[lang]}</PostBottomTag>
+                      ))}
                 </PostBottomTagsBox>
               )}
               <PostBottomDataBox>

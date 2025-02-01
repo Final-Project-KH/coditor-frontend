@@ -62,7 +62,7 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
       }
     };
     loadReplies();
-  }, [boardId, page]);
+  }, [boardId, currentPage]);
 
   // paging handler
   const handlePageChange = (page) => {
@@ -90,6 +90,7 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
   };
 
   const nickname = useSelector((state) => state.auth.nickname);
+  const profile = useSelector((state) => state.auth.profile);
 
   return (
     <>
@@ -115,20 +116,11 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
               .map((reply, index) => (
                 <ReplyEach key={index}>
                   <ReplyUserProfileBox>
-                    <ReplyUserProfileImg
-                      style={{
-                        backgroundColor: "#313131",
-                        backgroundImage: `url(${
-                          post.profileUrl
-                            ? post.profileUrl
-                            : "/images/general/default_profile.png"
-                        })`,
-                      }}
-                    />
+                    <ReplyUserProfileImg isProfile={profile} />
                     <ReplyUserProfileTextBox>
                       <ReplyUserId>{reply.name}</ReplyUserId>
                       <ReplyUserDate>
-                        {new Date(post.createdAt)
+                        {new Date(reply.createdAt)
                           .toLocaleString("ko-KR", {
                             year: "numeric",
                             month: "2-digit",
