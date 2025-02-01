@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   PopularTagsContainer,
   PopularTagsItemsBox,
@@ -6,7 +6,7 @@ import {
   PopularTagsTitle,
 } from "../../../../styles/community/PopularTags";
 
-const StudyPopularTags = ({ onEnumFilterChange }) => {
+const StudyPopularTags = ({ onEnumFilterChange, enumFilter }) => {
   const [activeEnumFilter, setActiveEnumFilter] = useState(null);
 
   const handleEnumFilter = (enumFilter) => {
@@ -14,8 +14,16 @@ const StudyPopularTags = ({ onEnumFilterChange }) => {
     onEnumFilterChange(enumFilter);
   };
 
-  const CodingEnumFilter = {
-    JAVA: "JAVA",
+  useEffect(() => {
+    if (enumFilter === null) {
+      setActiveEnumFilter(null);
+    }
+  }, [enumFilter]);
+
+  const StudyEnumFilter = {
+    Algorithm: "ALGORITHM",
+    Structure: "STRUCTURE",
+    Coding: "CODING",
   };
 
   return (
@@ -24,25 +32,23 @@ const StudyPopularTags = ({ onEnumFilterChange }) => {
         <PopularTagsTitle>인기 태그</PopularTagsTitle>
         <PopularTagsItemsBox>
           <PopularTagsItem
-            isActive={activeEnumFilter === CodingEnumFilter.JAVA}
-            onClick={() => handleEnumFilter("JAVA")}
+            isActive={activeEnumFilter === StudyEnumFilter.Algorithm}
+            onClick={() => handleEnumFilter(StudyEnumFilter.Algorithm)}
           >
-            # Java
+            # 알고리즘
           </PopularTagsItem>
-          <PopularTagsItem># Python</PopularTagsItem>
-          <PopularTagsItem># C</PopularTagsItem>
-          <PopularTagsItem># 머신러닝</PopularTagsItem>
-          <PopularTagsItem># github</PopularTagsItem>
-          <PopularTagsItem># C++</PopularTagsItem>
-          <PopularTagsItem># git</PopularTagsItem>
-          <PopularTagsItem># JavaScript</PopularTagsItem>
-          <PopularTagsItem># JPA</PopularTagsItem>
-          <PopularTagsItem># CSS</PopularTagsItem>
-          <PopularTagsItem># HTML</PopularTagsItem>
-          <PopularTagsItem># React</PopularTagsItem>
-          <PopularTagsItem># SpringBoot</PopularTagsItem>
-
-          <PopularTagsItem># 엘라스틱서치</PopularTagsItem>
+          <PopularTagsItem
+            isActive={activeEnumFilter === StudyEnumFilter.Structure}
+            onClick={() => handleEnumFilter(StudyEnumFilter.Structure)}
+          >
+            # 자료구조
+          </PopularTagsItem>
+          <PopularTagsItem
+            isActive={activeEnumFilter === StudyEnumFilter.Coding}
+            onClick={() => handleEnumFilter(StudyEnumFilter.Coding)}
+          >
+            # 코딩테스트
+          </PopularTagsItem>
         </PopularTagsItemsBox>
       </PopularTagsContainer>
     </>

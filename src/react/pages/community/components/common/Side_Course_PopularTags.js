@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   PopularTagsContainer,
   PopularTagsItemsBox,
@@ -6,7 +6,7 @@ import {
   PopularTagsTitle,
 } from "../../../../styles/community/PopularTags";
 
-const CoursePopularTags = ({ onEnumFilterChange }) => {
+const CoursePopularTags = ({ onEnumFilterChange, enumFilter }) => {
   const [activeEnumFilter, setActiveEnumFilter] = useState(null);
 
   const handleEnumFilter = (enumFilter) => {
@@ -14,8 +14,19 @@ const CoursePopularTags = ({ onEnumFilterChange }) => {
     onEnumFilterChange(enumFilter);
   };
 
-  const CodingEnumFilter = {
-    JAVA: "JAVA",
+  useEffect(() => {
+    if (enumFilter === null) {
+      setActiveEnumFilter(null);
+    }
+  }, [enumFilter]);
+
+  const CourseEnumFilter = {
+    Company: "COMPANY",
+    Portfolio: "PORTFOLIO",
+    Salary: "SALARY",
+    Resume: "RESUME",
+    Bootcamp: "BOOTCAMP",
+    Project: "PROJECT",
   };
 
   return (
@@ -24,25 +35,41 @@ const CoursePopularTags = ({ onEnumFilterChange }) => {
         <PopularTagsTitle>인기 태그</PopularTagsTitle>
         <PopularTagsItemsBox>
           <PopularTagsItem
-            isActive={activeEnumFilter === CodingEnumFilter.JAVA}
-            onClick={() => handleEnumFilter("JAVA")}
+            isActive={activeEnumFilter === CourseEnumFilter.Company}
+            onClick={() => handleEnumFilter(CourseEnumFilter.Company)}
           >
-            # Java
+            # 회사정보
           </PopularTagsItem>
-          <PopularTagsItem># Python</PopularTagsItem>
-          <PopularTagsItem># C</PopularTagsItem>
-          <PopularTagsItem># 머신러닝</PopularTagsItem>
-          <PopularTagsItem># github</PopularTagsItem>
-          <PopularTagsItem># C++</PopularTagsItem>
-          <PopularTagsItem># git</PopularTagsItem>
-          <PopularTagsItem># JavaScript</PopularTagsItem>
-          <PopularTagsItem># JPA</PopularTagsItem>
-          <PopularTagsItem># CSS</PopularTagsItem>
-          <PopularTagsItem># HTML</PopularTagsItem>
-          <PopularTagsItem># React</PopularTagsItem>
-          <PopularTagsItem># SpringBoot</PopularTagsItem>
-
-          <PopularTagsItem># 엘라스틱서치</PopularTagsItem>
+          <PopularTagsItem
+            isActive={activeEnumFilter === CourseEnumFilter.Portfolio}
+            onClick={() => handleEnumFilter(CourseEnumFilter.Portfolio)}
+          >
+            # 포트폴리오
+          </PopularTagsItem>
+          <PopularTagsItem
+            isActive={activeEnumFilter === CourseEnumFilter.Salary}
+            onClick={() => handleEnumFilter(CourseEnumFilter.Salary)}
+          >
+            # 급여
+          </PopularTagsItem>
+          <PopularTagsItem
+            isActive={activeEnumFilter === CourseEnumFilter.Resume}
+            onClick={() => handleEnumFilter(CourseEnumFilter.Resume)}
+          >
+            # 자기소개서
+          </PopularTagsItem>
+          <PopularTagsItem
+            isActive={activeEnumFilter === CourseEnumFilter.Bootcamp}
+            onClick={() => handleEnumFilter(CourseEnumFilter.Bootcamp)}
+          >
+            # 부트캠프
+          </PopularTagsItem>
+          <PopularTagsItem
+            isActive={activeEnumFilter === CourseEnumFilter.Project}
+            onClick={() => handleEnumFilter(CourseEnumFilter.Project)}
+          >
+            # 프로젝트
+          </PopularTagsItem>
         </PopularTagsItemsBox>
       </PopularTagsContainer>
     </>

@@ -17,6 +17,7 @@ import {
 
 import BoardList from "./components/common/Side_BoardList";
 import PopularTags from "./components/common/Side_PopularTags";
+import StudyPopularTags from "./components/common/Side_Study_PopularTags";
 import TopWriters from "./components/common/Side_TopWriters";
 import WeeklyBest from "./components/common/Side_WeeklyBest";
 import Board_Study_Search from "./components/study/Board_Study_Search";
@@ -67,6 +68,10 @@ const Community_Study = () => {
     });
   };
 
+  const handleEnumFilterRefresh = () => {
+    setEnumFilter(null);
+  };
+
   // Update sorting parameters
   const handleSortChange = (newSortBy) => {
     setSortBy(newSortBy);
@@ -78,6 +83,14 @@ const Community_Study = () => {
 
   const handleStatusChange = (newStatus) => {
     setStatus(newStatus);
+  };
+
+  const handleSearchChange = (newSearch) => {
+    setSearch(newSearch);
+  };
+
+  const handleEnumFilterChange = (newEnumFilter) => {
+    setEnumFilter(newEnumFilter);
   };
 
   return (
@@ -100,7 +113,10 @@ const Community_Study = () => {
           <Container>
             <LeftContainer>
               <BoardList firstpath={firstpath} />
-              <PopularTags />
+              <StudyPopularTags
+                enumFilter={enumFilter}
+                onEnumFilterChange={handleEnumFilterChange}
+              />
               <WeeklyBest />
             </LeftContainer>
             <CenterContainer>
@@ -109,7 +125,11 @@ const Community_Study = () => {
                   onStatusChange={handleStatusChange}
                   boardType={boardType}
                 />
-                <Board_Study_Search />
+                <Board_Study_Search
+                  onEnumFilterRefresh={handleEnumFilterRefresh}
+                  onSearchChange={handleSearchChange}
+                  boardType={boardType}
+                />
                 <Board_Order
                   boardType={boardType}
                   onSortChange={handleSortChange}

@@ -58,6 +58,10 @@ const Community_Study_M = () => {
     });
   };
 
+  const handleEnumFilterRefresh = () => {
+    setEnumFilter(null);
+  };
+
   // Update sorting parameters
   const handleSortChange = (newSortBy) => {
     setSortBy(newSortBy);
@@ -69,6 +73,14 @@ const Community_Study_M = () => {
 
   const handleStatusChange = (newStatus) => {
     setStatus(newStatus);
+  };
+
+  const handleSearchChange = (newSearch) => {
+    setSearch(newSearch);
+  };
+
+  const handleEnumFilterChange = (newEnumFilter) => {
+    setEnumFilter(newEnumFilter);
   };
 
   return (
@@ -91,7 +103,11 @@ const Community_Study_M = () => {
               onSortChange={handleStatusChange}
               boardType={boardType}
             />
-            <Board_Study_Search />
+            <Board_Study_Search
+              onEnumFilterRefresh={handleEnumFilterRefresh}
+              onSearchChange={handleSearchChange}
+              boardType={boardType}
+            />
             <Board_Order
               boardType={boardType}
               onSortChange={handleSortChange}

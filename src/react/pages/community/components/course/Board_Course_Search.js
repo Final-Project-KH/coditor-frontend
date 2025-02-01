@@ -12,13 +12,23 @@ import {
   ResetButtonIcon,
 } from "../../../../styles/community/Board";
 
-const Board_Course_Search = () => {
+const Board_Course_Search = ({
+  boardType,
+  onSearchChange,
+  onEnumFilterRefresh,
+}) => {
+  const enumFilterRefresh = () => {
+    onEnumFilterRefresh();
+  };
   return (
     <>
       <SearchContainer>
         <InputSearchContainer>
           <InputSearchBox>
-            <InputSearch placeholder="대화 내용을 검색해보세요!" />
+            <InputSearch
+              onChange={(e) => onSearchChange(e.target.value)}
+              placeholder="대화 내용을 검색해보세요!"
+            />
           </InputSearchBox>
           <InputSearchButton>검색</InputSearchButton>
         </InputSearchContainer>
@@ -26,7 +36,7 @@ const Board_Course_Search = () => {
           <TagSearchBox>
             <TagSearch placeholder="태그로 검색해보세요!" />
           </TagSearchBox>
-          <ResetButtonBox>
+          <ResetButtonBox onClick={() => enumFilterRefresh()}>
             <ResetButtonIcon />
             <ResetButtonText>초기화</ResetButtonText>
           </ResetButtonBox>
