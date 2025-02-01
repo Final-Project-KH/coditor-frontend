@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {
   TopBoxArrow,
@@ -19,6 +19,7 @@ import Board_PostList from "./components/common/Board_PostList";
 import Board_Coding_Search from "./components/coding/Board_Coding_Search";
 import BoardList from "./components/common/Side_BoardList";
 import PopularTags from "./components/common/Side_PopularTags";
+import CodingPopularTags from "./components/common/Side_Coding_PopularTags";
 import TopWriters from "./components/common/Side_TopWriters";
 import WeeklyBest from "./components/common/Side_WeeklyBest";
 import Board_TopSort from "./components/common/Board_TopSort";
@@ -44,13 +45,15 @@ const Community_Coding = () => {
   const [enumFilter, setEnumFilter] = useState(
     queryParams.get("enumfilter") || null
   ); // 해쉬태그
-  const [serach, setSearch] = useState(queryParams.get("search") || null); // 검색
+  const [search, setSearch] = useState(queryParams.get("search") || null); // 검색
 
   const boardType = "coding";
 
   console.log(sortBy);
   console.log(status);
   console.log(order);
+  console.log(enumFilter);
+  console.log(search);
 
   // TopBox firstpath
   const handleCommunity = () => {
@@ -71,6 +74,10 @@ const Community_Coding = () => {
     });
   };
 
+  const handleEnumFilterRefresh = () => {
+    setEnumFilter(null);
+  };
+
   // Update sorting parameters
   const handleSortChange = (newSortBy) => {
     setSortBy(newSortBy);
@@ -82,6 +89,14 @@ const Community_Coding = () => {
 
   const handleStatusChange = (newStatus) => {
     setStatus(newStatus);
+  };
+
+  const handleSearchChange = (newSearch) => {
+    setSearch(newSearch);
+  };
+
+  const handleEnumFilterChange = (newEnumFilter) => {
+    setEnumFilter(newEnumFilter);
   };
 
   return (
@@ -104,7 +119,10 @@ const Community_Coding = () => {
           <Container>
             <LeftContainer>
               <BoardList firstpath={firstpath} />
-              <PopularTags />
+              <CodingPopularTags
+                enumFilter={enumFilter}
+                onEnumFilterChange={handleEnumFilterChange}
+              />
               <WeeklyBest />
             </LeftContainer>
             <CenterContainer>
@@ -113,7 +131,11 @@ const Community_Coding = () => {
                   onStatusChange={handleStatusChange}
                   boardType={boardType}
                 />
-                <Board_Coding_Search />
+                <Board_Coding_Search
+                  onEnumFilterRefresh={handleEnumFilterRefresh}
+                  onSearchChange={handleSearchChange}
+                  boardType={boardType}
+                />
                 <Board_Order
                   boardType={boardType}
                   onSortChange={handleSortChange}

@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { Background } from "../Layout";
 
 export const PopularTagsContainer = styled.div.attrs({
   id: "populartagscontainer",
@@ -41,4 +42,10 @@ export const PopularTagsItem = styled.div.attrs({
   font-size: 11px;
   height: 24px;
   padding: 4px 6px;
+  cursor: pointer;
+  ${(props) =>
+    props.isActive &&
+    css`
+      background-color: red;
+    `}
 `;

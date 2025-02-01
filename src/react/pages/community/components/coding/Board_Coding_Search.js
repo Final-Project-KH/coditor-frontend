@@ -12,26 +12,37 @@ import {
   ResetButtonIcon,
 } from "../../../../styles/community/Board";
 
-const Board_Coding_Search = () => {
+const Board_Coding_Search = ({
+  boardType,
+  onSearchChange,
+  onEnumFilterRefresh,
+}) => {
+  const enumFilterRefresh = () => {
+    onEnumFilterRefresh();
+  };
+
   return (
     <>
-            <SearchContainer>
-          <InputSearchContainer>
-            <InputSearchBox>
-              <InputSearch placeholder="궁금한 내용을 검색해보세요!" />
-            </InputSearchBox>
-            <InputSearchButton>검색</InputSearchButton>
-          </InputSearchContainer>
-          <TagSearchContainer>
-            <TagSearchBox>
-              <TagSearch placeholder="태그로 검색해보세요!" />
-            </TagSearchBox>
-            <ResetButtonBox>
-              <ResetButtonIcon />
-              <ResetButtonText>초기화</ResetButtonText>
-            </ResetButtonBox>
-          </TagSearchContainer>
-        </SearchContainer>
+      <SearchContainer>
+        <InputSearchContainer>
+          <InputSearchBox>
+            <InputSearch
+              onChange={(e) => onSearchChange(e.target.value)}
+              placeholder="궁금한 내용을 검색해보세요!"
+            />
+          </InputSearchBox>
+          <InputSearchButton>검색</InputSearchButton>
+        </InputSearchContainer>
+        <TagSearchContainer>
+          <TagSearchBox>
+            <TagSearch placeholder="태그로 검색해보세요!" />
+          </TagSearchBox>
+          <ResetButtonBox onClick={() => enumFilterRefresh()}>
+            <ResetButtonIcon />
+            <ResetButtonText>초기화</ResetButtonText>
+          </ResetButtonBox>
+        </TagSearchContainer>
+      </SearchContainer>
     </>
   );
 };

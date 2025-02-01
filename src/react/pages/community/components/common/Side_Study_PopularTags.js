@@ -6,7 +6,7 @@ import {
   PopularTagsTitle,
 } from "../../../../styles/community/PopularTags";
 
-const PopularTags = ({ onEnumFilterChange }) => {
+const StudyPopularTags = ({ onEnumFilterChange }) => {
   const [activeEnumFilter, setActiveEnumFilter] = useState(null);
 
   const handleEnumFilter = (enumFilter) => {
@@ -18,17 +18,13 @@ const PopularTags = ({ onEnumFilterChange }) => {
     JAVA: "JAVA",
   };
 
-  const enumFilterJava = "JAVA";
-  const enumFilterPython = "PYTHON";
-  const enumFilterC = "C";
-
   return (
     <>
       <PopularTagsContainer>
         <PopularTagsTitle>인기 태그</PopularTagsTitle>
         <PopularTagsItemsBox>
           <PopularTagsItem
-            isActive={activeEnumFilter === enumFilterJava}
+            isActive={activeEnumFilter === CodingEnumFilter.JAVA}
             onClick={() => handleEnumFilter("JAVA")}
           >
             # Java
@@ -53,4 +49,4 @@ const PopularTags = ({ onEnumFilterChange }) => {
   );
 };
 
-export default PopularTags;
+export default StudyPopularTags;

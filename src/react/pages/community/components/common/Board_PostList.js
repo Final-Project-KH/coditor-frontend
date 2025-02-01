@@ -80,6 +80,17 @@ const Board_PostList = ({ boardType, page, size, sortBy, order, status }) => {
     });
   };
 
+  const handleMove = async (boardType, board) => {
+    try {
+      const response = await AxiosApi.getPostCheck(board.boardId);
+      if (response) {
+        handlePost(boardType, board);
+      }
+    } catch (error) {
+      console.error("게시글 이동중 오류 발생 : ", error);
+    }
+  };
+
   // paging handler
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
@@ -100,7 +111,7 @@ const Board_PostList = ({ boardType, page, size, sortBy, order, status }) => {
           <PostEach
             key={board.boardId}
             style={{ cursor: "pointer" }}
-            onClick={() => handlePost(boardType, board)}
+            onClick={() => handleMove(boardType, board)}
           >
             <PostTop>
               <PostTopUser>
@@ -138,10 +149,14 @@ const Board_PostList = ({ boardType, page, size, sortBy, order, status }) => {
               </PostMiddleContentsText>
             </PostMiddle>
             <PostBottom>
-              {(board.language ||
-                board.course ||
-                board.study ||
-                board.team) && (
+              {((Array.isArray(board.language) &&
+                board.language.some((item) => item.trim() !== "")) ||
+                (Array.isArray(board.course) &&
+                  board.course.some((item) => item.trim() !== "")) ||
+                (Array.isArray(board.study) &&
+                  board.study.some((item) => item.trim() !== "")) ||
+                (Array.isArray(board.team) &&
+                  board.team.some((item) => item.trim() !== ""))) && (
                 <PostBottomTagsBox>
                   {/* <PostBottomTag>
                     {LanguageDisplayNames[board.language] ||

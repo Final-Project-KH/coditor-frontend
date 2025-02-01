@@ -218,6 +218,22 @@ const AxiosApi = {
     }
   },
 
+  getPostCheck: async (boardId) => {
+    try {
+      const response = await axios.get(
+        SPRING_DOMAIN + "/community/list/one/check",
+        {
+          params: {
+            id: boardId,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
   getPost: async (boardId) => {
     // 수정 필요 (이제 보드타입 필요 없음)
     try {
