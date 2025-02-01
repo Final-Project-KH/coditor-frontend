@@ -13,7 +13,8 @@ import Select from "react-select";
 
 const Post_Write_Coding = () => {
   const [title, setTitle] = useState("");
-  const [language, setLanguage] = useState("");
+
+  const MAX_SELECTION = 10;
 
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const languageOptions = [
@@ -22,16 +23,28 @@ const Post_Write_Coding = () => {
     { value: "PYTHON", label: "Python" },
     { value: "C", label: "C" },
     { value: "CPP", label: "C++" },
-    { value: "TypeScript", label: "TypeScript" },
+    { value: "CS", label: "C#" },
+    { value: "SPB", label: "Spring Boot" },
+    { value: "RE", label: "React" },
+    { value: "AN", label: "AngularJS" },
+    { value: "EX", label: "ExpressJS" },
+    { value: "NO", label: "NodeJS" },
+    { value: "HTML", label: "HTML" },
+    { value: "CSS", label: "CSS" },
+    { value: "ETC", label: "기타" },
   ];
-  console.log(selectedLanguages);
 
   const handleChange = (selectedOptions) => {
+    if (selectedOptions.length > MAX_SELECTION) {
+      alert(`최대 ${MAX_SELECTION}개까지 선택할 수 있습니다.`);
+      selectedOptions.pop();
+    }
     setSelectedLanguages(selectedOptions.map((option) => option.value));
   };
 
   const customStyles = {
     control: (provided, state) => ({
+      // 컨트롤 바 UI
       ...provided,
       backgroundColor: "white",
       borderColor: state.isFocused ? "blue" : "#ccc",
@@ -39,13 +52,14 @@ const Post_Write_Coding = () => {
       "&:hover": { borderColor: "blue" },
       maxWidth: "1280px",
       border: "1px solid #f1f1f1",
-      padding: "5px 25px",
+      padding: "5px",
       fontSize: "20px",
       fontFamily: "medium, sans-serif",
       marginLeft: "10px",
       marginRight: "10px",
     }),
     menu: (provided) => ({
+      // 토글 메뉴 바 UI
       ...provided,
       backgroundColor: "white",
       boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",

@@ -106,10 +106,9 @@ const Board_PostList = ({ boardType, page, size, sortBy, order, status }) => {
               <PostTopUser>
                 <PostTopUserImg
                   style={{
-                    backgroundColor: "#313131",
                     backgroundImage: `url(${
-                      board.imgUrl
-                        ? board.imgUrl
+                      board.profileUrl
+                        ? board.profileUrl
                         : "/images/general/default_profile.png"
                     })`,
                   }}
@@ -127,7 +126,7 @@ const Board_PostList = ({ boardType, page, size, sortBy, order, status }) => {
             </PostTop>
             <PostMiddle>
               <PostMiddleContentsUpper>
-                {board.solution === "SOLVED" ? (
+                {board.status === "INACTIVE" ? (
                   <PostMiddleContentsSolved>해결됨</PostMiddleContentsSolved>
                 ) : (
                   <PostMiddleContentsPending>미해결</PostMiddleContentsPending>

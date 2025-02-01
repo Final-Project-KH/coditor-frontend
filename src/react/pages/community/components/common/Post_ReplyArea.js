@@ -90,7 +90,8 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
   };
 
   const nickname = useSelector((state) => state.auth.nickname);
-  const profile = useSelector((state) => state.auth.profile);
+  const profile = useSelector((state) => state.auth.profile); // 이거 아님
+  // 작성자 프로필 가져와야함
 
   return (
     <>
