@@ -84,6 +84,8 @@ import Post_Write_Coding from "./react/pages/community/Post_Write_Coding";
 import Post_Write_Course from "./react/pages/community/Post_Write_Course";
 import Post_Write_Study from "./react/pages/community/Post_Write_Study";
 import Post_Write_Team from "./react/pages/community/Post_Write_Team";
+import Report from "./react/pages/cs/Report";
+import Question from "./react/pages/cs/Question";
 import User_Main from "./react/pages/community/User_Main";
 import FindId from "./react/pages/login/FindId";
 import FindPw from "./react/pages/login/FindPw";
@@ -116,6 +118,8 @@ const AppContents = () => {
         <Route path="/community/course/write" element={<Post_Write_Course />} />
         <Route path="/community/study/write" element={<Post_Write_Study />} />
         <Route path="/community/team/write" element={<Post_Write_Team />} />
+        <Route path="/cs/report" element={<Report />} />
+        <Route path="/cs/question" element={<Question />} />
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
