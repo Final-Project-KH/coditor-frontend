@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import {
-  ClassHeader,
-  ClassHeaderTitle,
-} from "../../../styles/codingtest/ChallengeStyles";
-import Console from "./Console";
-import styled from "styled-components";
 
-const ExecutionResultViewer = ({ results }) => {
+import Console from "./Console";
+
+import { ExecutionResultsStyles as CssWrapper } from "../../../styles/codingtest/ExecutionResultsStyles";
+
+const ExecutionResults = ({ results }) => {
   const [expandedTestCases, setExpandedTestCases] = useState({});
 
   if (results === null && Object.keys(expandedTestCases).length > 0) {
@@ -21,18 +19,18 @@ const ExecutionResultViewer = ({ results }) => {
   };
 
   return (
-    <>
-      <ClassHeader>
-        <ClassHeaderTitle>RESULTS</ClassHeaderTitle>
-      </ClassHeader>
-      <Main>
+    <CssWrapper>
+      <div>
+        <span>RESULTS</span>
+      </div>
+      <div>
         {results === null ? (
-          <p>이 곳에 실행 결과가 표시됩니다.</p>
+          <p style={{ fontSize: "18px" }}>코드 실행 결과가 표시됩니다.</p>
         ) : (
           Object.keys(results).length > 0 && (
-            <>
+            <ul>
               {Object.entries(results).map(([idx, result]) => (
-                <ResultItem key={idx}>
+                <li key={idx}>
                   <p>테스트케이스 {idx}번 실행 결과</p>
                   {Object.keys(result).length === 0 ? (
                     <p>⏳ 실행 중...</p>
@@ -48,57 +46,28 @@ const ExecutionResultViewer = ({ results }) => {
                       {result.error && <p>{result.error}</p>}
 
                       {!result.success && result.detail && (
-                        <DetailButton onClick={() => toggleDetails(idx)}>
+                        <button
+                          className="output-detail-toggle-btn"
+                          onClick={() => toggleDetails(idx)}
+                        >
                           {expandedTestCases[idx]
                             ? "상세보기 접기"
                             : "상세보기"}
-                        </DetailButton>
+                        </button>
                       )}
                       {expandedTestCases[idx] && !result.success && (
                         <Console message={result.detail} />
                       )}
                     </>
                   )}
-                </ResultItem>
+                </li>
               ))}
-            </>
+            </ul>
           )
         )}
-      </Main>
-    </>
+      </div>
+    </CssWrapper>
   );
 };
 
-export default ExecutionResultViewer;
-
-const Main = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-  height: 350px;
-
-  padding: 20px;
-
-  overflow-y: auto;
-
-  background-color: black;
-
-  color: white;
-`;
-
-const ResultItem = styled.div`
-  margin-bottom: 15px;
-`;
-
-const DetailButton = styled.button`
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #333;
-  color: white;
-  border: none;
-  cursor: pointer;
-  &:hover {
-    background-color: #555;
-  }
-`;
+export default ExecutionResults;
