@@ -7,6 +7,8 @@ import AxiosApi from "../../../../api/AxiosApi";
 const SPRING_DOMAIN = "http://localhost:8111";
 const OPEN_TIMEOUT = 10000; // onopen 타임아웃 (10초)
 const MESSAGE_TIMEOUT = 20000; // onmessage 타임아웃 (20초)
+const NETWORK_ERROR_MESSAGE =
+  "서버와 연결이 불안정합니다. 네트워크 연결 상태를 확인해주세요.";
 
 const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
   // useEffect 내부에서 RECONNECT를 발생 시키기 위한 state
@@ -30,20 +32,34 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
   const openTimeoutIdRef = useRef(null);
   const messageTimeoutIdRef = useRef(null);
 
-  // 새로고침 여부 추적
-  const isReloading = useRef(false);
-
-  useEffect(() => {
-    // 새로고침 여부 감지 (sessionStorage 활용)
-    if (sessionStorage.getItem("isReloading") === "true") {
-      isReloading.current = true;
-      sessionStorage.removeItem("isReloading"); // 플래그 초기화
+  // 타임아웃 처리 함수
+  const handleTimeout = () => {
+    if (eventSource.current) {
+      eventSource.current.close();
     }
 
-    // 새로고침 이벤트 감지
+    onError(NETWORK_ERROR_MESSAGE);
+  };
+
+  // onopen 타임아웃 설정
+  const startOpenTimeout = () => {
+    openTimeoutIdRef.current = setTimeout(() => {
+      handleTimeout();
+    }, OPEN_TIMEOUT);
+  };
+
+  // onmessage 타임아웃 설정
+  const startMessageTimeout = () => {
+    messageTimeoutIdRef.current = setTimeout(() => {
+      handleTimeout();
+    }, MESSAGE_TIMEOUT);
+  };
+
+  // 새로고침 여부 추적
+  const isReloading = useRef(false);
+  useEffect(() => {
     const handleBeforeUnload = () => {
       isReloading.current = true;
-      sessionStorage.setItem("isReloading", "true");
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
@@ -53,35 +69,24 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
     };
   }, []);
 
-  // 타임아웃 처리 함수
-  const handleTimeout = (type) => {
+  // SSE 연결 관리
+  useEffect(() => {
+    // ref 초기화
     if (eventSource.current) {
       eventSource.current.close();
     }
 
-    onError(
-      type === "onopen"
-        ? "Connection could not be established within 10 seconds"
-        : "No message received within 20 seconds"
-    );
-  };
+    lastEventIdRef.current = null;
+    numOfTestcaseRef.current = null;
 
-  // onopen 타임아웃 설정
-  const startOpenTimeout = () => {
-    openTimeoutIdRef.current = setTimeout(() => {
-      handleTimeout("onopen");
-    }, OPEN_TIMEOUT);
-  };
+    if (openTimeoutIdRef.current) {
+      clearTimeout(openTimeoutIdRef.current);
+    }
+    if (messageTimeoutIdRef.current) {
+      clearTimeout(messageTimeoutIdRef.current);
+    }
 
-  // onmessage 타임아웃 설정
-  const startMessageTimeout = () => {
-    messageTimeoutIdRef.current = setTimeout(() => {
-      handleTimeout("onmessage");
-    }, MESSAGE_TIMEOUT);
-  };
-
-  useEffect(() => {
-    // 최초 실행 방지
+    // job이 할당되지 않은 상태에서 실행 방지
     if (!jobId) return;
 
     const connectToSse = () => {
@@ -117,11 +122,12 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
         // 조건문 내부 값이 undefined면 falsy 값
         if (!responseData["numOfTestcase"]) {
           const errorMessage = responseData["error"];
-          eventSource.current.close();
+
+          if (eventSource.current) {
+            eventSource.current.close();
+          }
+
           onError(errorMessage);
-          console.error(
-            "SSE 연결에 성공했지만, 테스트 케이스의 갯수를 확인할 수 없습니다."
-          );
           return;
         }
 
@@ -145,6 +151,15 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
           clearTimeout(messageTimeoutIdRef.current);
         }
 
+        if (event.data.startsWith("error ")) {
+          if (eventSource.current) {
+            eventSource.current.close();
+          }
+
+          onError(event.data.slice(6));
+          return;
+        }
+
         // Event ID 업데이트
         lastEventIdRef.current = parseInt(event.lastEventId);
 
@@ -159,11 +174,9 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
             clearTimeout(messageTimeoutIdRef.current);
           }
 
-          eventSource.current.close();
-
-          // 추적 값 초기화
-          lastEventIdRef.current = null;
-          numOfTestcaseRef.current = null;
+          if (eventSource.current) {
+            eventSource.current.close();
+          }
 
           onComplete();
           return;
@@ -183,21 +196,18 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
 
         // EventSource 연결을 수동으로
         // 종료하여 브라우저의 자동 재연결 메커니즘이 시도되지 않도록 처리
-        eventSource.current.close();
+        if (eventSource.current) {
+          eventSource.current.close();
+        }
 
         // 새로고침된 경우 onError 실행 방지
         if (isReloading.current) {
-          console.warn(
-            "새로고침으로 인해 SSE 연결이 종료됨. onError 실행 안 함."
-          );
           isReloading.current = false;
           return;
         }
 
         console.error(err);
-        onError(
-          "서버와 연결이 불안정합니다. 네트워크 연결 상태를 확인해주세요."
-        );
+        onError(NETWORK_ERROR_MESSAGE);
         return;
       };
     };

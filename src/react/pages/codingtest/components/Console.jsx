@@ -1,21 +1,16 @@
-import {
-  ClassHeader,
-  ClassHeaderTitle,
-  ConsoleClass,
-  StyledDiv,
-} from "../../../styles/codingtest/ChallengeStyles";
+import { ConsoleStyles as CssWrapper } from "../../../styles/codingtest/ConsoleStyles";
 
 const Console = ({ message }) => {
   console.log(message);
   return (
-    <>
-      <ConsoleClass>
-        <ClassHeader>
-          <ClassHeaderTitle>CONSOLE</ClassHeaderTitle>
-        </ClassHeader>
-        <StyledDiv style={{ whiteSpace: "pre-wrap" }}>{message}</StyledDiv>
-      </ConsoleClass>
-    </>
+    <CssWrapper>
+      <div>
+        <span>CONSOLE</span>
+      </div>
+      <div className="console-outputs" style={{ whiteSpace: "pre-wrap" }}>
+        {message}
+      </div>
+    </CssWrapper>
   );
 };
 
