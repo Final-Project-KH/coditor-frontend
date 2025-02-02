@@ -40,6 +40,7 @@ const Community_Course = () => {
     queryParams.get("sortBy") || "createdAt"
   ); // 기본 타입은 createdAt / 조회순 / 좋아요순 / 댓글많은순 가능
   const [order, setOrder] = useState(queryParams.get("order") || "desc"); // 타입은 desc / asc
+  const [status, setStatus] = useState(queryParams.get("status") || null); // 타입은 active / inactive
   const [enumFilter, setEnumFilter] = useState(
     queryParams.get("enumfilter") || null
   ); // 해쉬태그
@@ -120,6 +121,7 @@ const Community_Course = () => {
                   onEnumFilterRefresh={handleEnumFilterRefresh}
                   onSearchChange={handleSearchChange}
                   boardType={boardType}
+                  enumFilter={enumFilter}
                 />
                 <Board_Order
                   boardType={boardType}
@@ -131,6 +133,9 @@ const Community_Course = () => {
                   size={size}
                   sortBy={sortBy}
                   order={order}
+                  status={status}
+                  enumFilter={enumFilter}
+                  search={search}
                 />
               </BoardContainer>
             </CenterContainer>

@@ -26,7 +26,7 @@ import {
   MainPostTag,
 } from "../../../../styles/community/Post";
 import AxiosApi from "../../../../../api/AxiosApi";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import {
   LanguageDisplayNames,
   CourseDisplayNames,
@@ -47,6 +47,7 @@ const Post_MainContents = ({ boardType }) => {
 
   const userkeynumber = useSelector((state) => state.auth.keynumber);
   const accesstoken = useSelector((state) => state.auth.accesstoken);
+  const navigate = useNavigate();
 
   // Get Post from Backend
   useEffect(() => {
@@ -65,9 +66,6 @@ const Post_MainContents = ({ boardType }) => {
   }, [boardId]);
 
   useEffect(() => {
-    if (!accesstoken) {
-      return;
-    }
     const reactionState = async () => {
       try {
         const response = await AxiosApi.boardreactionstatus(
@@ -88,7 +86,7 @@ const Post_MainContents = ({ boardType }) => {
         console.log("Like : ", userLikeCnt);
         console.log("Dislike : ", userDisLikeCnt);
       } catch (error) {
-        console.error("Reaction 상태 불러오기 실패 :", error);
+        return;
       }
     };
     reactionState();
@@ -100,6 +98,11 @@ const Post_MainContents = ({ boardType }) => {
     if (isSubmitting) {
       return;
     }
+    if (!accesstoken) {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
+
     setIsSubmitting(true);
     try {
       if (userDisLikeCnt === 1) {
@@ -140,6 +143,10 @@ const Post_MainContents = ({ boardType }) => {
 
     if (isSubmitting) {
       return;
+    }
+    if (!accesstoken) {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
     }
     setIsSubmitting(true);
     try {

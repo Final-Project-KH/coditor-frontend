@@ -133,6 +133,9 @@ const MyPage = () => {
   const fileInputRef = useRef(null);
   const [cropSize, setCropSize] = useState({ width: 0, height: 0 });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [userId, setUserId] = useState("");
+  const [userEmail, setUserEamil] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!preview) return;
@@ -153,6 +156,21 @@ const MyPage = () => {
       console.log("이미지 : ", croppedPreview);
     }
   }, [croppedPreview]);
+
+  useEffect(() => {
+    const mypage = async () => {
+      try {
+        const response = await AxiosApi.getmyprofile();
+        console.log(response);
+
+        setUserId(response.userId);
+        setUserEamil(response.email);
+      } catch (error) {
+        navigate("/login", { replace: true });
+      }
+    };
+    mypage();
+  }, []);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -438,19 +456,22 @@ const MyPage = () => {
             <MiddleUserContentsContainer>
               <MiddleUserIDContainer>
                 <MiddleUserContents>아이디</MiddleUserContents>
-                <MiddleUserIDInput disabled></MiddleUserIDInput>
+                <MiddleUserIDInput disabled value={userId}></MiddleUserIDInput>
               </MiddleUserIDContainer>
               <MiddleEmailContainer>
                 <MiddleEmailContents>이메일</MiddleEmailContents>
                 <MiddleInputDiv>
-                  <MiddleEmailInput autoComplete="off"></MiddleEmailInput>
+                  <MiddleEmailInput
+                    value={userEmail}
+                    autoComplete="off"
+                  ></MiddleEmailInput>
                   <MiddleEmailInputButton>이메일 변경</MiddleEmailInputButton>
                 </MiddleInputDiv>
               </MiddleEmailContainer>
               <MiddleNicknameContainer>
                 <MiddleNicknameContents>닉네임</MiddleNicknameContents>
                 <MiddleInputDiv>
-                  <MiddleNicknameInput></MiddleNicknameInput>
+                  <MiddleNicknameInput value={nickname}></MiddleNicknameInput>
                   <MiddleNicknameInputButton>
                     닉네임 변경
                   </MiddleNicknameInputButton>

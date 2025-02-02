@@ -35,7 +35,7 @@ const Community_Study_M = () => {
   const [enumFilter, setEnumFilter] = useState(
     queryParams.get("enumfilter") || null
   ); // 해쉬태그
-  const [serach, setSearch] = useState(queryParams.get("search") || null); // 검색
+  const [search, setSearch] = useState(queryParams.get("search") || null); // 검색
 
   const boardType = "study";
 
@@ -119,6 +119,8 @@ const Community_Study_M = () => {
               sortBy={sortBy}
               order={order}
               status={status}
+              enumFilter={enumFilter}
+              search={search}
             />
           </BoardContainer>
         </Container>

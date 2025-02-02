@@ -285,6 +285,15 @@ export const LeftEvUp = styled.div.attrs({
       background-position: center;
       background-image: url("/images/icon/thumbsup_w.png");
     `}
+    ${(props) =>
+    props.userLikeCnt === "" &&
+    css`
+      background-color: black;
+      background-repeat: no-repeat;
+      background-size: 15px;
+      background-position: center;
+      background-image: url("/images/icon/thumbsup_w.png");
+    `}
 `;
 export const LeftEvDown = styled.div.attrs({
   id: "leftevdown",
@@ -304,6 +313,15 @@ export const LeftEvDown = styled.div.attrs({
     `}
   ${(props) =>
     props.userDisLikeCnt === 0 &&
+    css`
+      background-color: black;
+      background-repeat: no-repeat;
+      background-size: 15px;
+      background-position: center;
+      background-image: url("/images/icon/thumbsdown_w.png");
+    `}
+    ${(props) =>
+    props.userDisLikeCnt === "" &&
     css`
       background-color: black;
       background-repeat: no-repeat;
