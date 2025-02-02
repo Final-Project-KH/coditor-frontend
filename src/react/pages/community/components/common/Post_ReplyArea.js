@@ -34,22 +34,29 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
   useEffect(() => {
     const readPost = async () => {
       try {
-        const response = await AxiosApi.getPost(boardId, boardType);
+        const response = await AxiosApi.getPost(boardId);
         setPosts([response]);
       } catch (error) {
         console.error("게시글 가져오는 중 오류 발생 : ", error);
       }
     };
     readPost();
-  }, [boardId, boardType]);
+  }, [boardId]);
 
   // Get Replies from Backend (getReplies)
   useEffect(() => {
     const loadReplies = async () => {
       try {
-        const response = await AxiosApi.getReplies(currentPage);
+        const response = await AxiosApi.getReplies(
+          boardId,
+          currentPage,
+          size,
+          sortBy,
+          order
+        );
         setReplies(response.content);
         setTotalPages(response.totalPages);
+        console.log(response);
       } catch (error) {
         console.error("댓글 리스트 가져오는 중 오류 발생 : ", error);
       }
@@ -83,6 +90,8 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
   };
 
   const nickname = useSelector((state) => state.auth.nickname);
+  const profile = useSelector((state) => state.auth.profile); // 이거 아님
+  // 작성자 프로필 가져와야함
 
   return (
     <>
@@ -108,20 +117,11 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
               .map((reply, index) => (
                 <ReplyEach key={index}>
                   <ReplyUserProfileBox>
-                    <ReplyUserProfileImg
-                      style={{
-                        backgroundColor: "#313131",
-                        backgroundImage: `url(${
-                          post.profileUrl
-                            ? post.profileUrl
-                            : "/images/general/default_profile.png"
-                        })`,
-                      }}
-                    />
+                    <ReplyUserProfileImg isProfile={profile} />
                     <ReplyUserProfileTextBox>
                       <ReplyUserId>{reply.name}</ReplyUserId>
                       <ReplyUserDate>
-                        {new Date(post.createdAt)
+                        {new Date(reply.createdAt)
                           .toLocaleString("ko-KR", {
                             year: "numeric",
                             month: "2-digit",
@@ -143,11 +143,11 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
                 </ReplyEach>
               ))}
           </ReplyList>
-          {/* <Board_Pagination
+          <Board_Pagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
-          /> */}
+          />
         </ReplyContainer>
       ))}
     </>

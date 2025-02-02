@@ -14,11 +14,11 @@ import {
   MiddleSortContentsBox,
 } from "../../../../styles/community/Board";
 
-const Board_Order = ({ boardType }) => {
+const Board_Order = ({ boardType, onSortChange }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
-  const [activeOrder, setActiveOrder] = useState("DESC");
+  const [activeOrder, setActiveOrder] = useState("createdAt");
 
   // write post
   const handleWrite = () => {
@@ -32,8 +32,9 @@ const Board_Order = ({ boardType }) => {
   };
 
   // order posts
-  const handleOrder = (order) => {
-    setActiveOrder(order);
+  const handleSort = (sortBy) => {
+    setActiveOrder(sortBy);
+    onSortChange(sortBy);
   };
 
   const renderOrderOptions = () => {
@@ -41,11 +42,11 @@ const Board_Order = ({ boardType }) => {
       case "coding":
         return (
           <MiddleSortContentsBox>
-            {activeOrder === "DESC" ? (
+            {activeOrder === "createdAt" ? (
               <MiddleSortTitleActiveBox>
                 <MiddleSortTitleActiveDot />
                 <MiddleSortTitleActiveText
-                  onClick={() => handleOrder("DESC")}
+                  onClick={() => handleSort("createdAt")}
                 >
                   최신순
                 </MiddleSortTitleActiveText>
@@ -54,28 +55,28 @@ const Board_Order = ({ boardType }) => {
               <MiddleSortTitleInactiveBox>
                 <MiddleSortTitleInactiveDot />
                 <MiddleSortTitleInactiveText
-                  onClick={() => handleOrder("DESC")}
+                  onClick={() => handleSort("createdAt")}
                 >
                   최신순
                 </MiddleSortTitleInactiveText>
               </MiddleSortTitleInactiveBox>
             )}
-            {activeOrder === "ASC" ? (
+            {activeOrder === "viewCnt" ? (
               <MiddleSortTitleActiveBox>
                 <MiddleSortTitleActiveDot />
                 <MiddleSortTitleActiveText
-                  onClick={() => handleOrder("ASC")}
+                  onClick={() => handleSort("viewCnt")}
                 >
-                  오래된순
+                  조회순
                 </MiddleSortTitleActiveText>
               </MiddleSortTitleActiveBox>
             ) : (
               <MiddleSortTitleInactiveBox>
                 <MiddleSortTitleInactiveDot />
                 <MiddleSortTitleInactiveText
-                  onClick={() => handleOrder("ASC")}
+                  onClick={() => handleSort("viewCnt")}
                 >
-                  오래된순
+                  조회순
                 </MiddleSortTitleInactiveText>
               </MiddleSortTitleInactiveBox>
             )}
@@ -83,7 +84,7 @@ const Board_Order = ({ boardType }) => {
               <MiddleSortTitleActiveBox>
                 <MiddleSortTitleActiveDot />
                 <MiddleSortTitleActiveText
-                  onClick={() => handleOrder("commentCnt")}
+                  onClick={() => handleSort("commentCnt")}
                 >
                   답변많은순
                 </MiddleSortTitleActiveText>
@@ -92,7 +93,7 @@ const Board_Order = ({ boardType }) => {
               <MiddleSortTitleInactiveBox>
                 <MiddleSortTitleInactiveDot />
                 <MiddleSortTitleInactiveText
-                  onClick={() => handleOrder("commentCnt")}
+                  onClick={() => handleSort("commentCnt")}
                 >
                   답변많은순
                 </MiddleSortTitleInactiveText>
@@ -102,7 +103,7 @@ const Board_Order = ({ boardType }) => {
               <MiddleSortTitleActiveBox>
                 <MiddleSortTitleActiveDot />
                 <MiddleSortTitleActiveText
-                  onClick={() => handleOrder("likeCnt")}
+                  onClick={() => handleSort("likeCnt")}
                 >
                   좋아요순
                 </MiddleSortTitleActiveText>
@@ -111,7 +112,7 @@ const Board_Order = ({ boardType }) => {
               <MiddleSortTitleInactiveBox>
                 <MiddleSortTitleInactiveDot />
                 <MiddleSortTitleInactiveText
-                  onClick={() => handleOrder("likeCnt")}
+                  onClick={() => handleSort("likeCnt")}
                 >
                   좋아요순
                 </MiddleSortTitleInactiveText>
@@ -124,11 +125,11 @@ const Board_Order = ({ boardType }) => {
       case "team":
         return (
           <MiddleSortContentsBox>
-            {activeOrder === "DESC" ? (
+            {activeOrder === "createdAt" ? (
               <MiddleSortTitleActiveBox>
                 <MiddleSortTitleActiveDot />
                 <MiddleSortTitleActiveText
-                  onClick={() => handleOrder("DESC")}
+                  onClick={() => handleSort("createdAt")}
                 >
                   최신순
                 </MiddleSortTitleActiveText>
@@ -137,28 +138,28 @@ const Board_Order = ({ boardType }) => {
               <MiddleSortTitleInactiveBox>
                 <MiddleSortTitleInactiveDot />
                 <MiddleSortTitleInactiveText
-                  onClick={() => handleOrder("DESC")}
+                  onClick={() => handleSort("createdAt")}
                 >
                   최신순
                 </MiddleSortTitleInactiveText>
               </MiddleSortTitleInactiveBox>
             )}
-            {activeOrder === "ASC" ? (
+            {activeOrder === "viewCnt" ? (
               <MiddleSortTitleActiveBox>
                 <MiddleSortTitleActiveDot />
                 <MiddleSortTitleActiveText
-                  onClick={() => handleOrder("ASC")}
+                  onClick={() => handleSort("viewCnt")}
                 >
-                  오래된순
+                  조회순
                 </MiddleSortTitleActiveText>
               </MiddleSortTitleActiveBox>
             ) : (
               <MiddleSortTitleInactiveBox>
                 <MiddleSortTitleInactiveDot />
                 <MiddleSortTitleInactiveText
-                  onClick={() => handleOrder("ASC")}
+                  onClick={() => handleSort("viewCnt")}
                 >
-                  오래된순
+                  조회순
                 </MiddleSortTitleInactiveText>
               </MiddleSortTitleInactiveBox>
             )}
@@ -166,7 +167,7 @@ const Board_Order = ({ boardType }) => {
               <MiddleSortTitleActiveBox>
                 <MiddleSortTitleActiveDot />
                 <MiddleSortTitleActiveText
-                  onClick={() => handleOrder("commentCnt")}
+                  onClick={() => handleSort("commentCnt")}
                 >
                   댓글많은순
                 </MiddleSortTitleActiveText>
@@ -175,7 +176,7 @@ const Board_Order = ({ boardType }) => {
               <MiddleSortTitleInactiveBox>
                 <MiddleSortTitleInactiveDot />
                 <MiddleSortTitleInactiveText
-                  onClick={() => handleOrder("commentCnt")}
+                  onClick={() => handleSort("commentCnt")}
                 >
                   댓글많은순
                 </MiddleSortTitleInactiveText>
@@ -185,7 +186,7 @@ const Board_Order = ({ boardType }) => {
               <MiddleSortTitleActiveBox>
                 <MiddleSortTitleActiveDot />
                 <MiddleSortTitleActiveText
-                  onClick={() => handleOrder("likeCnt")}
+                  onClick={() => handleSort("likeCnt")}
                 >
                   좋아요순
                 </MiddleSortTitleActiveText>
@@ -194,7 +195,7 @@ const Board_Order = ({ boardType }) => {
               <MiddleSortTitleInactiveBox>
                 <MiddleSortTitleInactiveDot />
                 <MiddleSortTitleInactiveText
-                  onClick={() => handleOrder("likeCnt")}
+                  onClick={() => handleSort("likeCnt")}
                 >
                   좋아요순
                 </MiddleSortTitleInactiveText>
@@ -202,6 +203,8 @@ const Board_Order = ({ boardType }) => {
             )}
           </MiddleSortContentsBox>
         );
+      default:
+        return null;
     }
   };
 

@@ -1,6 +1,6 @@
-import {useEffect, useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   MenuContainer,
@@ -20,22 +20,22 @@ import {
   MenuWrapper,
 } from "../../styles/navBar/NavBar_M_Menu";
 
-import {logoutAuth} from "../../../redux/slice/authSlice";
-import {logoutCondition} from "../../../redux/slice/loginSlice";
-import {menus} from "../../../util/mobilemenu/MobileMenu";
+import { logoutAuth } from "../../../redux/slice/authSlice";
+import { logoutCondition } from "../../../redux/slice/loginSlice";
+import { menus } from "../../../util/mobilemenu/MobileMenu";
 
-const NavBar_M_Menu = ({closeMenu}) => {
+const NavBar_M_Menu = ({ closeMenu }) => {
   const [activeMenu, setActiveMenu] = useState("about");
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
-  const {firstpath} = location.state || {};
+  const { firstpath } = location.state || {};
   const activeMenuData = menus.find((menu) => menu.id === activeMenu);
   const nickname = useSelector((state) => state.auth.nickname);
   const [isUser, setIsUser] = useState(null);
 
   const handleNavigation = (navigatepath, data) => {
-    navigate(navigatepath, {state: data});
+    navigate(navigatepath, { state: data });
     closeMenu();
   };
 
@@ -59,15 +59,17 @@ const NavBar_M_Menu = ({closeMenu}) => {
     <MenuWrapper>
       <MenuContainer>
         <MenuLeftContainer>
-          {menus.map((menu) => (
-            <MenuLeftItems
-              key={menu.id}
-              as={menu.id === activeMenu ? MenuLeftActive : MenuLeftInctive}
-              onClick={() => setActiveMenu(menu.id)}
-            >
-              {menu.label}
-            </MenuLeftItems>
-          ))}
+          {menus
+            .filter((menu) => menu.id !== "mypage" || isUser)
+            .map((menu) => (
+              <MenuLeftItems
+                key={menu.id}
+                as={menu.id === activeMenu ? MenuLeftActive : MenuLeftInctive}
+                onClick={() => setActiveMenu(menu.id)}
+              >
+                {menu.label}
+              </MenuLeftItems>
+            ))}
           <MenuLeftLogin>
             {isUser !== "" ? (
               <MenuLeftLoginLink onClick={() => handleLogout()}>
@@ -91,7 +93,7 @@ const NavBar_M_Menu = ({closeMenu}) => {
                       secondpath: column.title.text, // 각 title.text(Java, Python, C 등)
                     })
                   }
-                  style={{cursor: "pointer"}}
+                  style={{ cursor: "pointer" }}
                 >
                   {column.title.text}
                 </MenuRightColumnTitle>
@@ -106,7 +108,7 @@ const NavBar_M_Menu = ({closeMenu}) => {
                           thirdpath: content.text, // 각 content.text(Practice, Basic 등)
                         })
                       }
-                      style={{cursor: "pointer"}}
+                      style={{ cursor: "pointer" }}
                     >
                       {content.text}
                     </MenuRightLink>

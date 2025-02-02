@@ -122,7 +122,7 @@ export const ProfileContainer = styled.div.attrs({
   justify-content: center;
   left: 0px;
   box-sizing: border-box;
-  background-color: white;
+
   border-radius: 15px;
   border: 1px solid black;
 `;
@@ -136,14 +136,13 @@ export const ProfileImage = styled.div.attrs({
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-color: gray;
   ${(props) =>
-    props.isProfile === "" &&
+    props.isProfile === null &&
     css`
       background-image: url("/images/general/default_profile.png");
     `}
   ${(props) =>
-    props.isProfile !== "" &&
+    props.isProfile !== null &&
     css`
       background-image: url(${(props) => props.isProfile});
     `}
@@ -829,19 +828,19 @@ export const ProfileImageModify = styled.div.attrs({
   background-size: cover;
   background-color: white;
   ${(props) =>
-    props.isProfile === "" &&
+    props.isProfile === null &&
     props.isPreview === null &&
     css`
       background-image: url("/images/general/default_profile.png");
     `}
   ${(props) =>
-    props.isProfile === "" &&
+    props.isProfile === null &&
     props.isPreview !== null &&
     css`
       background-image: url(${(props) => props.isPreview});
     `}
   ${(props) =>
-    props.isProfile !== "" &&
+    props.isProfile !== null &&
     css`
       background-image: url(${(props) => props.isProfile});
     `}
@@ -982,19 +981,19 @@ export const ProfileModalImage = styled.div.attrs({
   background-size: cover;
   background-color: white;
   ${(props) =>
-    props.isProfile === "" &&
+    props.isProfile === null &&
     props.isPreview === null &&
     css`
       background-image: url("/images/general/default_profile.png");
     `}
   ${(props) =>
-    props.isProfile === "" &&
+    props.isProfile === null &&
     props.isPreview !== null &&
     css`
       background-image: url(${(props) => props.isPreview});
     `}
   ${(props) =>
-    props.isProfile !== "" &&
+    props.isProfile !== null &&
     css`
       background-image: url(${(props) => props.isProfile});
     `}
@@ -1042,7 +1041,7 @@ export const ProfileModalImageModifyButton = styled.button.attrs({
   color: #313131;
   font-family: "medium", sans-serif;
   font-size: 15px;
-  margin-right: 10px;
+  margin-right: 6px;
   cursor: pointer;
 `;
 export const ProfileModalImageDeleteButton = styled.button.attrs({
@@ -1060,7 +1059,7 @@ export const ProfileModalImageDeleteButton = styled.button.attrs({
   color: #313131;
   font-family: "medium", sans-serif;
   font-size: 15px;
-  margin-left: 10px;
+  margin-left: 6px;
   cursor: pointer;
 `;
 export const ProfileUploadModal = styled.div.attrs({
@@ -1166,21 +1165,28 @@ export const ProfileUploadModalImage = styled.div.attrs({
   background-size: contain;
   background-color: white;
   ${(props) =>
-    props.isProfile === "" &&
+    props.isProfile === null &&
     props.isPreview === null &&
     css`
       background-image: url("/images/general/default_profile.png");
     `}
   ${(props) =>
-    props.isProfile === "" &&
+    props.isProfile === null &&
     props.isPreview !== null &&
     css`
       background-image: url(${(props) => props.isPreview});
     `}
   ${(props) =>
-    props.isProfile !== "" &&
+    props.isProfile !== null &&
+    props.isPreview === null &&
     css`
       background-image: url(${(props) => props.isProfile});
+    `}
+    ${(props) =>
+    props.isProfile !== null &&
+    props.isPreview !== null &&
+    css`
+      background-image: url(${(props) => props.isPreview});
     `}
 `;
 export const ProfileUploadModalContents = styled.div.attrs({

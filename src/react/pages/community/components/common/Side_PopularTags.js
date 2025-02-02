@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   PopularTagsContainer,
   PopularTagsItemsBox,
@@ -5,13 +6,33 @@ import {
   PopularTagsTitle,
 } from "../../../../styles/community/PopularTags";
 
-const PopularTags = () => {
+const PopularTags = ({ onEnumFilterChange }) => {
+  const [activeEnumFilter, setActiveEnumFilter] = useState(null);
+
+  const handleEnumFilter = (enumFilter) => {
+    setActiveEnumFilter(enumFilter);
+    onEnumFilterChange(enumFilter);
+  };
+
+  const CodingEnumFilter = {
+    JAVA: "JAVA",
+  };
+
+  const enumFilterJava = "JAVA";
+  const enumFilterPython = "PYTHON";
+  const enumFilterC = "C";
+
   return (
     <>
       <PopularTagsContainer>
         <PopularTagsTitle>인기 태그</PopularTagsTitle>
         <PopularTagsItemsBox>
-          <PopularTagsItem># Java</PopularTagsItem>
+          <PopularTagsItem
+            isActive={activeEnumFilter === enumFilterJava}
+            onClick={() => handleEnumFilter("JAVA")}
+          >
+            # Java
+          </PopularTagsItem>
           <PopularTagsItem># Python</PopularTagsItem>
           <PopularTagsItem># C</PopularTagsItem>
           <PopularTagsItem># 머신러닝</PopularTagsItem>

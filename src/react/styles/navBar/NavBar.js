@@ -239,7 +239,7 @@ export const ProfileImg = styled.div.attrs({
   justify-content: center;
   align-items: center;
   ${(props) =>
-    props.isProfile === "" &&
+    props.isProfile === null &&
     css`
       width: 50px;
       height: 50px;
@@ -250,7 +250,7 @@ export const ProfileImg = styled.div.attrs({
       background-image: url("/images/general/default_profile.png");
     `}
   ${(props) =>
-    props.isProfile !== "" &&
+    props.isProfile !== null &&
     css`
       width: 50px;
       height: 50px;

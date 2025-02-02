@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   UserProfileBox,
   UserProfileImg,
@@ -7,11 +7,17 @@ import {
   UserPostAmount,
 } from "../../../../styles/community/Post";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import AxiosApi from "../../../../../api/AxiosApi";
 
 const Post_UserProfile = () => {
+  const { boardId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
+  const [nickname, setNickname] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [postCnt, setPostCnt] = useState(null);
 
   const handleUserProfile = () => {
     navigate("/community/testid01", {
@@ -21,7 +27,22 @@ const Post_UserProfile = () => {
       },
     });
   };
-  const nickname = useSelector((state) => state.auth.nickname);
+
+  // Get Post from Backend
+  useEffect(() => {
+    const readUser = async () => {
+      try {
+        const response = await AxiosApi.getPost(boardId);
+        console.log(response);
+        setNickname(response.name);
+        setProfile(response.profileUrl);
+        setPostCnt(response.postCnt);
+      } catch (error) {
+        console.error("게시글 가져오는 중 오류 발생 : ", error);
+      }
+    };
+    readUser();
+  }, []);
 
   return (
     <>
@@ -29,15 +50,10 @@ const Post_UserProfile = () => {
         style={{ cursor: "pointer" }}
         onClick={() => handleUserProfile()}
       >
-        <UserProfileImg
-          style={{
-            backgroundImage:
-              "url(https://www.infostockdaily.co.kr/news/photo/202209/179815_152745_594.jpg)",
-          }}
-        />
+        <UserProfileImg isProfile={profile} />
         <UserProfileTextBox>
           <UserId>{nickname}</UserId>
-          <UserPostAmount>작성한 질문수 28</UserPostAmount>
+          <UserPostAmount>작성한 질문수 {postCnt}</UserPostAmount>
         </UserProfileTextBox>
       </UserProfileBox>
     </>

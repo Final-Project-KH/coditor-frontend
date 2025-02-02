@@ -175,6 +175,9 @@ export const ResetButtonBox = styled.div.attrs({
   align-items: center;
   gap: 5px;
   cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 `;
 export const ResetButtonIcon = styled.div.attrs({
   id: "resetbuttonicon",
@@ -191,7 +194,7 @@ export const ResetButtonIcon = styled.div.attrs({
   background-image: url("/images/icon/reset.png");
   position: relative;
 `;
-export const ResetButtonText = styled.button.attrs({
+export const ResetButtonText = styled.div.attrs({
   id: "resetbuttontext",
 })`
   border-radius: 5px;
@@ -457,6 +460,8 @@ export const PostBottom = styled.div.attrs({
 })`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  position: relative;
   justify-content: space-between;
 `;
 export const PostBottomTagsBox = styled.div.attrs({
@@ -482,6 +487,8 @@ export const PostBottomDataBox = styled.div.attrs({
   display: flex;
   flex-direction: row;
   gap: 5px;
+  position: absolute;
+  right: 5px;
   justify-content: center;
   align-items: center;
 `;
