@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const WeeklyBestContainer = styled.div.attrs({
   id: "weeklybestcontainer",
@@ -63,9 +63,19 @@ export const WeeklyBestUserImg = styled.div.attrs({
   padding-left: 2px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 40%;
-  border-radius: 30px;
+  background-size: cover;
+  border-radius: 50%;
   position: relative;
+  ${(props) =>
+    props.isProfile === null &&
+    css`
+      background-image: url("/images/general/default_profile.png");
+    `}
+  ${(props) =>
+    props.isProfile !== null &&
+    css`
+      background-image: url(${(props) => props.isProfile});
+    `}
 `;
 export const WeeklyBestUserId = styled.div.attrs({
   id: "weeklybestuserid",
@@ -76,4 +86,4 @@ export const WeeklyBestUserId = styled.div.attrs({
   font-size: 13px;
   color: black;
   position: relative;
-`
+`;

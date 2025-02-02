@@ -195,6 +195,25 @@ const AxiosApi = {
     }
   },
 
+  gettopwriter: async () => {
+    try {
+      const response = await axios.get(SPRING_DOMAIN + "/community/topWriter");
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+  getpopularpost: async () => {
+    try {
+      const response = await axios.get(
+        SPRING_DOMAIN + "/community/weeklyPopularPost"
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
   getBoard: async (
     page,
     size,

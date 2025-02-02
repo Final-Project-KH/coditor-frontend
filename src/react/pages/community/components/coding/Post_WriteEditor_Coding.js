@@ -23,6 +23,7 @@ import {
 } from "../../../../styles/community/Post";
 import { useLocation, useNavigate } from "react-router-dom";
 import AxiosApi from "../../../../../api/AxiosApi";
+import { useSelector } from "react-redux";
 
 const lowlight = createLowlight(all);
 
@@ -279,6 +280,8 @@ const Post_WriteEditor_Coding = ({ title, language }) => {
   const [editorContent, setEditorContent] = useState("");
   const [boardType, setBoardType] = useState("coding");
 
+  const userAuth = useSelector((state) => state.auth.accesstoken);
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -313,6 +316,11 @@ const Post_WriteEditor_Coding = ({ title, language }) => {
 
   // submit button
   const handleSubmit = async () => {
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
+
     if (!editor.getHTML().trim() || !title.trim()) {
       alert("제목과 내용을 모두 입력하세요!");
       return;

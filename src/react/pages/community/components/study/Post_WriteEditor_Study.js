@@ -24,6 +24,7 @@ import {
 import Subscript from "@tiptap/extension-subscript";
 import { useLocation, useNavigate } from "react-router-dom";
 import AxiosApi from "../../../../../api/AxiosApi";
+import { useSelector } from "react-redux";
 
 const lowlight = createLowlight(all);
 
@@ -294,6 +295,8 @@ const Post_WriteEditor_Study = ({ title, study }) => {
   `);
   const [boardType, setBoardType] = useState("study");
 
+  const userAuth = useSelector((state) => state.auth.accesstoken);
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -326,6 +329,11 @@ const Post_WriteEditor_Study = ({ title, study }) => {
 
   // submit button
   const handleSubmit = async () => {
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
+
     // 에디터 내용이 비어 있거나 제목이 없으면 경고 표시
     if (!editorContent || !title) {
       console.log(title);

@@ -151,11 +151,41 @@ const Board_PostList = ({
             </PostTop>
             <PostMiddle>
               <PostMiddleContentsUpper>
-                {board.status === "INACTIVE" ? (
+                {boardType === "coding" ? (
+                  board.status === "INACTIVE" ? (
+                    <PostMiddleContentsSolved>해결됨</PostMiddleContentsSolved>
+                  ) : (
+                    <PostMiddleContentsPending>
+                      미해결
+                    </PostMiddleContentsPending>
+                  )
+                ) : boardType === "study" ? (
+                  board.status === "INACTIVE" ? (
+                    <PostMiddleContentsSolved>
+                      모집완료
+                    </PostMiddleContentsSolved>
+                  ) : (
+                    <PostMiddleContentsPending>
+                      모집중
+                    </PostMiddleContentsPending>
+                  )
+                ) : (
+                  boardType === "team" &&
+                  (board.status === "INACTIVE" ? (
+                    <PostMiddleContentsSolved>
+                      모집완료
+                    </PostMiddleContentsSolved>
+                  ) : (
+                    <PostMiddleContentsPending>
+                      모집중
+                    </PostMiddleContentsPending>
+                  ))
+                )}
+                {/* {board.status === "INACTIVE" ? (
                   <PostMiddleContentsSolved>해결됨</PostMiddleContentsSolved>
                 ) : (
                   <PostMiddleContentsPending>미해결</PostMiddleContentsPending>
-                )}
+                )} */}
                 <PostMiddleContentsTitle>{board.title}</PostMiddleContentsTitle>
               </PostMiddleContentsUpper>
               <PostMiddleContentsText>
