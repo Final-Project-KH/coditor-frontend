@@ -671,7 +671,7 @@ const MyPage = () => {
                   crop={crop}
                   cropShape="rect"
                   style={{
-                    containerStyle: {backgroundColor: "black"}, // 컨테이너 배경색 변경
+                    containerStyle: {backgroundColor: "transparent"}, // 컨테이너 배경색 변경
                     cropAreaStyle: {
                       border: "3px solid rgba(154, 160, 166)", // 크롭 테두리
                       backgroundColor: "rgba(0,0,0,0.5)",

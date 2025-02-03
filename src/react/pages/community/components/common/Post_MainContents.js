@@ -44,6 +44,7 @@ const Post_MainContents = ({boardType}) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userDisLikeCnt, setUserDisLikeCnt] = useState("");
   const [userLikeCnt, setUserLikeCnt] = useState("");
+  const [writerKeyNumber, setWriterKeyNumber] = useState(null);
 
   const userkeynumber = useSelector((state) => state.auth.keynumber);
   const accesstoken = useSelector((state) => state.auth.accesstoken);
@@ -55,6 +56,9 @@ const Post_MainContents = ({boardType}) => {
       try {
         const response = await AxiosApi.getPost(boardId);
         setPosts([response]);
+        setWriterKeyNumber(response.userKey);
+        console.log("유저 아이디 : ", writerKeyNumber);
+
         console.log("post : ", posts);
         console.log(response);
         console.log("보드 아이디 : ", boardId);
@@ -233,7 +237,7 @@ const Post_MainContents = ({boardType}) => {
               {post.updatedAt && (
                 <>
                   <MainPostEditedText>
-                    {new Date(post.updatedAt)
+                    {/* {new Date(post.updatedAt)
                       .toLocaleString("ko-KR", {
                         year: "numeric",
                         month: "2-digit",
@@ -242,7 +246,7 @@ const Post_MainContents = ({boardType}) => {
                         minute: "2-digit",
                         hour12: false,
                       })
-                      .replace(/\. /g, ".")}
+                      .replace(/\. /g, ".")} */}
                     수정됨
                   </MainPostEditedText>
                   <MiddleDot />
