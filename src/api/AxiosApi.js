@@ -216,12 +216,28 @@ const AxiosApi = {
   getotherpost: async (userId, page, size) => {
     try {
       const response = await axios.get(
-        SPRING_DOMAIN + "/community/list/others",
+        SPRING_DOMAIN + "/community/list/others/post",
         {
           params: {
             userId,
             page,
             size,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getotherprofile: async (userId) => {
+    try {
+      const response = await axios.get(
+        SPRING_DOMAIN + "/community/list/others/profile",
+        {
+          params: {
+            userId,
           },
         }
       );

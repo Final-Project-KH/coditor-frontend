@@ -1,3 +1,4 @@
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   BoardContainer,
   PostListContainer,
@@ -26,8 +27,14 @@ import {
   PostMiddleContentsSolved,
   PostListHr,
 } from "../../../../styles/community/Board";
+import { useEffect, useState } from "react";
+import AxiosApi from "../../../../../api/AxiosApi";
 
 const Board_Community_User = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { firsthpath, writerKey } = location.state || {};
+
   return (
     <>
       <BoardContainer>

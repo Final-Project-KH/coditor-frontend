@@ -231,7 +231,7 @@ const AccountManager_ProfileIMG = () => {
     });
   };
 
-  const resizeImage = (file, maxWidth = 500, maxHeight = 500) => {
+  const resizeImage = (file, maxWidth = 300, maxHeight = 300) => {
     return new Promise((resolve) => {
       const resizingImage = new Image();
       resizingImage.src = URL.createObjectURL(file);
@@ -483,7 +483,7 @@ const AccountManager_ProfileIMG = () => {
                   crop={crop}
                   cropShape="rect"
                   style={{
-                    containerStyle: { backgroundColor: "black" }, // 컨테이너 배경색 변경
+                    containerStyle: { backgroundColor: "white" }, // 컨테이너 배경색 변경
                     cropAreaStyle: {
                       border: "3px solid rgba(154, 160, 166)", // 크롭 테두리
                       backgroundColor: "rgba(0,0,0,0.5)",

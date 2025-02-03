@@ -68,7 +68,7 @@ export const ProfileEditButton = styled.div.attrs({
   display: flex;
   border-radius: 50%;
   position: absolute;
-  right: 38px;
+  margin-right: -70px;
   top: 162px;
   z-index: 3;
   cursor: pointer;
@@ -229,6 +229,8 @@ export const ProfileModalButton = styled.button.attrs({
   color: #313131;
   font-family: "medium", sans-serif;
   font-size: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   cursor: pointer;
   &:hover {
     background-color: black;
