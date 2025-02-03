@@ -67,6 +67,7 @@ const MyPage = () => {
         <RightContainer>
           <AccountManager_ProfileIMG />
         </RightContainer>
+
       </Container>
     </Wrap>
   );
