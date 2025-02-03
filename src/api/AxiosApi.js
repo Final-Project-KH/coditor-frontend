@@ -195,18 +195,71 @@ const AxiosApi = {
     }
   },
 
-  getBoard: async (page, size, boardType, sortBy, order, status) => {
+  gettopwriter: async () => {
     try {
+      const response = await axios.get(SPRING_DOMAIN + "/community/topWriter");
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+  getpopularpost: async () => {
+    try {
+      const response = await axios.get(
+        SPRING_DOMAIN + "/community/weeklyPopularPost"
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+  getotherpost: async (userId, page, size) => {
+    try {
+      const response = await axios.get(
+        SPRING_DOMAIN + "/community/list/others",
+        {
+          params: {
+            userId,
+            page,
+            size,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getBoard: async (
+    page,
+    size,
+    boardType,
+    sortBy,
+    order,
+    status,
+    enumFilter,
+    search
+  ) => {
+    try {
+      if (boardType === "course") {
+        status = "";
+      }
+      console.log("스테이터스 체인지 : ", status);
+
       const response = await axios.get(SPRING_DOMAIN + "/community/list/all", {
         params: {
-          page,
-          size,
-          boardType,
-          sortBy,
-          order,
-          status,
+          page: page,
+          size: size,
+          boardType: boardType,
+          sortBy: sortBy,
+          order: order,
+          status: status,
+          enumFilter: enumFilter,
+          search: search,
         },
       });
+      console.log("게시글 테스트 : ", response.data);
       return response.data; // 응답 데이터 반환
     } catch (error) {
       console.error(
@@ -256,7 +309,7 @@ const AxiosApi = {
       },
     };
     try {
-      const response = await AxiosInstance.get(
+      const response = await axios.get(
         SPRING_DOMAIN + "/community/reaction/status",
         data
       );
@@ -540,6 +593,15 @@ const AxiosApi = {
             "코딩 테스트 제출 기록을 조회하는 과정에서 예기치 못한 문제가 발생하였습니다😭. 문제가 반복될 경우 관리자에게 문의해주세요.";
       }
       return data;
+    }
+  },
+
+  getmyprofile: async () => {
+    try {
+      const response = await AxiosInstance.get(SPRING_DOMAIN + "/my/profile");
+      return response.data;
+    } catch (error) {
+      throw error;
     }
   },
 };

@@ -1,5 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useState} from "react";
 
 import {
   Wrap,
@@ -24,7 +24,7 @@ import ScrollToTopButton from "../ScrollToTopButton";
 const Community_Course_M = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
+  const {firstpath, secondpath} = location.state || {};
   const queryParams = new URLSearchParams(location.search);
 
   // Pagination and sorting params
@@ -34,6 +34,7 @@ const Community_Course_M = () => {
     queryParams.get("sortBy") || "createdAt"
   ); // 기본 타입은 createdAt / 조회순 / 좋아요순 / 댓글많은순 가능
   const [order, setOrder] = useState(queryParams.get("order") || "desc"); // 타입은 desc / asc
+  const [status, setStatus] = useState(queryParams.get("status") || null); // 타입은 active / inactive
   const [enumFilter, setEnumFilter] = useState(
     queryParams.get("enumfilter") || null
   ); // 해쉬태그
@@ -101,6 +102,7 @@ const Community_Course_M = () => {
               onEnumFilterRefresh={handleEnumFilterRefresh}
               onSearchChange={handleSearchChange}
               boardType={boardType}
+              enumFilter={enumFilter}
             />
             <Board_Order
               boardType={boardType}
@@ -112,6 +114,9 @@ const Community_Course_M = () => {
               size={size}
               sortBy={sortBy}
               order={order}
+              status={status}
+              enumFilter={enumFilter}
+              search={search}
             />
           </BoardContainer>
         </Container>

@@ -145,7 +145,7 @@ export const TagSearchBox = styled.div.attrs({
   flex-direction: row;
   justify-content: space-between;
 `;
-export const TagSearch = styled.input.attrs({
+export const TagSearch = styled.div.attrs({
   id: "tagsearch",
 })`
   width: 100%;
@@ -154,12 +154,30 @@ export const TagSearch = styled.input.attrs({
   padding-right: 20px;
   border: none;
   font-size: 14px;
+  display: flex;
   font-family: "medium", sans-serif;
+  align-items: center;
   &:focus {
     outline: none;
   }
-  &::placeholder {
-    color: rgba(0, 0, 0, 0.4);
+`;
+export const TagSearchItem = styled.div.attrs({
+  id: "tagsearchitem",
+})`
+  height: 30px;
+  border: none;
+  font-size: 15px;
+  display: flex;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  position: relative;
+  font-family: "medium", sans-serif;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  &:focus {
+    outline: none;
   }
 `;
 export const ResetButtonBox = styled.div.attrs({

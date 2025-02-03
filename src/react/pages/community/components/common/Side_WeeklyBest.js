@@ -8,88 +8,76 @@ import {
   WeeklyBestUserId,
   WeeklyBestUserImg,
 } from "../../../../styles/community/WeeklyBest";
+import AxiosApi from "../../../../../api/AxiosApi";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const WeeklyBest = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { firstpath, secondpath, thirdpath } = location.state || {};
+  const [weeklybest, setWeeklyBest] = useState([]);
+
+  useEffect(() => {
+    const readWeeklyBest = async () => {
+      try {
+        const response = await AxiosApi.getpopularpost();
+        setWeeklyBest(response);
+        console.log("받은 데이터 : ", response);
+        console.log("저장된 데이터 : ", weeklybest);
+      } catch (error) {
+        console.error("불러오는 중 오류 발생 : ", error);
+      }
+    };
+    readWeeklyBest();
+  }, []);
+
+  // view post
+  const handlePost = (post) => {
+    navigate(
+      `/community/${post.boardType.toLowerCase()}/post/${post.boardId}`,
+      {
+        state: {
+          firstpath: firstpath,
+          secondpath: secondpath,
+          thirdpath: "게시글",
+          boardId: post.boardId,
+          boardType: post.boardType.toLowerCase(),
+        },
+      }
+    );
+  };
+
+  const handleMove = async (post) => {
+    try {
+      const response = await AxiosApi.getPostCheck(post.boardId);
+      if (response) {
+        handlePost(post);
+      }
+    } catch (error) {
+      console.error("게시글 이동중 오류 발생 : ", error);
+    }
+  };
+
   return (
     <>
       <WeeklyBestContainer>
         <WeeklyBestTitle>주간 인기글</WeeklyBestTitle>
-        <WeeklyBestList>
-          <WeeklyBestEach>
-            <WeeklyBestContents>
-              코딩 질문 관련 주간 인기 글 입니다 아 근데 첫번째
-            </WeeklyBestContents>
-            <WeeklyBestUserBox>
-              <WeeklyBestUserImg
-                style={{
-                  backgroundColor: "#313131",
-                  backgroundImage: "url(/images/icon/profile_w.png)",
-                }}
-              />
-              <WeeklyBestUserId>testid01</WeeklyBestUserId>
-            </WeeklyBestUserBox>
-          </WeeklyBestEach>
-
-          <WeeklyBestEach>
-            <WeeklyBestContents>
-              💦 이런 이모지도 같이 보이면 좀 더 풍성하것지
-            </WeeklyBestContents>
-            <WeeklyBestUserBox>
-              <WeeklyBestUserImg
-                style={{
-                  backgroundColor: "#313131",
-                  backgroundImage: "url(/images/icon/profile_w.png)",
-                }}
-              />
-              <WeeklyBestUserId>testid01</WeeklyBestUserId>
-            </WeeklyBestUserBox>
-          </WeeklyBestEach>
-
-          <WeeklyBestEach>
-            <WeeklyBestContents>
-              인기가 있을지 뭔지 근데 두줄 보여줘야함
-            </WeeklyBestContents>
-            <WeeklyBestUserBox>
-              <WeeklyBestUserImg
-                style={{
-                  backgroundColor: "#313131",
-                  backgroundImage: "url(/images/icon/profile_w.png)",
-                }}
-              />
-              <WeeklyBestUserId>testid01</WeeklyBestUserId>
-            </WeeklyBestUserBox>
-          </WeeklyBestEach>
-
-          <WeeklyBestEach>
-            <WeeklyBestContents>
-              같은사람이 계속 인기있으면 이상하니까 사람 바까봄
-            </WeeklyBestContents>
-            <WeeklyBestUserBox>
-              <WeeklyBestUserImg
-                style={{
-                  backgroundColor: "#874646",
-                  backgroundImage: "url(/images/icon/profile_w.png)",
-                }}
-              />
-              <WeeklyBestUserId>testid134</WeeklyBestUserId>
-            </WeeklyBestUserBox>
-          </WeeklyBestEach>
-
-          <WeeklyBestEach>
-            <WeeklyBestContents>
-              프로젝트 기간이 짧아졌네요? 강사님?
-            </WeeklyBestContents>
-            <WeeklyBestUserBox>
-              <WeeklyBestUserImg
-                style={{
-                  backgroundColor: "#0F4E69",
-                  backgroundImage: "url(/images/icon/profile_w.png)",
-                }}
-              />
-              <WeeklyBestUserId>codemaster</WeeklyBestUserId>
-            </WeeklyBestUserBox>
-          </WeeklyBestEach>
-        </WeeklyBestList>
+        {weeklybest.map((post, index) => (
+          <WeeklyBestList key={index}>
+            <WeeklyBestEach
+              key={post.boardId}
+              style={{ cursor: "pointer" }}
+              onClick={() => handleMove(post)}
+            >
+              <WeeklyBestContents>{post.title}</WeeklyBestContents>
+              <WeeklyBestUserBox>
+                <WeeklyBestUserImg isProfile={post.profileUrl} />
+                <WeeklyBestUserId>{post.name}</WeeklyBestUserId>
+              </WeeklyBestUserBox>
+            </WeeklyBestEach>
+          </WeeklyBestList>
+        ))}
       </WeeklyBestContainer>
     </>
   );

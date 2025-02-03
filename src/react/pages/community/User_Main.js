@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 
 import {
   Container,
@@ -11,18 +11,43 @@ import {
   TopBoxText,
   TopBoxWide,
   Wrap,
+  UserProfileBox,
+  UserProfileImg,
+  UserProfileTextBox,
+  UserId,
+  UserPostAmount,
 } from "../../styles/community/User";
-import { PathLink } from "../../styles/community/Community";
+import {PathLink} from "../../styles/community/Community";
 import Post_UserProfile from "./components/common/Post_UserProfile";
 import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
 import User_Feed from "./components/common/User_Feed";
 import Board_Community_Main from "./components/common/Board_Community_Main";
 import ScrollToTopButton from "../ScrollToTopButton";
+import {useEffect, useState} from "react";
+import AxiosApi from "../../../api/AxiosApi";
 
 const User_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
+  const {firstpath, secondpath, writerKey} = location.state || {};
+  const [writerProfile, setWriterProfile] = useState(null);
+  const [writerName, setWriterName] = useState("");
+  const [writerPostCnt, setWriterPostCnt] = useState(null);
+
+  useEffect(() => {
+    const readUserPost = async () => {
+      try {
+        const response = await AxiosApi.getotherpost(writerKey);
+        setWriterProfile(response.content[0].profileUrl);
+        setWriterName(response.content[0].name);
+        console.log("불러온 작성자 게시글 목록 : ", response.content);
+        console.log("프로필 url: ", response.content[0].profileUrl);
+      } catch (error) {
+        console.log("유저 게시글 불러올 때 오류 발생 : ");
+      }
+    };
+    readUserPost();
+  }, []);
 
   // TopBox firstpath
   const handleCommunity = () => {
@@ -35,10 +60,11 @@ const User_Main = () => {
 
   // TopBox secondpath
   const handleRefresh = () => {
-    navigate("/community/userid?testid01", {
+    navigate(`/community/user/${writerKey}`, {
       state: {
         firstpath: firstpath,
         secondpath: "user page",
+        writerKey: writerKey,
       },
     });
   };
@@ -59,7 +85,13 @@ const User_Main = () => {
         </TopBoxWide>
         <Container>
           <LeftContainer>
-            <Post_UserProfile />
+            <UserProfileBox style={{cursor: "pointer"}}>
+              <UserProfileImg isProfile={writerProfile} />
+              <UserProfileTextBox>
+                <UserId>{writerName}</UserId>
+                <UserPostAmount>작성한 질문수 </UserPostAmount>
+              </UserProfileTextBox>
+            </UserProfileBox>
           </LeftContainer>
           <RightContainer>
             <User_Feed />

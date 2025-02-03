@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import {
   MainPostContainer,
   MainPostTop,
@@ -26,27 +26,28 @@ import {
   MainPostTag,
 } from "../../../../styles/community/Post";
 import AxiosApi from "../../../../../api/AxiosApi";
-import { useLocation, useParams } from "react-router-dom";
+import {useLocation, useParams, useNavigate} from "react-router-dom";
 import {
   LanguageDisplayNames,
   CourseDisplayNames,
   StudyDisplayNames,
   TeamDisplayNames,
 } from "../common/DisplayNames";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
-const Post_MainContents = ({ boardType }) => {
-  const { boardId } = useParams();
+const Post_MainContents = ({boardType}) => {
+  const {boardId} = useParams();
   // const [boardType, setBoardType] = useState("CODING");
   const [posts, setPosts] = useState([]);
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
+  const {firstpath, secondpath, thirdpath} = location.state || {};
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userDisLikeCnt, setUserDisLikeCnt] = useState("");
   const [userLikeCnt, setUserLikeCnt] = useState("");
 
   const userkeynumber = useSelector((state) => state.auth.keynumber);
   const accesstoken = useSelector((state) => state.auth.accesstoken);
+  const navigate = useNavigate();
 
   // Get Post from Backend
   useEffect(() => {
@@ -65,9 +66,6 @@ const Post_MainContents = ({ boardType }) => {
   }, [boardId]);
 
   useEffect(() => {
-    if (!accesstoken) {
-      return;
-    }
     const reactionState = async () => {
       try {
         const response = await AxiosApi.boardreactionstatus(
@@ -88,7 +86,7 @@ const Post_MainContents = ({ boardType }) => {
         console.log("Like : ", userLikeCnt);
         console.log("Dislike : ", userDisLikeCnt);
       } catch (error) {
-        console.error("Reaction 상태 불러오기 실패 :", error);
+        return;
       }
     };
     reactionState();
@@ -100,18 +98,19 @@ const Post_MainContents = ({ boardType }) => {
     if (isSubmitting) {
       return;
     }
+    if (!accesstoken) {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
+
     setIsSubmitting(true);
     try {
-      if (userDisLikeCnt === 1) {
-        alert("이미 싫어요 한 글입니다.");
-        return;
-      }
       await AxiosApi.boardreaction(boardId, userkeynumber, "LIKE");
       if (userLikeCnt === 0 && userDisLikeCnt === 0) {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? { ...post, likeCnt: post.likeCnt + 1 }
+              ? {...post, likeCnt: post.likeCnt + 1}
               : post
           )
         );
@@ -121,11 +120,26 @@ const Post_MainContents = ({ boardType }) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? { ...post, likeCnt: post.likeCnt - 1 }
+              ? {...post, likeCnt: post.likeCnt - 1}
               : post
           )
         );
         setUserLikeCnt(userLikeCnt - 1);
+      }
+      if (userLikeCnt === 0 && userDisLikeCnt === 1) {
+        setPosts(
+          posts.map((post) =>
+            post.boardId == boardId
+              ? {
+                  ...post,
+                  likeCnt: post.likeCnt + 1,
+                  dislikeCnt: post.dislikeCnt - 1,
+                }
+              : post
+          )
+        );
+        setUserLikeCnt(userLikeCnt + 1);
+        setUserDisLikeCnt(userDisLikeCnt - 1);
       }
       console.log("post : ", posts);
     } catch (error) {
@@ -141,18 +155,18 @@ const Post_MainContents = ({ boardType }) => {
     if (isSubmitting) {
       return;
     }
+    if (!accesstoken) {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
     setIsSubmitting(true);
     try {
-      if (userLikeCnt === 1) {
-        alert("이미 좋아요 한 글입니다.");
-        return;
-      }
       await AxiosApi.boardreaction(boardId, userkeynumber, "DISLIKE");
       if (userLikeCnt === 0 && userDisLikeCnt === 0) {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? { ...post, dislikeCnt: post.dislikeCnt + 1 }
+              ? {...post, dislikeCnt: post.dislikeCnt + 1}
               : post
           )
         );
@@ -162,11 +176,26 @@ const Post_MainContents = ({ boardType }) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? { ...post, dislikeCnt: post.dislikeCnt - 1 }
+              ? {...post, dislikeCnt: post.dislikeCnt - 1}
               : post
           )
         );
         setUserDisLikeCnt(userDisLikeCnt - 1);
+      }
+      if (userLikeCnt === 1 && userDisLikeCnt === 0) {
+        setPosts(
+          posts.map((post) =>
+            post.boardId == boardId
+              ? {
+                  ...post,
+                  dislikeCnt: post.dislikeCnt + 1,
+                  likeCnt: post.likeCnt - 1,
+                }
+              : post
+          )
+        );
+        setUserDisLikeCnt(userDisLikeCnt + 1);
+        setUserLikeCnt(userLikeCnt - 1);
       }
     } catch (error) {
       console.log("싫어요 실패", error);
@@ -246,18 +275,10 @@ const Post_MainContents = ({ boardType }) => {
             <MainPostContentsBox>
               <MainPostContentsText
                 className="main-post-content"
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                dangerouslySetInnerHTML={{__html: post.content}}
               />
               {(post.language || post.course || post.study || post.team) && (
                 <MainPostTagsBox>
-                  {/* {(post.language || post.course || post.study || post.team) && (
-                  <MainPostTag>
-                    {LanguageDisplayNames[post.language] ||
-                      CourseDisplayNames[post.course] ||
-                      StudyDisplayNames[post.study] ||
-                      TeamDisplayNames[post.team]}
-                  </MainPostTag>
-                )} */}
                   {post.language && post.language.length > 0
                     ? post.language.map((lang, index) => (
                         <MainPostTag>{LanguageDisplayNames[lang]}</MainPostTag>

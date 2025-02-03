@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   InputSearch,
   InputSearchBox,
@@ -10,15 +11,41 @@ import {
   ResetButtonBox,
   ResetButtonText,
   ResetButtonIcon,
+  TagSearchItem,
 } from "../../../../styles/community/Board";
+import { StudyDisplayNames } from "../common/DisplayNames";
 
 const Board_Study_Search = ({
   boardType,
   onSearchChange,
   onEnumFilterRefresh,
+  enumFilter,
 }) => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleInputChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleSearch = () => {
+    if (searchValue.trim() !== "") {
+      onSearchChange(searchValue);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   const enumFilterRefresh = () => {
     onEnumFilterRefresh();
+  };
+
+  const searchRefresh = () => {
+    setSearchValue("");
+    onSearchChange("");
   };
 
   return (
@@ -27,17 +54,29 @@ const Board_Study_Search = ({
         <InputSearchContainer>
           <InputSearchBox>
             <InputSearch
-              onChange={(e) => onSearchChange(e.target.value)}
+              autoComplete="off"
+              value={searchValue}
+              onKeyDown={handleKeyDown}
+              onChange={handleInputChange}
               placeholder="관심 스터디를 검색해보세요!"
             />
           </InputSearchBox>
-          <InputSearchButton>검색</InputSearchButton>
+          <InputSearchButton onClick={handleSearch}>검색</InputSearchButton>
         </InputSearchContainer>
         <TagSearchContainer>
           <TagSearchBox>
-            <TagSearch placeholder="태그로 검색해보세요!" />
+            <TagSearch>
+              {enumFilter !== null && (
+                <TagSearchItem>{StudyDisplayNames[enumFilter]}</TagSearchItem>
+              )}
+            </TagSearch>
           </TagSearchBox>
-          <ResetButtonBox onClick={() => enumFilterRefresh()}>
+          <ResetButtonBox
+            onClick={() => {
+              enumFilterRefresh();
+              searchRefresh();
+            }}
+          >
             <ResetButtonIcon />
             <ResetButtonText>초기화</ResetButtonText>
           </ResetButtonBox>

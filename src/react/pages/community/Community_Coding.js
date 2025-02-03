@@ -135,6 +135,7 @@ const Community_Coding = () => {
                   onEnumFilterRefresh={handleEnumFilterRefresh}
                   onSearchChange={handleSearchChange}
                   boardType={boardType}
+                  enumFilter={enumFilter}
                 />
                 <Board_Order
                   boardType={boardType}
@@ -147,6 +148,8 @@ const Community_Coding = () => {
                   sortBy={sortBy}
                   order={order}
                   status={status}
+                  enumFilter={enumFilter}
+                  search={search}
                 />
               </BoardContainer>
             </CenterContainer>

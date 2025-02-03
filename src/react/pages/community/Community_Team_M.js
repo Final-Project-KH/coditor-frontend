@@ -1,5 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useState} from "react";
 
 import {
   Wrap,
@@ -21,7 +21,7 @@ import ScrollToTopButton from "../ScrollToTopButton";
 const Community_Team_M = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
+  const {firstpath, secondpath} = location.state || {};
   const queryParams = new URLSearchParams(location.search);
 
   // Pagination and sorting params
@@ -35,7 +35,7 @@ const Community_Team_M = () => {
   const [enumFilter, setEnumFilter] = useState(
     queryParams.get("enumfilter") || null
   ); // 해쉬태그
-  const [serach, setSearch] = useState(queryParams.get("search") || null); // 검색
+  const [search, setSearch] = useState(queryParams.get("search") || null); // 검색
 
   const boardType = "team";
 
@@ -107,6 +107,7 @@ const Community_Team_M = () => {
               onEnumFilterRefresh={handleEnumFilterRefresh}
               onSearchChange={handleSearchChange}
               boardType={boardType}
+              enumFilter={enumFilter}
             />
             <Board_Order
               boardType={boardType}
@@ -119,6 +120,8 @@ const Community_Team_M = () => {
               sortBy={sortBy}
               order={order}
               status={status}
+              enumFilter={enumFilter}
+              search={search}
             />
           </BoardContainer>
         </Container>

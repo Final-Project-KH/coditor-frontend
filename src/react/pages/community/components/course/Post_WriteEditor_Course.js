@@ -23,6 +23,7 @@ import {
 } from "../../../../styles/community/Post";
 import { useLocation, useNavigate } from "react-router-dom";
 import AxiosApi from "../../../../../api/AxiosApi";
+import { useSelector } from "react-redux";
 
 const lowlight = createLowlight(all);
 
@@ -279,6 +280,8 @@ const Post_WriteEditor_Course = ({ title, course }) => {
   const [editorContent, setEditorContent] = useState("");
   const [boardType, setBoardType] = useState("course");
 
+  const userAuth = useSelector((state) => state.auth.accesstoken);
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -309,31 +312,36 @@ const Post_WriteEditor_Course = ({ title, course }) => {
     });
   };
 
-    // submit button
-    const handleSubmit = async () => {
-      if (!editor.getHTML().trim() || !title.trim()) {
-        alert("제목과 내용을 모두 입력하세요!");
-        return;
-      }
-      try {
-        const response = await AxiosApi.writeCoursePost(
-          boardType,
-          title,
-          course,
-          editor.getHTML()
-        );
-        alert("내용이 성공적으로 제출되었습니다.");
-        navigate(`/community/${boardType}`, {
-          state: {
-            firstpath: "community",
-            secondpath: secondpath,
-          },
-        });
-      } catch (error) {
-        console.error("제출 실패:", error);
-        alert("제출에 실패했습니다. 다시 시도해주세요.");
-      }
-    };
+  // submit button
+  const handleSubmit = async () => {
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
+
+    if (!editor.getHTML().trim() || !title.trim()) {
+      alert("제목과 내용을 모두 입력하세요!");
+      return;
+    }
+    try {
+      const response = await AxiosApi.writeCoursePost(
+        boardType,
+        title,
+        course,
+        editor.getHTML()
+      );
+      alert("내용이 성공적으로 제출되었습니다.");
+      navigate(`/community/${boardType}`, {
+        state: {
+          firstpath: "community",
+          secondpath: secondpath,
+        },
+      });
+    } catch (error) {
+      console.error("제출 실패:", error);
+      alert("제출에 실패했습니다. 다시 시도해주세요.");
+    }
+  };
 
   return (
     <>

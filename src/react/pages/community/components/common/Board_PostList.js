@@ -35,7 +35,16 @@ import {
   TeamDisplayNames,
 } from "../common/DisplayNames";
 
-const Board_PostList = ({ boardType, page, size, sortBy, order, status }) => {
+const Board_PostList = ({
+  boardType,
+  page,
+  size,
+  sortBy,
+  order,
+  status,
+  enumFilter,
+  search,
+}) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
@@ -46,6 +55,9 @@ const Board_PostList = ({ boardType, page, size, sortBy, order, status }) => {
   // Get Board from Backend
   useEffect(() => {
     const loadBoard = async () => {
+      console.log("test: ", search);
+      console.log("해쉬태그: ", enumFilter);
+
       try {
         const response = await AxiosApi.getBoard(
           currentPage,
@@ -53,7 +65,9 @@ const Board_PostList = ({ boardType, page, size, sortBy, order, status }) => {
           boardType,
           sortBy,
           order,
-          status
+          status,
+          enumFilter,
+          search
         );
         setBoards(response.content); // 받아온 게시글 리스트로 상태 업데이트
         setTotalPages(response.totalPages); // 총 페이지 수 설정
@@ -63,7 +77,7 @@ const Board_PostList = ({ boardType, page, size, sortBy, order, status }) => {
       }
     };
     loadBoard();
-  }, [boardType, currentPage, sortBy, order, status]); // boardType 또는 currentPage가 변경될 때마다 실행
+  }, [boardType, currentPage, sortBy, order, status, enumFilter, search]); // boardType 또는 currentPage가 변경될 때마다 실행
 
   console.log("게시글 확인 : ", boards);
 
@@ -137,11 +151,41 @@ const Board_PostList = ({ boardType, page, size, sortBy, order, status }) => {
             </PostTop>
             <PostMiddle>
               <PostMiddleContentsUpper>
-                {board.status === "INACTIVE" ? (
+                {boardType === "coding" ? (
+                  board.status === "INACTIVE" ? (
+                    <PostMiddleContentsSolved>해결됨</PostMiddleContentsSolved>
+                  ) : (
+                    <PostMiddleContentsPending>
+                      미해결
+                    </PostMiddleContentsPending>
+                  )
+                ) : boardType === "study" ? (
+                  board.status === "INACTIVE" ? (
+                    <PostMiddleContentsSolved>
+                      모집완료
+                    </PostMiddleContentsSolved>
+                  ) : (
+                    <PostMiddleContentsPending>
+                      모집중
+                    </PostMiddleContentsPending>
+                  )
+                ) : (
+                  boardType === "team" &&
+                  (board.status === "INACTIVE" ? (
+                    <PostMiddleContentsSolved>
+                      모집완료
+                    </PostMiddleContentsSolved>
+                  ) : (
+                    <PostMiddleContentsPending>
+                      모집중
+                    </PostMiddleContentsPending>
+                  ))
+                )}
+                {/* {board.status === "INACTIVE" ? (
                   <PostMiddleContentsSolved>해결됨</PostMiddleContentsSolved>
                 ) : (
                   <PostMiddleContentsPending>미해결</PostMiddleContentsPending>
-                )}
+                )} */}
                 <PostMiddleContentsTitle>{board.title}</PostMiddleContentsTitle>
               </PostMiddleContentsUpper>
               <PostMiddleContentsText>

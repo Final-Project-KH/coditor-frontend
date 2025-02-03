@@ -20,6 +20,7 @@ import {
 } from "../../../../styles/community/Reply";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import AxiosApi from "../../../../../api/AxiosApi";
+import { useSelector } from "react-redux";
 
 const lowlight = createLowlight(all);
 
@@ -253,6 +254,8 @@ const ToolBar = ({ editor }) => {
 
 const Post_ReplyEditor = ({ handleCloseEditor }) => {
   const { boardId } = useParams();
+  const navigate = useNavigate();
+  const userAuth = useSelector((state) => state.auth.accesstoken);
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -279,6 +282,11 @@ const Post_ReplyEditor = ({ handleCloseEditor }) => {
 
     // HTML 태그를 제거한 텍스트만 확인
     const textContent = htmlContent.replace(/<[^>]+>/g, "").trim(); // HTML 태그 제거 후 남은 텍스트를 확인
+
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
 
     // 텍스트가 비어있거나 공백만 있는 경우 유효하지 않음
     if (!textContent) {

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, {css} from "styled-components";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -1065,17 +1065,17 @@ export const ProfileModalImageDeleteButton = styled.button.attrs({
 export const ProfileUploadModal = styled.div.attrs({
   id: "profileuploadmodal",
 })`
-  width: 800px;
-  height: 840px;
+  width: 600px;
+  height: 640px;
   display: flex;
   border-radius: 20px;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   border: 1px solid black;
   background-color: white;
   justify-content: space-evenly;
   align-items: center;
-  top: 100px;
+  top: 175px;
   z-index: 10;
 `;
 export const ProfileUploadModalHeader = styled.div.attrs({
@@ -1150,7 +1150,7 @@ export const ProfileUploadModalContainer = styled.div.attrs({
   transition: 0.3s;
   background-color: rgba(128, 128, 128, 0.2);
 
-  ${({ isDragging }) =>
+  ${({isDragging}) =>
     isDragging && "background-color: rgba(74, 144, 226, 0.2);"}
 `;
 export const ProfileUploadModalImage = styled.div.attrs({
@@ -1237,24 +1237,24 @@ export const ProfileUploadModalImageAddButton = styled.button.attrs({
 export const ProfileCropModal = styled.div.attrs({
   id: "profilecropmodal",
 })`
-  width: 800px;
-  height: 840px;
+  width: 600px;
+  height: 640px;
   display: flex;
   border-radius: 20px;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   border: 1px solid black;
   background-color: #131314;
   justify-content: space-evenly;
   align-items: center;
-  top: 100px;
+  top: 175px;
   z-index: 10;
 `;
 export const ProfileCropModalHeader = styled.div.attrs({
   id: "profilecropmodalheader",
 })`
   width: 100%;
-  height: 120px;
+  height: 90px;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -1314,7 +1314,7 @@ export const ProfileCropModalContainer = styled.div.attrs({
   id: "profilecropmodalcontainer",
 })`
   width: 100%;
-  height: 600px;
+  height: 460px;
   display: flex;
   position: relative;
   justify-content: center;
@@ -1324,7 +1324,7 @@ export const ProfileCropContainer = styled.div.attrs({
   id: "profilecropcontainer",
 })`
   width: 100%;
-  height: 600px;
+  height: 460px;
   display: flex;
   position: relative;
   justify-content: center;
@@ -1342,7 +1342,7 @@ export const ProfileCropModalButtonContainer = styled.div.attrs({
   id: "profilecropmodalcontainer",
 })`
   width: 100%;
-  height: 120px;
+  height: 90px;
   display: flex;
   position: relative;
   flex-direction: row;
@@ -1388,7 +1388,6 @@ export const ProfileCropModalButton = styled.button.attrs({
   &:hover {
     background-color: black;
     color: white;
-    border: 1px solid white;
   }
 `;
 export const ProfileModifyButton = styled.button.attrs({

@@ -12,7 +12,7 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 import ListItem from "@tiptap/extension-list-item";
 import { Image } from "@tiptap/extension-image";
-import "./../../../../styles/community/PostEditor.css";
+import "../../../styles/community/PostEditor.css";
 import {
   EditorArea,
   TipTapBox,
@@ -20,11 +20,9 @@ import {
   WriteButtonsArea,
   WriteCancelButton,
   WriteSubmitButton,
-} from "../../../../styles/community/Post";
-import Subscript from "@tiptap/extension-subscript";
+} from "../../../styles/cs/CS";
 import { useLocation, useNavigate } from "react-router-dom";
-import AxiosApi from "../../../../../api/AxiosApi";
-import { useSelector } from "react-redux";
+import AxiosApi from "../../../../api/AxiosApi";
 
 const lowlight = createLowlight(all);
 
@@ -272,29 +270,21 @@ const extensions = [
   Code,
   CodeBlock,
   Image,
-  Subscript,
 ];
 
-const Post_WriteEditor_Team = ({ title, team }) => {
+const CS_WriteEditor_Report = ({ title }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
   const [editorContent, setEditorContent] = useState(`
-    <p><b>[개발 프로젝트 모집 내용 예시]</b></p>
-        <ul>
-          <li>프로젝트 주제 : </li>
-          <li>프로젝트 목표 : </li>
-          <li>예상 일정(횟수) : </li>
-          <li>예상 커리큘럼 : </li>
-          <li>예상 모집인원 : </li>
-          <li>프로젝트 소개 : </li>
-          <li>주의사항 : </li>
-          <li>지원 방법(이메일, 카카오 오픈채팅방, 구글폼 등) : </li>
-        </ul>
+      <p><b>[악성 사용자 신고 예시]</b></p>
+      <ul>
+        <li>악성 사용자 ID : </li>
+        <li>악성 사용자 닉네임 : </li>
+        <li>악성 사용자 글 제목 : </li>
+        <li>악성 사용자 글 URL : </li>
+        <li>신고 내용 : </li>
+      </ul>
+      <p><span style="color: #868e96;"><sub>* 참고 사항 : </sub></span></p><br />
     `);
-  const [boardType, setBoardType] = useState("team");
-
-  const userAuth = useSelector((state) => state.auth.accesstoken);
 
   const editor = useEditor({
     extensions: [
@@ -307,7 +297,6 @@ const Post_WriteEditor_Team = ({ title, team }) => {
         lowlight,
       }),
       Image,
-      Subscript,
     ],
     content: editorContent,
     onUpdate: ({ editor }) => {
@@ -316,44 +305,16 @@ const Post_WriteEditor_Team = ({ title, team }) => {
     },
   });
 
-  // cancel button
-  const handleGoBack = () => {
-    navigate(`/community/${boardType}`, {
-      state: {
-        firstpath: "community",
-        secondpath: secondpath,
-      },
-    });
-  };
-
   // submit button
   const handleSubmit = async () => {
-    if (userAuth === "") {
-      alert("로그인이 필요한 서비스입니다.");
-      return navigate("/login");
-    }
-
-    // 에디터 내용이 비어 있거나 제목이 없으면 경고 표시
-    if (!editorContent || !title) {
-      console.log(title);
-      console.log(editorContent);
+    if (!editor.getHTML().trim() || !title.trim()) {
       alert("제목과 내용을 모두 입력하세요!");
       return;
     }
     try {
-      const response = await AxiosApi.writeTeamPost(
-        boardType,
-        title,
-        team,
-        editorContent
-      );
+      // const response = await AxiosApi.써야함(title, editor.getHTML());
       alert("내용이 성공적으로 제출되었습니다.");
-      navigate(`/community/${boardType}`, {
-        state: {
-          firstpath: "community",
-          secondpath: secondpath,
-        },
-      });
+      navigate(-1);
     } catch (error) {
       console.error("제출 실패:", error);
       alert("제출에 실패했습니다. 다시 시도해주세요.");
@@ -368,7 +329,6 @@ const Post_WriteEditor_Team = ({ title, team }) => {
             <ToolBar editor={editor} />
           </ToolBarContainer>
           <EditorContent
-            className="tiptap-editor"
             style={{
               width: "100%",
               height: "calc(100% - 50px)",
@@ -381,7 +341,9 @@ const Post_WriteEditor_Team = ({ title, team }) => {
           />
         </EditorArea>
         <WriteButtonsArea>
-          <WriteCancelButton onClick={handleGoBack}>취소</WriteCancelButton>
+          <WriteCancelButton onClick={() => navigate(-1)}>
+            취소
+          </WriteCancelButton>
           <WriteSubmitButton onClick={handleSubmit}>등록</WriteSubmitButton>
         </WriteButtonsArea>
       </TipTapBox>
@@ -389,4 +351,4 @@ const Post_WriteEditor_Team = ({ title, team }) => {
   );
 };
 
-export default Post_WriteEditor_Team;
+export default CS_WriteEditor_Report;

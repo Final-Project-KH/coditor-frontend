@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const TopWritersContainer = styled.div.attrs({
   id: "topwriterscontainer",
@@ -28,7 +28,6 @@ export const TopWritersList = styled.div.attrs({
   display: flex;
   flex-direction: column;
   gap: 10px;
-
 `;
 export const TopWritersEach = styled.div.attrs({
   id: "topwriterseach",
@@ -41,17 +40,27 @@ export const TopWritersEach = styled.div.attrs({
 export const TopWritersImg = styled.div.attrs({
   id: "topwritersimg",
 })`
-  width: 21px;
+  width: 20px;
   height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 2px;
+  padding-left: 20px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 40%;
-  border-radius: 30px;
+  background-size: cover;
+  border-radius: 50%;
   position: relative;
+  ${(props) =>
+    props.isProfile === null &&
+    css`
+      background-image: url("/images/general/default_profile.png");
+    `}
+  ${(props) =>
+    props.isProfile !== null &&
+    css`
+      background-image: url(${(props) => props.isProfile});
+    `}
 `;
 export const TopWritersId = styled.div.attrs({
   id: "topwritersid",
@@ -60,6 +69,7 @@ export const TopWritersId = styled.div.attrs({
   text-align: left;
   font-family: "medium", sans-serif;
   font-size: 13px;
+  margin-left: 10px;
   color: black;
   position: relative;
 `;
