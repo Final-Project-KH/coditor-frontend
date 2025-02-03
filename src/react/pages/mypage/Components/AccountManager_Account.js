@@ -9,7 +9,7 @@ import {
   InputContainer,
   EmailInput,
   SubmitButton,
-  NicknameInput,
+  PasswordInput,
 } from "../../../styles/mypage/MyPage";
 import AxiosApi from "../../../../api/AxiosApi";
 import { useNavigate } from "react-router-dom";
@@ -52,10 +52,10 @@ const AccountManager_Account = () => {
             </InputContainer>
           </AccountEachContainer>
           <AccountEachContainer>
-            <InputLabel>닉네임</InputLabel>
+            <InputLabel>비밀번호</InputLabel>
             <InputContainer>
-              <NicknameInput value={nickname}></NicknameInput>
-              <SubmitButton>닉네임 변경</SubmitButton>
+              <PasswordInput placeholder="현재 비밀번호 입력" type="password"></PasswordInput>
+              <SubmitButton>비밀번호 변경</SubmitButton>
             </InputContainer>
           </AccountEachContainer>
         </CenterContentsContainer>

@@ -42,14 +42,6 @@ const LeftMenus = () => {
       secondpath: "내 소개",
     },
     {
-      id: "changepassword",
-      sort: "profile",
-      label: "️비밀번호 변경",
-      link: "/mypage/changepassword",
-      firstpath: firstpath,
-      secondpath: "비밀번호 변경",
-    },
-    {
       id: "withdrawal",
       sort: "profile",
       label: "️회원 탈퇴",

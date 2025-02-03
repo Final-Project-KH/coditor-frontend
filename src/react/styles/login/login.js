@@ -110,7 +110,7 @@ export const FloatingContainer = styled.div.attrs({
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 `;
 export const FloatingTitle = styled.h1.attrs({
-  id: "inputtitle",
+  id: "floatingtitle",
 })`
   width: 100%;
   display: flex;

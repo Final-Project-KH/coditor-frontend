@@ -215,6 +215,9 @@ export const LeftContainerContentsInactive = styled.div.attrs({
   font-size: 16px;
   cursor: pointer;
   font-family: "regular", sans-serif;
+  &:hover {
+    font-family: "bold", sans-serif;
+  }
 `;
 export const LeftContainerContentsActive = styled.div.attrs({
   id: "leftcontainercontentsactive",
@@ -399,7 +402,7 @@ export const SubmitButton = styled.button.attrs({
     `}
   border: none;
 `;
-export const NicknameInput = styled.input.attrs({
+export const PasswordInput = styled.input.attrs({
   id: "nicknameinput",
 })`
   width: 80%;
@@ -416,9 +419,9 @@ export const NicknameInput = styled.input.attrs({
   font-size: 13px;
   padding-left: 40px;
   background-repeat: no-repeat;
-  background-size: 15px auto;
+  background-size: 12px auto;
   background-position: 15px center;
-  background-image: url("/images/icon/mail.png");
+  background-image: url("/images/icon/pwd.png");
   &:focus {
     outline: none;
   }
