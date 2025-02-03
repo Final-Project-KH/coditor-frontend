@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -136,7 +136,7 @@ export const FeedTitle = styled.div.attrs({
 export const FeedContents = styled.div.attrs({
   id: "feedcontents",
 })`
-width: 100%;
+  width: 100%;
   font-family: "regular", sans-serif;
   font-size: 16px;
   color: black;
@@ -168,4 +168,61 @@ export const PostTitle = styled.div.attrs({
   font-size: 28px;
   font-family: "bold", sans-serif;
   color: black;
+`;
+export const UserProfileBox = styled.div.attrs({
+  id: "userprofilebox",
+})`
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+`;
+export const UserProfileImg = styled.div.attrs({
+  id: "userprofileimg",
+})`
+  width: 80px;
+  height: 80px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  border: 1px solid #f1f1f1;
+  ${(props) =>
+    props.isProfile === null &&
+    css`
+      background-image: url("/images/general/default_profile.png");
+    `}
+  ${(props) =>
+    props.isProfile !== null &&
+    css`
+      background-image: url(${(props) => props.isProfile});
+    `}
+`;
+export const UserProfileTextBox = styled.div.attrs({
+  id: "userprofiletextbox",
+})`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+export const UserId = styled.div.attrs({
+  id: "userid",
+})`
+  text-align: left;
+  font-size: 24px;
+  font-family: "extrabold", sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+`;
+export const UserPostAmount = styled.div.attrs({
+  id: "userpostamount",
+})`
+  text-align: left;
+  font-size: 20px;
+  font-family: "medium", sans-serif;
+  color: rgba(0, 0, 0, 0.4);
 `;

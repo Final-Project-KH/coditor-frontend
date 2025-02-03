@@ -1,5 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useState} from "react";
 
 import {
   Wrap,
@@ -24,7 +24,7 @@ import ScrollToTopButton from "../ScrollToTopButton";
 const Community_Course_M = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
+  const {firstpath, secondpath} = location.state || {};
   const queryParams = new URLSearchParams(location.search);
 
   // Pagination and sorting params
@@ -102,6 +102,7 @@ const Community_Course_M = () => {
               onEnumFilterRefresh={handleEnumFilterRefresh}
               onSearchChange={handleSearchChange}
               boardType={boardType}
+              enumFilter={enumFilter}
             />
             <Board_Order
               boardType={boardType}

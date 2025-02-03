@@ -8,7 +8,7 @@ import {
 } from "../../styles/community/Post";
 import Post_WriteEditor_Study from "./components/study/Post_WriteEditor_Study";
 import Post_WriteSort from "./components/common/Post_WriteSort";
-import { useState } from "react";
+import {useState} from "react";
 import Select from "react-select";
 
 const Post_Write_Study = () => {
@@ -17,10 +17,10 @@ const Post_Write_Study = () => {
 
   const [selectedStudies, setSelectedStudies] = useState([]);
   const studyOptions = [
-    { value: "ALGORITHM", label: "알고리즘" },
-    { value: "STRUCTURE", label: "자료구조" },
-    { value: "CODING", label: "코딩테스트" },
-    { value: "ETC", label: "기타" },
+    {value: "ALGORITHM", label: "알고리즘"},
+    {value: "STRUCTURE", label: "자료구조"},
+    {value: "CODING", label: "코딩테스트"},
+    {value: "ETC", label: "기타"},
   ];
 
   const handleChange = (selectedOptions) => {
@@ -34,7 +34,7 @@ const Post_Write_Study = () => {
       backgroundColor: "white",
       borderColor: state.isFocused ? "blue" : "#ccc",
       boxShadow: state.isFocused ? "0 0 5px rgba(0, 0, 255, 0.5)" : "none",
-      "&:hover": { borderColor: "blue" },
+      "&:hover": {borderColor: "blue"},
       maxWidth: "1280px",
       border: "1px solid #f1f1f1",
       padding: "5px",
@@ -54,7 +54,7 @@ const Post_Write_Study = () => {
       fontSize: "15px",
       fontFamily: "medium, sans-serif",
     }),
-    option: (provided, { isSelected, isFocused }) => ({
+    option: (provided, {isSelected, isFocused}) => ({
       ...provided,
       backgroundColor: isSelected ? "blue" : isFocused ? "#f0f0f0" : "white",
       color: isSelected ? "white" : "black",
@@ -77,7 +77,7 @@ const Post_Write_Study = () => {
       height: "25px",
       alignItems: "center",
       justifyContent: "center",
-      "&:hover": { backgroundColor: "red", color: "white" },
+      "&:hover": {backgroundColor: "red", color: "white"},
     }),
   };
 
@@ -88,6 +88,7 @@ const Post_Write_Study = () => {
           <Post_WriteSort />
           <WriteTitleBox>
             <WriteTitle
+              autoComplete="off"
               placeholder="제목을 입력하세요."
               value={title}
               onChange={(e) => setTitle(e.target.value)}
