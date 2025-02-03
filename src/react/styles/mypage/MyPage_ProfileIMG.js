@@ -10,11 +10,20 @@ export const RightContainerEach = styled.div.attrs({
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   box-sizing: border-box;
   border-radius: 15px;
   border: 1px solid rgba(0, 0, 0, 0.1);
+`;
+export const RightContentsContainer = styled.div.attrs({
+  id: "rightcontentscontainer",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: 15px;
+  justify-content: flex-start;
+  align-items: center;
 `;
 export const RightContainerTitle = styled.div.attrs({
   id: "rightcontainertitle",
@@ -24,7 +33,7 @@ export const RightContainerTitle = styled.div.attrs({
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  font-family: "medium", sans-serif;
+  font-family: "semibold", sans-serif;
 `;
 export const RightProfileImage = styled.div.attrs({
   id: "rightprofileimage",
@@ -63,18 +72,18 @@ export const HiddenInput = styled.input`
 export const ProfileEditButton = styled.div.attrs({
   id: "profileeditbutton",
 })`
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   display: flex;
   border-radius: 50%;
   position: absolute;
-  margin-right: -70px;
-  top: 162px;
+  right: 35px;
+  top: 155px;
   z-index: 3;
   cursor: pointer;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 50%;
+  background-size: 40%;
   background-color: #444444;
   background-image: url("/images/icon/edit.png");
   &:hover {
@@ -88,7 +97,7 @@ export const Backdrop = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,7 +107,6 @@ export const ProfileModal = styled.div.attrs({
   id: "profilemodal",
 })`
   width: 400px;
-  height: 600px;
   display: flex;
   border-radius: 20px;
   flex-direction: column;
@@ -110,7 +118,8 @@ export const ProfileModal = styled.div.attrs({
   align-items: center;
   z-index: 200;
   box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.05);
-  gap: 30px;
+  gap: 20px;
+  padding-bottom: 50px;
 `;
 export const ProfileModalHeader = styled.div.attrs({
   id: "profilemodalheader",
@@ -359,29 +368,10 @@ export const ProfileCropModalButtonContainer = styled.div.attrs({
   justify-content: center;
   align-items: center;
 `;
-export const ProfileCropModalRotateButton = styled.button.attrs({
-  id: "profilecropmodalrotatebutton",
+export const ProfileModalRotateButton = styled.button.attrs({
+  id: "profilemodalrotatebutton",
 })`
-  width: 50px;
-  height: 50px;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  margin-right: 20px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 30px 30px;
-  background-image: url("/images/icon/rotate.png");
-`;
-export const ProfileCropModalButton = styled.button.attrs({
-  id: "profilecropmodalbutton",
-})`
-  width: 180px;
+  width: 200px;
   height: 50px;
   display: flex;
   position: relative;
@@ -389,44 +379,23 @@ export const ProfileCropModalButton = styled.button.attrs({
   justify-content: center;
   user-select: none;
   border-radius: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid black;
   color: #313131;
   font-family: "medium", sans-serif;
   font-size: 15px;
-  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  background-image: url("/images/icon/rotate.png");
   cursor: pointer;
   &:hover {
     background-color: black;
     color: white;
+    font-family: "bold", sans-serif;
+    background-image: url("/images/icon/rotate_w.png");
   }
-`;
-export const ProfileModifyButton = styled.button.attrs({
-  id: "middlenicknameinput",
-})`
-  width: 140px;
-  height: 50px;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  margin-bottom: 10px;
-  color: #313131;
-  font-family: "medium", sans-serif;
-  font-size: 15px;
-  cursor: pointer;
-`;
-export const CropContainer = styled.div.attrs({
-  id: "cropcontainer",
-})`
-  width: 140px;
-  height: 140px;
-  position: relative;
-  border-radius: 50%;
-  overflow: hidden; /* 원형 마스크 */
-  background: #ddd;
 `;
 
 export const Controls = styled.div.attrs({
@@ -460,4 +429,40 @@ export const Preview = styled.img`
   border-radius: 50%;
   margin-top: 10px;
   border: 2px solid #4a90e2;
+`;
+
+export const RightNicknameBox = styled.div.attrs({
+  id: "rightnicknamebox",
+})`
+  width: 80%;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid black;
+  }
+`;
+export const RightNicknameText = styled.div.attrs({
+  id: "rightnicknametext",
+})`
+  max-width: 90%;
+  font-family: "medium", sans-serif;
+  font-size: 14px;
+`;
+
+export const RightNicknameIcon = styled.div.attrs({
+  id: "rightnicknameicon",
+})`
+  width: 10px;
+  height: 10px;
+  margin-top: 2px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/images/icon/edit_b.png");
 `;

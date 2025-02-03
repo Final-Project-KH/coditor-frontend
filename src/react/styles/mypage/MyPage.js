@@ -214,7 +214,7 @@ export const LeftContainerContentsInactive = styled.div.attrs({
   justify-content: center;
   font-size: 16px;
   cursor: pointer;
-  font-family: "medium", sans-serif;
+  font-family: "regular", sans-serif;
 `;
 export const LeftContainerContentsActive = styled.div.attrs({
   id: "leftcontainercontentsactive",
@@ -226,8 +226,9 @@ export const LeftContainerContentsActive = styled.div.attrs({
   justify-content: center;
   font-size: 16px;
   cursor: pointer;
-  font-family: "medium", sans-serif;
+  font-family: "bold", sans-serif;
   text-decoration: underline;
+  text-underline-offset: 5px;
 `;
 export const CenterContainer = styled.div.attrs({
   id: "centercontainer",
@@ -385,8 +386,6 @@ export const SubmitButton = styled.button.attrs({
   color: white;
   font-family: "medium", sans-serif;
   font-size: 15px;
-  background-color: rgba(0, 0, 0, 0.8);
-  cursor: pointer;
   background-color: ${(props) => (props.disabled ? "#f1f1f1" : "#313131")};
   color: ${(props) => (props.disabled ? "#313131" : "white")};
   transition: all 0.3s ease-in-out;
@@ -525,5 +524,4 @@ export const SNSIcon = styled.div.attrs({
   background-position: center;
   background-image: url(${(props) => props.icon});
 `;
-
 

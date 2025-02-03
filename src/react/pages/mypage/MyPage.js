@@ -10,7 +10,6 @@ import {
   LeftContainer,
   CenterContainer,
   CenterAccountRightContainer,
-  RightContainer,
   CenterAccountLeftContainer,
   CenterAccountContainer,
 } from "../../styles/mypage/MyPage";
@@ -58,15 +57,16 @@ const MyPage = () => {
         </LeftContainer>
         <CenterContainer>
           <CenterAccountContainer>
-          <CenterAccountLeftContainer>
-          <AccountManager_Account /></CenterAccountLeftContainer>
-          <CenterAccountRightContainer>
-          <AccountManager_ProfileIMG />
-        </CenterAccountRightContainer></CenterAccountContainer>
+            <CenterAccountLeftContainer>
+              <AccountManager_Account />
+            </CenterAccountLeftContainer>
+            <CenterAccountRightContainer>
+              <AccountManager_ProfileIMG />
+            </CenterAccountRightContainer>
+          </CenterAccountContainer>
           <AccountManager_Alert />
           <AccountManager_SNS />
         </CenterContainer>
-
       </Container>
     </Wrap>
   );
