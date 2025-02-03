@@ -10,7 +10,6 @@ export const Wrap = styled.div.attrs({
   justify-content: center;
   align-items: center;
 `;
-
 export const TopBoxWide = styled.div.attrs({
   id: "topboxwide",
 })`
@@ -70,7 +69,6 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
-  margin-top: 75px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -78,6 +76,7 @@ export const Container = styled.div.attrs({
   justify-content: center;
   margin-bottom: 0;
   gap: 25px;
+  margin-top: 75px;
 `;
 
 export const LeftContainer = styled.div.attrs({
@@ -270,16 +269,16 @@ export const LeftEvUp = styled.div.attrs({
   ${(props) =>
     props.userLikeCnt === 1 &&
     css`
-      background-color: black;
+      background-color: green;
       background-repeat: no-repeat;
       background-size: 15px;
       background-position: center;
-      background-image: url("/images/icon/thumbsup_g.png");
+      background-image: url("/images/icon/thumbsup_w.png");
     `}
   ${(props) =>
     props.userLikeCnt === 0 &&
     css`
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.3);
       background-repeat: no-repeat;
       background-size: 15px;
       background-position: center;
@@ -288,7 +287,7 @@ export const LeftEvUp = styled.div.attrs({
     ${(props) =>
     props.userLikeCnt === "" &&
     css`
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.3);
       background-repeat: no-repeat;
       background-size: 15px;
       background-position: center;
@@ -305,16 +304,16 @@ export const LeftEvDown = styled.div.attrs({
   ${(props) =>
     props.userDisLikeCnt === 1 &&
     css`
-      background-color: black;
+      background-color: red;
       background-repeat: no-repeat;
       background-size: 15px;
       background-position: center;
-      background-image: url("/images/icon/thumbsdown_r.png");
+      background-image: url("/images/icon/thumbsdown_w.png");
     `}
   ${(props) =>
     props.userDisLikeCnt === 0 &&
     css`
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.3);
       background-repeat: no-repeat;
       background-size: 15px;
       background-position: center;
@@ -323,7 +322,7 @@ export const LeftEvDown = styled.div.attrs({
     ${(props) =>
     props.userDisLikeCnt === "" &&
     css`
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.3);
       background-repeat: no-repeat;
       background-size: 15px;
       background-position: center;
@@ -352,6 +351,7 @@ export const MainPostContentsText = styled.div.attrs({
 export const MainPostTagsBox = styled.div.attrs({
   id: "mainposttagsbox",
 })`
+margin-top: 20px;
   display: flex;
   flex-direction: row;
   gap: 5px;

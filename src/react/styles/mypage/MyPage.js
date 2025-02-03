@@ -102,29 +102,28 @@ export const Container = styled.div.attrs({
 export const LeftContainer = styled.div.attrs({
   id: "leftcontainer",
 })`
-  max-width: 1280px;
-  width: 200px;
-  margin-right: 50px;
+  width: 17%;
+  min-width: 175px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing: border-box;
+  gap: 25px;
+  left: 0;
 `;
-export const ProfileContainer = styled.div.attrs({
-  id: "profilecontainer",
+export const LeftContainerEach = styled.div.attrs({
+  id: "leftcontainereach",
 })`
-  max-width: 1280px;
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  padding: 30px 0;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  left: 0px;
+  justify-content: space-evenly;
   box-sizing: border-box;
-
   border-radius: 15px;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  gap: 15px;
 `;
 export const ProfileImage = styled.div.attrs({
   id: "profileimage",
@@ -150,167 +149,93 @@ export const ProfileImage = styled.div.attrs({
 export const UserNickName = styled.div.attrs({
   id: "usernickname",
 })`
-  width: 50%;
-  height: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 20px;
-  font-weight: bold;
-`;
-export const UserRating = styled.div.attrs({
-  id: "userrating",
-})`
-  width: 50%;
-  height: 10%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  font-size: 15px;
-  font-weight: bold;
-`;
-export const UserTier = styled.div.attrs({
-  id: "usertier",
-})`
-  width: 50%;
-  height: 10%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5px;
+  margin-top: 20px;
   margin-bottom: 5px;
   font-size: 18px;
-  font-weight: bold;
+  font-family: "bold", sans-serif;
 `;
-export const UserContentsContainer = styled.div.attrs({
-  id: "usercontentscontainer",
+
+export const UserSignupDate = styled.div.attrs({
+  id: "usersignupdate",
 })`
-  max-width: 1280px;
-  width: 200px;
-  height: 200px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  box-sizing: border-box;
-  border-radius: 15px;
-  border: 1px solid black;
-  margin-top: 25px;
+  font-family: "regular", sans-serif;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.4);
 `;
-export const UserContentsTitle = styled.div.attrs({
-  id: "usercontentstitle",
+
+export const LeftContainerTitle = styled.div.attrs({
+  id: "leftcontainertitle",
 })`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 25px;
-  font-weight: bold;
+  font-family: "bold", sans-serif;
+  font-size: 24px;
 `;
-export const UserContents = styled.div.attrs({
-  id: "usercontents",
+export const LeftContainerContentsBox = styled.div.attrs({
+  id: "leftcontainercontentsbox",
 })`
-  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 10px;
   align-items: center;
-  justify-content: center;
-  font-size: 15px;
+`;
+
+export const LeftMenuLink = styled.button.attrs({
+  id: "LeftMenuLink",
+})`
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  border: none;
+  color: inherit;
+  background-color: transparent;
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
 `;
-export const DashboardContainer = styled.div.attrs({
-  id: "dashboardcontainer",
-})`
-  max-width: 1280px;
-  width: 200px;
-  height: 200px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  box-sizing: border-box;
-  border-radius: 15px;
-  border: 1px solid black;
-  margin-top: 25px;
-`;
-export const DashboardTitle = styled.div.attrs({
-  id: "dashboardtitle",
+export const LeftContainerContentsInactive = styled.div.attrs({
+  id: "leftcontainercontentsinactive",
 })`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 25px;
-  font-weight: bold;
-`;
-export const DashboardContents = styled.div.attrs({
-  id: "dashboardcontents",
-})`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
+  font-size: 16px;
   cursor: pointer;
+  font-family: "medium", sans-serif;
 `;
-export const PostContainer = styled.div.attrs({
-  id: "postcontainer",
-})`
-  max-width: 1280px;
-  width: 200px;
-  height: 200px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  box-sizing: border-box;
-  border-radius: 15px;
-  border: 1px solid black;
-  margin-top: 25px;
-`;
-export const PostTitle = styled.div.attrs({
-  id: "posttitle",
+export const LeftContainerContentsActive = styled.div.attrs({
+  id: "leftcontainercontentsactive",
 })`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 25px;
-  font-weight: bold;
-`;
-export const PostContents = styled.div.attrs({
-  id: "postcontents",
-})`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
+  font-size: 16px;
   cursor: pointer;
+  font-family: "medium", sans-serif;
+  text-decoration: underline;
 `;
 export const MiddleContainer = styled.div.attrs({
   id: "middlecontainer",
 })`
-  max-width: 1280px;
-  width: calc(1280px - 500px);
+  width: 66%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  margin-bottom: 20px;
-  box-sizing: border-box;
+  gap: 25px;
+  left: 0;
 `;
 export const MiddleUserContainer = styled.div.attrs({
   id: "middleusercontainer",
@@ -778,15 +703,13 @@ export const MiddleSessionDiv = styled.div.attrs({
 export const RightContainer = styled.div.attrs({
   id: "rightcontainer",
 })`
-  max-width: 1280px;
-  width: 200px;
-  height: 400px;
+  width: 17%;
+  min-width: 175px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  margin-left: 50px;
+  gap: 25px;
+  left: 0;
 `;
 export const ProfileContainerModify = styled.div.attrs({
   id: "profilecontainermodify",

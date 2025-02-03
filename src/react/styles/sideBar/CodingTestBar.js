@@ -16,6 +16,7 @@ export const Container = styled.div.attrs({
   background-color: white;
   overflow: hidden;
   border-bottom: 1px solid #ddd;
+  z-index: 100;
   ${(props) =>
     props.isOpen
       ? css`

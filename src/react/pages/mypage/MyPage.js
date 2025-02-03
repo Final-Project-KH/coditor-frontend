@@ -13,20 +13,12 @@ import {
   LeftContainer,
   MiddleContainer,
   RightContainer,
-  ProfileContainer,
   ProfileImage,
   UserNickName,
-  UserRating,
-  UserTier,
-  UserContentsContainer,
-  UserContentsTitle,
-  UserContents,
-  DashboardContainer,
-  DashboardTitle,
-  DashboardContents,
-  PostContainer,
-  PostTitle,
-  PostContents,
+  LeftContainerEach,
+  LeftContainerTitle,
+  LeftContainerContentsInactive,
+  LeftContainerContentsActive,
   ProfileContainerModify,
   ProfileTitle,
   ProfileImageModify,
@@ -97,10 +89,15 @@ import {
   ProfileCropOverlay,
   ProfileCropModalButton,
   ProfileCropModalRotateButton,
+  UserSignupDate,
+  LeftContainerContentsBox,
+  LeftMenuLink,
 } from "../../styles/mypage/MyPage";
 import Cropper from "react-easy-crop";
 import AxiosApi from "../../../api/AxiosApi";
 import { setLoginData } from "../../../redux/slice/authSlice";
+import LeftTopProfile from "./Components/LeftTopProfile";
+import LeftMenuProfile from "./Components/LeftMenuProfile";
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -111,14 +108,6 @@ const MyPage = () => {
   const profile = useSelector((state) => state.auth.profile);
   const nickname = useSelector((state) => state.auth.nickname);
 
-  const navigateProfileModify = () => {
-    navigate("/profile/modify", {
-      state: {
-        firstpath: firstpath,
-        secondpath: "내정보 수정",
-      },
-    });
-  };
   const [preview, setPreview] = useState(null); // 변경 프로필 이미지 용도
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
@@ -134,8 +123,102 @@ const MyPage = () => {
   const [cropSize, setCropSize] = useState({ width: 0, height: 0 });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userId, setUserId] = useState("");
-  const [userEmail, setUserEamil] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [activeMenu, setActiveMenu] = useState("");
+
+  const navigateProfileModify = () => {
+    navigate("/profile/modify", {
+      state: {
+        firstpath: firstpath,
+        secondpath: "내정보 수정",
+      },
+    });
+  };
+
+  const handleNavigation = (navigatepath, data) => {
+    navigate(navigatepath, { state: data });
+  };
+
+  const handleRefresh = () => {
+    navigate("/mypage", {
+      state: {
+        firstpath: firstpath,
+      },
+    });
+  };
+
+  useEffect(() => {
+    const currentMenu = location.state?.secondpath || "accountmanager";
+    setActiveMenu(currentMenu);
+  }, [location.state]);
+
+  const menus = [
+    {
+      id: "accountmanager",
+      sort: "profile",
+      label: "계정 관리",
+      link: "/mypage/accountmanager",
+      firstpath: firstpath,
+      secondpath: "계정 관리",
+    },
+    {
+      id: "userfeedfeed",
+      sort: "profile",
+      label: "내 소개",
+      link: "/mypage/userfeed",
+      firstpath: firstpath,
+      secondpath: "내 소개",
+    },
+    {
+      id: "changepassword",
+      sort: "profile",
+      label: "️비밀번호 변경",
+      link: "/mypage/changepassword",
+      firstpath: firstpath,
+      secondpath: "비밀번호 변경",
+    },
+    {
+      id: "study",
+      sort: "dashboard",
+      label: "Study",
+      link: "/mypage/study",
+      firstpath: firstpath,
+      secondpath: "Study",
+    },
+    {
+      id: "codingtest",
+      sort: "dashboard",
+      label: "Coding Test",
+      link: "/mypage/codingtest",
+      firstpath: firstpath,
+      secondpath: "Coding Test",
+    },
+    {
+      id: "community",
+      sort: "post",
+      label: "Community",
+      link: "/mypage/community",
+      firstpath: firstpath,
+      secondpath: "Community",
+    },
+    {
+      id: "report",
+      sort: "post",
+      label: "악성 게시글 신고",
+      link: "/mypage/report",
+      firstpath: firstpath,
+      secondpath: "악성 게시글 신고",
+    },
+    {
+      id: "question",
+      sort: "post",
+      label: "건의사항",
+      link: "/mypage/question",
+      firstpath: firstpath,
+      secondpath: "건의사항",
+    },
+  ];
 
   useEffect(() => {
     if (!preview) return;
@@ -162,9 +245,8 @@ const MyPage = () => {
       try {
         const response = await AxiosApi.getmyprofile();
         console.log(response);
-
         setUserId(response.userId);
-        setUserEamil(response.email);
+        setUserEmail(response.email);
       } catch (error) {
         navigate("/login", { replace: true });
       }
@@ -424,30 +506,64 @@ const MyPage = () => {
       </TopBoxWide>
       <Container>
         <LeftContainer>
-          <ProfileContainer>
-            <ProfileImage isProfile={profile}></ProfileImage>
-            <UserNickName>{nickname}</UserNickName>
-            <UserRating>1000</UserRating>
-            <UserTier>Platinum</UserTier>
-          </ProfileContainer>
-          <UserContentsContainer>
-            <UserContentsTitle>Profile</UserContentsTitle>
-            <UserContents>계정 관리</UserContents>
-            <UserContents>내 소개</UserContents>
-            <UserContents>비밀번호 변경</UserContents>
-            <UserContents>회원 탈퇴</UserContents>
-          </UserContentsContainer>
-          <DashboardContainer>
-            <DashboardTitle>Dashboard</DashboardTitle>
-            <DashboardContents>Study</DashboardContents>
-            <DashboardContents>Coding Test</DashboardContents>
-          </DashboardContainer>
-          <PostContainer>
-            <PostTitle>Post</PostTitle>
-            <PostContents>Community</PostContents>
-            <PostContents>신고하기</PostContents>
-            <PostContents>문의하기</PostContents>
-          </PostContainer>
+          <LeftTopProfile />
+          <LeftMenuProfile />
+          <LeftContainerEach>
+            <LeftContainerTitle>dashboard</LeftContainerTitle>
+            <LeftContainerContentsBox>
+            {menus
+                .filter((menu) => menu.sort === "dashboard")
+                .map((menu) => {
+                  const isActive = activeMenu === menu.secondpath;
+                  const BoardComponent = isActive
+                    ? LeftContainerContentsActive
+                    : LeftContainerContentsInactive;
+                  return (
+                    <BoardComponent key={menu.id}>
+                      <LeftMenuLink
+                        onClick={() => {
+                          handleNavigation(menu.link, {
+                            firstpath: menu.firstpath,
+                            secondpath: menu.secondpath,
+                          });
+                          setActiveMenu(menu.secondpath);
+                        }}
+                      >
+                        {menu.label}
+                      </LeftMenuLink>
+                    </BoardComponent>
+                  );
+                })}
+            </LeftContainerContentsBox>
+          </LeftContainerEach>
+          <LeftContainerEach>
+            <LeftContainerTitle>post</LeftContainerTitle>
+            <LeftContainerContentsBox>
+            {menus
+                .filter((menu) => menu.sort === "post")
+                .map((menu) => {
+                  const isActive = activeMenu === menu.secondpath;
+                  const BoardComponent = isActive
+                    ? LeftContainerContentsActive
+                    : LeftContainerContentsInactive;
+                  return (
+                    <BoardComponent key={menu.id}>
+                      <LeftMenuLink
+                        onClick={() => {
+                          handleNavigation(menu.link, {
+                            firstpath: menu.firstpath,
+                            secondpath: menu.secondpath,
+                          });
+                          setActiveMenu(menu.secondpath);
+                        }}
+                      >
+                        {menu.label}
+                      </LeftMenuLink>
+                    </BoardComponent>
+                  );
+                })}
+            </LeftContainerContentsBox>
+          </LeftContainerEach>
         </LeftContainer>
         <MiddleContainer>
           {/* 계정 관리 누를 시 나올 컨텐츠 */}

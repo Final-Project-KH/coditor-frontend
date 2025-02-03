@@ -72,10 +72,22 @@ const ToolBar = ({ editor }) => {
   }
 
   return (
-    <div className="toolbar">
+    <div
+      className="toolbar"
+      style={{
+        display: "flex",
+        overflow: "auto"
+      }}
+    >
       <div
         className="button-group"
-        style={{ display: "flex", alignItems: "center" }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          overflowX: "auto", // 가로 스크롤 활성화
+          whiteSpace: "nowrap", // 줄바꿈 방지
+          minWidth: "max-content", // 내부 요소 크기에 맞춰 최소 너비 설정
+        }}
       >
         <button
           style={{

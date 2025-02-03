@@ -37,7 +37,6 @@ export const ToolBarContainer = styled.div.attrs({
   width: 100%;
   height: 50px;
   max-width: 1280px;
-
 `;
 
 export const WriteButtonsArea = styled.div.attrs({

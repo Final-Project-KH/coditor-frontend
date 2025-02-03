@@ -153,6 +153,7 @@ export const MenuButton = styled.button.attrs({
 export const LoginContainer = styled.div.attrs({
   id: "logincontainer",
 })`
+  width: 100px;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -163,46 +164,27 @@ export const LoginContainer = styled.div.attrs({
 `;
 
 export const LoginBox = styled.div.attrs({
-  id: "logincontainer",
+  id: "loginbox",
 })`
-  width: 100px;
-  height: 50px;
+  width: 100%;
+  height: 48px;
   display: flex;
   position: relative;
-  background-color: transparent;
   justify-content: center;
   align-items: center;
-  color: white;
-  border-radius: 10px;
-  font-size: 25px;
-  font-family: "cocogoose-md";
-  padding-top: 5px;
-  &:hover {
-    background-color: white;
-    border: 1px solid #313131;
-    color: #313131;
-  }
   ${(props) =>
     props.isUser &&
     css`
-      width: 100px;
-      height: 50px;
+      width: 86px;
       user-select: none;
-      &:hover {
-        background-color: none;
-        border: none;
-      }
+      border-radius: 30px;
+      background-color: : white;
+      border: 1px solid rgba(0, 0, 0, 0.6);
     `}
   ${(props) =>
     props.isUser === null &&
     css`
-      width: 100px;
-      height: 50px;
-      display: flex;
       background-color: #313131;
-      position: relative;
-      justify-content: center;
-      align-items: center;
       color: white;
       border-radius: 10px;
       font-size: 25px;
@@ -220,20 +202,20 @@ export const LoginBox = styled.div.attrs({
 export const ProfileImgDiv = styled.div.attrs({
   id: "profileimgdiv",
 })`
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   display: flex;
-  position: absolute;
-  left: 0px;
-  margin-bottom: 5px;
+  position: relative;
+  /* position: absolute; */
+  /* left: 0px; */
   justify-content: center;
   align-items: center;
 `;
 export const ProfileImg = styled.div.attrs({
   id: "profileimg",
 })`
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   display: flex;
   position: relative;
   justify-content: center;
@@ -241,8 +223,6 @@ export const ProfileImg = styled.div.attrs({
   ${(props) =>
     props.isProfile === null &&
     css`
-      width: 50px;
-      height: 50px;
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
@@ -252,8 +232,6 @@ export const ProfileImg = styled.div.attrs({
   ${(props) =>
     props.isProfile !== null &&
     css`
-      width: 50px;
-      height: 50px;
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
@@ -263,69 +241,18 @@ export const ProfileImg = styled.div.attrs({
     ${(props) =>
     props.isUser === null &&
     css`
-      width: 50px;
-      height: 50px;
       display: none;
     `}
 `;
-// export const MyPageButton = styled.button.attrs({
-//   id: "mypagebutton",
-// })`
-//   width: 50px;
-//   height: 50px;
-//   display: flex;
-//   position: absolute;
-//   right: 0px;
-//   margin-bottom: 5px;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: transparent;
-//   border-radius: 30px;
-//   border: none;
-//   cursor: pointer;
-//   ${(props) =>
-//     props.isUser === null &&
-//     css`
-//       display: none;
-//     `}
-//   &::before,
-//   &::after {
-//     content: "";
-//     width: 30px;
-//     height: 2px;
-//     background-color: black;
-//     border-radius: 5px;
-//     position: absolute;
-//     left: 10px;
-//     transition: 0.3s;
-//   }
-//   &::before {
-//     top: 12px; /* 위쪽 선 */
-//   }
-//   &::after {
-//     bottom: 12px; /* 아래쪽 선 */
-//   }
-
-//   & div::before {
-//     content: "";
-//     width: 30px;
-//     height: 2px;
-//     background-color: black;
-//     border-radius: 5px;
-//     position: absolute;
-//     top: 24px;
-//     left: 10px;
-//     transition: 0.3s;
-//   }
-// `;
 export const MyPageButton = styled.button.attrs({
   id: "mypagebutton",
 })`
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   display: flex;
-  position: absolute;
-  right: 0px;
+  position: relative;
+  /* position: absolute;
+  right: 0px; */
   justify-content: center;
   align-items: center;
   background-color: transparent;
@@ -345,28 +272,27 @@ export const MyPageMenu = styled.div.attrs({
   id: "mypagemenu",
 })`
   width: 200px;
-  height: 300px;
   display: flex;
   position: absolute;
-  top: 60px;
+  top: 80px;
   justify-content: center;
   align-items: center;
   background-color: white;
-  border-radius: 5px;
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 30px;
   right: 0px;
   transition: 0.2s ease-in-out;
   flex-direction: column;
-
+  padding-top: 30px;
+  padding-bottom: 30px;
   ${(props) =>
     props.isToggleMyPage
       ? css`
           width: 200px;
-          height: 300px;
           color: black;
         `
       : css`
           width: 200px;
-          height: 0px;
           color: transparent;
           display: none;
         `}
@@ -376,13 +302,14 @@ export const MyPageMenuContents = styled.div.attrs({
   id: "mypagemenucontents",
 })`
   width: 200px;
-  height: 50px;
   display: flex;
+  flex-direction: column;
   position: relative;
   justify-content: center;
   align-items: center;
   margin-top: 5px;
-  margin-bottom: 5px;
+  font-family: "medium", sans-serif;
+  gap: 20px;
   ${(props) =>
     props.isToggleMyPage
       ? css`
@@ -397,19 +324,26 @@ export const MyPageMenuContents = styled.div.attrs({
     font-size: 18px;
   }
   &:nth-child(2) {
-    font-size: 20px;
-    padding-top: 5px;
+    font-family: "bold", sans-serif;
+    font-size: 18px;
+    margin-top: 15px;
   }
   &:nth-child(3) {
     justify-content: center;
-    font-size: 18px;
-    padding-top: 5px;
+    font-size: 16px;
   }
   &:last-child {
     justify-content: center;
-    font-size: 18px;
-    padding-top: 5px;
+    font-size: 16px;
     cursor: pointer;
+  }
+  &:nth-child(2)::after,
+  &:nth-child(3)::after {
+    content: "";
+    width: 70%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
   }
 `;
 export const StyledNavigate = styled.div`
@@ -420,3 +354,34 @@ export const StyledNavigate = styled.div`
   position: absolute;
   cursor: pointer;
 `;
+
+export const MyPageProfileImg = styled.div.attrs({
+  id: "mypageprofileimg",
+})`
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  ${(props) =>
+    props.isProfile === null &&
+    css`
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      border-radius: 50%;
+      background-image: url("/images/general/default_profile.png");
+    `}
+  ${(props) =>
+    props.isProfile !== null &&
+    css`
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      border-radius: 50%;
+      background-image: url(${(props) => props.isProfile});
+    `}
+    ${(props) =>
+    props.isUser === null &&
+    css`
+      display: none;
+    `}
+`

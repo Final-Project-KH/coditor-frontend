@@ -68,7 +68,6 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
-
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -83,6 +82,7 @@ export const LeftContainer = styled.div.attrs({
   id: "leftcontainer",
 })`
   width: 17%;
+  min-width: 175px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,6 +104,7 @@ export const RightContainer = styled.div.attrs({
   id: "rightcontainer",
 })`
   width: 17%;
+  min-width: 175px;
   display: flex;
   flex-direction: column;
   align-items: center;

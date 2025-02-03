@@ -21,6 +21,7 @@ import {
   MyPageMenu,
   MyPageMenuContents,
   StyledNavigate,
+  MyPageProfileImg,
 } from "../../styles/navBar/NavBar";
 
 import store from "../../../redux/store/store";
@@ -366,7 +367,7 @@ const NavBar = () => {
                   </MyPageButton>
                   <MyPageMenu ref={myPageRef} isToggleMyPage={isToggleMyPage}>
                     <MyPageMenuContents isToggleMyPage={isToggleMyPage}>
-                      내 정보
+                      <MyPageProfileImg isUser={isUser} isProfile={profile} />
                     </MyPageMenuContents>
                     <MyPageMenuContents isToggleMyPage={isToggleMyPage}>
                       {nickname}

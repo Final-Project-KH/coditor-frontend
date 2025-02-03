@@ -164,9 +164,9 @@ export const TagSearch = styled.div.attrs({
 export const TagSearchItem = styled.div.attrs({
   id: "tagsearchitem",
 })`
-  height: 30px;
+  height: 28px;
   border: none;
-  font-size: 15px;
+  font-size: 13px;
   display: flex;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.8);
