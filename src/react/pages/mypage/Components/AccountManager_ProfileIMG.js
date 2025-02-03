@@ -5,45 +5,36 @@ import AxiosApi from "../../../../api/AxiosApi";
 import { setLoginData } from "../../../../redux/slice/authSlice";
 
 import {
-  ProfileContainerModify,
-  ProfileTitle,
-  ProfileImageModify,
+  RightContainerEach,
+  RightContainerTitle,
+  RightProfileImage,
   HiddenInput,
   ProfileEditButton,
   ProfileModal,
   ProfileModalHeader,
   ProfileModalCloseButton,
-  ProfileModalLogo,
-  ProfileModalContainer,
+  ProfileModalButton,
+  ProfileModalTextContainer,
   ProfileModalButtonContainer,
   ProfileModalTitle,
   ProfileModalContents,
   ProfileModalImage,
-  ProfileModalImageAddButton,
   ProfileUploadModal,
   ProfileUploadModalHeader,
-  ProfileUploadModalCloseButton,
-  ProfileUploadModalLogo,
   ProfileUploadModalTitle,
   ProfileUploadModalContainer,
-  ProfileModalImageModifyButton,
-  ProfileModalImageDeleteButton,
   ProfileUploadModalImage,
   ProfileUploadModalContents,
   ProfileUploadModalContentsDiv,
-  ProfileUploadModalImageAddButton,
   ProfileCropModal,
   ProfileCropModalHeader,
-  ProfileCropModalCloseButton,
-  ProfileCropModalLogo,
   ProfileCropModalTitle,
   ProfileCropModalContainer,
   ProfileCropModalButtonContainer,
   ProfileCropContainer,
   ProfileCropOverlay,
-  ProfileCropModalButton,
-  ProfileCropModalRotateButton,
-} from "../../../styles/mypage/MyPage";
+  Backdrop,
+} from "../../../styles/mypage/MyPage_ProfileIMG";
 
 const AccountManager_ProfileIMG = () => {
   const dispatch = useDispatch();
@@ -325,190 +316,189 @@ const AccountManager_ProfileIMG = () => {
     }
   };
 
+  // 모달 백드롭
+  const ProfileModalComponent = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+  };
+
   return (
     <>
-      <ProfileContainerModify>
-        <ProfileTitle>프로필 이미지</ProfileTitle>
-        <ProfileImageModify
+      <RightContainerEach>
+        <RightContainerTitle>프로필 이미지</RightContainerTitle>
+        <RightProfileImage
           isProfile={profile}
           isPreview={preview}
-        ></ProfileImageModify>
+        ></RightProfileImage>
         <ProfileEditButton
           onClick={() => onClickProfileOpen()}
         ></ProfileEditButton>
-      </ProfileContainerModify>
+      </RightContainerEach>
+
       {isProfileImgModalOpen && (
-        <ProfileModal>
-          <ProfileModalHeader>
-            <ProfileModalCloseButton
-              onClick={() => onClickProfileClose()}
-            ></ProfileModalCloseButton>
-            <ProfileModalLogo></ProfileModalLogo>
-          </ProfileModalHeader>
-          <ProfileModalContainer>
-            <ProfileModalTitle>프로필 사진</ProfileModalTitle>
-            <ProfileModalContents>
-              사진을 추가하면 다른 사람이 나를 알아보기 쉬워지며 내가 계정에
-              로그인되어 있는지 확인할 수 있습니다.
-            </ProfileModalContents>
+        <Backdrop onClick={onClickProfileClose}>
+          <ProfileModal>
+            <ProfileModalHeader>
+              <ProfileModalCloseButton onClick={() => onClickProfileClose()} />
+            </ProfileModalHeader>
+            <ProfileModalTextContainer>
+              <ProfileModalTitle>프로필 이미지</ProfileModalTitle>
+              <ProfileModalContents>
+                이미지를 추가하면 다른 사람이 나를 알아보기 쉬워지며
+                <br />
+                내가 계정에 로그인되어 있는지 확인할 수 있습니다.
+              </ProfileModalContents>
+            </ProfileModalTextContainer>
             <ProfileModalImage
               isProfile={profile}
               isPreview={preview}
             ></ProfileModalImage>
-          </ProfileModalContainer>
-          <ProfileModalButtonContainer>
-            {profile ? (
-              <>
-                <ProfileModalImageModifyButton
-                  onClick={() => onClickProfileUploadOpen()}
-                >
-                  프로필 사진 변경
-                </ProfileModalImageModifyButton>
-                <ProfileModalImageDeleteButton onClick={(e) => handleDelete(e)}>
-                  프로필 사진 삭제
-                </ProfileModalImageDeleteButton>
-              </>
-            ) : (
-              <ProfileModalImageAddButton
-                onClick={() => onClickProfileUploadOpen()}
-              >
-                프로필 사진 추가
-              </ProfileModalImageAddButton>
-            )}
-          </ProfileModalButtonContainer>
-        </ProfileModal>
-      )}
-      {isProfileUploadModalOpen && (
-        <ProfileUploadModal>
-          <ProfileUploadModalHeader>
-            <ProfileUploadModalCloseButton
-              onClick={() => onClickProfileUploadClose()}
-            ></ProfileUploadModalCloseButton>
-            <ProfileUploadModalLogo></ProfileUploadModalLogo>
-            {!profile ? (
-              <ProfileUploadModalTitle>
-                프로필 사진 추가
-              </ProfileUploadModalTitle>
-            ) : (
-              <ProfileUploadModalTitle>
-                프로필 사진 변경
-              </ProfileUploadModalTitle>
-            )}
-          </ProfileUploadModalHeader>
-          <ProfileUploadModalContainer
-            isDragging={isDragging}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-          >
-            <ProfileUploadModalImage
-              isProfile={profile}
-              isPreview={preview}
-            ></ProfileUploadModalImage>
-            <HiddenInput
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              ref={fileInputRef}
-            />
-            {!profile && !croppedPreview ? (
-              <>
-                <ProfileUploadModalContents>
-                  여기로 사진 드래그
-                </ProfileUploadModalContents>
-                <ProfileUploadModalContentsDiv>
-                  - 또는 -
-                </ProfileUploadModalContentsDiv>
-                <ProfileUploadModalImageAddButton
-                  onClick={() => fileInputRef.current.click()}
-                >
-                  업로드
-                </ProfileUploadModalImageAddButton>
-              </>
-            ) : croppedPreview ? (
-              <>
-                <ProfileUploadModalContents>
-                  적용된 프로필 사진
-                </ProfileUploadModalContents>
-                <ProfileUploadModalImageAddButton
-                  onClick={() => fileInputRef.current.click()}
-                >
-                  사진 변경
-                </ProfileUploadModalImageAddButton>
-                <ProfileUploadModalImageAddButton
-                  onClick={(e) => handleUpload(e)}
-                >
-                  프로필 사진 적용
-                </ProfileUploadModalImageAddButton>
-              </>
-            ) : (
-              profile && (
+
+            <ProfileModalButtonContainer>
+              {profile ? (
                 <>
-                  <ProfileUploadModalContents>
-                    현재 프로필 사진
-                  </ProfileUploadModalContents>
-                  <ProfileUploadModalImageAddButton
+                  <ProfileModalButton
+                    onClick={() => onClickProfileUploadOpen()}
+                  >
+                    프로필 사진 변경
+                  </ProfileModalButton>
+                  <ProfileModalButton onClick={(e) => handleDelete(e)}>
+                    프로필 사진 삭제
+                  </ProfileModalButton>
+                </>
+              ) : (
+                <ProfileModalButton onClick={() => onClickProfileUploadOpen()}>
+                  프로필 사진 추가
+                </ProfileModalButton>
+              )}
+            </ProfileModalButtonContainer>
+          </ProfileModal>
+        </Backdrop>
+      )}
+
+      {isProfileUploadModalOpen && (
+        <Backdrop onClick={onClickProfileClose}>
+          <ProfileModal>
+            <ProfileModalHeader>
+              <ProfileModalCloseButton
+                onClick={() => onClickProfileUploadClose()}
+              />
+              {!profile ? (
+                <ProfileModalTitle>프로필 사진 추가</ProfileModalTitle>
+              ) : (
+                <ProfileModalTitle>프로필 사진 변경</ProfileModalTitle>
+              )}
+            </ProfileModalHeader>
+            <ProfileUploadModalContainer
+              isDragging={isDragging}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
+              <ProfileUploadModalImage
+                isProfile={profile}
+                isPreview={preview}
+              ></ProfileUploadModalImage>
+              <HiddenInput
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                ref={fileInputRef}
+              />
+              {!profile && !croppedPreview ? (
+                <>
+                  <ProfileModalTitle>여기로 사진 드래그</ProfileModalTitle>
+                  <ProfileModalContents>- 또는 -</ProfileModalContents>
+                  <ProfileModalButton
+                    onClick={() => fileInputRef.current.click()}
+                  >
+                    업로드
+                  </ProfileModalButton>
+                </>
+              ) : croppedPreview ? (
+                <>
+                  <ProfileModalContents>
+                    적용된 프로필 사진
+                  </ProfileModalContents>
+                  <ProfileModalButton
                     onClick={() => fileInputRef.current.click()}
                   >
                     사진 변경
-                  </ProfileUploadModalImageAddButton>
+                  </ProfileModalButton>
+                  <ProfileModalButton onClick={(e) => handleUpload(e)}>
+                    프로필 사진 적용
+                  </ProfileModalButton>
                 </>
-              )
-            )}
-          </ProfileUploadModalContainer>
-        </ProfileUploadModal>
+              ) : (
+                profile && (
+                  <>
+                    <ProfileModalContents>
+                      현재 프로필 사진
+                    </ProfileModalContents>
+                    <ProfileModalButton
+                      onClick={() => fileInputRef.current.click()}
+                    >
+                      사진 변경
+                    </ProfileModalButton>
+                  </>
+                )
+              )}
+            </ProfileUploadModalContainer>
+          </ProfileModal>
+        </Backdrop>
       )}
+
       {isProfileCropModalOpen && (
-        <ProfileCropModal>
-          <ProfileCropModalHeader>
-            <ProfileCropModalCloseButton
-              onClick={() => onClickProfileCropClose()}
-            ></ProfileCropModalCloseButton>
-            <ProfileCropModalLogo></ProfileCropModalLogo>
-            <ProfileCropModalTitle>자르기 및 회전</ProfileCropModalTitle>
-          </ProfileCropModalHeader>
-          <ProfileCropModalContainer>
-            <ProfileCropContainer>
-              <Cropper
-                image={preview}
-                crop={crop}
-                cropShape="rect"
-                style={{
-                  containerStyle: { backgroundColor: "black" }, // 컨테이너 배경색 변경
-                  cropAreaStyle: {
-                    border: "3px solid rgba(154, 160, 166)", // 크롭 테두리
-                    backgroundColor: "rgba(0,0,0,0.5)",
-                    maskImage:
-                      "radial-gradient(circle, rgba(0,0,0,0.2) 69%, rgba(0,0,0,0.8) 31%)",
-                    WebkitMaskImage:
-                      "radial-gradient(circle, rgba(0,0,0,0.2) 69%, rgba(0,0,0,0.8) 0%)",
-                  },
-                }}
-                showGrid={true}
-                zoom={zoom}
-                rotation={rotation}
-                cropSize={cropSize}
-                aspect={1}
-                minZoom={1}
-                maxZoom={5}
-                zoomSpeed={0.2}
-                onCropChange={setCrop}
-                onZoomChange={setZoom}
-                onRotationChange={setRotation}
-                onCropComplete={onCropComplete}
-              />
-              <ProfileCropOverlay cropSize={cropSize} />
-            </ProfileCropContainer>
-          </ProfileCropModalContainer>
-          <ProfileCropModalButtonContainer>
-            <ProfileCropModalRotateButton
-              onClick={() => handleRotate()}
-            ></ProfileCropModalRotateButton>
-            <ProfileCropModalButton onClick={() => handleCrop()}>
-              이미지 적용
-            </ProfileCropModalButton>
-          </ProfileCropModalButtonContainer>
-        </ProfileCropModal>
+        <Backdrop>
+          <ProfileModal>
+            <ProfileModalHeader>
+              <ProfileModalCloseButton
+                onClick={() => onClickProfileCropClose()}
+              ></ProfileModalCloseButton>
+              <ProfileCropModalTitle>자르기 및 회전</ProfileCropModalTitle>
+            </ProfileModalHeader>
+            <ProfileCropModalContainer>
+              <ProfileCropContainer>
+                <Cropper
+                  image={preview}
+                  crop={crop}
+                  cropShape="rect"
+                  style={{
+                    containerStyle: { backgroundColor: "black" }, // 컨테이너 배경색 변경
+                    cropAreaStyle: {
+                      border: "3px solid rgba(154, 160, 166)", // 크롭 테두리
+                      backgroundColor: "rgba(0,0,0,0.5)",
+                      maskImage:
+                        "radial-gradient(circle, rgba(0,0,0,0.2) 69%, rgba(0,0,0,0.8) 31%)",
+                      WebkitMaskImage:
+                        "radial-gradient(circle, rgba(0,0,0,0.2) 69%, rgba(0,0,0,0.8) 0%)",
+                    },
+                  }}
+                  showGrid={true}
+                  zoom={zoom}
+                  rotation={rotation}
+                  cropSize={cropSize}
+                  aspect={1}
+                  minZoom={1}
+                  maxZoom={5}
+                  zoomSpeed={0.2}
+                  onCropChange={setCrop}
+                  onZoomChange={setZoom}
+                  onRotationChange={setRotation}
+                  onCropComplete={onCropComplete}
+                />
+                <ProfileCropOverlay cropSize={cropSize} />
+              </ProfileCropContainer>
+            </ProfileCropModalContainer>
+            <ProfileCropModalButtonContainer>
+              <ProfileModalButton
+                onClick={() => handleRotate()}
+              ></ProfileModalButton>
+              <ProfileModalButton onClick={() => handleCrop()}>
+                이미지 적용
+              </ProfileModalButton>
+            </ProfileCropModalButtonContainer>
+          </ProfileModal>
+        </Backdrop>
       )}
     </>
   );

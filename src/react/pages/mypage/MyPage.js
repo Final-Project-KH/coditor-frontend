@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   Wrap,
@@ -10,9 +9,11 @@ import {
   Container,
   LeftContainer,
   CenterContainer,
+  CenterAccountRightContainer,
   RightContainer,
+  CenterAccountLeftContainer,
+  CenterAccountContainer,
 } from "../../styles/mypage/MyPage";
-import AxiosApi from "../../../api/AxiosApi";
 import LeftTopProfile from "./Components/LeftTopProfile";
 import LeftMenus from "./Components/LeftMenus";
 import AccountManager_Account from "./Components/AccountManager_Account";
@@ -24,15 +25,11 @@ const MyPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath } = location.state || {};
-  const handleNavigation = (navigatepath, data) => {
-    navigate(navigatepath, { state: data });
-  };
 
   const handleRefresh = () => {
     navigate("/mypage/accountmanager", {
       state: {
         firstpath: firstpath,
-        // secondpath: secondpath,
       },
     });
   };
@@ -60,13 +57,15 @@ const MyPage = () => {
           <LeftMenus />
         </LeftContainer>
         <CenterContainer>
-          <AccountManager_Account />
+          <CenterAccountContainer>
+          <CenterAccountLeftContainer>
+          <AccountManager_Account /></CenterAccountLeftContainer>
+          <CenterAccountRightContainer>
+          <AccountManager_ProfileIMG />
+        </CenterAccountRightContainer></CenterAccountContainer>
           <AccountManager_Alert />
           <AccountManager_SNS />
         </CenterContainer>
-        <RightContainer>
-          <AccountManager_ProfileIMG />
-        </RightContainer>
 
       </Container>
     </Wrap>
