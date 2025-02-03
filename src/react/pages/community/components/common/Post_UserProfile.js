@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {
   UserProfileBox,
   UserProfileImg,
@@ -6,24 +6,26 @@ import {
   UserId,
   UserPostAmount,
 } from "../../../../styles/community/Post";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
 import AxiosApi from "../../../../../api/AxiosApi";
 
 const Post_UserProfile = () => {
-  const { boardId } = useParams();
+  const {boardId} = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
+  const {firstpath, secondpath} = location.state || {};
   const [nickname, setNickname] = useState(null);
   const [profile, setProfile] = useState(null);
   const [postCnt, setPostCnt] = useState(null);
+  const [writerKey, setWriterKey] = useState(null);
 
   const handleUserProfile = () => {
-    navigate("/community/testid01", {
+    navigate(`/community/user/${writerKey}`, {
       state: {
         firstpath: firstpath,
         secondpath: "user page",
+        writerKey: writerKey,
       },
     });
   };
@@ -33,10 +35,11 @@ const Post_UserProfile = () => {
     const readUser = async () => {
       try {
         const response = await AxiosApi.getPost(boardId);
-        console.log(response);
+        console.log("유저 정보 : ", response);
         setNickname(response.name);
         setProfile(response.profileUrl);
         setPostCnt(response.postCnt);
+        setWriterKey(response.userKey);
       } catch (error) {
         console.error("게시글 가져오는 중 오류 발생 : ", error);
       }
@@ -47,7 +50,7 @@ const Post_UserProfile = () => {
   return (
     <>
       <UserProfileBox
-        style={{ cursor: "pointer" }}
+        style={{cursor: "pointer"}}
         onClick={() => handleUserProfile()}
       >
         <UserProfileImg isProfile={profile} />

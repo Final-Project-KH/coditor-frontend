@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useState, useEffect, useRef, useCallback} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import store from "../../../redux/store/store";
 import {
   Wrap,
@@ -100,13 +100,13 @@ import {
 } from "../../styles/mypage/MyPage";
 import Cropper from "react-easy-crop";
 import AxiosApi from "../../../api/AxiosApi";
-import { setLoginData } from "../../../redux/slice/authSlice";
+import {setLoginData} from "../../../redux/slice/authSlice";
 
 const MyPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const { firstpath } = location.state || {};
+  const {firstpath} = location.state || {};
 
   const profile = useSelector((state) => state.auth.profile);
   const nickname = useSelector((state) => state.auth.nickname);
@@ -120,7 +120,7 @@ const MyPage = () => {
     });
   };
   const [preview, setPreview] = useState(null); // 변경 프로필 이미지 용도
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [crop, setCrop] = useState({x: 0, y: 0});
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [croppedPreview, setCroppedPreview] = useState(null); // 미리보기 용도
@@ -131,7 +131,7 @@ const MyPage = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [rotation, setRotation] = useState(0);
   const fileInputRef = useRef(null);
-  const [cropSize, setCropSize] = useState({ width: 0, height: 0 });
+  const [cropSize, setCropSize] = useState({width: 0, height: 0});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userId, setUserId] = useState("");
   const [userEmail, setUserEamil] = useState("");
@@ -144,9 +144,9 @@ const MyPage = () => {
     img.src = preview;
     img.onload = () => {
       console.log("이미지 로드 완료:", img.naturalWidth, img.naturalHeight);
-      const { naturalWidth, naturalHeight } = img;
+      const {naturalWidth, naturalHeight} = img;
       const minSize = Math.min(naturalWidth, naturalHeight); // 가장 짧은 쪽 선택
-      setCropSize({ width: minSize, height: minSize }); // 동적 크롭 크기 설정
+      setCropSize({width: minSize, height: minSize}); // 동적 크롭 크기 설정
     };
   }, [preview, isProfileCropModalOpen]);
 
@@ -166,7 +166,7 @@ const MyPage = () => {
         setUserId(response.userId);
         setUserEamil(response.email);
       } catch (error) {
-        navigate("/login", { replace: true });
+        navigate("/login", {replace: true});
       }
     };
     mypage();
@@ -183,7 +183,7 @@ const MyPage = () => {
   const convertUrlToFile = async (url, fileName) => {
     const response = await fetch(url);
     const blob = await response.blob();
-    return new File([blob], fileName, { type: "image/png" });
+    return new File([blob], fileName, {type: "image/png"});
   };
 
   const handleUpload = async (e) => {
@@ -208,7 +208,7 @@ const MyPage = () => {
         alert("프로필 사진 설정이 완료되었습니다.");
         setIsProfileUploadModalOpen(false);
         setIsProfileImgModalOpen(false);
-        dispatch(setLoginData({ profile: response.data }));
+        dispatch(setLoginData({profile: response.data}));
       }
     } catch (error) {
       console.log(error);
@@ -227,7 +227,7 @@ const MyPage = () => {
       const response = await AxiosApi.deleteprofile();
       if (response) {
         alert("프로필 사진 삭제가 완료되었습니다.");
-        dispatch(setLoginData({ profile: null }));
+        dispatch(setLoginData({profile: null}));
         setPreview(null);
         setCroppedPreview(null);
         setIsProfileImgModalOpen(false);
@@ -269,7 +269,7 @@ const MyPage = () => {
         const cos = Math.cos(radians);
         const sin = Math.sin(radians);
 
-        const { width: imageWidth, height: imageHeight } = newImage;
+        const {width: imageWidth, height: imageHeight} = newImage;
 
         const rotatedWidth =
           Math.abs(imageWidth * cos) + Math.abs(imageHeight * sin);
@@ -335,7 +335,7 @@ const MyPage = () => {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
 
-        let { width, height } = resizingImage;
+        let {width, height} = resizingImage;
 
         if (width > maxWidth || height > maxHeight) {
           const scale = Math.min(maxWidth / width, maxHeight / height);
@@ -671,7 +671,7 @@ const MyPage = () => {
                   crop={crop}
                   cropShape="rect"
                   style={{
-                    containerStyle: { backgroundColor: "black" }, // 컨테이너 배경색 변경
+                    containerStyle: {backgroundColor: "black"}, // 컨테이너 배경색 변경
                     cropAreaStyle: {
                       border: "3px solid rgba(154, 160, 166)", // 크롭 테두리
                       backgroundColor: "rgba(0,0,0,0.5)",

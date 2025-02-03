@@ -8,7 +8,7 @@ import {
 } from "../../styles/community/Post";
 import Post_WriteEditor_Team from "./components/team/Post_WriteEditor_Team";
 import Post_WriteSort from "./components/common/Post_WriteSort";
-import { useState } from "react";
+import {useState} from "react";
 import Select from "react-select";
 
 const Post_Write_Team = () => {
@@ -17,12 +17,12 @@ const Post_Write_Team = () => {
 
   const [selectedTeam, setSelectedTeam] = useState([]);
   const teamOptions = [
-    { value: "FRONT", label: "프론트엔드" },
-    { value: "BACK", label: "백엔드" },
-    { value: "DBA", label: "DBA" },
-    { value: "DBS", label: "DBS" },
-    { value: "DESIGNER", label: "디자이너" },
-    { value: "ETC", label: "기타" },
+    {value: "FRONT", label: "프론트엔드"},
+    {value: "BACK", label: "백엔드"},
+    {value: "DBA", label: "DBA"},
+    {value: "DBS", label: "DBS"},
+    {value: "DESIGNER", label: "디자이너"},
+    {value: "ETC", label: "기타"},
   ];
 
   const handleChange = (selectedOptions) => {
@@ -36,7 +36,7 @@ const Post_Write_Team = () => {
       backgroundColor: "white",
       borderColor: state.isFocused ? "blue" : "#ccc",
       boxShadow: state.isFocused ? "0 0 5px rgba(0, 0, 255, 0.5)" : "none",
-      "&:hover": { borderColor: "blue" },
+      "&:hover": {borderColor: "blue"},
       maxWidth: "1280px",
       border: "1px solid #f1f1f1",
       padding: "5px",
@@ -56,7 +56,7 @@ const Post_Write_Team = () => {
       fontSize: "15px",
       fontFamily: "medium, sans-serif",
     }),
-    option: (provided, { isSelected, isFocused }) => ({
+    option: (provided, {isSelected, isFocused}) => ({
       ...provided,
       backgroundColor: isSelected ? "blue" : isFocused ? "#f0f0f0" : "white",
       color: isSelected ? "white" : "black",
@@ -79,7 +79,7 @@ const Post_Write_Team = () => {
       height: "25px",
       alignItems: "center",
       justifyContent: "center",
-      "&:hover": { backgroundColor: "red", color: "white" },
+      "&:hover": {backgroundColor: "red", color: "white"},
     }),
   };
 
@@ -90,6 +90,7 @@ const Post_Write_Team = () => {
           <Post_WriteSort />
           <WriteTitleBox>
             <WriteTitle
+              autoComplete="off"
               placeholder="제목을 입력하세요."
               value={title}
               onChange={(e) => setTitle(e.target.value)}

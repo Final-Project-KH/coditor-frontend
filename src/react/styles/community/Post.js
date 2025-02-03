@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, {css} from "styled-components";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -405,7 +405,7 @@ export const SuggestBox = styled.div.attrs({
   text-align: left;
   transition: all 0.3s ease;
   /* cursor: pointer; */
-  ${({ expanded }) =>
+  ${({expanded}) =>
     expanded &&
     `
     max-height: 400px;
@@ -413,7 +413,7 @@ export const SuggestBox = styled.div.attrs({
     padding-top: 10px;
   `}
   /* 확장 후 내부 텍스트 숨기기 */
-    ${({ expanded }) =>
+    ${({expanded}) =>
     expanded &&
     `
     > span {
@@ -428,7 +428,7 @@ export const EditorBox = styled.div.attrs({
 })`
   width: 100%;
   transition: all 0.3s ease;
-  display: ${({ expanded }) => (expanded ? "block" : "none")};
+  display: ${({expanded}) => (expanded ? "block" : "none")};
 `;
 
 export const ReplyList = styled.div.attrs({
@@ -561,7 +561,7 @@ export const UserProfileImg = styled.div.attrs({
   height: 80px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   border-radius: 50%;
   border: 1px solid #f1f1f1;
   ${(props) =>

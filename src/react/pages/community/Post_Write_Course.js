@@ -8,7 +8,7 @@ import {
 } from "../../styles/community/Post";
 import Post_WriteEditor from "./components/course/Post_WriteEditor_Course";
 import Post_WriteSort from "./components/common/Post_WriteSort";
-import { useState } from "react";
+import {useState} from "react";
 import Post_WriteEditor_Course from "./components/course/Post_WriteEditor_Course";
 import Select from "react-select";
 
@@ -17,13 +17,13 @@ const Post_Write_Course = () => {
   const [course, setCourse] = useState("");
   const [selectedCourses, setSelectedCourses] = useState([]);
   const courseOptions = [
-    { value: "COMPANY", label: "회사정보" },
-    { value: "PORTFOLIO", label: "포트폴리오" },
-    { value: "SALARY", label: "급여" },
-    { value: "RESUME", label: "자기소개서" },
-    { value: "BOOTCAMP", label: "부트캠프" },
-    { value: "PROJECT", label: "프로젝트" },
-    { value: "ETC", label: "기타" },
+    {value: "COMPANY", label: "회사정보"},
+    {value: "PORTFOLIO", label: "포트폴리오"},
+    {value: "SALARY", label: "급여"},
+    {value: "RESUME", label: "자기소개서"},
+    {value: "BOOTCAMP", label: "부트캠프"},
+    {value: "PROJECT", label: "프로젝트"},
+    {value: "ETC", label: "기타"},
   ];
 
   const handleChange = (selectedOptions) => {
@@ -37,7 +37,7 @@ const Post_Write_Course = () => {
       backgroundColor: "white",
       borderColor: state.isFocused ? "blue" : "#ccc",
       boxShadow: state.isFocused ? "0 0 5px rgba(0, 0, 255, 0.5)" : "none",
-      "&:hover": { borderColor: "blue" },
+      "&:hover": {borderColor: "blue"},
       maxWidth: "1280px",
       border: "1px solid #f1f1f1",
       padding: "5px",
@@ -57,7 +57,7 @@ const Post_Write_Course = () => {
       fontSize: "15px",
       fontFamily: "medium, sans-serif",
     }),
-    option: (provided, { isSelected, isFocused }) => ({
+    option: (provided, {isSelected, isFocused}) => ({
       ...provided,
       backgroundColor: isSelected ? "blue" : isFocused ? "#f0f0f0" : "white",
       color: isSelected ? "white" : "black",
@@ -80,7 +80,7 @@ const Post_Write_Course = () => {
       height: "25px",
       alignItems: "center",
       justifyContent: "center",
-      "&:hover": { backgroundColor: "red", color: "white" },
+      "&:hover": {backgroundColor: "red", color: "white"},
     }),
   };
 
@@ -91,6 +91,7 @@ const Post_Write_Course = () => {
           <Post_WriteSort />
           <WriteTitleBox>
             <WriteTitle
+              autoComplete="off"
               placeholder="제목을 입력하세요."
               value={title}
               onChange={(e) => setTitle(e.target.value)}

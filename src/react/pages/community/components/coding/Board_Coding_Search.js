@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState} from "react";
 import {
   InputSearch,
   InputSearchBox,
@@ -13,7 +13,7 @@ import {
   ResetButtonIcon,
   TagSearchItem,
 } from "../../../../styles/community/Board";
-import { LanguageDisplayNames } from "../common/DisplayNames";
+import {LanguageDisplayNames} from "../common/DisplayNames";
 
 const Board_Coding_Search = ({
   boardType,

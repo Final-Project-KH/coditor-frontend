@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
   WriteWrap,
   WriteContainer,
@@ -18,20 +18,20 @@ const Post_Write_Coding = () => {
 
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const languageOptions = [
-    { value: "JAVA", label: "Java" },
-    { value: "JS", label: "JavaScript" },
-    { value: "PYTHON", label: "Python" },
-    { value: "C", label: "C" },
-    { value: "CPP", label: "C++" },
-    { value: "CS", label: "C#" },
-    { value: "SPB", label: "Spring Boot" },
-    { value: "RE", label: "React" },
-    { value: "AN", label: "AngularJS" },
-    { value: "EX", label: "ExpressJS" },
-    { value: "NO", label: "NodeJS" },
-    { value: "HTML", label: "HTML" },
-    { value: "CSS", label: "CSS" },
-    { value: "ETC", label: "기타" },
+    {value: "JAVA", label: "Java"},
+    {value: "JS", label: "JavaScript"},
+    {value: "PYTHON", label: "Python"},
+    {value: "C", label: "C"},
+    {value: "CPP", label: "C++"},
+    {value: "CS", label: "C#"},
+    {value: "SPB", label: "Spring Boot"},
+    {value: "RE", label: "React"},
+    {value: "AN", label: "AngularJS"},
+    {value: "EX", label: "ExpressJS"},
+    {value: "NO", label: "NodeJS"},
+    {value: "HTML", label: "HTML"},
+    {value: "CSS", label: "CSS"},
+    {value: "ETC", label: "기타"},
   ];
 
   const handleChange = (selectedOptions) => {
@@ -49,7 +49,7 @@ const Post_Write_Coding = () => {
       backgroundColor: "white",
       borderColor: state.isFocused ? "blue" : "#ccc",
       boxShadow: state.isFocused ? "0 0 5px rgba(0, 0, 255, 0.5)" : "none",
-      "&:hover": { borderColor: "blue" },
+      "&:hover": {borderColor: "blue"},
       maxWidth: "1280px",
       border: "1px solid #f1f1f1",
       padding: "5px",
@@ -69,7 +69,7 @@ const Post_Write_Coding = () => {
       fontSize: "15px",
       fontFamily: "medium, sans-serif",
     }),
-    option: (provided, { isSelected, isFocused }) => ({
+    option: (provided, {isSelected, isFocused}) => ({
       ...provided,
       backgroundColor: isSelected ? "blue" : isFocused ? "#f0f0f0" : "white",
       color: isSelected ? "white" : "black",
@@ -92,7 +92,7 @@ const Post_Write_Coding = () => {
       height: "25px",
       alignItems: "center",
       justifyContent: "center",
-      "&:hover": { backgroundColor: "red", color: "white" },
+      "&:hover": {backgroundColor: "red", color: "white"},
     }),
   };
 
@@ -103,6 +103,7 @@ const Post_Write_Coding = () => {
           <Post_WriteSort />
           <WriteTitleBox>
             <WriteTitle
+              autoComplete="off"
               placeholder="제목을 입력하세요."
               value={title}
               onChange={(e) => setTitle(e.target.value)}
