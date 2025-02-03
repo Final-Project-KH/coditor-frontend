@@ -132,6 +132,14 @@ const AppContents = () => {
               </RequiredAuth>
             }
           />
+                    <Route
+            path="/mypage/accountmanager"
+            element={
+              <RequiredAuth>
+                <MyPage />
+              </RequiredAuth>
+            }
+          />
 
           {StudyRoutes.map((route) => (
             <Route key={route.path} path={route.path} element={route.element} />

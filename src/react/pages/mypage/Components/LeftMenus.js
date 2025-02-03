@@ -9,7 +9,7 @@ import {
 } from "../../../styles/mypage/MyPage";
 import { useEffect, useState } from "react";
 
-const LeftMenuDashboard = () => {
+const LeftMenus = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath } = location.state || {};
@@ -20,7 +20,7 @@ const LeftMenuDashboard = () => {
   };
 
   useEffect(() => {
-    const currentMenu = location.state?.secondpath || "study";
+    const currentMenu = location.state?.secondpath || "accountmanager";
     setActiveMenu(currentMenu);
   }, [location.state]);
 
@@ -48,6 +48,14 @@ const LeftMenuDashboard = () => {
       link: "/mypage/changepassword",
       firstpath: firstpath,
       secondpath: "비밀번호 변경",
+    },
+    {
+      id: "withdrawal",
+      sort: "profile",
+      label: "️회원 탈퇴",
+      link: "/mypage/withdrawal",
+      firstpath: firstpath,
+      secondpath: "회원 탈퇴",
     },
     {
       id: "study",
@@ -94,10 +102,68 @@ const LeftMenuDashboard = () => {
   return (
     <>
       <LeftContainerEach>
+        <LeftContainerTitle>profile</LeftContainerTitle>
+        <LeftContainerContentsBox>
+          {menus
+            .filter((menu) => menu.sort === "profile") // sort가 'profile'인 항목만 필터링
+            .map((menu) => {
+              const isActive = activeMenu === menu.secondpath;
+              const BoardComponent = isActive
+                ? LeftContainerContentsActive
+                : LeftContainerContentsInactive;
+              return (
+                <BoardComponent key={menu.id}>
+                  <LeftMenuLink
+                    onClick={() => {
+                      handleNavigation(menu.link, {
+                        firstpath: menu.firstpath,
+                        secondpath: menu.secondpath,
+                      });
+                      setActiveMenu(menu.secondpath);
+                    }}
+                  >
+                    {menu.label}
+                  </LeftMenuLink>
+                </BoardComponent>
+              );
+            })}
+        </LeftContainerContentsBox>
+      </LeftContainerEach>
+
+      <LeftContainerEach>
         <LeftContainerTitle>dashboard</LeftContainerTitle>
         <LeftContainerContentsBox>
           {menus
-            .filter((menu) => menu.sort === "dashboard")
+            .filter((menu) => menu.sort === "dashboard") // sort가 'dashboard'인 항목만 필터링
+            .map((menu) => {
+              const isActive = activeMenu === menu.secondpath;
+              const BoardComponent = isActive
+                ? LeftContainerContentsActive
+                : LeftContainerContentsInactive;
+              return (
+                <BoardComponent key={menu.id}>
+                  <LeftMenuLink
+                    onClick={() => {
+                      handleNavigation(menu.link, {
+                        firstpath: menu.firstpath,
+                        secondpath: menu.secondpath,
+                      });
+                      setActiveMenu(menu.secondpath);
+                    }}
+                  >
+                    {menu.label}
+                  </LeftMenuLink>
+                </BoardComponent>
+              );
+            })}
+        </LeftContainerContentsBox>
+      </LeftContainerEach>
+
+      <LeftContainerEach>
+        <LeftContainerTitle>post</LeftContainerTitle>
+        <LeftContainerContentsBox>
+          {menus
+            .filter((menu) => menu.sort === "post") // sort가 'post'인 항목만 필터링
             .map((menu) => {
               const isActive = activeMenu === menu.secondpath;
               const BoardComponent = isActive
@@ -125,4 +191,4 @@ const LeftMenuDashboard = () => {
   );
 };
 
-export default LeftMenuDashboard;
+export default LeftMenus;
