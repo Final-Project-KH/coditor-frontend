@@ -34,7 +34,7 @@ const LeftTopProfile = () => {
       <LeftContainerEach>
         <ProfileImage isProfile={profile}></ProfileImage>
         <UserNickName style={{ marginTop: "0" }}>{nickname}</UserNickName>
-        <UserSignupDate style={{ marginTop: "-20px" }}>
+        <UserSignupDate style={{ marginTop: "-15px" }}>
           가입일 :{" "}
           {userSignupDate
             ? new Date(userSignupDate)

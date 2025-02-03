@@ -225,7 +225,7 @@ export const ProfileModalButton = styled.button.attrs({
   justify-content: center;
   user-select: none;
   border-radius: 25px;
-  border: 1px solid black;;
+  border: 1px solid black;
   color: #313131;
   font-family: "medium", sans-serif;
   font-size: 15px;
@@ -248,11 +248,11 @@ export const ProfileUploadModalContainer = styled.div.attrs({
   align-items: center;
   transition: 0.3s;
   gap: 30px;
-  padding: 30px 0;
   border: 1px solid white;
+  padding-top: 10px;
+  padding-bottom: 10px;
   ${({ isDragging }) =>
     isDragging && "background-color: #f1f1f1; border: 1px dashed black;"}
-
   // 드래그 중일 때 컨테이너를 덮는 오버레이
   .drag-overlay {
     position: absolute;
@@ -269,7 +269,6 @@ export const ProfileUploadModalContainer = styled.div.attrs({
     font-family: "bold", sans-serif;
     opacity: ${({ isDragging }) => (isDragging ? "1" : "0")};
     transition: opacity 0.3s ease;
-    z-index: 100;
   }
 `;
 export const ProfileUploadModalImage = styled.div.attrs({
@@ -308,95 +307,6 @@ export const ProfileUploadModalImage = styled.div.attrs({
       background-image: url(${(props) => props.isPreview});
     `}
 `;
-
-export const ProfileUploadModalImageAddButton = styled.button.attrs({
-  id: "profileuploadmodalimageaddbutton",
-})`
-  width: 240px;
-  height: 50px;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  border-radius: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  color: #313131;
-  font-family: "medium", sans-serif;
-  font-size: 15px;
-  font-weight: bold;
-  margin-top: 20px;
-  cursor: pointer;
-  &:hover {
-    background-color: black;
-    color: white;
-    border: 1px solid white;
-  }
-`;
-export const ProfileCropModal = styled.div.attrs({
-  id: "profilecropmodal",
-})`
-  width: 600px;
-  height: 640px;
-  display: flex;
-  border-radius: 20px;
-  flex-direction: column;
-  position: fixed;
-  border: 1px solid black;
-  background-color: #131314;
-  justify-content: space-evenly;
-  align-items: center;
-  top: 175px;
-  z-index: 10;
-`;
-export const ProfileCropModalHeader = styled.div.attrs({
-  id: "profilecropmodalheader",
-})`
-  width: 100%;
-  height: 90px;
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-`;
-export const ProfileCropModalCloseButton = styled.div.attrs({
-  id: "profilecropmodalclosebutton",
-})`
-  width: 40px;
-  height: 40px;
-  display: flex;
-  position: absolute;
-  border-radius: 50%;
-  left: 10px;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 35px 40px;
-  background-image: url("/images/icon/back_w.png");
-  &:hover {
-    background-color: rgba(128, 128, 128, 0.3);
-  }
-`;
-export const ProfileCropModalLogo = styled.div.attrs({
-  id: "profilecropmodallogo",
-})`
-  width: 50px;
-  height: 50px;
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url("/images/logo/logo_white.png");
-`;
 export const ProfileCropModalTitle = styled.div.attrs({
   id: "profilecropmodaltitle",
 })`
@@ -413,7 +323,6 @@ export const ProfileCropModalContainer = styled.div.attrs({
   id: "profilecropmodalcontainer",
 })`
   width: 100%;
-  height: 460px;
   display: flex;
   position: relative;
   justify-content: center;
@@ -422,8 +331,8 @@ export const ProfileCropModalContainer = styled.div.attrs({
 export const ProfileCropContainer = styled.div.attrs({
   id: "profilecropcontainer",
 })`
-  width: 100%;
-  height: 460px;
+  width: 300px;
+  height: 300px;
   display: flex;
   position: relative;
   justify-content: center;
