@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, {css} from "styled-components";
 
 export const RightContainerEach = styled.div.attrs({
   id: "rightcontainereach",
@@ -77,7 +77,7 @@ export const ProfileEditButton = styled.div.attrs({
   display: flex;
   border-radius: 50%;
   position: absolute;
-  right: 35px;
+  margin-right: -80px;
   top: 155px;
   z-index: 3;
   cursor: pointer;
@@ -262,7 +262,7 @@ export const ProfileUploadModalContainer = styled.div.attrs({
   border: 1px solid white;
   padding-top: 10px;
   padding-bottom: 10px;
-  ${({ isDragging }) =>
+  ${({isDragging}) =>
     isDragging && "background-color: #f1f1f1; border: 1px dashed black;"}
   // 드래그 중일 때 컨테이너를 덮는 오버레이
   .drag-overlay {
@@ -278,7 +278,7 @@ export const ProfileUploadModalContainer = styled.div.attrs({
     color: white;
     font-size: 20px;
     font-family: "bold", sans-serif;
-    opacity: ${({ isDragging }) => (isDragging ? "1" : "0")};
+    opacity: ${({isDragging}) => (isDragging ? "1" : "0")};
     transition: opacity 0.3s ease;
   }
 `;
