@@ -46,34 +46,17 @@ const MENU_ITEMS = [
 // 경로 받아와야함
 const Practice = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
 
   const handleCodingTest = () => {
-    navigate("/codingtest", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/codingtest");
   };
 
   const handleCodingTestJava = () => {
-    navigate("/codingtest/java", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/codingtest/java");
   };
 
   const handleRefresh = () => {
-    navigate(`/codingtest/java/practice`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate(`/codingtest/java/practice`);
   };
 
   const handleNavigation = (navigatepath, data) => {
@@ -95,14 +78,14 @@ const Practice = () => {
       <TopBoxWide>
         <TopBox>
           <TopBoxText onClick={() => handleCodingTest()}>
-            {firstpath}
+            Coding Test
           </TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <TopBoxText onClick={() => handleCodingTestJava()}>
-            {secondpath}
+            Java
           </TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{thirdpath}</TopBoxText>
+          <TopBoxText onClick={() => handleRefresh()}>Practice</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <Container>
@@ -110,8 +93,8 @@ const Practice = () => {
           <LeftTopSubjectContainer>
             <LeftSubjectSubContainer>
               <SubjectImgContainerJava />
-              <SubjectTitle>{secondpath}</SubjectTitle>
-              <SubjectContent>{thirdpath}</SubjectContent>
+              <SubjectTitle>Java</SubjectTitle>
+              <SubjectContent>Practice</SubjectContent>
             </LeftSubjectSubContainer>
             <LeftSubjectSubContainer>
               <SubjectUserImgContainer />

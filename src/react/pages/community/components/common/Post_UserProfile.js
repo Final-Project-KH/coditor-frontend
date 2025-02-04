@@ -14,7 +14,6 @@ const Post_UserProfile = () => {
   const {boardId} = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const {firstpath, secondpath} = location.state || {};
   const [nickname, setNickname] = useState(null);
   const [profile, setProfile] = useState(null);
   const [postCnt, setPostCnt] = useState(null);
@@ -23,8 +22,6 @@ const Post_UserProfile = () => {
   const handleUserProfile = () => {
     navigate(`/community/user/${writerKey}`, {
       state: {
-        firstpath: firstpath,
-        secondpath: "user page",
         writerKey: writerKey,
       },
     });

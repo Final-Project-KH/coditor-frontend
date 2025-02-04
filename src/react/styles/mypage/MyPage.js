@@ -4,11 +4,10 @@ export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: white;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -91,13 +90,16 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
+  margin-top: 75px;
   width: 100%;
   display: flex;
   flex-direction: row;
-  margin-top: 75px;
-  box-sizing: border-box;
+  align-items: top;
   justify-content: center;
+  margin-bottom: 0;
   gap: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-bottom: 50px;
 `;
 
@@ -261,7 +263,7 @@ export const CenterAccountRightContainer = styled.div.attrs({
 })`
   width: 20%;
   display: flex;
-`
+`;
 export const CenterContainerEach = styled.div.attrs({
   id: "centercontainereach",
 })`
@@ -528,3 +530,15 @@ export const SNSIcon = styled.div.attrs({
   background-image: url(${(props) => props.icon});
 `;
 
+export const SubjectContainer = styled.div.attrs({
+  id: "Subjectcontainer",
+})`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  flex-direction: row;
+  align-items: top;
+  justify-content: center;
+  gap: 25px;
+
+`;

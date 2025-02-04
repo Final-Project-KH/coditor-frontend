@@ -21,7 +21,6 @@ import ScrollToTopButton from "../ScrollToTopButton";
 const Community_Team_M = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {firstpath, secondpath} = location.state || {};
   const queryParams = new URLSearchParams(location.search);
 
   // Pagination and sorting params
@@ -41,21 +40,12 @@ const Community_Team_M = () => {
 
   // TopBox firstpath
   const handleCommunity = () => {
-    navigate("/community", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/community");
   };
 
   // TopBox secondpath
   const handleRefresh = () => {
-    navigate(`/community/${boardType}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate(`/community/${boardType}`);
   };
 
   const handleEnumFilterRefresh = () => {
@@ -89,11 +79,11 @@ const Community_Team_M = () => {
         <TopBoxWide>
           <TopBox>
             <TopBoxLink onClick={() => handleCommunity()}>
-              <TopBoxText>{firstpath}</TopBoxText>
+              <TopBoxText>community</TopBoxText>
             </TopBoxLink>
             <TopBoxArrow>{`>`}</TopBoxArrow>
             <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>{secondpath}</TopBoxText>
+              <TopBoxText>📋 팀 프로젝트</TopBoxText>
             </TopBoxLink>
           </TopBox>
         </TopBoxWide>

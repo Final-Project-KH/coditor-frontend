@@ -19,8 +19,6 @@ import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const Java_02 = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
   const { isMobile } = useOutletContext();
 
@@ -33,32 +31,17 @@ const Java_02 = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyJava = () => {
-    navigate("/study/java", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/java");
   };
 
   // TopBox thirdpath
   const handleRefresh = () => {
-    navigate("/study/java/02", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/java/02");
     window.location.reload();
   };
 
@@ -70,13 +53,13 @@ const Java_02 = () => {
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+          <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <TopBoxText onClick={() => handleStudyJava()}>
-            {secondpath}
+            Java
           </TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{thirdpath}</TopBoxText>
+          <TopBoxText onClick={() => handleRefresh()}>02. 기본 자료형과 연산자</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <Container>

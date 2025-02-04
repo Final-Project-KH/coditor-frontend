@@ -42,8 +42,6 @@ import JavaScript_01_03_M from "./JavaScript_01_03_M";
 
 const JavaScript_01_03 = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
   const { isMobile } = useOutletContext();
 
@@ -56,44 +54,22 @@ const JavaScript_01_03 = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyJavaScript = () => {
-    navigate("/study/javascript", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/javascript");
   };
 
   // TopBox thirdpath
   const handleStudyJavaScript01 = () => {
-    navigate("/study/javascript/01", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/javascript/01");
   };
 
   // TopBox fourthpath
   const handleRefresh = () => {
-    navigate("/study/javascript/01/03", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-        fourthpath: fourthpath,
-      },
-    });
+    navigate("/study/javascript/01/03");
     window.location.reload();
   };
 
@@ -719,18 +695,18 @@ console.log(str); // 출력 결과: '10'
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyJavaScript()}>
-                {secondpath}
+                JavaScript
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyJavaScript01()}>
-                {thirdpath}
+              01. 자바스크립트 기초
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleRefresh()}>
-                {fourthpath}
+              03. 자바스크립트 기초 문법
               </TopBoxText>
             </TopBox>
           </TopBoxWide>

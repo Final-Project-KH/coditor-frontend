@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./react/pages/Layout";
 import Login from "./react/pages/login/login";
 import Signup from "./react/pages/signup/signup";
@@ -89,8 +89,15 @@ import Question from "./react/pages/cs/Question";
 import User_Main from "./react/pages/community/User_Main";
 import FindId from "./react/pages/login/FindId";
 import FindPw from "./react/pages/login/FindPw";
-import MyPage from "./react/pages/mypage/MyPage";
 import RequiredAuth from "./util/RequiredAuth";
+import MyPage from "./react/pages/mypage/MyPage";
+import MyPage_UserFeed from "./react/pages/mypage/MyPage_UserFeed";
+import MyPage_Withdrawal from "./react/pages/mypage/MyPage_Withdrawal";
+import MyPage_Study from "./react/pages/mypage/MyPage_Study";
+import MyPage_CodingTest from "./react/pages/mypage/MyPage_CodingTest";
+import MyPage_Community from "./react/pages/mypage/MyPage_Community";
+import MyPage_Report from "./react/pages/mypage/MyPage_Report";
+import MyPage_Question from "./react/pages/mypage/MyPage_Question";
 
 const App = () => {
   return (
@@ -124,23 +131,6 @@ const AppContents = () => {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
-          <Route
-            path="/mypage"
-            element={
-              <RequiredAuth>
-                <MyPage />
-              </RequiredAuth>
-            }
-          />
-                    <Route
-            path="/mypage/accountmanager"
-            element={
-              <RequiredAuth>
-                <MyPage />
-              </RequiredAuth>
-            }
-          />
-
           {StudyRoutes.map((route) => (
             <Route key={route.path} path={route.path} element={route.element} />
           ))}
@@ -150,6 +140,9 @@ const AppContents = () => {
           {CommunityRoutes.map((route) => (
             <Route key={route.path} path={route.path} element={route.element} />
           ))}
+          {MyPageRoutes.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
         </Route>
       </Routes>
     </>
@@ -157,83 +150,167 @@ const AppContents = () => {
 };
 
 const StudyRoutes = [
-  {path: "/study", element: <Study_Main />},
-  {path: "/study/java", element: <Java_Main />},
-  {path: "/study/java/01", element: <Java_01 />},
-  {path: "/study/java/01/01", element: <Java_01_01 />},
-  {path: "/study/java/01/02", element: <Java_01_02 />},
-  {path: "/study/java/01/03", element: <Java_01_03 />},
-  {path: "/study/java/02", element: <Java_02 />},
-  {path: "/study/java/02/01", element: <Java_02_01 />},
-  {path: "/study/java/02/02", element: <Java_02_02 />},
-  {path: "/study/java/02/03", element: <Java_02_03 />},
-  {path: "/study/java/02/04", element: <Java_02_04 />},
-  {path: "/study/java/02/05", element: <Java_02_05 />},
-  {path: "/study/java/03", element: <Java_03 />},
-  {path: "/study/java/04", element: <Java_04 />},
-  {path: "/study/java/05", element: <Java_05 />},
-  {path: "/study/java/06", element: <Java_06 />},
-  {path: "/study/java/07", element: <Java_07 />},
-  {path: "/study/java/08", element: <Java_08 />},
-  {path: "/study/java/09", element: <Java_09 />},
-  {path: "/study/python", element: <Python_Main />},
-  {path: "/study/python/01", element: <Python_01 />},
-  {path: "/study/python/01/01", element: <Python_01_01 />},
-  {path: "/study/python/01/02", element: <Python_01_02 />},
-  {path: "/study/python/01/03", element: <Python_01_03 />},
-  {path: "/study/python/01/04", element: <Python_01_04 />},
-  {path: "/study/python/01/05", element: <Python_01_05 />},
-  {path: "/study/python/01/06", element: <Python_01_06 />},
-  {path: "/study/python/01/07", element: <Python_01_07 />},
-  {path: "/study/python/01/08", element: <Python_01_08 />},
-  {path: "/study/python/01/09", element: <Python_01_09 />},
-  {path: "/study/python/01/10", element: <Python_01_10 />},
-  {path: "/study/python/02", element: <Python_02 />},
-  {path: "/study/python/03", element: <Python_03 />},
-  {path: "/study/python/04", element: <Python_04 />},
-  {path: "/study/python/05", element: <Python_05 />},
-  {path: "/study/python/06", element: <Python_06 />},
-  {path: "/study/c", element: <C_Main />},
-  {path: "/study/c/01", element: <C_01 />},
-  {path: "/study/c/01/01", element: <C_01_01 />},
-  {path: "/study/c/02", element: <C_02 />},
-  {path: "/study/c/03", element: <C_03 />},
-  {path: "/study/c/04", element: <C_04 />},
-  {path: "/study/c/05", element: <C_05 />},
-  {path: "/study/cplus", element: <CPlus_Main />},
-  {path: "/study/cplus/01", element: <CPlus_01 />},
-  {path: "/study/cplus/01/01", element: <CPlus_01_01 />},
-  {path: "/study/cplus/02", element: <CPlus_02 />},
-  {path: "/study/cplus/03", element: <CPlus_03 />},
-  {path: "/study/cplus/04", element: <CPlus_04 />},
-  {path: "/study/cplus/05", element: <CPlus_05 />},
-  {path: "/study/cplus/06", element: <CPlus_06 />},
-  {path: "/study/cplus/07", element: <CPlus_07 />},
-  {path: "/study/cplus/08", element: <CPlus_08 />},
-  {path: "/study/cplus/09", element: <CPlus_09 />},
-  {path: "/study/cplus/10", element: <CPlus_10 />},
-  {path: "/study/javascript", element: <JavaScript_Main />},
-  {path: "/study/javascript/01", element: <JavaScript_01 />},
-  {path: "/study/javascript/01/01", element: <JavaScript_01_01 />},
-  {path: "/study/javascript/01/02", element: <JavaScript_01_02 />},
-  {path: "/study/javascript/01/03", element: <JavaScript_01_03 />},
-  {path: "/study/javascript/02", element: <JavaScript_02 />},
-  {path: "/study/javascript/03", element: <JavaScript_03 />},
-  {path: "/study/javascript/04", element: <JavaScript_04 />},
-  {path: "/study/javascript/05", element: <JavaScript_05 />},
+  { path: "/study", element: <Study_Main /> },
+  { path: "/study/java", element: <Java_Main /> },
+  { path: "/study/java/01", element: <Java_01 /> },
+  { path: "/study/java/01/01", element: <Java_01_01 /> },
+  { path: "/study/java/01/02", element: <Java_01_02 /> },
+  { path: "/study/java/01/03", element: <Java_01_03 /> },
+  { path: "/study/java/02", element: <Java_02 /> },
+  { path: "/study/java/02/01", element: <Java_02_01 /> },
+  { path: "/study/java/02/02", element: <Java_02_02 /> },
+  { path: "/study/java/02/03", element: <Java_02_03 /> },
+  { path: "/study/java/02/04", element: <Java_02_04 /> },
+  { path: "/study/java/02/05", element: <Java_02_05 /> },
+  { path: "/study/java/03", element: <Java_03 /> },
+  { path: "/study/java/04", element: <Java_04 /> },
+  { path: "/study/java/05", element: <Java_05 /> },
+  { path: "/study/java/06", element: <Java_06 /> },
+  { path: "/study/java/07", element: <Java_07 /> },
+  { path: "/study/java/08", element: <Java_08 /> },
+  { path: "/study/java/09", element: <Java_09 /> },
+  { path: "/study/python", element: <Python_Main /> },
+  { path: "/study/python/01", element: <Python_01 /> },
+  { path: "/study/python/01/01", element: <Python_01_01 /> },
+  { path: "/study/python/01/02", element: <Python_01_02 /> },
+  { path: "/study/python/01/03", element: <Python_01_03 /> },
+  { path: "/study/python/01/04", element: <Python_01_04 /> },
+  { path: "/study/python/01/05", element: <Python_01_05 /> },
+  { path: "/study/python/01/06", element: <Python_01_06 /> },
+  { path: "/study/python/01/07", element: <Python_01_07 /> },
+  { path: "/study/python/01/08", element: <Python_01_08 /> },
+  { path: "/study/python/01/09", element: <Python_01_09 /> },
+  { path: "/study/python/01/10", element: <Python_01_10 /> },
+  { path: "/study/python/02", element: <Python_02 /> },
+  { path: "/study/python/03", element: <Python_03 /> },
+  { path: "/study/python/04", element: <Python_04 /> },
+  { path: "/study/python/05", element: <Python_05 /> },
+  { path: "/study/python/06", element: <Python_06 /> },
+  { path: "/study/c", element: <C_Main /> },
+  { path: "/study/c/01", element: <C_01 /> },
+  { path: "/study/c/01/01", element: <C_01_01 /> },
+  { path: "/study/c/02", element: <C_02 /> },
+  { path: "/study/c/03", element: <C_03 /> },
+  { path: "/study/c/04", element: <C_04 /> },
+  { path: "/study/c/05", element: <C_05 /> },
+  { path: "/study/cplus", element: <CPlus_Main /> },
+  { path: "/study/cplus/01", element: <CPlus_01 /> },
+  { path: "/study/cplus/01/01", element: <CPlus_01_01 /> },
+  { path: "/study/cplus/02", element: <CPlus_02 /> },
+  { path: "/study/cplus/03", element: <CPlus_03 /> },
+  { path: "/study/cplus/04", element: <CPlus_04 /> },
+  { path: "/study/cplus/05", element: <CPlus_05 /> },
+  { path: "/study/cplus/06", element: <CPlus_06 /> },
+  { path: "/study/cplus/07", element: <CPlus_07 /> },
+  { path: "/study/cplus/08", element: <CPlus_08 /> },
+  { path: "/study/cplus/09", element: <CPlus_09 /> },
+  { path: "/study/cplus/10", element: <CPlus_10 /> },
+  { path: "/study/javascript", element: <JavaScript_Main /> },
+  { path: "/study/javascript/01", element: <JavaScript_01 /> },
+  { path: "/study/javascript/01/01", element: <JavaScript_01_01 /> },
+  { path: "/study/javascript/01/02", element: <JavaScript_01_02 /> },
+  { path: "/study/javascript/01/03", element: <JavaScript_01_03 /> },
+  { path: "/study/javascript/02", element: <JavaScript_02 /> },
+  { path: "/study/javascript/03", element: <JavaScript_03 /> },
+  { path: "/study/javascript/04", element: <JavaScript_04 /> },
+  { path: "/study/javascript/05", element: <JavaScript_05 /> },
 ];
 
 const CodingTestRoutes = [
-  {path: "/codingtest/practice", element: <Practice />},
-  {path: "/codingtest/challenge/:questionId", element: <CodeChallenge />},
+  { path: "/codingtest/practice", element: <Practice /> },
+  { path: "/codingtest/challenge/:questionId", element: <CodeChallenge /> },
 ];
 
 const CommunityRoutes = [
-  {path: "/community", element: <Community_Main />},
-  {path: "/community/coding", element: <Community_Coding />},
-  {path: "/community/:boardType/post/:boardId", element: <Post_Read />},
-  {path: "/community/course", element: <Community_Course />},
-  {path: "/community/study", element: <Community_Study />},
-  {path: "/community/team", element: <Community_Team />},
-  {path: "/community/user/:userId", element: <User_Main />},
+  { path: "/community", element: <Community_Main /> },
+  { path: "/community/coding", element: <Community_Coding /> },
+  { path: "/community/:boardType/post/:boardId", element: <Post_Read /> },
+  { path: "/community/course", element: <Community_Course /> },
+  { path: "/community/study", element: <Community_Study /> },
+  { path: "/community/team", element: <Community_Team /> },
+  { path: "/community/user/:userId", element: <User_Main /> },
+];
+
+const MyPageRoutes = [
+  {
+    path: "/mypage",
+    element: (
+      <RequiredAuth>
+        <MyPage />
+      </RequiredAuth>
+    ),
+    auth: true,
+  },
+  {
+    path: "/mypage/accountmanager",
+    element: (
+      <RequiredAuth>
+        <MyPage />
+      </RequiredAuth>
+    ),
+    auth: true,
+  },
+  {
+    path: "/mypage/userfeed",
+    element: (
+      <RequiredAuth>
+        <MyPage_UserFeed />
+      </RequiredAuth>
+    ),
+    auth: true,
+  },
+  {
+    path: "/mypage/withdrawal",
+    element: (
+      <RequiredAuth>
+        <MyPage_Withdrawal />
+      </RequiredAuth>
+    ),
+    auth: true,
+  },
+  {
+    path: "/mypage/study",
+    element: (
+      <RequiredAuth>
+        <MyPage_Study />
+      </RequiredAuth>
+    ),
+    auth: true,
+  },
+  {
+    path: "/mypage/codingtest",
+    element: (
+      <RequiredAuth>
+        <MyPage_CodingTest />
+      </RequiredAuth>
+    ),
+    auth: true,
+  },
+  {
+    path: "/mypage/community",
+    element: (
+      <RequiredAuth>
+        <MyPage_Community />
+      </RequiredAuth>
+    ),
+    auth: true,
+  },
+  {
+    path: "/mypage/report",
+    element: (
+      <RequiredAuth>
+        <MyPage_Report />
+      </RequiredAuth>
+    ),
+    auth: true,
+  },
+  {
+    path: "/mypage/question",
+    element: (
+      <RequiredAuth>
+        <MyPage_Question />
+      </RequiredAuth>
+    ),
+    auth: true,
+  },
 ];

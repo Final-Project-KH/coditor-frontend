@@ -33,26 +33,18 @@ const CodingTestBar = ({ isOpen, closeMenu, path }) => {
         {
           label: "Practice",
           navigatepath: "/codingtest/practice",
-          firstpath: path,
-          secondpath: "Practice",
         },
         {
           label: "Basic",
           navigatepath: "/codingtest/basic",
-          firstpath: path,
-          secondpath: "Basic",
         },
         {
           label: "Intermediate",
           navigatepath: "/codingtest/intermediate",
-          firstpath: path,
-          secondpath: "intermediate",
         },
         {
           label: "Expert",
           navigatepath: "/codingtest/expert",
-          firstpath: path,
-          secondpath: "Expert",
         },
       ],
     },
@@ -69,11 +61,7 @@ const CodingTestBar = ({ isOpen, closeMenu, path }) => {
                 <NavigatePath
                   key={idx}
                   onClick={() =>
-                    handleNavigation(content.navigatepath, {
-                      firstpath: content.firstpath,
-                      secondpath: content.secondpath,
-                      thirdpath: content.thirdpath,
-                    })
+                    handleNavigation(content.navigatepath)
                   }
                 ></NavigatePath>
                 {content.label}

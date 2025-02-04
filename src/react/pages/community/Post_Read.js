@@ -21,7 +21,6 @@ import ScrollToTopButton from "../ScrollToTopButton";
 const Post_Read = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const { boardType, boardId } = useParams();
   const queryParams = new URLSearchParams(location.search);
 
@@ -36,34 +35,19 @@ const Post_Read = () => {
   // TopBox firstpath
   const handleCommunity = () => {
     console.log(boardType);
-    navigate("/community", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/community");
   };
 
   // TopBox secondpath
   const handleCommunityCoding = () => {
     console.log(boardType);
-    navigate(`/community/${boardType}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate(`/community/${boardType}`);
   };
 
   // TopBox thirdpath
   const handleRefresh = () => {
     console.log(boardType);
-    navigate(`/community/${boardType}/post/${boardId}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate(`/community/${boardType}/post/${boardId}`);
   };
 
   return (
@@ -72,15 +56,15 @@ const Post_Read = () => {
         <TopBoxWide>
           <TopBox>
             <PathLink onClick={() => handleCommunity()}>
-              <TopBoxText>{firstpath}</TopBoxText>
+              <TopBoxText>community</TopBoxText>
             </PathLink>
             <TopBoxArrow>{`>`}</TopBoxArrow>
             <PathLink onClick={() => handleCommunityCoding()}>
-              <TopBoxText>{secondpath}</TopBoxText>
+              <TopBoxText>{boardType}</TopBoxText>
             </PathLink>
             <TopBoxArrow>{`>`}</TopBoxArrow>
             <PathLink onClick={() => handleRefresh()}>
-              <TopBoxText>{thirdpath}</TopBoxText>
+              <TopBoxText>게시글</TopBoxText>
             </PathLink>
           </TopBox>
         </TopBoxWide>

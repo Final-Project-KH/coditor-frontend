@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import {
   Wrap,
   TopBoxWide,
@@ -19,32 +19,39 @@ import AccountManager_Account from "./Components/AccountManager_Account";
 import AccountManager_Alert from "./Components/AccountManager_Alert";
 import AccountManager_SNS from "./Components/AccountManager_SNS";
 import AccountManager_ProfileIMG from "./Components/AccountManager_ProfileIMG";
+import ScrollToTopButton from "../ScrollToTopButton";
+import { useEffect } from "react";
 
 const MyPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
+  const { mainContentRef } = useOutletContext();
+
+  // 페이지 진입 시 스크롤 위치 초기화
+  useEffect(() => {
+    if (mainContentRef?.current) {
+      mainContentRef.current.scrollTo(0, 0);
+    }
+  }, [mainContentRef]);
 
   const handleRefresh = () => {
-    navigate("/mypage/accountmanager", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/mypage/accountmanager");
   };
+
+  const isAccountManagerPage = location.pathname === "/mypage/accountmanager";
 
   return (
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText>{firstpath}</TopBoxText>
+          <TopBoxLink onClick={() => navigate("/mypage")}>
+            <TopBoxText>마이 페이지</TopBoxText>
           </TopBoxLink>
-          {secondpath && (
+          {isAccountManagerPage && (
             <>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>{secondpath}</TopBoxText>
+              <TopBoxLink onClick={handleRefresh}>
+                <TopBoxText>계정 관리</TopBoxText>
               </TopBoxLink>
             </>
           )}
@@ -68,6 +75,7 @@ const MyPage = () => {
           <AccountManager_SNS />
         </CenterContainer>
       </Container>
+      <ScrollToTopButton />
     </Wrap>
   );
 };

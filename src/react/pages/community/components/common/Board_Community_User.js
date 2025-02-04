@@ -31,9 +31,6 @@ import { useEffect, useState } from "react";
 import AxiosApi from "../../../../../api/AxiosApi";
 
 const Board_Community_User = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { firsthpath, writerKey } = location.state || {};
 
   return (
     <>

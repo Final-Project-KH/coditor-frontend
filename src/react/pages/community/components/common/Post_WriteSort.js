@@ -8,7 +8,7 @@ import {
   WriteBoardLink
 } from "../../../../styles/community/Post";
 
-const Post_WriteSort = ({ firstpath }) => {
+const Post_WriteSort = () => {
   const [activeBoard, setActiveBoard] = useState("coding"); // 초기 설정
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,31 +25,23 @@ const Post_WriteSort = ({ firstpath }) => {
   const boards = [
     {
       id: "coding",
-      label: "코딩 질문",
+      label: "💻 코딩 질문",
       link: "/community/coding/write",
-      firstpath: firstpath,
-      secondpath: "코딩 질문",
     },
     {
       id: "course",
-      label: "진로 질문",
+      label: "🎓 진로 질문",
       link: "/community/course/write",
-      firstpath: firstpath,
-      secondpath: "진로 질문",
     },
     {
       id: "study",
-      label: "스터디",
+      label: "✏️ 스터디",
       link: "/community/study/write",
-      firstpath: firstpath,
-      secondpath: "스터디",
     },
     {
       id: "team",
-      label: "팀 프로젝트",
+      label: "📋 팀 프로젝트",
       link: "/community/team/write",
-      firstpath: firstpath,
-      secondpath: "팀 프로젝트",
     },
   ];
 
@@ -58,7 +50,7 @@ const Post_WriteSort = ({ firstpath }) => {
       <WriteSortOuterContiner>
         <WriteSortInnerContainer>
           {boards.map((board) => {
-            const isActive = activeBoard === board.secondpath;
+            const isActive = activeBoard === board.label;
             const BoardComponent = isActive
               ? WriteSortTitleActive
               : WriteSortTitleInactive;
@@ -67,10 +59,7 @@ const Post_WriteSort = ({ firstpath }) => {
               <BoardComponent key={board.id}>
                 <WriteBoardLink
                   onClick={() => {
-                    handleNavigation(board.link, {
-                      firstpath: board.firstpath,
-                      secondpath: board.secondpath,
-                    });
+                    handleNavigation(board.link);
                     setActiveBoard(board.secondpath);
                   }}
                 >

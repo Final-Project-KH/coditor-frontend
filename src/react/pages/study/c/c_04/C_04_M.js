@@ -21,8 +21,6 @@ import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const C_04_M = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
@@ -34,32 +32,17 @@ const C_04_M = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyC = () => {
-    navigate("/study/c", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/c");
   };
 
   // TopBox thirdpath
   const handleRefresh = () => {
-    navigate("/study/c/04", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/c/04");
     window.location.reload();
   };
 
@@ -68,18 +51,18 @@ const C_04_M = () => {
       <TopBoxWide>
         <TopBox>
           <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>{firstpath}</TopBoxText>
+            <TopBoxText>study</TopBoxText>
           </TopBoxLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <TopBoxLink onClick={() => handleStudyC()}>
-            <TopBoxText>{secondpath}</TopBoxText>
+            <TopBoxText>C</TopBoxText>
           </TopBoxLink>
           </TopBox>
           </TopBoxWide>
           <TopBoxWide2>
           <TopBox2>
           <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText2>{thirdpath}</TopBoxText2>
+            <TopBoxText2>04. 배열과 문자열</TopBoxText2>
           </TopBoxLink>
         </TopBox2>
       </TopBoxWide2>

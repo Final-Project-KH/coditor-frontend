@@ -18,17 +18,11 @@ import ScrollToTopButton from "../ScrollToTopButton";
 const About = () => {
   const { isMobile } = useOutletContext();
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
 
   const handleRefresh = () => {
-    navigate("/about", {
-      state: {
-        firstpath: firstpath,
-        secondpath: "🔥 코디터 소개",
-      },
-    });
+    navigate("/about");
   };
+
   return (
     <>
       {isMobile ? (
@@ -38,17 +32,12 @@ const About = () => {
           <TopBoxWide>
             <TopBox>
               <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>{firstpath}</TopBoxText>
+                <TopBoxText>about</TopBoxText>
               </TopBoxLink>
-              {/* <a href="/about" className="menu-link">
-            <TopBoxText>{firstpath}</TopBoxText>
-          </a> */}
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              {/* <a href="/about" className="menu-link">
-            <TopBoxText>{secondpath}</TopBoxText>
-          </a> */}
+
               <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>{secondpath}</TopBoxText>
+                <TopBoxText>🔥 코디터 소개</TopBoxText>
               </TopBoxLink>
             </TopBox>
           </TopBoxWide>

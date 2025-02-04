@@ -30,7 +30,7 @@ import AxiosApi from "../../../api/AxiosApi";
 const User_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, writerKey } = location.state || {};
+  const { writerKey } = location.state || {};
   const [writerProfile, setWriterProfile] = useState(null);
   const [writerName, setWriterName] = useState("");
   const [writerPostCnt, setWriterPostCnt] = useState(null);
@@ -62,19 +62,13 @@ const User_Main = () => {
 
   // TopBox firstpath
   const handleCommunity = () => {
-    navigate("/community", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/community");
   };
 
   // TopBox secondpath
   const handleRefresh = () => {
     navigate(`/community/user/${writerKey}`, {
       state: {
-        firstpath: firstpath,
-        secondpath: "user page",
         writerKey: writerKey,
       },
     });
@@ -86,11 +80,11 @@ const User_Main = () => {
         <TopBoxWide>
           <TopBox>
             <PathLink onClick={() => handleCommunity()}>
-              <TopBoxText>{firstpath}</TopBoxText>
+              <TopBoxText>community</TopBoxText>
             </PathLink>
             <TopBoxArrow>{`>`}</TopBoxArrow>
             <PathLink onClick={() => handleRefresh()}>
-              <TopBoxText>{secondpath}</TopBoxText>
+              <TopBoxText>User Page</TopBoxText>
             </PathLink>
           </TopBox>
         </TopBoxWide>

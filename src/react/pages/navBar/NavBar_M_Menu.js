@@ -27,9 +27,7 @@ import { menus } from "../../../util/mobilemenu/MobileMenu";
 const NavBar_M_Menu = ({ closeMenu }) => {
   const [activeMenu, setActiveMenu] = useState("about");
   const navigate = useNavigate();
-  const location = useLocation();
   const dispatch = useDispatch();
-  const { firstpath } = location.state || {};
   const activeMenuData = menus.find((menu) => menu.id === activeMenu);
   const nickname = useSelector((state) => state.auth.nickname);
   const [isUser, setIsUser] = useState(null);
@@ -88,10 +86,7 @@ const NavBar_M_Menu = ({ closeMenu }) => {
               <MenuRightColumn key={idx}>
                 <MenuRightColumnTitle
                   onClick={() =>
-                    handleNavigation(column.title.link, {
-                      firstpath: activeMenuData.label, // 최상위 label(coding test)
-                      secondpath: column.title.text, // 각 title.text(Java, Python, C 등)
-                    })
+                    handleNavigation(column.title.link)
                   }
                   style={{ cursor: "pointer" }}
                 >
@@ -102,11 +97,7 @@ const NavBar_M_Menu = ({ closeMenu }) => {
                   <MenuRightColumnContents key={idx}>
                     <MenuRightLink
                       onClick={() =>
-                        handleNavigation(content.link, {
-                          firstpath: activeMenuData.label, // 최상위 label(coding test)
-                          secondpath: column.title.text, // 각 title.text(Java, Python, C 등)
-                          thirdpath: content.text, // 각 content.text(Practice, Basic 등)
-                        })
+                        handleNavigation(content.link)
                       }
                       style={{ cursor: "pointer" }}
                     >

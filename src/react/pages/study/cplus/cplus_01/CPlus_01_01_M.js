@@ -42,8 +42,6 @@ import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const CPlus_01_01_M = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
@@ -55,44 +53,22 @@ const CPlus_01_01_M = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyCPlus = () => {
-    navigate("/study/cplus", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/cplus");
   };
 
   // TopBox thirdpath
   const handleStudyCPlus01 = () => {
-    navigate("/study/cplus/01", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/cplus/01");
   };
 
   // TopBox fourthpath
   const handleRefresh = () => {
-    navigate("/study/cplus/01/01", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-        fourthpath: fourthpath,
-      },
-    });
+    navigate("/study/cplus/01/01");
     window.location.reload();
   };
 
@@ -101,12 +77,12 @@ const CPlus_01_01_M = () => {
       <TopBoxWide>
         <TopBox>
           <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>{firstpath}</TopBoxText>
+            <TopBoxText>study</TopBoxText>
           </TopBoxLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <TopBoxLink onClick={() => handleStudyCPlus()}>
             <TopBoxText>
-              {secondpath}
+              C++
             </TopBoxText>
           </TopBoxLink>
           </TopBox>
@@ -115,13 +91,13 @@ const CPlus_01_01_M = () => {
           <TopBox2>
           <TopBoxLink onClick={() => handleStudyCPlus01()}>
             <TopBoxText2>
-            {thirdpath}
+            01. C++ 기본
             </TopBoxText2>
           </TopBoxLink>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
           <TopBoxLink onClick={() => handleRefresh()}>
             <TopBoxText2>
-              {fourthpath}
+            01. C++?
             </TopBoxText2>
           </TopBoxLink>
         </TopBox2>

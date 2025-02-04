@@ -43,8 +43,6 @@ import Python_01_10_M from "./Python_01_10_M";
 
 const Python_01_10 = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
   const { isMobile } = useOutletContext();
 
@@ -57,44 +55,22 @@ const Python_01_10 = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyPython = () => {
-    navigate("/study/python", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/python");
   };
 
   // TopBox thirdpath
   const handleStudyPython01 = () => {
-    navigate("/study/python/01", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/python/01");
   };
 
   // TopBox fourthpath
   const handleRefresh = () => {
-    navigate("/study/python/01/10", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-        fourthpath: fourthpath,
-      },
-    });
+    navigate("/study/python/01/10");
     window.location.reload();
   };
 
@@ -719,18 +695,18 @@ for i in range(10) :
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyPython()}>
-                {secondpath}
+                Python
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyPython01()}>
-                {thirdpath}
+                01. 개발 환경 구성 및 기본 문법
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleRefresh()}>
-                {fourthpath}
+                10. 반복문
               </TopBoxText>
             </TopBox>
           </TopBoxWide>

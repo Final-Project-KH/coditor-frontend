@@ -275,8 +275,6 @@ const extensions = [
 
 const Post_WriteEditor_Coding = ({ title, language }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
   const [editorContent, setEditorContent] = useState("");
   const [boardType, setBoardType] = useState("coding");
 
@@ -306,12 +304,7 @@ const Post_WriteEditor_Coding = ({ title, language }) => {
 
   // cancel button
   const handleGoBack = () => {
-    navigate(`/community/${boardType}`, {
-      state: {
-        firstpath: "community",
-        secondpath: secondpath,
-      },
-    });
+    navigate(`/community/${boardType}`);
   };
 
   // submit button
@@ -333,12 +326,7 @@ const Post_WriteEditor_Coding = ({ title, language }) => {
         editor.getHTML()
       );
       alert("내용이 성공적으로 제출되었습니다.");
-      navigate(`/community/${boardType}`, {
-        state: {
-          firstpath: "community",
-          secondpath: secondpath,
-        },
-      });
+      navigate(`/community/${boardType}`);
     } catch (error) {
       console.error("제출 실패:", error);
       alert("제출에 실패했습니다. 다시 시도해주세요.");

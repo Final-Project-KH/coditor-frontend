@@ -42,8 +42,6 @@ import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const Python_01_01_M = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
@@ -55,44 +53,22 @@ const Python_01_01_M = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyPython = () => {
-    navigate("/study/python", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/python");
   };
 
   // TopBox thirdpath
   const handleStudyPython01 = () => {
-    navigate("/study/python/01", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/python/01");
   };
 
   // TopBox fourthpath
   const handleRefresh = () => {
-    navigate("/study/python/01/01", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-        fourthpath: fourthpath,
-      },
-    });
+    navigate("/study/python/01/01");
     window.location.reload();
   };
 
@@ -156,12 +132,12 @@ print("Hello World")
       <TopBoxWide>
         <TopBox>
           <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>{firstpath}</TopBoxText>
+            <TopBoxText>study</TopBoxText>
           </TopBoxLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <TopBoxLink onClick={() => handleStudyPython()}>
             <TopBoxText>
-              {secondpath}
+              Python
             </TopBoxText>
           </TopBoxLink>
           </TopBox>
@@ -170,13 +146,13 @@ print("Hello World")
           <TopBox2>
           <TopBoxLink onClick={() => handleStudyPython01()}>
             <TopBoxText2>
-            {thirdpath}
+            01. 개발 환경 구성 및 기본 문법
             </TopBoxText2>
           </TopBoxLink>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
           <TopBoxLink onClick={() => handleRefresh()}>
             <TopBoxText2>
-              {fourthpath}
+            01. Python?
             </TopBoxText2>
           </TopBoxLink>
         </TopBox2>

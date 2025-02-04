@@ -16,19 +16,11 @@ import {
 
 const Board_Order = ({ boardType, onSortChange }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const [activeOrder, setActiveOrder] = useState("createdAt");
 
   // write post
   const handleWrite = () => {
-    navigate(`/community/${boardType}/write`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: "write",
-      },
-    });
+    navigate(`/community/${boardType}/write`);
   };
 
   // order posts
