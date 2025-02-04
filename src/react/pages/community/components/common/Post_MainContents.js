@@ -60,7 +60,11 @@ const Post_MainContents = ({ boardType }) => {
   const navigate = useNavigate();
 
   const handleDeleteNavigate = () => {
-    navigate(`/community/${boardType}`);
+    navigate(`/community/${boardType}`, {
+      state: {
+        id: boardType,
+      },
+    });
   };
 
   const handleExtra = () => {
@@ -93,7 +97,20 @@ const Post_MainContents = ({ boardType }) => {
     }
   };
 
-  const handleDelete = async () => {};
+  const handleDelete = async () => {
+    if (userkeynumber != writerKeyNumber) {
+      return alert("삭제 권한이 없습니다.");
+    }
+    try {
+      const response = await AxiosApi.deletePost(boardId);
+      if (response) {
+        alert("글이 삭제되었습니다.");
+        handleDeleteNavigate();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Get Post from Backend
   useEffect(() => {
@@ -344,69 +361,121 @@ const Post_MainContents = ({ boardType }) => {
                   </MainPostThumbsDownText>
                 </MainPostThumbsDownBox>
               </MainPostInformation>
-              <MainPostExtra>
-                <MainPostExtraItemContainer isOpen={isExtra}>
-                  {boardType === "coding" && boardStatus === "ACTIVE" ? (
-                    <MainPostExtraItem
-                      onClick={() => handleStatus()}
-                      isOpen={isExtra}
-                    >
-                      해결됨으로 변경
-                    </MainPostExtraItem>
-                  ) : boardType === "coding" && boardStatus === "INACTIVE" ? (
-                    <MainPostExtraItem
-                      onClick={() => handleStatus()}
-                      isOpen={isExtra}
-                    >
-                      미해결로 변경
-                    </MainPostExtraItem>
-                  ) : (boardType === "study" || boardType === "team") &&
-                    boardStatus === "ACTIVE" ? (
-                    <MainPostExtraItem
-                      onClick={() => handleStatus()}
-                      isOpen={isExtra}
-                    >
-                      모집완료로 변경
-                    </MainPostExtraItem>
-                  ) : (
-                    (boardType === "study" || boardType === "team") &&
-                    boardStatus === "INACTIVE" && (
+              {writerKeyNumber == userkeynumber ? (
+                <MainPostExtra>
+                  <MainPostExtraItemContainer isOpen={isExtra}>
+                    {boardType === "coding" && boardStatus === "ACTIVE" ? (
                       <MainPostExtraItem
                         onClick={() => handleStatus()}
                         isOpen={isExtra}
                       >
-                        모집중으로 변경
+                        해결됨으로 변경
                       </MainPostExtraItem>
-                    )
-                  )}
-                  {/* {boardStatus === "ACTIVE" ? (
-                    <MainPostExtraItem
-                      onClick={() => handleStatus()}
-                      isOpen={isExtra}
-                    >
-                      해결됨으로 변경
-                    </MainPostExtraItem>
-                  ) : (
-                    boardStatus === "INACTIVE" && (
+                    ) : boardType === "coding" && boardStatus === "INACTIVE" ? (
                       <MainPostExtraItem
                         onClick={() => handleStatus()}
                         isOpen={isExtra}
                       >
                         미해결로 변경
                       </MainPostExtraItem>
-                    )
-                  )} */}
-                  <MainPostExtraItem isOpen={isExtra}>
-                    글 수정
-                  </MainPostExtraItem>
-                  <MainPostExtraItem isOpen={isExtra}>
-                    글 삭제
-                  </MainPostExtraItem>
-                </MainPostExtraItemContainer>
-                <MainPostExtraButton
-                  onClick={handleExtra}
-                ></MainPostExtraButton>
-              </MainPostExtra>
+                    ) : (boardType === "study" || boardType === "team") &&
+                      boardStatus === "ACTIVE" ? (
+                      <MainPostExtraItem
+                        onClick={() => handleStatus()}
+                        isOpen={isExtra}
+                      >
+                        모집완료로 변경
+                      </MainPostExtraItem>
+                    ) : (
+                      (boardType === "study" || boardType === "team") &&
+                      boardStatus === "INACTIVE" && (
+                        <MainPostExtraItem
+                          onClick={() => handleStatus()}
+                          isOpen={isExtra}
+                        >
+                          모집중으로 변경
+                        </MainPostExtraItem>
+                      )
+                    )}
+                    <MainPostExtraItem isOpen={isExtra}>
+                      글 수정
+                    </MainPostExtraItem>
+                    <MainPostExtraItem
+                      onClick={() => handleDelete()}
+                      isOpen={isExtra}
+                    >
+                      글 삭제
+                    </MainPostExtraItem>
+                  </MainPostExtraItemContainer>
+                  <MainPostExtraButton
+                    onClick={handleExtra}
+                  ></MainPostExtraButton>
+                </MainPostExtra>
+              ) : writerKeyNumber != userkeynumber && userkeynumber !== "" ? (
+                <MainPostExtra>
+                  <MainPostExtraItemContainer isOpen={isExtra}>
+                    <MainPostExtraItem isOpen={isExtra}>
+                      게시글 신고
+                    </MainPostExtraItem>
+                  </MainPostExtraItemContainer>
+                  <MainPostExtraButton
+                    onClick={handleExtra}
+                  ></MainPostExtraButton>
+                </MainPostExtra>
+              ) : (
+                userkeynumber === "" && <MainPostExtra></MainPostExtra>
+              )}
+              {/* <>
+                <MainPostExtra>
+                  <MainPostExtraItemContainer isOpen={isExtra}>
+                    {boardType === "coding" && boardStatus === "ACTIVE" ? (
+                      <MainPostExtraItem
+                        onClick={() => handleStatus()}
+                        isOpen={isExtra}
+                      >
+                        해결됨으로 변경
+                      </MainPostExtraItem>
+                    ) : boardType === "coding" && boardStatus === "INACTIVE" ? (
+                      <MainPostExtraItem
+                        onClick={() => handleStatus()}
+                        isOpen={isExtra}
+                      >
+                        미해결로 변경
+                      </MainPostExtraItem>
+                    ) : (boardType === "study" || boardType === "team") &&
+                      boardStatus === "ACTIVE" ? (
+                      <MainPostExtraItem
+                        onClick={() => handleStatus()}
+                        isOpen={isExtra}
+                      >
+                        모집완료로 변경
+                      </MainPostExtraItem>
+                    ) : (
+                      (boardType === "study" || boardType === "team") &&
+                      boardStatus === "INACTIVE" && (
+                        <MainPostExtraItem
+                          onClick={() => handleStatus()}
+                          isOpen={isExtra}
+                        >
+                          모집중으로 변경
+                        </MainPostExtraItem>
+                      )
+                    )}
+                    <MainPostExtraItem isOpen={isExtra}>
+                      글 수정
+                    </MainPostExtraItem>
+                    <MainPostExtraItem
+                      onClick={() => handleDelete()}
+                      isOpen={isExtra}
+                    >
+                      글 삭제
+                    </MainPostExtraItem>
+                  </MainPostExtraItemContainer>
+                  <MainPostExtraButton
+                    onClick={handleExtra}
+                  ></MainPostExtraButton>
+                </MainPostExtra>
+              </> */}
             </MainPostDiv>
           </MainPostTop>
           <MainPostMiddle>
