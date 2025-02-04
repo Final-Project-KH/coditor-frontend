@@ -120,8 +120,8 @@ export const CenterContainer = styled.div.attrs({
   margin-top: 10px;
 `;
 
-export const FrontendImage_P = styled.img.attrs({
-  id: "frontendimage_p",
+export const ImageBox = styled.img.attrs({
+  id: "imagebox",
 })`
   width: 100%; /* div의 width에 맞게 */
   height: auto; /* 비율에 맞게 자동으로 조정 */

@@ -171,7 +171,7 @@ const MoreBar = ({ isOpen, closeMenu, path }) => {
             onClick={() => window.open("https://pypl.github.io/PYPL.html", "_blank")}
             style={{ cursor: "pointer", textDecoration: "none" }}
           >
-            연도별 프로그래밍 언어 인기 순위
+            연도별 언어 인기 순위
             <OutLink />
           </LinkContents>
         </MenuColumn>

@@ -86,9 +86,11 @@ const NavBar_M_Menu = ({ closeMenu }) => {
               <MenuRightColumn key={idx}>
                 <MenuRightColumnTitle
                   onClick={() =>
-                    handleNavigation(column.title.link)
+                    column.title.link && handleNavigation(column.title.link)
                   }
-                  style={{ cursor: "pointer" }}
+                  style={{
+                    cursor: column.title.link ? "pointer" : "default",
+                  }}
                 >
                   {column.title.text}
                 </MenuRightColumnTitle>
@@ -96,9 +98,7 @@ const NavBar_M_Menu = ({ closeMenu }) => {
                 {column.contents.map((content, idx) => (
                   <MenuRightColumnContents key={idx}>
                     <MenuRightLink
-                      onClick={() =>
-                        handleNavigation(content.link)
-                      }
+                      onClick={() => handleNavigation(content.link)}
                       style={{ cursor: "pointer" }}
                     >
                       {content.text}

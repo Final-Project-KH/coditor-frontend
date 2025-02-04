@@ -45,49 +45,20 @@ export const menus = [
     link: "/codingtest",
     columns: [
       {
-        title: { text: "Java", link: "/codingtest/java" },
-        contents: [
-          { text: "Practice", link: "/codingtest/java/practice" },
-          { text: "Basic", link: "/codingtest/java/basic" },
-          { text: "Intermediate", link: "/codingtest/java/intermediate" },
-          { text: "Expert", link: "/codingtest/java/expert" },
-        ],
+        title: { text: "Practice", link: "/codingtest/practice" },
+        contents: [],
       },
       {
-        title: { text: "Python", link: "/codingtest/python" },
-        contents: [
-          { text: "Practice", link: "/codingtest/python/practice" },
-          { text: "Basic", link: "/codingtest/python/basic" },
-          { text: "Intermediate", link: "/codingtest/python/intermediate" },
-          { text: "Expert", link: "/codingtest/python/expert" },
-        ],
+        title: { text: "Basic", link: "/codingtest/basic" },
+        contents: [],
       },
       {
-        title: { text: "C", link: "/codingtest/c" },
-        contents: [
-          { text: "Practice", link: "/codingtest/c/practice" },
-          { text: "Basic", link: "/codingtest/c/basic" },
-          { text: "Intermediate", link: "/codingtest/c/intermediate" },
-          { text: "Expert", link: "/codingtest/c/expert" },
-        ],
+        title: { text: "Intermediate", link: "/codingtest/intermediate" },
+        contents: [],
       },
       {
-        title: { text: "C++", link: "/codingtest/cplus" },
-        contents: [
-          { text: "Practice", link: "/codingtest/cplus/practice" },
-          { text: "Basic", link: "/codingtest/cplus/basic" },
-          { text: "Intermediate", link: "/codingtest/cplus/intermediate" },
-          { text: "Expert", link: "/codingtest/cplus/expert" },
-        ],
-      },
-      {
-        title: { text: "JavaScript", link: "/codingtest/javascript" },
-        contents: [
-          { text: "Practice", link: "/codingtest/javascript/practice" },
-          { text: "Basic", link: "/codingtest/javascript/basic" },
-          { text: "Intermediate", link: "/codingtest/javascript/intermediate" },
-          { text: "Expert", link: "/codingtest/javascript/expert" },
-        ],
+        title: { text: "Expert", link: "/codingtest/expert" },
+        contents: [],
       },
     ],
   },
@@ -119,29 +90,27 @@ export const menus = [
   {
     id: "more",
     label: "more",
-    link: "/more",
     columns: [
       {
-        title: { text: "개발자 로드맵", link: "/more/roadmap" },
+        title: { text: "개발자 로드맵" },
         contents: [
-          { text: "프론트엔드", link: "/more/roadmap/frontend" },
-          { text: "백엔드", link: "/more/roadmap/backend" },
-          { text: "DevOps", link: "/more/roadmap/devops" },
-          { text: "풀스택", link: "/more/roadmap/fullstack" },
-          { text: "Data Analyst", link: "/more/roadmap/dataanalyst" },
-          { text: "AI & Data Science", link: "/more/roadmap/aianddatascience" },
-          { text: "앱 개발", link: "/more/roadmap/appdev" },
-          { text: "게임 개발", link: "/more/roadmap/gamedev" },
-          {
-            text: "네트워크 & 보안",
-            link: "/more/roadmap/networkandsecurities",
-          },
+          { text: "✨ 프론트엔드", link: "/roadmap/frontend" },
+          { text: "🛠️ 백엔드", link: "/roadmap/backend" },
+          { text: "🪢 DevOps", link: "/roadmap/devops" },
+          { text: "📚 풀스택", link: "/roadmap/fullstack" },
+          // { text: "Data Analyst", link: "/roadmap/dataanalyst" },
+          // { text: "AI & Data Science", link: "/roadmap/aianddatascience" },
+          // { text: "앱 개발", link: "/roadmap/appdev" },
+          // { text: "게임 개발", link: "/roadmap/gamedev" },
+          // {
+          //   text: "네트워크 & 보안",
+          //   link: "/roadmap/networkandsecurities",
+          // },
         ],
       },
       {
         title: {
           text: "코딩 테스트 및 알고리즘 관련 외부 사이트",
-          link: "/more/sites",
         },
         contents: [
           { text: "백준 온라인 저지", link: "https://www.acmicpc.net/" },
@@ -158,15 +127,27 @@ export const menus = [
         ],
       },
       {
-        title: { text: "기타 정보", link: "/more/etc" },
+        title: { text: "기타 정보" },
         contents: [
-          { text: "IDE Top 10", link: "/more/etc/idetop10" },
-          { text: "생산성, 협업 도구 Top 10", link: "/more/etc/toolstop10" },
-          { text: "IT 용어 사전", link: "/more/etc/itdictionary" },
-          { text: "IT 관련 자격증 정리", link: "/more/etc/itcert" },
+          {
+            text: "IDE Top 10",
+            link: "https://www.geeksforgeeks.org/top-10-ides-for-programmers/",
+          },
+          {
+            text: "생산성, 협업 도구 Top 10",
+            link: "https://clickup.com/ko/blog/145498/productivity-tools-for-agencies",
+          },
+          {
+            text: "IT 용어 사전",
+            link: "https://terms.tta.or.kr/dictionary/searchList.do",
+          },
+          {
+            text: "IT 관련 자격증",
+            link: "https://lifebase.kr/011-certi-com-it/?utm_source=chatgpt.com#google_vignette",
+          },
           {
             text: "연도별 언어 인기 순위",
-            link: "/more/roadmap/languagesrank",
+            link: "https://pypl.github.io/PYPL.html",
           },
         ],
       },
@@ -179,11 +160,12 @@ export const menus = [
     link: "/cs",
     columns: [
       {
-        title: {},
-        contents: [
-          { text: "악성 사용자 신고", link: "/cs/report" },
-          { text: "건의사항", link: "/cs/question" },
-        ],
+        title: { text: "악성 사용자 신고", link: "/cs/report" },
+        contents: [],
+      },
+      {
+        title: { text: "건의사항", link: "/cs/question" },
+        contents: [],
       },
     ],
   },
