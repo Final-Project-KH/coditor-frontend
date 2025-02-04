@@ -278,7 +278,7 @@ export const MyPageMenu = styled.div.attrs({
   justify-content: center;
   align-items: center;
   background-color: white;
-  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.05);
   border-radius: 30px;
   right: 0px;
   transition: 0.2s ease-in-out;
@@ -330,11 +330,13 @@ export const MyPageMenuContents = styled.div.attrs({
   }
   &:nth-child(3) {
     justify-content: center;
-    font-size: 16px;
+    font-family: "cocogoose-md";
+    font-size: 20px;
   }
   &:last-child {
     justify-content: center;
-    font-size: 16px;
+    font-family: "cocogoose-md";
+    font-size: 20px;
     cursor: pointer;
   }
   &:nth-child(2)::after,

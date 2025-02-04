@@ -47,19 +47,19 @@ const LeftMenus = () => {
     {
       id: "study",
       sort: "dashboard",
-      label: "Study",
+      label: "study",
       link: "/mypage/study",
     },
     {
       id: "codingtest",
       sort: "dashboard",
-      label: "Coding Test",
+      label: "coding test",
       link: "/mypage/codingtest",
     },
     {
       id: "community",
       sort: "post",
-      label: "Community",
+      label: "community",
       link: "/mypage/community",
     },
     {

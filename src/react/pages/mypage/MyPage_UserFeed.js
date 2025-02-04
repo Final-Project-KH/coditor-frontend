@@ -54,7 +54,7 @@ const MyPage_UserFeed = () => {
         <TopBoxWide>
           <TopBox>
             <TopBoxLink onClick={() => handleMyPage()}>
-              <TopBoxText>마이 페이지</TopBoxText>
+              <TopBoxText>my page</TopBoxText>
             </TopBoxLink>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxLink onClick={() => handleRefresh()}>

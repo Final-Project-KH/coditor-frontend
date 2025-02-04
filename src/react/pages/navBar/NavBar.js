@@ -381,13 +381,13 @@ const NavBar = () => {
                           closeMyPage();
                         }}
                       ></StyledNavigate>
-                      마이 페이지
+                      my page
                     </MyPageMenuContents>
                     <MyPageMenuContents
                       isToggleMyPage={isToggleMyPage}
                       onClick={() => handleLogout()}
                     >
-                      로그아웃
+                      logout
                     </MyPageMenuContents>
                   </MyPageMenu>
                 </>

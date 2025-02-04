@@ -176,6 +176,7 @@ export const ContentsText = styled.div.attrs({
   font-size: 15px;
   font-family: "regular", sans-serif;
 `;
+
 export const CheckBoxGroup = styled.div.attrs({
   id: "checkboxgroup",
 })`
@@ -214,4 +215,77 @@ export const WithdrawalButton = styled.button.attrs({
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   background-color: ${({ disabled }) => (disabled ? "#f1f1f1" : "#333333")};
   color: white;
+`;
+
+export const WithdrawnContainer = styled.div.attrs({
+  id: "withdrawncontainer",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10vh;
+`;
+
+export const WithdrawnImage = styled.div.attrs({
+  id: "withdrawnimage",
+})`
+  width: 200px;
+  height: 200px;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+  background-image: url("/images/icon/cdt_monitor.png");
+  background-position: center 35px;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  margin-bottom: 30px;
+`;
+
+export const WithdrawnHeadline = styled.div.attrs({
+  id: "withdrawnheadline",
+})`
+  width: 100%;
+  color: #333333;
+  font-family: "bold", sans-serif;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
+`;
+export const WithdrawnText = styled.div.attrs({
+  id: "withdrawntext",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-family: "regular", sans-serif;
+  text-align: center;
+  margin-bottom: 30px;
+`;
+
+export const BackButton = styled.button.attrs({
+  id: "backbutton",
+})`
+  width: 10%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  font-family: "regular", sans-serif;
+  font-size: 15px;
+  transition: all 0.3s ease-in-out;
+  border: none;
+  cursor: pointer;
+  background-color: #333333;
+  color: white;
+  &:hover {
+    background-color: #f1f1f1;
+    color: black;
+    font-family: "bold", sans-serif;
+    border: 1px solid black;
+  }
 `;

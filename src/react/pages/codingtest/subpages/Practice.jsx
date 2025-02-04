@@ -78,7 +78,7 @@ const Practice = () => {
       <TopBoxWide>
         <TopBox>
           <TopBoxText onClick={() => handleCodingTest()}>
-            Coding Test
+            coding test
           </TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <TopBoxText onClick={() => handleCodingTestJava()}>

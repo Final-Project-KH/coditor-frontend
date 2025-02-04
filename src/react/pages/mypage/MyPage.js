@@ -45,7 +45,7 @@ const MyPage = () => {
       <TopBoxWide>
         <TopBox>
           <TopBoxLink onClick={() => navigate("/mypage")}>
-            <TopBoxText>마이 페이지</TopBoxText>
+            <TopBoxText>my page</TopBoxText>
           </TopBoxLink>
           {isAccountManagerPage && (
             <>

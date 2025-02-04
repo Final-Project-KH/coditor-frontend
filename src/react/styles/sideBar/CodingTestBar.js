@@ -32,13 +32,13 @@ const expandHeight = keyframes`
     opacity: 0;
   }
   100% {
-    height: 400px;
+    height: 230px;
     opacity: 1;
   }
 `;
 const collapseHeight = keyframes`
   0% {
-    height: 400px;
+    height: 230px;
     opacity: 1;
   }
   100% {
@@ -90,62 +90,56 @@ export const MenuColumn = styled.div.attrs({
 export const MenuImgContainer = styled.div.attrs({
   id: "menuimgcontainer",
 })`
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
 `;
-export const MenuImgJava = styled.div.attrs({
-  id: "menuimgjava",
+export const MenuImgPractice = styled.div.attrs({
+  id: "menuimgpractice",
 })`
-  width: 80px;
-  height: 80px;
+  width: 200px;
+  height: 200px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: url("/images/program/java_small.png");
+  background-image: url("/images/icon/ct_prtc.png");
+  cursor: pointer;
 `;
-export const MenuImgPython = styled.div.attrs({
-  id: "menuimgpython",
+export const MenuImgBasic = styled.div.attrs({
+  id: "menuimgbasic",
 })`
-  width: 80px;
-  height: 80px;
+  width: 200px;
+  height: 200px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: url("/images/program/python_small.png");
+  background-image: url("/images/icon/ct_basic.png");
+  cursor: pointer;
 `;
-export const MenuImgC = styled.div.attrs({
-  id: "menuimgc",
+export const MenuImgIntermediate = styled.div.attrs({
+  id: "menuimgintermediate",
 })`
-  width: 80px;
-  height: 80px;
+  width: 200px;
+  height: 200px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: url("/images/program/c_full.png");
+  background-image: url("/images/icon/ct_im.png");
+  cursor: pointer;
 `;
-export const MenuImgCPlus = styled.div.attrs({
-  id: "menuimgcplus",
+export const MenuImgExpert = styled.div.attrs({
+  id: "menuimgexpert",
 })`
-  width: 80px;
-  height: 80px;
+  width: 200px;
+  height: 200px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: url("/images/program/cplus_full.png");
-`;
-export const MenuImgJavaScript = styled.div.attrs({
-  id: "menuimgjavascript",
-})`
-  width: 80px;
-  height: 80px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  background-image: url("/images/program/js_full.png");
+  background-image: url("/images/icon/ct_expert.png");
+  cursor: pointer;
 `;
 export const MenuTitle = styled.div.attrs({
   id: "menutitle",
@@ -194,6 +188,8 @@ export const NavigatePath = styled.button`
   position: absolute;
   border: none;
   background-color: transparent;
+  font-family: "bold", sans-serif;
+  font-size: 18px;
   cursor: pointer;
   &:hover {
     text-decoration: none;

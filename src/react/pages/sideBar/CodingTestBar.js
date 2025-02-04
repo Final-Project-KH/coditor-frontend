@@ -6,12 +6,10 @@ import {
   MenuContainer,
   MenuColumn,
   MenuImgContainer,
-  MenuImgJava,
-  MenuImgPython,
-  MenuImgC,
-  MenuImgCPlus,
-  MenuImgJavaScript,
-  MenuImgCss,
+  MenuImgPractice,
+  MenuImgBasic,
+  MenuImgIntermediate,
+  MenuImgExpert,
   MenuTitle,
   MenuContents,
   StyledLink,
@@ -27,46 +25,40 @@ const CodingTestBar = ({ isOpen, closeMenu, path }) => {
 
   const subMenuData = [
     {
-      title: "Java",
-      imgComponent: <MenuImgJava />,
-      contents: [
-        {
-          label: "Practice",
-          navigatepath: "/codingtest/practice",
-        },
-        {
-          label: "Basic",
-          navigatepath: "/codingtest/basic",
-        },
-        {
-          label: "Intermediate",
-          navigatepath: "/codingtest/intermediate",
-        },
-        {
-          label: "Expert",
-          navigatepath: "/codingtest/expert",
-        },
-      ],
+      title: "Practice",
+      imgComponent: <MenuImgPractice />,
+      navigatepath: "/codingtest/practice",
+    },
+    {
+      title: "Basic",
+      imgComponent: <MenuImgBasic />,
+      navigatepath: "/codingtest/basic",
+    },
+    {
+      title: "Intermediate",
+      imgComponent: <MenuImgIntermediate />,
+      navigatepath: "/codingtest/intermediate",
+    },
+    {
+      title: "Expert",
+      imgComponent: <MenuImgExpert />,
+      navigatepath: "/codingtest/expert",
     },
   ];
+
   return (
     <Container isOpen={isOpen}>
       <MenuContainer>
         {subMenuData.map((menu, index) => (
           <MenuColumn key={index}>
-            <MenuImgContainer>{menu.imgComponent}</MenuImgContainer>
-            <MenuTitle>{menu.title}</MenuTitle>
-            {menu.contents.map((content, idx) => (
-              <MenuContents key={idx} onClick={closeMenu}>
-                <NavigatePath
-                  key={idx}
-                  onClick={() =>
-                    handleNavigation(content.navigatepath)
-                  }
-                ></NavigatePath>
-                {content.label}
-              </MenuContents>
-            ))}
+            <MenuImgContainer
+              onClick={() => handleNavigation(menu.navigatepath)}
+            >
+              {menu.imgComponent}
+            </MenuImgContainer>
+            <NavigatePath onClick={() => handleNavigation(menu.navigatepath)}>
+              {menu.title}
+            </NavigatePath>
           </MenuColumn>
         ))}
       </MenuContainer>
