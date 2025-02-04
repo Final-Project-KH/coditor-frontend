@@ -19,14 +19,9 @@ import ScrollToTopButton from "../ScrollToTopButton";
 const Community_Main_M = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath } = location.state || {};
 
   const handleRefresh = () => {
-    navigate("/community", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/community");
   };
 
   return (
@@ -35,7 +30,7 @@ const Community_Main_M = () => {
         <TopBoxWide>
           <TopBox>
             <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>{firstpath}</TopBoxText>
+              <TopBoxText>community</TopBoxText>
             </TopBoxLink>
           </TopBox>
         </TopBoxWide>

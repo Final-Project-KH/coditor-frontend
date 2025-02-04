@@ -42,8 +42,6 @@ import Java_01_03_M from "./Java_01_03_M";
 
 const Java_01_03 = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
   const { isMobile } = useOutletContext();
 
@@ -56,44 +54,22 @@ const Java_01_03 = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyJava = () => {
-    navigate("/study/java", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/java");
   };
 
   // TopBox thirdpath
   const handleStudyJava01 = () => {
-    navigate("/study/java/01", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/java/01");
   };
 
   // TopBox fourthpath
   const handleRefresh = () => {
-    navigate("/study/java/01/03", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-        fourthpath: fourthpath,
-      },
-    });
+    navigate("/study/java/01/03");
     window.location.reload();
   };
 
@@ -178,18 +154,16 @@ System.out.printf("%d", 3); // 서식 지정자 사용
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxText onClick={() => handleStudyJava()}>
-                {secondpath}
-              </TopBoxText>
+              <TopBoxText onClick={() => handleStudyJava()}>Java</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyJava01()}>
-                {thirdpath}
+                01. Java 시작
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleRefresh()}>
-                {fourthpath}
+                03. Java 개발 환경 구축
               </TopBoxText>
             </TopBox>
           </TopBoxWide>

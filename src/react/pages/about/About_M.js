@@ -16,24 +16,23 @@ import ScrollToTopButton from "../ScrollToTopButton";
 
 const About_M = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
 
   const handleRefresh = () => {
-    navigate("/about", {
-      state: {
-        firstpath: firstpath,
-        secondpath: "🔥 코디터 소개",
-      },
-    });
+    navigate("/about");
   };
+
   return (
     <Wrap>
       <TopBoxWide>
         <TopBox>
             <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>{firstpath}</TopBoxText>
+              <TopBoxText>about</TopBoxText>
             </TopBoxLink>
+            <TopBoxArrow>{`>`}</TopBoxArrow>
+            <TopBoxLink onClick={() => handleRefresh()}>
+              <TopBoxText>
+              🔥 코디터 소개
+              </TopBoxText></TopBoxLink>
         </TopBox>
       </TopBoxWide>
       <Container>

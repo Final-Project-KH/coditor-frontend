@@ -15,7 +15,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 const WeeklyBest = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const [weeklybest, setWeeklyBest] = useState([]);
 
   useEffect(() => {
@@ -38,9 +37,6 @@ const WeeklyBest = () => {
       `/community/${post.boardType.toLowerCase()}/post/${post.boardId}`,
       {
         state: {
-          firstpath: firstpath,
-          secondpath: secondpath,
-          thirdpath: "게시글",
           boardId: post.boardId,
           boardType: post.boardType.toLowerCase(),
         },

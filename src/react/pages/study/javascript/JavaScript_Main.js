@@ -20,8 +20,6 @@ import JavaScript_Main_M from "./JavaScript_Main_M";
 
 const JavaScript_Main = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
   const { isMobile } = useOutletContext();
 
@@ -34,21 +32,12 @@ const JavaScript_Main = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleRefresh = () => {
-    navigate("/study/javascript", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/javascript");
   };
 
   // Chapter Scrolling
@@ -68,10 +57,10 @@ const JavaScript_Main = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleRefresh()}>
-                {secondpath}
+                JavaScript
               </TopBoxText>
             </TopBox>
           </TopBoxWide>

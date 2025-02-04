@@ -29,36 +29,26 @@ const StudyBar = ({ isOpen, closeMenu, path }) => {
       title: "Java",
       imgComponent: <MenuImgJava />,
       navigatepath: "/study/java",
-      firstpath: path,
-      secondpath: "Java",
     },
     {
       title: "Python",
       imgComponent: <MenuImgPython />,
       navigatepath: "/study/python",
-      firstpath: path,
-      secondpath: "Python",
     },
     {
       title: "C",
       imgComponent: <MenuImgC />,
       navigatepath: "/study/c",
-      firstpath: path,
-      secondpath: "C",
     },
     {
       title: "C++",
       imgComponent: <MenuImgCPlus />,
       navigatepath: "/study/cplus",
-      firstpath: path,
-      secondpath: "C++",
     },
     {
       title: "JavaScript",
       imgComponent: <MenuImgJavaScript />,
       navigatepath: "/study/javascript",
-      firstpath: path,
-      secondpath: "JavaScript",
     },
   ];
 
@@ -69,10 +59,7 @@ const StudyBar = ({ isOpen, closeMenu, path }) => {
           <MenuColumn key={index} onClick={closeMenu}>
             <MenuLink
               onClick={() =>
-                handleNavigation(menu.navigatepath, {
-                  firstpath: menu.firstpath,
-                  secondpath: menu.secondpath,
-                })
+                handleNavigation(menu.navigatepath)
               }
             >
               <MenuImgContainer>{menu.imgComponent}</MenuImgContainer>

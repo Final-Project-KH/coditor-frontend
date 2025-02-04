@@ -30,7 +30,6 @@ import Community_Coding_M from "./Community_Coding_M";
 const Community_Coding = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
   const queryParams = new URLSearchParams(location.search);
   const { isMobile } = useOutletContext();
 
@@ -57,21 +56,12 @@ const Community_Coding = () => {
 
   // TopBox firstpath
   const handleCommunity = () => {
-    navigate("/community", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/community");
   };
 
   // TopBox secondpath
   const handleRefresh = () => {
-    navigate(`/community/${boardType}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate(`/community/${boardType}`);
   };
 
   const handleEnumFilterRefresh = () => {
@@ -108,17 +98,17 @@ const Community_Coding = () => {
           <TopBoxWide>
             <TopBox>
               <PathLink onClick={() => handleCommunity()}>
-                <TopBoxText>{firstpath}</TopBoxText>
+                <TopBoxText>community</TopBoxText>
               </PathLink>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <PathLink onClick={() => handleRefresh()}>
-                <TopBoxText>{secondpath}</TopBoxText>
+                <TopBoxText>💻 코딩 질문</TopBoxText>
               </PathLink>
             </TopBox>
           </TopBoxWide>
           <Container>
             <LeftContainer>
-              <BoardList firstpath={firstpath} />
+              <BoardList />
               <CodingPopularTags
                 enumFilter={enumFilter}
                 onEnumFilterChange={handleEnumFilterChange}

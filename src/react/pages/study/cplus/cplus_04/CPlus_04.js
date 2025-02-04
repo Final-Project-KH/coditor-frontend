@@ -19,8 +19,6 @@ import CPlus_04_M from "./CPlus_04_M";
 
 const CPlus_04 = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
   const { isMobile } = useOutletContext();
 
@@ -33,32 +31,17 @@ const CPlus_04 = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyCPlus = () => {
-    navigate("/study/cplus", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/cplus");
   };
 
   // TopBox thirdpath
   const handleRefresh = () => {
-    navigate("/study/cplus/04", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/cplus/04");
     window.location.reload();
   };
 
@@ -70,14 +53,14 @@ const CPlus_04 = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyCPlus()}>
-                {secondpath}
+                C++
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleRefresh()}>
-                {thirdpath}
+              04. 배열과 문자열
               </TopBoxText>
             </TopBox>
           </TopBoxWide>

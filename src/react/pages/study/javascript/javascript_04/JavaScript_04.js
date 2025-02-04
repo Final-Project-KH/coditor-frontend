@@ -19,8 +19,6 @@ import JavaScript_04_M from "./JavaScript_04_M";
 
 const JavaScript_04 = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
   const { isMobile } = useOutletContext();
 
@@ -33,32 +31,17 @@ const JavaScript_04 = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyJavaScript = () => {
-    navigate("/study/javascript", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/javascript");
   };
 
   // TopBox thirdpath
   const handleRefresh = () => {
-    navigate("/study/javascript/04", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/javascript/04");
     window.location.reload();
   };
 
@@ -70,14 +53,14 @@ const JavaScript_04 = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyJavaScript()}>
-                {secondpath}
+                JavaScript
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleRefresh()}>
-                {thirdpath}
+              04. 최신 문법
               </TopBoxText>
             </TopBox>
           </TopBoxWide>

@@ -46,8 +46,6 @@ const Post_MainContents = ({boardType}) => {
   const {boardId} = useParams();
   // const [boardType, setBoardType] = useState("CODING");
   const [posts, setPosts] = useState([]);
-  const location = useLocation();
-  const {firstpath, secondpath, thirdpath} = location.state || {};
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userDisLikeCnt, setUserDisLikeCnt] = useState("");
   const [userLikeCnt, setUserLikeCnt] = useState("");

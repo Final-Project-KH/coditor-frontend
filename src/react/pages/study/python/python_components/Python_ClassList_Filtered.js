@@ -16,18 +16,10 @@ import { PythonStudyChapter } from "../../../../../util/study/PythonStudyChapter
 // 토글 없이
 const Python_ClassList_Filtered = ({ chapter }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
 
   // Class Header onClick
   const handleNext = (cls) => {
-    navigate(`/study/python/${cls.id}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: cls.title,
-      },
-    });
+    navigate(`/study/python/${cls.id}`);
   };
 
   // 클래스 이름 클릭시 진입
@@ -48,12 +40,7 @@ const Python_ClassList_Filtered = ({ chapter }) => {
           <ClassSet key={index}>
             <ClassName
               onClick={() =>
-                handleNavigation(content.navigatepath, {
-                  firstpath: firstpath,
-                  secondpath: secondpath,
-                  thirdpath: content.thirdpath,
-                  fourthpath: content.label,
-                })
+                handleNavigation(content.navigatepath)
               }
             >
               {content.label}
@@ -73,10 +60,6 @@ const Python_ClassList_Filtered = ({ chapter }) => {
       ...content,
       label: content.label,
       navigatepath: content.navigatepath,
-      firstpath: firstpath,
-      secondpath: secondpath,
-      thirdpath: content.thirdpath,
-      fourthpath: content.fourthpath,
     })),
   }));
 

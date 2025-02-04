@@ -17,8 +17,6 @@ import ScrollToTopButton from "../../ScrollToTopButton";
 
 const C_Main_M = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
@@ -30,21 +28,12 @@ const C_Main_M = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleRefresh = () => {
-    navigate("/study/c", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/c");
   };
 
   // Chapter Scrolling
@@ -61,11 +50,11 @@ const C_Main_M = () => {
       <TopBoxWide>
         <TopBox>
           <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>{firstpath}</TopBoxText>
+            <TopBoxText>study</TopBoxText>
           </TopBoxLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText>{secondpath}</TopBoxText>
+            <TopBoxText>C</TopBoxText>
           </TopBoxLink>
         </TopBox>
       </TopBoxWide>

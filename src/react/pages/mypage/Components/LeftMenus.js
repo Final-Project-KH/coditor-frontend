@@ -12,17 +12,18 @@ import { useEffect, useState } from "react";
 const LeftMenus = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath } = location.state || {};
   const [activeMenu, setActiveMenu] = useState("");
 
-  const handleNavigation = (navigatepath, data) => {
-    navigate(navigatepath, { state: data });
-  };
-
   useEffect(() => {
-    const currentMenu = location.state?.secondpath || "accountmanager";
-    setActiveMenu(currentMenu);
-  }, [location.state]);
+    // URL path에서 현재 메뉴 ID 추출
+    const currentPath = location.pathname.split("/")[2] || "accountmanager";
+    setActiveMenu(currentPath);
+  }, [location.pathname]);
+
+  const handleNavigation = (menuId, navigatepath) => {
+    setActiveMenu(menuId);
+    navigate(navigatepath);
+  };
 
   const menus = [
     {
@@ -30,163 +31,78 @@ const LeftMenus = () => {
       sort: "profile",
       label: "계정 관리",
       link: "/mypage/accountmanager",
-      firstpath: firstpath,
-      secondpath: "계정 관리",
     },
     {
       id: "userfeedfeed",
       sort: "profile",
       label: "내 소개",
       link: "/mypage/userfeed",
-      firstpath: firstpath,
-      secondpath: "내 소개",
-    },
-    {
-      id: "changepassword",
-      sort: "profile",
-      label: "️비밀번호 변경",
-      link: "/mypage/changepassword",
-      firstpath: firstpath,
-      secondpath: "비밀번호 변경",
     },
     {
       id: "withdrawal",
       sort: "profile",
       label: "️회원 탈퇴",
       link: "/mypage/withdrawal",
-      firstpath: firstpath,
-      secondpath: "회원 탈퇴",
     },
     {
       id: "study",
       sort: "dashboard",
-      label: "Study",
+      label: "study",
       link: "/mypage/study",
-      firstpath: firstpath,
-      secondpath: "Study",
     },
     {
       id: "codingtest",
       sort: "dashboard",
-      label: "Coding Test",
+      label: "coding test",
       link: "/mypage/codingtest",
-      firstpath: firstpath,
-      secondpath: "Coding Test",
     },
     {
       id: "community",
       sort: "post",
-      label: "Community",
+      label: "community",
       link: "/mypage/community",
-      firstpath: firstpath,
-      secondpath: "Community",
     },
     {
       id: "report",
       sort: "post",
       label: "악성 게시글 신고",
       link: "/mypage/report",
-      firstpath: firstpath,
-      secondpath: "악성 게시글 신고",
     },
     {
       id: "question",
       sort: "post",
       label: "건의사항",
       link: "/mypage/question",
-      firstpath: firstpath,
-      secondpath: "건의사항",
     },
   ];
 
   return (
     <>
-      <LeftContainerEach>
-        <LeftContainerTitle>profile</LeftContainerTitle>
-        <LeftContainerContentsBox>
-          {menus
-            .filter((menu) => menu.sort === "profile") // sort가 'profile'인 항목만 필터링
-            .map((menu) => {
-              const isActive = activeMenu === menu.secondpath;
-              const BoardComponent = isActive
-                ? LeftContainerContentsActive
-                : LeftContainerContentsInactive;
-              return (
-                <BoardComponent key={menu.id}>
-                  <LeftMenuLink
-                    onClick={() => {
-                      handleNavigation(menu.link, {
-                        firstpath: menu.firstpath,
-                        secondpath: menu.secondpath,
-                      });
-                      setActiveMenu(menu.secondpath);
-                    }}
-                  >
-                    {menu.label}
-                  </LeftMenuLink>
-                </BoardComponent>
-              );
-            })}
-        </LeftContainerContentsBox>
-      </LeftContainerEach>
+      {["profile", "dashboard", "post"].map((category) => (
+        <LeftContainerEach key={category}>
+          <LeftContainerTitle>{category}</LeftContainerTitle>
+          <LeftContainerContentsBox>
+            {menus
+              .filter((menu) => menu.sort === category)
+              .map((menu) => {
+                const isActive = activeMenu === menu.id;
+                const BoardComponent = isActive
+                  ? LeftContainerContentsActive
+                  : LeftContainerContentsInactive;
 
-      <LeftContainerEach>
-        <LeftContainerTitle>dashboard</LeftContainerTitle>
-        <LeftContainerContentsBox>
-          {menus
-            .filter((menu) => menu.sort === "dashboard") // sort가 'dashboard'인 항목만 필터링
-            .map((menu) => {
-              const isActive = activeMenu === menu.secondpath;
-              const BoardComponent = isActive
-                ? LeftContainerContentsActive
-                : LeftContainerContentsInactive;
-              return (
-                <BoardComponent key={menu.id}>
-                  <LeftMenuLink
-                    onClick={() => {
-                      handleNavigation(menu.link, {
-                        firstpath: menu.firstpath,
-                        secondpath: menu.secondpath,
-                      });
-                      setActiveMenu(menu.secondpath);
-                    }}
-                  >
-                    {menu.label}
-                  </LeftMenuLink>
-                </BoardComponent>
-              );
-            })}
-        </LeftContainerContentsBox>
-      </LeftContainerEach>
-
-      <LeftContainerEach>
-        <LeftContainerTitle>post</LeftContainerTitle>
-        <LeftContainerContentsBox>
-          {menus
-            .filter((menu) => menu.sort === "post") // sort가 'post'인 항목만 필터링
-            .map((menu) => {
-              const isActive = activeMenu === menu.secondpath;
-              const BoardComponent = isActive
-                ? LeftContainerContentsActive
-                : LeftContainerContentsInactive;
-              return (
-                <BoardComponent key={menu.id}>
-                  <LeftMenuLink
-                    onClick={() => {
-                      handleNavigation(menu.link, {
-                        firstpath: menu.firstpath,
-                        secondpath: menu.secondpath,
-                      });
-                      setActiveMenu(menu.secondpath);
-                    }}
-                  >
-                    {menu.label}
-                  </LeftMenuLink>
-                </BoardComponent>
-              );
-            })}
-        </LeftContainerContentsBox>
-      </LeftContainerEach>
+                return (
+                  <BoardComponent key={menu.id}>
+                    <LeftMenuLink
+                      onClick={() => handleNavigation(menu.id, menu.link)}
+                    >
+                      {menu.label}
+                    </LeftMenuLink>
+                  </BoardComponent>
+                );
+              })}
+          </LeftContainerContentsBox>
+        </LeftContainerEach>
+      ))}
     </>
   );
 };

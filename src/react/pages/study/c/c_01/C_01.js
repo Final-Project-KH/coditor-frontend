@@ -19,8 +19,6 @@ import C_01_M from "./C_01_M";
 
 const C_01 = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
   const { isMobile } = useOutletContext();
 
@@ -33,32 +31,17 @@ const C_01 = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyC = () => {
-    navigate("/study/c", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/c");
   };
 
   // TopBox thirdpath
   const handleRefresh = () => {
-    navigate("/study/c/01", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/c/01");
     window.location.reload();
   };
 
@@ -70,14 +53,14 @@ const C_01 = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyC()}>
-                {secondpath}
+                C
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleRefresh()}>
-                {thirdpath}
+              01. C 기본
               </TopBoxText>
             </TopBox>
           </TopBoxWide>

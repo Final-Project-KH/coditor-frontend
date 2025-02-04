@@ -19,8 +19,6 @@ import Python_02_M from "./Python_02_M";
 
 const Python_02 = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
   const { isMobile } = useOutletContext();
 
@@ -33,32 +31,17 @@ const Python_02 = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyPython = () => {
-    navigate("/study/python", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/python");
   };
 
   // TopBox thirdpath
   const handleRefresh = () => {
-    navigate("/study/python/02", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/python/02");
     window.location.reload();
   };
 
@@ -70,14 +53,14 @@ const Python_02 = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyPython()}>
-                {secondpath}
+                Python
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleRefresh()}>
-                {thirdpath}
+              02. 함수 및 자료 처리
               </TopBoxText>
             </TopBox>
           </TopBoxWide>

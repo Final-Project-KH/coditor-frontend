@@ -42,8 +42,6 @@ import C_01_01_M from "./C_01_01_M";
 
 const C_01_01 = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
   const { isMobile } = useOutletContext();
 
@@ -56,44 +54,22 @@ const C_01_01 = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyC = () => {
-    navigate("/study/c", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/c");
   };
 
   // TopBox thirdpath
   const handleStudyC01 = () => {
-    navigate("/study/c/01", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/c/01");
   };
 
   // TopBox fourthpath
   const handleRefresh = () => {
-    navigate("/study/c/01/01", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-        fourthpath: fourthpath,
-      },
-    });
+    navigate("/study/c/01/01");
     window.location.reload();
   };
 
@@ -105,18 +81,16 @@ const C_01_01 = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxText onClick={() => handleStudyC()}>
-                {secondpath}
-              </TopBoxText>
+              <TopBoxText onClick={() => handleStudyC()}>C</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyC01()}>
-                {thirdpath}
+                01. C 기본
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleRefresh()}>
-                {fourthpath}
+                01. C언어의 특징
               </TopBoxText>
             </TopBox>
           </TopBoxWide>

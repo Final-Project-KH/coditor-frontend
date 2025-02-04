@@ -46,8 +46,7 @@ const Board_PostList = ({
   search,
 }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const {firstpath, secondpath, thirdpath} = location.state || {};
+
   const [boards, setBoards] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -97,9 +96,6 @@ const Board_PostList = ({
   const handlePost = (boardType, board) => {
     navigate(`/community/${boardType}/post/${board.boardId}`, {
       state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: "게시글",
         boardId: board.boardId,
         boardType: boardType,
       },

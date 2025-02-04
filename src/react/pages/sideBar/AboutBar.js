@@ -14,12 +14,7 @@ const AboutBar = ({ isOpen, closeMenu, path }) => {
   const navigate = useNavigate();
 
   const handleSubmenuClick = () => {
-    navigate("/about", {
-      state: {
-        firstpath: path,
-        secondpath: "🔥 코디터 소개",
-      },
-    });
+    navigate("/about");
   };
   return (
     <Container isOpen={isOpen}>

@@ -21,15 +21,10 @@ import Community_Main_M from "./Community_Main_M";
 const Community_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath } = location.state || {};
   const { isMobile } = useOutletContext();
 
   const handleRefresh = () => {
-    navigate("/community", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/community");
   };
 
   return (
@@ -41,13 +36,13 @@ const Community_Main = () => {
           <TopBoxWide>
             <TopBox>
               <PathLink onClick={() => handleRefresh()}>
-                <TopBoxText>{firstpath}</TopBoxText>
+                <TopBoxText>community</TopBoxText>
               </PathLink>
             </TopBox>
           </TopBoxWide>
           <Container>
             <LeftContainer>
-              <BoardList firstpath={firstpath} />
+              <BoardList />
             </LeftContainer>
             <CenterContainer>
               <Board_Community_Main />

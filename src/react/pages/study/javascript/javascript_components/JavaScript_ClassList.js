@@ -15,18 +15,10 @@ import { JavaScriptStudyChapter } from "../../../../../util/study/JavaScriptStud
 
 const JavaScript_ClassList = forwardRef(({ refs }, ref) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
 
   // Class Header onClick
   const handleNext = (cls) => {
-    navigate(`/study/javascript/${cls.id}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: cls.title,
-      },
-    });
+    navigate(`/study/javascript/${cls.id}`);
   };
 
   // Class Contents onClick
@@ -59,12 +51,7 @@ const JavaScript_ClassList = forwardRef(({ refs }, ref) => {
           <ClassSet key={index}>
             <ClassName
               onClick={() =>
-                handleNavigation(content.navigatepath, {
-                  firstpath: firstpath,
-                  secondpath: secondpath,
-                  thirdpath: content.thirdpath,
-                  fourthpath: content.label,
-                })
+                handleNavigation(content.navigatepath)
               }
             >
               {content.label}
@@ -82,10 +69,6 @@ const JavaScript_ClassList = forwardRef(({ refs }, ref) => {
       ...content,
       label: content.label,
       navigatepath: content.navigatepath,
-      firstpath: firstpath,
-      secondpath: secondpath,
-      thirdpath: content.thirdpath,
-      fourthpath: content.fourthpath,
     })),
   }));
 

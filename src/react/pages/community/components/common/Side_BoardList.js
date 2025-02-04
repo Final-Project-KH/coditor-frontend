@@ -8,7 +8,7 @@ import {
 } from "../../../../styles/community/BoardList";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const BoardList = ({ firstpath }) => {
+const BoardList = () => {
   const [activeBoard, setActiveBoard] = useState("coding"); // 초기 활성 보드 설정
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,16 +16,15 @@ const BoardList = ({ firstpath }) => {
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
   };
+
   const handleRefresh = () => {
-    navigate("/community", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/community");
   };
+
   useEffect(() => {
-    const currentBoard = location.state?.secondpath || "coding";
-    setActiveBoard(currentBoard);
+    if (location.state?.id) {
+      setActiveBoard(location.state.id);
+    }
   }, [location.state]);
 
   const boards = [
@@ -33,29 +32,21 @@ const BoardList = ({ firstpath }) => {
       id: "coding",
       label: "💻 코딩 질문",
       link: "/community/coding",
-      firstpath: firstpath,
-      secondpath: "코딩 질문",
     },
     {
       id: "course",
       label: "🎓 진로 질문",
       link: "/community/course",
-      firstpath: firstpath,
-      secondpath: "진로 질문",
     },
     {
       id: "study",
       label: "️✏️ 스터디",
       link: "/community/study",
-      firstpath: firstpath,
-      secondpath: "스터디",
     },
     {
       id: "team",
       label: "📋 팀 프로젝트",
       link: "/community/team",
-      firstpath: firstpath,
-      secondpath: "팀 프로젝트",
     },
   ];
 
@@ -67,7 +58,7 @@ const BoardList = ({ firstpath }) => {
         </BoardListLink>
       </BoardListTitle>
       {boards.map((board) => {
-        const isActive = activeBoard === board.secondpath;
+        const isActive = activeBoard === board.id;
         const BoardComponent = isActive
           ? BoardListActiveContents
           : BoardListInactiveContents;
@@ -76,11 +67,8 @@ const BoardList = ({ firstpath }) => {
           <BoardComponent key={board.id}>
             <BoardListLink
               onClick={() => {
-                handleNavigation(board.link, {
-                  firstpath: board.firstpath,
-                  secondpath: board.secondpath,
-                });
-                setActiveBoard(board.secondpath);
+                handleNavigation(board.link);
+                setActiveBoard(board.label);
               }}
             >
               {board.label}

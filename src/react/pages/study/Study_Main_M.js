@@ -21,8 +21,6 @@ import ScrollToTopButton from "../ScrollToTopButton";
 
 const Study_Main_M = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
@@ -34,61 +32,32 @@ const Study_Main_M = () => {
 
   // TopBox firstpath
   const handleRefresh = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // Java onClick
   const handleJavaCheck = () => {
-    navigate("/study/java", {
-      state: {
-        firstpath: firstpath,
-        secondpath: "Java",
-      },
-    });
+    navigate("/study/java");
   };
 
   // Python onClick
   const handlePythonCheck = () => {
-    navigate("/study/python", {
-      state: {
-        firstpath: firstpath,
-        secondpath: "Python",
-      },
-    });
+    navigate("/study/python");
   };
 
   // C onClick
   const handleCCheck = () => {
-    navigate("/study/c", {
-      state: {
-        firstpath: firstpath,
-        secondpath: "C",
-      },
-    });
+    navigate("/study/c");
   };
 
   // C++ onClick
   const handleCPlusCheck = () => {
-    navigate("/study/cplus", {
-      state: {
-        firstpath: firstpath,
-        secondpath: "C++",
-      },
-    });
+    navigate("/study/cplus");
   };
 
   // JavaScript onClick
   const handleJavaScriptCheck = () => {
-    navigate("/study/javascript", {
-      state: {
-        firstpath: firstpath,
-        secondpath: "JavaScript",
-      },
-    });
+    navigate("/study/javascript");
   };
 
   return (
@@ -97,7 +66,7 @@ const Study_Main_M = () => {
         <TopBoxWide>
           <TopBox>
               <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>{firstpath}</TopBoxText>
+                <TopBoxText>study</TopBoxText>
               </TopBoxLink>
           </TopBox>
         </TopBoxWide>

@@ -202,27 +202,15 @@ const NavBar = () => {
   };
 
   const location = useLocation();
-  const { firstpath } = location.state || {};
+
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: "study",
-      },
-    });
+    navigate("/study");
   };
   const handleCommunity = () => {
-    navigate("/community", {
-      state: {
-        firstpath: "comunity",
-      },
-    });
+    navigate("/community");
   };
   const handleMyPage = () => {
-    navigate("/mypage", {
-      state: {
-        firstpath: paths.pathMypage,
-      },
-    });
+    navigate("/mypage");
   };
 
   const profile = useSelector((state) => state.auth.profile);
@@ -393,13 +381,13 @@ const NavBar = () => {
                           closeMyPage();
                         }}
                       ></StyledNavigate>
-                      마이 페이지
+                      my page
                     </MyPageMenuContents>
                     <MyPageMenuContents
                       isToggleMyPage={isToggleMyPage}
                       onClick={() => handleLogout()}
                     >
-                      로그아웃
+                      logout
                     </MyPageMenuContents>
                   </MyPageMenu>
                 </>

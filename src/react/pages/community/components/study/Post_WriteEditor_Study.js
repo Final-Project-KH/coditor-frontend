@@ -277,8 +277,6 @@ const extensions = [
 
 const Post_WriteEditor_Study = ({ title, study }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
   const [editorContent, setEditorContent] = useState(`
     <p><b>[개발 스터디 모집 내용 예시]</b></p>
     <ul>
@@ -319,12 +317,7 @@ const Post_WriteEditor_Study = ({ title, study }) => {
 
   // cancel button
   const handleGoBack = () => {
-    navigate(`/community/${boardType}`, {
-      state: {
-        firstpath: "community",
-        secondpath: secondpath,
-      },
-    });
+    navigate(`/community/${boardType}`);
   };
 
   // submit button
@@ -349,12 +342,7 @@ const Post_WriteEditor_Study = ({ title, study }) => {
         editorContent
       );
       alert("내용이 성공적으로 제출되었습니다.");
-      navigate(`/community/${boardType}`, {
-        state: {
-          firstpath: "community",
-          secondpath: secondpath,
-        },
-      });
+      navigate(`/community/${boardType}`);
     } catch (error) {
       console.error("제출 실패:", error);
       alert("제출에 실패했습니다. 다시 시도해주세요.");
