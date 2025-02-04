@@ -13,6 +13,8 @@ const BoardList = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  console.log(location.pathname);
+
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
   };
@@ -24,6 +26,8 @@ const BoardList = () => {
   useEffect(() => {
     if (location.state?.id) {
       setActiveBoard(location.state.id);
+    } else if (!location.state?.id) {
+      setActiveBoard(location.pathname.split("/").pop());
     }
   }, [location.state]);
 

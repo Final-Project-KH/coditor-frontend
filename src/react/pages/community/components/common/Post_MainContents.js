@@ -340,7 +340,40 @@ const Post_MainContents = ({ boardType }) => {
               </MainPostInformation>
               <MainPostExtra>
                 <MainPostExtraItemContainer isOpen={isExtra}>
-                  {boardStatus === "ACTIVE" ? (
+                  {boardType === "coding" && boardStatus === "ACTIVE" ? (
+                    <MainPostExtraItem
+                      onClick={() => handleStatus()}
+                      isOpen={isExtra}
+                    >
+                      해결됨으로 변경
+                    </MainPostExtraItem>
+                  ) : boardType === "coding" && boardStatus === "INACTIVE" ? (
+                    <MainPostExtraItem
+                      onClick={() => handleStatus()}
+                      isOpen={isExtra}
+                    >
+                      미해결로 변경
+                    </MainPostExtraItem>
+                  ) : (boardType === "study" || boardType === "team") &&
+                    boardStatus === "ACTIVE" ? (
+                    <MainPostExtraItem
+                      onClick={() => handleStatus()}
+                      isOpen={isExtra}
+                    >
+                      모집완료로 변경
+                    </MainPostExtraItem>
+                  ) : (
+                    (boardType === "study" || boardType === "team") &&
+                    boardStatus === "INACTIVE" && (
+                      <MainPostExtraItem
+                        onClick={() => handleStatus()}
+                        isOpen={isExtra}
+                      >
+                        모집중으로 변경
+                      </MainPostExtraItem>
+                    )
+                  )}
+                  {/* {boardStatus === "ACTIVE" ? (
                     <MainPostExtraItem
                       onClick={() => handleStatus()}
                       isOpen={isExtra}
@@ -356,7 +389,7 @@ const Post_MainContents = ({ boardType }) => {
                         미해결로 변경
                       </MainPostExtraItem>
                     )
-                  )}
+                  )} */}
                   <MainPostExtraItem isOpen={isExtra}>
                     글 수정
                   </MainPostExtraItem>

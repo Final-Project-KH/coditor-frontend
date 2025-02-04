@@ -342,7 +342,11 @@ const Post_WriteEditor_Study = ({ title, study }) => {
         editorContent
       );
       alert("내용이 성공적으로 제출되었습니다.");
-      navigate(`/community/${boardType}`);
+      navigate(`/community/${boardType}`, {
+        state: {
+          id: boardType,
+        },
+      });
     } catch (error) {
       console.error("제출 실패:", error);
       alert("제출에 실패했습니다. 다시 시도해주세요.");

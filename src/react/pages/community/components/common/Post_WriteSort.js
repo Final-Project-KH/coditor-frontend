@@ -5,7 +5,7 @@ import {
   WriteSortOuterContiner,
   WriteSortTitleActive,
   WriteSortTitleInactive,
-  WriteBoardLink
+  WriteBoardLink,
 } from "../../../../styles/community/Post";
 
 const Post_WriteSort = () => {
@@ -18,7 +18,7 @@ const Post_WriteSort = () => {
   };
 
   useEffect(() => {
-    const currentBoard = location.state?.secondpath || "coding";
+    const currentBoard = location.state?.id || location.pathname.split("/")[2];
     setActiveBoard(currentBoard);
   }, [location.state]);
 
@@ -50,7 +50,7 @@ const Post_WriteSort = () => {
       <WriteSortOuterContiner>
         <WriteSortInnerContainer>
           {boards.map((board) => {
-            const isActive = activeBoard === board.label;
+            const isActive = activeBoard === board.id;
             const BoardComponent = isActive
               ? WriteSortTitleActive
               : WriteSortTitleInactive;
@@ -59,8 +59,8 @@ const Post_WriteSort = () => {
               <BoardComponent key={board.id}>
                 <WriteBoardLink
                   onClick={() => {
-                    handleNavigation(board.link);
-                    setActiveBoard(board.secondpath);
+                    handleNavigation(board.link, board);
+                    setActiveBoard(board.id);
                   }}
                 >
                   {board.label}

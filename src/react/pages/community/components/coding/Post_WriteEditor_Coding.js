@@ -304,7 +304,11 @@ const Post_WriteEditor_Coding = ({ title, language }) => {
 
   // cancel button
   const handleGoBack = () => {
-    navigate(`/community/${boardType}`);
+    navigate(`/community/${boardType}`, {
+      state: {
+        id: boardType,
+      },
+    });
   };
 
   // submit button

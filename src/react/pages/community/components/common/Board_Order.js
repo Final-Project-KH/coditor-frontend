@@ -20,7 +20,11 @@ const Board_Order = ({ boardType, onSortChange }) => {
 
   // write post
   const handleWrite = () => {
-    navigate(`/community/${boardType}/write`);
+    navigate(`/community/${boardType}/write`, {
+      state: {
+        id: boardType,
+      },
+    });
   };
 
   // order posts
