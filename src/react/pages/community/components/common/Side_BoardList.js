@@ -67,8 +67,8 @@ const BoardList = () => {
           <BoardComponent key={board.id}>
             <BoardListLink
               onClick={() => {
-                setActiveBoard(board.id);
-                handleNavigation(board.link);
+                handleNavigation(board.link, board);
+                setActiveBoard(board.label);
               }}
             >
               {board.label}
