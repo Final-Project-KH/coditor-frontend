@@ -147,6 +147,7 @@ export const MainPostInformation = styled.div.attrs({
   flex-direction: row;
   align-items: center;
   position: relative;
+  gap: 5px;
 `;
 export const MainPostDate = styled.div.attrs({
   id: "mainpostdate",
@@ -361,16 +362,16 @@ export const MainPostExtraItem = styled.div.attrs({
   align-items: center;
   position: relative;
   font-size: 13px;
-  font-family: "semibold", sans-serif;
+  font-family: "medium", sans-serif;
   user-select: none;
   cursor: pointer;
   & + &::before {
     content: "";
-    width: 90%;
+    width: 80%;
     height: 1px;
     position: absolute;
     top: -5px;
-    left: 5%;
+    left: 10%;
     background-color: #dadcdf;
   }
   &:hover {
