@@ -33,7 +33,8 @@ import {
   MainPostExtraItem,
   MainPostTitleArea,
   MainPostPending,
-} from "../../../../styles/community/Post";
+  MainPostTopBox,
+} from "../../../../styles/community/Post_M";
 import AxiosApi from "../../../../../api/AxiosApi";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import {
@@ -44,7 +45,7 @@ import {
 } from "../common/DisplayNames";
 import { useSelector } from "react-redux";
 
-const Post_MainContents = ({ boardType }) => {
+const Post_MainContents_M = ({ boardType }) => {
   const { boardId } = useParams();
   // const [boardType, setBoardType] = useState("CODING");
   const [posts, setPosts] = useState([]);
@@ -267,57 +268,58 @@ const Post_MainContents = ({ boardType }) => {
     <>
       {posts.map((post, index) => (
         <MainPostContainer key={index}>
-          <MainPostTop>
-            <MainPostTitleArea>
-              <MainPostTitle>{post.title}</MainPostTitle>
-              <MainPostPending>
-                {boardType === "coding" ? (
-                  boardStatus === "INACTIVE" ? (
-                    <MainPostContentsSolved>해결됨</MainPostContentsSolved>
+          <MainPostTopBox>
+            <MainPostTop>
+              <MainPostTitleArea>
+                <MainPostTitle>{post.title}</MainPostTitle>
+                <MainPostPending>
+                  {boardType === "coding" ? (
+                    boardStatus === "INACTIVE" ? (
+                      <MainPostContentsSolved>해결됨</MainPostContentsSolved>
+                    ) : (
+                      <MainPostContentsPending>미해결</MainPostContentsPending>
+                    )
+                  ) : boardType === "study" ? (
+                    boardStatus === "INACTIVE" ? (
+                      <MainPostContentsSolved>모집완료</MainPostContentsSolved>
+                    ) : (
+                      <MainPostContentsPending>모집중</MainPostContentsPending>
+                    )
                   ) : (
-                    <MainPostContentsPending>미해결</MainPostContentsPending>
-                  )
-                ) : boardType === "study" ? (
-                  boardStatus === "INACTIVE" ? (
-                    <MainPostContentsSolved>모집완료</MainPostContentsSolved>
-                  ) : (
-                    <MainPostContentsPending>모집중</MainPostContentsPending>
-                  )
-                ) : (
-                  boardType === "team" &&
-                  (boardStatus === "INACTIVE" ? (
-                    <MainPostContentsSolved>모집완료</MainPostContentsSolved>
-                  ) : (
-                    <MainPostContentsPending>모집중</MainPostContentsPending>
-                  ))
-                )}
-              </MainPostPending>
-            </MainPostTitleArea>
-            <MainPostDiv>
-              <MainPostInformation>
-                <MainPostDate>
-                  {new Date(post.createdAt)
-                    .toLocaleString("ko-KR", {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      hour12: false,
-                    })
-                    .replace(/\. /g, ".")}
-                  &nbsp;작성
-                </MainPostDate>
-                <MiddleDot />
-                <MainPostViewsBox>
-                  <MainPostViewsImg />
-                  <MainPostViewsText>{post.viewCnt}</MainPostViewsText>
-                </MainPostViewsBox>
-                <MiddleDot />
-                {post.updatedAt && (
-                  <>
-                    <MainPostEditedText>
-                      {/* {new Date(post.updatedAt)
+                    boardType === "team" &&
+                    (boardStatus === "INACTIVE" ? (
+                      <MainPostContentsSolved>모집완료</MainPostContentsSolved>
+                    ) : (
+                      <MainPostContentsPending>모집중</MainPostContentsPending>
+                    ))
+                  )}
+                </MainPostPending>
+              </MainPostTitleArea>
+              <MainPostDiv>
+                <MainPostInformation>
+                  <MainPostDate>
+                    {new Date(post.createdAt)
+                      .toLocaleString("ko-KR", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: false,
+                      })
+                      .replace(/\. /g, ".")}
+                    &nbsp;작성
+                  </MainPostDate>
+                  <MiddleDot />
+                  <MainPostViewsBox>
+                    <MainPostViewsImg />
+                    <MainPostViewsText>{post.viewCnt}</MainPostViewsText>
+                  </MainPostViewsBox>
+                  <MiddleDot />
+                  {post.updatedAt && (
+                    <>
+                      <MainPostEditedText>
+                        {/* {new Date(post.updatedAt)
                       .toLocaleString("ko-KR", {
                         year: "numeric",
                         month: "2-digit",
@@ -327,55 +329,50 @@ const Post_MainContents = ({ boardType }) => {
                         hour12: false,
                       })
                       .replace(/\. /g, ".")} */}
-                      수정됨
-                    </MainPostEditedText>
-                    <MiddleDot />
-                  </>
-                )}
-                <MainPostThumbsUpBox>
-                  <MainPostThumbsUpImg />
-                  <MainPostThumbsUpText>{post.likeCnt}</MainPostThumbsUpText>
-                </MainPostThumbsUpBox>
-                <MiddleDot />
-                <MainPostThumbsDownBox>
-                  <MainPostThumbsDownImg />
-                  <MainPostThumbsDownText>
-                    {post.dislikeCnt}
-                  </MainPostThumbsDownText>
-                </MainPostThumbsDownBox>
-              </MainPostInformation>
-              <MainPostExtra>
-                <MainPostExtraItemContainer isOpen={isExtra}>
-                  {boardStatus === "ACTIVE" ? (
+                        수정됨
+                      </MainPostEditedText>
+                      <MiddleDot />
+                    </>
+                  )}
+                  <MainPostThumbsUpBox>
+                    <MainPostThumbsUpImg />
+                    <MainPostThumbsUpText>{post.likeCnt}</MainPostThumbsUpText>
+                  </MainPostThumbsUpBox>
+                  <MiddleDot />
+                  <MainPostThumbsDownBox>
+                    <MainPostThumbsDownImg />
+                    <MainPostThumbsDownText>
+                      {post.dislikeCnt}
+                    </MainPostThumbsDownText>
+                  </MainPostThumbsDownBox>
+                </MainPostInformation>
+              </MainPostDiv>
+            </MainPostTop>
+            <MainPostExtra>
+              <MainPostExtraItemContainer isOpen={isExtra}>
+                {boardStatus === "ACTIVE" ? (
+                  <MainPostExtraItem
+                    onClick={() => handleStatus()}
+                    isOpen={isExtra}
+                  >
+                    해결됨으로 변경
+                  </MainPostExtraItem>
+                ) : (
+                  boardStatus === "INACTIVE" && (
                     <MainPostExtraItem
                       onClick={() => handleStatus()}
                       isOpen={isExtra}
                     >
-                      해결됨으로 변경
+                      미해결로 변경
                     </MainPostExtraItem>
-                  ) : (
-                    boardStatus === "INACTIVE" && (
-                      <MainPostExtraItem
-                        onClick={() => handleStatus()}
-                        isOpen={isExtra}
-                      >
-                        미해결로 변경
-                      </MainPostExtraItem>
-                    )
-                  )}
-                  <MainPostExtraItem isOpen={isExtra}>
-                    글 수정
-                  </MainPostExtraItem>
-                  <MainPostExtraItem isOpen={isExtra}>
-                    글 삭제
-                  </MainPostExtraItem>
-                </MainPostExtraItemContainer>
-                <MainPostExtraButton
-                  onClick={handleExtra}
-                ></MainPostExtraButton>
-              </MainPostExtra>
-            </MainPostDiv>
-          </MainPostTop>
+                  )
+                )}
+                <MainPostExtraItem isOpen={isExtra}>글 수정</MainPostExtraItem>
+                <MainPostExtraItem isOpen={isExtra}>글 삭제</MainPostExtraItem>
+              </MainPostExtraItemContainer>
+              <MainPostExtraButton onClick={handleExtra}></MainPostExtraButton>
+            </MainPostExtra>
+          </MainPostTopBox>
           <MainPostMiddle>
             <LeftEvBox>
               <LeftEvUp
@@ -421,4 +418,4 @@ const Post_MainContents = ({ boardType }) => {
   );
 };
 
-export default Post_MainContents;
+export default Post_MainContents_M;

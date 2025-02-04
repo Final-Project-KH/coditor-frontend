@@ -115,10 +115,27 @@ export const MainPostTop = styled.div.attrs({
   flex-direction: column;
   gap: 10px;
 `;
+export const MainPostTitleArea = styled.div.attrs({
+  id: "mainposttitlearea",
+})`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+`;
+export const MainPostPending = styled.div.attrs({
+  id: "mainpostpending",
+})`
+  height: 30px;
+  display: flex;
+  margin-top: 5px;
+`;
 export const MainPostTitle = styled.div.attrs({
   id: "mainposttitle",
 })`
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -258,7 +275,7 @@ export const MainPostContentsPending = styled.div.attrs({
 })`
   border-radius: 50px;
   background-color: #f1f1f1;
-  font-size: 11px;
+  font-size: 12px;
   font-family: "semibold", sans-serif;
   display: flex;
   justify-content: center;
@@ -272,7 +289,7 @@ export const MainPostContentsSolved = styled.div.attrs({
 })`
   border-radius: 50px;
   background-color: rgba(0, 0, 0, 0.8);
-  font-size: 11px;
+  font-size: 12px;
   font-family: "semibold", sans-serif;
   display: flex;
   justify-content: center;
@@ -375,7 +392,7 @@ export const MainPostExtraItem = styled.div.attrs({
     background-color: #dadcdf;
   }
   &:hover {
-    text-decoration: underline;
+    font-family: "bold", sans-serif;
   }
   ${(props) =>
     !props.isOpen &&
