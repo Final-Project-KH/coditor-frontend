@@ -9,7 +9,7 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 
 const BoardList = () => {
-  const [activeBoard, setActiveBoard] = useState("coding"); // 초기 활성 보드 설정
+  const [activeBoard, setActiveBoard] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
