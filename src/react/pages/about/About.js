@@ -35,7 +35,6 @@ const About = () => {
                 <TopBoxText>about</TopBoxText>
               </TopBoxLink>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-
               <TopBoxLink onClick={() => handleRefresh()}>
                 <TopBoxText>🔥 코디터 소개</TopBoxText>
               </TopBoxLink>

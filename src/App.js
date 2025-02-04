@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./react/pages/Layout";
 import Login from "./react/pages/login/login";
+import FindId from "./react/pages/login/FindId";
+import FindPw from "./react/pages/login/FindPw";
 import Signup from "./react/pages/signup/signup";
 import GlobalStyle from "././react/styles/GlobalStyle";
 import Terms from "./react/pages/legal/Terms";
@@ -84,11 +86,13 @@ import Post_Write_Coding from "./react/pages/community/Post_Write_Coding";
 import Post_Write_Course from "./react/pages/community/Post_Write_Course";
 import Post_Write_Study from "./react/pages/community/Post_Write_Study";
 import Post_Write_Team from "./react/pages/community/Post_Write_Team";
+import User_Main from "./react/pages/community/User_Main";
 import Report from "./react/pages/cs/Report";
 import Question from "./react/pages/cs/Question";
-import User_Main from "./react/pages/community/User_Main";
-import FindId from "./react/pages/login/FindId";
-import FindPw from "./react/pages/login/FindPw";
+import Roadmap_Frontend from "./react/pages/more/Roadmap_Frontend";
+import Roadmap_Backend from "./react/pages/more/Roadmap_Backend";
+import Roadmap_DevOps from "./react/pages/more/Roadmap_DevOps";
+import Roadmap_Fullstack from "./react/pages/more/Roadmap_Fullstack";
 import RequiredAuth from "./util/RequiredAuth";
 import MyPage from "./react/pages/mypage/MyPage";
 import MyPage_UserFeed from "./react/pages/mypage/MyPage_UserFeed";
@@ -138,6 +142,9 @@ const AppContents = () => {
             <Route key={route.path} path={route.path} element={route.element} />
           ))}
           {CommunityRoutes.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
+          {MoreRoutes.map((route) => (
             <Route key={route.path} path={route.path} element={route.element} />
           ))}
           {MyPageRoutes.map((route) => (
@@ -229,6 +236,13 @@ const CommunityRoutes = [
   { path: "/community/study", element: <Community_Study /> },
   { path: "/community/team", element: <Community_Team /> },
   { path: "/community/user/:userId", element: <User_Main /> },
+];
+
+const MoreRoutes = [
+  { path: "/roadmap/frontend", element: <Roadmap_Frontend /> },
+  { path: "/roadmap/backend", element: <Roadmap_Backend /> },
+  { path: "/roadmap/devops", element: <Roadmap_DevOps /> },
+  { path: "/roadmap/fullstack", element: <Roadmap_Fullstack /> },
 ];
 
 const MyPageRoutes = [
