@@ -20,6 +20,7 @@ import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
 import Post_MainContents from "./components/common/Post_MainContents";
 import { useState } from "react";
 import ScrollToTopButton from "../ScrollToTopButton";
+import Post_MainContents_M from "./components/common/Post_MainContents_M";
 
 const Post_Read_M = () => {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ const Post_Read_M = () => {
           </TopBox2>
         </TopBoxWide2>
         <Container>
-          <Post_MainContents boardType={boardType} />
+          <Post_MainContents_M boardType={boardType} />
           <Post_UserProfile />
           <Post_ReplyArea
             boardType={boardType}
