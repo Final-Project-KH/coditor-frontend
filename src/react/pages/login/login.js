@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { GoogleOAuthProvider } from "@react-oauth/google"; // GoogleOAuthProvider 추가
+import GoogleLogin from "./Googlelogin";
+import { handleNaverLoginClick, useNaverCallback } from "./Naverlogin";
 
 import {
   Wrap,
@@ -170,94 +172,17 @@ const Login = () => {
     }
   }, [rsp]);
 
-  //////////////////// 구글 로그인 메소드 ////////////////////
-  const onGoogleLoginSuccess = async (response) => {
-    console.log("구글 로그인 성공: ", response);
-    const token = response.credential;
+  ////////////// GoogleLogin 구글 로그인 메소드 //////////////
+  const { handleGoogleLoginClick } = GoogleLogin({
+    setModalOpen,
+    setModalContent,
+  });
 
-    if (!token) {
-      console.log("Google 토큰이 존재하지 않음");
-      setModalOpen(true);
-      setModalContent("Google 토큰이 존재하지 않습니다.");
-      return;
-    }
-
-    try {
-      console.log("구글 로그인 API 호출");
-      const rsp = await AxiosApi.googleLogin(token);
-      console.log("구글 로그인 응답: ", rsp.data);
-
-      const data = rsp.data;
-
-      if (data && data.grantType === "Bearer") {
-        if (data.isNewUser === "true") {
-          // 새로운 사용자로 로그인
-          console.log("새로운 사용자로 로그인");
-        } else {
-          // 기존 사용자 로그인
-          console.log("기존 사용자로 로그인");
-        }
-
-        // 공통된 토큰 처리
-        const accessTokenExpirationTime = Common.getNewAccessTokenExpiresIn(
-          data.accessToken
-        );
-        const keynumber = Common.getNewUserKeyNumber(data.accessToken);
-        const nickname = Common.getNewNickname(data.accessToken);
-        const profile = data.profileUrl;
-
-        Common.setKeyNumber(keynumber);
-        Common.setAccessToken(data.accessToken);
-        Common.setAccessTokenExpiresIn(accessTokenExpirationTime);
-        Common.setNickname(nickname);
-        Common.setProfile(profile);
-
-        navigate("/");
-      } else {
-        setModalOpen(true);
-        setModalContent(`구글 로그인 실패: ${data.error}`);
-      }
-    } catch (error) {
-      console.error(
-        "Google login failure: ",
-        error.response?.data || error.message
-      );
-      setModalOpen(true);
-      setModalContent("구글 로그인 중 서버 오류가 발생했습니다.");
-    }
-  };
-
-  //////////////////// 구글 로그인 스크립트 로드 ////////////////////
-  useEffect(() => {
-    console.log("구글 로그인 스크립트 로드 시작");
-    const script = document.createElement("script");
-    script.src = "https://accounts.google.com/gsi/client";
-    script.async = true;
-    script.onload = () => {
-      console.log("구글 로그인 스크립트 로드 완료");
-      window.google.accounts.id.initialize({
-        client_id:
-          "159300514752-4da56n3as35i523kr5resdcqaba8e7t4.apps.googleusercontent.com",
-        callback: onGoogleLoginSuccess, // 구글 로그인 성공 시 콜백 함수
-      });
-    };
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script); // 컴포넌트 언마운트 시 스크립트 제거
-      console.log("구글 로그인 스크립트 제거");
-    };
-  }, []); // 의존성 배열을 비워서 한 번만 실행되도록 설정
-
-  const handleGoogleLoginClick = () => {
-    console.log("구글 로그인 클릭");
-    window.google.accounts.id.prompt();
-  };
-
+  ///////////////// 카카오 로그인 구현 시작 부분 ////////////////
   const initializeKakao = () => {
     console.log("카카오 SDK 초기화 시작");
     if (window.Kakao && !window.Kakao.isInitialized()) {
-      window.Kakao.init("ccd0061668dbb55d02bf897bc1dea392");
+      window.Kakao.init("");
       console.log("카카오 SDK 초기화 완료");
     } else {
       console.error("카카오 SDK 로드 실패 또는 이미 초기화됨");
@@ -266,44 +191,82 @@ const Login = () => {
 
   const handleKakaoLoginClick = () => {
     console.log("카카오 로그인 클릭");
+
     if (!window.Kakao) {
       console.error("카카오 SDK가 로드되지 않았습니다.");
       return;
     }
 
     if (!window.Kakao.isInitialized()) {
+      console.log("카카오 SDK 초기화 필요");
       initializeKakao();
+    } else {
+      console.log("카카오 SDK 이미 초기화됨");
     }
 
-    const width = 600;
-    const height = 600;
-    const left = (window.innerWidth - width) / 2;
-    const top = (window.innerHeight - height) / 2;
+    // 현재 액세스 토큰이 있는지 확인
+    const accessToken = window.Kakao.Auth.getAccessToken();
+    if (accessToken) {
+      console.log("기존 카카오 액세스 토큰 존재:", accessToken);
+      // 유효한 토큰이 있을 경우, 로그아웃 실행 후 로그인
+      window.Kakao.Auth.logout(() => {
+        console.log("카카오 세션이 종료되었습니다.");
+        proceedWithKakaoLogin();
+      });
+    } else {
+      console.log("카카오 액세스 토큰 없음, 바로 로그인 진행");
+      proceedWithKakaoLogin();
+    }
+  };
 
+  // 로그인 URL 생성 및 팝업 실행
+  const proceedWithKakaoLogin = () => {
     const kakaoLoginUrl =
-      "https://kauth.kakao.com/oauth/authorize?client_id=ccd0061668dbb55d02bf897bc1dea392&redirect_uri=http://localhost:3000/login/oauth2/code/kakao&response_type=code";
+      "https://kauth.kakao.com/oauth/authorize?client_id=b671c94481a96fb5b006c43e6969d883&redirect_uri=http://localhost:3000/login/oauth2/code/kakao&response_type=code&force_login=true";
 
-    window.open(
-      kakaoLoginUrl,
-      "KakaoLogin",
-      `width=${width},height=${height},left=${left},top=${top}`
-    );
+    console.log(`카카오 로그인 URL: ${kakaoLoginUrl}`);
+
+    // 기존: 팝업 방식
+    // const kakaoLoginWindow = window.open(kakaoLoginUrl, "KakaoLogin", `width=${width},height=${height},left=${left},top=${top}`);
+
+    // 변경: 현재 창에서 바로 카카오 로그인으로 이동
+    window.location.href = kakaoLoginUrl;
   };
 
   const handleKakaoLoginCallback = async (code) => {
+    console.log("카카오 로그인 콜백 처리 시작, 받은 코드:", code);
     try {
-      console.log("카카오 로그인 콜백 처리 시작, 코드:", code);
       const response = await AxiosApi.kakaoLogin(code); // 백엔드로 인가 코드 전송
-      console.log("카카오 로그인 성공:", response);
-      navigate("/"); // 로그인 성공 시 메인 페이지로 이동
+      console.log("카카오 로그인 성공:", response.data);
+
+      const data = response.data;
+      if (data.grantType === "Bearer") {
+        dispatch(
+          setLoginData({
+            nickname: JwtDecoding.getFieldFromToken(
+              data.accessToken,
+              "nickname"
+            ),
+            accesstoken: data.accessToken,
+            accesstokenexpiresin: data.accessTokenExpiresIn,
+            refreshtoken: data.refreshToken,
+            refreshtokenexpiresin: data.refreshTokenExpiresIn,
+          })
+        );
+        navigate("/"); // 로그인 성공 시 메인 페이지로 이동
+      } else {
+        setModalOpen(true);
+        setModalContent("카카오 로그인에 실패했습니다.");
+      }
     } catch (error) {
       console.error("카카오 로그인 실패:", error);
-      alert("카카오 로그인에 실패했습니다. 다시 시도해주세요.");
+      setModalOpen(true);
+      setModalContent("카카오 로그인 중 오류가 발생했습니다.");
     }
   };
 
   useEffect(() => {
-    console.log("카카오 SDK 로딩 확인");
+    console.log("카카오 SDK 로딩 확인 시작");
     const checkKakaoSDK = setInterval(() => {
       if (window.Kakao) {
         clearInterval(checkKakaoSDK);
@@ -317,13 +280,88 @@ const Login = () => {
     // 리다이렉트 후 URL에서 인가 코드 추출 및 처리
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
-
     if (code) {
-      handleKakaoLoginCallback(code);
+      handleKakaoLoginCallback(code); // 인가 코드로 로그인 콜백 처리
+    } else {
+      console.log("인가 코드가 없어 로그인 콜백 처리 생략");
     }
 
     return () => clearInterval(checkKakaoSDK);
   }, []);
+
+  // const initializeKakao = () => {
+  //   console.log("카카오 SDK 초기화 시작");
+  //   if (window.Kakao && !window.Kakao.isInitialized()) {
+  //     window.Kakao.init("ccd0061668dbb55d02bf897bc1dea392");
+  //     console.log("카카오 SDK 초기화 완료");
+  //   } else {
+  //     console.error("카카오 SDK 로드 실패 또는 이미 초기화됨");
+  //   }
+  // };
+
+  // const handleKakaoLoginClick = () => {
+  //   console.log("카카오 로그인 클릭");
+  //   if (!window.Kakao) {
+  //     console.error("카카오 SDK가 로드되지 않았습니다.");
+  //     return;
+  //   }
+
+  //   if (!window.Kakao.isInitialized()) {
+  //     initializeKakao();
+  //   }
+
+  //   const width = 600;
+  //   const height = 600;
+  //   const left = (window.innerWidth - width) / 2;
+  //   const top = (window.innerHeight - height) / 2;
+
+  //   const kakaoLoginUrl =
+  //     "https://kauth.kakao.com/oauth/authorize?client_id=ccd0061668dbb55d02bf897bc1dea392&redirect_uri=http://localhost:3000/login/oauth2/code/kakao&response_type=code";
+
+  //   window.open(
+  //     kakaoLoginUrl,
+  //     "KakaoLogin",
+  //     `width=${width},height=${height},left=${left},top=${top}`
+  //   );
+  // };
+
+  // const handleKakaoLoginCallback = async (code) => {
+  //   try {
+  //     console.log("카카오 로그인 콜백 처리 시작, 코드:", code);
+  //     const response = await AxiosApi.kakaoLogin(code); // 백엔드로 인가 코드 전송
+  //     console.log("카카오 로그인 성공:", response);
+  //     navigate("/"); // 로그인 성공 시 메인 페이지로 이동
+  //   } catch (error) {
+  //     console.error("카카오 로그인 실패:", error);
+  //     alert("카카오 로그인에 실패했습니다. 다시 시도해주세요.");
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   console.log("카카오 SDK 로딩 확인");
+  //   const checkKakaoSDK = setInterval(() => {
+  //     if (window.Kakao) {
+  //       clearInterval(checkKakaoSDK);
+  //       console.log("카카오 SDK 로드 완료");
+  //       initializeKakao();
+  //     } else {
+  //       console.log("카카오 SDK 로딩 중...");
+  //     }
+  //   }, 500);
+
+  //   // 리다이렉트 후 URL에서 인가 코드 추출 및 처리
+  //   const params = new URLSearchParams(window.location.search);
+  //   const code = params.get("code");
+
+  //   if (code) {
+  //     handleKakaoLoginCallback(code);
+  //   }
+
+  //   return () => clearInterval(checkKakaoSDK);
+  // }, []);
+
+  // 네이버 콜백 처리
+  useNaverCallback();
 
   return (
     <GoogleOAuthProvider clientId="159300514752-4da56n3as35i523kr5resdcqaba8e7t4.apps.googleusercontent.com">
@@ -411,7 +449,10 @@ const Login = () => {
                 >
                   <StyledLink to="#"></StyledLink>
                 </ThirdLoginItem>
-                <ThirdLoginItem icon="/images/sns/naver.png">
+                <ThirdLoginItem
+                  icon="/images/sns/naver.png"
+                  onClick={handleNaverLoginClick} // 네이버 로그인 클릭 핸들러
+                >
                   <StyledLink to="#"></StyledLink>
                 </ThirdLoginItem>
                 <ThirdLoginItem icon="/images/sns/facebook.png">
