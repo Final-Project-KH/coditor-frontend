@@ -79,11 +79,9 @@ const Practice = () => {
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxText>{firstpath}</TopBoxText>
+          <TopBoxText>coding test</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText>{secondpath}</TopBoxText>
-          <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText></TopBoxText>
+          <TopBoxText>practice</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <Container>
@@ -91,8 +89,8 @@ const Practice = () => {
           <LeftTopSubjectContainer>
             <LeftSubjectSubContainer>
               <SubjectImgContainerJava />
-              <SubjectTitle>{secondpath}</SubjectTitle>
-              <SubjectContent>{thirdpath}</SubjectContent>
+              <SubjectTitle>{"secondpath"}</SubjectTitle>
+              <SubjectContent>{"thirdpath"}</SubjectContent>
             </LeftSubjectSubContainer>
             <LeftSubjectSubContainer>
               <SubjectUserImgContainer />
