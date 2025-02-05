@@ -50,7 +50,7 @@ const CodingTestBar = ({ isOpen, closeMenu, path }) => {
     <Container isOpen={isOpen}>
       <MenuContainer>
         {subMenuData.map((menu, index) => (
-          <MenuColumn key={index}>
+          <MenuColumn key={index} onClick={closeMenu}>
             <MenuImgContainer
               onClick={() => handleNavigation(menu.navigatepath)}
             >
