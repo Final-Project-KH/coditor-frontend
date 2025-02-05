@@ -37,16 +37,11 @@ const ToolBar = ({ editor }) => {
 
   if (!editor) return null;
 
-  // Image Upload Handler
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const url = reader.result;
-        editor.chain().focus().setImage({ src: url }).run();
-      };
-      reader.readAsDataURL(file);
+  const handleImageInsert = () => {
+    const url = window.prompt('이미지 URL을 입력하세요');
+  
+    if (url) {
+      editor.chain().focus().setImage({ src: url }).run();
     }
   };
 
@@ -199,10 +194,9 @@ const ToolBar = ({ editor }) => {
         />
         <input
           id="upload-image"
-          type="file"
           accept="image/*"
           style={{ display: "none" }}
-          onChange={handleImageUpload}
+          onClick={handleImageInsert}
         />
         <div
           style={{

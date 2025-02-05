@@ -13,6 +13,7 @@ import {
   TopBoxLink,
   Container,
 } from "../../styles/community/Post_M";
+import { FloatWriteButton } from "../../styles/community/Board_M";
 import Post_ReplyArea from "./components/common/Post_ReplyArea";
 import { PathLink } from "../../styles/community/Community";
 import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
@@ -21,12 +22,14 @@ import { useEffect, useState } from "react";
 import ScrollToTopButton from "../ScrollToTopButton";
 import Post_MainContents_M from "./components/common/Post_MainContents_M";
 import AxiosApi from "../../../api/AxiosApi";
+import { useSelector } from "react-redux";
 
 const Post_Read_M = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { boardType, boardId } = useParams();
   const queryParams = new URLSearchParams(location.search);
+  const userAuth = useSelector((state) => state.auth.accesstoken);
 
   // Pagination and sorting params
   const [page, setPage] = useState(queryParams.get("page") || 1);
@@ -79,6 +82,19 @@ const Post_Read_M = () => {
     readPost();
   }, [boardId]);
 
+    // write post
+    const handleWrite = () => {
+      if (userAuth === "") {
+        alert("로그인이 필요한 서비스입니다.");
+        return navigate("/login");
+      }
+      navigate(`/community/${boardType}/write`, {
+        state: {
+          id: boardType,
+        },
+      });
+    };
+
   return (
     <>
       <Wrap>
@@ -121,6 +137,7 @@ const Post_Read_M = () => {
             order={order}
           />
         </Container>
+        <FloatWriteButton onClick={() => handleWrite()} />
         <ScrollToTopButton />
       </Wrap>
     </>

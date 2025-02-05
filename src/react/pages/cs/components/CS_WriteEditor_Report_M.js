@@ -12,7 +12,7 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 import ListItem from "@tiptap/extension-list-item";
 import { Image } from "@tiptap/extension-image";
-import "./../../../../styles/community/PostEditor.css";
+import "../../../styles/community/PostEditor.css";
 import {
   EditorArea,
   TipTapBox,
@@ -20,11 +20,9 @@ import {
   WriteButtonsArea,
   WriteCancelButton,
   WriteSubmitButton,
-} from "../../../../styles/community/Post_M";
-import Subscript from "@tiptap/extension-subscript";
+} from "../../../styles/cs/CS_M";
 import { useLocation, useNavigate } from "react-router-dom";
-import AxiosApi from "../../../../../api/AxiosApi";
-import { useSelector } from "react-redux";
+import AxiosApi from "../../../../api/AxiosApi";
 
 const lowlight = createLowlight(all);
 
@@ -71,14 +69,13 @@ const ToolBar = ({ editor }) => {
   }
 
   return (
-    <div
-      className="toolbar"
-      style={{
-        display: "flex",
-        overflowX: "auto",
-        overflowY: "hidden",
-        width: "100%",
-      }}
+    <div className="toolbar"
+    style={{
+      display: "flex",
+      overflowX: "auto",
+      overflowY: "hidden",
+      width: "100%",
+    }}
     >
       <div
         className="button-group"
@@ -280,28 +277,21 @@ const extensions = [
   Code,
   CodeBlock,
   Image,
-  Subscript,
 ];
 
-const Post_WriteEditor_Study_M = ({ title, study }) => {
+const CS_WriteEditor_Report = ({ title }) => {
   const navigate = useNavigate();
   const [editorContent, setEditorContent] = useState(`
-    <p><b>[개발 스터디 모집 내용 예시]</b></p>
-    <ul>
-      <li>스터디 주제 : </li>
-      <li>스터디 목표 : </li>
-      <li>예상 일정(횟수) : </li>
-      <li>예상 커리큘럼 : </li>
-      <li>예상 모집인원 : </li>
-      <li>스터디 소개 : </li>
-      <li>주의사항 : </li>
-      <li>지원 방법(이메일, 카카오 오픈채팅방, 구글폼 등) : </li>
-    </ul>
-    <p><span style="color: #868e96;"><sub>* 참고 사항 : 스터디 게시판에 영리를 목적으로 하는 게시글(유료 과외 및 멘토링 등)을 작성한 경우 해당 글은 운영 방침에 의해 중단, 삭제될 수 있음을 안내드립니다.</sub></span></p><br />
-  `);
-  const [boardType, setBoardType] = useState("study");
-
-  const userAuth = useSelector((state) => state.auth.accesstoken);
+      <p><b>[악성 사용자 신고 예시]</b></p>
+      <ul>
+        <li>악성 사용자 ID : </li>
+        <li>악성 사용자 닉네임 : </li>
+        <li>악성 사용자 글 제목 : </li>
+        <li>악성 사용자 글 URL : </li>
+        <li>신고 내용 : </li>
+      </ul>
+      <p><span style="color: #868e96;"><sub>* 참고 사항 : </sub></span></p><br />
+    `);
 
   const editor = useEditor({
     extensions: [
@@ -314,7 +304,6 @@ const Post_WriteEditor_Study_M = ({ title, study }) => {
         lowlight,
       }),
       Image,
-      Subscript,
     ],
     content: editorContent,
     onUpdate: ({ editor }) => {
@@ -323,38 +312,16 @@ const Post_WriteEditor_Study_M = ({ title, study }) => {
     },
   });
 
-  // cancel button
-  const handleGoBack = () => {
-    navigate(`/community/${boardType}`);
-  };
-
   // submit button
   const handleSubmit = async () => {
-    if (userAuth === "") {
-      alert("로그인이 필요한 서비스입니다.");
-      return navigate("/login");
-    }
-
-    // 에디터 내용이 비어 있거나 제목이 없으면 경고 표시
-    if (!editorContent || !title) {
-      console.log(title);
-      console.log(editorContent);
+    if (!editor.getHTML().trim() || !title.trim()) {
       alert("제목과 내용을 모두 입력하세요!");
       return;
     }
     try {
-      const response = await AxiosApi.writeStudyPost(
-        boardType,
-        title,
-        study,
-        editorContent
-      );
+      // const response = await AxiosApi.써야함(title, editor.getHTML());
       alert("내용이 성공적으로 제출되었습니다.");
-      navigate(`/community/${boardType}`, {
-        state: {
-          id: boardType,
-        },
-      });
+      navigate(-1);
     } catch (error) {
       console.error("제출 실패:", error);
       alert("제출에 실패했습니다. 다시 시도해주세요.");
@@ -369,11 +336,10 @@ const Post_WriteEditor_Study_M = ({ title, study }) => {
             <ToolBar editor={editor} />
           </ToolBarContainer>
           <EditorContent
-            className="tiptap-editor"
             style={{
               width: "100%",
               height: "100%",
-              padding: "20px",
+              padding: "30px",
               overflowY: "auto", // 세로 스크롤 활성화
               overflowX: "hidden", // 가로 스크롤 비활성화
               boxSizing: "border-box", // 패딩 포함 계산
@@ -382,7 +348,9 @@ const Post_WriteEditor_Study_M = ({ title, study }) => {
           />
         </EditorArea>
         <WriteButtonsArea>
-          <WriteCancelButton onClick={handleGoBack}>취소</WriteCancelButton>
+          <WriteCancelButton onClick={() => navigate(-1)}>
+            취소
+          </WriteCancelButton>
           <WriteSubmitButton onClick={handleSubmit}>등록</WriteSubmitButton>
         </WriteButtonsArea>
       </TipTapBox>
@@ -390,4 +358,4 @@ const Post_WriteEditor_Study_M = ({ title, study }) => {
   );
 };
 
-export default Post_WriteEditor_Study_M;
+export default CS_WriteEditor_Report;

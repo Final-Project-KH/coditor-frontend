@@ -13,23 +13,14 @@ import {
 const CsBar = ({ isOpen, closeMenu, path }) => {
   const navigate = useNavigate();
 
-  const handleReportClick = () => {
-    navigate("/cs/report");
-  };
-
   const handleQAClick = () => {
-    navigate("/cs/question");
+    navigate("/cs/suggestion");
   };
 
   return (
     <Container isOpen={isOpen}>
       <MenuContainer>
         <MenuColumn>
-          <MenuContents onClick={closeMenu}>
-            <MenuLink onClick={() => handleReportClick()}>
-              악성 사용자 신고
-            </MenuLink>
-          </MenuContents>
           <MenuContents onClick={closeMenu}>
             <MenuLink onClick={() => handleQAClick()}>건의사항</MenuLink>
           </MenuContents>

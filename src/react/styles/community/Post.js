@@ -690,12 +690,14 @@ export const ReplyEach = styled.div.attrs({
   justify-content: flex-start;
   align-items: center;
   gap: 0px;
+  margin-bottom: 10px;
   &::after {
     content: "";
     width: 100%;
     height: 1px;
     background-color: black;
     transform: scaleY(0.5);
+    margin-top: 20px;
   }
 `;
 export const ReplyUserProfileBox = styled.div.attrs({
@@ -706,7 +708,7 @@ export const ReplyUserProfileBox = styled.div.attrs({
   flex-direction: row;
   gap: 10px;
   justify-content: flex-start;
-  align-items: center;
+  align-items: top;
 `;
 export const ReplyUserProfileImg = styled.div.attrs({
   id: "replyuserprofileimg",
@@ -766,6 +768,7 @@ export const ReplyMiddle = styled.div.attrs({
 export const ReplyMiddleText = styled.div.attrs({
   id: "replymiddletext",
 })`
+margin-top: 10px;
   font-size: 15px;
   font-family: "regular", sans-serif;
   color: black;

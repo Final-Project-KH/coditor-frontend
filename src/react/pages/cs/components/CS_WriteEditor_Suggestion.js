@@ -35,16 +35,11 @@ const ToolBar = ({ editor }) => {
 
   if (!editor) return null;
 
-  // Image Upload Handler
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const url = reader.result;
-        editor.chain().focus().setImage({ src: url }).run();
-      };
-      reader.readAsDataURL(file);
+  const handleImageInsert = () => {
+    const url = window.prompt('이미지 URL을 입력하세요');
+  
+    if (url) {
+      editor.chain().focus().setImage({ src: url }).run();
     }
   };
 
@@ -183,10 +178,9 @@ const ToolBar = ({ editor }) => {
         />
         <input
           id="upload-image"
-          type="file"
           accept="image/*"
           style={{ display: "none" }}
-          onChange={handleImageUpload}
+          onClick={handleImageInsert}
         />
         <div
           style={{
@@ -272,7 +266,7 @@ const extensions = [
   Image,
 ];
 
-const CS_WriteEditor_Question = ({ title }) => {
+const CS_WriteEditor_Suggestion = ({ title }) => {
   const navigate = useNavigate();
 
   const editor = useEditor({
@@ -339,4 +333,4 @@ const CS_WriteEditor_Question = ({ title }) => {
   );
 };
 
-export default CS_WriteEditor_Question;
+export default CS_WriteEditor_Suggestion;

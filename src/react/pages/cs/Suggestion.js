@@ -12,10 +12,10 @@ import {
   WriteSortTitleActive,
 } from "../../styles/cs/CS";
 
-import CS_WriteEditor_Report from "./components/CS_WriteEditor_Report_M";
-import Report_M from "./Report_M";
+import CS_WriteEditor_Suggestion from "./components/CS_WriteEditor_Suggestion";
+import Suggestion_M from "./Suggestion_M";
 
-const Report = () => {
+const Suggestion = () => {
   const [title, setTitle] = useState("");
   const [isMobile, setIsMobile] = useState(false);
 
@@ -38,14 +38,14 @@ const Report = () => {
   return (
     <>
       {isMobile ? (
-        <Report_M />
+        <Suggestion_M />
       ) : (
         <>
           <WriteWrap>
             <WriteContainer>
               <WriteSortOuterContiner>
                 <WriteSortInnerContainer>
-                  <WriteSortTitleActive>악성 사용자 신고</WriteSortTitleActive>
+                  <WriteSortTitleActive>건의사항</WriteSortTitleActive>
                 </WriteSortInnerContainer>
               </WriteSortOuterContiner>
               <WriteTitleBox>
@@ -55,7 +55,7 @@ const Report = () => {
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </WriteTitleBox>
-              <CS_WriteEditor_Report title={title} />
+              <CS_WriteEditor_Suggestion title={title} />
             </WriteContainer>
           </WriteWrap>
         </>
@@ -64,4 +64,4 @@ const Report = () => {
   );
 };
 
-export default Report;
+export default Suggestion;

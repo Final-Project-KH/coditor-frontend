@@ -635,8 +635,8 @@ export const FloatWriteButton = styled.div.attrs({
   id: "floatwritebutton",
 })`
   position: fixed;
-  right: 50px;
-  bottom: 50px;
+  right: 20px;
+  bottom: 80px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -650,8 +650,5 @@ export const FloatWriteButton = styled.div.attrs({
   background-position: 16px 15px;
   background-image: url("/images/icon/write.png");
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-  @media (max-width: 768px) {
-    right: 20px; /* 버튼 위치를 왼쪽으로 약간 이동 */
-    bottom: 80px; /* 버튼 위치를 아래로 약간 이동 */
-  }
+  z-index: 10;
 `;

@@ -321,29 +321,40 @@ const Post_MainContents_M = ({ boardType }) => {
           <MainPostTopBox>
             <MainPostTop>
               <MainPostTitleArea>
-                <MainPostTitle>{post.title}</MainPostTitle>
-                <MainPostPending>
-                  {boardType === "coding" ? (
-                    boardStatus === "INACTIVE" ? (
+                {boardType === "coding" ? (
+                  boardStatus === "INACTIVE" ? (
+                    <MainPostPending>
                       <MainPostContentsSolved>해결됨</MainPostContentsSolved>
-                    ) : (
-                      <MainPostContentsPending>미해결</MainPostContentsPending>
-                    )
-                  ) : boardType === "study" ? (
-                    boardStatus === "INACTIVE" ? (
-                      <MainPostContentsSolved>모집완료</MainPostContentsSolved>
-                    ) : (
-                      <MainPostContentsPending>모집중</MainPostContentsPending>
-                    )
+                    </MainPostPending>
                   ) : (
-                    boardType === "team" &&
-                    (boardStatus === "INACTIVE" ? (
+                    <MainPostPending>
+                      <MainPostContentsPending>미해결</MainPostContentsPending>
+                    </MainPostPending>
+                  )
+                ) : boardType === "study" ? (
+                  boardStatus === "INACTIVE" ? (
+                    <MainPostPending>
                       <MainPostContentsSolved>모집완료</MainPostContentsSolved>
-                    ) : (
+                    </MainPostPending>
+                  ) : (
+                    <MainPostPending>
                       <MainPostContentsPending>모집중</MainPostContentsPending>
-                    ))
-                  )}
-                </MainPostPending>
+                    </MainPostPending>
+                  )
+                ) : (
+                  boardType === "team" &&
+                  (boardStatus === "INACTIVE" ? (
+                    <MainPostPending>
+                      <MainPostContentsSolved>모집완료</MainPostContentsSolved>
+                    </MainPostPending>
+                  ) : (
+                    <MainPostPending>
+                      <MainPostContentsPending>모집중</MainPostContentsPending>
+                    </MainPostPending>
+                  ))
+                )}
+
+                <MainPostTitle>{post.title}</MainPostTitle>
               </MainPostTitleArea>
               <MainPostDiv>
                 <MainPostInformation>

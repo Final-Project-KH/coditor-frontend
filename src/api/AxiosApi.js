@@ -342,6 +342,7 @@ const AxiosApi = {
           id: boardId,
         },
       });
+      console.log("response: ", response.data);
       return response.data; // 응답 데이터 반환
     } catch (error) {
       console.error("게시글 불러오기 오류 : ", error);

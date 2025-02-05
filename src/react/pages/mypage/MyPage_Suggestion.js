@@ -17,7 +17,7 @@ import LeftMenus from "./Components/LeftMenus";
 import ScrollToTopButton from "../ScrollToTopButton";
 import { useEffect } from "react";
 
-const MyPage_Question = () => {
+const MyPage_Suggestion = () => {
   const navigate = useNavigate();
   const { mainContentRef } = useOutletContext();
 
@@ -33,7 +33,7 @@ const MyPage_Question = () => {
   };
 
   const handleRefresh = () => {
-    navigate("/mypage/question");
+    navigate("/mypage/suggestion");
   };
 
   return (
@@ -64,4 +64,4 @@ const MyPage_Question = () => {
   );
 };
 
-export default MyPage_Question;
+export default MyPage_Suggestion;

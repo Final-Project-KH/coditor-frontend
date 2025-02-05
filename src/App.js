@@ -88,7 +88,7 @@ import Post_Write_Study from "./react/pages/community/Post_Write_Study";
 import Post_Write_Team from "./react/pages/community/Post_Write_Team";
 import User_Main from "./react/pages/community/User_Main";
 import Report from "./react/pages/cs/Report";
-import Question from "./react/pages/cs/Question";
+import Suggestion from "./react/pages/cs/Suggestion";
 import Roadmap_Frontend from "./react/pages/more/Roadmap_Frontend";
 import Roadmap_Backend from "./react/pages/more/Roadmap_Backend";
 import Roadmap_DevOps from "./react/pages/more/Roadmap_DevOps";
@@ -101,7 +101,7 @@ import MyPage_Study from "./react/pages/mypage/MyPage_Study";
 import MyPage_CodingTest from "./react/pages/mypage/MyPage_CodingTest";
 import MyPage_Community from "./react/pages/mypage/MyPage_Community";
 import MyPage_Report from "./react/pages/mypage/MyPage_Report";
-import MyPage_Question from "./react/pages/mypage/MyPage_Question";
+import MyPage_Suggestion from "./react/pages/mypage/MyPage_Suggestion";
 import Post_Modify_Coding from "./react/pages/community/Post_Modify_Coding";
 import Post_Modify_Course from "./react/pages/community/Post_Modify_Course";
 import Post_Modify_Study from "./react/pages/community/Post_Modify_Study";
@@ -151,7 +151,7 @@ const AppContents = () => {
           element={<Post_Modify_Team />}
         />
         <Route path="/cs/report" element={<Report />} />
-        <Route path="/cs/question" element={<Question />} />
+        <Route path="/cs/suggestion" element={<Suggestion />} />
         <Route
           path="/codingtest/challenge/:questionId"
           element={<CodeChallenge />}
@@ -342,10 +342,10 @@ const MyPageRoutes = [
     auth: true,
   },
   {
-    path: "/mypage/question",
+    path: "/mypage/suggestion",
     element: (
       <RequiredAuth>
-        <MyPage_Question />
+        <MyPage_Suggestion />
       </RequiredAuth>
     ),
     auth: true,

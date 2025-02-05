@@ -208,10 +208,10 @@ export const MainPostTitleArea = styled.div.attrs({
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 5px;
+  flex-direction: column;
+  align-items: left;
+  gap: 10px;
+  margin-top: -3px;
 `;
 export const MainPostPending = styled.div.attrs({
   id: "mainpostpending",
@@ -352,7 +352,6 @@ export const MainPostContentsPending = styled.div.attrs({
   align-items: center;
   color: black;
   padding: 5px 14px;
-  margin-left: 5px;
 `;
 export const MainPostContentsSolved = styled.div.attrs({
   id: "mainpostcontentssolved",
@@ -366,7 +365,6 @@ export const MainPostContentsSolved = styled.div.attrs({
   align-items: center;
   color: white;
   padding: 5px 14px;
-  margin-left: 5px;
 `;
 export const MainPostExtra = styled.div.attrs({
   id: "mainpostextra",

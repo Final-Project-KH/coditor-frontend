@@ -77,10 +77,10 @@ const Community_Coding_M = () => {
 
   // write post
   const handleWrite = () => {
-    // if (userAuth === "") {
-    //   alert("로그인이 필요한 서비스입니다.");
-    //   return navigate("/login");
-    // }
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
     navigate(`/community/${boardType}/write`, {
       state: {
         id: boardType,
