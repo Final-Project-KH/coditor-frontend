@@ -29,8 +29,10 @@ import {
   MainPostExtra,
   MainPostDiv,
   MainPostExtraItemContainer,
+  MainPostExtraItemOtherContainer,
   MainPostExtraButton,
   MainPostExtraItem,
+  MainPostExtraOtherItem,
   MainPostTitleArea,
   MainPostPending,
 } from "../../../../styles/community/Post";
@@ -54,6 +56,7 @@ const Post_MainContents = ({ boardType }) => {
   const [writerKeyNumber, setWriterKeyNumber] = useState(null);
   const [boardStatus, setBoardStatus] = useState(null);
   const [isExtra, setIsExtra] = useState(false);
+  const [isExtraOther, setIsExtraOther] = useState(false);
 
   const userkeynumber = useSelector((state) => state.auth.keynumber);
   const accesstoken = useSelector((state) => state.auth.accesstoken);
@@ -69,6 +72,11 @@ const Post_MainContents = ({ boardType }) => {
 
   const handleExtra = () => {
     setIsExtra(!isExtra);
+    console.log(isExtra);
+  };
+
+  const handleExtraOther = () => {
+    setIsExtraOther(!isExtraOther);
   };
 
   console.log("보드 타입 확인 ", boardType);
@@ -123,6 +131,8 @@ const Post_MainContents = ({ boardType }) => {
         setWriterKeyNumber(response.userKey);
         setBoardStatus(response.status);
         console.log("유저 아이디 : ", writerKeyNumber);
+        console.log("스토어 유저 아이디 :", userkeynumber);
+
         console.log("저장된 유저 아이디 타입 : ", typeof writerKeyNumber);
         console.log(
           "스토어에서 가져온 유저 아이디 타입 : ",
@@ -413,69 +423,18 @@ const Post_MainContents = ({ boardType }) => {
                 </MainPostExtra>
               ) : writerKeyNumber != userkeynumber && userkeynumber !== "" ? (
                 <MainPostExtra>
-                  <MainPostExtraItemContainer isOpen={isExtra}>
-                    <MainPostExtraItem isOpen={isExtra}>
+                  <MainPostExtraItemOtherContainer isOpenOther={isExtraOther}>
+                    <MainPostExtraOtherItem isOpenOther={isExtraOther}>
                       게시글 신고
-                    </MainPostExtraItem>
-                  </MainPostExtraItemContainer>
+                    </MainPostExtraOtherItem>
+                  </MainPostExtraItemOtherContainer>
                   <MainPostExtraButton
-                    onClick={handleExtra}
+                    onClick={handleExtraOther}
                   ></MainPostExtraButton>
                 </MainPostExtra>
               ) : (
                 userkeynumber === "" && <MainPostExtra></MainPostExtra>
               )}
-              {/* <>
-                <MainPostExtra>
-                  <MainPostExtraItemContainer isOpen={isExtra}>
-                    {boardType === "coding" && boardStatus === "ACTIVE" ? (
-                      <MainPostExtraItem
-                        onClick={() => handleStatus()}
-                        isOpen={isExtra}
-                      >
-                        해결됨으로 변경
-                      </MainPostExtraItem>
-                    ) : boardType === "coding" && boardStatus === "INACTIVE" ? (
-                      <MainPostExtraItem
-                        onClick={() => handleStatus()}
-                        isOpen={isExtra}
-                      >
-                        미해결로 변경
-                      </MainPostExtraItem>
-                    ) : (boardType === "study" || boardType === "team") &&
-                      boardStatus === "ACTIVE" ? (
-                      <MainPostExtraItem
-                        onClick={() => handleStatus()}
-                        isOpen={isExtra}
-                      >
-                        모집완료로 변경
-                      </MainPostExtraItem>
-                    ) : (
-                      (boardType === "study" || boardType === "team") &&
-                      boardStatus === "INACTIVE" && (
-                        <MainPostExtraItem
-                          onClick={() => handleStatus()}
-                          isOpen={isExtra}
-                        >
-                          모집중으로 변경
-                        </MainPostExtraItem>
-                      )
-                    )}
-                    <MainPostExtraItem isOpen={isExtra}>
-                      글 수정
-                    </MainPostExtraItem>
-                    <MainPostExtraItem
-                      onClick={() => handleDelete()}
-                      isOpen={isExtra}
-                    >
-                      글 삭제
-                    </MainPostExtraItem>
-                  </MainPostExtraItemContainer>
-                  <MainPostExtraButton
-                    onClick={handleExtra}
-                  ></MainPostExtraButton>
-                </MainPostExtra>
-              </> */}
             </MainPostDiv>
           </MainPostTop>
           <MainPostMiddle>
