@@ -17,7 +17,7 @@ export const ExecutionResultsStyles = styled.div`
       padding: 10px 0;
 
       font-size: 20px;
-      font-weight: bold;
+      font-family: "bold", sans-serif;
       color: white;
     }
   }
@@ -34,6 +34,8 @@ export const ExecutionResultsStyles = styled.div`
     overflow-y: auto;
 
     background-color: black;
+
+    border-radius: 0 0 20px 20px;
 
     color: white;
 
@@ -55,6 +57,10 @@ export const ExecutionResultsStyles = styled.div`
           background-color: #555;
         }
       }
+    }
+
+    li:not(ul > li:last-child) {
+      margin-bottom: 2em;
     }
   }
 `;

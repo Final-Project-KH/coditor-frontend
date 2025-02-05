@@ -1,5 +1,10 @@
-import { useEffect } from "react";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
+import { useSelector } from "react-redux";
+import AxiosApi from "../../../../api/AxiosApi";
+
+import JwtDecoding from "../../../../api/JwtDecode";
+
 import {
   Wrap,
   Container,
@@ -24,61 +29,16 @@ import {
   TopBoxArrow,
   NavigatiePath,
 } from "../../../styles/codingtest/CoddingTestCommons";
-import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
-import { useSelector } from "react-redux";
 import ScrollToTopButton from "../../ScrollToTopButton";
-
-// 서버에서 가져올 것
-const MENU_ITEMS = [
-  {
-    category: "기본 연산자 활용",
-    contents: [
-      {
-        title: "두 정수의 덧셈",
-        questionId: 1,
-      },
-    ],
-  },
-];
 
 // User Nickname, 등급
 // Coding Test 난이도 받아와야함
 // 경로 받아와야함
 const Practice = () => {
+  const [challengeGroups, setChallengeGroups] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { firstpath, secondpath, thirdpath } = location.state || {};
-
-  const handleCodingTest = () => {
-    navigate("/codingtest", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
-  };
-
-  const handleCodingTestJava = () => {
-    navigate("/codingtest/java", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
-  };
-
-  const handleRefresh = () => {
-    navigate(`/codingtest/java/practice`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
-  };
-
-  const handleNavigation = (navigatepath, data) => {
-    navigate(navigatepath, { state: data });
-  };
 
   const nickname = useSelector((state) => state.auth.nickname);
   const { mainContentRef } = useOutletContext();
@@ -90,19 +50,40 @@ const Practice = () => {
     }
   }, [mainContentRef]);
 
+  const accessToken = useSelector((state) => state.auth.accesstoken);
+  const userId = accessToken
+    ? JwtDecoding.getFieldFromToken(accessToken, "sub")
+    : null;
+
+  useEffect(() => {
+    const fetchChallengeList = async () => {
+      const responseData = await AxiosApi.getChallengeList("practice", userId);
+
+      if (!responseData["error"]) {
+        setChallengeGroups(
+          responseData.reduce((acc, item) => {
+            if (!acc[item.category]) {
+              acc[item.category] = [];
+            }
+            acc[item.category].push(item);
+            return acc;
+          }, {})
+        );
+      }
+    };
+
+    fetchChallengeList();
+  }, []);
+
   return (
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxText onClick={() => handleCodingTest()}>
-            {firstpath}
-          </TopBoxText>
+          <TopBoxText>{firstpath}</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleCodingTestJava()}>
-            {secondpath}
-          </TopBoxText>
+          <TopBoxText>{secondpath}</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxText onClick={() => handleRefresh()}>{thirdpath}</TopBoxText>
+          <TopBoxText></TopBoxText>
         </TopBox>
       </TopBoxWide>
       <Container>
@@ -124,29 +105,33 @@ const Practice = () => {
           <LeftMiddleSubjectContainer></LeftMiddleSubjectContainer>
         </LeftContainer>
         <RightContainer>
-          {MENU_ITEMS.map((item, idx) => (
-            <EachClass key={idx}>
-              <ClassHeader>
-                <ClassHeaderTitle>{item.category}</ClassHeaderTitle>
-              </ClassHeader>
-              <ClassContents isOpen={true}>
-                {item.contents.map((content) => (
-                  <ClassSet key={content.questionId}>
-                    <ClassName>
-                      <NavigatiePath
-                        onClick={() =>
-                          navigate(
-                            `/codingtest/challenge/${content.questionId}`
-                          )
-                        }
-                      ></NavigatiePath>
-                      {content.title}
-                    </ClassName>
-                  </ClassSet>
-                ))}
-              </ClassContents>
-            </EachClass>
-          ))}
+          {challengeGroups === null
+            ? "Loading..."
+            : Object.keys(challengeGroups).length === 0
+            ? "데이터가 존재하지 않습니다😓.."
+            : Object.entries(challengeGroups).map(([category, items]) => (
+                <EachClass key={category}>
+                  <ClassHeader>
+                    <ClassHeaderTitle>{category}</ClassHeaderTitle>
+                  </ClassHeader>
+                  <ClassContents isOpen={true}>
+                    {items.map((content) => (
+                      <ClassSet key={content.questionId}>
+                        <ClassName>
+                          <NavigatiePath
+                            onClick={() =>
+                              navigate(
+                                `/codingtest/challenge/${content.questionId}`
+                              )
+                            }
+                          ></NavigatiePath>
+                          {content.title}
+                        </ClassName>
+                      </ClassSet>
+                    ))}
+                  </ClassContents>
+                </EachClass>
+              ))}
         </RightContainer>
       </Container>
       <ScrollToTopButton />

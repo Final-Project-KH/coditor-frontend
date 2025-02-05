@@ -32,7 +32,7 @@ export const CodeChallengeInfoStyles = styled.div`
 
       padding: 10px 25px;
 
-      font-weight: bold;
+      font-family: "bold", sans-serif;
       font-size: 20px;
       white-space: pre-wrap;
     }
@@ -40,7 +40,7 @@ export const CodeChallengeInfoStyles = styled.div`
     & > div:last-child p {
       padding: 20px 25px;
 
-      font-weight: bold;
+      font-family: "medium", sans-serif;
       font-size: 18px;
     }
   }
@@ -78,7 +78,7 @@ export const CodeChallengeInfoStyles = styled.div`
       padding: 10px 25px;
 
       font-size: 20px;
-      font-weight: bold;
+      font-family: "medium", sans-serif;
       white-space: pre-wrap;
     }
 
@@ -120,7 +120,7 @@ export const CodeChallengeInfoStyles = styled.div`
       & > span {
         padding: 10px 25px;
 
-        font-weight: bold;
+        font-family: "bold", sans-serif;
         font-size: 20px;
       }
     }
