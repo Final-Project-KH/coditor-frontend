@@ -140,7 +140,6 @@ const Board_Community_Main = () => {
 
   return (
     <>
-      <EachBoardContainer>
         <EachBoardTitle onClick={() => handleBoard("coding")}>
           💻 새로 올라온 코딩 질문
         </EachBoardTitle>
@@ -216,9 +215,7 @@ const Board_Community_Main = () => {
             </PostEach>
           ))}
         </PostListContainer>
-      </EachBoardContainer>
 
-      <EachBoardContainer>
         <EachBoardTitle onClick={() => handleBoard("course")}>
           🎓 새로 올라온 진로 질문
         </EachBoardTitle>
@@ -287,9 +284,8 @@ const Board_Community_Main = () => {
             </PostEach>
           ))}
         </PostListContainer>
-      </EachBoardContainer>
 
-      <EachBoardContainer>
+
         <EachBoardTitle onClick={() => handleBoard("study")}>
           ✏️ 새로 올라온 스터디 모집
         </EachBoardTitle>
@@ -367,9 +363,8 @@ const Board_Community_Main = () => {
             </PostEach>
           ))}
         </PostListContainer>
-      </EachBoardContainer>
 
-      <EachBoardContainer>
+
         <EachBoardTitle onClick={() => handleBoard("team")}>
           📋 새로 올라온 프로젝트 구인
         </EachBoardTitle>
@@ -447,7 +442,8 @@ const Board_Community_Main = () => {
             </PostEach>
           ))}
         </PostListContainer>
-      </EachBoardContainer>
+
+
     </>
   );
 };

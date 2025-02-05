@@ -640,18 +640,18 @@ export const FloatWriteButton = styled.div.attrs({
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: white;
+  background-color: #313131;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: center;
-  background-image: url("/images/icon/totop.png");
+  background-size: 20px;
+  background-position: 16px 15px;
+  background-image: url("/images/icon/write.png");
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   @media (max-width: 768px) {
     right: 20px; /* 버튼 위치를 왼쪽으로 약간 이동 */
-    bottom: 20px; /* 버튼 위치를 아래로 약간 이동 */
+    bottom: 80px; /* 버튼 위치를 아래로 약간 이동 */
   }
 `;

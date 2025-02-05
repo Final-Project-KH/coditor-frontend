@@ -1,5 +1,6 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import {
   Wrap,
@@ -11,6 +12,7 @@ import {
   Container,
   BoardContainer,
 } from "../../styles/community/Community_M";
+import { FloatWriteButton } from "../../styles/community/Board_M";
 
 import Board_TopSort_M from "./components/common/Board_TopSort_M";
 import Board_Coding_Search_M from "./components/coding/Board_Coding_Search_M";
@@ -35,7 +37,7 @@ const Community_Coding_M = () => {
     queryParams.get("enumfilter") || null
   ); // 해쉬태그
   const [search, setSearch] = useState(queryParams.get("search") || null); // 검색
-
+  const userAuth = useSelector((state) => state.auth.accesstoken);
   const boardType = "coding";
 
   // TopBox firstpath
@@ -71,6 +73,19 @@ const Community_Coding_M = () => {
 
   const handleEnumFilterChange = (newEnumFilter) => {
     setEnumFilter(newEnumFilter);
+  };
+
+  // write post
+  const handleWrite = () => {
+    // if (userAuth === "") {
+    //   alert("로그인이 필요한 서비스입니다.");
+    //   return navigate("/login");
+    // }
+    navigate(`/community/${boardType}/write`, {
+      state: {
+        id: boardType,
+      },
+    });
   };
 
   return (
@@ -115,6 +130,7 @@ const Community_Coding_M = () => {
             />
           </BoardContainer>
         </Container>
+        <FloatWriteButton onClick={() => handleWrite()} />
         <ScrollToTopButton />
       </Wrap>
     </>

@@ -23,6 +23,7 @@ import Post_MainContents from "./components/common/Post_MainContents";
 import { useEffect, useState } from "react";
 import ScrollToTopButton from "../ScrollToTopButton";
 import Post_Read_M from "./Post_Read_M";
+import AxiosApi from "../../../api/AxiosApi";
 
 const Post_Read = () => {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const Post_Read = () => {
     queryParams.get("sortBy") || "createdAt"
   );
   const [order, setOrder] = useState(queryParams.get("order") || "desc");
+  const [postTitle, setPostTitle] = useState("");
 
   const { mainContentRef } = useOutletContext();
   const { isMobile } = useOutletContext();
@@ -66,6 +68,30 @@ const Post_Read = () => {
     navigate(`/community/${boardType}/post/${boardId}`);
   };
 
+  const boardNameConverter = [
+    { type: "coding", display: "💻 코딩 질문" },
+    { type: "course", display: "🎓 진로 질문" },
+    { type: "study", display: "️✏️ 스터디" },
+    { type: "team", display: "📋 팀 프로젝트" },
+  ];
+
+  const boardDisplayName =
+    boardNameConverter.find((item) => item.type === boardType)?.display ||
+    boardType;
+
+  // Get Post from Backend
+  useEffect(() => {
+    const readPost = async () => {
+      try {
+        const response = await AxiosApi.getPost(boardId);
+        setPostTitle(response.title);
+      } catch (error) {
+        console.error("제목 가져오는 중 오류 발생 : ", error);
+      }
+    };
+    readPost();
+  }, [boardId]);
+
   return (
     <>
       {isMobile ? (
@@ -79,11 +105,30 @@ const Post_Read = () => {
               </PathLink>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <PathLink onClick={() => handleCommunityBoard()}>
-                <TopBoxText>{boardType}</TopBoxText>
+                <TopBoxText
+                  style={{
+                    display: "block", // 기본적으로 block으로 설정, 필요 시 다른 스타일을 적용
+                    whiteSpace: "nowrap", // 텍스트가 한 줄에 모두 표시되게 설정
+                    overflow: "visible", // 텍스트가 잘리지 않도록 설정
+                    textOverflow: "clip", // 텍스트가 넘치지 않도록 설정 (필요 시 조정)
+                  }}
+                >
+                  {boardDisplayName}
+                </TopBoxText>
               </PathLink>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <PathLink onClick={() => handleRefresh()}>
-                <TopBoxText>게시글 상세보기</TopBoxText>
+                <TopBoxText
+                  style={{
+                    display: "-webkit-box",
+                    WebkitBoxOrient: "vertical",
+                    WebkitLineClamp: "1",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {postTitle}
+                </TopBoxText>
               </PathLink>
             </TopBox>
           </TopBoxWide>

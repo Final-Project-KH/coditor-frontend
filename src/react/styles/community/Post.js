@@ -339,6 +339,7 @@ export const MainPostExtraItemContainer = styled.div.attrs({
   top: 10px;
   right: 20px;
   border-radius: 10px;
+  background-color: white;
   border: 1px solid #dadcdf;
   ${(props) =>
     props.isOpen

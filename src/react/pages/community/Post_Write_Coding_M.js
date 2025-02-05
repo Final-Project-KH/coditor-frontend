@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 
 import {
@@ -8,30 +8,13 @@ import {
   WriteTags,
   WriteTitle,
   WriteTitleBox,
-} from "../../styles/community/Post";
-import Post_WriteSort from "./components/common/Post_WriteSort";
-import Post_WriteEditor_Coding from "./components/coding/Post_WriteEditor_Coding";
-import Post_Write_Coding_M from "./Post_Write_Coding_M";
+} from "../../styles/community/Post_M";
 
-const Post_Write_Coding = () => {
+import Post_WriteSort_M from "./components/common/Post_WriteSort_M";
+import Post_WriteEditor_Coding_M from "./components/coding/Post_WriteEditor_Coding_M";
+
+const Post_Write_Coding_M = () => {
   const [title, setTitle] = useState("");
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    // 초기 화면 크기 체크
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setIsMobile(true);
-      } else {
-        setIsMobile(false);
-      }
-    };
-    window.addEventListener("resize", handleResize); // 화면 크기 변화에 따른 상태 업데이트
-    handleResize(); // 컴포넌트 마운트 시 초기 상태 설정
-    return () => {
-      window.removeEventListener("resize", handleResize); // 클린업
-    };
-  }, []);
 
   const MAX_SELECTION = 10;
 
@@ -66,26 +49,27 @@ const Post_Write_Coding = () => {
       // 컨트롤 바 UI
       ...provided,
       backgroundColor: "white",
-      borderColor: "#ccc",
       boxShadow: "none",
       "&:hover": { borderColor: "#333333" },
       maxWidth: "1280px",
-      border: "1px solid #f1f1f1",
+      // border: "1px solid #f1f1f1",
+      border: "none",
       padding: "5px",
-      fontSize: "20px",
+      fontSize: "16px",
       fontFamily: "medium, sans-serif",
-      marginLeft: "10px",
+      // marginLeft: "10px",
       marginRight: "10px",
     }),
     menu: (provided) => ({
       // 토글 메뉴 바 UI
       ...provided,
+      marginTop: "-1px",
       backgroundColor: "white",
-      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+      boxShadow: "0px 2px 5px 1px rgba(0, 0, 0, 0.1)",
       zIndex: "50",
       maxWidth: "1280px",
       padding: "5px 25px",
-      fontSize: "15px",
+      fontSize: "12px",
       fontFamily: "medium, sans-serif",
     }),
     option: (provided, { isSelected, isFocused }) => ({
@@ -113,7 +97,7 @@ const Post_Write_Coding = () => {
       ...provided,
       color: "white",
       marginBottom: "1px",
-      fontSize: "14px",
+      fontSize: "12px",
       fontFamily: "medium",
     }),
     // 삭제버튼
@@ -137,45 +121,34 @@ const Post_Write_Coding = () => {
 
   return (
     <>
-      {isMobile ? (
-        <Post_Write_Coding_M />
-      ) : (
-        <>
-          <WriteWrap>
-            <WriteContainer>
-              <Post_WriteSort />
-              <WriteTitleBox>
-                <WriteTitle
-                  autoComplete="off"
-                  placeholder="제목을 입력하세요."
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </WriteTitleBox>
-              <WriteTagBox>
-                {/* <WriteTags
-              placeholder="태그를 설정하세요. (최대 10개)"
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            /> */}
-                <Select
-                  options={languageOptions}
-                  isMulti
-                  onChange={handleChange}
-                  placeholder="태그를 설정하세요. (최대 10개)"
-                  styles={customStyles}
-                />
-              </WriteTagBox>
-              <Post_WriteEditor_Coding
-                title={title}
-                language={selectedLanguages}
-              />
-            </WriteContainer>
-          </WriteWrap>
-        </>
-      )}
+      <WriteWrap>
+        <WriteContainer>
+          <Post_WriteSort_M />
+          <WriteTitleBox>
+            <WriteTitle
+              autoComplete="off"
+              placeholder="제목을 입력하세요."
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </WriteTitleBox>
+          <WriteTagBox>
+            <Select
+              options={languageOptions}
+              isMulti
+              onChange={handleChange}
+              placeholder="태그를 설정하세요."
+              styles={customStyles}
+            />
+          </WriteTagBox>
+          <Post_WriteEditor_Coding_M
+            title={title}
+            language={selectedLanguages}
+          />
+        </WriteContainer>
+      </WriteWrap>
     </>
   );
 };
 
-export default Post_Write_Coding;
+export default Post_Write_Coding_M;
