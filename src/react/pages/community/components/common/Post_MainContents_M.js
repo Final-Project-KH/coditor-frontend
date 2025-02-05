@@ -46,6 +46,7 @@ import {
   TeamDisplayNames,
 } from "../common/DisplayNames";
 import { useSelector } from "react-redux";
+import Post_UserProfile_M from "./Post_UserProfile_M";
 
 const Post_MainContents_M = ({ boardType }) => {
   const { boardId } = useParams();
@@ -314,6 +315,7 @@ const Post_MainContents_M = ({ boardType }) => {
 
   return (
     <>
+      <Post_UserProfile_M />
       {posts.map((post, index) => (
         <MainPostContainer key={index}>
           <MainPostTopBox>

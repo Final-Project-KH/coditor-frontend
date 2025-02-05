@@ -14,13 +14,13 @@ import {
   Container,
 } from "../../styles/community/Post_M";
 import Post_ReplyArea from "./components/common/Post_ReplyArea";
-import Post_UserProfile from "./components/common/Post_UserProfile";
 import { PathLink } from "../../styles/community/Community";
 import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
 import Post_MainContents from "./components/common/Post_MainContents";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ScrollToTopButton from "../ScrollToTopButton";
 import Post_MainContents_M from "./components/common/Post_MainContents_M";
+import AxiosApi from "../../../api/AxiosApi";
 
 const Post_Read_M = () => {
   const navigate = useNavigate();
@@ -35,6 +35,7 @@ const Post_Read_M = () => {
     queryParams.get("sortBy") || "createdAt"
   );
   const [order, setOrder] = useState(queryParams.get("order") || "desc");
+  const [postTitle, setPostTitle] = useState("");
 
   // TopBox firstpath
   const handleCommunity = () => {
@@ -54,6 +55,30 @@ const Post_Read_M = () => {
     navigate(`/community/${boardType}/post/${boardId}`);
   };
 
+  const boardNameConverter = [
+    { type: "coding", display: "💻 코딩 질문" },
+    { type: "course", display: "🎓 진로 질문" },
+    { type: "study", display: "️✏️ 스터디" },
+    { type: "team", display: "📋 팀 프로젝트" },
+  ];
+
+  const boardDisplayName =
+    boardNameConverter.find((item) => item.type === boardType)?.display ||
+    boardType;
+
+  // Get Post from Backend
+  useEffect(() => {
+    const readPost = async () => {
+      try {
+        const response = await AxiosApi.getPost(boardId);
+        setPostTitle(response.title);
+      } catch (error) {
+        console.error("제목 가져오는 중 오류 발생 : ", error);
+      }
+    };
+    readPost();
+  }, [boardId]);
+
   return (
     <>
       <Wrap>
@@ -64,20 +89,30 @@ const Post_Read_M = () => {
             </TopBoxLink>
             <TopBoxArrow>{`>`}</TopBoxArrow>
             <TopBoxLink onClick={() => handleCommunityBoard()}>
-              <TopBoxText>{boardType}</TopBoxText>
+              <TopBoxText>{boardDisplayName}</TopBoxText>
             </TopBoxLink>
           </TopBox>
         </TopBoxWide>
         <TopBoxWide2>
           <TopBox2>
             <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText2>게시글 상세보기</TopBoxText2>
+              <TopBoxText2
+                style={{
+                  maxWidth: "89vw",
+                  display: "-webkit-box",
+                  WebkitBoxOrient: "vertical",
+                  WebkitLineClamp: "1",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {postTitle}
+              </TopBoxText2>
             </TopBoxLink>
           </TopBox2>
         </TopBoxWide2>
         <Container>
           <Post_MainContents_M boardType={boardType} />
-          <Post_UserProfile />
           <Post_ReplyArea
             boardType={boardType}
             page={page}

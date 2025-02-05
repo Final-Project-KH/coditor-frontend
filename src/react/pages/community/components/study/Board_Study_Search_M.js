@@ -8,7 +8,7 @@ import {
   SearchContainer,
 } from "../../../../styles/community/Board_M";
 
-const Board_Coding_Search_M = ({
+const Board_Study_Search_M = ({
   boardType,
   onSearchChange,
   onEnumFilterRefresh,
@@ -42,7 +42,7 @@ const Board_Coding_Search_M = ({
               value={searchValue}
               onKeyDown={handleKeyDown}
               onChange={handleInputChange}
-              placeholder="궁금한 내용을 검색해보세요!"
+              placeholder="관심 스터디를 검색해보세요!"
             />
           </InputSearchBox>
           <InputSearchButton onClick={handleSearch}>검색</InputSearchButton>
@@ -52,4 +52,4 @@ const Board_Coding_Search_M = ({
   );
 };
 
-export default Board_Coding_Search_M;
+export default Board_Study_Search_M;
