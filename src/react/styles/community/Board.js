@@ -22,6 +22,7 @@ export const TopSortOuterContiner = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const TopSortInnerContainer = styled.div.attrs({
@@ -31,6 +32,7 @@ export const TopSortInnerContainer = styled.div.attrs({
   display: flex;
   flex-direction: row;
 `;
+
 export const TopSortTitleActive = styled.div.attrs({
   id: "topsorttitleactive",
 })`
@@ -160,13 +162,19 @@ export const TagSearch = styled.div.attrs({
   &:focus {
     outline: none;
   }
+  &:empty::before {
+    content: "태그로 검색해보세요!";
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    font-family: "medium", sans-serif;
+  }
 `;
 export const TagSearchItem = styled.div.attrs({
   id: "tagsearchitem",
 })`
-  height: 30px;
+  height: 28px;
   border: none;
-  font-size: 15px;
+  font-size: 13px;
   display: flex;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.8);
@@ -238,6 +246,7 @@ export const MiddleSortOuterContiner = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const MiddleSortInnerContainer = styled.div.attrs({
@@ -345,7 +354,7 @@ export const PostListContainer = styled.div.attrs({
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 
 export const PostEach = styled.div.attrs({
@@ -356,11 +365,12 @@ export const PostEach = styled.div.attrs({
   flex-direction: column;
   gap: 10px;
   &::after {
-    margin-top: 10px;
+    margin-top: 5px;
     content: "";
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const PostTop = styled.div.attrs({
@@ -509,6 +519,7 @@ export const PostBottomDataBox = styled.div.attrs({
   right: 5px;
   justify-content: center;
   align-items: center;
+  margin-top: 5px;
 `;
 export const PostBottomRepliesBox = styled.div.attrs({
   id: "postbottomrepliesbox",
@@ -582,4 +593,40 @@ export const PostBottomViewsText = styled.div.attrs({
   font-family: "regular", sans-serif;
   font-size: 12px;
   color: black;
+`;
+
+export const EachBoardContainer = styled.div.attrs({
+  id: "eachboardcontainer",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  padding: 0px 20px;
+  gap: 10px;
+`;
+export const EachBoardTitle = styled.div.attrs({
+  id: "eachboardtitle",
+})`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+  color: black;
+  font-size: 20px;
+  font-family: "semibold", sans-serif;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    margin-top: 20px;
+    transform: scaleY(0.5);
+  }
 `;

@@ -15,6 +15,7 @@ export const Container = styled.div.attrs({
   background-color: white;
   overflow: hidden;
   border-bottom: 1px solid #ddd;
+  z-index: 100;
   ${(props) =>
     props.isOpen
       ? css`
@@ -168,6 +169,7 @@ export const MenuContents = styled.div.attrs({
   font-family: "medium", sans-serif;
   font-size: 15px;
   margin: 8px;
+  cursor: pointer;
 `;
 export const LinkContents = styled.div.attrs({
   id: "menucontents",

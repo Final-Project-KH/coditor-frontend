@@ -57,6 +57,6 @@ export const ChapterName = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: white;
-    transform: rotate(0deg);
+    transform: scaleY(0.5);
   }
 `;

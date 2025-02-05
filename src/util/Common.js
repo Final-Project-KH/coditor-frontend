@@ -62,6 +62,11 @@ const Common = {
     store.dispatch(setLoginData({ nickname: nickname }));
   },
 
+  // 추가
+  setRegistered_at: (registered_at) => {
+    store.dispatch(setLoginData({ registered_at: registered_at }));
+  },
+
   setProfile: (profile) => {
     store.dispatch(setLoginData({ profile: profile }));
   },

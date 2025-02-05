@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useRef} from "react";
-import {useNavigate, useLocation} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   Wrap,
@@ -21,11 +21,12 @@ import {
   MyPageMenu,
   MyPageMenuContents,
   StyledNavigate,
+  MyPageProfileImg,
 } from "../../styles/navBar/NavBar";
 
 import store from "../../../redux/store/store";
-import {logoutAuth} from "../../../redux/slice/authSlice";
-import {logoutCondition} from "../../../redux/slice/loginSlice";
+import { logoutAuth } from "../../../redux/slice/authSlice";
+import { logoutCondition } from "../../../redux/slice/loginSlice";
 import AboutBar from "../sideBar/AboutBar";
 import StudyBar from "../sideBar/StudyBar";
 import CodingTestBar from "../sideBar/CodingTestBar";
@@ -96,7 +97,7 @@ const NavBar = () => {
 
   // 메뉴 닫기 (추가적인 상황에서 사용)
   const closeMenu = (menuName) => {
-    setMenuState((prev) => ({...prev, [menuName]: false}));
+    setMenuState((prev) => ({ ...prev, [menuName]: false }));
     setTimeout(() => {
       setAnimatingMenus((prev) => ({
         ...prev,
@@ -107,7 +108,7 @@ const NavBar = () => {
 
   // 메뉴 닫기 (떨림 방지용 -> Timeout 제거)
   const closeMenuIm = (menuName) => {
-    setMenuState((prev) => ({...prev, [menuName]: false}));
+    setMenuState((prev) => ({ ...prev, [menuName]: false }));
     setAnimatingMenus((prev) => ({
       ...prev,
       [`${menuName}Animating`]: false,
@@ -201,27 +202,15 @@ const NavBar = () => {
   };
 
   const location = useLocation();
-  const {firstpath} = location.state || {};
+
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: "study",
-      },
-    });
+    navigate("/study");
   };
   const handleCommunity = () => {
-    navigate("/community", {
-      state: {
-        firstpath: "comunity",
-      },
-    });
+    navigate("/community");
   };
   const handleMyPage = () => {
-    navigate("/mypage", {
-      state: {
-        firstpath: paths.pathMypage,
-      },
-    });
+    navigate("/mypage");
   };
 
   const profile = useSelector((state) => state.auth.profile);
@@ -365,10 +354,24 @@ const NavBar = () => {
                     <div />
                   </MyPageButton>
                   <MyPageMenu ref={myPageRef} isToggleMyPage={isToggleMyPage}>
-                    <MyPageMenuContents isToggleMyPage={isToggleMyPage}>
-                      내 정보
+                    <MyPageMenuContents
+                      isToggleMyPage={isToggleMyPage}
+                      onClick={() => {
+                        handleMyPage();
+                        closeMyPage();
+                      }}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <MyPageProfileImg isUser={isUser} isProfile={profile} />
                     </MyPageMenuContents>
-                    <MyPageMenuContents isToggleMyPage={isToggleMyPage}>
+                    <MyPageMenuContents
+                      isToggleMyPage={isToggleMyPage}
+                      onClick={() => {
+                        handleMyPage();
+                        closeMyPage();
+                      }}
+                      style={{ cursor: "pointer" }}
+                    >
                       {nickname}
                     </MyPageMenuContents>
                     <MyPageMenuContents isToggleMyPage={isToggleMyPage}>
@@ -378,13 +381,13 @@ const NavBar = () => {
                           closeMyPage();
                         }}
                       ></StyledNavigate>
-                      마이 페이지
+                      my page
                     </MyPageMenuContents>
                     <MyPageMenuContents
                       isToggleMyPage={isToggleMyPage}
                       onClick={() => handleLogout()}
                     >
-                      로그아웃
+                      logout
                     </MyPageMenuContents>
                   </MyPageMenu>
                 </>

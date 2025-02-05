@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import {
   MainPostContainer,
   MainPostTop,
@@ -16,6 +16,8 @@ import {
   MainPostThumbsDownBox,
   MainPostThumbsDownImg,
   MainPostThumbsDownText,
+  MainPostContentsPending,
+  MainPostContentsSolved,
   MainPostMiddle,
   LeftEvBox,
   LeftEvUp,
@@ -24,38 +26,122 @@ import {
   MainPostContentsText,
   MainPostTagsBox,
   MainPostTag,
+  MainPostExtra,
+  MainPostDiv,
+  MainPostExtraItemContainer,
+  MainPostExtraItemOtherContainer,
+  MainPostExtraButton,
+  MainPostExtraItem,
+  MainPostExtraOtherItem,
+  MainPostTitleArea,
+  MainPostPending,
 } from "../../../../styles/community/Post";
 import AxiosApi from "../../../../../api/AxiosApi";
-import {useLocation, useParams, useNavigate} from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import {
   LanguageDisplayNames,
   CourseDisplayNames,
   StudyDisplayNames,
   TeamDisplayNames,
 } from "../common/DisplayNames";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
-const Post_MainContents = ({boardType}) => {
-  const {boardId} = useParams();
+const Post_MainContents = ({ boardType }) => {
+  const { boardId } = useParams();
   // const [boardType, setBoardType] = useState("CODING");
   const [posts, setPosts] = useState([]);
-  const location = useLocation();
-  const {firstpath, secondpath, thirdpath} = location.state || {};
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userDisLikeCnt, setUserDisLikeCnt] = useState("");
   const [userLikeCnt, setUserLikeCnt] = useState("");
+  const [writerKeyNumber, setWriterKeyNumber] = useState(null);
+  const [boardStatus, setBoardStatus] = useState(null);
+  const [isExtra, setIsExtra] = useState(false);
+  const [isExtraOther, setIsExtraOther] = useState(false);
 
   const userkeynumber = useSelector((state) => state.auth.keynumber);
   const accesstoken = useSelector((state) => state.auth.accesstoken);
   const navigate = useNavigate();
+
+  const handleDeleteNavigate = () => {
+    navigate(`/community/${boardType}`, {
+      state: {
+        id: boardType,
+      },
+    });
+  };
+
+  const handleExtra = () => {
+    setIsExtra(!isExtra);
+    console.log(isExtra);
+  };
+
+  const handleExtraOther = () => {
+    setIsExtraOther(!isExtraOther);
+  };
+
+  console.log("보드 타입 확인 ", boardType);
+  console.log("현재 보드 status : ", boardStatus);
+
+  const handleStatus = async () => {
+    let changeStatus;
+
+    if (boardStatus === "INACTIVE") {
+      changeStatus = "ACTIVE";
+    } else if (boardStatus === "ACTIVE") {
+      changeStatus = "INACTIVE";
+    }
+    try {
+      const response = await AxiosApi.modifyPostStatus(
+        boardId,
+        changeStatus,
+        boardType.toUpperCase()
+      );
+      console.log(response);
+      if (response) {
+        setBoardStatus(changeStatus);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (userkeynumber != writerKeyNumber) {
+      return alert("삭제 권한이 없습니다.");
+    }
+    try {
+      const response = await AxiosApi.deletePost(boardId);
+      if (response) {
+        alert("글이 삭제되었습니다.");
+        handleDeleteNavigate();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Get Post from Backend
   useEffect(() => {
     const readPost = async () => {
       try {
         const response = await AxiosApi.getPost(boardId);
+        console.log("게시글 받아온 데이터", response);
+
         setPosts([response]);
+        setWriterKeyNumber(response.userKey);
+        setBoardStatus(response.status);
+        console.log("유저 아이디 : ", writerKeyNumber);
+        console.log("스토어 유저 아이디 :", userkeynumber);
+
+        console.log("저장된 유저 아이디 타입 : ", typeof writerKeyNumber);
+        console.log(
+          "스토어에서 가져온 유저 아이디 타입 : ",
+          typeof userkeynumber
+        );
+
         console.log("post : ", posts);
+        console.log("post 찍기 : ", posts[0]);
+
         console.log(response);
         console.log("보드 아이디 : ", boardId);
       } catch (error) {
@@ -63,7 +149,7 @@ const Post_MainContents = ({boardType}) => {
       }
     };
     readPost();
-  }, [boardId]);
+  }, [boardId, boardStatus]);
 
   useEffect(() => {
     const reactionState = async () => {
@@ -110,7 +196,7 @@ const Post_MainContents = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, likeCnt: post.likeCnt + 1}
+              ? { ...post, likeCnt: post.likeCnt + 1 }
               : post
           )
         );
@@ -120,7 +206,7 @@ const Post_MainContents = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, likeCnt: post.likeCnt - 1}
+              ? { ...post, likeCnt: post.likeCnt - 1 }
               : post
           )
         );
@@ -166,7 +252,7 @@ const Post_MainContents = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, dislikeCnt: post.dislikeCnt + 1}
+              ? { ...post, dislikeCnt: post.dislikeCnt + 1 }
               : post
           )
         );
@@ -176,7 +262,7 @@ const Post_MainContents = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, dislikeCnt: post.dislikeCnt - 1}
+              ? { ...post, dislikeCnt: post.dislikeCnt - 1 }
               : post
           )
         );
@@ -209,31 +295,56 @@ const Post_MainContents = ({boardType}) => {
       {posts.map((post, index) => (
         <MainPostContainer key={index}>
           <MainPostTop>
-            <MainPostTitle>{post.title}</MainPostTitle>
-            <MainPostInformation>
-              <MainPostDate>
-                {new Date(post.createdAt)
-                  .toLocaleString("ko-KR", {
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    hour12: false,
-                  })
-                  .replace(/\. /g, ".")}
-                &nbsp;작성
-              </MainPostDate>
-              <MiddleDot />
-              <MainPostViewsBox>
-                <MainPostViewsImg />
-                <MainPostViewsText>{post.viewCnt}</MainPostViewsText>
-              </MainPostViewsBox>
-              <MiddleDot />
-              {post.updatedAt && (
-                <>
-                  <MainPostEditedText>
-                    {new Date(post.updatedAt)
+            <MainPostTitleArea>
+              <MainPostTitle>{post.title}</MainPostTitle>
+              <MainPostPending>
+                {boardType === "coding" ? (
+                  boardStatus === "INACTIVE" ? (
+                    <MainPostContentsSolved>해결됨</MainPostContentsSolved>
+                  ) : (
+                    <MainPostContentsPending>미해결</MainPostContentsPending>
+                  )
+                ) : boardType === "study" ? (
+                  boardStatus === "INACTIVE" ? (
+                    <MainPostContentsSolved>모집완료</MainPostContentsSolved>
+                  ) : (
+                    <MainPostContentsPending>모집중</MainPostContentsPending>
+                  )
+                ) : (
+                  boardType === "team" &&
+                  (boardStatus === "INACTIVE" ? (
+                    <MainPostContentsSolved>모집완료</MainPostContentsSolved>
+                  ) : (
+                    <MainPostContentsPending>모집중</MainPostContentsPending>
+                  ))
+                )}
+              </MainPostPending>
+            </MainPostTitleArea>
+            <MainPostDiv>
+              <MainPostInformation>
+                <MainPostDate>
+                  {new Date(post.createdAt)
+                    .toLocaleString("ko-KR", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: false,
+                    })
+                    .replace(/\. /g, ".")}
+                  &nbsp;작성
+                </MainPostDate>
+                <MiddleDot />
+                <MainPostViewsBox>
+                  <MainPostViewsImg />
+                  <MainPostViewsText>{post.viewCnt}</MainPostViewsText>
+                </MainPostViewsBox>
+                <MiddleDot />
+                {post.updatedAt && (
+                  <>
+                    <MainPostEditedText>
+                      {/* {new Date(post.updatedAt)
                       .toLocaleString("ko-KR", {
                         year: "numeric",
                         month: "2-digit",
@@ -242,24 +353,89 @@ const Post_MainContents = ({boardType}) => {
                         minute: "2-digit",
                         hour12: false,
                       })
-                      .replace(/\. /g, ".")}
-                    수정됨
-                  </MainPostEditedText>
-                  <MiddleDot />
-                </>
+                      .replace(/\. /g, ".")} */}
+                      수정됨
+                    </MainPostEditedText>
+                    <MiddleDot />
+                  </>
+                )}
+                <MainPostThumbsUpBox>
+                  <MainPostThumbsUpImg />
+                  <MainPostThumbsUpText>{post.likeCnt}</MainPostThumbsUpText>
+                </MainPostThumbsUpBox>
+                <MiddleDot />
+                <MainPostThumbsDownBox>
+                  <MainPostThumbsDownImg />
+                  <MainPostThumbsDownText>
+                    {post.dislikeCnt}
+                  </MainPostThumbsDownText>
+                </MainPostThumbsDownBox>
+              </MainPostInformation>
+              {writerKeyNumber == userkeynumber ? (
+                <MainPostExtra>
+                  <MainPostExtraItemContainer isOpen={isExtra}>
+                    {boardType === "coding" && boardStatus === "ACTIVE" ? (
+                      <MainPostExtraItem
+                        onClick={() => handleStatus()}
+                        isOpen={isExtra}
+                      >
+                        해결됨으로 변경
+                      </MainPostExtraItem>
+                    ) : boardType === "coding" && boardStatus === "INACTIVE" ? (
+                      <MainPostExtraItem
+                        onClick={() => handleStatus()}
+                        isOpen={isExtra}
+                      >
+                        미해결로 변경
+                      </MainPostExtraItem>
+                    ) : (boardType === "study" || boardType === "team") &&
+                      boardStatus === "ACTIVE" ? (
+                      <MainPostExtraItem
+                        onClick={() => handleStatus()}
+                        isOpen={isExtra}
+                      >
+                        모집완료로 변경
+                      </MainPostExtraItem>
+                    ) : (
+                      (boardType === "study" || boardType === "team") &&
+                      boardStatus === "INACTIVE" && (
+                        <MainPostExtraItem
+                          onClick={() => handleStatus()}
+                          isOpen={isExtra}
+                        >
+                          모집중으로 변경
+                        </MainPostExtraItem>
+                      )
+                    )}
+                    <MainPostExtraItem isOpen={isExtra}>
+                      글 수정
+                    </MainPostExtraItem>
+                    <MainPostExtraItem
+                      onClick={() => handleDelete()}
+                      isOpen={isExtra}
+                    >
+                      글 삭제
+                    </MainPostExtraItem>
+                  </MainPostExtraItemContainer>
+                  <MainPostExtraButton
+                    onClick={handleExtra}
+                  ></MainPostExtraButton>
+                </MainPostExtra>
+              ) : writerKeyNumber != userkeynumber && userkeynumber !== "" ? (
+                <MainPostExtra>
+                  <MainPostExtraItemOtherContainer isOpenOther={isExtraOther}>
+                    <MainPostExtraOtherItem isOpenOther={isExtraOther}>
+                      게시글 신고
+                    </MainPostExtraOtherItem>
+                  </MainPostExtraItemOtherContainer>
+                  <MainPostExtraButton
+                    onClick={handleExtraOther}
+                  ></MainPostExtraButton>
+                </MainPostExtra>
+              ) : (
+                userkeynumber === "" && <MainPostExtra></MainPostExtra>
               )}
-              <MainPostThumbsUpBox>
-                <MainPostThumbsUpImg />
-                <MainPostThumbsUpText>{post.likeCnt}</MainPostThumbsUpText>
-              </MainPostThumbsUpBox>
-              <MiddleDot />
-              <MainPostThumbsDownBox>
-                <MainPostThumbsDownImg />
-                <MainPostThumbsDownText>
-                  {post.dislikeCnt}
-                </MainPostThumbsDownText>
-              </MainPostThumbsDownBox>
-            </MainPostInformation>
+            </MainPostDiv>
           </MainPostTop>
           <MainPostMiddle>
             <LeftEvBox>
@@ -275,7 +451,7 @@ const Post_MainContents = ({boardType}) => {
             <MainPostContentsBox>
               <MainPostContentsText
                 className="main-post-content"
-                dangerouslySetInnerHTML={{__html: post.content}}
+                dangerouslySetInnerHTML={{ __html: post.content }}
               />
               {(post.language || post.course || post.study || post.team) && (
                 <MainPostTagsBox>

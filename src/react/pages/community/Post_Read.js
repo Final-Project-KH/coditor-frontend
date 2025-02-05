@@ -1,4 +1,9 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from "react-router-dom";
 
 import {
   Wrap,
@@ -15,13 +20,13 @@ import Post_UserProfile from "./components/common/Post_UserProfile";
 import { PathLink } from "../../styles/community/Community";
 import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
 import Post_MainContents from "./components/common/Post_MainContents";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ScrollToTopButton from "../ScrollToTopButton";
+import Post_Read_M from "./Post_Read_M";
 
 const Post_Read = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const { boardType, boardId } = useParams();
   const queryParams = new URLSearchParams(location.search);
 
@@ -33,75 +38,74 @@ const Post_Read = () => {
   );
   const [order, setOrder] = useState(queryParams.get("order") || "desc");
 
+  const { mainContentRef } = useOutletContext();
+  const { isMobile } = useOutletContext();
+
+  // 페이지 진입 시 스크롤 위치 초기화
+  useEffect(() => {
+    if (mainContentRef?.current) {
+      mainContentRef.current.scrollTo(0, 0);
+    }
+  }, [mainContentRef]);
+
   // TopBox firstpath
   const handleCommunity = () => {
     console.log(boardType);
-    navigate("/community", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/community");
   };
 
   // TopBox secondpath
-  const handleCommunityCoding = () => {
+  const handleCommunityBoard = () => {
     console.log(boardType);
-    navigate(`/community/${boardType}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate(`/community/${boardType}`);
   };
 
   // TopBox thirdpath
   const handleRefresh = () => {
     console.log(boardType);
-    navigate(`/community/${boardType}/post/${boardId}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate(`/community/${boardType}/post/${boardId}`);
   };
 
   return (
     <>
-      <Wrap>
-        <TopBoxWide>
-          <TopBox>
-            <PathLink onClick={() => handleCommunity()}>
-              <TopBoxText>{firstpath}</TopBoxText>
-            </PathLink>
-            <TopBoxArrow>{`>`}</TopBoxArrow>
-            <PathLink onClick={() => handleCommunityCoding()}>
-              <TopBoxText>{secondpath}</TopBoxText>
-            </PathLink>
-            <TopBoxArrow>{`>`}</TopBoxArrow>
-            <PathLink onClick={() => handleRefresh()}>
-              <TopBoxText>{thirdpath}</TopBoxText>
-            </PathLink>
-          </TopBox>
-        </TopBoxWide>
-        <Container>
-          <LeftContainer>
-            <Post_MainContents boardType={boardType} />
-            <Post_ReplyArea
-              boardType={boardType}
-              page={page}
-              size={size}
-              sortBy={sortBy}
-              order={order}
-            />
-          </LeftContainer>
-          <RightContainer>
-            <Post_UserProfile />
-            <Post_RelatedPosts />
-          </RightContainer>
-        </Container>
-        <ScrollToTopButton />
-      </Wrap>
+      {isMobile ? (
+        <Post_Read_M />
+      ) : (
+        <Wrap>
+          <TopBoxWide>
+            <TopBox>
+              <PathLink onClick={() => handleCommunity()}>
+                <TopBoxText>community</TopBoxText>
+              </PathLink>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <PathLink onClick={() => handleCommunityBoard()}>
+                <TopBoxText>{boardType}</TopBoxText>
+              </PathLink>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <PathLink onClick={() => handleRefresh()}>
+                <TopBoxText>게시글 상세보기</TopBoxText>
+              </PathLink>
+            </TopBox>
+          </TopBoxWide>
+          <Container>
+            <LeftContainer>
+              <Post_MainContents boardType={boardType} />
+              <Post_ReplyArea
+                boardType={boardType}
+                page={page}
+                size={size}
+                sortBy={sortBy}
+                order={order}
+              />
+            </LeftContainer>
+            <RightContainer>
+              <Post_UserProfile />
+              <Post_RelatedPosts />
+            </RightContainer>
+          </Container>
+          <ScrollToTopButton />
+        </Wrap>
+      )}
     </>
   );
 };

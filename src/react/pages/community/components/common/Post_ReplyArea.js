@@ -56,7 +56,7 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
         );
         setReplies(response.content);
         setTotalPages(response.totalPages);
-        console.log(response);
+        console.log("댓글 항목 : ", response);
       } catch (error) {
         console.error("댓글 리스트 가져오는 중 오류 발생 : ", error);
       }
@@ -90,8 +90,6 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
   };
 
   const nickname = useSelector((state) => state.auth.nickname);
-  const profile = useSelector((state) => state.auth.profile); // 이거 아님
-  // 작성자 프로필 가져와야함
 
   return (
     <>
@@ -117,7 +115,7 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
               .map((reply, index) => (
                 <ReplyEach key={index}>
                   <ReplyUserProfileBox>
-                    <ReplyUserProfileImg isProfile={profile} />
+                    <ReplyUserProfileImg isProfile={reply.profileUrl} />
                     <ReplyUserProfileTextBox>
                       <ReplyUserId>{reply.name}</ReplyUserId>
                       <ReplyUserDate>

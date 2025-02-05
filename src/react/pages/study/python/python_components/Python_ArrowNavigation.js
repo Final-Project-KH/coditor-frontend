@@ -11,7 +11,6 @@ import { PythonStudyChapter } from "../../../../../util/study/PythonStudyChapter
 const Python_ArrowNavigation = ({ direction }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { firstpath, secondpath, thirdpath, fourthpath } = location.state || {};
 
   // 현재 경로의 chapterId와 contentIndex 추출
   const currentPath = location.pathname.split("/");
@@ -83,14 +82,7 @@ const Python_ArrowNavigation = ({ direction }) => {
     }
 
     if (nextContent && nextNavigatePath) {
-      navigate(nextNavigatePath, {
-        state: {
-          firstpath: firstpath,
-          secondpath: secondpath,
-          thirdpath: nextContent.thirdpath,
-          fourthpath: nextContent.label,
-        },
-      });
+      navigate(nextNavigatePath);
     } else {
       console.error("다음 콘텐츠를 찾을 수 없습니다.");
     }

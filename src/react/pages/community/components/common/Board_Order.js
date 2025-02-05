@@ -13,20 +13,22 @@ import {
   MiddleWriteButton,
   MiddleSortContentsBox,
 } from "../../../../styles/community/Board";
+import { useSelector } from "react-redux";
 
 const Board_Order = ({ boardType, onSortChange }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const [activeOrder, setActiveOrder] = useState("createdAt");
+  const userAuth = useSelector((state) => state.auth.accesstoken);
 
   // write post
   const handleWrite = () => {
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    } 
     navigate(`/community/${boardType}/write`, {
       state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: "write",
+        id: boardType,
       },
     });
   };

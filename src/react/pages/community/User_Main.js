@@ -18,10 +18,10 @@ import {
   UserPostAmount,
 } from "../../styles/community/User";
 import {PathLink} from "../../styles/community/Community";
-import Post_UserProfile from "./components/common/Post_UserProfile";
 import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
 import User_Feed from "./components/common/User_Feed";
 import Board_Community_Main from "./components/common/Board_Community_Main";
+import Board_Community_User from "./components/common/Board_Community_User";
 import ScrollToTopButton from "../ScrollToTopButton";
 import {useEffect, useState} from "react";
 import AxiosApi from "../../../api/AxiosApi";
@@ -29,21 +29,34 @@ import AxiosApi from "../../../api/AxiosApi";
 const User_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {firstpath, secondpath, writerKey} = location.state || {};
+  const {writerKey} = location.state || {};
   const [writerProfile, setWriterProfile] = useState(null);
   const [writerName, setWriterName] = useState("");
   const [writerPostCnt, setWriterPostCnt] = useState(null);
+  const [writerSelfIntro, setWriterSelfIntro] = useState("");
+  const queryParams = new URLSearchParams(location.search);
+  const [page, setPage] = useState(queryParams.get("page") || 1);
+  const [size, setSize] = useState(queryParams.get("size") || 10);
 
   useEffect(() => {
     const readUserPost = async () => {
+      console.log(writerKey);
+
       try {
-        const response = await AxiosApi.getotherpost(writerKey);
-        setWriterProfile(response.content[0].profileUrl);
-        setWriterName(response.content[0].name);
-        console.log("불러온 작성자 게시글 목록 : ", response.content);
-        console.log("프로필 url: ", response.content[0].profileUrl);
+        const response = await AxiosApi.getotherprofile(writerKey);
+        setWriterProfile(response.profileUrl);
+        setWriterName(response.nickname);
+        setWriterPostCnt(response.postCnt);
+        if (response.introduction === null) {
+          setWriterSelfIntro("아직 자기소개글이 없습니다.");
+        } else if (response.introduction === "") {
+          setWriterSelfIntro("아직 자기소개글이 없습니다.");
+        } else {
+          setWriterSelfIntro(response.introduction);
+        }
+        console.log("불러온 작성자 게시글 목록 : ", response);
       } catch (error) {
-        console.log("유저 게시글 불러올 때 오류 발생 : ");
+        console.log("유저 게시글 불러올 때 오류 발생 : ", error);
       }
     };
     readUserPost();
@@ -51,19 +64,13 @@ const User_Main = () => {
 
   // TopBox firstpath
   const handleCommunity = () => {
-    navigate("/community", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/community");
   };
 
   // TopBox secondpath
   const handleRefresh = () => {
     navigate(`/community/user/${writerKey}`, {
       state: {
-        firstpath: firstpath,
-        secondpath: "user page",
         writerKey: writerKey,
       },
     });
@@ -75,11 +82,11 @@ const User_Main = () => {
         <TopBoxWide>
           <TopBox>
             <PathLink onClick={() => handleCommunity()}>
-              <TopBoxText>{firstpath}</TopBoxText>
+              <TopBoxText>community</TopBoxText>
             </PathLink>
             <TopBoxArrow>{`>`}</TopBoxArrow>
             <PathLink onClick={() => handleRefresh()}>
-              <TopBoxText>{secondpath}</TopBoxText>
+              <TopBoxText>User Page</TopBoxText>
             </PathLink>
           </TopBox>
         </TopBoxWide>
@@ -89,15 +96,21 @@ const User_Main = () => {
               <UserProfileImg isProfile={writerProfile} />
               <UserProfileTextBox>
                 <UserId>{writerName}</UserId>
-                <UserPostAmount>작성한 질문수 </UserPostAmount>
+                <UserPostAmount>작성한 질문수 {writerPostCnt}</UserPostAmount>
               </UserProfileTextBox>
             </UserProfileBox>
           </LeftContainer>
           <RightContainer>
-            <User_Feed />
+            <User_Feed intro={writerSelfIntro} />
             <PostContainer>
               <PostTitle>작성글</PostTitle>
-              <Board_Community_Main />
+              <Board_Community_User
+                writerName={writerName}
+                writerKey={writerKey}
+                writerProfile={writerProfile}
+                page={page}
+                size={size}
+              />
             </PostContainer>
           </RightContainer>
         </Container>

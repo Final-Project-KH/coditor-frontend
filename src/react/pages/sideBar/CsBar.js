@@ -14,21 +14,11 @@ const CsBar = ({ isOpen, closeMenu, path }) => {
   const navigate = useNavigate();
 
   const handleReportClick = () => {
-    navigate("/cs/report", {
-      state: {
-        firstpath: path,
-        secondpath: "악성 사용자 신고",
-      },
-    });
+    navigate("/cs/report");
   };
 
   const handleQAClick = () => {
-    navigate("/cs/question", {
-      state: {
-        firstpath: path,
-        secondpath: "건의사항",
-      },
-    });
+    navigate("/cs/question");
   };
 
   return (

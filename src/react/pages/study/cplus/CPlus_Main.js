@@ -20,8 +20,6 @@ import CPlus_Main_M from "./CPlus_Main_M";
 
 const CPlus_Main = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
   const { isMobile } = useOutletContext();
 
@@ -34,21 +32,12 @@ const CPlus_Main = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleRefresh = () => {
-    navigate("/study/cplus", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/cplus");
   };
 
   // Chapter Scrolling
@@ -73,10 +62,10 @@ const CPlus_Main = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxText onClick={() => handleStudy()}>{firstpath}</TopBoxText>
+              <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleRefresh()}>
-                {secondpath}
+                C++
               </TopBoxText>
             </TopBox>
           </TopBoxWide>

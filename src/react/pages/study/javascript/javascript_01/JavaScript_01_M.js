@@ -21,8 +21,6 @@ import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const JavaScript_01_M = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
@@ -34,32 +32,17 @@ const JavaScript_01_M = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyJavaScript = () => {
-    navigate("/study/javascript", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/javascript");
   };
 
   // TopBox thirdpath
   const handleRefresh = () => {
-    navigate("/study/javascript/01", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/javascript/01");
     window.location.reload();
   };
 
@@ -68,18 +51,18 @@ const JavaScript_01_M = () => {
       <TopBoxWide>
         <TopBox>
           <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>{firstpath}</TopBoxText>
+            <TopBoxText>study</TopBoxText>
           </TopBoxLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <TopBoxLink onClick={() => handleStudyJavaScript()}>
-            <TopBoxText>{secondpath}</TopBoxText>
+            <TopBoxText>JavaScript</TopBoxText>
           </TopBoxLink>
           </TopBox>
           </TopBoxWide>
           <TopBoxWide2>
           <TopBox2>
           <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText2>{thirdpath}</TopBoxText2>
+            <TopBoxText2>01. 자바스크립트 기초</TopBoxText2>
           </TopBoxLink>
         </TopBox2>
       </TopBoxWide2>

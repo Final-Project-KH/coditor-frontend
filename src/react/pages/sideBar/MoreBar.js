@@ -9,22 +9,68 @@ import {
   OutLink,
   LinkContents,
 } from "../../styles/sideBar/MoreBar";
+import { useNavigate } from "react-router-dom";
+import { MenuLink } from "../../styles/sideBar/CsBar";
 
 const MoreBar = ({ isOpen, closeMenu, path }) => {
+  const navigate = useNavigate();
+
+  const handleNavigation = (navigatepath, data) => {
+    navigate(navigatepath, { state: data });
+  };
+  // 언어가 늘어난다면 다음과 같은 형식으로 맨 밑에 추가해주면 자동 생성이 됩니다.
+  const subMenuData = [
+    {
+      title: "✨ 프론트엔드",
+      navigatepath: "/roadmap/frontend",
+    },
+    {
+      title: "🛠️ 백엔드",
+      navigatepath: "/roadmap/backend",
+    },
+    {
+      title: "🪢 DevOps",
+      navigatepath: "/roadmap/devops",
+    },
+    {
+      title: "📚 풀스택",
+      navigatepath: "/roadmap/fullstack",
+    },
+    // {
+    //   title: "Data Anaysis",
+    //   navigatepath: "/roadmap/dataanalysis",
+    // },
+    // {
+    //   title: "AI & Data Science",
+    //   navigatepath: "/roadmap/datascience",
+    // },
+    // {
+    //   title: "앱 개발",
+    //   navigatepath: "/roadmap/appdev",
+    // },
+    // {
+    //   title: "게임 개발",
+    //   navigatepath: "/roadmap/gamedev",
+    // },
+    // {
+    //   title: "네트워크 & 보안",
+    //   navigatepath: "/roadmap/network",
+    // },
+  ];
+
   return (
     <Container isOpen={isOpen}>
       <MenuContainer>
-        <MenuColumn>
+        <MenuColumn onClick={closeMenu}>
           <MenuTitle>개발자 로드맵</MenuTitle>
-          <MenuContents>프론트엔드</MenuContents>
-          <MenuContents>백엔드</MenuContents>
-          <MenuContents>DevOps</MenuContents>
-          <MenuContents>풀스택</MenuContents>
-          <MenuContents>Data Analyst</MenuContents>
-          <MenuContents>AI & Data Science</MenuContents>
-          <MenuContents>앱 개발</MenuContents>
-          <MenuContents>게임 개발</MenuContents>
-          <MenuContents>네트워크 & 보안</MenuContents>
+          {subMenuData.map((menu, index) => (
+            <MenuContents
+              key={index}
+              onClick={() => handleNavigation(menu.navigatepath)}
+            >
+              <MenuLink>{menu.title}</MenuLink>
+            </MenuContents>
+          ))}
         </MenuColumn>
         <MenuColumn>
           <MenuTitle>
@@ -93,11 +139,41 @@ const MoreBar = ({ isOpen, closeMenu, path }) => {
         </MenuColumn>
         <MenuColumn>
           <MenuTitle>기타 정보</MenuTitle>
-          <MenuContents>IDE Top 10</MenuContents>
-          <MenuContents>생산성, 협업 도구 Top 10</MenuContents>
-          <MenuContents>IT 용어 사전</MenuContents>
-          <MenuContents>IT 관련 자격증 정리</MenuContents>
-          <MenuContents>연도별 언어 인기 순위</MenuContents>
+          <LinkContents
+            onClick={() => window.open("https://www.geeksforgeeks.org/top-10-ides-for-programmers/", "_blank")}
+            style={{ cursor: "pointer", textDecoration: "none" }}
+          >
+            IDE Top 10
+            <OutLink />
+          </LinkContents>
+          <LinkContents
+            onClick={() => window.open("https://clickup.com/ko/blog/145498/productivity-tools-for-agencies", "_blank")}
+            style={{ cursor: "pointer", textDecoration: "none" }}
+          >
+            생산성, 협업 도구 Top 10
+            <OutLink />
+          </LinkContents>
+          <LinkContents
+            onClick={() => window.open("https://terms.tta.or.kr/dictionary/searchList.do", "_blank")}
+            style={{ cursor: "pointer", textDecoration: "none" }}
+          >
+            IT 용어 사전
+            <OutLink />
+          </LinkContents>
+          <LinkContents
+            onClick={() => window.open("https://lifebase.kr/011-certi-com-it/?utm_source=chatgpt.com#google_vignette", "_blank")}
+            style={{ cursor: "pointer", textDecoration: "none" }}
+          >
+            IT 관련 자격증
+            <OutLink />
+          </LinkContents>
+          <LinkContents
+            onClick={() => window.open("https://pypl.github.io/PYPL.html", "_blank")}
+            style={{ cursor: "pointer", textDecoration: "none" }}
+          >
+            연도별 언어 인기 순위
+            <OutLink />
+          </LinkContents>
         </MenuColumn>
       </MenuContainer>
     </Container>

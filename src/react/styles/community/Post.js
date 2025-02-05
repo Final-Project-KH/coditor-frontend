@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -10,7 +10,6 @@ export const Wrap = styled.div.attrs({
   justify-content: center;
   align-items: center;
 `;
-
 export const TopBoxWide = styled.div.attrs({
   id: "topboxwide",
 })`
@@ -70,7 +69,6 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   max-width: 1280px;
-  margin-top: 75px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -78,6 +76,7 @@ export const Container = styled.div.attrs({
   justify-content: center;
   margin-bottom: 0;
   gap: 25px;
+  margin-top: 75px;
 `;
 
 export const LeftContainer = styled.div.attrs({
@@ -105,6 +104,7 @@ export const MainPostContainer = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const MainPostTop = styled.div.attrs({
@@ -112,13 +112,31 @@ export const MainPostTop = styled.div.attrs({
 })`
   width: 100%;
   display: flex;
+  justify-content: flex-start;
   flex-direction: column;
   gap: 10px;
+`;
+export const MainPostTitleArea = styled.div.attrs({
+  id: "mainposttitlearea",
+})`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+`;
+export const MainPostPending = styled.div.attrs({
+  id: "mainpostpending",
+})`
+  height: 30px;
+  display: flex;
+  margin-top: 5px;
 `;
 export const MainPostTitle = styled.div.attrs({
   id: "mainposttitle",
 })`
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -128,8 +146,8 @@ export const MainPostTitle = styled.div.attrs({
   font-family: "bold", sans-serif;
   color: black;
 `;
-export const MainPostInformation = styled.div.attrs({
-  id: "mainpostinformation",
+export const MainPostDiv = styled.div.attrs({
+  id: "mainpostdiv",
 })`
   width: 100%;
   display: flex;
@@ -137,6 +155,17 @@ export const MainPostInformation = styled.div.attrs({
   gap: 5px;
   align-items: center;
   margin-bottom: 20px;
+  position: relative;
+`;
+export const MainPostInformation = styled.div.attrs({
+  id: "mainpostinformation",
+})`
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  gap: 5px;
 `;
 export const MainPostDate = styled.div.attrs({
   id: "mainpostdate",
@@ -242,6 +271,203 @@ export const MainPostThumbsDownText = styled.div.attrs({
   font-size: 16px;
   color: #ff0000;
 `;
+export const MainPostContentsPending = styled.div.attrs({
+  id: "mainpostcontentspending",
+})`
+  border-radius: 50px;
+  background-color: #f1f1f1;
+  font-size: 12px;
+  font-family: "semibold", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  padding: 5px 14px;
+  margin-left: 5px;
+`;
+export const MainPostContentsSolved = styled.div.attrs({
+  id: "mainpostcontentssolved",
+})`
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-size: 12px;
+  font-family: "semibold", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 5px 14px;
+  margin-left: 5px;
+`;
+export const MainPostExtra = styled.div.attrs({
+  id: "mainpostextra",
+})`
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  justify-content: flex-end;
+`;
+export const MainPostExtraButton = styled.div.attrs({
+  id: "mainpostextrabutton",
+})`
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction: row;
+  transform: rotate(90deg);
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("/images/icon/m_menu_open.png");
+`;
+export const MainPostExtraItemContainer = styled.div.attrs({
+  id: "mainpostextraitemcontainer",
+})`
+  width: 150px;
+  height: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  border-radius: 10px;
+  border: 1px solid #dadcdf;
+  ${(props) =>
+    props.isOpen
+      ? css`
+          animation: ${expandHeight} 0.3s ease-out forwards;
+        `
+      : css`
+          animation: ${collapseHeight} 0.3s ease-out forwards;
+        `}
+`;
+export const MainPostExtraItemOtherContainer = styled.div.attrs({
+  id: "mainpostextraitemothercontainer",
+})`
+  width: 150px;
+  height: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  border-radius: 10px;
+  border: 1px solid #dadcdf;
+  ${(props) =>
+    props.isOpenOther
+      ? css`
+          animation: ${expandHeightOther} 0.3s ease-out forwards;
+        `
+      : css`
+          animation: ${collapseHeightOther} 0.3s ease-out forwards;
+        `}
+`;
+const expandHeight = keyframes`
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 170px;
+    opacity: 1;
+  }
+`;
+const collapseHeight = keyframes`
+  0% {
+    height: 170px;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+`;
+const expandHeightOther = keyframes`
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 60px;
+    opacity: 1;
+  }
+`;
+const collapseHeightOther = keyframes`
+  0% {
+    height: 60px;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+`;
+export const MainPostExtraItem = styled.div.attrs({
+  id: "mainpostextraitem",
+})`
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 13px;
+  font-family: "medium", sans-serif;
+  user-select: none;
+  cursor: pointer;
+  & + &::before {
+    content: "";
+    width: 80%;
+    height: 1px;
+    position: absolute;
+    top: -5px;
+    left: 10%;
+    background-color: #dadcdf;
+    transform: scaleY(0.5);
+  }
+  &:hover {
+    font-family: "bold", sans-serif;
+  }
+  ${(props) =>
+    !props.isOpen &&
+    css`
+      color: transparent;
+    `}
+`;
+export const MainPostExtraOtherItem = styled.div.attrs({
+  id: "mainpostextraitem",
+})`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 13px;
+  font-family: "medium", sans-serif;
+  user-select: none;
+  cursor: pointer;
+  &:hover {
+    font-family: "bold", sans-serif;
+  }
+  ${(props) =>
+    !props.isOpenOther &&
+    css`
+      color: transparent;
+    `}
+`;
 export const MainPostMiddle = styled.div.attrs({
   id: "mainpostmiddle",
 })`
@@ -270,16 +496,16 @@ export const LeftEvUp = styled.div.attrs({
   ${(props) =>
     props.userLikeCnt === 1 &&
     css`
-      background-color: black;
+      background-color: green;
       background-repeat: no-repeat;
       background-size: 15px;
       background-position: center;
-      background-image: url("/images/icon/thumbsup_g.png");
+      background-image: url("/images/icon/thumbsup_w.png");
     `}
   ${(props) =>
     props.userLikeCnt === 0 &&
     css`
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.3);
       background-repeat: no-repeat;
       background-size: 15px;
       background-position: center;
@@ -288,7 +514,7 @@ export const LeftEvUp = styled.div.attrs({
     ${(props) =>
     props.userLikeCnt === "" &&
     css`
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.3);
       background-repeat: no-repeat;
       background-size: 15px;
       background-position: center;
@@ -305,16 +531,16 @@ export const LeftEvDown = styled.div.attrs({
   ${(props) =>
     props.userDisLikeCnt === 1 &&
     css`
-      background-color: black;
+      background-color: red;
       background-repeat: no-repeat;
       background-size: 15px;
       background-position: center;
-      background-image: url("/images/icon/thumbsdown_r.png");
+      background-image: url("/images/icon/thumbsdown_w.png");
     `}
   ${(props) =>
     props.userDisLikeCnt === 0 &&
     css`
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.3);
       background-repeat: no-repeat;
       background-size: 15px;
       background-position: center;
@@ -323,7 +549,7 @@ export const LeftEvDown = styled.div.attrs({
     ${(props) =>
     props.userDisLikeCnt === "" &&
     css`
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.3);
       background-repeat: no-repeat;
       background-size: 15px;
       background-position: center;
@@ -352,6 +578,7 @@ export const MainPostContentsText = styled.div.attrs({
 export const MainPostTagsBox = styled.div.attrs({
   id: "mainposttagsbox",
 })`
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   gap: 5px;
@@ -405,7 +632,7 @@ export const SuggestBox = styled.div.attrs({
   text-align: left;
   transition: all 0.3s ease;
   /* cursor: pointer; */
-  ${({expanded}) =>
+  ${({ expanded }) =>
     expanded &&
     `
     max-height: 400px;
@@ -413,7 +640,7 @@ export const SuggestBox = styled.div.attrs({
     padding-top: 10px;
   `}
   /* 확장 후 내부 텍스트 숨기기 */
-    ${({expanded}) =>
+    ${({ expanded }) =>
     expanded &&
     `
     > span {
@@ -428,7 +655,7 @@ export const EditorBox = styled.div.attrs({
 })`
   width: 100%;
   transition: all 0.3s ease;
-  display: ${({expanded}) => (expanded ? "block" : "none")};
+  display: ${({ expanded }) => (expanded ? "block" : "none")};
 `;
 
 export const ReplyList = styled.div.attrs({
@@ -455,6 +682,7 @@ export const ReplyEach = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const ReplyUserProfileBox = styled.div.attrs({
@@ -784,6 +1012,7 @@ export const WriteSortOuterContiner = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const WriteSortInnerContainer = styled.div.attrs({
@@ -802,7 +1031,7 @@ export const WriteSortTitleActive = styled.div.attrs({
   justify-content: center;
   align-items: center;
   color: black;
-  font-size: 24px;
+  font-size: 20px;
   font-family: "semibold", sans-serif;
   border-bottom: 2px solid black;
 `;
@@ -815,7 +1044,7 @@ export const WriteSortTitleInactive = styled.div.attrs({
   justify-content: center;
   align-items: center;
   color: rgba(0, 0, 0, 0.4);
-  font-size: 24px;
+  font-size: 20px;
   font-family: "semibold", sans-serif;
 `;
 

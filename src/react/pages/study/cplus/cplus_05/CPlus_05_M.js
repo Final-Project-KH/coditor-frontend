@@ -21,8 +21,6 @@ import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const CPlus_05_M = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
@@ -34,32 +32,17 @@ const CPlus_05_M = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyCPlus = () => {
-    navigate("/study/cplus", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/cplus");
   };
 
   // TopBox thirdpath
   const handleRefresh = () => {
-    navigate("/study/cplus/05", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/cplus/05");
     window.location.reload();
   };
 
@@ -68,18 +51,18 @@ const CPlus_05_M = () => {
       <TopBoxWide>
         <TopBox>
           <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>{firstpath}</TopBoxText>
+            <TopBoxText>study</TopBoxText>
           </TopBoxLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <TopBoxLink onClick={() => handleStudyCPlus()}>
-            <TopBoxText>{secondpath}</TopBoxText>
+            <TopBoxText>C++</TopBoxText>
           </TopBoxLink>
           </TopBox>
           </TopBoxWide>
           <TopBoxWide2>
           <TopBox2>
           <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText2>{thirdpath}</TopBoxText2>
+            <TopBoxText2>05. 함수 및 자료 처리</TopBoxText2>
           </TopBoxLink>
         </TopBox2>
       </TopBoxWide2>

@@ -83,7 +83,9 @@ export const TopBoxLink = styled.button.attrs({
 export const Container = styled.div.attrs({
   id: "container",
 })`
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
   width: 100%;
   display: flex;
   flex-direction: column;

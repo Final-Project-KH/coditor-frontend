@@ -1,5 +1,5 @@
-import {useLocation, useNavigate} from "react-router-dom";
-import {useState} from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import {
   Wrap,
@@ -12,16 +12,15 @@ import {
   BoardContainer,
 } from "../../styles/community/Community_M";
 
+import Board_TopSort_M from "./components/common/Board_TopSort_M";
+import Board_Coding_Search_M from "./components/coding/Board_Coding_Search_M";
+import Board_Order_M from "./components/common/Board_Order_M";
 import Board_PostList from "./components/common/Board_PostList";
-import Board_Coding_Search from "./components/coding/Board_Coding_Search";
-import Board_TopSort from "./components/common/Board_TopSort";
-import Board_Order from "./components/common/Board_Order";
 import ScrollToTopButton from "../ScrollToTopButton";
 
 const Community_Coding_M = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {firstpath, secondpath} = location.state || {};
   const queryParams = new URLSearchParams(location.search);
 
   // Pagination and sorting params
@@ -41,21 +40,12 @@ const Community_Coding_M = () => {
 
   // TopBox firstpath
   const handleCommunity = () => {
-    navigate("/community", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/community");
   };
 
   // TopBox secondpath
   const handleRefresh = () => {
-    navigate(`/community/${boardType}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate(`/community/${boardType}`);
   };
 
   const handleEnumFilterRefresh = () => {
@@ -89,27 +79,27 @@ const Community_Coding_M = () => {
         <TopBoxWide>
           <TopBox>
             <TopBoxLink onClick={() => handleCommunity()}>
-              <TopBoxText>{firstpath}</TopBoxText>
+              <TopBoxText>community</TopBoxText>
             </TopBoxLink>
             <TopBoxArrow>{`>`}</TopBoxArrow>
             <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>{secondpath}</TopBoxText>
+              <TopBoxText>💻 코딩 질문</TopBoxText>
             </TopBoxLink>
           </TopBox>
         </TopBoxWide>
         <Container>
           <BoardContainer>
-            <Board_TopSort
-              onSortChange={handleStatusChange}
+            <Board_TopSort_M
+              onStatusChange={handleStatusChange}
               boardType={boardType}
             />
-            <Board_Coding_Search
+            <Board_Coding_Search_M
               onEnumFilterRefresh={handleEnumFilterRefresh}
               onSearchChange={handleSearchChange}
               boardType={boardType}
               enumFilter={enumFilter}
             />
-            <Board_Order
+            <Board_Order_M
               boardType={boardType}
               onSortChange={handleSortChange}
             />

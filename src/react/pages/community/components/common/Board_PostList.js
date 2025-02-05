@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import {
   PostBottom,
   PostBottomDataBox,
@@ -26,7 +26,7 @@ import {
   PostTopUserImg,
 } from "../../../../styles/community/Board";
 import AxiosApi from "../../../../../api/AxiosApi";
-import { useLocation, useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import Board_Pagination from "./Board_Pagination";
 import {
   LanguageDisplayNames,
@@ -46,17 +46,28 @@ const Board_PostList = ({
   search,
 }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
+
   const [boards, setBoards] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages > 0 ? totalPages : 1);
+    }
+  }, [totalPages]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [enumFilter, search]);
 
   // Get Board from Backend
   useEffect(() => {
     const loadBoard = async () => {
       console.log("test: ", search);
       console.log("해쉬태그: ", enumFilter);
+      console.log("현재 페이지 : ", currentPage);
+      console.log("총 페이지 : ", totalPages);
 
       try {
         const response = await AxiosApi.getBoard(
@@ -85,9 +96,6 @@ const Board_PostList = ({
   const handlePost = (boardType, board) => {
     navigate(`/community/${boardType}/post/${board.boardId}`, {
       state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: "게시글",
         boardId: board.boardId,
         boardType: boardType,
       },
@@ -124,7 +132,7 @@ const Board_PostList = ({
         {boards.map((board) => (
           <PostEach
             key={board.boardId}
-            style={{ cursor: "pointer" }}
+            style={{cursor: "pointer"}}
             onClick={() => handleMove(boardType, board)}
           >
             <PostTop>

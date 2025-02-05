@@ -216,12 +216,28 @@ const AxiosApi = {
   getotherpost: async (userId, page, size) => {
     try {
       const response = await axios.get(
-        SPRING_DOMAIN + "/community/list/others",
+        SPRING_DOMAIN + "/community/list/others/post",
         {
           params: {
             userId,
             page,
             size,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  getotherprofile: async (userId) => {
+    try {
+      const response = await axios.get(
+        SPRING_DOMAIN + "/community/list/others/profile",
+        {
+          params: {
+            userId,
           },
         }
       );
@@ -281,6 +297,37 @@ const AxiosApi = {
           },
         }
       );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  modifyPostStatus: async (boardId, status, boardType) => {
+    const boardRequest = {
+      boardId,
+      status,
+    };
+    try {
+      const response = await AxiosInstance.put(
+        SPRING_DOMAIN + "/community/modify/post",
+        boardRequest,
+        { params: { boardType } }
+      );
+      console.log("수정 결과 : ", response);
+      return response.data;
+    } catch (error) {
+      console.error("게시글 수정 중 오류 발생 : ", error);
+    }
+  },
+
+  deletePost: async (boardId) => {
+    try {
+      const response = await AxiosInstance.delete(
+        SPRING_DOMAIN + "/community/delete/post",
+        { params: { id: boardId } }
+      );
+      console.log("게시글 삭제 response : ", response);
       return response.data;
     } catch (error) {
       throw error;

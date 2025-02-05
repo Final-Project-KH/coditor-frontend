@@ -21,8 +21,6 @@ import ScrollToTopButton from "../../../ScrollToTopButton";
 
 const Python_06_M = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
   const { mainContentRef } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
@@ -34,32 +32,17 @@ const Python_06_M = () => {
 
   // TopBox firstpath
   const handleStudy = () => {
-    navigate("/study", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/study");
   };
 
   // TopBox secondpath
   const handleStudyPython = () => {
-    navigate("/study/python", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate("/study/python");
   };
 
   // TopBox thirdpath
   const handleRefresh = () => {
-    navigate("/study/python/06", {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-        thirdpath: thirdpath,
-      },
-    });
+    navigate("/study/python/06");
     window.location.reload();
   };
 
@@ -68,18 +51,18 @@ const Python_06_M = () => {
       <TopBoxWide>
         <TopBox>
           <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>{firstpath}</TopBoxText>
+            <TopBoxText>study</TopBoxText>
           </TopBoxLink>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <TopBoxLink onClick={() => handleStudyPython()}>
-            <TopBoxText>{secondpath}</TopBoxText>
+            <TopBoxText>Python</TopBoxText>
           </TopBoxLink>
         </TopBox>
       </TopBoxWide>
       <TopBoxWide2>
         <TopBox2>
           <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText2>{thirdpath}</TopBoxText2>
+            <TopBoxText2>06. 데이터 분석을 위한 패키지</TopBoxText2>
           </TopBoxLink>
         </TopBox2>
       </TopBoxWide2>

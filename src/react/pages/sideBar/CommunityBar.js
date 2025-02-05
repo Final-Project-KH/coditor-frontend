@@ -14,39 +14,19 @@ const CommunityBar = ({ isOpen, closeMenu, path }) => {
   const navigate = useNavigate();
 
   const handleCodingClick = () => {
-    navigate("/community/coding", {
-      state: {
-        firstpath: path,
-        secondpath: "코딩 질문",
-      },
-    });
+    navigate("/community/coding");
   };
 
   const handleCourseClick = () => {
-    navigate("/community/course", {
-      state: {
-        firstpath: path,
-        secondpath: "진로 질문",
-      },
-    });
+    navigate("/community/course");
   };
 
   const handleStudyClick = () => {
-    navigate("/community/study", {
-      state: {
-        firstpath: path,
-        secondpath: "스터디",
-      },
-    });
+    navigate("/community/study");
   };
 
   const handleTeamClick = () => {
-    navigate("/community/team", {
-      state: {
-        firstpath: path,
-        secondpath: "팀 프로젝트",
-      },
-    });
+    navigate("/community/team");
   };
 
   return (

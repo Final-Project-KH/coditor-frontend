@@ -123,8 +123,9 @@ export const MenuRightContentsWrap = styled.div.attrs({
   id: "menurightcontentswrap",
 })`
   width: 100%;
-  height: 100%;
+  height: auto;
   padding-top: 30px;
+  padding-bottom: 50px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -151,9 +152,6 @@ export const MenuRightColumnTitle = styled.div.attrs({
   font-size: 20px;
   color: black;
   margin-bottom: 5px;
-  &:hover {
-    font-family: "black", sans-serif;
-  }
 `;
 
 export const MenuRightColumnContents = styled.div.attrs({

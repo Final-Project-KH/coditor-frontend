@@ -36,7 +36,7 @@ export const PopularTagsItem = styled.div.attrs({
   id: "populartagsitem",
 })`
   border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
   color: white;
   font-family: "medium", sans-serif;
   font-size: 11px;
@@ -46,6 +46,6 @@ export const PopularTagsItem = styled.div.attrs({
   ${(props) =>
     props.isActive &&
     css`
-      background-color: red;
+      background-color: black;
     `}
 `;

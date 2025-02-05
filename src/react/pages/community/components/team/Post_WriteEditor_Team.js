@@ -277,8 +277,6 @@ const extensions = [
 
 const Post_WriteEditor_Team = ({ title, team }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
   const [editorContent, setEditorContent] = useState(`
     <p><b>[개발 프로젝트 모집 내용 예시]</b></p>
         <ul>
@@ -318,12 +316,7 @@ const Post_WriteEditor_Team = ({ title, team }) => {
 
   // cancel button
   const handleGoBack = () => {
-    navigate(`/community/${boardType}`, {
-      state: {
-        firstpath: "community",
-        secondpath: secondpath,
-      },
-    });
+    navigate(`/community/${boardType}`);
   };
 
   // submit button
@@ -350,8 +343,7 @@ const Post_WriteEditor_Team = ({ title, team }) => {
       alert("내용이 성공적으로 제출되었습니다.");
       navigate(`/community/${boardType}`, {
         state: {
-          firstpath: "community",
-          secondpath: secondpath,
+          id: boardType,
         },
       });
     } catch (error) {

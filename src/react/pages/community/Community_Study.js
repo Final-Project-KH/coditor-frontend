@@ -30,7 +30,6 @@ import Community_Study_M from "./Community_Study_M";
 const Community_Study = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath } = location.state || {};
   const queryParams = new URLSearchParams(location.search);
   const { isMobile } = useOutletContext();
 
@@ -51,21 +50,12 @@ const Community_Study = () => {
 
   // TopBox firstpath
   const handleCommunity = () => {
-    navigate("/community", {
-      state: {
-        firstpath: firstpath,
-      },
-    });
+    navigate("/community");
   };
 
   // TopBox secondpath
   const handleRefresh = () => {
-    navigate(`/community/${boardType}`, {
-      state: {
-        firstpath: firstpath,
-        secondpath: secondpath,
-      },
-    });
+    navigate(`/community/${boardType}`);
   };
 
   const handleEnumFilterRefresh = () => {
@@ -102,17 +92,17 @@ const Community_Study = () => {
           <TopBoxWide>
             <TopBox>
               <PathLink onClick={() => handleCommunity()}>
-                <TopBoxText>{firstpath}</TopBoxText>
+                <TopBoxText>community</TopBoxText>
               </PathLink>
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <PathLink onClick={() => handleRefresh()}>
-                <TopBoxText>{secondpath}</TopBoxText>
+                <TopBoxText>✏️ 스터디</TopBoxText>
               </PathLink>
             </TopBox>
           </TopBoxWide>
           <Container>
             <LeftContainer>
-              <BoardList firstpath={firstpath} />
+              <BoardList />
               <StudyPopularTags
                 enumFilter={enumFilter}
                 onEnumFilterChange={handleEnumFilterChange}
