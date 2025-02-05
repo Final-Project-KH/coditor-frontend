@@ -414,6 +414,41 @@ export const MainPostExtraItemContainer = styled.div.attrs({
       : css`
           animation: ${collapseHeight} 0.3s ease-out forwards;
         `}
+  ${(props) =>
+    !props.isOpen &&
+    css`
+      cursor: none;
+      pointer-events: none;
+    `}
+`;
+export const MainPostExtraItemOtherContainer = styled.div.attrs({
+  id: "mainpostextraitemothercontainer",
+})`
+  width: 150px;
+  height: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  border-radius: 10px;
+  border: 1px solid #dadcdf;
+  ${(props) =>
+    props.isOpenOther
+      ? css`
+          animation: ${expandHeightOther} 0.3s ease-out forwards;
+        `
+      : css`
+          animation: ${collapseHeightOther} 0.3s ease-out forwards;
+        `}
+  ${(props) =>
+    !props.isOpenOther &&
+    css`
+      cursor: none;
+      pointer-events: none;
+    `}
 `;
 const expandHeight = keyframes`
   0% {
@@ -428,6 +463,26 @@ const expandHeight = keyframes`
 const collapseHeight = keyframes`
   0% {
     height: 170px;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+`;
+const expandHeightOther = keyframes`
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 60px;
+    opacity: 1;
+  }
+`;
+const collapseHeightOther = keyframes`
+  0% {
+    height: 60px;
     opacity: 1;
   }
   100% {
@@ -464,6 +519,29 @@ export const MainPostExtraItem = styled.div.attrs({
   }
   ${(props) =>
     !props.isOpen &&
+    css`
+      color: transparent;
+    `}
+`;
+export const MainPostExtraOtherItem = styled.div.attrs({
+  id: "mainpostextraotheritem",
+})`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 13px;
+  font-family: "medium", sans-serif;
+  user-select: none;
+  cursor: pointer;
+  &:hover {
+    font-family: "bold", sans-serif;
+  }
+  ${(props) =>
+    !props.isOpenOther &&
     css`
       color: transparent;
     `}

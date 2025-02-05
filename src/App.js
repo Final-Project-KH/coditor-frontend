@@ -102,6 +102,10 @@ import MyPage_CodingTest from "./react/pages/mypage/MyPage_CodingTest";
 import MyPage_Community from "./react/pages/mypage/MyPage_Community";
 import MyPage_Report from "./react/pages/mypage/MyPage_Report";
 import MyPage_Question from "./react/pages/mypage/MyPage_Question";
+import Post_Modify_Coding from "./react/pages/community/Post_Modify_Coding";
+import Post_Modify_Course from "./react/pages/community/Post_Modify_Course";
+import Post_Modify_Study from "./react/pages/community/Post_Modify_Study";
+import Post_Modify_Team from "./react/pages/community/Post_Modify_Team";
 
 const App = () => {
   return (
@@ -127,9 +131,25 @@ const AppContents = () => {
         <Route path="/legal/terms" element={<Terms />} />
         <Route path="/legal/privacy" element={<Privacy />} />
         <Route path="/community/coding/write" element={<Post_Write_Coding />} />
+        <Route
+          path="/community/coding/modify:boardId"
+          element={<Post_Modify_Coding />}
+        />
         <Route path="/community/course/write" element={<Post_Write_Course />} />
+        <Route
+          path="/community/course/modify:boardId"
+          element={<Post_Modify_Course />}
+        />
         <Route path="/community/study/write" element={<Post_Write_Study />} />
+        <Route
+          path="/community/study/modify:boardId"
+          element={<Post_Modify_Study />}
+        />
         <Route path="/community/team/write" element={<Post_Write_Team />} />
+        <Route
+          path="/community/team/modify:boardId"
+          element={<Post_Modify_Team />}
+        />
         <Route path="/cs/report" element={<Report />} />
         <Route path="/cs/question" element={<Question />} />
         <Route path="/" element={<Layout />}>

@@ -348,6 +348,12 @@ export const MainPostExtraItemContainer = styled.div.attrs({
       : css`
           animation: ${collapseHeight} 0.3s ease-out forwards;
         `}
+  ${(props) =>
+    !props.isOpen &&
+    css`
+      cursor: none;
+      pointer-events: none;
+    `}
 `;
 export const MainPostExtraItemOtherContainer = styled.div.attrs({
   id: "mainpostextraitemothercontainer",
@@ -371,6 +377,12 @@ export const MainPostExtraItemOtherContainer = styled.div.attrs({
       : css`
           animation: ${collapseHeightOther} 0.3s ease-out forwards;
         `}
+  ${(props) =>
+    !props.isOpenOther &&
+    css`
+      cursor: none;
+      pointer-events: none;
+    `}
 `;
 const expandHeight = keyframes`
   0% {
