@@ -404,6 +404,22 @@ const AxiosApi = {
     }
   },
 
+  modifyCodingPost: async (boardType, boardId, title, language, content) => {
+    try {
+      const response = await AxiosInstance.put(
+        SPRING_DOMAIN + "/community/modify/post",
+        { boardId, title, language, content },
+        {
+          params: { boardType },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("게시글 수정 중 오류 발생 : ", error);
+      throw error;
+    }
+  },
+
   writeCoursePost: async (boardType, title, course, content) => {
     try {
       const response = await AxiosInstance.post(
@@ -416,6 +432,21 @@ const AxiosApi = {
       return response.data;
     } catch (error) {
       console.error("게시글 작성 중 오류 발생 : ", error);
+      throw error;
+    }
+  },
+  modifyCoursePost: async (boardType, boardId, title, course, content) => {
+    try {
+      const response = await AxiosInstance.put(
+        SPRING_DOMAIN + "/community/modify/post",
+        { boardId, title, course, content },
+        {
+          params: { boardType },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("게시글 수정 중 오류 발생 : ", error);
       throw error;
     }
   },
@@ -436,6 +467,22 @@ const AxiosApi = {
     }
   },
 
+  modifyStudyPost: async (boardType, boardId, title, study, content) => {
+    try {
+      const response = await AxiosInstance.put(
+        SPRING_DOMAIN + "/community/modify/post",
+        { boardId, title, study, content },
+        {
+          params: { boardType },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("게시글 수정 중 오류 발생 : ", error);
+      throw error;
+    }
+  },
+
   writeTeamPost: async (boardType, title, team, content) => {
     try {
       const response = await AxiosInstance.post(
@@ -450,6 +497,22 @@ const AxiosApi = {
       console.error("게시글 작성 중 오류 발생 : ", error);
       console.log("Request Params:", { boardType });
       console.log("Request Body:", { title, team, content });
+      throw error;
+    }
+  },
+
+  modifyTeamPost: async (boardType, boardId, title, team, content) => {
+    try {
+      const response = await AxiosInstance.put(
+        SPRING_DOMAIN + "/community/modify/post",
+        { boardId, title, team, content },
+        {
+          params: { boardType },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("게시글 수정 중 오류 발생 : ", error);
       throw error;
     }
   },

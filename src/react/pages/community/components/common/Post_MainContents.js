@@ -45,6 +45,7 @@ import {
   TeamDisplayNames,
 } from "../common/DisplayNames";
 import { useSelector } from "react-redux";
+import { languages } from "monaco-editor/esm/metadata";
 
 const Post_MainContents = ({ boardType }) => {
   const { boardId } = useParams();
@@ -67,6 +68,21 @@ const Post_MainContents = ({ boardType }) => {
     navigate(`/community/${boardType}`, {
       state: {
         id: boardType,
+      },
+    });
+  };
+
+  const handleModifyNavigate = () => {
+    navigate(`/community/${boardType}/modify/${boardId}`, {
+      state: {
+        id: boardType,
+        boardId: boardId,
+        boardTitle: posts[0].title,
+        boardContent: posts[0].content,
+        languages: posts[0].language,
+        courses: posts[0].course,
+        studies: posts[0].study,
+        teams: posts[0].team,
       },
     });
   };
@@ -369,16 +385,16 @@ const Post_MainContents = ({ boardType }) => {
                 {post.updatedAt && (
                   <>
                     <MainPostEditedText>
-                      {/* {new Date(post.updatedAt)
-                      .toLocaleString("ko-KR", {
-                        year: "numeric",
-                        month: "2-digit",
-                        day: "2-digit",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        hour12: false,
-                      })
-                      .replace(/\. /g, ".")} */}
+                      {new Date(post.updatedAt)
+                        .toLocaleString("ko-KR", {
+                          year: "numeric",
+                          month: "2-digit",
+                          day: "2-digit",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: false,
+                        })
+                        .replace(/\. /g, ".")}
                       수정됨
                     </MainPostEditedText>
                     <MiddleDot />
@@ -398,7 +414,11 @@ const Post_MainContents = ({ boardType }) => {
               </MainPostInformation>
               {writerKeyNumber == userkeynumber ? (
                 <MainPostExtra>
-                  <MainPostExtraItemContainer ref={extraRef} isOpen={isExtra}>
+                  <MainPostExtraItemContainer
+                    ref={extraRef}
+                    isOpen={isExtra}
+                    boardType={boardType}
+                  >
                     {boardType === "coding" && boardStatus === "ACTIVE" ? (
                       <MainPostExtraItem
                         onClick={() => {
@@ -444,10 +464,18 @@ const Post_MainContents = ({ boardType }) => {
                         </MainPostExtraItem>
                       )
                     )}
-                    <MainPostExtraItem isOpen={isExtra}>
+                    <MainPostExtraItem
+                      boardType={boardType}
+                      isOpen={isExtra}
+                      onClick={() => {
+                        handleModifyNavigate();
+                        closeExtra();
+                      }}
+                    >
                       글 수정
                     </MainPostExtraItem>
                     <MainPostExtraItem
+                      boardType={boardType}
                       onClick={() => {
                         handleDelete();
                         closeExtra();
