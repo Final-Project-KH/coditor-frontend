@@ -965,7 +965,7 @@ export const WriteSortTitleActive = styled.div.attrs({
   justify-content: center;
   align-items: center;
   color: black;
-  font-size: 24px;
+  font-size: 20px;
   font-family: "semibold", sans-serif;
   border-bottom: 2px solid black;
 `;
@@ -978,7 +978,7 @@ export const WriteSortTitleInactive = styled.div.attrs({
   justify-content: center;
   align-items: center;
   color: rgba(0, 0, 0, 0.4);
-  font-size: 24px;
+  font-size: 20px;
   font-family: "semibold", sans-serif;
 `;
 

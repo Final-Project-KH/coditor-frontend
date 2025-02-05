@@ -162,6 +162,12 @@ export const TagSearch = styled.div.attrs({
   &:focus {
     outline: none;
   }
+  &:empty::before {
+    content: "태그로 검색해보세요!";
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    font-family: "medium", sans-serif;
+  }
 `;
 export const TagSearchItem = styled.div.attrs({
   id: "tagsearchitem",
@@ -359,7 +365,7 @@ export const PostEach = styled.div.attrs({
   flex-direction: column;
   gap: 10px;
   &::after {
-    margin-top: 10px;
+    margin-top: 5px;
     content: "";
     width: 100%;
     height: 1px;
@@ -513,6 +519,7 @@ export const PostBottomDataBox = styled.div.attrs({
   right: 5px;
   justify-content: center;
   align-items: center;
+  margin-top: 5px;
 `;
 export const PostBottomRepliesBox = styled.div.attrs({
   id: "postbottomrepliesbox",

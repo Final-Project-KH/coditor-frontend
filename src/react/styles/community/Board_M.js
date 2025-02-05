@@ -16,7 +16,7 @@ export const TopSortOuterContiner = styled.div.attrs({
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   &::after {
     content: "";
     width: 100%;
@@ -32,16 +32,17 @@ export const TopSortInnerContainer = styled.div.attrs({
   display: flex;
   flex-direction: row;
 `;
+
 export const TopSortTitleActive = styled.div.attrs({
   id: "topsorttitleactive",
 })`
-  width: 100px;
+  width: 80px;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: black;
-  font-size: 20px;
+  font-size: 18px;
   font-family: "semibold", sans-serif;
   border-bottom: 2px solid black;
   cursor: pointer;
@@ -49,13 +50,13 @@ export const TopSortTitleActive = styled.div.attrs({
 export const TopSortTitleInactive = styled.div.attrs({
   id: "topsorttitleinactive",
 })`
-  width: 100px;
+  width: 80px;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: rgba(0, 0, 0, 0.4);
-  font-size: 20px;
+  font-size: 18px;
   font-family: "semibold", sans-serif;
   cursor: pointer;
 `;
@@ -66,8 +67,8 @@ export const SearchContainer = styled.div.attrs({
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-bottom: 50px;
+  gap: 10px;
+  margin-bottom: 10px;
 `;
 export const InputSearchContainer = styled.div.attrs({
   id: "inputsearchcontainer",
@@ -76,18 +77,18 @@ export const InputSearchContainer = styled.div.attrs({
   height: 50px;
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 15px;
 `;
 export const InputSearchBox = styled.div.attrs({
   id: "inputsearchbox",
 })`
-  width: 85%;
+  width: 80%;
   height: 50px;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  background-position: 20px;
+  background-position: 18px;
   background-repeat: no-repeat;
-  background-size: 15px;
+  background-size: 12px;
   background-image: url("/images/icon/search.png");
   display: flex;
   flex-direction: row;
@@ -98,7 +99,7 @@ export const InputSearch = styled.input.attrs({
 })`
   width: 100%;
   height: 100%;
-  margin-left: 55px;
+  margin-left: 45px;
   padding-right: 20px;
   border: none;
   font-size: 14px;
@@ -113,7 +114,7 @@ export const InputSearch = styled.input.attrs({
 export const InputSearchButton = styled.button.attrs({
   id: "inputsearchbutton",
 })`
-  width: 15%;
+  width: 20%;
   border-radius: 5px;
   color: white;
   background-color: rgba(0, 0, 0, 0.8);
@@ -146,7 +147,7 @@ export const TagSearchBox = styled.div.attrs({
   flex-direction: row;
   justify-content: space-between;
 `;
-export const TagSearch = styled.input.attrs({
+export const TagSearch = styled.div.attrs({
   id: "tagsearch",
 })`
   width: 100%;
@@ -155,12 +156,36 @@ export const TagSearch = styled.input.attrs({
   padding-right: 20px;
   border: none;
   font-size: 14px;
+  display: flex;
   font-family: "medium", sans-serif;
+  align-items: center;
   &:focus {
     outline: none;
   }
-  &::placeholder {
+  &:empty::before {
+    content: "태그로 검색해보세요!";
     color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    font-family: "medium", sans-serif;
+  }
+`;
+export const TagSearchItem = styled.div.attrs({
+  id: "tagsearchitem",
+})`
+  height: 28px;
+  border: none;
+  font-size: 13px;
+  display: flex;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  position: relative;
+  font-family: "medium", sans-serif;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  &:focus {
+    outline: none;
   }
 `;
 export const ResetButtonBox = styled.div.attrs({
@@ -176,6 +201,9 @@ export const ResetButtonBox = styled.div.attrs({
   align-items: center;
   gap: 5px;
   cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 `;
 export const ResetButtonIcon = styled.div.attrs({
   id: "resetbuttonicon",
@@ -192,7 +220,7 @@ export const ResetButtonIcon = styled.div.attrs({
   background-image: url("/images/icon/reset.png");
   position: relative;
 `;
-export const ResetButtonText = styled.button.attrs({
+export const ResetButtonText = styled.div.attrs({
   id: "resetbuttontext",
 })`
   border-radius: 5px;
@@ -256,7 +284,7 @@ export const MiddleWriteButton = styled.div.attrs({
 export const MiddleSortContentsBox = styled.div.attrs({
   id: "middlesortcontentsbox",
 })`
-  width: 85%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -269,7 +297,7 @@ export const MiddleSortContentsBox = styled.div.attrs({
 export const MiddleSortTitleActiveBox = styled.div.attrs({
   id: "middlesorttitleactivebox",
 })`
-  height: 25px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -326,7 +354,7 @@ export const PostListContainer = styled.div.attrs({
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 
 export const PostEach = styled.div.attrs({
@@ -337,7 +365,7 @@ export const PostEach = styled.div.attrs({
   flex-direction: column;
   gap: 10px;
   &::after {
-    margin-top: 10px;
+    margin-top: 5px;
     content: "";
     width: 100%;
     height: 1px;
@@ -460,6 +488,8 @@ export const PostBottom = styled.div.attrs({
 })`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  position: relative;
   justify-content: space-between;
 `;
 export const PostBottomTagsBox = styled.div.attrs({
@@ -485,8 +515,11 @@ export const PostBottomDataBox = styled.div.attrs({
   display: flex;
   flex-direction: row;
   gap: 5px;
+  position: absolute;
+  right: 5px;
   justify-content: center;
   align-items: center;
+  margin-top: 5px;
 `;
 export const PostBottomRepliesBox = styled.div.attrs({
   id: "postbottomrepliesbox",
@@ -560,4 +593,65 @@ export const PostBottomViewsText = styled.div.attrs({
   font-family: "regular", sans-serif;
   font-size: 12px;
   color: black;
+`;
+
+export const EachBoardContainer = styled.div.attrs({
+  id: "eachboardcontainer",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  padding: 0px 20px;
+  gap: 10px;
+`;
+export const EachBoardTitle = styled.div.attrs({
+  id: "eachboardtitle",
+})`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+  color: black;
+  font-size: 20px;
+  font-family: "semibold", sans-serif;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    margin-top: 20px;
+    transform: scaleY(0.5);
+  }
+`;
+
+export const FloatWriteButton = styled.div.attrs({
+  id: "floatwritebutton",
+})`
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center;
+  background-image: url("/images/icon/totop.png");
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  @media (max-width: 768px) {
+    right: 20px; /* 버튼 위치를 왼쪽으로 약간 이동 */
+    bottom: 20px; /* 버튼 위치를 아래로 약간 이동 */
+  }
 `;

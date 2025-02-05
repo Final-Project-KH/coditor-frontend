@@ -1,5 +1,5 @@
-import {useLocation, useNavigate} from "react-router-dom";
-import {useState} from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import {
   Wrap,
@@ -12,10 +12,10 @@ import {
   BoardContainer,
 } from "../../styles/community/Community_M";
 
+import Board_TopSort_M from "./components/common/Board_TopSort_M";
+import Board_Coding_Search_M from "./components/coding/Board_Coding_Search_M";
+import Board_Order_M from "./components/common/Board_Order_M";
 import Board_PostList from "./components/common/Board_PostList";
-import Board_Coding_Search from "./components/coding/Board_Coding_Search";
-import Board_TopSort from "./components/common/Board_TopSort";
-import Board_Order from "./components/common/Board_Order";
 import ScrollToTopButton from "../ScrollToTopButton";
 
 const Community_Coding_M = () => {
@@ -89,17 +89,17 @@ const Community_Coding_M = () => {
         </TopBoxWide>
         <Container>
           <BoardContainer>
-            <Board_TopSort
-              onSortChange={handleStatusChange}
+            <Board_TopSort_M
+              onStatusChange={handleStatusChange}
               boardType={boardType}
             />
-            <Board_Coding_Search
+            <Board_Coding_Search_M
               onEnumFilterRefresh={handleEnumFilterRefresh}
               onSearchChange={handleSearchChange}
               boardType={boardType}
               enumFilter={enumFilter}
             />
-            <Board_Order
+            <Board_Order_M
               boardType={boardType}
               onSortChange={handleSortChange}
             />

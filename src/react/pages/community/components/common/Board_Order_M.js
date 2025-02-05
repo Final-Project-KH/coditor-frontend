@@ -12,10 +12,10 @@ import {
   MiddleSortTitleInactiveText,
   MiddleWriteButton,
   MiddleSortContentsBox,
-} from "../../../../styles/community/Board";
+} from "../../../../styles/community/Board_M";
 import { useSelector } from "react-redux";
 
-const Board_Order = ({ boardType, onSortChange }) => {
+const Board_Order_M = ({ boardType, onSortChange }) => {
   const navigate = useNavigate();
   const [activeOrder, setActiveOrder] = useState("createdAt");
   const userAuth = useSelector((state) => state.auth.accesstoken);
@@ -25,7 +25,7 @@ const Board_Order = ({ boardType, onSortChange }) => {
     if (userAuth === "") {
       alert("로그인이 필요한 서비스입니다.");
       return navigate("/login");
-    } 
+    }
     navigate(`/community/${boardType}/write`, {
       state: {
         id: boardType,
@@ -215,13 +215,13 @@ const Board_Order = ({ boardType, onSortChange }) => {
       <MiddleSortOuterContiner>
         <MiddleSortInnerContainer>
           {renderOrderOptions()}
-          <MiddleWriteButton onClick={() => handleWrite()}>
+          {/* <MiddleWriteButton onClick={() => handleWrite()}>
             글쓰기
-          </MiddleWriteButton>
+          </MiddleWriteButton> */}
         </MiddleSortInnerContainer>
       </MiddleSortOuterContiner>
     </>
   );
 };
 
-export default Board_Order;
+export default Board_Order_M;

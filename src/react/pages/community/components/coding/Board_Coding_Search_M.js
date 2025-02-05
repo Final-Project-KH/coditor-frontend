@@ -12,10 +12,10 @@ import {
   ResetButtonText,
   ResetButtonIcon,
   TagSearchItem,
-} from "../../../../styles/community/Board";
+} from "../../../../styles/community/Board_M";
 import { LanguageDisplayNames } from "../common/DisplayNames";
 
-const Board_Coding_Search = ({
+const Board_Coding_Search_M = ({
   boardType,
   onSearchChange,
   onEnumFilterRefresh,
@@ -39,15 +39,6 @@ const Board_Coding_Search = ({
     }
   };
 
-  const enumFilterRefresh = () => {
-    onEnumFilterRefresh();
-  };
-
-  const searchRefresh = () => {
-    setSearchValue("");
-    onSearchChange("");
-  };
-
   return (
     <>
       <SearchContainer>
@@ -63,29 +54,9 @@ const Board_Coding_Search = ({
           </InputSearchBox>
           <InputSearchButton onClick={handleSearch}>검색</InputSearchButton>
         </InputSearchContainer>
-        <TagSearchContainer>
-          <TagSearchBox>
-            <TagSearch>
-              {enumFilter !== null && (
-                <TagSearchItem>
-                  {LanguageDisplayNames[enumFilter]}
-                </TagSearchItem>
-              )}
-            </TagSearch>
-          </TagSearchBox>
-          <ResetButtonBox
-            onClick={() => {
-              enumFilterRefresh();
-              searchRefresh();
-            }}
-          >
-            <ResetButtonIcon />
-            <ResetButtonText>초기화</ResetButtonText>
-          </ResetButtonBox>
-        </TagSearchContainer>
       </SearchContainer>
     </>
   );
 };
 
-export default Board_Coding_Search;
+export default Board_Coding_Search_M;
