@@ -117,6 +117,17 @@ const Board_Community_Main = () => {
     });
   };
 
+  const handleMove = async (boardType, board) => {
+    try {
+      const response = await AxiosApi.getPostCheck(board.boardId);
+      if (response) {
+        handlePost(boardType, board);
+      }
+    } catch (error) {
+      console.error("게시글 이동중 오류 발생 : ", error);
+    }
+  };
+
   const handleBoard = (boardType) => {
     navigate(`/community/${boardType}`);
   };
@@ -130,12 +141,14 @@ const Board_Community_Main = () => {
   return (
     <>
       <EachBoardContainer>
-        <EachBoardTitle onClick={() => handleBoard("coding")}>💻 새로 올라온 코딩 질문</EachBoardTitle>
+        <EachBoardTitle onClick={() => handleBoard("coding")}>
+          💻 새로 올라온 코딩 질문
+        </EachBoardTitle>
         <PostListContainer>
           {codingBoards.map((board) => (
             <PostEach
               key={board.boardId}
-              onClick={() => handlePost("coding", board)}
+              onClick={() => handleMove("coding", board)}
               style={{ cursor: "pointer" }}
             >
               <PostTop>
@@ -206,12 +219,14 @@ const Board_Community_Main = () => {
       </EachBoardContainer>
 
       <EachBoardContainer>
-        <EachBoardTitle onClick={() => handleBoard("course")}>🎓 새로 올라온 진로 질문</EachBoardTitle>
+        <EachBoardTitle onClick={() => handleBoard("course")}>
+          🎓 새로 올라온 진로 질문
+        </EachBoardTitle>
         <PostListContainer>
           {courseBoards.map((board) => (
             <PostEach
               key={board.boardId}
-              onClick={() => handlePost("course", board)}
+              onClick={() => handleMove("course", board)}
               style={{ cursor: "pointer" }}
             >
               <PostTop>
@@ -275,12 +290,14 @@ const Board_Community_Main = () => {
       </EachBoardContainer>
 
       <EachBoardContainer>
-        <EachBoardTitle onClick={() => handleBoard("study")}>✏️ 새로 올라온 스터디 모집</EachBoardTitle>
+        <EachBoardTitle onClick={() => handleBoard("study")}>
+          ✏️ 새로 올라온 스터디 모집
+        </EachBoardTitle>
         <PostListContainer>
           {studyBoards.map((board) => (
             <PostEach
               key={board.boardId}
-              onClick={() => handlePost("study", board)}
+              onClick={() => handleMove("study", board)}
               style={{ cursor: "pointer" }}
             >
               <PostTop>
@@ -353,12 +370,14 @@ const Board_Community_Main = () => {
       </EachBoardContainer>
 
       <EachBoardContainer>
-        <EachBoardTitle onClick={() => handleBoard("team")}>📋 새로 올라온 프로젝트 구인</EachBoardTitle>
+        <EachBoardTitle onClick={() => handleBoard("team")}>
+          📋 새로 올라온 프로젝트 구인
+        </EachBoardTitle>
         <PostListContainer>
           {teamBoards.map((board) => (
             <PostEach
               key={board.boardId}
-              onClick={() => handlePost("team", board)}
+              onClick={() => handleMove("team", board)}
               style={{ cursor: "pointer" }}
             >
               <PostTop>
