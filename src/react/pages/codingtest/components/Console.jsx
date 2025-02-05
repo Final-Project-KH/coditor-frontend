@@ -4,9 +4,6 @@ const Console = ({ message }) => {
   console.log(message);
   return (
     <CssWrapper>
-      <div>
-        <span>CONSOLE</span>
-      </div>
       <div className="console-outputs" style={{ whiteSpace: "pre-wrap" }}>
         {message}
       </div>

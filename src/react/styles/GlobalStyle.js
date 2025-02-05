@@ -119,6 +119,13 @@ pre code {
   opacity: 1;
 }
 
+.css-1rju2q6-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
+  background-color: transparent !important;
+}
+
+.css-1rju2q6-MuiButtonBase-root-MuiMenuItem-root.Mui-selected:hover {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
 `;
 
 export default GlobalStyle;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   MainPostContainer,
   MainPostTop,
@@ -29,8 +29,10 @@ import {
   MainPostExtra,
   MainPostDiv,
   MainPostExtraItemContainer,
+  MainPostExtraItemOtherContainer,
   MainPostExtraButton,
   MainPostExtraItem,
+  MainPostExtraOtherItem,
   MainPostTitleArea,
   MainPostPending,
   MainPostTopBox,
@@ -48,7 +50,6 @@ import Post_UserProfile_M from "./Post_UserProfile_M";
 
 const Post_MainContents_M = ({ boardType }) => {
   const { boardId } = useParams();
-  // const [boardType, setBoardType] = useState("CODING");
   const [posts, setPosts] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userDisLikeCnt, setUserDisLikeCnt] = useState("");
@@ -56,17 +57,51 @@ const Post_MainContents_M = ({ boardType }) => {
   const [writerKeyNumber, setWriterKeyNumber] = useState(null);
   const [boardStatus, setBoardStatus] = useState(null);
   const [isExtra, setIsExtra] = useState(false);
+  const [isExtraOther, setIsExtraOther] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const userkeynumber = useSelector((state) => state.auth.keynumber);
   const accesstoken = useSelector((state) => state.auth.accesstoken);
   const navigate = useNavigate();
 
   const handleDeleteNavigate = () => {
-    navigate(`/community/${boardType}`);
+    navigate(`/community/${boardType}`, {
+      state: {
+        id: boardType,
+      },
+    });
   };
 
   const handleExtra = () => {
     setIsExtra(!isExtra);
+  };
+
+  const closeExtra = () => {
+    setIsExtra(false);
+    setIsExtraOther(false);
+  };
+
+  const extraRef = useRef(null);
+
+  useEffect(() => {
+    if (!isExtra && !isExtraOther) return;
+
+    const handleClickOutside = (event) => {
+      setTimeout(() => {
+        if (extraRef.current && !extraRef.current.contains(event.target)) {
+          setIsExtra(false);
+          setIsExtraOther(false);
+        }
+      }, 300);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isExtra, isExtraOther]);
+
+  const handleExtraOther = () => {
+    setIsExtraOther(!isExtraOther);
   };
 
   console.log("보드 타입 확인 ", boardType);
@@ -95,7 +130,20 @@ const Post_MainContents_M = ({ boardType }) => {
     }
   };
 
-  const handleDelete = async () => {};
+  const handleDelete = async () => {
+    if (userkeynumber != writerKeyNumber) {
+      return alert("삭제 권한이 없습니다.");
+    }
+    try {
+      const response = await AxiosApi.deletePost(boardId);
+      if (response) {
+        alert("글이 삭제되었습니다.");
+        handleDeleteNavigate();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Get Post from Backend
   useEffect(() => {
@@ -350,30 +398,88 @@ const Post_MainContents_M = ({ boardType }) => {
                 </MainPostInformation>
               </MainPostDiv>
             </MainPostTop>
-            <MainPostExtra>
-              <MainPostExtraItemContainer isOpen={isExtra}>
-                {boardStatus === "ACTIVE" ? (
-                  <MainPostExtraItem
-                    onClick={() => handleStatus()}
-                    isOpen={isExtra}
-                  >
-                    해결됨으로 변경
-                  </MainPostExtraItem>
-                ) : (
-                  boardStatus === "INACTIVE" && (
+            {writerKeyNumber == userkeynumber ? (
+              <MainPostExtra>
+                <MainPostExtraItemContainer ref={extraRef} isOpen={isExtra}>
+                  {boardType === "coding" && boardStatus === "ACTIVE" ? (
                     <MainPostExtraItem
-                      onClick={() => handleStatus()}
+                      onClick={() => {
+                        handleStatus();
+                        closeExtra();
+                      }}
+                      isOpen={isExtra}
+                    >
+                      해결됨으로 변경
+                    </MainPostExtraItem>
+                  ) : boardType === "coding" && boardStatus === "INACTIVE" ? (
+                    <MainPostExtraItem
+                      onClick={() => {
+                        handleStatus();
+                        closeExtra();
+                      }}
                       isOpen={isExtra}
                     >
                       미해결로 변경
                     </MainPostExtraItem>
-                  )
-                )}
-                <MainPostExtraItem isOpen={isExtra}>글 수정</MainPostExtraItem>
-                <MainPostExtraItem isOpen={isExtra}>글 삭제</MainPostExtraItem>
-              </MainPostExtraItemContainer>
-              <MainPostExtraButton onClick={handleExtra}></MainPostExtraButton>
-            </MainPostExtra>
+                  ) : (boardType === "study" || boardType === "team") &&
+                    boardStatus === "ACTIVE" ? (
+                    <MainPostExtraItem
+                      onClick={() => {
+                        handleStatus();
+                        closeExtra();
+                      }}
+                      isOpen={isExtra}
+                    >
+                      모집완료로 변경
+                    </MainPostExtraItem>
+                  ) : (
+                    (boardType === "study" || boardType === "team") &&
+                    boardStatus === "INACTIVE" && (
+                      <MainPostExtraItem
+                        onClick={() => {
+                          handleStatus();
+                          closeExtra();
+                        }}
+                        isOpen={isExtra}
+                      >
+                        모집중으로 변경
+                      </MainPostExtraItem>
+                    )
+                  )}
+                  <MainPostExtraItem isOpen={isExtra}>
+                    글 수정
+                  </MainPostExtraItem>
+                  <MainPostExtraItem
+                    onClick={() => {
+                      handleDelete();
+                      closeExtra();
+                    }}
+                    isOpen={isExtra}
+                  >
+                    글 삭제
+                  </MainPostExtraItem>
+                </MainPostExtraItemContainer>
+                <MainPostExtraButton
+                  onClick={handleExtra}
+                ></MainPostExtraButton>
+              </MainPostExtra>
+            ) : writerKeyNumber != userkeynumber && userkeynumber !== "" ? (
+              <MainPostExtra>
+                <MainPostExtraItemOtherContainer
+                  ref={extraRef}
+                  isOpenOther={isExtraOther}
+                >
+                  <MainPostExtraOtherItem isOpenOther={isExtraOther}>
+                    게시글 신고
+                  </MainPostExtraOtherItem>
+                </MainPostExtraItemOtherContainer>
+                <MainPostExtraButton
+                  onClick={handleExtraOther}
+                ></MainPostExtraButton>
+              </MainPostExtra>
+            ) : (
+              userkeynumber === "" && <MainPostExtra></MainPostExtra>
+            )}
           </MainPostTopBox>
           <MainPostMiddle>
             <LeftEvBox>

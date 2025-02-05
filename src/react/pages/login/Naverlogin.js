@@ -29,16 +29,16 @@ export const handleNaverLoginClick = () => {
   }
 
   const handleMessage = (event) => {
-    console.log("🔵 부모 창에서 메시지 수신 시도:", event);
+    console.log("부모 창에서 메시지 수신 시도:", event);
 
     const allowedOrigin = "http://localhost:8111";
     if (event.origin !== allowedOrigin) return;
 
-    console.log("📩 받은 메시지 데이터:", event.data);
+    console.log("받은 메시지 데이터:", event.data);
     const { success, error } = event.data;
 
     if (success) {
-      console.log("🟢 로그인 성공, 토큰 저장 시작");
+      console.log("로그인 성공, 토큰 저장 시작");
       const { accessToken, refreshToken } = success;
 
       const accessTokenExpirationTime =
@@ -53,14 +53,14 @@ export const handleNaverLoginClick = () => {
       Common.setNickname(nickname);
       Common.setProfile(profile);
 
-      console.log("🟢 토큰 저장 완료");
+      console.log("토큰 저장 완료");
 
       setTimeout(() => {
-        console.log("🟢 메인 페이지 이동 시작");
+        console.log("메인 페이지 이동 시작");
         window.location.href = "/";
       }, 500);
     } else if (error) {
-      console.error("🚨 로그인 실패:", error);
+      console.error("로그인 실패:", error);
       alert("로그인 실패");
     }
 
@@ -79,9 +79,9 @@ export const useNaverCallback = () => {
     if (code) {
       const fetchAccessToken = async () => {
         try {
-          console.log("🔵 네이버 인증 코드:", code);
+          console.log("네이버 인증 코드:", code);
           const response = await AxiosApi.getAccessTokenFromNaver(code, state);
-          console.log("🔵 네이버 인증 응답:", response.data);
+          console.log("네이버 인증 응답:", response.data);
 
           if (response.data.grantType === "Bearer") {
             const accessToken = response.data.accessToken;
@@ -92,10 +92,10 @@ export const useNaverCallback = () => {
             );
             const profile = response.data.profileUrl;
 
-            console.log("🟢 네이버 로그인 성공:", nickname);
+            console.log("네이버 로그인 성공:", nickname);
 
             if (window.opener) {
-              console.log("📤 부모 창으로 메시지 전송 중...");
+              console.log("부모 창으로 메시지 전송 중...");
               window.opener.postMessage(
                 {
                   success: {
@@ -107,31 +107,31 @@ export const useNaverCallback = () => {
                 },
                 "http://localhost:3000"
               );
-              console.log("🟢 부모 창으로 메시지 전송 완료");
+              console.log("부모 창으로 메시지 전송 완료");
             } else {
-              console.error("🚨 window.opener가 존재하지 않습니다.");
+              console.error("window.opener가 존재하지 않습니다.");
             }
           }
         } catch (err) {
-          console.error("🚨 네이버 인증 실패:", err);
+          console.error("네이버 인증 실패:", err);
           if (window.opener) {
-            console.log("📤 부모 창으로 인증 실패 메시지 전송");
+            console.log("부모 창으로 인증 실패 메시지 전송");
             window.opener.postMessage(
               { error: "네이버 인증 실패" },
               "http://localhost:3000"
             );
           }
         } finally {
-          console.log("🔴 팝업 창 닫기");
+          console.log("팝업 창 닫기");
           window.close();
         }
       };
 
       fetchAccessToken();
     } else {
-      console.error("🚨 인증 코드가 없습니다.");
+      console.error("인증 코드가 없습니다.");
       if (window.opener) {
-        console.log("📤 부모 창으로 인증 코드 없음 메시지 전송");
+        console.log("부모 창으로 인증 코드 없음 메시지 전송");
         window.opener.postMessage(
           { error: "인증 코드 없음" },
           "http://localhost:3000"

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   MainPostContainer,
   MainPostTop,
@@ -57,6 +57,7 @@ const Post_MainContents = ({ boardType }) => {
   const [boardStatus, setBoardStatus] = useState(null);
   const [isExtra, setIsExtra] = useState(false);
   const [isExtraOther, setIsExtraOther] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const userkeynumber = useSelector((state) => state.auth.keynumber);
   const accesstoken = useSelector((state) => state.auth.accesstoken);
@@ -74,6 +75,30 @@ const Post_MainContents = ({ boardType }) => {
     setIsExtra(!isExtra);
     console.log(isExtra);
   };
+
+  const closeExtra = () => {
+    setIsExtra(false);
+    setIsExtraOther(false);
+  };
+
+  const extraRef = useRef(null);
+
+  useEffect(() => {
+    if (!isExtra && !isExtraOther) return;
+
+    const handleClickOutside = (event) => {
+      setTimeout(() => {
+        if (extraRef.current && !extraRef.current.contains(event.target)) {
+          setIsExtra(false);
+          setIsExtraOther(false);
+        }
+      }, 300);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isExtra, isExtraOther]);
 
   const handleExtraOther = () => {
     setIsExtraOther(!isExtraOther);
@@ -373,17 +398,23 @@ const Post_MainContents = ({ boardType }) => {
               </MainPostInformation>
               {writerKeyNumber == userkeynumber ? (
                 <MainPostExtra>
-                  <MainPostExtraItemContainer isOpen={isExtra}>
+                  <MainPostExtraItemContainer ref={extraRef} isOpen={isExtra}>
                     {boardType === "coding" && boardStatus === "ACTIVE" ? (
                       <MainPostExtraItem
-                        onClick={() => handleStatus()}
+                        onClick={() => {
+                          handleStatus();
+                          closeExtra();
+                        }}
                         isOpen={isExtra}
                       >
                         해결됨으로 변경
                       </MainPostExtraItem>
                     ) : boardType === "coding" && boardStatus === "INACTIVE" ? (
                       <MainPostExtraItem
-                        onClick={() => handleStatus()}
+                        onClick={() => {
+                          handleStatus();
+                          closeExtra();
+                        }}
                         isOpen={isExtra}
                       >
                         미해결로 변경
@@ -391,7 +422,10 @@ const Post_MainContents = ({ boardType }) => {
                     ) : (boardType === "study" || boardType === "team") &&
                       boardStatus === "ACTIVE" ? (
                       <MainPostExtraItem
-                        onClick={() => handleStatus()}
+                        onClick={() => {
+                          handleStatus();
+                          closeExtra();
+                        }}
                         isOpen={isExtra}
                       >
                         모집완료로 변경
@@ -400,7 +434,10 @@ const Post_MainContents = ({ boardType }) => {
                       (boardType === "study" || boardType === "team") &&
                       boardStatus === "INACTIVE" && (
                         <MainPostExtraItem
-                          onClick={() => handleStatus()}
+                          onClick={() => {
+                            handleStatus();
+                            closeExtra();
+                          }}
                           isOpen={isExtra}
                         >
                           모집중으로 변경
@@ -411,7 +448,10 @@ const Post_MainContents = ({ boardType }) => {
                       글 수정
                     </MainPostExtraItem>
                     <MainPostExtraItem
-                      onClick={() => handleDelete()}
+                      onClick={() => {
+                        handleDelete();
+                        closeExtra();
+                      }}
                       isOpen={isExtra}
                     >
                       글 삭제
@@ -423,7 +463,10 @@ const Post_MainContents = ({ boardType }) => {
                 </MainPostExtra>
               ) : writerKeyNumber != userkeynumber && userkeynumber !== "" ? (
                 <MainPostExtra>
-                  <MainPostExtraItemOtherContainer isOpenOther={isExtraOther}>
+                  <MainPostExtraItemOtherContainer
+                    ref={extraRef}
+                    isOpenOther={isExtraOther}
+                  >
                     <MainPostExtraOtherItem isOpenOther={isExtraOther}>
                       게시글 신고
                     </MainPostExtraOtherItem>

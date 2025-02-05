@@ -1,5 +1,5 @@
 // useSse.jsx
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { EventSourcePolyfill } from "event-source-polyfill";
 import AxiosApi from "../../../../api/AxiosApi";
@@ -7,8 +7,6 @@ import AxiosApi from "../../../../api/AxiosApi";
 const SPRING_DOMAIN = "http://localhost:8111";
 const OPEN_TIMEOUT = 10000; // onopen 타임아웃 (10초)
 const MESSAGE_TIMEOUT = 20000; // onmessage 타임아웃 (20초)
-const NETWORK_ERROR_MESSAGE =
-  "서버와 연결이 불안정합니다. 네트워크 연결 상태를 확인해주세요.";
 
 const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
   // useEffect 내부에서 RECONNECT를 발생 시키기 위한 state
@@ -16,6 +14,8 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
 
   // SSE 연결 객체 초기화
   const eventSource = useRef(null);
+
+  const isConnectedRef = useRef(false);
 
   // 전체 메시지 수(테스트 케이스 수) 유지
   const numOfTestcaseRef = useRef(null);
@@ -33,30 +33,32 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
   const messageTimeoutIdRef = useRef(null);
 
   // 타임아웃 처리 함수
-  const handleTimeout = () => {
+  const handleTimeout = useCallback(() => {
     if (eventSource.current) {
       eventSource.current.close();
+      isConnectedRef.current = false;
     }
 
-    onError(NETWORK_ERROR_MESSAGE);
-  };
+    onError("서버와 연결이 불안정합니다. 네트워크 연결 상태를 확인해주세요.");
+  }, []);
 
   // onopen 타임아웃 설정
-  const startOpenTimeout = () => {
+  const startOpenTimeout = useCallback(() => {
     openTimeoutIdRef.current = setTimeout(() => {
       handleTimeout();
     }, OPEN_TIMEOUT);
-  };
+  }, []);
 
   // onmessage 타임아웃 설정
-  const startMessageTimeout = () => {
+  const startMessageTimeout = useCallback(() => {
     messageTimeoutIdRef.current = setTimeout(() => {
       handleTimeout();
     }, MESSAGE_TIMEOUT);
-  };
+  }, []);
 
   // 새로고침 여부 추적
   const isReloading = useRef(false);
+
   useEffect(() => {
     const handleBeforeUnload = () => {
       isReloading.current = true;
@@ -74,6 +76,7 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
     // ref 초기화
     if (eventSource.current) {
       eventSource.current.close();
+      isConnectedRef.current = false;
     }
 
     lastEventIdRef.current = null;
@@ -109,6 +112,7 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
         headers,
         withCredentials: true, // 쿠키를 자동으로 포함하도록 설정, 필요 시 사용
       });
+      isConnectedRef.current = true;
 
       // onopen 타임아웃 시작
       startOpenTimeout();
@@ -125,6 +129,7 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
 
           if (eventSource.current) {
             eventSource.current.close();
+            isConnectedRef.current = false;
           }
 
           onError(errorMessage);
@@ -154,6 +159,7 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
         if (event.data.startsWith("error ")) {
           if (eventSource.current) {
             eventSource.current.close();
+            isConnectedRef.current = false;
           }
 
           onError(event.data.slice(6));
@@ -176,6 +182,7 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
 
           if (eventSource.current) {
             eventSource.current.close();
+            isConnectedRef.current = false;
           }
 
           onComplete();
@@ -198,6 +205,7 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
         // 종료하여 브라우저의 자동 재연결 메커니즘이 시도되지 않도록 처리
         if (eventSource.current) {
           eventSource.current.close();
+          isConnectedRef.current = false;
         }
 
         // 새로고침된 경우 onError 실행 방지
@@ -207,7 +215,9 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
         }
 
         console.error(err);
-        onError(NETWORK_ERROR_MESSAGE);
+        onError(
+          "서버와 연결이 끊겼습니다. 다시 시도해주세요. 문제가 반복될 경우 관리자에게 문의바랍니다."
+        );
         return;
       };
     };
@@ -226,11 +236,12 @@ const useSse = ({ jobId, onOpen, onMessage, onError, onComplete }) => {
 
       if (eventSource.current) {
         eventSource.current.close();
+        isConnectedRef.current = false;
       }
     };
   }, [shouldConnect]);
 
-  return { connect: () => setShouldConnect((prev) => !prev) };
+  return [isConnectedRef, () => setShouldConnect((prev) => !prev)];
 };
 
 export default useSse;
