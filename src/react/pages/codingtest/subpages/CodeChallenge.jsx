@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Base64 } from "js-base64";
 
 import CodeEditor from "../components/CodeEditor";
@@ -84,6 +84,14 @@ const CodeChallenge = () => {
     alert("채점이 완료되었습니다.");
   }, []);
 
+  const [isConnectedRef, connect] = useSse({
+    jobId: jobIdRef.current,
+    onOpen: handleOpen,
+    onMessage: handleMessage,
+    onError: handleError,
+    onComplete: handleComplete,
+  });
+
   const handleSubmitButtonClick = async (e) => {
     e.preventDefault();
 
@@ -118,79 +126,69 @@ const CodeChallenge = () => {
   const handleCancelButtonClick = async (e) => {
     e.preventDefault();
 
-    if (!jobIdRef.current) {
+    if (!isConnectedRef.current) {
       alert("현재 진행 중인 채점 작업이 없습니다.");
       return;
     }
 
-    const cancelJobResponseData = await AxiosApi.cancelJob(jobIdRef.current);
+    const jobIdToCancel = jobIdRef.current;
+    jobIdRef.current = null;
+    setResults(null);
+    connect();
+
+    const cancelJobResponseData = await AxiosApi.cancelJob(jobIdToCancel);
     if (!cancelJobResponseData["success"]) {
       const errorMessage = cancelJobResponseData["error"];
       handleError(errorMessage);
       return;
     }
 
-    // 그냥 종료
-    jobIdRef.current = null;
-    setResults(null);
-    connect();
     alert("채점이 중단되었습니다.");
   };
 
-  const { connect } = useSse({
-    jobId: jobIdRef.current,
-    onOpen: handleOpen,
-    onMessage: handleMessage,
-    onError: handleError,
-    onComplete: handleComplete,
-  });
-
   return (
     <CssWrapper>
-      <section>
-        <nav>
-          <button
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            뒤로
-          </button>
-        </nav>
+      <header>
         <div>
-          <div>
-            <label htmlFor="">언어 설정</label>
-            <select>
-              <option value="java">Java</option>
-            </select>
+          <div className="logo-container">
+            <Link className="logo" to="/" />
           </div>
-          <div>
-            <button className="run-btn" onClick={handleSubmitButtonClick}>
-              Run
-            </button>
-            <button
-              style={{ display: "none" }}
-              className="stop-btn"
-              onClick={handleCancelButtonClick}
-            >
-              Stop
-            </button>
+          <div className="menu-tree-indicator">
+            <span>coding test</span>
+            <span>practice</span>
+            <span>두 정수의 덧셈</span>
           </div>
         </div>
-      </section>
-      <section>
+
+        <div>
+          <button
+            className="leave-page-btn"
+            onClick={() => {
+              navigate("/codingtest/practice");
+            }}
+          >
+            나가기
+          </button>
+        </div>
+      </header>
+
+      <main>
         <div>
           <CodeEditor
             codeLanguage="java"
             value={codeEditorValue}
             setValue={setCodeEditorValue}
+            handleSubmitButtonClick={handleSubmitButtonClick}
+            handleCancelButtonClick={handleCancelButtonClick}
+            isConnectedRef={isConnectedRef}
           />
           <ExecutionResults results={results} />
         </div>
         <div>
           <CodeChallengeInfo />
         </div>
-      </section>
+      </main>
+      <footer></footer>
     </CssWrapper>
   );
 };

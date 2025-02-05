@@ -183,7 +183,6 @@ export const NavigatePath = styled.button`
   text-decoration: none;
   display: inline-block;
   padding: 5px 10px;
-  width: 100%;
   height: 100%;
   position: absolute;
   border: none;

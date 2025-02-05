@@ -152,6 +152,10 @@ const AppContents = () => {
         />
         <Route path="/cs/report" element={<Report />} />
         <Route path="/cs/question" element={<Question />} />
+        <Route
+          path="/codingtest/challenge/:questionId"
+          element={<CodeChallenge />}
+        />
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
@@ -245,7 +249,6 @@ const StudyRoutes = [
 
 const CodingTestRoutes = [
   { path: "/codingtest/practice", element: <Practice /> },
-  { path: "/codingtest/challenge/:questionId", element: <CodeChallenge /> },
 ];
 
 const CommunityRoutes = [

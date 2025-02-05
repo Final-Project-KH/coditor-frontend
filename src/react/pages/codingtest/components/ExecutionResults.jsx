@@ -31,19 +31,28 @@ const ExecutionResults = ({ results }) => {
             <ul>
               {Object.entries(results).map(([idx, result]) => (
                 <li key={idx}>
-                  <p>테스트케이스 {idx}번 실행 결과</p>
-                  {Object.keys(result).length === 0 ? (
-                    <p>⏳ 실행 중...</p>
-                  ) : (
+                  <p>
+                    {Object.keys(result).length === 0
+                      ? `[테스트케이스 ${idx}번] 채점 중 ⏳`
+                      : result.success
+                      ? `[테스트케이스 ${idx}번] 성공 ✅`
+                      : `[테스트케이스 ${idx}번] 실패 ❌`}
+                  </p>
+                  {Object.keys(result).length > 0 && (
                     <>
-                      <p>성공 여부: {result.success ? "✅ 성공" : "❌ 실패"}</p>
                       {result.memoryUsage && (
-                        <p>메모리 사용량: {result.memoryUsage} KB</p>
+                        <p>메모리 사용량: {result.memoryUsage}MB</p>
                       )}
                       {result.runningTime && (
-                        <p>실행 시간: {result.runningTime} ms</p>
+                        <p>실행 시간: {result.runningTime}ms</p>
                       )}
-                      {result.error && <p>{result.error}</p>}
+                      {result.error && (
+                        <span
+                          style={{ fontSize: "14px", marginRight: "0.5em" }}
+                        >
+                          {result.error}
+                        </span>
+                      )}
 
                       {!result.success && result.detail && (
                         <button
