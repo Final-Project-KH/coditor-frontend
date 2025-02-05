@@ -90,7 +90,7 @@ export const ClassSet = styled.div.attrs({
     width: 94%;
     height: 1px;
     background-color: black;
-    transform: rotate(0deg);
+    transform: scaleY(0.5);
   }
 `;
 export const ClassName = styled.div.attrs({

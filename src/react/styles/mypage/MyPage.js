@@ -126,7 +126,7 @@ export const LeftContainerEach = styled.div.attrs({
   justify-content: space-evenly;
   box-sizing: border-box;
   border-radius: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f1f1;
   gap: 15px;
 `;
 export const ProfileImage = styled.div.attrs({
@@ -290,7 +290,7 @@ export const CenterContentsContainer = styled.div.attrs({
   justify-content: space-evenly;
   margin-top: 13.75px;
   border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f1f1;
   padding: 30px 30px;
   gap: 20px;
 `;
@@ -461,8 +461,9 @@ export const CenterAlertContentsEach2 = styled.div.attrs({
   &::before {
     content: "";
     margin-bottom: 23px;
-    height: 1px;
-    background-color: rgba(0, 0, 0, 0.1);
+    height: 2px;
+    background-color: #f1f1f1;
+    transform: scaleY(0.5);
   }
 `;
 
@@ -492,6 +493,7 @@ export const CenterSNSContentsEach2 = styled.div.attrs({
     margin-bottom: 15px;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
+    transform: scaleY(0.5);
   }
 `;
 export const CenterSNSContentsEach3 = styled.div.attrs({
@@ -504,6 +506,7 @@ export const CenterSNSContentsEach3 = styled.div.attrs({
     margin-bottom: 15px;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
+    transform: scaleY(0.5);
   }
 `;
 

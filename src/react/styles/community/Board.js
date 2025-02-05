@@ -22,6 +22,7 @@ export const TopSortOuterContiner = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const TopSortInnerContainer = styled.div.attrs({
@@ -31,6 +32,7 @@ export const TopSortInnerContainer = styled.div.attrs({
   display: flex;
   flex-direction: row;
 `;
+
 export const TopSortTitleActive = styled.div.attrs({
   id: "topsorttitleactive",
 })`
@@ -238,6 +240,7 @@ export const MiddleSortOuterContiner = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const MiddleSortInnerContainer = styled.div.attrs({
@@ -345,7 +348,7 @@ export const PostListContainer = styled.div.attrs({
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 
 export const PostEach = styled.div.attrs({
@@ -361,6 +364,7 @@ export const PostEach = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const PostTop = styled.div.attrs({
@@ -582,4 +586,40 @@ export const PostBottomViewsText = styled.div.attrs({
   font-family: "regular", sans-serif;
   font-size: 12px;
   color: black;
+`;
+
+export const EachBoardContainer = styled.div.attrs({
+  id: "eachboardcontainer",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  padding: 0px 20px;
+  gap: 10px;
+`;
+export const EachBoardTitle = styled.div.attrs({
+  id: "eachboardtitle",
+})`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+  color: black;
+  font-size: 20px;
+  font-family: "semibold", sans-serif;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    margin-top: 20px;
+    transform: scaleY(0.5);
+  }
 `;

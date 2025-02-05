@@ -13,7 +13,7 @@ export const RightContainerEach = styled.div.attrs({
   justify-content: space-between;
   box-sizing: border-box;
   border-radius: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f1f1;
 `;
 export const RightContentsContainer = styled.div.attrs({
   id: "rightcontentscontainer",

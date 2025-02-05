@@ -9,6 +9,7 @@ export const PaginationContainer = styled.div.attrs({
   gap: 5px;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 `;
 export const PaginationNumberBox = styled.div.attrs({
   id: "paginationnumberbox",

@@ -22,6 +22,7 @@ export const TopSortOuterContiner = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const TopSortInnerContainer = styled.div.attrs({
@@ -217,6 +218,7 @@ export const MiddleSortOuterContiner = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const MiddleSortInnerContainer = styled.div.attrs({
@@ -340,6 +342,7 @@ export const PostEach = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const PostTop = styled.div.attrs({

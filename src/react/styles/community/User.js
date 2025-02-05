@@ -116,6 +116,7 @@ export const FeedContainer = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 

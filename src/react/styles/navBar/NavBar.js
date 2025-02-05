@@ -346,6 +346,7 @@ export const MyPageMenuContents = styled.div.attrs({
     height: 1px;
     background-color: rgba(0, 0, 0, 0.2);
     margin-bottom: 15px;
+    transform: scaleY(0.5);
   }
 `;
 export const StyledNavigate = styled.div`

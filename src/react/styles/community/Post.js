@@ -104,6 +104,7 @@ export const MainPostContainer = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const MainPostTop = styled.div.attrs({
@@ -390,6 +391,7 @@ export const MainPostExtraItem = styled.div.attrs({
     top: -5px;
     left: 10%;
     background-color: #dadcdf;
+    transform: scaleY(0.5);
   }
   &:hover {
     font-family: "bold", sans-serif;
@@ -614,6 +616,7 @@ export const ReplyEach = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const ReplyUserProfileBox = styled.div.attrs({
@@ -943,6 +946,7 @@ export const WriteSortOuterContiner = styled.div.attrs({
     width: 100%;
     height: 1px;
     background-color: black;
+    transform: scaleY(0.5);
   }
 `;
 export const WriteSortInnerContainer = styled.div.attrs({

@@ -153,7 +153,7 @@ export const CenterContentsContainer = styled.div.attrs({
   align-items: center;
   margin-top: 13.75px;
   border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f1f1;
   padding: 50px 50px;
   gap: 30px;
 `;
