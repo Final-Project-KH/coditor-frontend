@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -273,9 +273,9 @@ const extensions = [
   Image,
 ];
 
-const Post_ModifyEditor_Course = ({ title, course }) => {
+const Post_ModifyEditor_Course = ({ boardId, content, title, course }) => {
   const navigate = useNavigate();
-  const [editorContent, setEditorContent] = useState("");
+  const [editorContent, setEditorContent] = useState(content || "");
   const [boardType, setBoardType] = useState("course");
 
   const userAuth = useSelector((state) => state.auth.accesstoken);
@@ -300,13 +300,21 @@ const Post_ModifyEditor_Course = ({ title, course }) => {
     content: "",
   });
 
+  useEffect(() => {
+    if (editor && content) {
+      editor.commands.setContent(content);
+    }
+  }, [editor, content]);
+
   // cancel button
   const handleGoBack = () => {
-    navigate(`/community/${boardType}`);
+    navigate(`/community/${boardType}/post/${boardId}`, {
+      state: { id: boardType },
+    });
   };
 
   // submit button
-  const handleSubmit = async () => {
+  const handleModify = async () => {
     if (userAuth === "") {
       alert("로그인이 필요한 서비스입니다.");
       return navigate("/login");
@@ -317,21 +325,22 @@ const Post_ModifyEditor_Course = ({ title, course }) => {
       return;
     }
     try {
-      const response = await AxiosApi.writeCoursePost(
+      const response = await AxiosApi.modifyCoursePost(
         boardType,
+        boardId,
         title,
         course,
         editor.getHTML()
       );
-      alert("내용이 성공적으로 제출되었습니다.");
-      navigate(`/community/${boardType}`, {
+      alert("내용이 성공적으로 수정되었습니다.");
+      navigate(`/community/${boardType}/post/${boardId}`, {
         state: {
           id: boardType,
         },
       });
     } catch (error) {
       console.error("제출 실패:", error);
-      alert("제출에 실패했습니다. 다시 시도해주세요.");
+      alert("수정에 실패했습니다. 다시 시도해주세요.");
     }
   };
 
@@ -357,7 +366,7 @@ const Post_ModifyEditor_Course = ({ title, course }) => {
         </EditorArea>
         <WriteButtonsArea>
           <WriteCancelButton onClick={handleGoBack}>취소</WriteCancelButton>
-          <WriteSubmitButton onClick={handleSubmit}>수정</WriteSubmitButton>
+          <WriteSubmitButton onClick={handleModify}>수정</WriteSubmitButton>
         </WriteButtonsArea>
       </TipTapBox>
     </>

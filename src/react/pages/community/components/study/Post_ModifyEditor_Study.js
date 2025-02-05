@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -275,22 +275,9 @@ const extensions = [
   Subscript,
 ];
 
-const Post_ModifyEditor_Study = ({ title, study }) => {
+const Post_ModifyEditor_Study = ({ boardId, content, title, study }) => {
   const navigate = useNavigate();
-  const [editorContent, setEditorContent] = useState(`
-    <p><b>[개발 스터디 모집 내용 예시]</b></p>
-    <ul>
-      <li>스터디 주제 : </li>
-      <li>스터디 목표 : </li>
-      <li>예상 일정(횟수) : </li>
-      <li>예상 커리큘럼 : </li>
-      <li>예상 모집인원 : </li>
-      <li>스터디 소개 : </li>
-      <li>주의사항 : </li>
-      <li>지원 방법(이메일, 카카오 오픈채팅방, 구글폼 등) : </li>
-    </ul>
-    <p><span style="color: #868e96;"><sub>* 참고 사항 : 스터디 게시판에 영리를 목적으로 하는 게시글(유료 과외 및 멘토링 등)을 작성한 경우 해당 글은 운영 방침에 의해 중단, 삭제될 수 있음을 안내드립니다.</sub></span></p><br />
-  `);
+  const [editorContent, setEditorContent] = useState(content || "");
   const [boardType, setBoardType] = useState("study");
 
   const userAuth = useSelector((state) => state.auth.accesstoken);
@@ -308,20 +295,30 @@ const Post_ModifyEditor_Study = ({ title, study }) => {
       Image,
       Subscript,
     ],
-    content: editorContent,
+    content: "",
     onUpdate: ({ editor }) => {
       // 에디터 내용이 변경될 때마다 editorContent 상태 업데이트
       setEditorContent(editor.getHTML());
     },
   });
 
+  useEffect(() => {
+    if (editor && content) {
+      editor.commands.setContent(content);
+    }
+  }, [editor, content]);
+
   // cancel button
   const handleGoBack = () => {
-    navigate(`/community/${boardType}`);
+    navigate(`/community/${boardType}/post/${boardId}`, {
+      state: {
+        id: boardType,
+      },
+    });
   };
 
   // submit button
-  const handleSubmit = async () => {
+  const handleModify = async () => {
     if (userAuth === "") {
       alert("로그인이 필요한 서비스입니다.");
       return navigate("/login");
@@ -335,21 +332,22 @@ const Post_ModifyEditor_Study = ({ title, study }) => {
       return;
     }
     try {
-      const response = await AxiosApi.writeStudyPost(
+      const response = await AxiosApi.modifyStudyPost(
         boardType,
+        boardId,
         title,
         study,
         editorContent
       );
-      alert("내용이 성공적으로 제출되었습니다.");
-      navigate(`/community/${boardType}`, {
+      alert("내용이 성공적으로 수정되었습니다.");
+      navigate(`/community/${boardType}/post/${boardId}`, {
         state: {
           id: boardType,
         },
       });
     } catch (error) {
       console.error("제출 실패:", error);
-      alert("제출에 실패했습니다. 다시 시도해주세요.");
+      alert("수정에 실패했습니다. 다시 시도해주세요.");
     }
   };
 
@@ -375,7 +373,7 @@ const Post_ModifyEditor_Study = ({ title, study }) => {
         </EditorArea>
         <WriteButtonsArea>
           <WriteCancelButton onClick={handleGoBack}>취소</WriteCancelButton>
-          <WriteSubmitButton onClick={handleSubmit}>수정</WriteSubmitButton>
+          <WriteSubmitButton onClick={handleModify}>수정</WriteSubmitButton>
         </WriteButtonsArea>
       </TipTapBox>
     </>

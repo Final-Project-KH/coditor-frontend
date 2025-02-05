@@ -6,16 +6,43 @@ import {
   WriteTitle,
   WriteTitleBox,
 } from "../../styles/community/Post";
-import Post_WriteEditor_Study from "./components/study/Post_WriteEditor_Study";
-import Post_WriteSort from "./components/common/Post_WriteSort";
-import { useState } from "react";
+import Post_ModifyEditor_Study from "./components/study/Post_ModifyEditor_Study";
+import Post_ModifySort from "./components/common/Post_ModifySort";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Post_Modify_Study = () => {
   const [title, setTitle] = useState("");
-  const [study, setStudy] = useState("");
-
+  const [content, setContent] = useState("");
   const [selectedStudies, setSelectedStudies] = useState([]);
+  const [boardType, setBoardType] = useState("");
+  const [boardId, setBoardId] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const originTitle = location.state?.boardTitle || "";
+    const originContent = location.state?.boardContent || "";
+    const originBoardType = location.state?.id || "";
+    const originBoardId = location.state?.boardId || "";
+    const originSelectedStudies = location.state?.studies || [];
+    const defaultSelectedStudies = studyOptions
+      .filter((option) => originSelectedStudies.includes(option.value))
+      .map((option) => option.value);
+    setTitle(originTitle);
+    setContent(originContent);
+    setBoardType(originBoardType);
+    setBoardId(originBoardId);
+    setSelectedStudies(defaultSelectedStudies);
+
+    if (originTitle === "") {
+      alert("잘못된 접근입니다.");
+      navigate("/");
+    }
+  }, [location.state]);
+
   const studyOptions = [
     { value: "ALGORITHM", label: "알고리즘" },
     { value: "STRUCTURE", label: "자료구조" },
@@ -85,30 +112,33 @@ const Post_Modify_Study = () => {
     <>
       <WriteWrap>
         <WriteContainer>
-          <Post_WriteSort />
+          <Post_ModifySort />
           <WriteTitleBox>
             <WriteTitle
+              disabled
               autoComplete="off"
               placeholder="제목을 입력하세요."
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
             />
           </WriteTitleBox>
           <WriteTagBox>
-            {/* <WriteTags
-              placeholder="태그를 설정하세요. (최대 10개)"
-              value={study}
-              onChange={(e) => setStudy(e.target.value)}
-            /> */}
             <Select
               options={studyOptions}
               isMulti
+              value={studyOptions.filter((option) =>
+                selectedStudies.includes(option.value)
+              )}
               onChange={handleChange}
               placeholder="태그를 설정하세요."
               styles={customStyles}
             />
           </WriteTagBox>
-          <Post_WriteEditor_Study title={title} study={selectedStudies} />
+          <Post_ModifyEditor_Study
+            boardId={boardId}
+            content={content}
+            title={title}
+            study={selectedStudies}
+          />
         </WriteContainer>
       </WriteWrap>
     </>
