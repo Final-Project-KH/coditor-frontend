@@ -132,22 +132,22 @@ const AppContents = () => {
         <Route path="/legal/privacy" element={<Privacy />} />
         <Route path="/community/coding/write" element={<Post_Write_Coding />} />
         <Route
-          path="/community/coding/modify:boardId"
+          path="/community/coding/modify/:boardId"
           element={<Post_Modify_Coding />}
         />
         <Route path="/community/course/write" element={<Post_Write_Course />} />
         <Route
-          path="/community/course/modify:boardId"
+          path="/community/course/modify/:boardId"
           element={<Post_Modify_Course />}
         />
         <Route path="/community/study/write" element={<Post_Write_Study />} />
         <Route
-          path="/community/study/modify:boardId"
+          path="/community/study/modify/:boardId"
           element={<Post_Modify_Study />}
         />
         <Route path="/community/team/write" element={<Post_Write_Team />} />
         <Route
-          path="/community/team/modify:boardId"
+          path="/community/team/modify/:boardId"
           element={<Post_Modify_Team />}
         />
         <Route path="/cs/report" element={<Report />} />

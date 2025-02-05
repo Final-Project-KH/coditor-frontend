@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   WriteWrap,
   WriteContainer,
@@ -7,16 +7,43 @@ import {
   WriteTitle,
   WriteTitleBox,
 } from "../../styles/community/Post";
-import Post_WriteSort from "./components/common/Post_WriteSort";
-import Post_WriteEditor_Coding from "./components/coding/Post_WriteEditor_Coding";
+import Post_ModifySort from "./components/common/Post_ModifySort";
+import Post_ModifyEditor_Coding from "./components/coding/Post_ModifyEditor_Coding";
 import Select from "react-select";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Post_Modify_Coding = () => {
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [selectedLanguages, setSelectedLanguages] = useState([]);
+  const [boardType, setBoardType] = useState("");
+  const [boardId, setBoardId] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const originTitle = location.state?.boardTitle || "";
+    const originContent = location.state?.boardContent || "";
+    const originBoardType = location.state?.id || "";
+    const originBoardId = location.state?.boardId || "";
+    const originSelectedLanguages = location.state?.languages || [];
+    const defaultSelectedLanguages = languageOptions
+      .filter((option) => originSelectedLanguages.includes(option.value))
+      .map((option) => option.value);
+    setTitle(originTitle);
+    setContent(originContent);
+    setBoardType(originBoardType);
+    setBoardId(originBoardId);
+    setSelectedLanguages(defaultSelectedLanguages);
+
+    if (originTitle === "") {
+      alert("잘못된 접근입니다.");
+      navigate("/");
+    }
+  }, [location.state]);
 
   const MAX_SELECTION = 10;
-
-  const [selectedLanguages, setSelectedLanguages] = useState([]);
   const languageOptions = [
     { value: "JAVA", label: "Java" },
     { value: "JS", label: "JavaScript" },
@@ -100,25 +127,33 @@ const Post_Modify_Coding = () => {
     <>
       <WriteWrap>
         <WriteContainer>
-          <Post_WriteSort />
+          <Post_ModifySort />
           <WriteTitleBox>
             <WriteTitle
+              disabled
               autoComplete="off"
               placeholder="제목을 입력하세요."
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
             />
           </WriteTitleBox>
           <WriteTagBox>
             <Select
               options={languageOptions}
               isMulti
+              value={languageOptions.filter((option) =>
+                selectedLanguages.includes(option.value)
+              )}
               onChange={handleChange}
               placeholder="태그를 설정하세요. (최대 10개)"
               styles={customStyles}
             />
           </WriteTagBox>
-          <Post_WriteEditor_Coding title={title} language={selectedLanguages} />
+          <Post_ModifyEditor_Coding
+            boardId={boardId}
+            content={content}
+            title={title}
+            language={selectedLanguages}
+          />
         </WriteContainer>
       </WriteWrap>
     </>

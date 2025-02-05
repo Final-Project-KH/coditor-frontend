@@ -6,16 +6,43 @@ import {
   WriteTitle,
   WriteTitleBox,
 } from "../../styles/community/Post";
-import Post_WriteEditor_Team from "./components/team/Post_WriteEditor_Team";
-import Post_WriteSort from "./components/common/Post_WriteSort";
-import { useState } from "react";
+import Post_ModifyEditor_Team from "./components/team/Post_ModifyEditor_Team";
+import Post_ModifySort from "./components/common/Post_ModifySort";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Post_Modify_Team = () => {
   const [title, setTitle] = useState("");
-  const [team, setTeam] = useState("");
-
+  const [content, setContent] = useState("");
   const [selectedTeam, setSelectedTeam] = useState([]);
+  const [boardType, setBoardType] = useState("");
+  const [boardId, setBoardId] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const originTitle = location.state?.boardTitle || "";
+    const originContent = location.state?.boardContent || "";
+    const originBoardType = location.state?.id || "";
+    const originBoardId = location.state?.boardId || "";
+    const originSelectedTeam = location.state?.teams || [];
+    const defaultSelectedTeam = teamOptions
+      .filter((option) => originSelectedTeam.includes(option.value))
+      .map((option) => option.value);
+    setTitle(originTitle);
+    setContent(originContent);
+    setBoardType(originBoardType);
+    setBoardId(originBoardId);
+    setSelectedTeam(defaultSelectedTeam);
+
+    if (originTitle === "") {
+      alert("잘못된 접근입니다.");
+      navigate("/");
+    }
+  }, [location.state]);
+
   const teamOptions = [
     { value: "FRONT", label: "프론트엔드" },
     { value: "BACK", label: "백엔드" },
@@ -87,13 +114,13 @@ const Post_Modify_Team = () => {
     <>
       <WriteWrap>
         <WriteContainer>
-          <Post_WriteSort />
+          <Post_ModifySort />
           <WriteTitleBox>
             <WriteTitle
+              disabled
               autoComplete="off"
               placeholder="제목을 입력하세요."
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
             />
           </WriteTitleBox>
           <WriteTagBox>
@@ -105,13 +132,21 @@ const Post_Modify_Team = () => {
             <Select
               options={teamOptions}
               isMulti
+              value={teamOptions.filter((option) =>
+                selectedTeam.includes(option.value)
+              )}
               onChange={handleChange}
               placeholder="태그를 설정하세요."
               styles={customStyles}
             />
           </WriteTagBox>
 
-          <Post_WriteEditor_Team title={title} team={selectedTeam} />
+          <Post_ModifyEditor_Team
+            boardId={boardId}
+            content={content}
+            title={title}
+            team={selectedTeam}
+          />
         </WriteContainer>
       </WriteWrap>
     </>

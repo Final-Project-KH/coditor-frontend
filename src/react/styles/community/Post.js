@@ -342,12 +342,22 @@ export const MainPostExtraItemContainer = styled.div.attrs({
   background-color: white;
   border: 1px solid #dadcdf;
   ${(props) =>
-    props.isOpen
+    props.isOpen && props.boardType !== "course"
       ? css`
           animation: ${expandHeight} 0.3s ease-out forwards;
         `
-      : css`
+      : !props.isOpen && props.boardType !== "course"
+      ? css`
           animation: ${collapseHeight} 0.3s ease-out forwards;
+        `
+      : props.isOpen && props.boardType === "course"
+      ? css`
+          animation: ${expandHeightCourse} 0.3s ease-out forwards;
+        `
+      : !props.isOpen &&
+        props.boardType === "course" &&
+        css`
+          animation: ${collapseHeightCourse} 0.3s ease-out forwards;
         `}
   ${(props) =>
     !props.isOpen &&
@@ -369,6 +379,7 @@ export const MainPostExtraItemOtherContainer = styled.div.attrs({
   top: 10px;
   right: 20px;
   border-radius: 10px;
+  background-color: white;
   border: 1px solid #dadcdf;
   ${(props) =>
     props.isOpenOther
@@ -398,6 +409,26 @@ const expandHeight = keyframes`
 const collapseHeight = keyframes`
   0% {
     height: 170px;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+`;
+const expandHeightCourse = keyframes`
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 110px;
+    opacity: 1;
+  }
+`;
+const collapseHeightCourse = keyframes`
+  0% {
+    height: 110px;
     opacity: 1;
   }
   100% {
@@ -456,6 +487,14 @@ export const MainPostExtraItem = styled.div.attrs({
     !props.isOpen &&
     css`
       color: transparent;
+    `}
+  ${(props) =>
+    props.boardType === "course" &&
+    css`
+      height: 50%;
+      & + &::before {
+        top: 0px;
+      }
     `}
 `;
 export const MainPostExtraOtherItem = styled.div.attrs({

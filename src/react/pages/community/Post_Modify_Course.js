@@ -6,16 +6,45 @@ import {
   WriteTitle,
   WriteTitleBox,
 } from "../../styles/community/Post";
-import Post_WriteEditor from "./components/course/Post_WriteEditor_Course";
-import Post_WriteSort from "./components/common/Post_WriteSort";
-import { useState } from "react";
+import Post_ModifyEditor_Course from "./components/course/Post_ModifyEditor_Course";
+import Post_ModifySort from "./components/common/Post_ModifySort";
+import React, { useEffect, useState } from "react";
 import Post_WriteEditor_Course from "./components/course/Post_WriteEditor_Course";
 import Select from "react-select";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Post_Modify_Course = () => {
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [course, setCourse] = useState("");
   const [selectedCourses, setSelectedCourses] = useState([]);
+  const [boardType, setBoardType] = useState("");
+  const [boardId, setBoardId] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const originTitle = location.state?.boardTitle || "";
+    const originContent = location.state?.boardContent || "";
+    const originBoardType = location.state?.id || "";
+    const originBoardId = location.state?.boardId || "";
+    const originSelectedCourses = location.state?.courses || [];
+    const defaultSelectedCourses = courseOptions
+      .filter((option) => originSelectedCourses.includes(option.value))
+      .map((option) => option.value);
+    setTitle(originTitle);
+    setContent(originContent);
+    setBoardType(originBoardType);
+    setBoardId(originBoardId);
+    setSelectedCourses(defaultSelectedCourses);
+
+    if (originTitle === "") {
+      alert("잘못된 접근입니다.");
+      navigate("/");
+    }
+  }, [location.state]);
+
   const courseOptions = [
     { value: "COMPANY", label: "회사정보" },
     { value: "PORTFOLIO", label: "포트폴리오" },
@@ -88,30 +117,33 @@ const Post_Modify_Course = () => {
     <>
       <WriteWrap>
         <WriteContainer>
-          <Post_WriteSort />
+          <Post_ModifySort />
           <WriteTitleBox>
             <WriteTitle
+              disabled
               autoComplete="off"
               placeholder="제목을 입력하세요."
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
             />
           </WriteTitleBox>
           <WriteTagBox>
-            {/* <WriteTags
-              placeholder="태그를 설정하세요. (최대 10개)"
-              value={course}
-              onChange={(e) => setCourse(e.target.value)}
-            /> */}
             <Select
               options={courseOptions}
               isMulti
+              value={courseOptions.filter((option) =>
+                selectedCourses.includes(option.value)
+              )}
               onChange={handleChange}
               placeholder="태그를 설정하세요."
               styles={customStyles}
             />
           </WriteTagBox>
-          <Post_WriteEditor_Course title={title} course={selectedCourses} />
+          <Post_ModifyEditor_Course
+            boardId={boardId}
+            content={content}
+            title={title}
+            course={selectedCourses}
+          />
         </WriteContainer>
       </WriteWrap>
     </>
