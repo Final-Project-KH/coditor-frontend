@@ -262,6 +262,7 @@ const CS_WriteEditor_Report = ({
   boardTitle,
   boardUrl,
   title,
+  report,
 }) => {
   const navigate = useNavigate();
   const [editorContent, setEditorContent] = useState("");
@@ -322,7 +323,8 @@ const CS_WriteEditor_Report = ({
       const response = await AxiosApi.newReportPost(
         boardId,
         title,
-        editor.getHTML()
+        editor.getHTML(),
+        report
       );
       alert("내용이 성공적으로 제출되었습니다.");
       navigate(-1);

@@ -823,15 +823,27 @@ const AxiosApi = {
       throw error;
     }
   },
-  newReportPost: async (boardId, title, content) => {
+  newReportPost: async (boardId, title, content, report) => {
     try {
       const response = await AxiosInstance.post(
         SPRING_DOMAIN + "/customerService/new/reportPost",
-        {boardId, title, content}
+        {boardId, title, content, report}
       );
       return response.data;
     } catch (error) {
       console.error("신고 실패 : ", error);
+      throw error;
+    }
+  },
+  newSuggestionPost: async (title, content, suggestion) => {
+    try {
+      const response = await AxiosInstance.post(
+        SPRING_DOMAIN + "/customerService/new/suggestionPost",
+        {title, content, suggestion}
+      );
+      return response.data;
+    } catch (error) {
+      console.error("건의 실패 : ", error);
       throw error;
     }
   },
