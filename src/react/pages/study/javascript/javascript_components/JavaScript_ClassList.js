@@ -16,11 +16,6 @@ import { JavaScriptStudyChapter } from "../../../../../util/study/JavaScriptStud
 const JavaScript_ClassList = forwardRef(({ refs }, ref) => {
   const navigate = useNavigate();
 
-  // Class Header onClick
-  const handleNext = (cls) => {
-    navigate(`/study/javascript/${cls.id}`);
-  };
-
   // Class Contents onClick
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
@@ -38,7 +33,7 @@ const JavaScript_ClassList = forwardRef(({ refs }, ref) => {
   const EachClassComponent = ({ cls, isOpen, onToggle }) => (
     <EachClass key={cls.id} ref={(el) => (refs[cls.id.toString()] = el)}>
       <ClassHeader isOpen={isOpen}>
-        <ClassHeaderTitle onClick={() => handleNext(cls)}>
+        <ClassHeaderTitle>
           {cls.title}
         </ClassHeaderTitle>
         <ClassHeaderTitleButton

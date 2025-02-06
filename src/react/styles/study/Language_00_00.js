@@ -141,7 +141,6 @@ export const ClassHeaderTitle = styled.div.attrs({
   color: white;
   font-size: 20px;
   font-family: "bold", sans-serif;
-  cursor: pointer;
 `;
 
 export const ClassHeaderTitlePathLink = styled.button.attrs({
@@ -295,9 +294,9 @@ export const StickyClassBox = styled.div.attrs({
   id: "stickyclassbox",
 })`
   width: 100%;
-  height: calc(100vh - 492px);
+  height: calc(100vh - 382px);
   position: sticky;
-  top: 390px;
+  top: 280px;
   bottom: 50px;
   overflow-y: scroll; /* 세로 스크롤 활성화 */
   -ms-overflow-style: none; /* IE/Edge */

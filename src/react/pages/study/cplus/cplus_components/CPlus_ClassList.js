@@ -16,11 +16,6 @@ import { CPlusStudyChapter } from "../../../../../util/study/CPlusStudyChapter";
 const CPlus_ClassList = forwardRef(({ refs }, ref) => {
   const navigate = useNavigate();
 
-  // Class Header onClick
-  const handleNext = (cls) => {
-    navigate(`/study/cplus/${cls.id}`);
-  };
-
   // Class Contents onClick
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
@@ -38,7 +33,7 @@ const CPlus_ClassList = forwardRef(({ refs }, ref) => {
   const EachClassComponent = ({ cls, isOpen, onToggle }) => (
     <EachClass key={cls.id} ref={(el) => (refs[cls.id.toString()] = el)}>
       <ClassHeader isOpen={isOpen}>
-        <ClassHeaderTitle onClick={() => handleNext(cls)}>
+        <ClassHeaderTitle>
           {cls.title}
         </ClassHeaderTitle>
         <ClassHeaderTitleButton

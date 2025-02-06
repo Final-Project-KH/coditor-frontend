@@ -17,11 +17,6 @@ import { CPlusStudyChapter } from "../../../../../util/study/CPlusStudyChapter";
 const CPlus_ClassList_Filtered_M = ({ chapter }) => {
   const navigate = useNavigate();
 
-  // Class Header onClick
-  const handleNext = (cls) => {
-    navigate(`/study/cplus/${cls.id}`);
-  };
-
   // 클래스 이름 클릭시 진입
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
@@ -31,7 +26,7 @@ const CPlus_ClassList_Filtered_M = ({ chapter }) => {
   const EachClassComponent = ({ cls, isOpen, onToggle }) => (
     <EachClass key={cls.id}>
       <ClassHeader isOpen={isOpen}>
-        <ClassHeaderTitle onClick={() => handleNext(cls)}>
+        <ClassHeaderTitle>
           {cls.title}
         </ClassHeaderTitle>
       </ClassHeader>

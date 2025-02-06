@@ -17,11 +17,6 @@ import { JavaStudyChapter } from "../../../../../util/study/JavaStudyChapter";
 const Java_ClassList_Filtered_M = ({ chapter }) => {
   const navigate = useNavigate();
 
-  // Class Header onClick
-  const handleNext = (cls) => {
-    navigate(`/study/java/${cls.id}`);
-  };
-
   // 클래스 이름 클릭시 진입
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
@@ -31,7 +26,7 @@ const Java_ClassList_Filtered_M = ({ chapter }) => {
   const EachClassComponent = ({ cls }) => (
     <EachClass key={cls.id}>
       <ClassHeader>
-        <ClassHeaderTitle onClick={() => handleNext(cls)}>
+        <ClassHeaderTitle>
           {cls.title}
         </ClassHeaderTitle>
       </ClassHeader>

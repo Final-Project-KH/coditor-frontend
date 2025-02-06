@@ -194,12 +194,8 @@ const ToolBar = ({ editor }) => {
           style={{
             backgroundImage: "url(/images/tiptap/Editor_Toolbar_10_H1.svg)",
           }}
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 1 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 1 }) ? "is-active" : ""
-          }
+          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          className={editor.isActive("heading", { level: 1 }) ? "is-active" : ""}
         />
         <button
           style={{

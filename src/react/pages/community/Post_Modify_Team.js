@@ -11,6 +11,7 @@ import Post_ModifySort from "./components/common/Post_ModifySort";
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { useLocation, useNavigate } from "react-router-dom";
+import Post_Modify_Team_M from "./Post_Modify_Team_M";
 
 const Post_Modify_Team = () => {
   const [title, setTitle] = useState("");
@@ -21,6 +22,23 @@ const Post_Modify_Team = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // 초기 화면 크기 체크
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+    window.addEventListener("resize", handleResize); // 화면 크기 변화에 따른 상태 업데이트
+    handleResize(); // 컴포넌트 마운트 시 초기 상태 설정
+    return () => {
+      window.removeEventListener("resize", handleResize); // 클린업
+    };
+  }, []);
 
   useEffect(() => {
     const originTitle = location.state?.boardTitle || "";
@@ -61,9 +79,9 @@ const Post_Modify_Team = () => {
       // 컨트롤 바 UI
       ...provided,
       backgroundColor: "white",
-      borderColor: state.isFocused ? "blue" : "#ccc",
-      boxShadow: state.isFocused ? "0 0 5px rgba(0, 0, 255, 0.5)" : "none",
-      "&:hover": { borderColor: "blue" },
+      borderColor: "#ccc",
+      boxShadow: "none",
+      "&:hover": { borderColor: "#333333" },
       maxWidth: "1280px",
       border: "1px solid #f1f1f1",
       padding: "5px",
@@ -85,70 +103,96 @@ const Post_Modify_Team = () => {
     }),
     option: (provided, { isSelected, isFocused }) => ({
       ...provided,
-      backgroundColor: isSelected ? "blue" : isFocused ? "#f0f0f0" : "white",
+      backgroundColor: isSelected ? "black" : isFocused ? "#f1f1f1" : "white",
       color: isSelected ? "white" : "black",
       cursor: "pointer",
       zIndex: "50",
+      "&:active": {
+        backgroundColor: "transparent", // 클릭 순간 색상 (파란 계열 예시)
+        fontFamily: "bold",
+        textDecoration: "underline",
+        textUnderlineOffset: "5px",
+      },
     }),
+    // 태그 박스
     multiValue: (provided) => ({
       ...provided,
-      backgroundColor: "#d1e7fd",
+      backgroundColor: "#333333",
       alignItems: "center",
+      borderRadius: "5px",
     }),
+    // 태그 텍스트
     multiValueLabel: (provided) => ({
       ...provided,
-      color: "black",
+      color: "white",
+      marginBottom: "1px",
+      fontSize: "14px",
+      fontFamily: "medium",
     }),
+    // 삭제버튼
     multiValueRemove: (provided) => ({
       ...provided,
-      color: "red",
-      width: "25px",
-      height: "25px",
+      color: "white",
+      width: "15px",
+      height: "15px",
       alignItems: "center",
       justifyContent: "center",
-      "&:hover": { backgroundColor: "red", color: "white" },
+      marginLeft: "2px",
+      marginRight: "5px",
+      padding: "0",
+      borderRadius: "50%",
+      "&:hover": {
+        backgroundColor: "white",
+        color: "black",
+      },
     }),
   };
 
   return (
     <>
-      <WriteWrap>
-        <WriteContainer>
-          <Post_ModifySort />
-          <WriteTitleBox>
-            <WriteTitle
-              disabled
-              autoComplete="off"
-              placeholder="제목을 입력하세요."
-              value={title}
-            />
-          </WriteTitleBox>
-          <WriteTagBox>
-            {/* <WriteTags
+      {isMobile ? (
+        <Post_Modify_Team_M />
+      ) : (
+        <>
+          <WriteWrap>
+            <WriteContainer>
+              <Post_ModifySort />
+              <WriteTitleBox>
+                <WriteTitle
+                  disabled
+                  autoComplete="off"
+                  placeholder="제목을 입력하세요."
+                  value={title}
+                />
+              </WriteTitleBox>
+              <WriteTagBox>
+                {/* <WriteTags
               placeholder="태그를 설정하세요. (최대 10개)"
               value={team}
               onChange={(e) => setTeam(e.target.value)}
             /> */}
-            <Select
-              options={teamOptions}
-              isMulti
-              value={teamOptions.filter((option) =>
-                selectedTeam.includes(option.value)
-              )}
-              onChange={handleChange}
-              placeholder="태그를 설정하세요."
-              styles={customStyles}
-            />
-          </WriteTagBox>
+                <Select
+                  options={teamOptions}
+                  isMulti
+                  value={teamOptions.filter((option) =>
+                    selectedTeam.includes(option.value)
+                  )}
+                  onChange={handleChange}
+                  placeholder="태그를 설정하세요."
+                  styles={customStyles}
+                />
+              </WriteTagBox>
 
-          <Post_ModifyEditor_Team
-            boardId={boardId}
-            content={content}
-            title={title}
-            team={selectedTeam}
-          />
-        </WriteContainer>
-      </WriteWrap>
+              <Post_ModifyEditor_Team
+                boardId={boardId}
+                content={content}
+                title={title}
+                team={selectedTeam}
+              />
+            </WriteContainer>
+          </WriteWrap>
+        </>
+      )}
     </>
   );
 };

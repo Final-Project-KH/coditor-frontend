@@ -11,7 +11,7 @@ import {
 } from "../../styles/community/Post_M";
 
 import Post_WriteSort_M from "./components/common/Post_WriteSort_M";
-import Post_WriteEditor_Course_M from "./components/course/Board_WriteEditor_Course_M";
+import Post_WriteEditor_Course_M from "./components/course/Post_WriteEditor_Course_M";
 
 const Post_Write_Course_M = () => {
   const [title, setTitle] = useState("");

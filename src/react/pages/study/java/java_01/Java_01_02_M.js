@@ -61,11 +61,6 @@ const Java_01_02_M = () => {
     navigate("/study/java");
   };
 
-  // TopBox thirdpath
-  const handleStudyJava01 = () => {
-    navigate("/study/java/01");
-  };
-
   // TopBox fourthpath
   const handleRefresh = () => {
     navigate("/study/java/01/02");
@@ -103,7 +98,7 @@ export PATH=\${PATH}:$JAVA_HOME/bin
       </TopBoxWide>
       <TopBoxWide2>
         <TopBox2>
-          <TopBoxLink onClick={() => handleStudyJava01()}>
+          <TopBoxLink onClick={() => handleStudyJava()}>
             <TopBoxText2>01. Java 시작</TopBoxText2>
           </TopBoxLink>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>

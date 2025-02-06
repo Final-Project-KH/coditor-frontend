@@ -38,11 +38,11 @@ const StyledSwitch = styled(Switch)(({ theme }) => ({
   
 }));
 
-const AlertSwtich = () => {
+const AlertSwtich = ({ checked, onChange }) => {
   return (
     <FormGroup>
       <FormControlLabel
-        control={<StyledSwitch />}
+        control={<StyledSwitch checked={checked} onChange={onChange} />}
       />
     </FormGroup>
   );

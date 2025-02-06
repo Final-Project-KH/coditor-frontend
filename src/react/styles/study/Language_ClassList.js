@@ -33,7 +33,6 @@ export const ClassHeaderTitle = styled.div.attrs({
   color: white;
   font-size: 20px;
   font-family: "bold", sans-serif;
-  cursor: pointer;
 `;
 
 export const ClassHeaderTitleButton = styled.div.attrs({
@@ -52,7 +51,8 @@ export const ClassHeaderTitleButton = styled.div.attrs({
     position: absolute;
     top: 40%;
     left: 90%;
-    transform: translate(-50%, -50%) ${(props) => (props.isOpen ? "rotate(90deg)" : "rotate(0deg)")};
+    transform: translate(-50%, -50%)
+      ${(props) => (props.isOpen ? "rotate(90deg)" : "rotate(0deg)")};
     width: 0;
     height: 0;
     border-left: 5px solid transparent;

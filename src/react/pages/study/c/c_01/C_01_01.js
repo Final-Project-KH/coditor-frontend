@@ -62,11 +62,6 @@ const C_01_01 = () => {
     navigate("/study/c");
   };
 
-  // TopBox thirdpath
-  const handleStudyC01 = () => {
-    navigate("/study/c/01");
-  };
-
   // TopBox fourthpath
   const handleRefresh = () => {
     navigate("/study/c/01/01");
@@ -85,7 +80,7 @@ const C_01_01 = () => {
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyC()}>C</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxText onClick={() => handleStudyC01()}>
+              <TopBoxText onClick={() => handleStudyC()}>
                 01. C 기본
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>

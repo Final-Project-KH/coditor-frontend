@@ -147,7 +147,7 @@ export const EditorArea = styled.div.attrs({
   id: "editorarea",
 })`
   width: 100%;
-  height: calc(100vh - 290px);
+  height: calc(100vh - 350px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

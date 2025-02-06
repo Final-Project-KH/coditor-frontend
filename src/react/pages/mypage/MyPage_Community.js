@@ -31,7 +31,7 @@ const MyPage_Community = () => {
     }
   }, [mainContentRef]);
 
-  // ✅ 페이지 변경 함수 추가
+  // 페이지 변경 함수 추가
   const handlePageChange = (newPage) => {
     setPage(newPage);
   };

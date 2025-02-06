@@ -61,11 +61,6 @@ const CPlus_01_01_M = () => {
     navigate("/study/cplus");
   };
 
-  // TopBox thirdpath
-  const handleStudyCPlus01 = () => {
-    navigate("/study/cplus/01");
-  };
-
   // TopBox fourthpath
   const handleRefresh = () => {
     navigate("/study/cplus/01/01");
@@ -89,7 +84,7 @@ const CPlus_01_01_M = () => {
           </TopBoxWide>
           <TopBoxWide2>
           <TopBox2>
-          <TopBoxLink onClick={() => handleStudyCPlus01()}>
+          <TopBoxLink onClick={() => handleStudyCPlus()}>
             <TopBoxText2>
             01. C++ 기본
             </TopBoxText2>

@@ -17,11 +17,6 @@ import { CStudyChapter } from "../../../../../util/study/CStudyChapter";
 const C_ClassList_Filtered_M = ({ chapter }) => {
   const navigate = useNavigate();
 
-  // Class Header onClick
-  const handleNext = (cls) => {
-    navigate(`/study/c/${cls.id}`);
-  };
-
   // 클래스 이름 클릭시 진입
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
@@ -31,7 +26,7 @@ const C_ClassList_Filtered_M = ({ chapter }) => {
   const EachClassComponent = ({ cls, isOpen, onToggle }) => (
     <EachClass key={cls.id}>
       <ClassHeader isOpen={isOpen}>
-        <ClassHeaderTitle onClick={() => handleNext(cls)}>
+        <ClassHeaderTitle>
           {cls.title}
         </ClassHeaderTitle>
       </ClassHeader>

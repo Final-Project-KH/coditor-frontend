@@ -17,11 +17,6 @@ import { PythonStudyChapter } from "../../../../../util/study/PythonStudyChapter
 const Python_ClassList_Filtered = ({ chapter }) => {
   const navigate = useNavigate();
 
-  // Class Header onClick
-  const handleNext = (cls) => {
-    navigate(`/study/python/${cls.id}`);
-  };
-
   // 클래스 이름 클릭시 진입
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
@@ -31,7 +26,7 @@ const Python_ClassList_Filtered = ({ chapter }) => {
   const EachClassComponent = ({ cls, isOpen, onToggle }) => (
     <EachClass key={cls.id}>
       <ClassHeader isOpen={isOpen}>
-        <ClassHeaderTitle onClick={() => handleNext(cls)}>
+        <ClassHeaderTitle>
           {cls.title}
         </ClassHeaderTitle>
       </ClassHeader>

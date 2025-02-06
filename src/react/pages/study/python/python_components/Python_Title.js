@@ -15,14 +15,14 @@ const Python_Title = () => {
     <>
       <LeftSubjectContainer>
         <SubjectImgContainerPython />
-        <SubjectTitle>Python</SubjectTitle>
+        {/* <SubjectTitle>Python</SubjectTitle>
         <SubjectContents>학습전</SubjectContents>
         <SubjectRateContainer>
           <SubjectRateBox>
             <SubjectRateWhite />
           </SubjectRateBox>
           <SubjectRateContents>0%</SubjectRateContents>
-        </SubjectRateContainer>
+        </SubjectRateContainer> */}
       </LeftSubjectContainer>
     </>
   );

@@ -63,11 +63,6 @@ const Python_01_07 = () => {
     navigate("/study/python");
   };
 
-  // TopBox thirdpath
-  const handleStudyPython01 = () => {
-    navigate("/study/python/01");
-  };
-
   // TopBox fourthpath
   const handleRefresh = () => {
     navigate("/study/python/01/07");
@@ -551,7 +546,7 @@ print(f"나이 : {age}")
                 Python
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxText onClick={() => handleStudyPython01()}>
+              <TopBoxText onClick={() => handleStudyPython()}>
               01. 개발 환경 구성 및 기본 문법
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>

@@ -62,11 +62,6 @@ const Java_01_03 = () => {
     navigate("/study/java");
   };
 
-  // TopBox thirdpath
-  const handleStudyJava01 = () => {
-    navigate("/study/java/01");
-  };
-
   // TopBox fourthpath
   const handleRefresh = () => {
     navigate("/study/java/01/03");
@@ -158,7 +153,7 @@ System.out.printf("%d", 3); // 서식 지정자 사용
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyJava()}>Java</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxText onClick={() => handleStudyJava01()}>
+              <TopBoxText onClick={() => handleStudyJava()}>
                 01. Java 시작
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>

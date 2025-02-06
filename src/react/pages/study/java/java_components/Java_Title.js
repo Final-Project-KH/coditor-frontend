@@ -16,7 +16,7 @@ const Java_Title = () => {
     <>
         <LeftSubjectContainer>
           <SubjectImgContainerJava />
-          <SubjectTitle>Java</SubjectTitle>
+          {/* <SubjectTitle>Java</SubjectTitle>
           <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
           <SubjectRateContainer>
             <SubjectRateBox>
@@ -24,7 +24,7 @@ const Java_Title = () => {
               <SubjectRateBlack />
             </SubjectRateBox>
             <SubjectRateContents>52%</SubjectRateContents>
-          </SubjectRateContainer>
+          </SubjectRateContainer> */}
         </LeftSubjectContainer>
     </>
   );

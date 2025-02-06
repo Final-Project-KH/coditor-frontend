@@ -36,7 +36,6 @@ export const ClassHeaderTitle = styled.div.attrs({
   color: white;
   font-size: 18px;
   font-family: "bold", sans-serif;
-  cursor: pointer;
 `;
 
 export const ClassHeaderTitleButton = styled.div.attrs({

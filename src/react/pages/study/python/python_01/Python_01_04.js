@@ -62,11 +62,6 @@ const Python_01_04 = () => {
     navigate("/study/python");
   };
 
-  // TopBox thirdpath
-  const handleStudyPython01 = () => {
-    navigate("/study/python/01");
-  };
-
   // TopBox fourthpath
   const handleRefresh = () => {
     navigate("/study/python/01/04");
@@ -240,7 +235,7 @@ print([1, 2, 3]) # 배열을 출력하는 코드
                 Python
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxText onClick={() => handleStudyPython01()}>
+              <TopBoxText onClick={() => handleStudyPython()}>
               01. 개발 환경 구성 및 기본 문법
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>

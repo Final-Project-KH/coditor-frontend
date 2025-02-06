@@ -65,6 +65,8 @@ const Post_MainContents = ({ boardType }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const userAuth = useSelector((state) => state.auth.accesstoken);
+
   const handleDeleteNavigate = () => {
     navigate(`/community/${boardType}`, {
       state: {
@@ -89,6 +91,10 @@ const Post_MainContents = ({ boardType }) => {
   };
 
   const handleReportNavigate = () => {
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
     navigate(`/cs/report/${boardId}`, {
       state: {
         boardId: boardId,
