@@ -780,6 +780,26 @@ const AxiosApi = {
       throw error;
     }
   },
+  
+  getMyReportPosts: async (
+    page = 1,
+    size = 10,
+    sortBy = "createdAt",
+    order = "DESC"
+  ) => {
+    try {
+      const response = await AxiosInstance.get(
+        SPRING_DOMAIN + "/my/report/list",
+        {
+          params: { page, size, sortBy, order },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("내 신고 게시글 가져오기 오류 : ", error);
+      throw error;
+    }
+  },
 };
 
 export default AxiosApi;
