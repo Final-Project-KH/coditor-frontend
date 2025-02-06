@@ -1,6 +1,4 @@
-import { useState } from "react";
-import Select from "react-select";
-
+import React, { useEffect, useState } from "react";
 import {
   WriteWrap,
   WriteContainer,
@@ -9,26 +7,66 @@ import {
   WriteTitle,
   WriteTitleBox,
 } from "../../styles/community/Post_M";
+import Post_ModifySort_M from "./components/common/Post_ModifySort_M";
+import Post_ModifyEditor_Coding_M from "./components/coding/Post_ModifyEditor_Coding_M";
+import Select from "react-select";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import Post_WriteSort_M from "./components/common/Post_WriteSort_M";
-import Post_WriteEditor_Course_M from "./components/course/Post_WriteEditor_Course_M";
-
-const Post_Write_Course_M = () => {
+const Post_Modify_Coding_M = () => {
   const [title, setTitle] = useState("");
-  const [course, setCourse] = useState("");
-  const [selectedCourses, setSelectedCourses] = useState([]);
-  const courseOptions = [
-    { value: "COMPANY", label: "회사정보" },
-    { value: "PORTFOLIO", label: "포트폴리오" },
-    { value: "SALARY", label: "급여" },
-    { value: "RESUME", label: "자기소개서" },
-    { value: "BOOTCAMP", label: "부트캠프" },
-    { value: "PROJECT", label: "프로젝트" },
+  const [content, setContent] = useState("");
+  const [selectedLanguages, setSelectedLanguages] = useState([]);
+  const [boardType, setBoardType] = useState("");
+  const [boardId, setBoardId] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const originTitle = location.state?.boardTitle || "";
+    const originContent = location.state?.boardContent || "";
+    const originBoardType = location.state?.id || "";
+    const originBoardId = location.state?.boardId || "";
+    const originSelectedLanguages = location.state?.languages || [];
+    const defaultSelectedLanguages = languageOptions
+      .filter((option) => originSelectedLanguages.includes(option.value))
+      .map((option) => option.value);
+    setTitle(originTitle);
+    setContent(originContent);
+    setBoardType(originBoardType);
+    setBoardId(originBoardId);
+    setSelectedLanguages(defaultSelectedLanguages);
+
+    if (originTitle === "") {
+      alert("잘못된 접근입니다.");
+      navigate("/");
+    }
+  }, [location.state]);
+
+  const MAX_SELECTION = 10;
+  const languageOptions = [
+    { value: "JAVA", label: "Java" },
+    { value: "JS", label: "JavaScript" },
+    { value: "PYTHON", label: "Python" },
+    { value: "C", label: "C" },
+    { value: "CPP", label: "C++" },
+    { value: "CS", label: "C#" },
+    { value: "SPB", label: "Spring Boot" },
+    { value: "RE", label: "React" },
+    { value: "AN", label: "AngularJS" },
+    { value: "EX", label: "ExpressJS" },
+    { value: "NO", label: "NodeJS" },
+    { value: "HTML", label: "HTML" },
+    { value: "CSS", label: "CSS" },
     { value: "ETC", label: "기타" },
   ];
 
   const handleChange = (selectedOptions) => {
-    setSelectedCourses(selectedOptions.map((option) => option.value));
+    if (selectedOptions.length > MAX_SELECTION) {
+      alert(`최대 ${MAX_SELECTION}개까지 선택할 수 있습니다.`);
+      selectedOptions.pop();
+    }
+    setSelectedLanguages(selectedOptions.map((option) => option.value));
   };
 
   const customStyles = {
@@ -110,29 +148,37 @@ const Post_Write_Course_M = () => {
     <>
       <WriteWrap>
         <WriteContainer>
-          <Post_WriteSort_M />
+          <Post_ModifySort_M />
           <WriteTitleBox>
             <WriteTitle
+              disabled
               autoComplete="off"
               placeholder="제목을 입력하세요."
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
             />
           </WriteTitleBox>
           <WriteTagBox>
             <Select
-              options={courseOptions}
+              options={languageOptions}
               isMulti
+              value={languageOptions.filter((option) =>
+                selectedLanguages.includes(option.value)
+              )}
               onChange={handleChange}
-              placeholder="태그를 설정하세요."
+              placeholder="태그를 설정하세요. (최대 10개)"
               styles={customStyles}
             />
           </WriteTagBox>
-          <Post_WriteEditor_Course_M title={title} course={selectedCourses} />
+          <Post_ModifyEditor_Coding_M
+            boardId={boardId}
+            content={content}
+            title={title}
+            language={selectedLanguages}
+          />
         </WriteContainer>
       </WriteWrap>
     </>
   );
 };
 
-export default Post_Write_Course_M;
+export default Post_Modify_Coding_M;

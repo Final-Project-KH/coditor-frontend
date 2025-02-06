@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   MainPostContainer,
   MainPostTop,
@@ -38,18 +38,18 @@ import {
   MainPostTopBox,
 } from "../../../../styles/community/Post_M";
 import AxiosApi from "../../../../../api/AxiosApi";
-import {useLocation, useParams, useNavigate} from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import {
   LanguageDisplayNames,
   CourseDisplayNames,
   StudyDisplayNames,
   TeamDisplayNames,
 } from "../common/DisplayNames";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import Post_UserProfile_M from "./Post_UserProfile_M";
 
-const Post_MainContents_M = ({boardType}) => {
-  const {boardId} = useParams();
+const Post_MainContents_M = ({ boardType }) => {
+  const { boardId } = useParams();
   const [posts, setPosts] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userDisLikeCnt, setUserDisLikeCnt] = useState("");
@@ -64,6 +64,8 @@ const Post_MainContents_M = ({boardType}) => {
   const accesstoken = useSelector((state) => state.auth.accesstoken);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const userAuth = useSelector((state) => state.auth.accesstoken);
 
   const handleDeleteNavigate = () => {
     navigate(`/community/${boardType}`, {
@@ -89,6 +91,10 @@ const Post_MainContents_M = ({boardType}) => {
   };
 
   const handleReportNavigate = () => {
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
     navigate(`/cs/report/${boardId}`, {
       state: {
         boardId: boardId,
@@ -246,7 +252,7 @@ const Post_MainContents_M = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, likeCnt: post.likeCnt + 1}
+              ? { ...post, likeCnt: post.likeCnt + 1 }
               : post
           )
         );
@@ -256,7 +262,7 @@ const Post_MainContents_M = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, likeCnt: post.likeCnt - 1}
+              ? { ...post, likeCnt: post.likeCnt - 1 }
               : post
           )
         );
@@ -302,7 +308,7 @@ const Post_MainContents_M = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, dislikeCnt: post.dislikeCnt + 1}
+              ? { ...post, dislikeCnt: post.dislikeCnt + 1 }
               : post
           )
         );
@@ -312,7 +318,7 @@ const Post_MainContents_M = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, dislikeCnt: post.dislikeCnt - 1}
+              ? { ...post, dislikeCnt: post.dislikeCnt - 1 }
               : post
           )
         );
@@ -438,7 +444,11 @@ const Post_MainContents_M = ({boardType}) => {
             </MainPostTop>
             {writerKeyNumber == userkeynumber ? (
               <MainPostExtra>
-                <MainPostExtraItemContainer ref={extraRef} isOpen={isExtra}>
+                <MainPostExtraItemContainer
+                  ref={extraRef}
+                  isOpen={isExtra}
+                  boardType={boardType}
+                >
                   {boardType === "coding" && boardStatus === "ACTIVE" ? (
                     <MainPostExtraItem
                       onClick={() => {
@@ -485,12 +495,17 @@ const Post_MainContents_M = ({boardType}) => {
                     )
                   )}
                   <MainPostExtraItem
-                    onClick={() => handleModifyNavigate()}
+                    boardType={boardType}
                     isOpen={isExtra}
+                    onClick={() => {
+                      handleModifyNavigate();
+                      closeExtra();
+                    }}
                   >
                     글 수정
                   </MainPostExtraItem>
                   <MainPostExtraItem
+                    boardType={boardType}
                     onClick={() => {
                       handleDelete();
                       closeExtra();
@@ -539,7 +554,7 @@ const Post_MainContents_M = ({boardType}) => {
             <MainPostContentsBox>
               <MainPostContentsText
                 className="main-post-content"
-                dangerouslySetInnerHTML={{__html: post.content}}
+                dangerouslySetInnerHTML={{ __html: post.content }}
               />
               {(post.language || post.course || post.study || post.team) && (
                 <MainPostTagsBox>

@@ -9,6 +9,8 @@
   box-sizing: border-box;
   height: 100%;
   cursor: text;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 
   p {
     color: black;

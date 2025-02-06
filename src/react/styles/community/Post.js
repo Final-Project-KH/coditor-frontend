@@ -336,11 +336,11 @@ export const MainPostExtraItemContainer = styled.div.attrs({
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 30px;
-  right: 0;
+  top: 80px;
+  right: 0px;
   border-radius: 10px;
-  background-color: white;
   border: 1px solid #dadcdf;
+  background-color: white;
   ${(props) =>
     props.isOpen && props.boardType !== "course"
       ? css`
@@ -376,11 +376,11 @@ export const MainPostExtraItemOtherContainer = styled.div.attrs({
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 30px;
-  right: 0;
+  top: 80px;
+  right: 0px;
   border-radius: 10px;
-  background-color: white;
   border: 1px solid #dadcdf;
+  background-color: white;
   ${(props) =>
     props.isOpenOther
       ? css`
@@ -807,7 +807,7 @@ export const ReplyMiddle = styled.div.attrs({
 export const ReplyMiddleText = styled.div.attrs({
   id: "replymiddletext",
 })`
-margin-top: 10px;
+  margin-top: 10px;
   font-size: 15px;
   font-family: "regular", sans-serif;
   color: black;

@@ -1,6 +1,3 @@
-import { useState } from "react";
-import Select from "react-select";
-
 import {
   WriteWrap,
   WriteContainer,
@@ -8,27 +5,53 @@ import {
   WriteTags,
   WriteTitle,
   WriteTitleBox,
-} from "../../styles/community/Post_M";
+} from "../../styles/community/Post";
+import Post_ModifyEditor_Study_M from "./components/study/Post_ModifyEditor_Study_M";
+import Post_ModifySort_M from "./components/common/Post_ModifySort_M";
+import React, { useState, useEffect } from "react";
+import Select from "react-select";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import Post_WriteSort_M from "./components/common/Post_WriteSort_M";
-import Post_WriteEditor_Course_M from "./components/course/Post_WriteEditor_Course_M";
-
-const Post_Write_Course_M = () => {
+const Post_Modify_Study_M = () => {
   const [title, setTitle] = useState("");
-  const [course, setCourse] = useState("");
-  const [selectedCourses, setSelectedCourses] = useState([]);
-  const courseOptions = [
-    { value: "COMPANY", label: "회사정보" },
-    { value: "PORTFOLIO", label: "포트폴리오" },
-    { value: "SALARY", label: "급여" },
-    { value: "RESUME", label: "자기소개서" },
-    { value: "BOOTCAMP", label: "부트캠프" },
-    { value: "PROJECT", label: "프로젝트" },
+  const [content, setContent] = useState("");
+  const [selectedStudies, setSelectedStudies] = useState([]);
+  const [boardType, setBoardType] = useState("");
+  const [boardId, setBoardId] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const originTitle = location.state?.boardTitle || "";
+    const originContent = location.state?.boardContent || "";
+    const originBoardType = location.state?.id || "";
+    const originBoardId = location.state?.boardId || "";
+    const originSelectedStudies = location.state?.studies || [];
+    const defaultSelectedStudies = studyOptions
+      .filter((option) => originSelectedStudies.includes(option.value))
+      .map((option) => option.value);
+    setTitle(originTitle);
+    setContent(originContent);
+    setBoardType(originBoardType);
+    setBoardId(originBoardId);
+    setSelectedStudies(defaultSelectedStudies);
+
+    if (originTitle === "") {
+      alert("잘못된 접근입니다.");
+      navigate("/");
+    }
+  }, [location.state]);
+
+  const studyOptions = [
+    { value: "ALGORITHM", label: "알고리즘" },
+    { value: "STRUCTURE", label: "자료구조" },
+    { value: "CODING", label: "코딩테스트" },
     { value: "ETC", label: "기타" },
   ];
 
   const handleChange = (selectedOptions) => {
-    setSelectedCourses(selectedOptions.map((option) => option.value));
+    setSelectedStudies(selectedOptions.map((option) => option.value));
   };
 
   const customStyles = {
@@ -110,29 +133,37 @@ const Post_Write_Course_M = () => {
     <>
       <WriteWrap>
         <WriteContainer>
-          <Post_WriteSort_M />
+          <Post_ModifySort_M />
           <WriteTitleBox>
             <WriteTitle
+              disabled
               autoComplete="off"
               placeholder="제목을 입력하세요."
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
             />
           </WriteTitleBox>
           <WriteTagBox>
             <Select
-              options={courseOptions}
+              options={studyOptions}
               isMulti
+              value={studyOptions.filter((option) =>
+                selectedStudies.includes(option.value)
+              )}
               onChange={handleChange}
               placeholder="태그를 설정하세요."
               styles={customStyles}
             />
           </WriteTagBox>
-          <Post_WriteEditor_Course_M title={title} course={selectedCourses} />
+          <Post_ModifyEditor_Study_M
+            boardId={boardId}
+            content={content}
+            title={title}
+            study={selectedStudies}
+          />
         </WriteContainer>
       </WriteWrap>
     </>
   );
 };
 
-export default Post_Write_Course_M;
+export default Post_Modify_Study_M;

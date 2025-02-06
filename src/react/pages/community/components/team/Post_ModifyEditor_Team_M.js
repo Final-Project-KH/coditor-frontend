@@ -12,7 +12,7 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 import ListItem from "@tiptap/extension-list-item";
 import { Image } from "@tiptap/extension-image";
-import "../../../styles/community/PostEditor.css";
+import "./../../../../styles/community/PostEditor.css";
 import {
   EditorArea,
   TipTapBox,
@@ -20,10 +20,11 @@ import {
   WriteButtonsArea,
   WriteCancelButton,
   WriteSubmitButton,
-} from "../../../styles/cs/CS";
+} from "../../../../styles/community/Post_M";
 import Subscript from "@tiptap/extension-subscript";
 import { useLocation, useNavigate } from "react-router-dom";
-import AxiosApi from "../../../../api/AxiosApi";
+import AxiosApi from "../../../../../api/AxiosApi";
+import { useSelector } from "react-redux";
 
 const lowlight = createLowlight(all);
 
@@ -36,13 +37,19 @@ const ToolBar = ({ editor }) => {
 
   if (!editor) return null;
 
-  const handleImageInsert = () => {
-    const url = window.prompt("이미지 URL을 입력하세요");
-
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
+  // Image Upload Handler
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const url = reader.result;
+        editor.chain().focus().setImage({ src: url }).run();
+      };
+      reader.readAsDataURL(file);
     }
   };
+
   // 드롭다운 표시/숨기기
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
@@ -69,10 +76,24 @@ const ToolBar = ({ editor }) => {
   }
 
   return (
-    <div className="toolbar">
+    <div
+      className="toolbar"
+      style={{
+        display: "flex",
+        overflowX: "auto",
+        overflowY: "hidden",
+        width: "100%",
+      }}
+    >
       <div
         className="button-group"
-        style={{ display: "flex", alignItems: "center" }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          overflowX: "auto", // 가로 스크롤 활성화
+          whiteSpace: "nowrap", // 줄바꿈 방지
+          minWidth: "max-content", // 내부 요소 크기에 맞춰 최소 너비 설정
+        }}
       >
         <button
           style={{
@@ -178,9 +199,10 @@ const ToolBar = ({ editor }) => {
         />
         <input
           id="upload-image"
+          type="file"
           accept="image/*"
           style={{ display: "none" }}
-          onClick={handleImageInsert}
+          onChange={handleImageUpload}
         />
         <div
           style={{
@@ -267,34 +289,12 @@ const extensions = [
   Subscript,
 ];
 
-const CS_WriteEditor_Report = ({
-  boardId,
-  writerName,
-  boardTitle,
-  boardUrl,
-  title,
-  report,
-}) => {
+const Post_ModifyEditor_Team_M = ({ boardId, content, title, team }) => {
   const navigate = useNavigate();
-  const [editorContent, setEditorContent] = useState("");
+  const [editorContent, setEditorContent] = useState(content || "");
+  const [boardType, setBoardType] = useState("team");
 
-  useEffect(() => {
-    if (boardId && writerName && boardTitle && boardUrl) {
-      setEditorContent(`
-        <p><b>[악성 사용자 신고 예시]</b></p>
-        <ul>
-          <li>악성 게시글 ID : ${boardId}  </li>
-          <li>악성 게시글 작성자 닉네임 : ${writerName} </li>
-          <li>악성 게시글 제목 : ${boardTitle} </li>
-          <li>악성 게시글 URL : ${boardUrl} </li>
-          <li>신고 내용 : </li>
-        </ul>
-        <p><span style="color: #868e96;"><sub>* 참고 사항 : </sub></span></p><br />
-      `);
-    }
-  }, [boardId, writerName, boardTitle, boardUrl]);
-
-  console.log("check boardId :", boardId);
+  const userAuth = useSelector((state) => state.auth.accesstoken);
 
   const editor = useEditor({
     extensions: [
@@ -310,41 +310,61 @@ const CS_WriteEditor_Report = ({
       Subscript,
     ],
     content: "",
-    editable: true, // 스페이스 입력이 가능하도록 설정
     onUpdate: ({ editor }) => {
-      const newContent = editor.getHTML();
-      if (newContent !== editorContent) {
-        setEditorContent(newContent);
-      }
+      // 에디터 내용이 변경될 때마다 editorContent 상태 업데이트
+      setEditorContent(editor.getHTML());
     },
   });
 
   useEffect(() => {
-    if (editor && editorContent) {
-      editor.commands.setContent(editorContent);
+    if (editor && content) {
+      editor.commands.setContent(content);
     }
-  }, [editor, editorContent]);
+  }, [editor, content]);
+
+  // cancel button
+  const handleGoBack = () => {
+    navigate(`/community/${boardType}/post/${boardId}`, {
+      state: {
+        id: boardType,
+      },
+    });
+  };
 
   // submit button
-  const handleSubmit = async () => {
-    if (!editor.getHTML().trim() || !title.trim()) {
+  const handleModify = async () => {
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
+
+    // 에디터 내용이 비어 있거나 제목이 없으면 경고 표시
+    if (!editorContent || !title) {
+      console.log(title);
+      console.log(editorContent);
       alert("제목과 내용을 모두 입력하세요!");
       return;
     }
     try {
-      const response = await AxiosApi.newReportPost(
+      const response = await AxiosApi.modifyTeamPost(
+        boardType,
         boardId,
         title,
-        editor.getHTML(),
-        report
+        team,
+        editorContent
       );
-      alert("내용이 성공적으로 제출되었습니다.");
-      navigate(-1);
+      alert("내용이 성공적으로 수정되었습니다.");
+      navigate(`/community/${boardType}/post/${boardId}`, {
+        state: {
+          id: boardType,
+        },
+      });
     } catch (error) {
       console.error("제출 실패:", error);
-      alert("이미 신고한 게시글입니다.");
+      alert("수정에 실패했습니다. 다시 시도해주세요.");
     }
   };
+
   return (
     <>
       <TipTapBox>
@@ -353,10 +373,11 @@ const CS_WriteEditor_Report = ({
             <ToolBar editor={editor} />
           </ToolBarContainer>
           <EditorContent
+            className="tiptap-editor"
             style={{
               width: "100%",
-              height: "calc(100% - 50px)",
-              padding: "30px",
+              height: "100%",
+              padding: "20px",
               overflowY: "auto", // 세로 스크롤 활성화
               overflowX: "hidden", // 가로 스크롤 비활성화
               boxSizing: "border-box", // 패딩 포함 계산
@@ -365,14 +386,12 @@ const CS_WriteEditor_Report = ({
           />
         </EditorArea>
         <WriteButtonsArea>
-          <WriteCancelButton onClick={() => navigate(-1)}>
-            취소
-          </WriteCancelButton>
-          <WriteSubmitButton onClick={handleSubmit}>등록</WriteSubmitButton>
+          <WriteCancelButton onClick={handleGoBack}>취소</WriteCancelButton>
+          <WriteSubmitButton onClick={handleModify}>수정</WriteSubmitButton>
         </WriteButtonsArea>
       </TipTapBox>
     </>
   );
 };
 
-export default CS_WriteEditor_Report;
+export default Post_ModifyEditor_Team_M;

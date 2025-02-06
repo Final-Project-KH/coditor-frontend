@@ -1,6 +1,3 @@
-import { useState } from "react";
-import Select from "react-select";
-
 import {
   WriteWrap,
   WriteContainer,
@@ -8,15 +5,46 @@ import {
   WriteTags,
   WriteTitle,
   WriteTitleBox,
-} from "../../styles/community/Post_M";
+} from "../../styles/community/Post";
+import Post_ModifyEditor_Course_M from "./components/course/Post_ModifyEditor_Course_M";
+import Post_ModifySort_M from "./components/common/Post_ModifySort_M";
+import React, { useEffect, useState } from "react";
+import Post_WriteEditor_Course from "./components/course/Post_WriteEditor_Course";
+import Select from "react-select";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import Post_WriteSort_M from "./components/common/Post_WriteSort_M";
-import Post_WriteEditor_Course_M from "./components/course/Post_WriteEditor_Course_M";
-
-const Post_Write_Course_M = () => {
+const Post_Modify_Course_M = () => {
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [course, setCourse] = useState("");
   const [selectedCourses, setSelectedCourses] = useState([]);
+  const [boardType, setBoardType] = useState("");
+  const [boardId, setBoardId] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const originTitle = location.state?.boardTitle || "";
+    const originContent = location.state?.boardContent || "";
+    const originBoardType = location.state?.id || "";
+    const originBoardId = location.state?.boardId || "";
+    const originSelectedCourses = location.state?.courses || [];
+    const defaultSelectedCourses = courseOptions
+      .filter((option) => originSelectedCourses.includes(option.value))
+      .map((option) => option.value);
+    setTitle(originTitle);
+    setContent(originContent);
+    setBoardType(originBoardType);
+    setBoardId(originBoardId);
+    setSelectedCourses(defaultSelectedCourses);
+
+    if (originTitle === "") {
+      alert("잘못된 접근입니다.");
+      navigate("/");
+    }
+  }, [location.state]);
+
   const courseOptions = [
     { value: "COMPANY", label: "회사정보" },
     { value: "PORTFOLIO", label: "포트폴리오" },
@@ -110,29 +138,37 @@ const Post_Write_Course_M = () => {
     <>
       <WriteWrap>
         <WriteContainer>
-          <Post_WriteSort_M />
+          <Post_ModifySort_M />
           <WriteTitleBox>
             <WriteTitle
+              disabled
               autoComplete="off"
               placeholder="제목을 입력하세요."
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
             />
           </WriteTitleBox>
           <WriteTagBox>
             <Select
               options={courseOptions}
               isMulti
+              value={courseOptions.filter((option) =>
+                selectedCourses.includes(option.value)
+              )}
               onChange={handleChange}
               placeholder="태그를 설정하세요."
               styles={customStyles}
             />
           </WriteTagBox>
-          <Post_WriteEditor_Course_M title={title} course={selectedCourses} />
+          <Post_ModifyEditor_Course_M
+            boardId={boardId}
+            content={content}
+            title={title}
+            course={selectedCourses}
+          />
         </WriteContainer>
       </WriteWrap>
     </>
   );
 };
 
-export default Post_Write_Course_M;
+export default Post_Modify_Course_M;
