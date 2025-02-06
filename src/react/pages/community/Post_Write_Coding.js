@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import Select from "react-select";
 
 import {
@@ -37,20 +37,20 @@ const Post_Write_Coding = () => {
 
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const languageOptions = [
-    { value: "JAVA", label: "Java" },
-    { value: "JS", label: "JavaScript" },
-    { value: "PYTHON", label: "Python" },
-    { value: "C", label: "C" },
-    { value: "CPP", label: "C++" },
-    { value: "CS", label: "C#" },
-    { value: "SPB", label: "Spring Boot" },
-    { value: "RE", label: "React" },
-    { value: "AN", label: "AngularJS" },
-    { value: "EX", label: "ExpressJS" },
-    { value: "NO", label: "NodeJS" },
-    { value: "HTML", label: "HTML" },
-    { value: "CSS", label: "CSS" },
-    { value: "ETC", label: "기타" },
+    {value: "JAVA", label: "Java"},
+    {value: "JS", label: "JavaScript"},
+    {value: "PYTHON", label: "Python"},
+    {value: "C", label: "C"},
+    {value: "CPP", label: "C++"},
+    {value: "CS", label: "C#"},
+    {value: "SPB", label: "Spring Boot"},
+    {value: "RE", label: "React"},
+    {value: "AN", label: "AngularJS"},
+    {value: "EX", label: "ExpressJS"},
+    {value: "NO", label: "NodeJS"},
+    {value: "HTML", label: "HTML"},
+    {value: "CSS", label: "CSS"},
+    {value: "ETC", label: "기타"},
   ];
 
   const handleChange = (selectedOptions) => {
@@ -68,7 +68,7 @@ const Post_Write_Coding = () => {
       backgroundColor: "white",
       borderColor: "#ccc",
       boxShadow: "none",
-      "&:hover": { borderColor: "#333333" },
+      "&:hover": {borderColor: "#333333"},
       maxWidth: "1280px",
       border: "1px solid #f1f1f1",
       padding: "5px",
@@ -88,7 +88,7 @@ const Post_Write_Coding = () => {
       fontSize: "15px",
       fontFamily: "medium, sans-serif",
     }),
-    option: (provided, { isSelected, isFocused }) => ({
+    option: (provided, {isSelected, isFocused}) => ({
       ...provided,
       backgroundColor: isSelected ? "black" : isFocused ? "#f1f1f1" : "white",
       color: isSelected ? "white" : "black",
@@ -153,11 +153,6 @@ const Post_Write_Coding = () => {
                 />
               </WriteTitleBox>
               <WriteTagBox>
-                {/* <WriteTags
-              placeholder="태그를 설정하세요. (최대 10개)"
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            /> */}
                 <Select
                   options={languageOptions}
                   isMulti

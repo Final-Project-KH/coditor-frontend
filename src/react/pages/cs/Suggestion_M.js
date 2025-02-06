@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState} from "react";
 
 import {
   WriteWrap,
@@ -28,6 +28,7 @@ const Suggestion_M = () => {
           </WriteSortOuterContiner>
           <WriteTitleBox>
             <WriteTitle
+              autoComplete="off"
               placeholder="제목을 입력하세요."
               value={title}
               onChange={(e) => setTitle(e.target.value)}

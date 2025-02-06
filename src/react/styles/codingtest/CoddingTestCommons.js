@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, {css} from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -210,10 +210,20 @@ export const SubjectUserImgContainer = styled.div.attrs({
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: url("/images/program/java_full.png");
+  ${(props) =>
+    props.isProfile === null &&
+    css`
+      background-image: url("/images/general/default_profile.png");
+    `}
+  ${(props) =>
+    props.isProfile !== null &&
+    css`
+      background-image: url(${(props) => props.isProfile});
+    `}
 `;
 export const SubjectTitle = styled.div.attrs({
   id: "subjecttitle",

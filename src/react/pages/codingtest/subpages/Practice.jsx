@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React, {useState, useEffect} from "react";
+import {useLocation, useNavigate, useOutletContext} from "react-router-dom";
+import {useSelector} from "react-redux";
 import AxiosApi from "../../../../api/AxiosApi";
 
 import JwtDecoding from "../../../../api/JwtDecode";
@@ -38,10 +38,10 @@ const Practice = () => {
   const [challengeGroups, setChallengeGroups] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const { firstpath, secondpath, thirdpath } = location.state || {};
+  const {firstpath, secondpath, thirdpath} = location.state || {};
 
   const nickname = useSelector((state) => state.auth.nickname);
-  const { mainContentRef } = useOutletContext();
+  const {mainContentRef} = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
@@ -75,6 +75,8 @@ const Practice = () => {
     fetchChallengeList();
   }, []);
 
+  const profile = useSelector((state) => state.auth.profile);
+
   return (
     <Wrap>
       <TopBoxWide>
@@ -93,10 +95,10 @@ const Practice = () => {
               <SubjectContent>{"thirdpath"}</SubjectContent>
             </LeftSubjectSubContainer>
             <LeftSubjectSubContainer>
-              <SubjectUserImgContainer />
+              <SubjectUserImgContainer isProfile={profile} />
               {/* User 정보 실제로는 받아와야함 */}
               <SubjectTitle>{nickname}</SubjectTitle>
-              <SubjectContent>Platinum</SubjectContent>
+              {/* <SubjectContent>Platinum</SubjectContent> */}
             </LeftSubjectSubContainer>
           </LeftTopSubjectContainer>
           {/* 격언 정보 받아올지 Front End에서 처리할지 논의 필요 */}

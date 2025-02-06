@@ -296,7 +296,10 @@ const CS_WriteEditor_Suggestion_M = ({title}) => {
       return;
     }
     try {
-      // const response = await AxiosApi.써야함(title, editor.getHTML());
+      const response = await AxiosApi.newSuggestionPost(
+        title,
+        editor.getHTML()
+      );
       alert("내용이 성공적으로 제출되었습니다.");
       navigate(-1);
     } catch (error) {
