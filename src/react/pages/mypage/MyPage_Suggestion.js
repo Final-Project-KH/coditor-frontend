@@ -10,6 +10,7 @@ import {
   Container,
   LeftContainer,
   CenterContainer,
+  CenterContainerTitle,
 } from "../../styles/mypage/MyPage";
 import LeftTopProfile from "./Components/LeftTopProfile";
 import LeftMenus from "./Components/LeftMenus";
@@ -76,6 +77,7 @@ const MyPage_Suggestion = () => {
             </LeftContainer>
 
             <CenterContainer>
+            <CenterContainerTitle>건의사항</CenterContainerTitle>
               {/* 정렬 버튼을 Board_TopSort 스타일로 변경 */}
               <TopSortOuterContiner>
                 <TopSortInnerContainer>

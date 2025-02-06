@@ -5,10 +5,8 @@ export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
   width: 100vw;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: white;
   justify-content: flex-start;
   align-items: center;
 `;
@@ -84,16 +82,31 @@ export const Container = styled.div.attrs({
   id: "container",
 })`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-size: 500px 500px;
   background-position: 10% 100%;
-  background-image: url("/images/general/aboutimg_50.png");
+  background-image: url("/images/general/aboutimg_50.png"); */
   box-sizing: border-box;
+
+`;
+export const ImageContainer = styled.div.attrs({
+  id: "imagecontainer",
+})`
+  width: 500px;
+  height: 500px;
+  position: fixed;
+  top: 45vh;
+  left: 25vw;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: 10% 100%;
+  background-image: url("/images/general/aboutimg_50.png");
+  z-index: -1;
 `;
 export const AboutTitle = styled.div.attrs({
   id: "abouttitle",
@@ -105,6 +118,28 @@ export const AboutTitle = styled.div.attrs({
   padding-right: 20px;
   font-family: "bold", sans-serif;
   font-size: 24px;
+`;
+
+export const AboutSubTitle = styled.div.attrs({
+  id: "aboutsubtitle",
+})`
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: "bold", sans-serif;
+  font-size: 20px;
+`;
+
+export const AboutListTitle = styled.div.attrs({
+  id: "aboutlisttitle",
+})`
+  width: 100%;
+  margin-top: 10px;
+  padding-right: 20px;
+  font-family: "bold", sans-serif;
+  font-size: 16px;
 `;
 export const AboutContents = styled.div.attrs({
   id: "aboutcontents",

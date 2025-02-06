@@ -106,8 +106,7 @@ export const Container = styled.div.attrs({
 export const LeftContainer = styled.div.attrs({
   id: "leftcontainer",
 })`
-  width: 20%;
-  min-width: 175px;
+  width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -118,7 +117,7 @@ export const LeftContainer = styled.div.attrs({
 export const CenterContainer = styled.div.attrs({
   id: "centercontainer",
 })`
-  width: 80%;
+  width: calc(100% - 225px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,7 +141,6 @@ export const CenterContainerTitle = styled.div.attrs({
   font-size: 28px;
   margin-left: 20px;
 `;
-
 
 export const CenterFeedContainer = styled.div.attrs({
   id: "centerfeedcontainer",
@@ -216,7 +214,6 @@ export const TipTapBox = styled.div.attrs({
   gap: 10px;
 `;
 
-
 export const EditorArea = styled.div.attrs({
   id: "editorarea",
 })`
@@ -230,7 +227,6 @@ export const EditorArea = styled.div.attrs({
   border-radius: 10px;
   overflow: auto;
 `;
-
 
 export const ToolBarContainer = styled.div.attrs({
   id: "toolbarcontainer",

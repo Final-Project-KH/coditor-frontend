@@ -488,7 +488,7 @@ export const InputEmailButtonRefresh = styled.div.attrs({
     width: 50%;
     height: 50%;
     background-repeat: no-repeat;
-    background-size: 15px 15px;
+    background-size: 10px 10px;
     background-position: center;
     background-image: url("/images/icon/refresh-1.png");
     position: absolute;
@@ -501,7 +501,7 @@ export const InputEmailButtonRefresh = styled.div.attrs({
     width: 50%;
     height: 50%;
     position: absolute;
-    background-color: #d6d6d6;
+    background-color: #f1f1f1;
     border-radius: 5px;
   }
   &:hover::before {
@@ -760,7 +760,7 @@ export const SignUp = styled.button.attrs({
   border: none;
   font-size: 14px;
   font-family: "medium", sans-serif;
-  color: ${(props) => (props.disabled ? "#313131" : "white")};
+  color: ${(props) => (props.disabled ? "black" : "white")};
   transition: all 0.3s ease-in-out;
 `;
 export const NoticeContainer = styled.div.attrs({

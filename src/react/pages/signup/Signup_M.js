@@ -693,8 +693,8 @@ const Signup_M = () => {
                     <InputEmailButtonDiv>
                       <RotatingLines
                         visible={true}
-                        height="30"
-                        width="30"
+                        height="15"
+                        width="15"
                         strokeColor="black"
                         strokeWidth="5"
                         animationDuration="0.75"
@@ -854,8 +854,8 @@ const Signup_M = () => {
                   <SignUp disabled>
                     <RotatingLines
                       visible={true}
-                      height="30"
-                      width="30"
+                      height="15"
+                      width="15"
                       strokeColor="black"
                       strokeWidth="5"
                       animationDuration="0.75"

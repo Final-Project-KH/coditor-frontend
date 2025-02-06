@@ -39,6 +39,7 @@ import JavaScript_Main from "./react/pages/study/javascript/JavaScript_Main";
 import JavaScript_01_01 from "./react/pages/study/javascript/javascript_01/JavaScript_01_01";
 import JavaScript_01_02 from "./react/pages/study/javascript/javascript_01/JavaScript_01_02";
 import JavaScript_01_03 from "./react/pages/study/javascript/javascript_01/JavaScript_01_03";
+import CodingTest_Main from "./react/pages/codingtest/subpages/CodingTest_Main";
 import Practice from "./react/pages/codingtest/subpages/Practice";
 import CodeChallenge from "./react/pages/codingtest/subpages/CodeChallenge";
 import Community_Main from "./react/pages/community/Community_Main";
@@ -178,6 +179,7 @@ const StudyRoutes = [
 ];
 
 const CodingTestRoutes = [
+  { path: "/codingtest", element: <CodingTest_Main /> },
   { path: "/codingtest/practice", element: <Practice /> },
 ];
 

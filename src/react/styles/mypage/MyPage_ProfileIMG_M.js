@@ -46,7 +46,7 @@ export const RightProfileImage = styled.div.attrs({
   background-repeat: no-repeat;
   background-size: 103%;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f1f1;
   ${(props) =>
     props.isProfile === null &&
     props.isPreview === null &&
@@ -190,7 +190,7 @@ export const ProfileModalImage = styled.div.attrs({
   height: 250px;
   display: flex;
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f1f1;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 102%;
@@ -293,6 +293,7 @@ export const ProfileUploadModalImage = styled.div.attrs({
   background-repeat: no-repeat;
   background-size: contain;
   background-color: white;
+  border: 1px solid #f1f1f1;
   ${(props) =>
     props.isProfile === null &&
     props.isPreview === null &&
@@ -437,7 +438,7 @@ export const RightNicknameBox = styled.div.attrs({
   width: 80%;
   height: 50px;
   border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f1f1;
   display: flex;
   gap: 5px;
   justify-content: center;

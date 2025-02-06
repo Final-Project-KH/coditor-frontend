@@ -19,9 +19,21 @@ import {
   PostBottomViewsImg,
   PostBottomViewsText,
   PostBottomDot,
+  PostMiddleContentsUpper,
+  PostMiddleContentsSolved,
+  PostMiddleContentsPending,
+  PostBottomTagsBox,
+  PostBottomTag,
+  PostBottomDataBox,
 } from "../../../../styles/community/Board";
 import AxiosApi from "../../../../../api/AxiosApi";
 import Board_Pagination from "./Board_Pagination";
+import {
+  CourseDisplayNames,
+  LanguageDisplayNames,
+  StudyDisplayNames,
+  TeamDisplayNames,
+} from "./DisplayNames";
 
 const Board_PostList_MyPage = ({ page, size, onPageChange }) => {
   const navigate = useNavigate();
@@ -75,28 +87,107 @@ const Board_PostList_MyPage = ({ page, size, onPageChange }) => {
                     .toISOString()
                     .slice(0, 10)
                     .replace(/-/g, ".")}
+                  {". "}
                   작성
                 </PostTopDays>
               </PostTop>
               <PostMiddle>
-                <PostMiddleContentsTitle>{post.title}</PostMiddleContentsTitle>
+                <PostMiddleContentsUpper>
+                  {post.status ? (
+                    post.boardType === "CODING" ? (
+                      post.status === "INACTIVE" ? (
+                        <PostMiddleContentsSolved>
+                          해결됨
+                        </PostMiddleContentsSolved>
+                      ) : (
+                        <PostMiddleContentsPending>
+                          미해결
+                        </PostMiddleContentsPending>
+                      )
+                    ) : post.boardType === "STUDY" ? (
+                      post.status === "INACTIVE" ? (
+                        <PostMiddleContentsSolved>
+                          모집완료
+                        </PostMiddleContentsSolved>
+                      ) : (
+                        <PostMiddleContentsPending>
+                          모집중
+                        </PostMiddleContentsPending>
+                      )
+                    ) : (
+                      post.boardType === "TEAM" &&
+                      (post.status === "INACTIVE" ? (
+                        <PostMiddleContentsSolved>
+                          모집완료
+                        </PostMiddleContentsSolved>
+                      ) : (
+                        <PostMiddleContentsPending>
+                          모집중
+                        </PostMiddleContentsPending>
+                      ))
+                    )
+                  ) : (
+                    <></>
+                  )}
+                  <PostMiddleContentsTitle>
+                    {post.title}
+                  </PostMiddleContentsTitle>
+                </PostMiddleContentsUpper>
                 <PostMiddleContentsText>
-                  {getTextFromHTML(post.content).length > 100
+                  {/* {getTextFromHTML(post.content).length > 100
                     ? getTextFromHTML(post.content).slice(0, 100) + "..."
-                    : getTextFromHTML(post.content)}
+                    : getTextFromHTML(post.content)} */}
+                  {getTextFromHTML(post.content)}
                 </PostMiddleContentsText>
               </PostMiddle>
               <PostBottom>
-                {post.boardType}
-                <PostBottomRepliesBox>
-                  <PostBottomRepliesImg />
-                  <PostBottomRepliesText>
-                    {post.commentCnt}
-                  </PostBottomRepliesText>
+                {((Array.isArray(post.language) &&
+                  post.language.some((item) => item.trim() !== "")) ||
+                  (Array.isArray(post.course) &&
+                    post.course.some((item) => item.trim() !== "")) ||
+                  (Array.isArray(post.study) &&
+                    post.study.some((item) => item.trim() !== "")) ||
+                  (Array.isArray(post.team) &&
+                    post.team.some((item) => item.trim() !== ""))) && (
+                  <PostBottomTagsBox>
+                    {post.language && post.language.length > 0
+                      ? post.language.map((lang, index) => (
+                          <PostBottomTag>
+                            {LanguageDisplayNames[lang]}
+                          </PostBottomTag>
+                        ))
+                      : post.course && post.course.length > 0
+                      ? post.course.map((lang, index) => (
+                          <PostBottomTag>
+                            {CourseDisplayNames[lang]}
+                          </PostBottomTag>
+                        ))
+                      : post.study && post.study.length > 0
+                      ? post.study.map((lang, index) => (
+                          <PostBottomTag>
+                            {StudyDisplayNames[lang]}
+                          </PostBottomTag>
+                        ))
+                      : post.team &&
+                        post.team.length > 0 &&
+                        post.team.map((lang, index) => (
+                          <PostBottomTag>
+                            {TeamDisplayNames[lang]}
+                          </PostBottomTag>
+                        ))}
+                  </PostBottomTagsBox>
+                )}
+                <PostBottomDataBox>
+                  <PostBottomRepliesBox>
+                    <PostBottomRepliesImg />
+                    <PostBottomRepliesText>
+                      {post.commentCnt}
+                    </PostBottomRepliesText>
+                  </PostBottomRepliesBox>
                   <PostBottomDot />
                   <PostBottomViewsImg />
                   <PostBottomViewsText>{post.viewCnt}</PostBottomViewsText>
-                </PostBottomRepliesBox>
+                </PostBottomDataBox>
               </PostBottom>
             </PostEach>
           ))

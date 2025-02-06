@@ -11,6 +11,7 @@ import {
   LeftContainer,
   CenterContainer,
   SubjectContainer,
+  CenterContainerTitle,
 } from "../../styles/mypage/MyPage";
 
 import { SubjectLink } from "../../styles/study/Study_Main";
@@ -95,6 +96,7 @@ const MyPage_Study = () => {
               <LeftMenus />
             </LeftContainer>
             <CenterContainer>
+              <CenterContainerTitle>study</CenterContainerTitle>
               <SubjectContainer>
                 <SubjectLink onClick={() => handleJavaCheck()}>
                   <Java_Title />

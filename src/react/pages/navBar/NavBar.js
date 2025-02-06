@@ -206,6 +206,9 @@ const NavBar = () => {
   const handleStudy = () => {
     navigate("/study");
   };
+  const handleCodingTest = () => {
+    navigate("/codingtest");
+  };
   const handleCommunity = () => {
     navigate("/community");
   };
@@ -262,6 +265,7 @@ const NavBar = () => {
             ref={(el) => (menuRefs.current["isCodingTestOpen"] = el)}
             onMouseEnter={() => toggleMenu("isCodingTestOpen")}
             onMouseLeave={() => toggleMenu("isCodingTestOpen")}
+            onClick={() => handleCodingTest()}
           >
             <MenuBox isOpen={menuState.isCodingTestOpen}>
               <MenuButton isOpen={menuState.isCodingTestOpen}>

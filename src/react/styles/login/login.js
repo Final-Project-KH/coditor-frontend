@@ -287,11 +287,11 @@ export const SignIn = styled.button.attrs({
   justify-content: center;
   user-select: none;
   border-radius: 5px;
-  background-color: ${(props) => (props.disabled ? "#313131" : "#007bff")};
+  color: ${(props) => (props.disabled ? "black" : "white")};
+  background-color: ${(props) => (props.disabled ? "#f1f1f1" : "#313131")};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   border: none;
   margin-top: 20px;
-  color: white;
   transition: all 0.3s ease-in-out;
   font-size: 14px;
   font-family: "medium", sans-serif;

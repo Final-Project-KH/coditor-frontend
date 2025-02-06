@@ -83,7 +83,8 @@ const Board_PostList_MyPage_Report = ({ page, size, status, onPageChange }) => {
                   {new Date(post.createdAt)
                     .toISOString()
                     .slice(0, 10)
-                    .replace(/-/g, ".")}{" "}
+                    .replace(/-/g, ".")}
+                  {". "}
                   작성
                 </PostTopDays>
               </PostTop>
@@ -100,15 +101,10 @@ const Board_PostList_MyPage_Report = ({ page, size, status, onPageChange }) => {
                     {post.title}
                   </PostMiddleContentsTitle>
                 </PostMiddleContentsUpper>
-
-                <br></br>
                 <PostMiddleContentsText>
-                  {getTextFromHTML(post.content ?? "내용 없음").length > 100
-                    ? getTextFromHTML(post.content).slice(0, 100) + "..."
-                    : getTextFromHTML(post.content)}
+                  {getTextFromHTML(post.content)}
                 </PostMiddleContentsText>
               </PostMiddle>
-              <PostBottom></PostBottom>
             </PostEach>
           ))
         ) : (

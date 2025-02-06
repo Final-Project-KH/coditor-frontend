@@ -106,8 +106,7 @@ export const Container = styled.div.attrs({
 export const LeftContainer = styled.div.attrs({
   id: "leftcontainer",
 })`
-  width: 20%;
-  min-width: 175px;
+  width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -239,11 +238,11 @@ export const LeftContainerContentsActive = styled.div.attrs({
 export const CenterContainer = styled.div.attrs({
   id: "centercontainer",
 })`
-  width: 80%;
+  width: calc(100% - 225px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
+  gap: 25px;
   left: 0;
 `;
 export const CenterAccountContainer = styled.div.attrs({
@@ -256,13 +255,13 @@ export const CenterAccountContainer = styled.div.attrs({
 export const CenterAccountLeftContainer = styled.div.attrs({
   id: "centeraccountleftcontainer",
 })`
-  width: 80%;
+  width: calc(100% - 225px);
   display: flex;
 `;
 export const CenterAccountRightContainer = styled.div.attrs({
   id: "centeraccountrightcontainer",
 })`
-  width: 20%;
+  width: 200px;
   display: flex;
 `;
 export const CenterContainerEach = styled.div.attrs({
@@ -275,6 +274,8 @@ export const CenterContainerEach = styled.div.attrs({
 export const CenterContainerTitle = styled.div.attrs({
   id: "centercontainertitle",
 })`
+  text-align: left;
+  width: 100%;
   position: relative;
   display: flex;
   font-family: "bold", sans-serif;
@@ -531,5 +532,4 @@ export const SubjectContainer = styled.div.attrs({
   align-items: top;
   justify-content: center;
   gap: 25px;
-
 `;

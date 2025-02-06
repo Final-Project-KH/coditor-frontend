@@ -9,6 +9,7 @@ import {
   TopBoxLink,
   Container,
   SubjectContainer,
+  MobileEachTitle,
 } from "../../styles/mypage/MyPage_M";
 
 import { SubjectLink } from "../../styles/study/Study_Main";
@@ -83,6 +84,7 @@ const MyPage_Study_M = () => {
           </TopBox>
         </TopBoxWide>
         <Container>
+          <MobileEachTitle>study</MobileEachTitle>
           <SubjectContainer>
             <SubjectLink onClick={() => handleJavaCheck()}>
               <Java_Title_M />
