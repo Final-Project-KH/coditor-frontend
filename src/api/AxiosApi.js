@@ -808,13 +808,14 @@ const AxiosApi = {
     page = 1,
     size = 10,
     sortBy = "createdAt",
-    order = "DESC"
+    order = "DESC",
+    status = "INACTIVE"
   ) => {
     try {
       const response = await AxiosInstance.get(
         SPRING_DOMAIN + "/my/report/list",
         {
-          params: {page, size, sortBy, order},
+          params: { page, size, sortBy, order, status },
         }
       );
       return response.data;
@@ -823,6 +824,28 @@ const AxiosApi = {
       throw error;
     }
   },
+
+  getMySuggestionPosts: async (
+    page = 1,
+    size = 10,
+    sortBy = "createdAt",
+    order = "DESC",
+    status = "INACTIVE"
+  ) => {
+    try {
+      const response = await AxiosInstance.get(
+        SPRING_DOMAIN + "/my/suggestion/list",
+        {
+          params: { page, size, sortBy, order, status },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("내 건의사항 게시글 가져오기 오류 : ", error);
+      throw error;
+    }
+  },
+  
   newReportPost: async (boardId, title, content, report) => {
     try {
       const response = await AxiosInstance.post(
