@@ -146,6 +146,14 @@ export const CodeChallengeStyles = styled.div`
       & > div {
         width: 100% !important;
       }
+
+      & > div:first-child > div:first-child {
+        min-height: 480px;
+      }
+
+      & > div:first-child > div:last-child {
+        height: 240px;
+      }
     }
   }
 

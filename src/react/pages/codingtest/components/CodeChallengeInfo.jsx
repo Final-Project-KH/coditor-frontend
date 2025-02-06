@@ -5,6 +5,7 @@ import { Base64 } from "js-base64";
 
 import JwtDecoding from "../../../../api/JwtDecode";
 import AxiosApi from "../../../../api/AxiosApi";
+import { challengeIoExamples } from "../constant/examples";
 
 import { CodeChallengeInfoStyles as CssWrapper } from "../../../styles/codingtest/CodeChallengeInfoStyles";
 
@@ -81,70 +82,12 @@ const CodeChallengeInfo = ({ setHeaderTitle, setCodeEditorValue }) => {
         <div>
           <span>정답 예시</span>
         </div>
-        <div>{challengeIoExample[questionId]}</div>
+        <div>
+          <table>{challengeIoExamples[questionId]}</table>
+        </div>
       </div>
     </CssWrapper>
   );
 };
 
 export default CodeChallengeInfo;
-
-const challengeIoExample = {
-  1: (
-    <table>
-      <colgroup>
-        <col style={{ width: "33.33%" }} />
-        <col style={{ width: "33.33%" }} />
-        <col style={{ width: "33.33%" }} />
-      </colgroup>
-      <thead>
-        <tr>
-          <th>x</th>
-          <th>y</th>
-          <th>answer</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>5</td>
-          <td>7</td>
-          <td>12</td>
-        </tr>
-        <tr>
-          <td>-2</td>
-          <td>3</td>
-          <td>1</td>
-        </tr>
-      </tbody>
-    </table>
-  ),
-
-  2: (
-    <table>
-      <colgroup>
-        <col style={{ width: "33.33%" }} />
-        <col style={{ width: "33.33%" }} />
-        <col style={{ width: "33.33%" }} />
-      </colgroup>
-      <thead>
-        <tr>
-          <th>x</th>
-          <th>y</th>
-          <th>answer</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>5</td>
-          <td>7</td>
-          <td>12</td>
-        </tr>
-        <tr>
-          <td>-2</td>
-          <td>3</td>
-          <td>1</td>
-        </tr>
-      </tbody>
-    </table>
-  ),
-};

@@ -94,5 +94,9 @@ export const CodeEditorStyles = styled.div`
         font-size: 16px;
       }
     }
+
+    & > section {
+      min-height: 436px;
+    }
   }
 `;
