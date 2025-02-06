@@ -16,34 +16,53 @@ const CodeEditor = ({
   handleCancelButtonClick,
   isConnectedRef,
 }) => {
-  const editorRef = useRef(null);
-  const headerElemRef = useRef(null);
   const [editorHeight, setEditorHeight] = useState("100%");
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [language, setLanguage] = useState("Java");
 
-  const handleChange = (event) => {
-    setLanguage(event.target.value);
-  };
+  const editorHeaderElemRef = useRef(null);
 
-  const initEditor = useCallback((editor) => {
-    editorRef.current = editor;
-    editor.focus();
+  /**
+   * [설명]
+   * Monaco Editor를 사용할 때 automaticLayout=true로 설정한 경우
+   * 종종 ResizeObserver loop limit exceeded 에러가 발생하는 버그를 해결하기 위해 적용
+   * https://github.com/microsoft/vscode/issues/183324
+   *
+   * [동작]
+   * 브라우저에 할당된 ResizeObserver를 최적화된 버전으로 재할당
+   */
+  useEffect(() => {
+    // Save a reference to the original ResizeObserver
+    const OriginalResizeObserver = window.ResizeObserver;
+
+    // Create a new ResizeObserver constructor
+    window.ResizeObserver = function (callback) {
+      const wrappedCallback = (entries, observer) => {
+        window.requestAnimationFrame(() => {
+          callback(entries, observer);
+        });
+      };
+
+      // Create an instance of the original ResizeObserver
+      // with the wrapped callback
+      return new OriginalResizeObserver(wrappedCallback);
+    };
+
+    // Copy over static methods, if any
+    for (let staticMethod in OriginalResizeObserver) {
+      if (OriginalResizeObserver.hasOwnProperty(staticMethod)) {
+        window.ResizeObserver[staticMethod] =
+          OriginalResizeObserver[staticMethod];
+      }
+    }
   }, []);
 
-  useEffect(() => {
-    if (editorRef.current !== null) {
-      const resizeObserver = new ResizeObserver(() => {
-        editorRef.current.layout();
-      });
-      resizeObserver.observe(document.body);
-    }
-  }, [editorRef, document.body]);
+  const initEditor = useCallback((editor) => {
+    editor.focus();
 
-  useEffect(() => {
     const updateEditorHeight = () => {
-      if (headerElemRef.current) {
-        const headerHeight = headerElemRef.current.offsetHeight;
+      if (editorHeaderElemRef.current) {
+        const headerHeight = editorHeaderElemRef.current.offsetHeight;
         setEditorHeight(`calc(100% - ${headerHeight}px)`);
       }
     };
@@ -52,10 +71,11 @@ const CodeEditor = ({
 
     const resizeObserver = new ResizeObserver(() => {
       updateEditorHeight();
+      editor.layout();
     });
 
-    if (headerElemRef.current) {
-      resizeObserver.observe(headerElemRef.current);
+    if (editorHeaderElemRef.current) {
+      resizeObserver.observe(editorHeaderElemRef.current);
     }
 
     return () => {
@@ -65,11 +85,11 @@ const CodeEditor = ({
 
   return (
     <CssWrapper>
-      <div ref={headerElemRef}>
+      <div ref={editorHeaderElemRef}>
         <span>CODE EDITOR</span>
         <div>
           <FormControl
-            style={{ fontSize: "0.8em;" }}
+            style={{ fontSize: "0.8em" }}
             sx={{ m: 1, minWidth: 120 }}
             size="small"
           >
@@ -78,7 +98,9 @@ const CodeEditor = ({
               style={{ color: "white" }}
               value={language}
               label="Language"
-              onChange={handleChange}
+              onChange={(event) => {
+                setLanguage(event.target.value);
+              }}
             >
               <MenuItem value={"Java"}>Java</MenuItem>
             </Select>
