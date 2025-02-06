@@ -27,15 +27,24 @@ const MyPage_Report_M = () => {
     setPage(newPage);
   };
 
+  const handleMyPage = () => {
+    navigate("/mypage");
+  };
+
+  const handleRefresh = () => {
+    navigate("/mypage/suggestion");
+  };
+
   return (
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxLink onClick={() => navigate("/mypage")}>
+          <TopBoxLink onClick={() => handleMyPage()}>
             <TopBoxText>my page</TopBoxText>
           </TopBoxLink>
+
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxLink onClick={() => navigate("/mypage/report")}>
+          <TopBoxLink onClick={() => handleRefresh()}>
             <TopBoxText>악성 사용자 신고</TopBoxText>
           </TopBoxLink>
         </TopBox>

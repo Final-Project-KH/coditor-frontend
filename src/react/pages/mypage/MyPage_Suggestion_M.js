@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import {
   Wrap,
@@ -10,23 +10,24 @@ import {
   Container,
   LeftContainer,
   CenterContainer,
+  MobileEachTitle,
 } from "../../styles/mypage/MyPage_M";
 
 import LeftTopProfile from "./Components/LeftTopProfile";
 import LeftMenus from "./Components/LeftMenus";
 import ScrollToTopButton from "../ScrollToTopButton";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Board_PostList_MyPage_Suggestion from "../community/components/common/Board_PostList_MyPage_Suggestion";
 
 const MyPage_Suggestion_M = () => {
   const navigate = useNavigate();
-  const { mainContentRef } = useOutletContext();
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(10);
 
-  // 페이지 진입 시 스크롤 위치 초기화
-  useEffect(() => {
-    if (mainContentRef?.current) {
-      mainContentRef.current.scrollTo(0, 0);
-    }
-  }, [mainContentRef]);
+  // ✅ 페이지 변경 함수 추가
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
 
   const handleMyPage = () => {
     navigate("/mypage");
@@ -51,7 +52,16 @@ const MyPage_Suggestion_M = () => {
             </TopBoxLink>
           </TopBox>
         </TopBoxWide>
-        <Container></Container>
+        <Container>
+          <MobileEachTitle style={{ marginBottom: "10px" }}>
+            건의사항
+          </MobileEachTitle>
+          <Board_PostList_MyPage_Suggestion
+            page={page}
+            size={size}
+            onPageChange={handlePageChange}
+          />
+        </Container>
         <ScrollToTopButton />
       </Wrap>
     </>

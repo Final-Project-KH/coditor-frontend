@@ -15,35 +15,39 @@ import {
   ArrowSlash,
   RightArrow,
 } from "../../styles/main/Carousel";
+import { useNavigate } from "react-router-dom";
 
 const Carousel = () => {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const slides = [
     {
       backgroundColor: "#f1f1f1",
-      category: "NEWS",
-      title: `나의 2024년\n코딩테스트 연말결산`,
-      contents: `올 한 해 얼마나 많은 문제들을 풀었는지 확인해볼까요?\n2024년을 회고하며 2025년에도 힘차게 풀어보세요!`,
+      category: "roadmap",
+      title: `개발, 어디서부터 시작해야 할까?\n개발 입문자를 위한 로드맵 🚀`,
+      contents: `프로그래밍을 배우고 싶지만 어디서 시작해야 할지 막막하다면?\n초보자를 위한 필수 개념, 추천 언어, 학습 로드맵을 확인하세요!`,
       image: "/images/general/mainbanner_01.png",
-      textColor: "black",
+      link: "/roadmap/frontend",
     },
     {
       backgroundColor: "#6281e6",
-      category: "공지사항",
-      title: `2025년 PCCP, PCCE, PCSQL\n정기시험 일정 안내`,
-      contents: `시험 준비는 일정 확인부터!\n2025년 프로그래머스 인증시험 일정을 확인해보세요.`,
+      category: "coding test",
+      title: `코딩 테스트, 이렇게 준비하면 합격한다!\n코딩 테스트 대비 전략`,
+      contents: `알고리즘, 데이터 구조, 실전 문제 풀이까지!!\n코딩 테스트 유형과 필수 문제를 한곳에서 준비하세요.`,
       image: "/images/general/mainbanner_02.png",
       textColor: "white",
+      link: "/codingtest/practice",
     },
     {
       backgroundColor: "#383838",
-      category: "데브코스",
-      title: `개발 생산성 200% UP!\n생성형 AI로 백엔드 개발 마스터`,
-      contents: `AI 활용 개발 프로젝트 경험이 필수인 시대\n경쟁력 있는 개발자로 성공해보세요`,
+      category: "community",
+      title: `실무 개발자에게 코드 리뷰 받기 💡\n여러분을 기다리고 있어요!`,
+      contents: `혼자 공부하는 것보다 전문가의 피드백이 중요합니다.\n코드 리뷰를 통해 더 나은 개발자로 성장하세요!`,
       image: "/images/general/mainbanner_03.png",
       textColor: "white",
+      link: "community/coding",
     },
   ];
 
@@ -77,6 +81,10 @@ const Carousel = () => {
 
   const currentSlide = slides[currentIndex];
 
+  const handleSlideClick = () => {
+    navigate(currentSlide.link);
+  };
+
   return (
     <CarouselContainer>
       <CarouselOuter
@@ -90,7 +98,11 @@ const Carousel = () => {
             <CarouselTextCategory textColor={currentSlide.textColor}>
               {currentSlide.category}
             </CarouselTextCategory>
-            <CarouselTextTitle textColor={currentSlide.textColor}>
+            <CarouselTextTitle
+              style={{ cursor: "pointer" }}
+              onClick={handleSlideClick}
+              textColor={currentSlide.textColor}
+            >
               {currentSlide.title.split("\n").map((line, index) => (
                 <span key={index}>
                   {line}
@@ -98,7 +110,11 @@ const Carousel = () => {
                 </span>
               ))}
             </CarouselTextTitle>
-            <CarouselTextContents textColor={currentSlide.textColor}>
+            <CarouselTextContents
+              style={{ cursor: "pointer" }}
+              onClick={handleSlideClick}
+              textColor={currentSlide.textColor}
+            >
               {currentSlide.contents.split("\n").map((line, index) => (
                 <span key={index}>
                   {line}

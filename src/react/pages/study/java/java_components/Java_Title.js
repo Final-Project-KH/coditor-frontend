@@ -11,13 +11,12 @@ import {
 } from "../../../../styles/study/Language_Title";
 
 const Java_Title = () => {
-
   return (
     <>
-        <LeftSubjectContainer>
-          <SubjectImgContainerJava />
-          {/* <SubjectTitle>Java</SubjectTitle>
-          <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
+      <LeftSubjectContainer>
+        <SubjectImgContainerJava />
+        <SubjectTitle>Java</SubjectTitle>
+        {/*  <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
           <SubjectRateContainer>
             <SubjectRateBox>
               <SubjectRateWhite />
@@ -25,7 +24,7 @@ const Java_Title = () => {
             </SubjectRateBox>
             <SubjectRateContents>52%</SubjectRateContents>
           </SubjectRateContainer> */}
-        </LeftSubjectContainer>
+      </LeftSubjectContainer>
     </>
   );
 };

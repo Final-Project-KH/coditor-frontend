@@ -123,7 +123,7 @@ export const MenuImgJava = styled.div.attrs({
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: url("/images/program/java_small.png");
+  background-image: url("/images/program/java_full.png");
 `;
 export const MenuImgPython = styled.div.attrs({
   id: "menuimgpython",
@@ -133,7 +133,7 @@ export const MenuImgPython = styled.div.attrs({
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: url("/images/program/python_small.png");
+  background-image: url("/images/program/python_full.png");
 `;
 export const MenuImgC = styled.div.attrs({
   id: "menuimgc",

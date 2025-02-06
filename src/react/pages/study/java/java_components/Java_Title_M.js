@@ -16,8 +16,8 @@ const Java_Title_M = () => {
     <>
         <LeftSubjectContainer>
           <SubjectImgContainerJava />
-          {/* <SubjectTitle>Java</SubjectTitle>
-          <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
+        <SubjectTitle>Java</SubjectTitle>
+         {/*  <SubjectContents>기본 자료형과 연산자 / 학습중</SubjectContents>
           <SubjectRateContainer>
             <SubjectRateBox>
               <SubjectRateWhite />

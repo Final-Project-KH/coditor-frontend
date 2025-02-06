@@ -15,8 +15,8 @@ const JavaScript_Title = () => {
     <>
       <LeftSubjectContainer>
         <SubjectImgContainerJavaScript />
-        {/* <SubjectTitle>JavaScript</SubjectTitle>
-        <SubjectContents>학습전</SubjectContents>
+       <SubjectTitle>JavaScript</SubjectTitle>
+     {/*    <SubjectContents>학습전</SubjectContents>
         <SubjectRateContainer>
           <SubjectRateBox>
             <SubjectRateWhite />

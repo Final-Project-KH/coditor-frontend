@@ -294,9 +294,9 @@ export const StickyClassBox = styled.div.attrs({
   id: "stickyclassbox",
 })`
   width: 100%;
-  height: calc(100vh - 382px);
+  height: calc(100vh - 465px);
   position: sticky;
-  top: 280px;
+  top: 314px;
   bottom: 50px;
   overflow-y: scroll; /* 세로 스크롤 활성화 */
   -ms-overflow-style: none; /* IE/Edge */

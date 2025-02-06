@@ -119,7 +119,7 @@ const Board_PostList_MyPage_Suggestion = ({
             </PostEach>
           ))
         ) : (
-          <p>건의사항이 없습니다.</p>
+          <p>작성한 건의사항이 없습니다.</p>
         )}
       </PostListContainer>
 

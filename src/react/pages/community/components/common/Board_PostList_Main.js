@@ -12,6 +12,7 @@ import {
   PostBottomViewsImg,
   PostBottomViewsText,
   PostEach,
+  PostEachMain,
   PostListContainer,
   PostMiddle,
   PostMiddleContentsPending,
@@ -35,7 +36,7 @@ import {
   TeamDisplayNames,
 } from "../common/DisplayNames";
 
-const Board_PostList = ({
+const Board_PostList_Main = ({
   boardType,
   page,
   size,
@@ -64,11 +65,6 @@ const Board_PostList = ({
   // Get Board from Backend
   useEffect(() => {
     const loadBoard = async () => {
-      console.log("test: ", search);
-      console.log("해쉬태그: ", enumFilter);
-      console.log("현재 페이지 : ", currentPage);
-      console.log("총 페이지 : ", totalPages);
-
       try {
         const response = await AxiosApi.getBoard(
           currentPage,
@@ -132,7 +128,7 @@ const Board_PostList = ({
         {boards.length > 0 ? (
           <>
             {boards.map((board) => (
-              <PostEach
+              <PostEachMain
                 key={board.boardId}
                 style={{ cursor: "pointer" }}
                 onClick={() => handleMove(boardType, board)}
@@ -161,43 +157,6 @@ const Board_PostList = ({
                 </PostTop>
                 <PostMiddle>
                   <PostMiddleContentsUpper>
-                    {boardType === "coding" ? (
-                      board.status === "INACTIVE" ? (
-                        <PostMiddleContentsSolved>
-                          해결됨
-                        </PostMiddleContentsSolved>
-                      ) : (
-                        <PostMiddleContentsPending>
-                          미해결
-                        </PostMiddleContentsPending>
-                      )
-                    ) : boardType === "study" ? (
-                      board.status === "INACTIVE" ? (
-                        <PostMiddleContentsSolved>
-                          모집완료
-                        </PostMiddleContentsSolved>
-                      ) : (
-                        <PostMiddleContentsPending>
-                          모집중
-                        </PostMiddleContentsPending>
-                      )
-                    ) : (
-                      boardType === "team" &&
-                      (board.status === "INACTIVE" ? (
-                        <PostMiddleContentsSolved>
-                          모집완료
-                        </PostMiddleContentsSolved>
-                      ) : (
-                        <PostMiddleContentsPending>
-                          모집중
-                        </PostMiddleContentsPending>
-                      ))
-                    )}
-                    {/* {board.status === "INACTIVE" ? (
-                  <PostMiddleContentsSolved>해결됨</PostMiddleContentsSolved>
-                ) : (
-                  <PostMiddleContentsPending>미해결</PostMiddleContentsPending>
-                )} */}
                     <PostMiddleContentsTitle>
                       {board.title}
                     </PostMiddleContentsTitle>
@@ -207,48 +166,6 @@ const Board_PostList = ({
                   </PostMiddleContentsText>
                 </PostMiddle>
                 <PostBottom>
-                  {((Array.isArray(board.language) &&
-                    board.language.some((item) => item.trim() !== "")) ||
-                    (Array.isArray(board.course) &&
-                      board.course.some((item) => item.trim() !== "")) ||
-                    (Array.isArray(board.study) &&
-                      board.study.some((item) => item.trim() !== "")) ||
-                    (Array.isArray(board.team) &&
-                      board.team.some((item) => item.trim() !== ""))) && (
-                    <PostBottomTagsBox>
-                      {/* <PostBottomTag>
-                    {LanguageDisplayNames[board.language] ||
-                      CourseDisplayNames[board.course] ||
-                      StudyDisplayNames[board.study] ||
-                      TeamDisplayNames[board.team]}
-                  </PostBottomTag> */}
-                      {board.language && board.language.length > 0
-                        ? board.language.map((lang, index) => (
-                            <PostBottomTag>
-                              {LanguageDisplayNames[lang]}
-                            </PostBottomTag>
-                          ))
-                        : board.course && board.course.length > 0
-                        ? board.course.map((lang, index) => (
-                            <PostBottomTag>
-                              {CourseDisplayNames[lang]}
-                            </PostBottomTag>
-                          ))
-                        : board.study && board.study.length > 0
-                        ? board.study.map((lang, index) => (
-                            <PostBottomTag>
-                              {StudyDisplayNames[lang]}
-                            </PostBottomTag>
-                          ))
-                        : board.team &&
-                          board.team.length > 0 &&
-                          board.team.map((lang, index) => (
-                            <PostBottomTag>
-                              {TeamDisplayNames[lang]}
-                            </PostBottomTag>
-                          ))}
-                    </PostBottomTagsBox>
-                  )}
                   <PostBottomDataBox>
                     <PostBottomRepliesBox>
                       <PostBottomRepliesImg />
@@ -263,21 +180,15 @@ const Board_PostList = ({
                     </PostBottomViewsBox>
                   </PostBottomDataBox>
                 </PostBottom>
-              </PostEach>
+              </PostEachMain>
             ))}
           </>
         ) : (
           <p>작성된 게시글이 없습니다.</p>
         )}
       </PostListContainer>
-
-      <Board_Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
     </>
   );
 };
 
-export default Board_PostList;
+export default Board_PostList_Main;

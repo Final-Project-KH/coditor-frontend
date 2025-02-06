@@ -7,7 +7,9 @@ export const Background = styled.div`
   flex-direction: column;
 `;
 
-export const Header = styled.div`
+export const Header = styled.div.attrs({
+  id: "header",
+})`
   width: 100%;
   height: 100px;
   @media (max-width: 768px) {
@@ -57,10 +59,10 @@ export const ScrollToTop = styled.div.attrs({
   background-size: 30px;
   background-position: center;
   background-image: url("/images/icon/totop.png");
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   z-index: 10;
   @media (max-width: 768px) {
-    right: 20px;  /* 버튼 위치를 왼쪽으로 약간 이동 */
-    bottom: 20px;  /* 버튼 위치를 아래로 약간 이동 */
+    right: 20px; /* 버튼 위치를 왼쪽으로 약간 이동 */
+    bottom: 20px; /* 버튼 위치를 아래로 약간 이동 */
   }
 `;

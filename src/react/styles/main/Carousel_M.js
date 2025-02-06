@@ -96,6 +96,7 @@ export const ArrowBox = styled.div.attrs({
   justify-content: center;
   align-items: center;
   gap: 8px;
+  z-index: 3;
 `;
 
 export const LeftArrow = styled.div.attrs({

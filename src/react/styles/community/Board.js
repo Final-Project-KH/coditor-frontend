@@ -373,6 +373,18 @@ export const PostEach = styled.div.attrs({
     transform: scaleY(0.5);
   }
 `;
+export const PostEachMain = styled.div.attrs({
+  id: "posteachmain",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  padding: 20px 20px;
+`;
 export const PostTop = styled.div.attrs({
   id: "posttop",
 })`
