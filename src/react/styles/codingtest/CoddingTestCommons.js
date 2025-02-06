@@ -1,5 +1,5 @@
-import styled, {css} from "styled-components";
-import {Link} from "react-router-dom";
+import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -97,7 +97,7 @@ export const LeftContainer = styled.div.attrs({
   flex-direction: column;
   align-items: center;
   left: 0;
-  gap: 25px;
+  gap: 50px;
 `;
 export const LeftTopSubjectContainer = styled.div.attrs({
   id: "leftsubjectcontainer",
@@ -114,15 +114,23 @@ export const LeftTopSubjectContainer = styled.div.attrs({
 export const LeftMiddleSubjectContainer = styled.div.attrs({
   id: "leftsubjectcontainer",
 })`
-  width: 100%;
-  height: 200px;
+  position: sticky;
+  left: 0;
+
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  width: 100%;
+
+  padding: 20px;
+
   border-radius: 30px;
   background-color: #f1f1f1;
-  position: sticky;
-  left: 0;
+
+  white-space: pre-wrap;
+  font-family: "regular", sans-serif;
+  font-size: 18px;
 `;
 export const LeftSubjectSubContainer = styled.div.attrs({
   id: "leftsubjectcontainer",
