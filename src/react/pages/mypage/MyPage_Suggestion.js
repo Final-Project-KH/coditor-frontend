@@ -14,7 +14,7 @@ import {
 import LeftTopProfile from "./Components/LeftTopProfile";
 import LeftMenus from "./Components/LeftMenus";
 import ScrollToTopButton from "../ScrollToTopButton";
-import Board_PostList_MyPage_Question from "../community/components/common/Board_PostList_MyPage_Question";
+import Board_PostList_MyPage_Question from "../community/components/common/Board_PostList_MyPage_Suggestion";
 import MyPage_Suggestion_M from "./MyPage_Suggestion_M";
 
 // Board_TopSort 스타일 가져오기
