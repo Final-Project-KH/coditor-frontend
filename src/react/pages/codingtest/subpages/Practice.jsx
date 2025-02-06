@@ -79,21 +79,23 @@ const Practice = () => {
 
   const profile = useSelector((state) => state.auth.profile);
 
-    // TopBox firstpath
-    const handleCodingTest = () => {
-      navigate("/codingtest");
-    };
-  
-    // TopBox secondpath
-    const handleRefresh = () => {
-      navigate("/codingtest/practice");
-    };
+  // TopBox firstpath
+  const handleCodingTest = () => {
+    navigate("/codingtest");
+  };
+
+  // TopBox secondpath
+  const handleRefresh = () => {
+    navigate("/codingtest/practice");
+  };
 
   return (
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxText onClick={() => handleCodingTest()}>coding test</TopBoxText>
+          <TopBoxText onClick={() => handleCodingTest()}>
+            coding test
+          </TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
           <TopBoxText onClick={() => handleRefresh()}>practice</TopBoxText>
         </TopBox>
