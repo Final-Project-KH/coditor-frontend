@@ -94,7 +94,7 @@ import Roadmap_Backend from "./react/pages/more/Roadmap_Backend";
 import Roadmap_DevOps from "./react/pages/more/Roadmap_DevOps";
 import Roadmap_Fullstack from "./react/pages/more/Roadmap_Fullstack";
 import RequiredAuth from "./util/RequiredAuth";
-import MyPage from "./react/pages/mypage/MyPage";
+import MyPage_Main from "./react/pages/mypage/MyPage_Main";
 import MyPage_UserFeed from "./react/pages/mypage/MyPage_UserFeed";
 import MyPage_Withdrawal from "./react/pages/mypage/MyPage_Withdrawal";
 import MyPage_Study from "./react/pages/mypage/MyPage_Study";
@@ -273,7 +273,7 @@ const MyPageRoutes = [
     path: "/mypage",
     element: (
       <RequiredAuth>
-        <MyPage />
+        <MyPage_Main />
       </RequiredAuth>
     ),
     auth: true,
@@ -282,7 +282,7 @@ const MyPageRoutes = [
     path: "/mypage/accountmanager",
     element: (
       <RequiredAuth>
-        <MyPage />
+        <MyPage_Main />
       </RequiredAuth>
     ),
     auth: true,

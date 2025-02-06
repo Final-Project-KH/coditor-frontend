@@ -24,20 +24,19 @@ import {
   WithdrawnHeadline,
   WithdrawnText,
   BackButton,
-} from "../../styles/mypage/MyPage_Withdrawal";
+} from "../../styles/mypage/MyPage_Withdrawal_M";
 
 import LeftTopProfile from "./Components/LeftTopProfile";
 import LeftMenus from "./Components/LeftMenus";
 import ScrollToTopButton from "../ScrollToTopButton";
 import { useEffect, useState } from "react";
-import MyPage_Withdrawal_M from "./MyPage_Withdrawal_M";
+import { MobileEachTitle } from "../../styles/mypage/MyPage_M";
 
-const MyPage_Withdrawal = () => {
+const MyPage_Withdrawal_M = () => {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const { mainContentRef } = useOutletContext();
   const [isWithdrawn, setIsWithdrawn] = useState(false);
-  const { isMobile } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
@@ -69,9 +68,6 @@ const MyPage_Withdrawal = () => {
 
   return (
     <>
-      {isMobile ? (
-        <MyPage_Withdrawal_M />
-      ) : (
       <Wrap>
         {isWithdrawn ? ( // 탈퇴 완료 상태일 경우 다른 메시지 표시
           <>
@@ -99,13 +95,7 @@ const MyPage_Withdrawal = () => {
               </TopBox>
             </TopBoxWide>
             <Container>
-              <LeftContainer>
-                <LeftTopProfile />
-                <LeftMenus />
-              </LeftContainer>
-              <CenterContainer>
-                <CenterContainerEach>
-                  <CenterContainerTitle>회원 탈퇴</CenterContainerTitle>
+              <MobileEachTitle>회원 탈퇴</MobileEachTitle>
                   <CenterContentsContainer>
                     <ContentsHeadline>
                       회원 탈퇴 전, 다음 내용을 꼭 확인해주세요.
@@ -136,16 +126,13 @@ const MyPage_Withdrawal = () => {
                       코디터 회원 탈퇴
                     </WithdrawalButton>
                   </CenterContentsContainer>
-                </CenterContainerEach>
-              </CenterContainer>
             </Container>
             <ScrollToTopButton />
           </>
         )}
       </Wrap>
-      )}
-      </>
-    );
-  };
+    </>
+  );
+};
 
-export default MyPage_Withdrawal;
+export default MyPage_Withdrawal_M;

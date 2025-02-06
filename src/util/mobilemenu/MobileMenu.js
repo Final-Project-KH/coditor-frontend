@@ -186,10 +186,10 @@ export const menus = [
         ],
       },
       {
-        title: { text: "post", link: "/mypage/commmunity" },
+        title: { text: "post", link: "/mypage/community" },
         contents: [
-          { text: "community", link: "/mypage/commmunity" },
-          { text: "악성 게시글 신고", link: "/mypage/report" },
+          { text: "community", link: "/mypage/community" },
+          { text: "악성 사용자 신고", link: "/mypage/report" },
           { text: "건의사항", link: "/mypage/suggestion" },
         ],
       },

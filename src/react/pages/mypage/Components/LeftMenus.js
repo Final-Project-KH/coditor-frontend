@@ -65,7 +65,7 @@ const LeftMenus = () => {
     {
       id: "report",
       sort: "post",
-      label: "악성 게시글 신고",
+      label: "악성 사용자 신고",
       link: "/mypage/report",
     },
     {

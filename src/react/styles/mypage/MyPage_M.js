@@ -146,13 +146,13 @@ export const Container = styled.div.attrs({
 })`
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 10px;
+
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: top;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   padding-bottom: 25px;
   margin-top: 70px;
 `;
@@ -485,7 +485,32 @@ export const PasswordInput = styled.input.attrs({
     outline: none;
   }
 `;
-
+export const AlertContainer = styled.div.attrs({
+  id: "alertcontainer",
+})`
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 15px;
+  border: 1px solid #f1f1f1;
+`;
+export const AlertTitleArea = styled.div.attrs({
+  id: "alerttitlearea",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-evenly;
+  align-items: center;
+`;
 export const AlertTitle = styled.div.attrs({
   id: "alerttitle",
 })`
@@ -509,6 +534,7 @@ export const CenterAlertContentsEach1 = styled.div.attrs({
 })`
   display: flex;
   flex-direction: column;
+  margin-bottom: 25px;
 `;
 export const CenterAlertContentsEach2 = styled.div.attrs({
   id: "centeralertcontentseach2",
@@ -534,6 +560,21 @@ export const CenterAlertContentsInner = styled.div.attrs({
   gap: 20px;
 `;
 
+export const SNSContainer = styled.div.attrs({
+  id: "snscontainer",
+})`
+  width: 100%;
+padding: 20px 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 15px;
+  border: 1px solid #f1f1f1;
+`;
+
 export const CenterSNSContentsEach1 = styled.div.attrs({
   id: "centersnscontentseach1",
 })`
@@ -547,6 +588,7 @@ export const CenterSNSContentsEach2 = styled.div.attrs({
   flex-direction: column;
   &::before {
     content: "";
+    margin-top: 15px;
     margin-bottom: 15px;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
@@ -595,7 +637,7 @@ export const SubjectContainer = styled.div.attrs({
 })`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   flex-direction: row;
   align-items: top;
   justify-content: center;

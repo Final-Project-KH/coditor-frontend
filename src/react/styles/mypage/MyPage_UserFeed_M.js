@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -140,6 +140,7 @@ export const TopBoxLink = styled.button.attrs({
     color: white;
   }
 `;
+
 export const Container = styled.div.attrs({
   id: "container",
 })`
@@ -155,169 +156,183 @@ export const Container = styled.div.attrs({
   padding-bottom: 25px;
   margin-top: 70px;
 `;
-export const ProfileContainer = styled.div.attrs({
-  id: "profilecontainer",
+
+export const LeftContainer = styled.div.attrs({
+  id: "leftcontainer",
+})`
+  width: 20%;
+  min-width: 175px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  left: 0;
+`;
+
+export const CenterContainer = styled.div.attrs({
+  id: "centercontainer",
+})`
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  left: 0;
+`;
+
+export const CenterContainerEach = styled.div.attrs({
+  id: "centercontainereach",
 })`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
 `;
-export const ProfileTitle = styled.div.attrs({
-  id: "profiletitle",
+export const CenterContainerTitle = styled.div.attrs({
+  id: "centercontainertitle",
 })`
-  width: 100%;
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding-left: 10px;
-  align-items: center;
-  font-size: 24px;
   font-family: "bold", sans-serif;
-  color: black;
-  text-decoration: underline;
-  text-underline-offset: 10px;
-  text-decoration-thickness: 3px;
+  font-size: 28px;
+  margin-left: 20px;
 `;
-export const UserProfileBox = styled.div.attrs({
-  id: "userprofilebox",
+
+
+export const CenterFeedContainer = styled.div.attrs({
+  id: "centerfeedcontainer",
 })`
   width: 100%;
-  padding: 30px 0;
+  padding: 10px 10px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   box-sizing: border-box;
   border-radius: 15px;
   border: 1px solid #f1f1f1;
 `;
-export const UserProfileImg = styled.div.attrs({
-  id: "userprofileimg",
-})`
-  width: 120px;
-  height: 120px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 50%;
-  border: 1px solid #f1f1f1;
-  ${(props) =>
-    props.isProfile === null &&
-    css`
-      background-image: url("/images/general/default_profile.png");
-    `}
-  ${(props) =>
-    props.isProfile !== null &&
-    css`
-      background-image: url(${(props) => props.isProfile});
-    `}
-`;
-export const UserId = styled.div.attrs({
-  id: "userid",
-})`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  font-size: 18px;
-  font-family: "bold", sans-serif;
-`;
-export const UserPostAmount = styled.div.attrs({
-  id: "userpostamount",
-})`
-  font-family: "regular", sans-serif;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.4);
-`;
-export const FeedContainer = styled.div.attrs({
-  id: "feedcontainer",
+export const CenterFeedContentsBox = styled.div.attrs({
+  id: "centerfeedcontentsbox",
 })`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  /* &::after {
-    content: "";
-    width: 100%;
-    height: 1px;
-    background-color: black;
-    transform: scaleY(0.5);
-  } */
+  padding: 100px 0;
+  gap: 20px;
 `;
-
-export const FeedTitle = styled.div.attrs({
-  id: "feedtitle",
+export const CenterFeedText = styled.div.attrs({
+  id: "centerfeedtext",
 })`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding-left: 10px;
-  align-items: center;
-  font-size: 24px;
-  font-family: "bold", sans-serif;
-  color: black;
-  text-decoration: underline;
-  text-underline-offset: 10px;
-  text-decoration-thickness: 3px;
-`;
-
-export const FeedContentsContainer = styled.div.attrs({
-  id: "feedcontentscontainer",
-})`
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid #f1f1f1;
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 10px;
-`;
-
-export const FeedContents = styled.div.attrs({
-  id: "feedcontents",
-})`
-  width: 100%;
-  font-family: "regular", sans-serif;
   font-size: 16px;
-  color: black;
-  display: flex;
-  justify-content: center;
+  font-family: "medium", sans-serif;
 `;
 
-export const PostContainer = styled.div.attrs({
-  id: "postcontainer",
+export const FeedButton = styled.button.attrs({
+  id: "feedbutton",
+})`
+  width: 50%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid #333333;
+  color: white;
+  font-family: "regular", sans-serif;
+  font-size: 14px;
+  background-color: #333333;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border: none;
+  &:hover {
+    background-color: #f1f1f1;
+    color: #333333;
+    border: 1px solid #333333;
+    font-family: "bold", sans-serif;
+  }
+`;
+
+export const TipTapBox = styled.div.attrs({
+  id: "tiptapbox",
 })`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 10px;
-  gap: 30px;
+  gap: 10px;
 `;
 
-export const PostTitle = styled.div.attrs({
-  id: "posttitle",
+
+export const EditorArea = styled.div.attrs({
+  id: "editorarea",
+})`
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  overflow: auto;
+`;
+
+
+export const ToolBarContainer = styled.div.attrs({
+  id: "toolbarcontainer",
+})`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 50px;
+  max-width: 1280px;
+`;
+
+export const WriteButtonsArea = styled.div.attrs({
+  id: "writebuttonsarea",
 })`
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding-left: 10px;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 15px;
+`;
+export const WriteCancelButton = styled.div.attrs({
+  id: "writecancelbutton",
+})`
+  width: 60px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  font-size: 24px;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 14px;
   font-family: "bold", sans-serif;
-  color: black;
-  text-decoration: underline;
-  text-underline-offset: 10px;
-  text-decoration-thickness: 3px;
+  cursor: pointer;
+`;
+
+export const WriteSubmitButton = styled.div.attrs({
+  id: "writesutmitbutton",
+})`
+  width: 60px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #f1f1f1;
+  font-size: 14px;
+  font-family: "bold", sans-serif;
+  cursor: pointer;
 `;

@@ -21,9 +21,9 @@ import AccountManager_SNS from "./Components/AccountManager_SNS";
 import AccountManager_ProfileIMG from "./Components/AccountManager_ProfileIMG";
 import ScrollToTopButton from "../ScrollToTopButton";
 import { useEffect } from "react";
-import MyPage_M from "./MyPage_M";
+import MyPage_M from "./MyPage_Main_M";
 
-const MyPage = () => {
+const MyPage_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { mainContentRef } = useOutletContext();
@@ -88,4 +88,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default MyPage_Main;
