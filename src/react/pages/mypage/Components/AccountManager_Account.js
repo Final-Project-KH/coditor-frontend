@@ -48,14 +48,14 @@ const AccountManager_Account = () => {
             <InputLabel>이메일</InputLabel>
             <InputContainer>
               <EmailInput value={userEmail} autoComplete="off"></EmailInput>
-              <SubmitButton>이메일 변경</SubmitButton>
+              <SubmitButton>변경</SubmitButton>
             </InputContainer>
           </AccountEachContainer>
           <AccountEachContainer>
             <InputLabel>비밀번호</InputLabel>
             <InputContainer>
               <PasswordInput placeholder="현재 비밀번호 입력" type="password"></PasswordInput>
-              <SubmitButton>비밀번호 변경</SubmitButton>
+              <SubmitButton>변경</SubmitButton>
             </InputContainer>
           </AccountEachContainer>
         </CenterContentsContainer>

@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   MainPostContainer,
   MainPostTop,
@@ -37,18 +37,18 @@ import {
   MainPostPending,
 } from "../../../../styles/community/Post";
 import AxiosApi from "../../../../../api/AxiosApi";
-import {useLocation, useParams, useNavigate} from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import {
   LanguageDisplayNames,
   CourseDisplayNames,
   StudyDisplayNames,
   TeamDisplayNames,
 } from "../common/DisplayNames";
-import {useSelector} from "react-redux";
-import {languages} from "monaco-editor/esm/metadata";
+import { useSelector } from "react-redux";
+import { languages } from "monaco-editor/esm/metadata";
 
-const Post_MainContents = ({boardType}) => {
-  const {boardId} = useParams();
+const Post_MainContents = ({ boardType }) => {
+  const { boardId } = useParams();
   // const [boardType, setBoardType] = useState("CODING");
   const [posts, setPosts] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -249,7 +249,7 @@ const Post_MainContents = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, likeCnt: post.likeCnt + 1}
+              ? { ...post, likeCnt: post.likeCnt + 1 }
               : post
           )
         );
@@ -259,7 +259,7 @@ const Post_MainContents = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, likeCnt: post.likeCnt - 1}
+              ? { ...post, likeCnt: post.likeCnt - 1 }
               : post
           )
         );
@@ -305,7 +305,7 @@ const Post_MainContents = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, dislikeCnt: post.dislikeCnt + 1}
+              ? { ...post, dislikeCnt: post.dislikeCnt + 1 }
               : post
           )
         );
@@ -315,7 +315,7 @@ const Post_MainContents = ({boardType}) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? {...post, dislikeCnt: post.dislikeCnt - 1}
+              ? { ...post, dislikeCnt: post.dislikeCnt - 1 }
               : post
           )
         );
@@ -353,22 +353,76 @@ const Post_MainContents = ({boardType}) => {
               <MainPostPending>
                 {boardType === "coding" ? (
                   boardStatus === "INACTIVE" ? (
-                    <MainPostContentsSolved>해결됨</MainPostContentsSolved>
+                    <MainPostContentsSolved
+                      style={{
+                        display: "block",
+                        whiteSpace: "nowrap",
+                        overflow: "visible",
+                        textOverflow: "clip",
+                      }}
+                    >
+                      해결됨
+                    </MainPostContentsSolved>
                   ) : (
-                    <MainPostContentsPending>미해결</MainPostContentsPending>
+                    <MainPostContentsPending
+                      style={{
+                        display: "block",
+                        whiteSpace: "nowrap",
+                        overflow: "visible",
+                        textOverflow: "clip",
+                      }}
+                    >
+                      미해결
+                    </MainPostContentsPending>
                   )
                 ) : boardType === "study" ? (
                   boardStatus === "INACTIVE" ? (
-                    <MainPostContentsSolved>모집완료</MainPostContentsSolved>
+                    <MainPostContentsSolved
+                      style={{
+                        display: "block",
+                        whiteSpace: "nowrap",
+                        overflow: "visible",
+                        textOverflow: "clip",
+                      }}
+                    >
+                      모집완료
+                    </MainPostContentsSolved>
                   ) : (
-                    <MainPostContentsPending>모집중</MainPostContentsPending>
+                    <MainPostContentsPending
+                      style={{
+                        display: "block",
+                        whiteSpace: "nowrap",
+                        overflow: "visible",
+                        textOverflow: "clip",
+                      }}
+                    >
+                      모집중
+                    </MainPostContentsPending>
                   )
                 ) : (
                   boardType === "team" &&
                   (boardStatus === "INACTIVE" ? (
-                    <MainPostContentsSolved>모집완료</MainPostContentsSolved>
+                    <MainPostContentsSolved
+                      style={{
+                        display: "block",
+                        whiteSpace: "nowrap",
+                        overflow: "visible",
+                        textOverflow: "clip",
+                      }}
+                    >
+                      모집완료
+                    </MainPostContentsSolved>
                   ) : (
-                    <MainPostContentsPending>모집중</MainPostContentsPending>
+                    <MainPostContentsPending
+                      style={{
+                        display: "block",
+                        whiteSpace: "nowrap",
+                        overflow: "visible",
+                        textOverflow: "clip",
+                      }}
+                    >
+                      모집중
+                    </MainPostContentsPending>
                   ))
                 )}
               </MainPostPending>
@@ -537,7 +591,7 @@ const Post_MainContents = ({boardType}) => {
             <MainPostContentsBox>
               <MainPostContentsText
                 className="main-post-content"
-                dangerouslySetInnerHTML={{__html: post.content}}
+                dangerouslySetInnerHTML={{ __html: post.content }}
               />
               {(post.language || post.course || post.study || post.team) && (
                 <MainPostTagsBox>

@@ -139,6 +139,7 @@ export const ProfileImage = styled.div.attrs({
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  border: 1px solid #f1f1f1;
   ${(props) =>
     props.isProfile === null &&
     css`

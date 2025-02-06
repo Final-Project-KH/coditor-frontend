@@ -70,6 +70,8 @@ export const Container = styled.div.attrs({
 })`
   max-width: 1280px;
   width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
   display: flex;
   flex-direction: row;
   align-items: top;
