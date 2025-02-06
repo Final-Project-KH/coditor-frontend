@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import {
   ReplyContainer,
   ReplyTitle,
@@ -15,15 +15,15 @@ import {
   EditorBox,
 } from "../../../../styles/community/Post";
 import AxiosApi from "../../../../../api/AxiosApi";
-import { useNavigate, useParams } from "react-router-dom";
-import { Editor, EditorContent } from "@tiptap/react";
+import {useNavigate, useParams} from "react-router-dom";
+import {Editor, EditorContent} from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Post_Reply_WriteEditor from "./Post_ReplyEditor";
 import Board_Pagination from "./Board_Pagination";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
-const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
-  const { boardId } = useParams();
+const Post_ReplyArea = ({boardType, page, size, sortBy, order}) => {
+  const {boardId} = useParams();
   const [posts, setPosts] = useState([]);
   const [editorOpen, setEditorOpen] = useState(false);
   const [replies, setReplies] = useState([]);
@@ -98,11 +98,14 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
         <ReplyContainer key={index}>
           <ReplyTitle>답변 {post.commentCnt}</ReplyTitle>
           <SuggestBox
-  expanded={editorOpen}
-  onClick={nickname ? handleBoxClick : () => navigate("/login")}
->
-            <span style={{ marginLeft: "15px", cursor: "pointer" }}>
-            💡{nickname ? `${nickname}님, 답변을 작성해보세요.` : " 로그인하고 답변을 작성해보세요."}
+            expanded={editorOpen}
+            onClick={nickname ? handleBoxClick : () => navigate("/login")}
+          >
+            <span style={{marginLeft: "15px", cursor: "pointer"}}>
+              💡
+              {nickname
+                ? `${nickname}님, 답변을 작성해보세요.`
+                : " 로그인하고 답변을 작성해보세요."}
             </span>
             {editorOpen && (
               <EditorBox expanded={editorOpen}>
@@ -136,7 +139,7 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
                         작성
                       </ReplyUserDate>
                       <ReplyMiddleText
-                        dangerouslySetInnerHTML={{ __html: reply.content }}
+                        dangerouslySetInnerHTML={{__html: reply.content}}
                       />
                     </ReplyUserProfileTextBox>
                   </ReplyUserProfileBox>

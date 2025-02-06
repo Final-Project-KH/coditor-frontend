@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import {
   MainPostContainer,
   MainPostTop,
@@ -37,18 +37,18 @@ import {
   MainPostPending,
 } from "../../../../styles/community/Post";
 import AxiosApi from "../../../../../api/AxiosApi";
-import { useLocation, useParams, useNavigate } from "react-router-dom";
+import {useLocation, useParams, useNavigate} from "react-router-dom";
 import {
   LanguageDisplayNames,
   CourseDisplayNames,
   StudyDisplayNames,
   TeamDisplayNames,
 } from "../common/DisplayNames";
-import { useSelector } from "react-redux";
-import { languages } from "monaco-editor/esm/metadata";
+import {useSelector} from "react-redux";
+import {languages} from "monaco-editor/esm/metadata";
 
-const Post_MainContents = ({ boardType }) => {
-  const { boardId } = useParams();
+const Post_MainContents = ({boardType}) => {
+  const {boardId} = useParams();
   // const [boardType, setBoardType] = useState("CODING");
   const [posts, setPosts] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -62,6 +62,7 @@ const Post_MainContents = ({ boardType }) => {
 
   const userkeynumber = useSelector((state) => state.auth.keynumber);
   const accesstoken = useSelector((state) => state.auth.accesstoken);
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleDeleteNavigate = () => {
@@ -86,6 +87,17 @@ const Post_MainContents = ({ boardType }) => {
       },
     });
   };
+
+  const handleReportNavigate = () => {
+    navigate(`/cs/report/${boardId}`, {
+      state: {
+        boardId: boardId,
+        writerName: posts[0].name,
+        boardTitle: posts[0].title,
+        boardUrl: location.pathname,
+      },
+    });
+  }; // URL 나중에 풀 url로 수정 필요
 
   const handleExtra = () => {
     setIsExtra(!isExtra);
@@ -237,7 +249,7 @@ const Post_MainContents = ({ boardType }) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? { ...post, likeCnt: post.likeCnt + 1 }
+              ? {...post, likeCnt: post.likeCnt + 1}
               : post
           )
         );
@@ -247,7 +259,7 @@ const Post_MainContents = ({ boardType }) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? { ...post, likeCnt: post.likeCnt - 1 }
+              ? {...post, likeCnt: post.likeCnt - 1}
               : post
           )
         );
@@ -293,7 +305,7 @@ const Post_MainContents = ({ boardType }) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? { ...post, dislikeCnt: post.dislikeCnt + 1 }
+              ? {...post, dislikeCnt: post.dislikeCnt + 1}
               : post
           )
         );
@@ -303,7 +315,7 @@ const Post_MainContents = ({ boardType }) => {
         setPosts(
           posts.map((post) =>
             post.boardId == boardId
-              ? { ...post, dislikeCnt: post.dislikeCnt - 1 }
+              ? {...post, dislikeCnt: post.dislikeCnt - 1}
               : post
           )
         );
@@ -385,7 +397,7 @@ const Post_MainContents = ({ boardType }) => {
                 {post.updatedAt && (
                   <>
                     <MainPostEditedText>
-                      {new Date(post.updatedAt)
+                      {/* {new Date(post.updatedAt)
                         .toLocaleString("ko-KR", {
                           year: "numeric",
                           month: "2-digit",
@@ -395,7 +407,7 @@ const Post_MainContents = ({ boardType }) => {
                           hour12: false,
                         })
                         .replace(/\. /g, ".")}
-                      수정됨
+                      수정됨 */}
                     </MainPostEditedText>
                     <MiddleDot />
                   </>
@@ -495,7 +507,10 @@ const Post_MainContents = ({ boardType }) => {
                     ref={extraRef}
                     isOpenOther={isExtraOther}
                   >
-                    <MainPostExtraOtherItem isOpenOther={isExtraOther}>
+                    <MainPostExtraOtherItem
+                      onClick={() => handleReportNavigate()}
+                      isOpenOther={isExtraOther}
+                    >
                       게시글 신고
                     </MainPostExtraOtherItem>
                   </MainPostExtraItemOtherContainer>
@@ -522,7 +537,7 @@ const Post_MainContents = ({ boardType }) => {
             <MainPostContentsBox>
               <MainPostContentsText
                 className="main-post-content"
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                dangerouslySetInnerHTML={{__html: post.content}}
               />
               {(post.language || post.course || post.study || post.team) && (
                 <MainPostTagsBox>

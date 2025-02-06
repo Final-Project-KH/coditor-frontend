@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 
-import { EditorContent, useEditor } from "@tiptap/react";
+import {EditorContent, useEditor} from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
-import { TextStyle } from "@tiptap/extension-text-style";
-import { Color } from "@tiptap/extension-color";
+import {TextStyle} from "@tiptap/extension-text-style";
+import {Color} from "@tiptap/extension-color";
 import Underline from "@tiptap/extension-underline";
 import Code from "@tiptap/extension-code";
 import CodeBlock from "@tiptap/extension-code-block";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
-import { all, createLowlight } from "lowlight";
+import {all, createLowlight} from "lowlight";
 import ListItem from "@tiptap/extension-list-item";
-import { Image } from "@tiptap/extension-image";
+import {Image} from "@tiptap/extension-image";
 import "../../../styles/community/PostEditor.css";
 import {
   EditorArea,
@@ -21,8 +21,9 @@ import {
   WriteCancelButton,
   WriteSubmitButton,
 } from "../../../styles/cs/CS_M";
-import { useLocation, useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import AxiosApi from "../../../../api/AxiosApi";
+import {useSelector} from "react-redux";
 
 const lowlight = createLowlight(all);
 
@@ -30,16 +31,16 @@ CodeBlockLowlight.configure({
   lowlight,
 });
 
-const ToolBar = ({ editor }) => {
+const ToolBar = ({editor}) => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
   if (!editor) return null;
 
   const handleImageInsert = () => {
-    const url = window.prompt('이미지 URL을 입력하세요');
-  
+    const url = window.prompt("이미지 URL을 입력하세요");
+
     if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
+      editor.chain().focus().setImage({src: url}).run();
     }
   };
 
@@ -69,13 +70,14 @@ const ToolBar = ({ editor }) => {
   }
 
   return (
-    <div className="toolbar"
-    style={{
-      display: "flex",
-      overflowX: "auto",
-      overflowY: "hidden",
-      width: "100%",
-    }}
+    <div
+      className="toolbar"
+      style={{
+        display: "flex",
+        overflowX: "auto",
+        overflowY: "hidden",
+        width: "100%",
+      }}
     >
       <div
         className="button-group"
@@ -192,7 +194,7 @@ const ToolBar = ({ editor }) => {
         <input
           id="upload-image"
           accept="image/*"
-          style={{ display: "none" }}
+          style={{display: "none"}}
           onClick={handleImageInsert}
         />
         <div
@@ -207,34 +209,22 @@ const ToolBar = ({ editor }) => {
           style={{
             backgroundImage: "url(/images/tiptap/Editor_Toolbar_10_H1.svg)",
           }}
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 1 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 1 }) ? "is-active" : ""
-          }
+          onClick={() => editor.chain().focus().toggleHeading({level: 1}).run()}
+          className={editor.isActive("heading", {level: 1}) ? "is-active" : ""}
         />
         <button
           style={{
             backgroundImage: "url(/images/tiptap/Editor_Toolbar_11_H2.svg)",
           }}
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 2 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 2 }) ? "is-active" : ""
-          }
+          onClick={() => editor.chain().focus().toggleHeading({level: 2}).run()}
+          className={editor.isActive("heading", {level: 2}) ? "is-active" : ""}
         />
         <button
           style={{
             backgroundImage: "url(/images/tiptap/Editor_Toolbar_12_H3.svg)",
           }}
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 3 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 3 }) ? "is-active" : ""
-          }
+          onClick={() => editor.chain().focus().toggleHeading({level: 3}).run()}
+          className={editor.isActive("heading", {level: 3}) ? "is-active" : ""}
         />
         <button
           style={{
@@ -262,8 +252,8 @@ const ToolBar = ({ editor }) => {
 };
 
 const extensions = [
-  Color.configure({ types: [TextStyle.name, ListItem.name] }),
-  TextStyle.configure({ types: [ListItem.name] }),
+  Color.configure({types: [TextStyle.name, ListItem.name]}),
+  TextStyle.configure({types: [ListItem.name]}),
   StarterKit.configure({
     bulletList: {
       keepMarks: true,
@@ -279,25 +269,41 @@ const extensions = [
   Image,
 ];
 
-const CS_WriteEditor_Report = ({ title }) => {
+const CS_WriteEditor_Report = ({
+  boardId,
+  writerName,
+  boardTitle,
+  boardUrl,
+  title,
+}) => {
   const navigate = useNavigate();
-  const [editorContent, setEditorContent] = useState(`
-      <p><b>[악성 사용자 신고 예시]</b></p>
-      <ul>
-        <li>악성 사용자 ID : </li>
-        <li>악성 사용자 닉네임 : </li>
-        <li>악성 사용자 글 제목 : </li>
-        <li>악성 사용자 글 URL : </li>
-        <li>신고 내용 : </li>
-      </ul>
-      <p><span style="color: #868e96;"><sub>* 참고 사항 : </sub></span></p><br />
-    `);
+
+  const userAuth = useSelector((state) => state.auth.accesstoken);
+  const [editorContent, setEditorContent] = useState("");
+
+  useEffect(() => {
+    if (boardId && writerName && boardTitle && boardUrl) {
+      setEditorContent(`
+          <p><b>[악성 사용자 신고 예시]</b></p>
+          <ul>
+            <li>악성 게시글 ID : ${boardId}  </li>
+            <li>악성 게시글 작성자 닉네임 : ${writerName} </li>
+            <li>악성 게시글 제목 : ${boardTitle} </li>
+            <li>악성 게시글 URL : ${boardUrl} </li>
+            <li>신고 내용 : </li>
+          </ul>
+          <p><span style="color: #868e96;"><sub>* 참고 사항 : </sub></span></p><br />
+        `);
+    }
+  }, [boardId, writerName, boardTitle, boardUrl]);
+
+  console.log("check boardId :", boardId);
 
   const editor = useEditor({
     extensions: [
       StarterKit,
       TextStyle,
-      Color.configure({ types: [TextStyle.name] }), // TextStyle 확장과 연동
+      Color.configure({types: [TextStyle.name]}), // TextStyle 확장과 연동
       Underline,
       Code,
       CodeBlockLowlight.configure({
@@ -305,12 +311,20 @@ const CS_WriteEditor_Report = ({ title }) => {
       }),
       Image,
     ],
-    content: editorContent,
-    onUpdate: ({ editor }) => {
-      // 에디터 내용이 변경될 때마다 editorContent 상태 업데이트
-      setEditorContent(editor.getHTML());
+    content: "",
+    onUpdate: ({editor}) => {
+      const newContent = editor.getHTML();
+      if (newContent !== editorContent) {
+        setEditorContent(newContent);
+      }
     },
   });
+
+  useEffect(() => {
+    if (editor && editorContent) {
+      editor.commands.setContent(editorContent);
+    }
+  }, [editor, editorContent]);
 
   // submit button
   const handleSubmit = async () => {
@@ -319,12 +333,16 @@ const CS_WriteEditor_Report = ({ title }) => {
       return;
     }
     try {
-      // const response = await AxiosApi.써야함(title, editor.getHTML());
+      const response = await AxiosApi.newReportPost(
+        boardId,
+        title,
+        editor.getHTML()
+      );
       alert("내용이 성공적으로 제출되었습니다.");
       navigate(-1);
     } catch (error) {
       console.error("제출 실패:", error);
-      alert("제출에 실패했습니다. 다시 시도해주세요.");
+      alert("이미 신고한 게시글입니다.");
     }
   };
 

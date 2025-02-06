@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
-import { EditorContent, useEditor } from "@tiptap/react";
+import {EditorContent, useEditor} from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
-import { TextStyle } from "@tiptap/extension-text-style";
-import { Color } from "@tiptap/extension-color";
+import {TextStyle} from "@tiptap/extension-text-style";
+import {Color} from "@tiptap/extension-color";
 import Underline from "@tiptap/extension-underline";
 import Code from "@tiptap/extension-code";
 import CodeBlock from "@tiptap/extension-code-block";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
-import { all, createLowlight } from "lowlight";
+import {all, createLowlight} from "lowlight";
 import ListItem from "@tiptap/extension-list-item";
-import { Image } from "@tiptap/extension-image";
+import {Image} from "@tiptap/extension-image";
 import "../../../styles/community/PostEditor.css";
 import {
   EditorArea,
@@ -21,7 +21,7 @@ import {
   WriteCancelButton,
   WriteSubmitButton,
 } from "../../../styles/cs/CS_M";
-import { useLocation, useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import AxiosApi from "../../../../api/AxiosApi";
 
 const lowlight = createLowlight(all);
@@ -30,7 +30,7 @@ CodeBlockLowlight.configure({
   lowlight,
 });
 
-const ToolBar = ({ editor }) => {
+const ToolBar = ({editor}) => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
   if (!editor) return null;
@@ -39,7 +39,7 @@ const ToolBar = ({ editor }) => {
     const url = window.prompt("이미지 URL을 입력하세요");
 
     if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
+      editor.chain().focus().setImage({src: url}).run();
     }
   };
 
@@ -193,7 +193,7 @@ const ToolBar = ({ editor }) => {
         <input
           id="upload-image"
           accept="image/*"
-          style={{ display: "none" }}
+          style={{display: "none"}}
           onClick={handleImageInsert}
         />
         <div
@@ -208,34 +208,22 @@ const ToolBar = ({ editor }) => {
           style={{
             backgroundImage: "url(/images/tiptap/Editor_Toolbar_10_H1.svg)",
           }}
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 1 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 1 }) ? "is-active" : ""
-          }
+          onClick={() => editor.chain().focus().toggleHeading({level: 1}).run()}
+          className={editor.isActive("heading", {level: 1}) ? "is-active" : ""}
         />
         <button
           style={{
             backgroundImage: "url(/images/tiptap/Editor_Toolbar_11_H2.svg)",
           }}
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 2 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 2 }) ? "is-active" : ""
-          }
+          onClick={() => editor.chain().focus().toggleHeading({level: 2}).run()}
+          className={editor.isActive("heading", {level: 2}) ? "is-active" : ""}
         />
         <button
           style={{
             backgroundImage: "url(/images/tiptap/Editor_Toolbar_12_H3.svg)",
           }}
-          onClick={() =>
-            editor.chain().focus().toggleHeading({ level: 3 }).run()
-          }
-          className={
-            editor.isActive("heading", { level: 3 }) ? "is-active" : ""
-          }
+          onClick={() => editor.chain().focus().toggleHeading({level: 3}).run()}
+          className={editor.isActive("heading", {level: 3}) ? "is-active" : ""}
         />
         <button
           style={{
@@ -263,8 +251,8 @@ const ToolBar = ({ editor }) => {
 };
 
 const extensions = [
-  Color.configure({ types: [TextStyle.name, ListItem.name] }),
-  TextStyle.configure({ types: [ListItem.name] }),
+  Color.configure({types: [TextStyle.name, ListItem.name]}),
+  TextStyle.configure({types: [ListItem.name]}),
   StarterKit.configure({
     bulletList: {
       keepMarks: true,
@@ -280,14 +268,14 @@ const extensions = [
   Image,
 ];
 
-const CS_WriteEditor_Suggestion_M = ({ title }) => {
+const CS_WriteEditor_Suggestion_M = ({title}) => {
   const navigate = useNavigate();
 
   const editor = useEditor({
     extensions: [
       StarterKit,
       TextStyle,
-      Color.configure({ types: [TextStyle.name] }), // TextStyle 확장과 연동
+      Color.configure({types: [TextStyle.name]}), // TextStyle 확장과 연동
       Underline,
       Code,
       CodeBlockLowlight.configure({
