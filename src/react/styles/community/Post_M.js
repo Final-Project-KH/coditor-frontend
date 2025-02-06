@@ -403,10 +403,11 @@ export const MainPostExtraItemContainer = styled.div.attrs({
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 80px;
+  right: 0px;
   border-radius: 10px;
   border: 1px solid #dadcdf;
+  background-color: white;
   ${(props) =>
     props.isOpen
       ? css`
@@ -432,10 +433,11 @@ export const MainPostExtraItemOtherContainer = styled.div.attrs({
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 80px;
+  right: 0px;
   border-radius: 10px;
   border: 1px solid #dadcdf;
+  background-color: white;
   ${(props) =>
     props.isOpenOther
       ? css`

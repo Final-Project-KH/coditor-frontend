@@ -70,6 +70,8 @@ export const Container = styled.div.attrs({
 })`
   max-width: 1280px;
   width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
   display: flex;
   flex-direction: row;
   align-items: top;
@@ -123,8 +125,6 @@ export const MainPostTitleArea = styled.div.attrs({
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
   gap: 10px;
 `;
 export const MainPostPending = styled.div.attrs({
@@ -132,7 +132,7 @@ export const MainPostPending = styled.div.attrs({
 })`
   height: 30px;
   display: flex;
-  margin-top: 5px;
+  margin-top: 8px;
 `;
 export const MainPostTitle = styled.div.attrs({
   id: "mainposttitle",
@@ -336,8 +336,8 @@ export const MainPostExtraItemContainer = styled.div.attrs({
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 30px;
+  right: 0;
   border-radius: 10px;
   background-color: white;
   border: 1px solid #dadcdf;
@@ -376,8 +376,8 @@ export const MainPostExtraItemOtherContainer = styled.div.attrs({
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 30px;
+  right: 0;
   border-radius: 10px;
   background-color: white;
   border: 1px solid #dadcdf;

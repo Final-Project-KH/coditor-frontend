@@ -365,7 +365,8 @@ export const MyPageProfileImg = styled.div.attrs({
 })`
   width: 60px;
   height: 60px;
-  border-radius: 50px;
+  border-radius: 50%;
+  border: 1px solid #f1f1f1;
   ${(props) =>
     props.isProfile === null &&
     css`
