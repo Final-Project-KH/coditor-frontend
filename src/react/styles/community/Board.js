@@ -398,7 +398,9 @@ export const PostTopUserImg = styled.div.attrs({
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  border: 1px solid #f1f1f1;
 `;
+
 export const PostTopUserId = styled.div.attrs({
   id: "posttopuserid",
 })`

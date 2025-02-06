@@ -106,7 +106,7 @@ export const Container = styled.div.attrs({
 export const LeftContainer = styled.div.attrs({
   id: "leftcontainer",
 })`
-  width: 20%;
+  width: 200px;
   min-width: 175px;
   display: flex;
   flex-direction: column;
@@ -118,7 +118,7 @@ export const LeftContainer = styled.div.attrs({
 export const CenterContainer = styled.div.attrs({
   id: "centercontainer",
 })`
-  width: 80%;
+  width: calc(100% - 225px);
   display: flex;
   flex-direction: column;
   align-items: center;

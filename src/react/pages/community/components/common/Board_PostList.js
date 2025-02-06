@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import {
   PostBottom,
   PostBottomDataBox,
@@ -26,7 +26,7 @@ import {
   PostTopUserImg,
 } from "../../../../styles/community/Board";
 import AxiosApi from "../../../../../api/AxiosApi";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Board_Pagination from "./Board_Pagination";
 import {
   LanguageDisplayNames,
@@ -129,133 +129,148 @@ const Board_PostList = ({
   return (
     <>
       <PostListContainer>
-        {boards.map((board) => (
-          <PostEach
-            key={board.boardId}
-            style={{cursor: "pointer"}}
-            onClick={() => handleMove(boardType, board)}
-          >
-            <PostTop>
-              <PostTopUser>
-                <PostTopUserImg
-                  style={{
-                    backgroundImage: `url(${
-                      board.profileUrl
-                        ? board.profileUrl
-                        : "/images/general/default_profile.png"
-                    })`,
-                  }}
-                />
-                <PostTopUserId>By: {board.name}</PostTopUserId>
-              </PostTopUser>
-              <PostTopDays>
-                {new Date(board.createdAt)
-                  .toISOString()
-                  .slice(0, 10)
-                  .replace(/-/g, ".")}
-                {". "}
-                작성
-              </PostTopDays>
-            </PostTop>
-            <PostMiddle>
-              <PostMiddleContentsUpper>
-                {boardType === "coding" ? (
-                  board.status === "INACTIVE" ? (
-                    <PostMiddleContentsSolved>해결됨</PostMiddleContentsSolved>
-                  ) : (
-                    <PostMiddleContentsPending>
-                      미해결
-                    </PostMiddleContentsPending>
-                  )
-                ) : boardType === "study" ? (
-                  board.status === "INACTIVE" ? (
-                    <PostMiddleContentsSolved>
-                      모집완료
-                    </PostMiddleContentsSolved>
-                  ) : (
-                    <PostMiddleContentsPending>
-                      모집중
-                    </PostMiddleContentsPending>
-                  )
-                ) : (
-                  boardType === "team" &&
-                  (board.status === "INACTIVE" ? (
-                    <PostMiddleContentsSolved>
-                      모집완료
-                    </PostMiddleContentsSolved>
-                  ) : (
-                    <PostMiddleContentsPending>
-                      모집중
-                    </PostMiddleContentsPending>
-                  ))
-                )}
-                {/* {board.status === "INACTIVE" ? (
+        {boards.length > 0 ? (
+          <>
+            {boards.map((board) => (
+              <PostEach
+                key={board.boardId}
+                style={{ cursor: "pointer" }}
+                onClick={() => handleMove(boardType, board)}
+              >
+                <PostTop>
+                  <PostTopUser>
+                    <PostTopUserImg
+                      style={{
+                        backgroundImage: `url(${
+                          board.profileUrl
+                            ? board.profileUrl
+                            : "/images/general/default_profile.png"
+                        })`,
+                      }}
+                    />
+                    <PostTopUserId>By: {board.name}</PostTopUserId>
+                  </PostTopUser>
+                  <PostTopDays>
+                    {new Date(board.createdAt)
+                      .toISOString()
+                      .slice(0, 10)
+                      .replace(/-/g, ".")}
+                    {". "}
+                    작성
+                  </PostTopDays>
+                </PostTop>
+                <PostMiddle>
+                  <PostMiddleContentsUpper>
+                    {boardType === "coding" ? (
+                      board.status === "INACTIVE" ? (
+                        <PostMiddleContentsSolved>
+                          해결됨
+                        </PostMiddleContentsSolved>
+                      ) : (
+                        <PostMiddleContentsPending>
+                          미해결
+                        </PostMiddleContentsPending>
+                      )
+                    ) : boardType === "study" ? (
+                      board.status === "INACTIVE" ? (
+                        <PostMiddleContentsSolved>
+                          모집완료
+                        </PostMiddleContentsSolved>
+                      ) : (
+                        <PostMiddleContentsPending>
+                          모집중
+                        </PostMiddleContentsPending>
+                      )
+                    ) : (
+                      boardType === "team" &&
+                      (board.status === "INACTIVE" ? (
+                        <PostMiddleContentsSolved>
+                          모집완료
+                        </PostMiddleContentsSolved>
+                      ) : (
+                        <PostMiddleContentsPending>
+                          모집중
+                        </PostMiddleContentsPending>
+                      ))
+                    )}
+                    {/* {board.status === "INACTIVE" ? (
                   <PostMiddleContentsSolved>해결됨</PostMiddleContentsSolved>
                 ) : (
                   <PostMiddleContentsPending>미해결</PostMiddleContentsPending>
                 )} */}
-                <PostMiddleContentsTitle>{board.title}</PostMiddleContentsTitle>
-              </PostMiddleContentsUpper>
-              <PostMiddleContentsText>
-                {getTextFromHTML(board.content)}
-              </PostMiddleContentsText>
-            </PostMiddle>
-            <PostBottom>
-              {((Array.isArray(board.language) &&
-                board.language.some((item) => item.trim() !== "")) ||
-                (Array.isArray(board.course) &&
-                  board.course.some((item) => item.trim() !== "")) ||
-                (Array.isArray(board.study) &&
-                  board.study.some((item) => item.trim() !== "")) ||
-                (Array.isArray(board.team) &&
-                  board.team.some((item) => item.trim() !== ""))) && (
-                <PostBottomTagsBox>
-                  {/* <PostBottomTag>
+                    <PostMiddleContentsTitle>
+                      {board.title}
+                    </PostMiddleContentsTitle>
+                  </PostMiddleContentsUpper>
+                  <PostMiddleContentsText>
+                    {getTextFromHTML(board.content)}
+                  </PostMiddleContentsText>
+                </PostMiddle>
+                <PostBottom>
+                  {((Array.isArray(board.language) &&
+                    board.language.some((item) => item.trim() !== "")) ||
+                    (Array.isArray(board.course) &&
+                      board.course.some((item) => item.trim() !== "")) ||
+                    (Array.isArray(board.study) &&
+                      board.study.some((item) => item.trim() !== "")) ||
+                    (Array.isArray(board.team) &&
+                      board.team.some((item) => item.trim() !== ""))) && (
+                    <PostBottomTagsBox>
+                      {/* <PostBottomTag>
                     {LanguageDisplayNames[board.language] ||
                       CourseDisplayNames[board.course] ||
                       StudyDisplayNames[board.study] ||
                       TeamDisplayNames[board.team]}
                   </PostBottomTag> */}
-                  {board.language && board.language.length > 0
-                    ? board.language.map((lang, index) => (
-                        <PostBottomTag>
-                          {LanguageDisplayNames[lang]}
-                        </PostBottomTag>
-                      ))
-                    : board.course && board.course.length > 0
-                    ? board.course.map((lang, index) => (
-                        <PostBottomTag>
-                          {CourseDisplayNames[lang]}
-                        </PostBottomTag>
-                      ))
-                    : board.study && board.study.length > 0
-                    ? board.study.map((lang, index) => (
-                        <PostBottomTag>{StudyDisplayNames[lang]}</PostBottomTag>
-                      ))
-                    : board.team &&
-                      board.team.length > 0 &&
-                      board.team.map((lang, index) => (
-                        <PostBottomTag>{TeamDisplayNames[lang]}</PostBottomTag>
-                      ))}
-                </PostBottomTagsBox>
-              )}
-              <PostBottomDataBox>
-                <PostBottomRepliesBox>
-                  <PostBottomRepliesImg />
-                  <PostBottomRepliesText>
-                    {board.commentCnt}
-                  </PostBottomRepliesText>
-                </PostBottomRepliesBox>
-                <PostBottomDot />
-                <PostBottomViewsBox>
-                  <PostBottomViewsImg />
-                  <PostBottomViewsText>{board.viewCnt}</PostBottomViewsText>
-                </PostBottomViewsBox>
-              </PostBottomDataBox>
-            </PostBottom>
-          </PostEach>
-        ))}
+                      {board.language && board.language.length > 0
+                        ? board.language.map((lang, index) => (
+                            <PostBottomTag>
+                              {LanguageDisplayNames[lang]}
+                            </PostBottomTag>
+                          ))
+                        : board.course && board.course.length > 0
+                        ? board.course.map((lang, index) => (
+                            <PostBottomTag>
+                              {CourseDisplayNames[lang]}
+                            </PostBottomTag>
+                          ))
+                        : board.study && board.study.length > 0
+                        ? board.study.map((lang, index) => (
+                            <PostBottomTag>
+                              {StudyDisplayNames[lang]}
+                            </PostBottomTag>
+                          ))
+                        : board.team &&
+                          board.team.length > 0 &&
+                          board.team.map((lang, index) => (
+                            <PostBottomTag>
+                              {TeamDisplayNames[lang]}
+                            </PostBottomTag>
+                          ))}
+                    </PostBottomTagsBox>
+                  )}
+                  <PostBottomDataBox>
+                    <PostBottomRepliesBox>
+                      <PostBottomRepliesImg />
+                      <PostBottomRepliesText>
+                        {board.commentCnt}
+                      </PostBottomRepliesText>
+                    </PostBottomRepliesBox>
+                    <PostBottomDot />
+                    <PostBottomViewsBox>
+                      <PostBottomViewsImg />
+                      <PostBottomViewsText>{board.viewCnt}</PostBottomViewsText>
+                    </PostBottomViewsBox>
+                  </PostBottomDataBox>
+                </PostBottom>
+              </PostEach>
+            ))}
+          </>
+        ) : (
+          <p>작성된 게시글이 없습니다.</p>
+        )}
       </PostListContainer>
+
       <Board_Pagination
         currentPage={currentPage}
         totalPages={totalPages}

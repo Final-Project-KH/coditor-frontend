@@ -10,6 +10,7 @@ import {
   Container,
   LeftContainer,
   CenterContainer,
+  CenterContainerTitle,
 } from "../../styles/mypage/MyPage";
 import LeftTopProfile from "./Components/LeftTopProfile";
 import LeftMenus from "./Components/LeftMenus";
@@ -59,6 +60,7 @@ const MyPage_Community = () => {
               <LeftMenus />
             </LeftContainer>
             <CenterContainer>
+              <CenterContainerTitle>community</CenterContainerTitle>
               <Board_PostList_MyPage
                 page={page}
                 size={size}

@@ -10,7 +10,17 @@ import {
   Container,
   LeftContainer,
   CenterContainer,
+  SubjectContainer,
+  CenterContainerTitle,
 } from "../../styles/mypage/MyPage";
+import {
+  SubjectLink,
+  LevelContainer,
+  LevelImgPractice,
+  LevelImgBasic,
+  LevelImgIntermediate,
+  LevelImgExpert,
+} from "../../styles/codingtest/CodingTest_Main";
 
 import LeftTopProfile from "./Components/LeftTopProfile";
 import LeftMenus from "./Components/LeftMenus";
@@ -39,6 +49,26 @@ const MyPage_CodingTest = () => {
     navigate("/mypage/codingtest");
   };
 
+  // Practice onClick
+  const handlePractice = () => {
+    navigate("/codingtest/practice");
+  };
+
+  // Basic onClick
+  const handleBasic = () => {
+    navigate("/codingtest/basic");
+  };
+
+  // Practice onClick
+  const handleIntermediate = () => {
+    navigate("/codingtest/intermediate");
+  };
+
+  // Practice onClick
+  const handleExpert = () => {
+    navigate("/codingtest/expert");
+  };
+
   return (
     <>
       {isMobile ? (
@@ -61,7 +91,31 @@ const MyPage_CodingTest = () => {
               <LeftTopProfile />
               <LeftMenus />
             </LeftContainer>
-            <CenterContainer></CenterContainer>
+            <CenterContainer>
+              <CenterContainerTitle>coding test</CenterContainerTitle>
+              <SubjectContainer>
+                <SubjectLink onClick={() => handlePractice()}>
+                  <LevelContainer>
+                    <LevelImgPractice>Practice</LevelImgPractice>
+                  </LevelContainer>
+                </SubjectLink>
+                <SubjectLink onClick={() => handleBasic()}>
+                  <LevelContainer>
+                    <LevelImgBasic>Basic</LevelImgBasic>
+                  </LevelContainer>
+                </SubjectLink>
+                <SubjectLink onClick={() => handleIntermediate()}>
+                  <LevelContainer>
+                    <LevelImgIntermediate>Intermediate</LevelImgIntermediate>
+                  </LevelContainer>
+                </SubjectLink>
+                <SubjectLink onClick={() => handleExpert()}>
+                  <LevelContainer>
+                    <LevelImgExpert>Expert</LevelImgExpert>
+                  </LevelContainer>
+                </SubjectLink>
+              </SubjectContainer>
+            </CenterContainer>
           </Container>
           <ScrollToTopButton />
         </Wrap>

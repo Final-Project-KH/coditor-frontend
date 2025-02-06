@@ -1,36 +1,26 @@
-import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
-
+import { useEffect } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import {
   Wrap,
   TopBoxWide,
   TopBox,
   TopBoxText,
-  TopBoxArrow,
-  TopBoxLink,
   Container,
-  LeftContainer,
-  CenterContainer,
-  SubjectContainer,
-  MobileEachTitle,
-} from "../../styles/mypage/MyPage_M";
-
-import LeftTopProfile from "./Components/LeftTopProfile";
-import LeftMenus from "./Components/LeftMenus";
-import ScrollToTopButton from "../ScrollToTopButton";
-import { useEffect } from "react";
-import { SubjectLink } from "../../styles/study/Study_Main";
-import {
+  SubjectLink,
+  PathLink,
   LevelContainer,
-  LevelImgBasic,
-  LevelImgExpert,
-  LevelImgIntermediate,
   LevelImgPractice,
-} from "../../styles/codingtest/CodingTest_Main";
+  LevelImgBasic,
+  LevelImgIntermediate,
+  LevelImgExpert,
+} from "../../../styles/codingtest/CodingTest_Main";
+import ScrollToTopButton from "../../ScrollToTopButton";
+import CodingTest_Main_M from "./CodingTest_Main_M";
 
-const MyPage_CodingTest_M = () => {
+const CodingTest_Main = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { mainContentRef } = useOutletContext();
+  const { isMobile } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
@@ -39,12 +29,9 @@ const MyPage_CodingTest_M = () => {
     }
   }, [mainContentRef]);
 
-  const handleMyPage = () => {
-    navigate("/mypage");
-  };
-
+  // TopBox firstpath
   const handleRefresh = () => {
-    navigate("/mypage/codingtest");
+    navigate("/codingtest");
   };
 
   // Practice onClick
@@ -69,21 +56,18 @@ const MyPage_CodingTest_M = () => {
 
   return (
     <>
-      <Wrap>
-        <TopBoxWide>
-          <TopBox>
-            <TopBoxLink onClick={() => handleMyPage()}>
-              <TopBoxText>my page</TopBoxText>
-            </TopBoxLink>
-            <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>coding test</TopBoxText>
-            </TopBoxLink>
-          </TopBox>
-        </TopBoxWide>
-        <Container>
-          <MobileEachTitle>coding test</MobileEachTitle>
-          <SubjectContainer>
+      {isMobile ? (
+        <CodingTest_Main_M />
+      ) : (
+        <Wrap>
+          <TopBoxWide>
+            <TopBox>
+              <PathLink onClick={() => handleRefresh()}>
+                <TopBoxText>coding test</TopBoxText>
+              </PathLink>
+            </TopBox>
+          </TopBoxWide>
+          <Container>
             <SubjectLink onClick={() => handlePractice()}>
               <LevelContainer>
                 <LevelImgPractice>Practice</LevelImgPractice>
@@ -104,12 +88,12 @@ const MyPage_CodingTest_M = () => {
                 <LevelImgExpert>Expert</LevelImgExpert>
               </LevelContainer>
             </SubjectLink>
-          </SubjectContainer>
-        </Container>
-        <ScrollToTopButton />
-      </Wrap>
+          </Container>
+          <ScrollToTopButton />
+        </Wrap>
+      )}
     </>
   );
 };
 
-export default MyPage_CodingTest_M;
+export default CodingTest_Main;

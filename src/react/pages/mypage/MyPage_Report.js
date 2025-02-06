@@ -10,6 +10,7 @@ import {
   Container,
   LeftContainer,
   CenterContainer,
+  CenterContainerTitle,
 } from "../../styles/mypage/MyPage";
 import LeftTopProfile from "./Components/LeftTopProfile";
 import LeftMenus from "./Components/LeftMenus";
@@ -59,6 +60,7 @@ const MyPage_Report = () => {
               <LeftMenus />
             </LeftContainer>
             <CenterContainer>
+              <CenterContainerTitle>악성 사용자 신고</CenterContainerTitle>
               <Board_PostList_MyPage_Report
                 page={page}
                 size={size}

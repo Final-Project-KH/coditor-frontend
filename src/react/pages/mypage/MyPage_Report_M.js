@@ -10,6 +10,7 @@ import {
   Container,
   LeftContainer,
   CenterContainer,
+  MobileEachTitle,
 } from "../../styles/mypage/MyPage_M";
 import LeftTopProfile from "./Components/LeftTopProfile";
 import LeftMenus from "./Components/LeftMenus";
@@ -40,6 +41,9 @@ const MyPage_Report_M = () => {
         </TopBox>
       </TopBoxWide>
       <Container>
+        <MobileEachTitle style={{ marginBottom: "10px" }}>
+          악성 사용자 신고
+        </MobileEachTitle>
         <Board_PostList_MyPage_Report
           page={page}
           size={size}

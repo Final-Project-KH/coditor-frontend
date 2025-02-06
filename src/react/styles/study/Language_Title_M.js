@@ -20,7 +20,7 @@ export const SubjectImgContainerJava = styled.div.attrs({
   id: "subjectimgcontainerjava",
 })`
   width: 20%;
-  height: 100px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +36,7 @@ export const SubjectImgContainerPython = styled.div.attrs({
   id: "subjectimgcontainerpython",
 })`
   width: 20%;
-  height: 100px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +52,7 @@ export const SubjectImgContainerC = styled.div.attrs({
   id: "subjectimgcontainerc",
 })`
   width: 20%;
-  height: 100px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,7 +68,7 @@ export const SubjectImgContainerCPlus = styled.div.attrs({
   id: "subjectimgcontainercplus",
 })`
   width: 20%;
-  height: 100px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,7 +84,7 @@ export const SubjectImgContainerJavaScript = styled.div.attrs({
   id: "subjectimgcontainerjavascript",
 })`
   width: 20%;
-  height: 100px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;

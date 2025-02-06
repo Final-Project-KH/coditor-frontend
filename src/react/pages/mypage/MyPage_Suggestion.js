@@ -10,6 +10,7 @@ import {
   Container,
   LeftContainer,
   CenterContainer,
+  CenterContainerTitle,
 } from "../../styles/mypage/MyPage";
 
 import LeftTopProfile from "./Components/LeftTopProfile";
@@ -61,7 +62,9 @@ const MyPage_Suggestion = () => {
               <LeftTopProfile />
               <LeftMenus />
             </LeftContainer>
-            <CenterContainer></CenterContainer>
+            <CenterContainer>
+              <CenterContainerTitle>건의사항</CenterContainerTitle>
+            </CenterContainer>
           </Container>
           <ScrollToTopButton />
         </Wrap>

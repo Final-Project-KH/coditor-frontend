@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
-  width: 100%;
-  height: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  background-color: white;
   justify-content: flex-start;
   align-items: center;
 `;
@@ -87,7 +85,7 @@ export const Container = styled.div.attrs({
 })`
   max-width: 1280px;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding-left: 10px;
   padding-right: 10px;
   display: flex;
@@ -95,11 +93,25 @@ export const Container = styled.div.attrs({
   align-items: center;
   margin-top: 75px;
   margin-bottom: 0;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-size: 500px 500px;
   background-position: bottom right;
-  background-image: url("/images/general/aboutimg_50.png");
+  background-image: url("/images/general/aboutimg_50.png"); */
   box-sizing: border-box;
+`;
+export const ImageContainer = styled.div.attrs({
+  id: "imagecontainer",
+})`
+  width: 500px;
+  height: 500px;
+  position: fixed;
+  top: 45vh;
+  left: 25vw;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: 10% 100%;
+  background-image: url("/images/general/aboutimg_50.png");
+  z-index: -1;
 `;
 export const AboutTitle = styled.div.attrs({
   id: "abouttitle",
@@ -109,11 +121,32 @@ export const AboutTitle = styled.div.attrs({
   font-family: "bold", sans-serif;
   font-size: 30px;
 `;
+export const AboutSubTitle = styled.div.attrs({
+  id: "aboutsubtitle",
+})`
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: "bold", sans-serif;
+  font-size: 24px;
+`;
+
+export const AboutListTitle = styled.div.attrs({
+  id: "aboutlisttitle",
+})`
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  padding-right: 20px;
+  font-family: "bold", sans-serif;
+  font-size: 20px;
+`;
+
 export const AboutContents = styled.div.attrs({
   id: "aboutcontents",
 })`
   width: 100%;
   font-family: "regular", sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 30px;
 `;

@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 export const RightContainerEach = styled.div.attrs({
   id: "rightcontainereach",
@@ -46,7 +46,7 @@ export const RightProfileImage = styled.div.attrs({
   background-repeat: no-repeat;
   background-size: 103%;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f1f1;
   ${(props) =>
     props.isProfile === null &&
     props.isPreview === null &&
@@ -190,7 +190,7 @@ export const ProfileModalImage = styled.div.attrs({
   height: 250px;
   display: flex;
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f1f1;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 102%;
@@ -262,7 +262,7 @@ export const ProfileUploadModalContainer = styled.div.attrs({
   border: 1px solid white;
   padding-top: 10px;
   padding-bottom: 10px;
-  ${({isDragging}) =>
+  ${({ isDragging }) =>
     isDragging && "background-color: #f1f1f1; border: 1px dashed black;"}
   // 드래그 중일 때 컨테이너를 덮는 오버레이
   .drag-overlay {
@@ -278,7 +278,7 @@ export const ProfileUploadModalContainer = styled.div.attrs({
     color: white;
     font-size: 20px;
     font-family: "bold", sans-serif;
-    opacity: ${({isDragging}) => (isDragging ? "1" : "0")};
+    opacity: ${({ isDragging }) => (isDragging ? "1" : "0")};
     transition: opacity 0.3s ease;
   }
 `;
@@ -289,6 +289,7 @@ export const ProfileUploadModalImage = styled.div.attrs({
   height: 200px;
   display: flex;
   border-radius: 50%;
+  border: 1px solid #f1f1f1;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -437,7 +438,7 @@ export const RightNicknameBox = styled.div.attrs({
   width: 80%;
   height: 50px;
   border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f1f1;
   display: flex;
   gap: 5px;
   justify-content: center;
