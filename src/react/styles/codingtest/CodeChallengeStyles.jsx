@@ -92,6 +92,7 @@ export const CodeChallengeStyles = styled.div`
       justify-content: space-between;
 
       width: calc(100% - 480px);
+      min-width: 440px;
 
       & > div:first-child {
         flex: 1;
@@ -115,5 +116,15 @@ export const CodeChallengeStyles = styled.div`
 
   footer {
     height: 20px;
+  }
+
+  @media (max-width: 767px) {
+    main {
+      flex-direction: column-reverse;
+
+      & > div {
+        width: 100% !important;
+      }
+    }
   }
 `;

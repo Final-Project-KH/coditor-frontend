@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import { Base64 } from "js-base64";
 
 import CodeEditor from "../components/CodeEditor";
@@ -18,9 +18,15 @@ const EDITOR_DEFAULT_VALUE = {
 const CodeChallenge = () => {
   const navigate = useNavigate();
 
+  const [headerTitle, setHeaderTitle] = useState("Loading...");
+
+  // 에디터 인풋 value
   const [codeEditorValue, setCodeEditorValue] = useState(
     EDITOR_DEFAULT_VALUE["java"]
   );
+
+  // 문제 번호
+  const { questionId } = useParams();
 
   // 코드 실행 작업의 고유 식별자
   const jobIdRef = useRef(null);
@@ -105,7 +111,7 @@ const CodeChallenge = () => {
     const submitResponseData = await AxiosApi.submitCode({
       codeLanguage: "JAVA",
       code: Base64.encode(codeEditorValue),
-      questionId: 2,
+      questionId: questionId,
     });
 
     // 토큰 재발급 과정임
@@ -156,7 +162,7 @@ const CodeChallenge = () => {
           <div className="menu-tree-indicator">
             <span>coding test</span>
             <span>practice</span>
-            <span>두 정수의 덧셈</span>
+            <span>{headerTitle}</span>
           </div>
         </div>
 
@@ -164,7 +170,7 @@ const CodeChallenge = () => {
           <button
             className="leave-page-btn"
             onClick={() => {
-              navigate("/codingtest/practice");
+              navigate(-1);
             }}
           >
             나가기
@@ -185,7 +191,10 @@ const CodeChallenge = () => {
           <ExecutionResults results={results} />
         </div>
         <div>
-          <CodeChallengeInfo />
+          <CodeChallengeInfo
+            setHeaderTitle={setHeaderTitle}
+            setCodeEditorValue={setCodeEditorValue}
+          />
         </div>
       </main>
       <footer></footer>

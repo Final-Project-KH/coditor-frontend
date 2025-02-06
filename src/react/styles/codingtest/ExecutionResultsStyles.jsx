@@ -63,4 +63,24 @@ export const ExecutionResultsStyles = styled.div`
       margin-bottom: 2em;
     }
   }
+
+  ::-webkit-scrollbar {
+    width: 14px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent; /* 배경을 투명으로 설정 */
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none; /* 화살표 제거 */
+  }
 `;

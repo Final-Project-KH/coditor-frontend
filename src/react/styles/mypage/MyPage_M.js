@@ -3,14 +3,14 @@ import styled, { css } from "styled-components";
 export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
-  width: 100%;
+  width: 100vw;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: white;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `;
-
 export const TopBoxWide = styled.div.attrs({
   id: "topboxwide",
 })`
@@ -23,39 +23,85 @@ export const TopBoxWide = styled.div.attrs({
   align-items: center;
   background-color: #313131;
   position: fixed;
-  left: 0;
-  top: 100px;
+  top: 65px;
   z-index: 5;
+`;
+
+export const TopBoxWide2 = styled.div.attrs({
+  id: "topboxwide2",
+})`
+  width: 100%;
+  height: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1;
+  position: fixed;
+  top: 115px;
+  z-index: 5;
+  border-bottom: 1px solid #313131;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  white-space: nowrap; /* 줄바꿈 방지 */
 `;
 
 export const TopBox = styled.div.attrs({
   id: "topbox",
 })`
-  max-width: 1280px;
   width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 5;
+`;
+
+export const TopBox2 = styled.div.attrs({
+  id: "topbox2",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 5;
 `;
 
 export const TopBoxText = styled.div.attrs({
   id: "topboxtext",
 })`
   display: inline-block;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 30px;
-  border: 1px solid #313131;
   font-family: "bold", sans-serif;
   font-size: 18px;
+  text-align: left;
   align-items: center;
-  padding-bottom: 3px;
   cursor: pointer;
   color: white;
-  background-color: #313131;
   &:hover {
-    color: #313131;
-    background-color: white;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+`;
+
+export const TopBoxText2 = styled.div.attrs({
+  id: "topboxtext2",
+})`
+  display: inline-block;
+  font-family: "semibold", sans-serif;
+  font-size: 16px;
+  text-align: left;
+  align-items: center;
+  cursor: pointer;
+  color: #313131;
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 5px;
   }
 `;
 
@@ -64,12 +110,21 @@ export const TopBoxArrow = styled.div.attrs({
 })`
   color: white;
   font-size: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  font-family: "light", sans-serif;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-family: "medium", sans-serif;
   padding-bottom: 3px;
 `;
 
+export const TopBoxArrow2 = styled.div.attrs({
+  id: "topboxarrow2",
+})`
+  color: #313131;
+  font-size: 18px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-family: "bold", sans-serif;
+`;
 export const TopBoxLink = styled.button.attrs({
   id: "topboxlink",
 })`
@@ -89,33 +144,21 @@ export const TopBoxLink = styled.button.attrs({
 export const Container = styled.div.attrs({
   id: "container",
 })`
-  max-width: 1280px;
-  margin-top: 75px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: top;
   justify-content: center;
-  margin-bottom: 0;
-  gap: 25px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 50px;
+  gap: 20px;
+  padding-bottom: 25px;
+  margin-top: 70px;
 `;
 
-export const LeftContainer = styled.div.attrs({
-  id: "leftcontainer",
-})`
-  width: 20%;
-  min-width: 175px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-  left: 0;
-`;
-export const LeftContainerEach = styled.div.attrs({
-  id: "leftcontainereach",
+export const AccountManagerContainer = styled.div.attrs({
+  id: "accountmanagercontainer",
 })`
   width: 100%;
   padding: 30px 0;
@@ -123,17 +166,17 @@ export const LeftContainerEach = styled.div.attrs({
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   box-sizing: border-box;
   border-radius: 15px;
   border: 1px solid #f1f1f1;
-  gap: 15px;
 `;
+
 export const ProfileImage = styled.div.attrs({
   id: "profileimage",
 })`
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   display: flex;
   border-radius: 50%;
   background-position: center;
@@ -156,10 +199,22 @@ export const UserNickName = styled.div.attrs({
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 20px !important;
   margin-bottom: 5px;
   font-size: 18px;
   font-family: "bold", sans-serif;
+`;
+
+export const UserEmail = styled.div.attrs({
+  id: "useremail",
+})`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-family: "regular", sans-serif;
+  color: rgba(0, 0, 0, 0.4);
 `;
 
 export const UserSignupDate = styled.div.attrs({
@@ -170,99 +225,75 @@ export const UserSignupDate = styled.div.attrs({
   color: rgba(0, 0, 0, 0.4);
 `;
 
-export const LeftContainerTitle = styled.div.attrs({
-  id: "leftcontainertitle",
-})`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: "bold", sans-serif;
-  font-size: 24px;
-`;
-export const LeftContainerContentsBox = styled.div.attrs({
-  id: "leftcontainercontentsbox",
+export const ButtonContainer = styled.div.attrs({
+  id: "buttoncontainer",
 })`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
+  justify-content: flex-end;
   align-items: center;
+  padding-right: 20px;
+`;
+export const CancelButton = styled.div.attrs({
+  id: "cancelbutton",
+})`
+  margin-top: 20px;
+  width: 80px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: #333333;
+  font-size: 14px;
+  font-family: "bold", sans-serif;
+  cursor: pointer;
 `;
 
-export const LeftMenuLink = styled.button.attrs({
-  id: "LeftMenuLink",
+export const ModifyButton = styled.div.attrs({
+  id: "modifybutton",
 })`
-  font-family: inherit;
-  font-size: inherit;
-  text-decoration: none;
-  border: none;
-  color: inherit;
-  background-color: transparent;
+  margin-top: 20px;
+  width: 150px;
+  height: 50px;
   display: flex;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-`;
-export const LeftContainerContentsInactive = styled.div.attrs({
-  id: "leftcontainercontentsinactive",
-})`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: 16px;
-  cursor: pointer;
-  font-family: "regular", sans-serif;
-  &:hover {
-    font-family: "bold", sans-serif;
-  }
-`;
-export const LeftContainerContentsActive = styled.div.attrs({
-  id: "leftcontainercontentsactive",
-})`
-  position: relative;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #f1f1f1;
+  font-size: 14px;
   font-family: "bold", sans-serif;
-  text-decoration: underline;
-  text-underline-offset: 5px;
+  cursor: pointer;
 `;
-export const CenterContainer = styled.div.attrs({
-  id: "centercontainer",
+
+export const MobileEachTitle = styled.div.attrs({
+  id: "mobileeachtitle",
 })`
-  width: 80%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-left: 10px;
   align-items: center;
-  gap: 50px;
-  left: 0;
+  font-size: 24px;
+  font-family: "bold", sans-serif;
+  color: black;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 3px;
 `;
+
 export const CenterAccountContainer = styled.div.attrs({
   id: "centeraccountcontainer",
 })`
   width: 100%;
   display: flex;
+  flex-direction: column;
   gap: 25px;
-`;
-export const CenterAccountLeftContainer = styled.div.attrs({
-  id: "centeraccountleftcontainer",
-})`
-  width: 80%;
-  display: flex;
-`;
-export const CenterAccountRightContainer = styled.div.attrs({
-  id: "centeraccountrightcontainer",
-})`
-  width: 20%;
-  display: flex;
 `;
 export const CenterContainerEach = styled.div.attrs({
   id: "centercontainereach",
@@ -303,6 +334,8 @@ export const AccountEachContainer = styled.div.attrs({
   box-sizing: border-box;
   justify-content: space-evenly;
   gap: 10px;
+  padding: 0 20px;
+  margin-bottom: 10px;
 `;
 export const InputLabel = styled.div.attrs({
   id: "inputlabel",
@@ -335,6 +368,30 @@ export const IDInput = styled.input.attrs({
   background-size: 15px auto;
   background-position: 15px center;
   background-image: url("/images/icon/user.png");
+  &:focus {
+    outline: none;
+  }
+`;
+export const NicknameInput = styled.input.attrs({
+  id: "nicknameinput",
+})`
+  width: 80%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #313131;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-size: 15px auto;
+  background-position: 15px center;
+  background-image: url("/images/icon/nickname.png");
   &:focus {
     outline: none;
   }
@@ -379,7 +436,7 @@ export const EmailInput = styled.input.attrs({
 export const SubmitButton = styled.button.attrs({
   id: "submitbutton",
 })`
-  width: 20%;
+  width: 80px;
   height: 50px;
   display: flex;
   position: relative;
@@ -496,6 +553,19 @@ export const CenterSNSContentsEach2 = styled.div.attrs({
     transform: scaleY(0.5);
   }
 `;
+export const CenterSNSContentsEach3 = styled.div.attrs({
+  id: "centersnscontentseach3",
+})`
+  display: flex;
+  flex-direction: column;
+  &::before {
+    content: "";
+    margin-bottom: 15px;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: scaleY(0.5);
+  }
+`;
 
 export const CenterSNSContentsInner = styled.div.attrs({
   id: "centersnscontentsinner",
@@ -530,5 +600,4 @@ export const SubjectContainer = styled.div.attrs({
   align-items: top;
   justify-content: center;
   gap: 25px;
-
 `;

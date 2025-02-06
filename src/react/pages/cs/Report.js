@@ -12,7 +12,7 @@ import {
   WriteSortTitleActive,
 } from "../../styles/cs/CS";
 
-import CS_WriteEditor_Report from "./components/CS_WriteEditor_Report_M";
+import CS_WriteEditor_Report from "./components/CS_WriteEditor_Report";
 import Report_M from "./Report_M";
 import {useLocation, useNavigate} from "react-router-dom";
 

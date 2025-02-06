@@ -71,7 +71,6 @@ export const CodeChallengeInfoStyles = styled.div`
       align-items: start;
     }
 
-    & p,
     & span {
       display: inline-block;
 
@@ -80,6 +79,13 @@ export const CodeChallengeInfoStyles = styled.div`
       font-size: 20px;
       font-family: "medium", sans-serif;
       white-space: pre-wrap;
+    }
+
+    & span:not(.challenge-desc > div:first-child > span) {
+      padding-bottom: 8px;
+
+      font-family: "bold", sans-serif;
+      font-size: 18px;
     }
 
     & > div:last-child p {
@@ -93,6 +99,7 @@ export const CodeChallengeInfoStyles = styled.div`
       border-bottom: 2px solid rgba(0, 0, 0, 0.8);
 
       font-size: 16px;
+      white-space: pre-wrap;
     }
 
     & > div:last-child p:last-of-type {
@@ -126,14 +133,6 @@ export const CodeChallengeInfoStyles = styled.div`
     }
 
     & > div:nth-child(2) {
-      min-height: 75px;
-
-      border-radius: 0px 0px 30px 30px;
-
-      background-color: #f1f1f1;
-
-      color: black;
-
       & table {
         width: 100%;
 
@@ -168,6 +167,77 @@ export const CodeChallengeInfoStyles = styled.div`
 
       & tr:last-child td:last-child {
         border-bottom-right-radius: 30px;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    padding-left: 0;
+
+    .challenge-title {
+      & > div:first-child {
+        border-radius: 14px 14px 0px 0px;
+      }
+
+      & > div:nth-child(2) {
+        margin-bottom: 1rem;
+
+        border-radius: 0px 0px 14px 14px;
+      }
+
+      & span {
+        font-size: 16px;
+      }
+
+      & > div:last-child p {
+        font-size: 14px;
+      }
+    }
+
+    .challenge-desc {
+      & > div:first-child {
+        border-radius: 14px 14px 0px 0px;
+      }
+      & > div:nth-child(2) {
+        margin-bottom: 1rem;
+
+        border-radius: 0px 0px 14px 14px;
+      }
+
+      & span {
+        font-size: 16px;
+      }
+
+      & > div:last-child p {
+        font-size: 14px;
+      }
+
+      & span:not(.challenge-desc > div:first-child > span) {
+        font-family: "bold", sans-serif;
+        font-size: 14px;
+      }
+    }
+
+    .challenge-io-example {
+      & > div:first-child {
+        border-radius: 14px 14px 0px 0px;
+      }
+
+      & span {
+        font-size: 16px !important;
+      }
+
+      & table {
+        font-size: 14px;
+        margin-bottom: 1rem;
+      }
+
+      & tr:last-child td:first-child {
+        border-bottom-left-radius: 14px !important;
+      }
+
+      & tr:last-child td:last-child {
+        border-bottom-right-radius: 14px !important;
       }
     }
   }
