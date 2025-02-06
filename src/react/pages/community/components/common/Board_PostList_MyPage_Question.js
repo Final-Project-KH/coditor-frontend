@@ -26,29 +26,34 @@ import {
 import AxiosApi from "../../../../../api/AxiosApi";
 import Board_Pagination from "./Board_Pagination";
 
-const Board_PostList_MyPage_Report = ({ page, size, status, onPageChange }) => {
+const Board_PostList_MyPage_Question = ({
+  page,
+  size,
+  status,
+  onPageChange,
+}) => {
   const navigate = useNavigate();
-  const [reportPosts, setReportPosts] = useState([]);
+  const [suggestionPosts, setSuggestionPosts] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    const fetchMyReportPosts = async () => {
+    const fetchMySuggestionPosts = async () => {
       try {
-        const response = await AxiosApi.getMyReportPosts(
+        const response = await AxiosApi.getMySuggestionPosts(
           page,
           size,
           "createdAt",
           "DESC",
           status
         );
-        setReportPosts(response.content);
+        setSuggestionPosts(response.content);
         setTotalPages(response.totalPages);
       } catch (error) {
-        console.error("내 신고한 게시글 불러오기 오류:", error);
+        console.error("내 건의사항 게시글 불러오기 오류:", error);
       }
     };
-    fetchMyReportPosts();
-  }, [page, size, status]); // status 변경 시 데이터 새로 불러오기
+    fetchMySuggestionPosts();
+  }, [page, size, status]); // ✅ status 변경 시 데이터 새로 불러오기
 
   // HTML 태그 제거 함수
   const getTextFromHTML = (html) => {
@@ -57,15 +62,18 @@ const Board_PostList_MyPage_Report = ({ page, size, status, onPageChange }) => {
   };
 
   const handlePostClick = (post) => {
-    navigate(`/community/${post.boardType}/post/${post.boardId}`);
+    navigate(`/community/suggestion/post/${post.suggestionId}`);
   };
 
   return (
     <>
       <PostListContainer>
-        {reportPosts.length > 0 ? (
-          reportPosts.map((post) => (
-            <PostEach key={post.boardId} onClick={() => handlePostClick(post)}>
+        {suggestionPosts.length > 0 ? (
+          suggestionPosts.map((post) => (
+            <PostEach
+              key={post.suggestionId}
+              onClick={() => handlePostClick(post)}
+            >
               <PostTop>
                 <PostTopUser>
                   <PostTopUserImg
@@ -100,7 +108,6 @@ const Board_PostList_MyPage_Report = ({ page, size, status, onPageChange }) => {
                     {post.title}
                   </PostMiddleContentsTitle>
                 </PostMiddleContentsUpper>
-
                 <br></br>
                 <PostMiddleContentsText>
                   {getTextFromHTML(post.content ?? "내용 없음").length > 100
@@ -112,7 +119,7 @@ const Board_PostList_MyPage_Report = ({ page, size, status, onPageChange }) => {
             </PostEach>
           ))
         ) : (
-          <p>신고한 게시글이 없습니다.</p>
+          <p>건의사항이 없습니다.</p>
         )}
       </PostListContainer>
 
@@ -125,4 +132,4 @@ const Board_PostList_MyPage_Report = ({ page, size, status, onPageChange }) => {
   );
 };
 
-export default Board_PostList_MyPage_Report;
+export default Board_PostList_MyPage_Question;
