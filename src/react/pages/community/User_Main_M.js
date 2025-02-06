@@ -11,7 +11,6 @@ import {
   Wrap,
   UserProfileBox,
   UserProfileImg,
-  UserProfileTextBox,
   UserId,
   UserPostAmount,
   TopBoxLink,
@@ -115,10 +114,8 @@ const User_Main_M = () => {
             <ProfileTitle>프로필</ProfileTitle>
             <UserProfileBox style={{ cursor: "pointer" }}>
               <UserProfileImg isProfile={writerProfile} />
-              <UserProfileTextBox>
-                <UserId>{writerName}</UserId>
-                <UserPostAmount>작성한 질문수 {writerPostCnt}</UserPostAmount>
-              </UserProfileTextBox>
+              <UserId>{writerName}</UserId>
+              <UserPostAmount>작성한 질문수 {writerPostCnt}</UserPostAmount>
             </UserProfileBox>
           </ProfileContainer>
           <User_Feed_M intro={writerSelfIntro} />

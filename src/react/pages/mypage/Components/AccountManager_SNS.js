@@ -31,13 +31,20 @@ const AccountManager_SNS = () => {
               <SubmitButton>연결하기</SubmitButton>
             </CenterSNSContentsInner>
           </CenterSNSContentsEach2>
-          <CenterSNSContentsEach3>
+          <CenterSNSContentsEach2>
             <CenterSNSContentsInner>
               <SNSIcon icon="/images/sns/naver.png"></SNSIcon>
               <AlertTitle>Naver</AlertTitle>
               <SubmitButton>연결하기</SubmitButton>
             </CenterSNSContentsInner>
-          </CenterSNSContentsEach3>
+          </CenterSNSContentsEach2>
+          <CenterSNSContentsEach2>
+            <CenterSNSContentsInner>
+              <SNSIcon icon="/images/sns/facebook.png"></SNSIcon>
+              <AlertTitle>FaceBook</AlertTitle>
+              <SubmitButton>연결하기</SubmitButton>
+            </CenterSNSContentsInner>
+          </CenterSNSContentsEach2>
         </CenterContentsContainer>
       </CenterContainerEach>
     </>

@@ -5,7 +5,6 @@ import AxiosApi from "../../../../api/AxiosApi";
 import { setLoginData } from "../../../../redux/slice/authSlice";
 
 import {
-  RightContainerEach,
   RightContainerTitle,
   RightProfileImage,
   HiddenInput,
@@ -26,13 +25,10 @@ import {
   ProfileCropOverlay,
   Backdrop,
   ProfileModalRotateButton,
-  RightNicknameBox,
-  RightContentsContainer,
-  RightNicknameText,
-  RightNicknameIcon,
-} from "../../../styles/mypage/MyPage_ProfileIMG";
+  ProfileImageContainer,
+} from "../../../styles/mypage/MyPage_ProfileIMG_M";
 
-const AccountManager_ProfileIMG = () => {
+const AccountManager_ProfileIMG_M = () => {
   const dispatch = useDispatch();
   const nickname = useSelector((state) => state.auth.nickname);
   const profile = useSelector((state) => state.auth.profile);
@@ -319,9 +315,8 @@ const AccountManager_ProfileIMG = () => {
 
   return (
     <>
-      <RightContainerEach>
-        <RightContentsContainer>
-          <RightContainerTitle>프로필 이미지</RightContainerTitle>
+ 
+        <ProfileImageContainer>
           <RightProfileImage
             isProfile={profile}
             isPreview={preview}
@@ -329,15 +324,8 @@ const AccountManager_ProfileIMG = () => {
           <ProfileEditButton
             onClick={() => onClickProfileOpen()}
           ></ProfileEditButton>
-        </RightContentsContainer>
-        <RightContentsContainer>
-          <RightContainerTitle>닉네임</RightContainerTitle>
-          <RightNicknameBox>
-            <RightNicknameText>{nickname}</RightNicknameText>
-            <RightNicknameIcon />
-          </RightNicknameBox>
-        </RightContentsContainer>
-      </RightContainerEach>
+        </ProfileImageContainer>
+
 
       {isProfileImgModalOpen && (
         <Backdrop onClick={onClickProfileClose}>
@@ -527,4 +515,4 @@ const AccountManager_ProfileIMG = () => {
   );
 };
 
-export default AccountManager_ProfileIMG;
+export default AccountManager_ProfileIMG_M;

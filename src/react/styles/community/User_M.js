@@ -155,7 +155,85 @@ export const Container = styled.div.attrs({
   padding-bottom: 25px;
   margin-top: 70px;
 `;
-
+export const ProfileContainer = styled.div.attrs({
+  id: "profilecontainer",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
+export const ProfileTitle = styled.div.attrs({
+  id: "profiletitle",
+})`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-left: 10px;
+  align-items: center;
+  font-size: 24px;
+  font-family: "bold", sans-serif;
+  color: black;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 3px;
+`;
+export const UserProfileBox = styled.div.attrs({
+  id: "userprofilebox",
+})`
+  width: 100%;
+  padding: 30px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+  border-radius: 15px;
+  border: 1px solid #f1f1f1;
+`;
+export const UserProfileImg = styled.div.attrs({
+  id: "userprofileimg",
+})`
+  width: 120px;
+  height: 120px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  border: 1px solid #f1f1f1;
+  ${(props) =>
+    props.isProfile === null &&
+    css`
+      background-image: url("/images/general/default_profile.png");
+    `}
+  ${(props) =>
+    props.isProfile !== null &&
+    css`
+      background-image: url(${(props) => props.isProfile});
+    `}
+`;
+export const UserId = styled.div.attrs({
+  id: "userid",
+})`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-family: "bold", sans-serif;
+`;
+export const UserPostAmount = styled.div.attrs({
+  id: "userpostamount",
+})`
+  font-family: "regular", sans-serif;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.4);
+`;
 export const FeedContainer = styled.div.attrs({
   id: "feedcontainer",
 })`
@@ -183,7 +261,7 @@ export const FeedTitle = styled.div.attrs({
   justify-content: flex-start;
   padding-left: 10px;
   align-items: center;
-  font-size: 28px;
+  font-size: 24px;
   font-family: "bold", sans-serif;
   color: black;
   text-decoration: underline;
@@ -236,96 +314,11 @@ export const PostTitle = styled.div.attrs({
   justify-content: flex-start;
   padding-left: 10px;
   align-items: center;
-  font-size: 28px;
+  font-size: 24px;
   font-family: "bold", sans-serif;
   color: black;
   text-decoration: underline;
   text-underline-offset: 10px;
   text-decoration-thickness: 3px;
-  margin-bottom: 50px;
-`;
-export const ProfileContainer = styled.div.attrs({
-  id: "profilecontainer",
-})`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-`;
-export const ProfileTitle = styled.div.attrs({
-  id: "profiletitle",
-})`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding-left: 10px;
-  align-items: center;
-  font-size: 28px;
-  font-family: "bold", sans-serif;
-  color: black;
-  text-decoration: underline;
-  text-underline-offset: 10px;
-  text-decoration-thickness: 3px;
-`;
-export const UserProfileBox = styled.div.attrs({
-  id: "userprofilebox",
-})`
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: flex-start;
-  align-items: center;
-  border-radius: 10px;
-  border: 1px solid #f1f1f1;
-`;
-export const UserProfileImg = styled.div.attrs({
-  id: "userprofileimg",
-})`
-  width: 80px;
-  height: 80px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 50%;
-  border: 1px solid #f1f1f1;
-  ${(props) =>
-    props.isProfile === null &&
-    css`
-      background-image: url("/images/general/default_profile.png");
-    `}
-  ${(props) =>
-    props.isProfile !== null &&
-    css`
-      background-image: url(${(props) => props.isProfile});
-    `}
-`;
-export const UserProfileTextBox = styled.div.attrs({
-  id: "userprofiletextbox",
-})`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-`;
-export const UserId = styled.div.attrs({
-  id: "userid",
-})`
-  text-align: left;
-  font-size: 20px;
-  font-family: "extrabold", sans-serif;
-  color: rgba(0, 0, 0, 0.8);
-`;
-export const UserPostAmount = styled.div.attrs({
-  id: "userpostamount",
-})`
-  text-align: left;
-  font-size: 18px;
-  font-family: "medium", sans-serif;
-  color: rgba(0, 0, 0, 0.4);
+  margin-bottom: 30px;
 `;
