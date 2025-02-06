@@ -25,10 +25,12 @@ import C_Title from "../study/c/c_components/C_Title";
 import CPlus_Title from "../study/cplus/cplus_components/CPlus_Title";
 import JavaScript_Title from "../study/javascript/javascript_components/JavaScript_Title";
 import { useEffect } from "react";
+import MyPage_Study_M from "./MyPage_Study_M";
 
 const MyPage_Study = () => {
   const navigate = useNavigate();
   const { mainContentRef } = useOutletContext();
+  const { isMobile } = useOutletContext();
 
   // 페이지 진입 시 스크롤 위치 초기화
   useEffect(() => {
@@ -72,45 +74,49 @@ const MyPage_Study = () => {
 
   return (
     <>
-      <Wrap>
-        <TopBoxWide>
-          <TopBox>
-            <TopBoxLink onClick={() => handleMyPage()}>
-              <TopBoxText>my page</TopBoxText>
-            </TopBoxLink>
-                <TopBoxArrow>{`>`}</TopBoxArrow>
-                <TopBoxLink onClick={() => handleRefresh()}>
-                  <TopBoxText>study</TopBoxText>
-                </TopBoxLink>
-          </TopBox>
-        </TopBoxWide>
-        <Container>
-          <LeftContainer>
-            <LeftTopProfile />
-            <LeftMenus />
-          </LeftContainer>
-          <CenterContainer>
-            <SubjectContainer>
-              <SubjectLink onClick={() => handleJavaCheck()}>
-                <Java_Title />
-              </SubjectLink>
-              <SubjectLink onClick={() => handlePythonCheck()}>
-                <Python_Title />
-              </SubjectLink>
-              <SubjectLink onClick={() => handleCCheck()}>
-                <C_Title />
-              </SubjectLink>
-              <SubjectLink onClick={() => handleCPlusCheck()}>
-                <CPlus_Title />
-              </SubjectLink>
-              <SubjectLink onClick={() => handleJavaScriptCheck()}>
-                <JavaScript_Title />
-              </SubjectLink>
-            </SubjectContainer>
-          </CenterContainer>
-        </Container>
-        <ScrollToTopButton />
-      </Wrap>
+      {isMobile ? (
+        <MyPage_Study_M />
+      ) : (
+        <Wrap>
+          <TopBoxWide>
+            <TopBox>
+              <TopBoxLink onClick={() => handleMyPage()}>
+                <TopBoxText>my page</TopBoxText>
+              </TopBoxLink>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <TopBoxLink onClick={() => handleRefresh()}>
+                <TopBoxText>study</TopBoxText>
+              </TopBoxLink>
+            </TopBox>
+          </TopBoxWide>
+          <Container>
+            <LeftContainer>
+              <LeftTopProfile />
+              <LeftMenus />
+            </LeftContainer>
+            <CenterContainer>
+              <SubjectContainer>
+                <SubjectLink onClick={() => handleJavaCheck()}>
+                  <Java_Title />
+                </SubjectLink>
+                <SubjectLink onClick={() => handlePythonCheck()}>
+                  <Python_Title />
+                </SubjectLink>
+                <SubjectLink onClick={() => handleCCheck()}>
+                  <C_Title />
+                </SubjectLink>
+                <SubjectLink onClick={() => handleCPlusCheck()}>
+                  <CPlus_Title />
+                </SubjectLink>
+                <SubjectLink onClick={() => handleJavaScriptCheck()}>
+                  <JavaScript_Title />
+                </SubjectLink>
+              </SubjectContainer>
+            </CenterContainer>
+          </Container>
+          <ScrollToTopButton />
+        </Wrap>
+      )}
     </>
   );
 };

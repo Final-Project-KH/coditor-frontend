@@ -17,7 +17,7 @@ import AccountManager_SNS from "./Components/AccountManager_SNS";
 import ScrollToTopButton from "../ScrollToTopButton";
 import { useEffect } from "react";
 
-const MyPage_M = () => {
+const MyPage_Main_M = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { mainContentRef } = useOutletContext();
@@ -64,4 +64,4 @@ const MyPage_M = () => {
     </Wrap>
   );
 };
-export default MyPage_M;
+export default MyPage_Main_M;

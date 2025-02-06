@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Wrap = styled.div.attrs({
   id: "wrap",
@@ -140,6 +140,7 @@ export const TopBoxLink = styled.button.attrs({
     color: white;
   }
 `;
+
 export const Container = styled.div.attrs({
   id: "container",
 })`
@@ -155,169 +156,190 @@ export const Container = styled.div.attrs({
   padding-bottom: 25px;
   margin-top: 70px;
 `;
-export const ProfileContainer = styled.div.attrs({
-  id: "profilecontainer",
+
+export const LeftContainer = styled.div.attrs({
+  id: "leftcontainer",
+})`
+  width: 20%;
+  min-width: 175px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  left: 0;
+`;
+
+export const CenterContainer = styled.div.attrs({
+  id: "centercontainer",
+})`
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  left: 0;
+`;
+
+export const CenterContainerEach = styled.div.attrs({
+  id: "centercontainereach",
 })`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
 `;
-export const ProfileTitle = styled.div.attrs({
-  id: "profiletitle",
+export const CenterContainerTitle = styled.div.attrs({
+  id: "centercontainertitle",
 })`
-  width: 100%;
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding-left: 10px;
-  align-items: center;
-  font-size: 24px;
   font-family: "bold", sans-serif;
-  color: black;
-  text-decoration: underline;
-  text-underline-offset: 10px;
-  text-decoration-thickness: 3px;
+  font-size: 28px;
+  margin-left: 20px;
 `;
-export const UserProfileBox = styled.div.attrs({
-  id: "userprofilebox",
+export const CenterContentsContainer = styled.div.attrs({
+  id: "centercontentscontainer",
 })`
   width: 100%;
-  padding: 30px 0;
+  padding: 30px 20px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   box-sizing: border-box;
   border-radius: 15px;
   border: 1px solid #f1f1f1;
+  gap: 20px;
 `;
-export const UserProfileImg = styled.div.attrs({
-  id: "userprofileimg",
-})`
-  width: 120px;
-  height: 120px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 50%;
-  border: 1px solid #f1f1f1;
-  ${(props) =>
-    props.isProfile === null &&
-    css`
-      background-image: url("/images/general/default_profile.png");
-    `}
-  ${(props) =>
-    props.isProfile !== null &&
-    css`
-      background-image: url(${(props) => props.isProfile});
-    `}
-`;
-export const UserId = styled.div.attrs({
-  id: "userid",
-})`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  font-size: 18px;
-  font-family: "bold", sans-serif;
-`;
-export const UserPostAmount = styled.div.attrs({
-  id: "userpostamount",
-})`
-  font-family: "regular", sans-serif;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.4);
-`;
-export const FeedContainer = styled.div.attrs({
-  id: "feedcontainer",
+
+export const ContentsHeadline = styled.div.attrs({
+  id: "contentsheadline",
 })`
   width: 100%;
+  color: #333333;
+  font-family: "bold", sans-serif;
+  font-size: 20px;
+  text-align: center;
+`;
+export const ContentsText = styled.div.attrs({
+  id: "contentstext",
+})`
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  /* &::after {
-    content: "";
-    width: 100%;
-    height: 1px;
-    background-color: black;
-    transform: scaleY(0.5);
-  } */
-`;
-
-export const FeedTitle = styled.div.attrs({
-  id: "feedtitle",
-})`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding-left: 10px;
-  align-items: center;
-  font-size: 24px;
-  font-family: "bold", sans-serif;
-  color: black;
-  text-decoration: underline;
-  text-underline-offset: 10px;
-  text-decoration-thickness: 3px;
-`;
-
-export const FeedContentsContainer = styled.div.attrs({
-  id: "feedcontentscontainer",
-})`
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid #f1f1f1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 10px;
-`;
-
-export const FeedContents = styled.div.attrs({
-  id: "feedcontents",
-})`
-  width: 100%;
+  font-size: 15px;
   font-family: "regular", sans-serif;
+`;
+
+export const CheckBoxGroup = styled.div.attrs({
+  id: "checkboxgroup",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const ContentsCheckText = styled.div.attrs({
+  id: "contentschecktext",
+})`
+  position: relative;
   font-size: 16px;
-  color: black;
-  display: flex;
-  justify-content: center;
+  font-family: "medium", sans-serif;
+  padding-bottom: 3px;
 `;
 
-export const PostContainer = styled.div.attrs({
-  id: "postcontainer",
+export const WithdrawalButton = styled.button.attrs({
+  id: "withdrawlbutton",
+})`
+  width: 50%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  font-family: "regular", sans-serif;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+  border: none;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  background-color: ${({ disabled }) => (disabled ? "#f1f1f1" : "#333333")};
+  color: white;
+`;
+
+export const WithdrawnContainer = styled.div.attrs({
+  id: "withdrawncontainer",
 })`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 10px;
-  gap: 30px;
+  margin-top: 10vh;
 `;
 
-export const PostTitle = styled.div.attrs({
-  id: "posttitle",
+export const WithdrawnImage = styled.div.attrs({
+  id: "withdrawnimage",
+})`
+  width: 200px;
+  height: 200px;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+  background-image: url("/images/icon/cdt_monitor.png");
+  background-position: center 35px;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  margin-bottom: 30px;
+`;
+
+export const WithdrawnHeadline = styled.div.attrs({
+  id: "withdrawnheadline",
 })`
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding-left: 10px;
-  align-items: center;
-  font-size: 24px;
+  color: #333333;
   font-family: "bold", sans-serif;
-  color: black;
-  text-decoration: underline;
-  text-underline-offset: 10px;
-  text-decoration-thickness: 3px;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
+`;
+export const WithdrawnText = styled.div.attrs({
+  id: "withdrawntext",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-family: "regular", sans-serif;
+  text-align: center;
+  margin-bottom: 30px;
+`;
+
+export const BackButton = styled.button.attrs({
+  id: "backbutton",
+})`
+  width: 30%;
+  height: 50px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 5px;
+  font-family: "regular", sans-serif;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+  border: none;
+  cursor: pointer;
+  background-color: #333333;
+  color: white;
+  &:hover {
+    background-color: #f1f1f1;
+    color: black;
+    font-family: "bold", sans-serif;
+    border: 1px solid black;
+  }
 `;

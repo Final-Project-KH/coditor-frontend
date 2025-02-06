@@ -1,52 +1,46 @@
 import {
-  CenterContainerEach,
-  CenterContainerTitle,
-  CenterContentsContainer,
   SubmitButton,
   AlertTitle,
   CenterSNSContentsEach1,
   CenterSNSContentsEach2,
-  CenterSNSContentsEach3,
   CenterSNSContentsInner,
   SNSIcon,
-} from "../../../styles/mypage/MyPage";
+  SNSContainer,
+} from "../../../styles/mypage/MyPage_M";
 
 const AccountManager_SNS = () => {
   return (
     <>
-      <CenterContainerEach>
-        <CenterContainerTitle>SNS 계정 연동</CenterContainerTitle>
-        <CenterContentsContainer>
+        <SNSContainer>
           <CenterSNSContentsEach1>
             <CenterSNSContentsInner>
               <SNSIcon icon="/images/sns/gmail.png"></SNSIcon>
               <AlertTitle>Google</AlertTitle>
-              <SubmitButton>연결하기</SubmitButton>
+              <SubmitButton>연결</SubmitButton>
             </CenterSNSContentsInner>
           </CenterSNSContentsEach1>
           <CenterSNSContentsEach2>
             <CenterSNSContentsInner>
               <SNSIcon icon="/images/sns/kakao.png"></SNSIcon>
               <AlertTitle>Kakao</AlertTitle>
-              <SubmitButton>연결하기</SubmitButton>
+              <SubmitButton>연결</SubmitButton>
             </CenterSNSContentsInner>
           </CenterSNSContentsEach2>
           <CenterSNSContentsEach2>
             <CenterSNSContentsInner>
               <SNSIcon icon="/images/sns/naver.png"></SNSIcon>
               <AlertTitle>Naver</AlertTitle>
-              <SubmitButton>연결하기</SubmitButton>
+              <SubmitButton>연결</SubmitButton>
             </CenterSNSContentsInner>
           </CenterSNSContentsEach2>
           <CenterSNSContentsEach2>
             <CenterSNSContentsInner>
               <SNSIcon icon="/images/sns/facebook.png"></SNSIcon>
               <AlertTitle>FaceBook</AlertTitle>
-              <SubmitButton>연결하기</SubmitButton>
+              <SubmitButton>연결</SubmitButton>
             </CenterSNSContentsInner>
           </CenterSNSContentsEach2>
-        </CenterContentsContainer>
-      </CenterContainerEach>
+        </SNSContainer>
     </>
   );
 };

@@ -227,6 +227,7 @@ export const ProfileImg = styled.div.attrs({
       background-size: contain;
       background-position: center;
       border-radius: 50%;
+      border: 1px solid #f1f1f1;
       background-image: url("/images/general/default_profile.png");
     `}
   ${(props) =>
@@ -236,6 +237,7 @@ export const ProfileImg = styled.div.attrs({
       background-size: contain;
       background-position: center;
       border-radius: 50%;
+      border: 1px solid #f1f1f1;
       background-image: url(${(props) => props.isProfile});
     `}
     ${(props) =>
@@ -387,4 +389,4 @@ export const MyPageProfileImg = styled.div.attrs({
     css`
       display: none;
     `}
-`
+`;
