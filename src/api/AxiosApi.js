@@ -545,6 +545,29 @@ const AxiosApi = {
     }
   },
 
+  getChallengeDetail: async (questionId, userId) => {
+    try {
+      let url = `${SPRING_DOMAIN}/api/code-challenge/challenge/${questionId}`;
+      const response = await AxiosInstance.get(
+        userId === null ? url : url + `?user=${userId}`
+      );
+      return response.data;
+    } catch (error) {
+      const data = {};
+
+      if (error.request && !error.response) {
+        data["error"] =
+          "서버가 응답하지 않습니다. 네트워크 연결 상태를 확인해주세요.";
+      } else if (error.response) {
+        Object.assign(data, error.response.data);
+        if (!data["error"])
+          data["error"] =
+            "코딩 테스트 정보를 조회하는 과정에서 예기치 못한 문제가 발생하였습니다😭. 문제가 반복될 경우 관리자에게 문의해주세요.";
+      }
+      return data;
+    }
+  },
+
   getChallengeList: async (difficulty, userId) => {
     try {
       let url = `${SPRING_DOMAIN}/api/code-challenge/challenges/${difficulty}`;
