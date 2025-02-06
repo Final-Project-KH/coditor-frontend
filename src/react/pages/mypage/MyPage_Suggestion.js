@@ -77,6 +77,7 @@ const MyPage_Suggestion = () => {
             </LeftContainer>
 
             <CenterContainer>
+            <CenterContainerTitle>건의사항</CenterContainerTitle>
               {/* 정렬 버튼을 Board_TopSort 스타일로 변경 */}
               <TopSortOuterContiner>
                 <TopSortInnerContainer>
@@ -115,9 +116,6 @@ const MyPage_Suggestion = () => {
                 status={status}
                 onPageChange={handlePageChange}
               />
-            </CenterContainer>
-            <CenterContainer>
-              <CenterContainerTitle>건의사항</CenterContainerTitle>
             </CenterContainer>
           </Container>
 

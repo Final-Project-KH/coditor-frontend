@@ -77,6 +77,7 @@ const MyPage_Report = () => {
             </LeftContainer>
 
             <CenterContainer>
+              <CenterContainerTitle>악성 사용자 신고</CenterContainerTitle>
               {/* 정렬 버튼을 Board_TopSort 스타일로 변경 */}
               <TopSortOuterContiner>
                 <TopSortInnerContainer>
@@ -109,7 +110,6 @@ const MyPage_Report = () => {
                 </TopSortInnerContainer>
               </TopSortOuterContiner>
 
-              <CenterContainerTitle>악성 사용자 신고</CenterContainerTitle>
               <Board_PostList_MyPage_Report
                 page={page}
                 size={size}
