@@ -62,11 +62,6 @@ const Java_02_02 = () => {
     navigate("/study/java");
   };
 
-  // TopBox thirdpath
-  const handleStudyJava02 = () => {
-    navigate("/study/java/02");
-  };
-
   // TopBox fourthpath
   const handleRefresh = () => {
     navigate("/study/java/02/02");
@@ -262,7 +257,7 @@ public class Main {
               <TopBoxArrow>{`>`}</TopBoxArrow>
               <TopBoxText onClick={() => handleStudyJava()}>Java</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxText onClick={() => handleStudyJava02()}>
+              <TopBoxText onClick={() => handleStudyJava()}>
                 02. 기본 자료형과 연산자
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>

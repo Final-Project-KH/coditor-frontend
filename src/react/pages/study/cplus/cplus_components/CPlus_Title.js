@@ -15,14 +15,14 @@ const CPlus_Title = () => {
     <>
       <LeftSubjectContainer>
         <SubjectImgContainerCPlus />
-        <SubjectTitle>C++</SubjectTitle>
+        {/* <SubjectTitle>C++</SubjectTitle>
         <SubjectContents>학습전</SubjectContents>
         <SubjectRateContainer>
           <SubjectRateBox>
             <SubjectRateWhite />
           </SubjectRateBox>
           <SubjectRateContents>0%</SubjectRateContents>
-        </SubjectRateContainer>
+        </SubjectRateContainer> */}
       </LeftSubjectContainer>
     </>
   );

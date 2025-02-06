@@ -15,14 +15,14 @@ const C_Title_M = () => {
     <>
       <LeftSubjectContainer>
         <SubjectImgContainerC />
-        <SubjectTitle>C</SubjectTitle>
+        {/* <SubjectTitle>C</SubjectTitle>
         <SubjectContents>학습전</SubjectContents>
         <SubjectRateContainer>
           <SubjectRateBox>
             <SubjectRateWhite />
           </SubjectRateBox>
           <SubjectRateContents>0%</SubjectRateContents>
-        </SubjectRateContainer>
+        </SubjectRateContainer> */}
       </LeftSubjectContainer>
     </>
   );

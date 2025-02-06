@@ -16,11 +16,6 @@ import { JavaStudyChapter } from "../../../../../util/study/JavaStudyChapter";
 const Java_ClassList_M = forwardRef(({ refs }, ref) => {
   const navigate = useNavigate();
 
-  // Class Header onClick
-  const handleNext = (cls) => {
-    navigate(`/study/java/${cls.id}`);
-  };
-
   // Class Contents onClick
   const handleNavigation = (navigatepath, data) => {
     navigate(navigatepath, { state: data });
@@ -38,7 +33,7 @@ const Java_ClassList_M = forwardRef(({ refs }, ref) => {
   const EachClassComponent = ({ cls, isOpen, onToggle }) => (
     <EachClass isOpen={isOpen} key={cls.id} ref={(el) => (refs[cls.id.toString()] = el)}>
       <ClassHeader isOpen={isOpen}>
-        <ClassHeaderTitle onClick={() => handleNext(cls)}>
+        <ClassHeaderTitle>
           {cls.title}
         </ClassHeaderTitle>
         <ClassHeaderTitleButton

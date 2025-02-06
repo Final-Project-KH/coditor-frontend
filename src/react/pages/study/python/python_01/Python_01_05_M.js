@@ -61,11 +61,6 @@ const Python_01_05_M = () => {
     navigate("/study/python");
   };
 
-  // TopBox thirdpath
-  const handleStudyPython01 = () => {
-    navigate("/study/python/01");
-  };
-
   // TopBox fourthpath
   const handleRefresh = () => {
     navigate("/study/python/01/05");
@@ -311,7 +306,7 @@ else:
       </TopBoxWide>
       <TopBoxWide2>
         <TopBox2>
-          <TopBoxLink onClick={() => handleStudyPython01()}>
+          <TopBoxLink onClick={() => handleStudyPython()}>
             <TopBoxText2>01. 개발 환경 구성 및 기본 문법</TopBoxText2>
           </TopBoxLink>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>

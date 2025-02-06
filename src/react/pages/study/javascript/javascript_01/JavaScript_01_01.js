@@ -62,11 +62,6 @@ const JavaScript_01_01 = () => {
     navigate("/study/javascript");
   };
 
-  // TopBox thirdpath
-  const handleStudyJavaScript01 = () => {
-    navigate("/study/javascript/01");
-  };
-
   // TopBox fourthpath
   const handleRefresh = () => {
     navigate("/study/javascript/01/01");
@@ -87,7 +82,7 @@ const JavaScript_01_01 = () => {
                 JavaScript
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxText onClick={() => handleStudyJavaScript01()}>
+              <TopBoxText onClick={() => handleStudyJavaScript()}>
               01. 자바스크립트 기초
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>

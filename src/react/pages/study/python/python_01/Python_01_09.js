@@ -63,10 +63,6 @@ const Python_01_09 = () => {
     navigate("/study/python");
   };
 
-  // TopBox thirdpath
-  const handleStudyPython01 = () => {
-    navigate("/study/python/01");
-  };
 
   // TopBox fourthpath
   const handleRefresh = () => {
@@ -332,7 +328,7 @@ print(f"{work_time}시간 동안 근무한 {work_type_str} 급여는 {pay_str}�
                 Python
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxText onClick={() => handleStudyPython01()}>
+              <TopBoxText onClick={() => handleStudyPython()}>
               01. 개발 환경 구성 및 기본 문법
               </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>

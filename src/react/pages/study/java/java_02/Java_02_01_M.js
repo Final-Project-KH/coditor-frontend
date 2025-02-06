@@ -61,11 +61,6 @@ const Java_02_01_M = () => {
     navigate("/study/java");
   };
 
-  // TopBox thirdpath
-  const handleStudyJava02 = () => {
-    navigate("/study/java/02");
-  };
-
   // TopBox fourthpath
   const handleRefresh = () => {
     navigate("/study/java/02/01");
@@ -472,7 +467,7 @@ System.out.println(result1 + 10 + "10"); // 먼저 숫자형 타입이 계산되
       </TopBoxWide>
       <TopBoxWide2>
         <TopBox2>
-          <TopBoxLink onClick={() => handleStudyJava02()}>
+          <TopBoxLink onClick={() => handleStudyJava()}>
             <TopBoxText2>02. 기본 자료형과 연산자</TopBoxText2>
           </TopBoxLink>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
