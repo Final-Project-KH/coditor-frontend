@@ -1,5 +1,6 @@
-import {useLocation, useNavigate} from "react-router-dom";
-import {useState} from "react";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import {
   Wrap,
@@ -11,11 +12,12 @@ import {
   Container,
   BoardContainer,
 } from "../../styles/community/Community_M";
+import { FloatWriteButton } from "../../styles/community/Board_M";
 
-import Board_Study_Search from "./components/study/Board_Study_Search";
+import Board_TopSort_M from "./components/common/Board_TopSort_M";
+import Board_Study_Search_M from "./components/study/Board_Study_Search_M";
+import Board_Order_M from "./components/common/Board_Order_M";
 import Board_PostList from "./components/common/Board_PostList";
-import Board_TopSort from "./components/common/Board_TopSort";
-import Board_Order from "./components/common/Board_Order";
 import ScrollToTopButton from "../ScrollToTopButton";
 
 const Community_Study_M = () => {
@@ -35,7 +37,7 @@ const Community_Study_M = () => {
     queryParams.get("enumfilter") || null
   ); // 해쉬태그
   const [search, setSearch] = useState(queryParams.get("search") || null); // 검색
-
+  const userAuth = useSelector((state) => state.auth.accesstoken);
   const boardType = "study";
 
   // TopBox firstpath
@@ -73,6 +75,19 @@ const Community_Study_M = () => {
     setEnumFilter(newEnumFilter);
   };
 
+  // write post
+  const handleWrite = () => {
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
+    navigate(`/community/${boardType}/write`, {
+      state: {
+        id: boardType,
+      },
+    });
+  };
+
   return (
     <>
       <Wrap>
@@ -89,17 +104,17 @@ const Community_Study_M = () => {
         </TopBoxWide>
         <Container>
           <BoardContainer>
-            <Board_TopSort
+            <Board_TopSort_M
               onSortChange={handleStatusChange}
               boardType={boardType}
             />
-            <Board_Study_Search
+            <Board_Study_Search_M
               onEnumFilterRefresh={handleEnumFilterRefresh}
               onSearchChange={handleSearchChange}
               boardType={boardType}
               enumFilter={enumFilter}
             />
-            <Board_Order
+            <Board_Order_M
               boardType={boardType}
               onSortChange={handleSortChange}
             />
@@ -115,6 +130,7 @@ const Community_Study_M = () => {
             />
           </BoardContainer>
         </Container>
+        <FloatWriteButton onClick={() => handleWrite()} />
         <ScrollToTopButton />
       </Wrap>
     </>

@@ -72,7 +72,7 @@ const LeftMenus = () => {
       id: "question",
       sort: "post",
       label: "건의사항",
-      link: "/mypage/question",
+      link: "/mypage/suggestion",
     },
   ];
 

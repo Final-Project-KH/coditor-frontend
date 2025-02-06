@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -12,7 +12,7 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 import ListItem from "@tiptap/extension-list-item";
 import { Image } from "@tiptap/extension-image";
-import "../../../styles/community/PostEditor.css";
+import "./../../../../styles/community/PostEditor.css";
 import {
   EditorArea,
   TipTapBox,
@@ -20,9 +20,10 @@ import {
   WriteButtonsArea,
   WriteCancelButton,
   WriteSubmitButton,
-} from "../../../styles/cs/CS";
+} from "../../../../styles/community/Post";
 import { useLocation, useNavigate } from "react-router-dom";
-import AxiosApi from "../../../../api/AxiosApi";
+import AxiosApi from "../../../../../api/AxiosApi";
+import { useSelector } from "react-redux";
 
 const lowlight = createLowlight(all);
 
@@ -272,8 +273,12 @@ const extensions = [
   Image,
 ];
 
-const CS_WriteEditor_Question = ({ title }) => {
+const Post_ModifyEditor_Coding = ({ boardId, content, title, language }) => {
   const navigate = useNavigate();
+  const [editorContent, setEditorContent] = useState(content || "");
+  const [boardType, setBoardType] = useState("coding");
+
+  const userAuth = useSelector((state) => state.auth.accesstoken);
 
   const editor = useEditor({
     extensions: [
@@ -287,25 +292,59 @@ const CS_WriteEditor_Question = ({ title }) => {
       }),
       Image,
       Placeholder.configure({
-        placeholder: `- 코디터에 건의하고자 하는 내용을 자유롭게 작성해 주세요.`,
+        placeholder: `- 학습 관련 질문을 남겨주세요. 상세히 작성하면 더 좋아요!
+- 마크다운, 단축키를 이용해서 편리하게 글을 작성할 수 있어요.
+- 먼저 유사한 질문이 있었는지 검색해보세요.
+- 서로 예의를 지키며 존중하는 문화를 만들어가요.
+- 서비스 운영 관련 문의는 홈페이지 우측 CS 메뉴를 이용해주세요.`,
       }),
     ],
     content: "",
   });
 
+  useEffect(() => {
+    if (editor && content) {
+      editor.commands.setContent(content);
+    }
+  }, [editor, content]);
+
+  // cancel button
+  const handleGoBack = () => {
+    navigate(`/community/${boardType}/post/${boardId}`, {
+      state: {
+        id: boardType,
+      },
+    });
+  };
+
   // submit button
-  const handleSubmit = async () => {
+  const handleModify = async () => {
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
+
     if (!editor.getHTML().trim() || !title.trim()) {
       alert("제목과 내용을 모두 입력하세요!");
       return;
     }
     try {
-      // const response = await AxiosApi.써야함(title, editor.getHTML());
-      alert("내용이 성공적으로 제출되었습니다.");
-      navigate(-1);
+      const response = await AxiosApi.modifyCodingPost(
+        boardType,
+        boardId,
+        title,
+        language,
+        editor.getHTML()
+      );
+      alert("내용이 성공적으로 수정되었습니다.");
+      navigate(`/community/${boardType}/post/${boardId}`, {
+        state: {
+          id: boardType,
+        },
+      });
     } catch (error) {
       console.error("제출 실패:", error);
-      alert("제출에 실패했습니다. 다시 시도해주세요.");
+      alert("수정에 실패했습니다. 다시 시도해주세요.");
     }
   };
 
@@ -329,14 +368,12 @@ const CS_WriteEditor_Question = ({ title }) => {
           />
         </EditorArea>
         <WriteButtonsArea>
-          <WriteCancelButton onClick={() => navigate(-1)}>
-            취소
-          </WriteCancelButton>
-          <WriteSubmitButton onClick={handleSubmit}>등록</WriteSubmitButton>
+          <WriteCancelButton onClick={handleGoBack}>취소</WriteCancelButton>
+          <WriteSubmitButton onClick={handleModify}>수정</WriteSubmitButton>
         </WriteButtonsArea>
       </TipTapBox>
     </>
   );
 };
 
-export default CS_WriteEditor_Question;
+export default Post_ModifyEditor_Coding;

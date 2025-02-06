@@ -7,19 +7,25 @@ import {
   WriteTags,
   WriteTitle,
   WriteTitleBox,
-} from "../../styles/cs/CS";
+  WriteSortOuterContiner,
+  WriteSortInnerContainer,
+  WriteSortTitleActive,
+} from "../../styles/cs/CS_M";
 
-import CS_WriteSort_Question from "./components/CS_WriteSort_Question";
-import CS_WriteEditor_Question from "./components/CS_WriteEditor_Question";
+import CS_WriteEditor_Suggestion_M from "./components/CS_WriteEditor_Suggestion_M";
 
-const Question = () => {
+const Suggestion_M = () => {
   const [title, setTitle] = useState("");
 
   return (
     <>
       <WriteWrap>
         <WriteContainer>
-          <CS_WriteSort_Question />
+          <WriteSortOuterContiner>
+            <WriteSortInnerContainer>
+              <WriteSortTitleActive>건의사항</WriteSortTitleActive>
+            </WriteSortInnerContainer>
+          </WriteSortOuterContiner>
           <WriteTitleBox>
             <WriteTitle
               placeholder="제목을 입력하세요."
@@ -27,11 +33,11 @@ const Question = () => {
               onChange={(e) => setTitle(e.target.value)}
             />
           </WriteTitleBox>
-          <CS_WriteEditor_Question title={title} />
+          <CS_WriteEditor_Suggestion_M title={title} />
         </WriteContainer>
       </WriteWrap>
     </>
   );
 };
 
-export default Question;
+export default Suggestion_M;

@@ -1,19 +1,12 @@
 import { useState } from "react";
+
 import {
   InputSearch,
   InputSearchBox,
   InputSearchButton,
   InputSearchContainer,
-  TagSearch,
-  TagSearchBox,
-  TagSearchContainer,
   SearchContainer,
-  ResetButtonBox,
-  ResetButtonText,
-  ResetButtonIcon,
-  TagSearchItem,
 } from "../../../../styles/community/Board_M";
-import { LanguageDisplayNames } from "../common/DisplayNames";
 
 const Board_Coding_Search_M = ({
   boardType,

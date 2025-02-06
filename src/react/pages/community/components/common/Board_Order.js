@@ -25,7 +25,7 @@ const Board_Order = ({ boardType, onSortChange }) => {
     if (userAuth === "") {
       alert("로그인이 필요한 서비스입니다.");
       return navigate("/login");
-    } 
+    }
     navigate(`/community/${boardType}/write`, {
       state: {
         id: boardType,

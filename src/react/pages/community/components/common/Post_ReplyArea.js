@@ -15,7 +15,7 @@ import {
   EditorBox,
 } from "../../../../styles/community/Post";
 import AxiosApi from "../../../../../api/AxiosApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Editor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Post_Reply_WriteEditor from "./Post_ReplyEditor";
@@ -29,6 +29,7 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
   const [replies, setReplies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const navigate = useNavigate();
 
   // Get Replies from Backend (getPost)
   useEffect(() => {
@@ -96,9 +97,12 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
       {posts.map((post, index) => (
         <ReplyContainer key={index}>
           <ReplyTitle>답변 {post.commentCnt}</ReplyTitle>
-          <SuggestBox expanded={editorOpen} onClick={handleBoxClick}>
+          <SuggestBox
+  expanded={editorOpen}
+  onClick={nickname ? handleBoxClick : () => navigate("/login")}
+>
             <span style={{ marginLeft: "15px", cursor: "pointer" }}>
-              💡{nickname}님, 답변을 작성해보세요.
+            💡{nickname ? `${nickname}님, 답변을 작성해보세요.` : " 로그인하고 답변을 작성해보세요."}
             </span>
             {editorOpen && (
               <EditorBox expanded={editorOpen}>
@@ -128,24 +132,24 @@ const Post_ReplyArea = ({ boardType, page, size, sortBy, order }) => {
                             minute: "2-digit",
                             hour12: false,
                           })
-                          .replace(/\. /g, ".")}
+                          .replace(/\. /g, ". ")}{" "}
                         작성
                       </ReplyUserDate>
+                      <ReplyMiddleText
+                        dangerouslySetInnerHTML={{ __html: reply.content }}
+                      />
                     </ReplyUserProfileTextBox>
                   </ReplyUserProfileBox>
-                  <ReplyMiddle>
-                    <ReplyMiddleText
-                      dangerouslySetInnerHTML={{ __html: reply.content }}
-                    />
-                  </ReplyMiddle>
                 </ReplyEach>
               ))}
           </ReplyList>
-          <Board_Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+          {totalPages > 1 && (
+            <Board_Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          )}
         </ReplyContainer>
       ))}
     </>

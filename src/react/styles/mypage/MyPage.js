@@ -496,19 +496,6 @@ export const CenterSNSContentsEach2 = styled.div.attrs({
     transform: scaleY(0.5);
   }
 `;
-export const CenterSNSContentsEach3 = styled.div.attrs({
-  id: "centersnscontentseach3",
-})`
-  display: flex;
-  flex-direction: column;
-  &::before {
-    content: "";
-    margin-bottom: 15px;
-    height: 1px;
-    background-color: rgba(0, 0, 0, 0.1);
-    transform: scaleY(0.5);
-  }
-`;
 
 export const CenterSNSContentsInner = styled.div.attrs({
   id: "centersnscontentsinner",

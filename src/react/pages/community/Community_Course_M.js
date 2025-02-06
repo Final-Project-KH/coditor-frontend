@@ -1,5 +1,6 @@
-import {useLocation, useNavigate} from "react-router-dom";
-import {useState} from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import {
   Wrap,
@@ -11,14 +12,12 @@ import {
   Container,
   BoardContainer,
 } from "../../styles/community/Community_M";
-import BoardList from "./components/common/Side_BoardList";
-import PopularTags from "./components/common/Side_PopularTags";
-import TopWriters from "./components/common/Side_TopWriters";
-import WeeklyBest from "./components/common/Side_WeeklyBest";
-import Board_Course_Search from "./components/course/Board_Course_Search";
+import { FloatWriteButton } from "../../styles/community/Board_M";
+
+import Board_TopSort_M from "./components/common/Board_TopSort_M";
+import Board_Course_Search_M from "./components/course/Board_Course_Search_M";
+import Board_Order_M from "./components/common/Board_Order_M";
 import Board_PostList from "./components/common/Board_PostList";
-import Board_TopSort from "./components/common/Board_TopSort";
-import Board_Order from "./components/common/Board_Order";
 import ScrollToTopButton from "../ScrollToTopButton";
 
 const Community_Course_M = () => {
@@ -38,7 +37,7 @@ const Community_Course_M = () => {
     queryParams.get("enumfilter") || null
   ); // 해쉬태그
   const [search, setSearch] = useState(queryParams.get("search") || null); // 검색
-
+  const userAuth = useSelector((state) => state.auth.accesstoken);
   const boardType = "course";
 
   // TopBox firstpath
@@ -71,6 +70,20 @@ const Community_Course_M = () => {
   const handleEnumFilterChange = (newEnumFilter) => {
     setEnumFilter(newEnumFilter);
   };
+
+    // write post
+    const handleWrite = () => {
+      if (userAuth === "") {
+        alert("로그인이 필요한 서비스입니다.");
+        return navigate("/login");
+      }
+      navigate(`/community/${boardType}/write`, {
+        state: {
+          id: boardType,
+        },
+      });
+    };
+
   return (
     <>
       <Wrap>
@@ -87,14 +100,14 @@ const Community_Course_M = () => {
         </TopBoxWide>
         <Container>
           <BoardContainer>
-            <Board_TopSort boardType={boardType} />
-            <Board_Course_Search
+            <Board_TopSort_M boardType={boardType} />
+            <Board_Course_Search_M
               onEnumFilterRefresh={handleEnumFilterRefresh}
               onSearchChange={handleSearchChange}
               boardType={boardType}
               enumFilter={enumFilter}
             />
-            <Board_Order
+            <Board_Order_M
               boardType={boardType}
               onSortChange={handleSortChange}
             />
@@ -110,6 +123,7 @@ const Community_Course_M = () => {
             />
           </BoardContainer>
         </Container>
+        <FloatWriteButton onClick={() => handleWrite()} />
         <ScrollToTopButton />
       </Wrap>
     </>

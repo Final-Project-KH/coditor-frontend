@@ -469,6 +469,10 @@ export const PostMiddleContentsTitle = styled.div.attrs({
   font-family: "medium", sans-serif;
   color: black;
   margin-bottom: 3px;
+  -webkit-box-orient: vertical; /* 세로로 정렬 */
+  -webkit-line-clamp: 1; /* 두 줄로 제한 */
+  overflow: hidden; /* 넘치는 텍스트 숨기기 */
+  text-overflow: ellipsis; /* 텍스트가 잘릴 때 말줄임 표시 (...) */
 `;
 export const PostMiddleContentsText = styled.div.attrs({
   id: "postmiddlecontentstext",

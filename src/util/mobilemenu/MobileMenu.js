@@ -160,11 +160,7 @@ export const menus = [
     link: "/cs",
     columns: [
       {
-        title: { text: "악성 사용자 신고", link: "/cs/report" },
-        contents: [],
-      },
-      {
-        title: { text: "건의사항", link: "/cs/question" },
+        title: { text: "건의사항", link: "/cs/suggestion" },
         contents: [],
       },
     ],
@@ -194,7 +190,7 @@ export const menus = [
         contents: [
           { text: "community", link: "/mypage/commmunity" },
           { text: "악성 게시글 신고", link: "/mypage/report" },
-          { text: "건의사항", link: "/mypage/question" },
+          { text: "건의사항", link: "/mypage/suggestion" },
         ],
       },
     ],

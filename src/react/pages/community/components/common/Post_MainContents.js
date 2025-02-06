@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   MainPostContainer,
   MainPostTop,
@@ -45,6 +45,7 @@ import {
   TeamDisplayNames,
 } from "../common/DisplayNames";
 import { useSelector } from "react-redux";
+import { languages } from "monaco-editor/esm/metadata";
 
 const Post_MainContents = ({ boardType }) => {
   const { boardId } = useParams();
@@ -57,6 +58,7 @@ const Post_MainContents = ({ boardType }) => {
   const [boardStatus, setBoardStatus] = useState(null);
   const [isExtra, setIsExtra] = useState(false);
   const [isExtraOther, setIsExtraOther] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const userkeynumber = useSelector((state) => state.auth.keynumber);
   const accesstoken = useSelector((state) => state.auth.accesstoken);
@@ -70,10 +72,49 @@ const Post_MainContents = ({ boardType }) => {
     });
   };
 
+  const handleModifyNavigate = () => {
+    navigate(`/community/${boardType}/modify/${boardId}`, {
+      state: {
+        id: boardType,
+        boardId: boardId,
+        boardTitle: posts[0].title,
+        boardContent: posts[0].content,
+        languages: posts[0].language,
+        courses: posts[0].course,
+        studies: posts[0].study,
+        teams: posts[0].team,
+      },
+    });
+  };
+
   const handleExtra = () => {
     setIsExtra(!isExtra);
     console.log(isExtra);
   };
+
+  const closeExtra = () => {
+    setIsExtra(false);
+    setIsExtraOther(false);
+  };
+
+  const extraRef = useRef(null);
+
+  useEffect(() => {
+    if (!isExtra && !isExtraOther) return;
+
+    const handleClickOutside = (event) => {
+      setTimeout(() => {
+        if (extraRef.current && !extraRef.current.contains(event.target)) {
+          setIsExtra(false);
+          setIsExtraOther(false);
+        }
+      }, 300);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isExtra, isExtraOther]);
 
   const handleExtraOther = () => {
     setIsExtraOther(!isExtraOther);
@@ -344,16 +385,16 @@ const Post_MainContents = ({ boardType }) => {
                 {post.updatedAt && (
                   <>
                     <MainPostEditedText>
-                      {/* {new Date(post.updatedAt)
-                      .toLocaleString("ko-KR", {
-                        year: "numeric",
-                        month: "2-digit",
-                        day: "2-digit",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        hour12: false,
-                      })
-                      .replace(/\. /g, ".")} */}
+                      {new Date(post.updatedAt)
+                        .toLocaleString("ko-KR", {
+                          year: "numeric",
+                          month: "2-digit",
+                          day: "2-digit",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: false,
+                        })
+                        .replace(/\. /g, ".")}
                       수정됨
                     </MainPostEditedText>
                     <MiddleDot />
@@ -373,17 +414,27 @@ const Post_MainContents = ({ boardType }) => {
               </MainPostInformation>
               {writerKeyNumber == userkeynumber ? (
                 <MainPostExtra>
-                  <MainPostExtraItemContainer isOpen={isExtra}>
+                  <MainPostExtraItemContainer
+                    ref={extraRef}
+                    isOpen={isExtra}
+                    boardType={boardType}
+                  >
                     {boardType === "coding" && boardStatus === "ACTIVE" ? (
                       <MainPostExtraItem
-                        onClick={() => handleStatus()}
+                        onClick={() => {
+                          handleStatus();
+                          closeExtra();
+                        }}
                         isOpen={isExtra}
                       >
                         해결됨으로 변경
                       </MainPostExtraItem>
                     ) : boardType === "coding" && boardStatus === "INACTIVE" ? (
                       <MainPostExtraItem
-                        onClick={() => handleStatus()}
+                        onClick={() => {
+                          handleStatus();
+                          closeExtra();
+                        }}
                         isOpen={isExtra}
                       >
                         미해결로 변경
@@ -391,7 +442,10 @@ const Post_MainContents = ({ boardType }) => {
                     ) : (boardType === "study" || boardType === "team") &&
                       boardStatus === "ACTIVE" ? (
                       <MainPostExtraItem
-                        onClick={() => handleStatus()}
+                        onClick={() => {
+                          handleStatus();
+                          closeExtra();
+                        }}
                         isOpen={isExtra}
                       >
                         모집완료로 변경
@@ -400,18 +454,32 @@ const Post_MainContents = ({ boardType }) => {
                       (boardType === "study" || boardType === "team") &&
                       boardStatus === "INACTIVE" && (
                         <MainPostExtraItem
-                          onClick={() => handleStatus()}
+                          onClick={() => {
+                            handleStatus();
+                            closeExtra();
+                          }}
                           isOpen={isExtra}
                         >
                           모집중으로 변경
                         </MainPostExtraItem>
                       )
                     )}
-                    <MainPostExtraItem isOpen={isExtra}>
+                    <MainPostExtraItem
+                      boardType={boardType}
+                      isOpen={isExtra}
+                      onClick={() => {
+                        handleModifyNavigate();
+                        closeExtra();
+                      }}
+                    >
                       글 수정
                     </MainPostExtraItem>
                     <MainPostExtraItem
-                      onClick={() => handleDelete()}
+                      boardType={boardType}
+                      onClick={() => {
+                        handleDelete();
+                        closeExtra();
+                      }}
                       isOpen={isExtra}
                     >
                       글 삭제
@@ -423,7 +491,10 @@ const Post_MainContents = ({ boardType }) => {
                 </MainPostExtra>
               ) : writerKeyNumber != userkeynumber && userkeynumber !== "" ? (
                 <MainPostExtra>
-                  <MainPostExtraItemOtherContainer isOpenOther={isExtraOther}>
+                  <MainPostExtraItemOtherContainer
+                    ref={extraRef}
+                    isOpenOther={isExtraOther}
+                  >
                     <MainPostExtraOtherItem isOpenOther={isExtraOther}>
                       게시글 신고
                     </MainPostExtraOtherItem>

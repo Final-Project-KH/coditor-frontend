@@ -18,20 +18,6 @@ import { useSelector } from "react-redux";
 const Board_Order_M = ({ boardType, onSortChange }) => {
   const navigate = useNavigate();
   const [activeOrder, setActiveOrder] = useState("createdAt");
-  const userAuth = useSelector((state) => state.auth.accesstoken);
-
-  // write post
-  const handleWrite = () => {
-    if (userAuth === "") {
-      alert("로그인이 필요한 서비스입니다.");
-      return navigate("/login");
-    }
-    navigate(`/community/${boardType}/write`, {
-      state: {
-        id: boardType,
-      },
-    });
-  };
 
   // order posts
   const handleSort = (sortBy) => {
@@ -215,9 +201,6 @@ const Board_Order_M = ({ boardType, onSortChange }) => {
       <MiddleSortOuterContiner>
         <MiddleSortInnerContainer>
           {renderOrderOptions()}
-          {/* <MiddleWriteButton onClick={() => handleWrite()}>
-            글쓰기
-          </MiddleWriteButton> */}
         </MiddleSortInnerContainer>
       </MiddleSortOuterContiner>
     </>

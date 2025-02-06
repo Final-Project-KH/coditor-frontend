@@ -31,7 +31,7 @@ export const StudyDisplayNames = {
   ALGORITHM: "# 알고리즘",
   STRUCTURE: "# 자료구조",
   CODING: "# 코딩테스트",
-  ECT: "# 기타",
+  ETC: "# 기타",
   NONE: "",
 };
 
@@ -41,6 +41,6 @@ export const TeamDisplayNames = {
   DBA: "# DBA",
   DBS: "# DBS",
   DESIGNER: "# 디자이너",
-  ECT: "# 기타",
+  ETC: "# 기타",
   NONE: "",
 };

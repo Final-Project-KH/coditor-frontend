@@ -42,7 +42,7 @@ export const TopBoxWide2 = styled.div.attrs({
   top: 115px;
   z-index: 5;
   border-bottom: 1px solid #313131;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   white-space: nowrap; /* 줄바꿈 방지 */
 `;
@@ -57,6 +57,7 @@ export const TopBox = styled.div.attrs({
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
+  z-index: 5;
 `;
 
 export const TopBox2 = styled.div.attrs({
@@ -69,6 +70,7 @@ export const TopBox2 = styled.div.attrs({
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
+  z-index: 5;
 `;
 
 export const TopBoxText = styled.div.attrs({
@@ -160,13 +162,14 @@ export const MainPostContainer = styled.div.attrs({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   &::after {
     content: "";
     width: 100%;
     height: 1px;
     background-color: black;
     transform: scaleY(0.5);
+    margin-top: 10px;
   }
 `;
 export const MainPostTopBox = styled.div.attrs({
@@ -205,10 +208,10 @@ export const MainPostTitleArea = styled.div.attrs({
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 5px;
+  flex-direction: column;
+  align-items: left;
+  gap: 10px;
+  margin-top: -3px;
 `;
 export const MainPostPending = styled.div.attrs({
   id: "mainpostpending",
@@ -349,7 +352,6 @@ export const MainPostContentsPending = styled.div.attrs({
   align-items: center;
   color: black;
   padding: 5px 14px;
-  margin-left: 5px;
 `;
 export const MainPostContentsSolved = styled.div.attrs({
   id: "mainpostcontentssolved",
@@ -363,7 +365,6 @@ export const MainPostContentsSolved = styled.div.attrs({
   align-items: center;
   color: white;
   padding: 5px 14px;
-  margin-left: 5px;
 `;
 export const MainPostExtra = styled.div.attrs({
   id: "mainpostextra",
@@ -414,6 +415,41 @@ export const MainPostExtraItemContainer = styled.div.attrs({
       : css`
           animation: ${collapseHeight} 0.3s ease-out forwards;
         `}
+  ${(props) =>
+    !props.isOpen &&
+    css`
+      cursor: none;
+      pointer-events: none;
+    `}
+`;
+export const MainPostExtraItemOtherContainer = styled.div.attrs({
+  id: "mainpostextraitemothercontainer",
+})`
+  width: 150px;
+  height: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  border-radius: 10px;
+  border: 1px solid #dadcdf;
+  ${(props) =>
+    props.isOpenOther
+      ? css`
+          animation: ${expandHeightOther} 0.3s ease-out forwards;
+        `
+      : css`
+          animation: ${collapseHeightOther} 0.3s ease-out forwards;
+        `}
+  ${(props) =>
+    !props.isOpenOther &&
+    css`
+      cursor: none;
+      pointer-events: none;
+    `}
 `;
 const expandHeight = keyframes`
   0% {
@@ -428,6 +464,26 @@ const expandHeight = keyframes`
 const collapseHeight = keyframes`
   0% {
     height: 170px;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+`;
+const expandHeightOther = keyframes`
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 60px;
+    opacity: 1;
+  }
+`;
+const collapseHeightOther = keyframes`
+  0% {
+    height: 60px;
     opacity: 1;
   }
   100% {
@@ -464,6 +520,29 @@ export const MainPostExtraItem = styled.div.attrs({
   }
   ${(props) =>
     !props.isOpen &&
+    css`
+      color: transparent;
+    `}
+`;
+export const MainPostExtraOtherItem = styled.div.attrs({
+  id: "mainpostextraotheritem",
+})`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 13px;
+  font-family: "medium", sans-serif;
+  user-select: none;
+  cursor: pointer;
+  &:hover {
+    font-family: "bold", sans-serif;
+  }
+  ${(props) =>
+    !props.isOpenOther &&
     css`
       color: transparent;
     `}
@@ -572,8 +651,7 @@ export const MainPostContentsText = styled.div.attrs({
   font-size: 16px;
   font-family: "regular", sans-serif;
   color: black;
-  margin-bottom: 50px;
-  line-height: 30px;
+  line-height: 156%;
   padding-left: 10px;
 `;
 export const MainPostTagsBox = styled.div.attrs({
@@ -773,21 +851,27 @@ export const RightContainer = styled.div.attrs({
 export const UserProfileBox = styled.div.attrs({
   id: "userprofilebox",
 })`
-  width: 100%;
-  padding: 20px;
+  width: 100vw;
+  margin-left: -20px;
+  margin-top: -20px;
+  padding: 10px;
+  padding-left: 15px;
   display: flex;
   flex-direction: row;
-  gap: 25px;
+  gap: 10px;
   justify-content: flex-start;
   align-items: center;
-  border: 1px solid #f1f1f1;
-  border-radius: 10px;
+  box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  position: sticky;
+  top: 100px;
+  z-index: 9;
 `;
 export const UserProfileImg = styled.div.attrs({
   id: "userprofileimg",
 })`
-  width: 80px;
-  height: 80px;
+  width: 35px;
+  height: 35px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -815,7 +899,7 @@ export const UserId = styled.div.attrs({
   id: "userid",
 })`
   text-align: left;
-  font-size: 24px;
+  font-size: 16px;
   font-family: "extrabold", sans-serif;
   color: rgba(0, 0, 0, 0.8);
 `;
@@ -823,7 +907,7 @@ export const UserPostAmount = styled.div.attrs({
   id: "userpostamount",
 })`
   text-align: left;
-  font-size: 20px;
+  font-size: 16px;
   font-family: "medium", sans-serif;
   color: rgba(0, 0, 0, 0.4);
 `;
@@ -997,8 +1081,7 @@ export const WriteContainer = styled.div.attrs({
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 25px;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   overflow: none;
 `;
 
@@ -1026,26 +1109,26 @@ export const WriteSortInnerContainer = styled.div.attrs({
 export const WriteSortTitleActive = styled.div.attrs({
   id: "writesorttitleactive",
 })`
-  width: 150px;
-  height: 80px;
+  width: 25%;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: black;
-  font-size: 24px;
+  font-size: 18px;
   font-family: "semibold", sans-serif;
   border-bottom: 2px solid black;
 `;
 export const WriteSortTitleInactive = styled.div.attrs({
   id: "writesorttitleinactive",
 })`
-  width: 150px;
-  height: 80px;
+  width: 25%;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: rgba(0, 0, 0, 0.4);
-  font-size: 24px;
+  font-size: 18px;
   font-family: "semibold", sans-serif;
 `;
 
@@ -1069,16 +1152,16 @@ export const WriteBoardLink = styled.button.attrs({
 export const WriteTitleBox = styled.div.attrs({
   id: "writetitlebox",
 })`
+  margin-top: 10px;
   width: 100%;
-  height: 50px;
 `;
 export const WriteTitle = styled.input.attrs({
   id: "writetitle",
 })`
   width: 100%;
-  padding: 5px 25px;
+  padding: 5px 15px;
   font-family: "bold", sans-serif;
-  font-size: 32px;
+  font-size: 24px;
   color: black;
   border: none;
   &:focus {
@@ -1093,6 +1176,7 @@ export const WriteTagBox = styled.div.attrs({
 })`
   width: 100%;
   height: 35px;
+  margin-bottom: 20px;
 `;
 export const WriteTags = styled.input.attrs({
   id: "writetags",
@@ -1117,7 +1201,7 @@ export const TipTapBox = styled.div.attrs({
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 10px;
   padding-left: 10px;
   padding-right: 10px;
 `;
@@ -1125,14 +1209,13 @@ export const EditorArea = styled.div.attrs({
   id: "editorarea",
 })`
   width: 100%;
-  height: calc(100vh - 350px);
+  height: calc(100vh - 262px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
   border: 1px solid #f1f1f1;
   border-radius: 10px;
-  flex-wrap: wrap;
   overflow: auto;
 `;
 export const ToolBarContainer = styled.div.attrs({
@@ -1143,22 +1226,29 @@ export const ToolBarContainer = styled.div.attrs({
   width: 100%;
   height: 50px;
   max-width: 1280px;
-  border-bottom: 1px solid #f1f1f1;
 `;
 export const WriteButtonsArea = styled.div.attrs({
   id: "writebuttonsarea",
 })`
-  width: 100%;
+  width: 100vw;
+  height: 80px;
+  margin-left: -10px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  gap: 15px;
+  justify-content: center;
+  gap: 10px;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  padding: 10px;
+  border-top: 1px solid #f1f1f1;
+  box-shadow: 0 0 20px 1px #f1f1f1;
 `;
 export const WriteCancelButton = styled.div.attrs({
   id: "writecancelbutton",
 })`
-  width: 120px;
-  height: 50px;
+  width: 50%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1173,8 +1263,8 @@ export const WriteCancelButton = styled.div.attrs({
 export const WriteSubmitButton = styled.div.attrs({
   id: "writesutmitbutton",
 })`
-  width: 120px;
-  height: 50px;
+  width: 50%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
