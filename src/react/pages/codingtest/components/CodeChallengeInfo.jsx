@@ -58,7 +58,7 @@ const CodeChallengeInfo = ({ setHeaderTitle, setCodeEditorValue }) => {
     <CssWrapper>
       <div className="challenge-title">
         <div>
-          <span>문제 이름</span>
+          <span>제목</span>
         </div>
         <div>
           <p>{challengeDetail.title}</p>
@@ -69,7 +69,7 @@ const CodeChallengeInfo = ({ setHeaderTitle, setCodeEditorValue }) => {
           <span>설명</span>
         </div>
         <div>
-          <span>문제</span>
+          <span>문제 상세</span>
           <p>{challengeDetail.description}</p>
           <span>조건</span>
           <p>{challengeDetail.cond}</p>
@@ -79,7 +79,7 @@ const CodeChallengeInfo = ({ setHeaderTitle, setCodeEditorValue }) => {
       </div>
       <div className="challenge-io-example">
         <div>
-          <span>문제 정답 예시</span>
+          <span>정답 예시</span>
         </div>
         <div>{challengeIoExample[questionId]}</div>
       </div>
@@ -91,6 +91,35 @@ export default CodeChallengeInfo;
 
 const challengeIoExample = {
   1: (
+    <table>
+      <colgroup>
+        <col style={{ width: "33.33%" }} />
+        <col style={{ width: "33.33%" }} />
+        <col style={{ width: "33.33%" }} />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>x</th>
+          <th>y</th>
+          <th>answer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5</td>
+          <td>7</td>
+          <td>12</td>
+        </tr>
+        <tr>
+          <td>-2</td>
+          <td>3</td>
+          <td>1</td>
+        </tr>
+      </tbody>
+    </table>
+  ),
+
+  2: (
     <table>
       <colgroup>
         <col style={{ width: "33.33%" }} />

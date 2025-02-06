@@ -124,7 +124,12 @@ pre code {
 }
 
 .css-1rju2q6-MuiButtonBase-root-MuiMenuItem-root.Mui-selected:hover {
-  background-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+.css-1toxriw-MuiList-root-MuiMenu-list {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
 }
 `;
 
