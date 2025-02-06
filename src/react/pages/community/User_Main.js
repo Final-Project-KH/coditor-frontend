@@ -1,4 +1,9 @@
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from "react-router-dom";
 
 import {
   Container,
@@ -17,19 +22,20 @@ import {
   UserId,
   UserPostAmount,
 } from "../../styles/community/User";
-import {PathLink} from "../../styles/community/Community";
+import { PathLink } from "../../styles/community/Community";
 import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
 import User_Feed from "./components/common/User_Feed";
 import Board_Community_Main from "./components/common/Board_Community_Main";
 import Board_Community_User from "./components/common/Board_Community_User";
 import ScrollToTopButton from "../ScrollToTopButton";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import AxiosApi from "../../../api/AxiosApi";
+import User_Main_M from "./User_Main_M";
 
 const User_Main = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {writerKey} = location.state || {};
+  const { writerKey } = location.state || {};
   const [writerProfile, setWriterProfile] = useState(null);
   const [writerName, setWriterName] = useState("");
   const [writerPostCnt, setWriterPostCnt] = useState(null);
@@ -37,6 +43,15 @@ const User_Main = () => {
   const queryParams = new URLSearchParams(location.search);
   const [page, setPage] = useState(queryParams.get("page") || 1);
   const [size, setSize] = useState(queryParams.get("size") || 10);
+  const { mainContentRef } = useOutletContext();
+  const { isMobile } = useOutletContext();
+
+  // 페이지 진입 시 스크롤 위치 초기화
+  useEffect(() => {
+    if (mainContentRef?.current) {
+      mainContentRef.current.scrollTo(0, 0);
+    }
+  }, [mainContentRef]);
 
   useEffect(() => {
     const readUserPost = async () => {
@@ -78,44 +93,48 @@ const User_Main = () => {
 
   return (
     <>
-      <Wrap>
-        <TopBoxWide>
-          <TopBox>
-            <PathLink onClick={() => handleCommunity()}>
-              <TopBoxText>community</TopBoxText>
-            </PathLink>
-            <TopBoxArrow>{`>`}</TopBoxArrow>
-            <PathLink onClick={() => handleRefresh()}>
-              <TopBoxText>User Page</TopBoxText>
-            </PathLink>
-          </TopBox>
-        </TopBoxWide>
-        <Container>
-          <LeftContainer>
-            <UserProfileBox style={{cursor: "pointer"}}>
-              <UserProfileImg isProfile={writerProfile} />
-              <UserProfileTextBox>
-                <UserId>{writerName}</UserId>
-                <UserPostAmount>작성한 질문수 {writerPostCnt}</UserPostAmount>
-              </UserProfileTextBox>
-            </UserProfileBox>
-          </LeftContainer>
-          <RightContainer>
-            <User_Feed intro={writerSelfIntro} />
-            <PostContainer>
-              <PostTitle>작성글</PostTitle>
-              <Board_Community_User
-                writerName={writerName}
-                writerKey={writerKey}
-                writerProfile={writerProfile}
-                page={page}
-                size={size}
-              />
-            </PostContainer>
-          </RightContainer>
-        </Container>
-        <ScrollToTopButton />
-      </Wrap>
+      {isMobile ? (
+        <User_Main_M />
+      ) : (
+        <Wrap>
+          <TopBoxWide>
+            <TopBox>
+              <PathLink onClick={() => handleCommunity()}>
+                <TopBoxText>community</TopBoxText>
+              </PathLink>
+              <TopBoxArrow>{`>`}</TopBoxArrow>
+              <PathLink onClick={() => handleRefresh()}>
+                <TopBoxText>User Page</TopBoxText>
+              </PathLink>
+            </TopBox>
+          </TopBoxWide>
+          <Container>
+            <LeftContainer>
+              <UserProfileBox style={{ cursor: "pointer" }}>
+                <UserProfileImg isProfile={writerProfile} />
+                <UserProfileTextBox>
+                  <UserId>{writerName}</UserId>
+                  <UserPostAmount>작성한 질문수 {writerPostCnt}</UserPostAmount>
+                </UserProfileTextBox>
+              </UserProfileBox>
+            </LeftContainer>
+            <RightContainer>
+              <User_Feed intro={writerSelfIntro} />
+              <PostContainer>
+                <PostTitle>작성글</PostTitle>
+                <Board_Community_User
+                  writerName={writerName}
+                  writerKey={writerKey}
+                  writerProfile={writerProfile}
+                  page={page}
+                  size={size}
+                />
+              </PostContainer>
+            </RightContainer>
+          </Container>
+          <ScrollToTopButton />
+        </Wrap>
+      )}
     </>
   );
 };
