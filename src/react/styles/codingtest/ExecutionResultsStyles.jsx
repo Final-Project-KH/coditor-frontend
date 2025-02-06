@@ -39,6 +39,10 @@ export const ExecutionResultsStyles = styled.div`
 
     color: white;
 
+    & > p {
+      font-size: 16px;
+    }
+
     ul {
       list-style: none;
     }
@@ -49,13 +53,27 @@ export const ExecutionResultsStyles = styled.div`
       .output-detail-toggle-btn {
         margin-top: 10px;
         padding: 5px 10px;
-        background-color: #333;
-        color: white;
+
         border: none;
+        border-radius: 4px;
+
+        background-color: #333;
+
+        color: white;
+
         cursor: pointer;
         &:hover {
           background-color: #555;
         }
+      }
+
+      & > p,
+      & > span {
+        font-size: 16px;
+      }
+
+      & > span {
+        margin-right: 12px;
       }
     }
 
@@ -82,5 +100,22 @@ export const ExecutionResultsStyles = styled.div`
 
   ::-webkit-scrollbar-button {
     display: none; /* 화살표 제거 */
+  }
+
+  @media (max-width: 767px) {
+    & > div:first-child {
+      & > span {
+        font-size: 16px;
+      }
+    }
+
+    & > div:last-child {
+      li {
+        & > span,
+        & > p {
+          font-size: 14px;
+        }
+      }
+    }
   }
 `;

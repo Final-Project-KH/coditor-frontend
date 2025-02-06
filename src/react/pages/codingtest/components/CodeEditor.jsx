@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Editor } from "@monaco-editor/react";
 
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -16,11 +15,8 @@ const CodeEditor = ({
   handleCancelButtonClick,
   isConnectedRef,
 }) => {
-  const [editorHeight, setEditorHeight] = useState("100%");
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [language, setLanguage] = useState("Java");
-
-  const editorHeaderElemRef = useRef(null);
 
   /**
    * [설명]
@@ -57,52 +53,22 @@ const CodeEditor = ({
     }
   }, []);
 
-  const initEditor = useCallback((editor) => {
-    editor.focus();
-
-    const updateEditorHeight = () => {
-      if (editorHeaderElemRef.current) {
-        const headerHeight = editorHeaderElemRef.current.offsetHeight;
-        setEditorHeight(`calc(100% - ${headerHeight}px)`);
-      }
-    };
-
-    updateEditorHeight();
-
-    const resizeObserver = new ResizeObserver(() => {
-      updateEditorHeight();
-      editor.layout();
-    });
-
-    if (editorHeaderElemRef.current) {
-      resizeObserver.observe(editorHeaderElemRef.current);
-    }
-
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, []);
-
   return (
     <CssWrapper>
-      <div ref={editorHeaderElemRef}>
+      <div>
         <span>CODE EDITOR</span>
         <div>
-          <FormControl
-            style={{ fontSize: "0.8em" }}
-            sx={{ m: 1, minWidth: 120 }}
-            size="small"
-          >
-            <InputLabel style={{ color: "white" }}>Language</InputLabel>
+          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
             <Select
-              style={{ color: "white" }}
+              style={{ color: "white", fontSize: "12px" }}
               value={language}
-              label="Language"
               onChange={(event) => {
                 setLanguage(event.target.value);
               }}
             >
-              <MenuItem value={"Java"}>Java</MenuItem>
+              <MenuItem style={{ fontSize: "12px" }} value={"Java"}>
+                Java
+              </MenuItem>
             </Select>
           </FormControl>
           <button
@@ -132,13 +98,16 @@ const CodeEditor = ({
         </div>
       </div>
       <Editor
-        height={editorHeight}
+        height="calc(100% - 49px)"
         defaultLanguage={codeLanguage.toLowerCase()}
-        onMount={initEditor}
+        onMount={(editor) => {
+          editor.focus();
+        }}
         theme="vs-dark"
         value={value}
         onChange={(value) => setValue(value)}
         options={{
+          scrollBeyondLastLine: false, // 마지막 줄 이후로 스크롤 X
           tabSize: 2, // 탭 크기 설정 (2칸)
           minimap: {
             enabled: false,

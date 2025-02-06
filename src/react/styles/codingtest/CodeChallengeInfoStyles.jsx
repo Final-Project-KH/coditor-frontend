@@ -5,13 +5,14 @@ export const CodeChallengeInfoStyles = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
   width: 100%;
 
   padding-left: 25px;
 
   .challenge-title {
+    margin-bottom: 32px;
+
     & > div:first-child {
       border-radius: 30px 30px 0px 0px;
 
@@ -46,6 +47,8 @@ export const CodeChallengeInfoStyles = styled.div`
   }
 
   .challenge-desc {
+    margin-bottom: 32px;
+
     & > div:first-child {
       border-radius: 30px 30px 0px 0px;
 
@@ -115,6 +118,8 @@ export const CodeChallengeInfoStyles = styled.div`
   }
 
   .challenge-io-example {
+    margin-bottom: 32px;
+
     & > div:first-child {
       display: flex;
 
@@ -127,7 +132,7 @@ export const CodeChallengeInfoStyles = styled.div`
       & > span {
         padding: 10px 25px;
 
-        font-family: "bold", sans-serif;
+        font-family: "medium", sans-serif;
         font-size: 20px;
       }
     }
@@ -175,13 +180,13 @@ export const CodeChallengeInfoStyles = styled.div`
     padding-left: 0;
 
     .challenge-title {
+      margin-bottom: 16px;
+
       & > div:first-child {
         border-radius: 14px 14px 0px 0px;
       }
 
       & > div:nth-child(2) {
-        margin-bottom: 1rem;
-
         border-radius: 0px 0px 14px 14px;
       }
 
@@ -195,12 +200,12 @@ export const CodeChallengeInfoStyles = styled.div`
     }
 
     .challenge-desc {
+      margin-bottom: 16px;
+
       & > div:first-child {
         border-radius: 14px 14px 0px 0px;
       }
       & > div:nth-child(2) {
-        margin-bottom: 1rem;
-
         border-radius: 0px 0px 14px 14px;
       }
 
@@ -219,6 +224,8 @@ export const CodeChallengeInfoStyles = styled.div`
     }
 
     .challenge-io-example {
+      margin-bottom: 16px;
+
       & > div:first-child {
         border-radius: 14px 14px 0px 0px;
       }
@@ -229,7 +236,6 @@ export const CodeChallengeInfoStyles = styled.div`
 
       & table {
         font-size: 14px;
-        margin-bottom: 1rem;
       }
 
       & tr:last-child td:first-child {

@@ -26,7 +26,7 @@ import {
 import AxiosApi from "../../../../../api/AxiosApi";
 import Board_Pagination from "./Board_Pagination";
 
-const Board_PostList_MyPage_Question = ({
+const Board_PostList_MyPage_Suggestion = ({
   page,
   size,
   status,
@@ -132,4 +132,4 @@ const Board_PostList_MyPage_Question = ({
   );
 };
 
-export default Board_PostList_MyPage_Question;
+export default Board_PostList_MyPage_Suggestion;

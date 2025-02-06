@@ -119,12 +119,75 @@ export const CodeChallengeStyles = styled.div`
   }
 
   @media (max-width: 767px) {
+    header {
+      .logo {
+        width: 40px !important;
+        height: 40px !important;
+      }
+
+      .menu-tree-indicator {
+        font-size: 16px !important;
+      }
+
+      & > div:first-child .menu-tree-indicator > span:nth-child(2)::before,
+      & > div:first-child .menu-tree-indicator > span:nth-child(2)::after {
+        content: "〉";
+        margin: 0 0 0 8px;
+      }
+
+      .leave-page-btn {
+        width: 80px !important;
+        height: 40px !important;
+      }
+    }
     main {
       flex-direction: column-reverse;
 
       & > div {
         width: 100% !important;
       }
+
+      & > div:first-child > div:first-child {
+        min-height: 480px;
+      }
+
+      & > div:first-child > div:last-child {
+        height: 240px;
+      }
+    }
+  }
+
+  @media (max-width: 539px) {
+    header {
+      flex-direction: column;
+      align-items: start;
+
+      height: auto;
+
+      .menu-tree-indicator {
+        font-size: 14px !important;
+      }
+
+      & > div:first-child {
+      }
+
+      & > div:last-child {
+        align-self: end;
+      }
+
+      .leave-page-btn {
+        width: 80px !important;
+        height: 40px !important;
+
+        margin-top: 16px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  @media (max-width: 479px) {
+    main > div:first-child {
+      min-width: auto;
     }
   }
 `;

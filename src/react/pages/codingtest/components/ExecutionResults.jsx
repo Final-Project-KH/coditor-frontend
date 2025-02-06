@@ -25,7 +25,7 @@ const ExecutionResults = ({ results }) => {
       </div>
       <div>
         {results === null ? (
-          <p style={{ fontSize: "18px" }}>코드 실행 결과가 표시됩니다.</p>
+          <p>코드 실행 결과가 표시됩니다.</p>
         ) : (
           Object.keys(results).length > 0 && (
             <ul>
@@ -46,13 +46,7 @@ const ExecutionResults = ({ results }) => {
                       {result.runningTime && (
                         <p>실행 시간: {result.runningTime}ms</p>
                       )}
-                      {result.error && (
-                        <span
-                          style={{ fontSize: "14px", marginRight: "0.5em" }}
-                        >
-                          {result.error}
-                        </span>
-                      )}
+                      {result.error && <span>{`${result.error}!`}</span>}
 
                       {!result.success && result.detail && (
                         <button

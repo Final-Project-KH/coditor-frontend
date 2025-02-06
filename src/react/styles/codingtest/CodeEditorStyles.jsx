@@ -52,8 +52,8 @@ export const CodeEditorStyles = styled.div`
 
     p {
       position: absolute;
-      right: -1rem;
-      bottom: -3em;
+      right: -16px;
+      bottom: -48px;
 
       z-index: 15;
 
@@ -70,7 +70,7 @@ export const CodeEditorStyles = styled.div`
 
       background-color: #f1f1f1;
 
-      font-size: 1em;
+      font-size: 14px;
     }
   }
 
@@ -78,10 +78,25 @@ export const CodeEditorStyles = styled.div`
     transform: scale(1.1);
   }
 
+  .MuiFormControl-root {
+    margin: 0;
+  }
   .MuiSelect-root > fieldset,
   .MuiSelect-root > fieldset:focus,
   .MuiSelect-root > svg {
     border-color: white !important;
     color: white !important;
+  }
+
+  @media (max-width: 767px) {
+    & > div:first-child {
+      & > span {
+        font-size: 16px;
+      }
+    }
+
+    & > section {
+      min-height: 436px;
+    }
   }
 `;
