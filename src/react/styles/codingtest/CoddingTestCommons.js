@@ -33,6 +33,10 @@ export const TopBoxWide = styled.div.attrs({
   position: fixed;
   top: 100px;
   z-index: 5;
+
+  @media (max-width: 768px) {
+    top: 65px;
+  }
 `;
 export const TopBox = styled.div.attrs({
   id: "topbox",
@@ -98,6 +102,21 @@ export const LeftContainer = styled.div.attrs({
   align-items: center;
   left: 0;
   gap: 50px;
+
+  @media (max-width: 768px) {
+    & > div:last-child blockquote,
+    #leftsubjectcontainer {
+      font-size: 16px;
+    }
+
+    & > div:last-child blockquote + * {
+      font-size: 14px;
+    }
+
+    & > div:last-child span {
+      font-size: 12px;
+    }
+  }
 `;
 export const LeftTopSubjectContainer = styled.div.attrs({
   id: "leftsubjectcontainer",
@@ -278,6 +297,15 @@ export const EachClass = styled.div.attrs({
   flex-direction: column;
   align-items: center;
   position: relative;
+
+  @media (max-width: 768px) {
+    div {
+      font-size: 16px;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
 `;
 export const ClassHeader = styled.div.attrs({
   id: "classheader",
@@ -290,14 +318,6 @@ export const ClassHeader = styled.div.attrs({
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 30px 30px 0px 0px;
-  ${(props) =>
-    props.isOpen
-      ? css`
-          border-radius: 30px 30px 0px 0px;
-        `
-      : css`
-          border-radius: 30px;
-        `}
 `;
 export const ClassHeaderTitle = styled.div.attrs({
   id: "classheadertitle",
@@ -344,7 +364,7 @@ export const ClassSet = styled.div.attrs({
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  & + &::before {
+  /* & + &::before {
     content: "";
     position: absolute;
     width: 710px;
@@ -352,9 +372,9 @@ export const ClassSet = styled.div.attrs({
     height: 1px;
     background-color: black;
     transform: rotate(0deg);
-  }
+  } */
 `;
-export const ClassName = styled.div.attrs({
+export const ClassName = styled.p.attrs({
   id: "classname",
 })`
   color: black;
@@ -364,7 +384,7 @@ export const ClassName = styled.div.attrs({
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 5px 20px;
-  display: flex;
+  display: inline-block;
   position: relative;
   &:hover {
     text-decoration: none; /* 호버 시 밑줄 추가 */
