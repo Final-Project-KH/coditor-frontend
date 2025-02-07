@@ -10,6 +10,7 @@ import {
   EmailInput,
   SubmitButton,
   PasswordInput,
+  Messages,
 } from "../../../styles/mypage/MyPage";
 import AxiosApi from "../../../../api/AxiosApi";
 import { useNavigate } from "react-router-dom";
@@ -137,14 +138,14 @@ const AccountManager_Account = () => {
             </InputContainer>
 
             {message && (
-              <p
+              <Messages
                 style={{
                   color: isPwVerified ? "green" : "red",
-                  marginTop: "10px",
+                  marginTop: "-10px",
                 }}
               >
                 {message}
-              </p>
+              </Messages>
             )}
           </AccountEachContainer>
         </CenterContentsContainer>

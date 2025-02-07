@@ -10,7 +10,7 @@ export const RightContainerEach = styled.div.attrs({
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   box-sizing: border-box;
   border-radius: 15px;
   border: 1px solid #f1f1f1;
@@ -77,8 +77,8 @@ export const ProfileEditButton = styled.div.attrs({
   display: flex;
   border-radius: 50%;
   position: absolute;
-  margin-right: -80px;
-  top: 155px;
+  top: 205px;
+  left: 130px;
   z-index: 3;
   cursor: pointer;
   background-position: center;

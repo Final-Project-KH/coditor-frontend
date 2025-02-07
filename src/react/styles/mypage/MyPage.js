@@ -533,3 +533,12 @@ export const SubjectContainer = styled.div.attrs({
   justify-content: center;
   gap: 25px;
 `;
+export const Messages = styled.div.attrs({
+  id: "messages",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: "regular", sans-serif;
+  font-size: 12px;
+`;
