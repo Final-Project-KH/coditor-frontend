@@ -101,7 +101,7 @@ export const LeftContainer = styled.div.attrs({
   flex-direction: column;
   align-items: center;
   left: 0;
-  gap: 50px;
+  gap: 25px;
 
   @media (max-width: 768px) {
     & > div:last-child blockquote,
@@ -320,7 +320,7 @@ export const ClassHeader = styled.div.attrs({
           border-radius: 30px 30px 0px 0px;
         `
       : css`
-          border-radius: 30px;
+          border-radius: 30px 30px 0 0;
         `}
 `;
 export const ClassHeaderTitle = styled.div.attrs({
