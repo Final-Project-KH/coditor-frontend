@@ -30,6 +30,9 @@ import {
   RightContentsContainer,
   RightNicknameText,
   RightNicknameIcon,
+  RightNicknameInput,
+  RightNicknameButton,
+  NicknameErrorText,
 } from "../../../styles/mypage/MyPage_ProfileIMG";
 
 const AccountManager_ProfileIMG = () => {
@@ -50,6 +53,43 @@ const AccountManager_ProfileIMG = () => {
   const fileInputRef = useRef(null);
   const [cropSize, setCropSize] = useState({ width: 0, height: 0 });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [newNickname, setNewNickname] = useState(nickname);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isNicknameAvailable, setIsNicknameAvailable] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  // 닉네임 중복 검사 실행
+  useEffect(() => {
+    if (newNickname && newNickname !== nickname) {
+      setLoading(true);
+      const checkNickname = async () => {
+        const available = await AxiosApi.checkNicknameAvailability(newNickname);
+        setIsNicknameAvailable(available);
+        setLoading(false);
+      };
+      checkNickname();
+    }
+  }, [newNickname]);
+
+  // 닉네임 변경 요청
+  const handleNicknameChange = async () => {
+    if (!isNicknameAvailable) {
+      alert("이미 사용 중인 닉네임입니다.");
+      return;
+    }
+
+    try {
+      const success = await AxiosApi.changeNickname(newNickname);
+      if (success) {
+        dispatch(setLoginData({ nickname: newNickname })); // Redux 상태 업데이트
+        setIsEditing(false);
+      } else {
+        alert("닉네임 변경에 실패했습니다.");
+      }
+    } catch (error) {
+      alert("닉네임 변경 중 오류가 발생했습니다.");
+    }
+  };
 
   useEffect(() => {
     if (!preview) return;
@@ -332,10 +372,32 @@ const AccountManager_ProfileIMG = () => {
         </RightContentsContainer>
         <RightContentsContainer>
           <RightContainerTitle>닉네임</RightContainerTitle>
-          <RightNicknameBox>
-            <RightNicknameText>{nickname}</RightNicknameText>
-            <RightNicknameIcon />
+          <RightNicknameBox onClick={() => setIsEditing(true)}>
+            {isEditing ? (
+              <>
+                <RightNicknameInput
+                  type="text"
+                  value={newNickname}
+                  onChange={(e) => setNewNickname(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleNicknameChange()} // 엔터 키 입력 시 변경
+                />
+                <RightNicknameButton
+                  onClick={handleNicknameChange}
+                  disabled={!isNicknameAvailable || loading}
+                >
+                  <RightNicknameIcon />
+                </RightNicknameButton>{" "}
+              </>
+            ) : (
+              <>
+                <RightNicknameText>{nickname}</RightNicknameText>
+                <RightNicknameIcon />
+              </>
+            )}
           </RightNicknameBox>
+          {!isNicknameAvailable && (
+            <NicknameErrorText>이미 사용 중인 닉네임입니다.</NicknameErrorText>
+          )}
         </RightContentsContainer>
       </RightContainerEach>
 
