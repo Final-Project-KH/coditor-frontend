@@ -43,13 +43,8 @@ const AccountManager_Account = () => {
 
   // 현재 비밀번호 확인 요청 (checkCurrentPassword API 호출)
   const handlePasswordCheck = async () => {
-    if (!currentPw) {
-      setMessage("현재 비밀번호를 입력하세요.");
-      return;
-    }
-
     try {
-      const isMatch = await AxiosApi.checkCurrentPassword(currentPw);
+      const isMatch = await AxiosApi.checkCurrentPassword(currentPw || ""); // null이든 빈 문자열이든 그대로 요청 전송
       if (isMatch) {
         setIsPwVerified(true);
         setMessage("비밀번호가 확인되었습니다. 새 비밀번호를 입력하세요.");
