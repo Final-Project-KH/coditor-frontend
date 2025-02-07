@@ -858,6 +858,7 @@ const AxiosApi = {
       throw error;
     }
   },
+  
   newSuggestionPost: async (title, content, suggestion) => {
     try {
       const response = await AxiosInstance.post(
@@ -867,6 +868,44 @@ const AxiosApi = {
       return response.data;
     } catch (error) {
       console.error("건의 실패 : ", error);
+      throw error;
+    }
+  },
+
+  checkCurrentPassword: async (inputPw) => {
+    try {
+      const response = await AxiosInstance.post(
+        SPRING_DOMAIN + "/my/profile-checkPw",
+        null,
+        {
+          params: { inputPw },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // 인증 헤더 포함
+          },
+        }
+      );
+      return response.data; // true or false 반환
+    } catch (error) {
+      console.error("비밀번호 확인 오류:", error);
+      throw error;
+    }
+  },
+
+  changePassword: async (inputPw, newPw) => {
+    try {
+      const response = await AxiosInstance.put(
+        SPRING_DOMAIN + "/my/profile-changePw",
+        null,
+        {
+          params: { inputPw, newPw },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("비밀번호 변경 실패:", error);
       throw error;
     }
   },
