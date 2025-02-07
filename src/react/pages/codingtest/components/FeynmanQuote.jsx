@@ -28,19 +28,20 @@ const QuoteContainer = styled.div`
   padding: 20px;
   background-color: #f1f1f1;
   max-width: 600px;
-  margin: 20px auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   position: relative;
-
+  margin-bottom: 50px;
   .translation {
-    font-size: 1rem;
+    font-size: 0.8rem;
+    font-family: "regular", sans-serif;
   }
 `;
 
 const QuoteText = styled.blockquote`
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-style: italic;
+  font-family: "medium", sans-serif;
   color: #333;
   text-align: center;
   margin: 0;
@@ -51,7 +52,7 @@ const QuoteText = styled.blockquote`
 const BigQuote = styled.p`
   margin-top: -1.5rem;
   margin-bottom: -3rem;
-  font-size: 6rem;
+  font-size: 5rem;
   color: #333;
   font-family: "Georgia", serif;
 `;
@@ -62,8 +63,9 @@ const QuoteInfo = styled.div`
   align-items: flex-end;
   width: 100%;
   margin-top: 10px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #666;
+  font-family: "medium", sans-serif;
 `;
 
 const Name = styled.span`

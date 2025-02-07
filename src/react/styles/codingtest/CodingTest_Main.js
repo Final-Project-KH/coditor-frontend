@@ -135,6 +135,22 @@ export const LevelContainer = styled.div.attrs({
   font-family: "medium", sans-serif;
   color: #333333;
 `;
+export const LevelContainerPage = styled.div.attrs({
+  id: "levelcontainerpage",
+})`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  gap: 5px;
+  border-radius: 30px;
+  background-color: #f1f1f1;
+  position: relative;
+  font-size: 20px;
+  font-family: "medium", sans-serif;
+  color: #333333;
+`;
 
 export const LevelImgPractice = styled.div.attrs({
   id: "levelimgpractice",

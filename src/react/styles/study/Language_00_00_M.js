@@ -5,7 +5,6 @@ export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
   width: 100vw;
-  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: white;
