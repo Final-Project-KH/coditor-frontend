@@ -471,9 +471,11 @@ export const RightNicknameInput = styled.input`
   width: 70%;
   padding: 8px;
   font-size: 14px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 4px;
   outline: none;
+  font-family: "medium", sans-serif;
+  font-size: 13px;
 `;
 
 export const RightNicknameButton = styled.button`

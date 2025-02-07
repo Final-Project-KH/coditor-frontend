@@ -83,6 +83,7 @@ const AccountManager_ProfileIMG = () => {
       if (success) {
         dispatch(setLoginData({ nickname: newNickname })); // Redux 상태 업데이트
         setIsEditing(false);
+        alert("닉네임 변경에 성공했습니다.");
       } else {
         alert("닉네임 변경에 실패했습니다.");
       }

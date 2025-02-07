@@ -563,7 +563,7 @@ export const SNSContainer = styled.div.attrs({
   id: "snscontainer",
 })`
   width: 100%;
-padding: 20px 30px;
+  padding: 20px 30px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -641,4 +641,14 @@ export const SubjectContainer = styled.div.attrs({
   align-items: top;
   justify-content: center;
   gap: 25px;
+`;
+
+export const Messages = styled.div.attrs({
+  id: "messages",
+})`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: "regular", sans-serif;
+  font-size: 12px;
 `;
