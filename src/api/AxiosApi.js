@@ -893,16 +893,12 @@ const AxiosApi = {
 
   changePassword: async (inputPw, newPw) => {
     try {
-      const response = await AxiosInstance.put(
-        SPRING_DOMAIN + "/my/profile-changePw",
-        null,
-        {
-          params: { inputPw, newPw },
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      );
+      const response = await AxiosInstance.put(SPRING_DOMAIN + "/my/profile-changePw", null, {
+        params: { inputPw: inputPw || "", newPw }, // null인 경우 빈 문자열로 보냄
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
       return response.data;
     } catch (error) {
       console.error("비밀번호 변경 실패:", error);
