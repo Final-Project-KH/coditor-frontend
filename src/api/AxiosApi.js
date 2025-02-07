@@ -905,6 +905,40 @@ const AxiosApi = {
       throw error;
     }
   },
+  
+  changeNickname: async (newNickname) => {
+    try {
+      const response = await AxiosInstance.put(
+        SPRING_DOMAIN + "/my/profile/change-nickname",
+        null,
+        {
+          params: { newNickname },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("닉네임 변경 실패:", error);
+      throw error;
+    }
+  },
+
+  checkNicknameAvailability: async (nickname) => {
+    try {
+      const response = await AxiosInstance.get(
+        SPRING_DOMAIN + "/my/profile/check-nickname",
+        {
+          params: { nickname },
+        }
+      );
+      return response.data; // true (사용 가능) / false (중복)
+    } catch (error) {
+      console.error("닉네임 중복 검사 오류:", error);
+      return false;
+    }
+  },
 };
 
 export default AxiosApi;

@@ -467,3 +467,27 @@ export const RightNicknameIcon = styled.div.attrs({
   background-size: cover;
   background-image: url("/images/icon/edit_b.png");
 `;
+export const RightNicknameInput = styled.input`
+  width: 70%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+`;
+
+export const RightNicknameButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const NicknameErrorText = styled.p`
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+`;
