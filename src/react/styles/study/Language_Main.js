@@ -96,7 +96,7 @@ export const Container = styled.div.attrs({
   flex-direction: row;
   align-items: top;
   justify-content: center;
-  margin-bottom: 0;
+  margin-bottom: 50px;
   gap: 25px;
   padding-left: 10px;
   padding-right: 10px;

@@ -336,7 +336,7 @@ export const MainPostExtraItemContainer = styled.div.attrs({
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 80px;
+  top: 30px;
   right: 0px;
   border-radius: 10px;
   border: 1px solid #dadcdf;
@@ -376,7 +376,7 @@ export const MainPostExtraItemOtherContainer = styled.div.attrs({
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 80px;
+  top: 30px;
   right: 0px;
   border-radius: 10px;
   border: 1px solid #dadcdf;

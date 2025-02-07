@@ -106,7 +106,7 @@ export const ImageContainer = styled.div.attrs({
   height: 500px;
   position: fixed;
   top: 45vh;
-  left: 25vw;
+  left: 55vw;
   background-repeat: no-repeat;
   background-size: 80%;
   background-position: 10% 100%;

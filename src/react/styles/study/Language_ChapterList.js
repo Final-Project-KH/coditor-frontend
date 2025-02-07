@@ -12,7 +12,7 @@ export const ChapterOuter = styled.div.attrs({
   padding-bottom: 5px;
   position: sticky;
   top: 311px;
-  height: 410px;
+  height: 417px;
   overflow-y: scroll; /* 세로 스크롤 활성화 */
   -ms-overflow-style: none; /* IE/Edge */
   scrollbar-width: none; /* Firefox */

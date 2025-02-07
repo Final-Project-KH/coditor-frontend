@@ -1,33 +1,60 @@
+import { useNavigate } from "react-router-dom";
 import {
   Wrap,
   Container,
   FooterName,
   FooterContents,
   MainBox,
+  LogoContainer,
+  Logo,
+  MainLeftBox,
+  MainRightBox,
+  TermsLink,
 } from "../../styles/footer/StyledFooter";
 
 const StyledFooter = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Wrap>
         <Container>
+          <LogoContainer>
+            <Logo />
+          </LogoContainer>
           <MainBox>
-            <FooterName>© 2025 coditor. All rights reserved.</FooterName>
-            <FooterContents>
-              📍 회사 정보
+            <MainLeftBox>
+              <FooterName>📍 회사 정보</FooterName>
+              <FooterContents>
+                상호명: 코디터 | 사업자등록번호: 000-00-00000 <br />
+                주소: 서울특별시 강남구 테헤란로14길 6<br />
+                이메일: support@coditer.com
+              </FooterContents>
+            </MainLeftBox>
+            <MainRightBox>
+              <FooterContents>
+                🔗{" "}
+                <TermsLink
+                  onClick={() => {
+                    navigate("/legal/terms");
+                  }}
+                >
+                  이용약관
+                </TermsLink>{" "}
+                |{" "}
+                <TermsLink
+                  onClick={() => {
+                    navigate("/legal/privacy");
+                  }}
+                >
+                  개인정보처리방침
+                </TermsLink>
+              </FooterContents>
               <br />
-              상호명: 코디터 | 대표자: 홍길동 | 사업자등록번호: 123-45-67890{" "}
-              <br />
-              주소: 서울특별시 강남구 테헤란로 123, 코디터 빌딩 5층 <br />
-              이메일: support@coditer.com | 고객센터: 02-1234-5678 (운영시간:
-              평일 10:00~18:00)
-              <br />
-              <br />
-              🔗 이용약관 | 개인정보처리방침
-              <br />
-              <br />
-              🚀 **코디터는 최고의 코딩 학습 경험을 제공합니다.**
-            </FooterContents>
+              <FooterContents>
+                © 2025 coditor. All rights reserved.
+              </FooterContents>
+            </MainRightBox>
           </MainBox>
         </Container>
       </Wrap>
