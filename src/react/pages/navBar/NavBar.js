@@ -234,7 +234,9 @@ const NavBar = () => {
             onMouseLeave={() => toggleMenu("isAboutOpen")}
           >
             <MenuBox isOpen={menuState.isAboutOpen}>
-              <MenuButton isOpen={menuState.isAboutOpen}>about</MenuButton>
+              <MenuButton isOpen={menuState.isAboutOpen}>
+                <img src="/images/icon/About.svg" />
+              </MenuButton>
             </MenuBox>
             {(menuState.isAboutOpen || animatingMenus.isAboutOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <AboutBar
@@ -251,7 +253,9 @@ const NavBar = () => {
             onClick={() => handleStudy()}
           >
             <MenuBox isOpen={menuState.isStudyOpen}>
-              <MenuButton isOpen={menuState.isStudyOpen}>study</MenuButton>
+              <MenuButton isOpen={menuState.isStudyOpen}>
+                <img src="/images/icon/Study.svg" />
+              </MenuButton>
             </MenuBox>
             {(menuState.isStudyOpen || animatingMenus.isStudyOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <StudyBar
@@ -269,7 +273,7 @@ const NavBar = () => {
           >
             <MenuBox isOpen={menuState.isCodingTestOpen}>
               <MenuButton isOpen={menuState.isCodingTestOpen}>
-                coding test
+                <img src="/images/icon/CodingTest.svg" />
               </MenuButton>
             </MenuBox>
             {(menuState.isCodingTestOpen ||
@@ -291,7 +295,7 @@ const NavBar = () => {
           >
             <MenuBox isOpen={menuState.isCommunityOpen}>
               <MenuButton isOpen={menuState.isCommunityOpen}>
-                community
+                <img src="/images/icon/Community.svg" />
               </MenuButton>
             </MenuBox>
             {(menuState.isCommunityOpen ||
@@ -311,7 +315,9 @@ const NavBar = () => {
             onMouseLeave={() => toggleMenu("isMoreOpen")}
           >
             <MenuBox isOpen={menuState.isMoreOpen}>
-              <MenuButton isOpen={menuState.isMoreOpen}>more</MenuButton>
+              <MenuButton isOpen={menuState.isMoreOpen}>
+                <img src="/images/icon/More.svg" />
+              </MenuButton>
             </MenuBox>
             {(menuState.isMoreOpen || animatingMenus.isMoreOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <MoreBar
@@ -327,7 +333,9 @@ const NavBar = () => {
             onMouseLeave={() => toggleMenu("isCsOpen")}
           >
             <MenuBox isOpen={menuState.isCsOpen}>
-              <MenuButton isOpen={menuState.isCsOpen}>cs</MenuButton>
+              <MenuButton isOpen={menuState.isCsOpen}>
+                <img src="/images/icon/CS.svg" />
+              </MenuButton>
             </MenuBox>
             {(menuState.isCsOpen || animatingMenus.isCsOpenAnimating) && ( // isAnimating이 완료되어야지만 AboutBar 제거
               <CsBar

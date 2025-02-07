@@ -136,7 +136,6 @@ export const MenuButton = styled.button.attrs({
   position: relative;
   justify-content: center;
   align-items: center;
-  top: 5px;
   cursor: pointer;
   background-color: transparent;
   border: none;
