@@ -24,6 +24,7 @@ import ScrollToTopButton from "../ScrollToTopButton";
 import { useEffect, useState } from "react";
 import UserFeed_WriteEditor from "./Components/UserFeed_WriteEditor";
 import MyPage_UserFeed_M from "./MyPage_UserFeed_M";
+import AxiosApi from "../../../api/AxiosApi";
 
 const MyPage_UserFeed = () => {
   const navigate = useNavigate();
@@ -46,6 +47,22 @@ const MyPage_UserFeed = () => {
   };
 
   const [isEditing, setIsEditing] = useState(false);
+  const [introduction, setIntroduction] = useState("");
+
+  useEffect(() => {
+    // 소개글 불러오기
+    const fetchIntroduction = async () => {
+      try {
+        const data = await AxiosApi.getUserIntroduction();
+        console.log("불러온 소개글:", data); // 디버깅용 콘솔 로그
+        setIntroduction(data);
+      } catch (error) {
+        console.error("소개글 불러오기 실패:", error);
+      }
+    };
+
+    fetchIntroduction();
+  }, []);
 
   const handleOpenEditor = () => setIsEditing(true);
   const handleCloseEditor = () => setIsEditing(false);
@@ -79,7 +96,19 @@ const MyPage_UserFeed = () => {
                   {isEditing ? (
                     <UserFeed_WriteEditor
                       handleCloseEditor={handleCloseEditor}
+                      initialContent={introduction} // 기존 소개글 전달
                     />
+                  ) : introduction ? (
+                    <CenterFeedContentsBox>
+                      <CenterFeedText
+                        dangerouslySetInnerHTML={{ __html: introduction }}
+                      />
+                      <br></br>
+                      <br></br>
+                      <FeedButton onClick={handleOpenEditor}>
+                        소개글 수정
+                      </FeedButton>
+                    </CenterFeedContentsBox>
                   ) : (
                     <CenterFeedContentsBox>
                       <CenterFeedText>등록된 소개글이 없습니다.</CenterFeedText>
