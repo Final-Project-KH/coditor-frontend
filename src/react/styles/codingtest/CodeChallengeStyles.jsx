@@ -90,7 +90,7 @@ export const CodeChallengeStyles = styled.div`
 
   main {
     display: flex;
-
+height: 100%;
     min-height: calc(100vh - 100px);
 
     & > div:first-child {

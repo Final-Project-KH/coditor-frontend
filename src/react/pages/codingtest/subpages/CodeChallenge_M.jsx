@@ -159,28 +159,24 @@ const CodeChallenge_M = () => {
           <div className="logo-container">
             <Link className="logo" to="/" />
           </div>
-          <div className="menu-tree-indicator1">
-            <span>coding test</span>
-            <span>practice</span>
-          </div>
           <div>
-          <button
-            className="leave-page-btn"
-            onClick={() => {
-              navigate(-1);
-            }}
-          >
-            나가기
-          </button>
-        </div>
+            <button
+              className="leave-page-btn"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              나가기
+            </button>
+          </div>
         </div>
       </header1>
       <header2>
-
-        <div className="menu-tree-indicator2">
+        <div className="menu-tree-indicator">
+          <span>coding test</span>
+          <span>practice</span>
           <span>{headerTitle}</span>
         </div>
-
       </header2>
 
       <main>

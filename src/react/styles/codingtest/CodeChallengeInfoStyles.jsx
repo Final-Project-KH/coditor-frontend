@@ -114,8 +114,8 @@ export const CodeChallengeInfoStyles = styled.div`
         border-right: 1px solid rgba(256, 256, 256, 0.2);
       }
       & th {
-        background: white;
-        color: black;
+        background: rgba(256, 256, 256, 0.2);
+        color: rgba(256, 256, 256, 0.6);
         font-family: "medium", sans-serif;
         font-size: 14px;
       }
@@ -127,5 +127,4 @@ export const CodeChallengeInfoStyles = styled.div`
       }
     }
   }
-
 `;
