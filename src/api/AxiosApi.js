@@ -940,6 +940,41 @@ const AxiosApi = {
       return false;
     }
   },
+
+  saveUserIntroduction: async (introduction) => {
+    try {
+      const response = await AxiosInstance.post(
+        SPRING_DOMAIN + "/my/userfeed",
+        { introduction },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("소개글 등록 실패:", error);
+      throw error;
+    }
+  },
+
+  getUserIntroduction: async () => {
+    try {
+      const response = await AxiosInstance.get(
+        "http://localhost:8111/my/userfeed",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("소개글 불러오기 실패:", error);
+      return "";
+    }
+  },
 };
 
 export default AxiosApi;
