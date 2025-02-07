@@ -20,6 +20,7 @@ import {
   LevelImgBasic,
   LevelImgIntermediate,
   LevelImgExpert,
+  LevelContainerPage,
 } from "../../styles/codingtest/CodingTest_Main";
 
 import LeftTopProfile from "./Components/LeftTopProfile";
@@ -95,24 +96,28 @@ const MyPage_CodingTest = () => {
               <CenterContainerTitle>coding test</CenterContainerTitle>
               <SubjectContainer>
                 <SubjectLink onClick={() => handlePractice()}>
-                  <LevelContainer>
-                    <LevelImgPractice>Practice</LevelImgPractice>
-                  </LevelContainer>
+                  <LevelContainerPage>
+                    <LevelImgPractice />
+                    Practice
+                  </LevelContainerPage>
                 </SubjectLink>
                 <SubjectLink onClick={() => handleBasic()}>
-                  <LevelContainer>
-                    <LevelImgBasic>Basic</LevelImgBasic>
-                  </LevelContainer>
+                <LevelContainerPage>
+                    <LevelImgBasic />
+                    Basic
+                  </LevelContainerPage>
                 </SubjectLink>
                 <SubjectLink onClick={() => handleIntermediate()}>
-                  <LevelContainer>
-                    <LevelImgIntermediate>Intermediate</LevelImgIntermediate>
-                  </LevelContainer>
+                <LevelContainerPage>
+                    <LevelImgIntermediate />
+                    Intermediate
+                  </LevelContainerPage>
                 </SubjectLink>
                 <SubjectLink onClick={() => handleExpert()}>
-                  <LevelContainer>
-                    <LevelImgExpert>Expert</LevelImgExpert>
-                  </LevelContainer>
+                <LevelContainerPage>
+                    <LevelImgExpert />
+                    Expert
+                  </LevelContainerPage>
                 </SubjectLink>
               </SubjectContainer>
             </CenterContainer>

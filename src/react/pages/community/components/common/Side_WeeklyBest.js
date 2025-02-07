@@ -22,10 +22,10 @@ const WeeklyBest = () => {
       try {
         const response = await AxiosApi.getpopularpost();
         setWeeklyBest(response);
-        console.log("받은 데이터 : ", response);
-        console.log("저장된 데이터 : ", weeklybest);
+        console.log("weekly best 받은 데이터 : ", response);
+        console.log("weekly best 저장된 데이터 : ", weeklybest);
       } catch (error) {
-        console.error("불러오는 중 오류 발생 : ", error);
+        console.error("weekly best 불러오는 중 오류 발생 : ", error);
       }
     };
     readWeeklyBest();

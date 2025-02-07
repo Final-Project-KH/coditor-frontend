@@ -209,6 +209,7 @@ const AxiosApi = {
         SPRING_DOMAIN + "/community/weeklyPopularPost"
       );
       return response.data;
+
     } catch (error) {
       throw error;
     }

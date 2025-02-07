@@ -13,6 +13,7 @@ import {
   LevelImgBasic,
   LevelImgIntermediate,
   LevelImgExpert,
+  LevelContainerPage,
 } from "../../../styles/codingtest/CodingTest_Main";
 import ScrollToTopButton from "../../ScrollToTopButton";
 import CodingTest_Main_M from "./CodingTest_Main_M";
@@ -69,24 +70,28 @@ const CodingTest_Main = () => {
           </TopBoxWide>
           <Container>
             <SubjectLink onClick={() => handlePractice()}>
-              <LevelContainer>
-                <LevelImgPractice>Practice</LevelImgPractice>
-              </LevelContainer>
+              <LevelContainerPage>
+                <LevelImgPractice />
+                Practice
+              </LevelContainerPage>
             </SubjectLink>
             <SubjectLink onClick={() => handleBasic()}>
-              <LevelContainer>
-                <LevelImgBasic>Basic</LevelImgBasic>
-              </LevelContainer>
+              <LevelContainerPage>
+                <LevelImgBasic />
+                Basic
+              </LevelContainerPage>
             </SubjectLink>
             <SubjectLink onClick={() => handleIntermediate()}>
-              <LevelContainer>
-                <LevelImgIntermediate>Intermediate</LevelImgIntermediate>
-              </LevelContainer>
+              <LevelContainerPage>
+                <LevelImgIntermediate />
+                Intermediate
+              </LevelContainerPage>
             </SubjectLink>
             <SubjectLink onClick={() => handleExpert()}>
-              <LevelContainer>
-                <LevelImgExpert>Expert</LevelImgExpert>
-              </LevelContainer>
+              <LevelContainerPage>
+                <LevelImgExpert />
+                Expert
+              </LevelContainerPage>
             </SubjectLink>
           </Container>
           <ScrollToTopButton />
