@@ -173,8 +173,18 @@ const CodeChallenge_M = () => {
       </header1>
       <header2>
         <div className="menu-tree-indicator">
-          <span>coding test</span>
-          <span>practice</span>
+          <span
+            onClick={() => navigate("/codingtest")}
+            style={{ cursor: "pointer" }}
+          >
+            coding test
+          </span>
+          <span
+            onClick={() => navigate("/codingtest/practice")}
+            style={{ cursor: "pointer" }}
+          >
+            practice
+          </span>
           <span>{headerTitle}</span>
         </div>
       </header2>

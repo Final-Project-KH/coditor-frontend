@@ -106,8 +106,9 @@ export const CodeChallengeInfoStyles = styled.div`
         font-family: "regular", sans-serif;
         font-size: 14px;
       }
-      & th:first-child {
-        border-right: 1px solid black;
+      & th:first-child,
+      & th:nth-child(2) {
+        border-right: 1px solid rgba(256, 256, 256, 0.2);
       }
       & td:first-child {
         border-right: 1px solid rgba(256, 256, 256, 0.2);

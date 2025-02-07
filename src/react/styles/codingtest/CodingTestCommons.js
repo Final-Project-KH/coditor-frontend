@@ -4,20 +4,12 @@ import { Link } from "react-router-dom";
 export const Wrap = styled.div.attrs({
   id: "wrap",
 })`
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   background-color: white;
   justify-content: center;
   align-items: center;
-`;
-export const Navigator = styled.div.attrs({
-  id: "navigator",
-})`
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 30px;
 `;
 export const TopBoxWide = styled.div.attrs({
   id: "topboxwide",
@@ -33,10 +25,6 @@ export const TopBoxWide = styled.div.attrs({
   position: fixed;
   top: 100px;
   z-index: 5;
-
-  @media (max-width: 768px) {
-    top: 65px;
-  }
 `;
 export const TopBox = styled.div.attrs({
   id: "topbox",
@@ -46,6 +34,7 @@ export const TopBox = styled.div.attrs({
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding-left: 10px;
 `;
 export const TopBoxText = styled.div.attrs({
   id: "topboxtext",
@@ -77,6 +66,24 @@ export const TopBoxArrow = styled.div.attrs({
   font-family: "light", sans-serif;
   padding-bottom: 3px;
 `;
+
+export const PathLink = styled.button.attrs({
+  id: "pathlink",
+})`
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    background-color: #313131;
+    color: white;
+  }
+`;
+
 export const Container = styled.div.attrs({
   id: "container",
 })`
