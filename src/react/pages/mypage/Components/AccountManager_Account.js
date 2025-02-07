@@ -61,7 +61,7 @@ const AccountManager_Account = () => {
     }
   };
 
-  // ✅ 비밀번호 변경 요청 (changePassword API 호출)
+  // 비밀번호 변경 요청 (changePassword API 호출)
   const handlePasswordChange = async () => {
     if (!isPwVerified) {
       setMessage("현재 비밀번호 확인 후 진행하세요.");
