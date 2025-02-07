@@ -14,6 +14,7 @@ export const Wrap = styled.div.attrs({
   @media (max-width: 768px) {
     height: 320px;
   }
+  position: relative;
 `;
 
 export const Container = styled.div.attrs({
