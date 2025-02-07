@@ -1,46 +1,22 @@
-import { useState, useRef, useCallback, useEffect } from "react";
-import {
-  useNavigate,
-  Link,
-  useParams,
-  useOutletContext,
-} from "react-router-dom";
+import { useState, useRef, useCallback } from "react";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import { Base64 } from "js-base64";
 
-import CodeEditor from "../components/CodeEditor";
-import ExecutionResults from "../components/ExecutionResults";
-import CodeChallengeInfo from "../components/CodeChallengeInfo";
+import CodeEditor_M from "../components/CodeEditor_M";
+import ExecutionResults_M from "../components/ExecutionResults_M";
+import CodeChallengeInfo_M from "../components/CodeChallengeInfo_M";
 import useSse from "../customhook/useSse";
 import AxiosApi from "../../../../api/AxiosApi";
 
-import { CodeChallengeStyles as CssWrapper } from "../../../styles/codingtest/CodeChallengeStyles";
-
-import CodeChallenge_M from "./CodeChallenge_M";
+import { CodeChallengeStyles as CssWrapper } from "../../../styles/codingtest/CodeChallengeStyles_M";
 
 const EDITOR_DEFAULT_VALUE = {
   java: "public class Main {\n\tpublic static void main(String[] args) {\n\t\t// 코드를 입력하세요\n\t}\n}",
   c: "#include<stdio.h>\n\nvoid main() {\n\t// 코드를 입력하세요\n}",
 };
 
-const CodeChallenge = () => {
+const CodeChallenge_M = () => {
   const navigate = useNavigate();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    // 초기 화면 크기 체크
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setIsMobile(true);
-      } else {
-        setIsMobile(false);
-      }
-    };
-    window.addEventListener("resize", handleResize); // 화면 크기 변화에 따른 상태 업데이트
-    handleResize(); // 컴포넌트 마운트 시 초기 상태 설정
-    return () => {
-      window.removeEventListener("resize", handleResize); // 클린업
-    };
-  }, []);
 
   const [headerTitle, setHeaderTitle] = useState("Loading...");
 
@@ -177,59 +153,58 @@ const CodeChallenge = () => {
   };
 
   return (
-    <>
-      {isMobile ? (
-        <CodeChallenge_M />
-      ) : (
-        <CssWrapper>
-          <header>
-            <div>
-              <div className="logo-container">
-                <Link className="logo" to="/" />
-              </div>
-              <div className="menu-tree-indicator">
-                <span>coding test</span>
-                <span>practice</span>
-                <span>{headerTitle}</span>
-              </div>
-            </div>
+    <CssWrapper>
+      <header1>
+        <div>
+          <div className="logo-container">
+            <Link className="logo" to="/" />
+          </div>
+          <div className="menu-tree-indicator1">
+            <span>coding test</span>
+            <span>practice</span>
+          </div>
+          <div>
+          <button
+            className="leave-page-btn"
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            나가기
+          </button>
+        </div>
+        </div>
+      </header1>
+      <header2>
 
-            <div>
-              <button
-                className="leave-page-btn"
-                onClick={() => {
-                  navigate(-1);
-                }}
-              >
-                나가기
-              </button>
-            </div>
-          </header>
+        <div className="menu-tree-indicator2">
+          <span>{headerTitle}</span>
+        </div>
 
-          <main>
-            <div>
-              <CodeEditor
-                codeLanguage="java"
-                value={codeEditorValue}
-                setValue={setCodeEditorValue}
-                handleSubmitButtonClick={handleSubmitButtonClick}
-                handleCancelButtonClick={handleCancelButtonClick}
-                isConnectedRef={isConnectedRef}
-              />
-              <ExecutionResults results={results} />
-            </div>
-            <div>
-              <CodeChallengeInfo
-                setHeaderTitle={setHeaderTitle}
-                setCodeEditorValue={setCodeEditorValue}
-              />
-            </div>
-          </main>
-          {/* <footer></footer> */}
-        </CssWrapper>
-      )}
-    </>
+      </header2>
+
+      <main>
+        <div>
+          <CodeEditor_M
+            codeLanguage="java"
+            value={codeEditorValue}
+            setValue={setCodeEditorValue}
+            handleSubmitButtonClick={handleSubmitButtonClick}
+            handleCancelButtonClick={handleCancelButtonClick}
+            isConnectedRef={isConnectedRef}
+          />
+          <ExecutionResults_M results={results} />
+        </div>
+        <div>
+          <CodeChallengeInfo_M
+            setHeaderTitle={setHeaderTitle}
+            setCodeEditorValue={setCodeEditorValue}
+          />
+        </div>
+      </main>
+      {/* <footer></footer> */}
+    </CssWrapper>
   );
 };
 
-export default CodeChallenge;
+export default CodeChallenge_M;

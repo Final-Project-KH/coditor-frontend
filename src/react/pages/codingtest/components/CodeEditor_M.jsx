@@ -5,9 +5,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import { CodeEditorStyles as CssWrapper } from "../../../styles/codingtest/CodeEditorStyles";
+import { CodeEditorStyles as CssWrapper } from "../../../styles/codingtest/CodeEditorStyles_M";
 
-const CodeEditor = ({
+const CodeEditor_M = ({
   codeLanguage,
   value,
   setValue,
@@ -124,4 +124,4 @@ const CodeEditor = ({
   );
 };
 
-export default CodeEditor;
+export default CodeEditor_M;

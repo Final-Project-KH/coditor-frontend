@@ -103,4 +103,5 @@ export const ExecutionResultsStyles = styled.div`
     display: none; /* 화살표 제거 */
   }
 
+ 
 `;

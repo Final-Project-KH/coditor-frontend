@@ -368,7 +368,7 @@ export const ClassSet = styled.div.attrs({
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* & + &::before {
+  & + &::before {
     content: "";
     position: absolute;
     width: 710px;
@@ -376,7 +376,7 @@ export const ClassSet = styled.div.attrs({
     height: 1px;
     background-color: black;
     transform: rotate(0deg);
-  } */
+  }
 `;
 export const ClassName = styled.p.attrs({
   id: "classname",
