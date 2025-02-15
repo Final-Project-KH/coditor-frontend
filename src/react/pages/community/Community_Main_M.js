@@ -6,7 +6,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
   BoardContainer,
 } from "../../styles/community/Community_M";
@@ -29,9 +28,7 @@ const Community_Main_M = () => {
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>community</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleRefresh()}>community</TopBoxText>
           </TopBox>
         </TopBoxWide>
         <Container>

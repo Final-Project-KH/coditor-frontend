@@ -13,7 +13,6 @@ import {
   TopBoxText2,
   TopBoxArrow,
   TopBoxArrow2,
-  TopBoxLink,
   Container,
   EachClass,
   ClassHeader,
@@ -87,24 +86,20 @@ export PATH=\${PATH}:$JAVA_HOME/bin
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>study</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxLink onClick={() => handleStudyJava()}>
-            <TopBoxText>Java</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleStudyJava()}>Java</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <TopBoxWide2>
         <TopBox2>
-          <TopBoxLink onClick={() => handleStudyJava()}>
-            <TopBoxText2>01. Java 시작</TopBoxText2>
-          </TopBoxLink>
+          <TopBoxText2 onClick={() => handleStudyJava()}>
+            01. Java 시작
+          </TopBoxText2>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
-          <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText2>02. Java 프로젝트 생성 및 기본</TopBoxText2>
-          </TopBoxLink>
+          <TopBoxText2 onClick={() => handleRefresh()}>
+            02. Java 프로젝트 생성 및 기본
+          </TopBoxText2>
         </TopBox2>
       </TopBoxWide2>
       <Container>

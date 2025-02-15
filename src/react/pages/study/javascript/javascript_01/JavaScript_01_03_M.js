@@ -13,7 +13,6 @@ import {
   TopBoxText2,
   TopBoxArrow,
   TopBoxArrow2,
-  TopBoxLink,
   Container,
   EachClass,
   ClassHeader,
@@ -685,24 +684,22 @@ console.log(str); // 출력 결과: '10'
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>study</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxLink onClick={() => handleStudyJavaScript()}>
-            <TopBoxText>JavaScript</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleStudyJavaScript()}>
+            JavaScript
+          </TopBoxText>
         </TopBox>
       </TopBoxWide>
       <TopBoxWide2>
         <TopBox2>
-          <TopBoxLink onClick={() => handleStudyJavaScript()}>
-            <TopBoxText2>01. 자바스크립트 기초</TopBoxText2>
-          </TopBoxLink>
+          <TopBoxText2 onClick={() => handleStudyJavaScript()}>
+            01. 자바스크립트 기초
+          </TopBoxText2>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
-          <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText2>03. 자바스크립트 기초 문법</TopBoxText2>
-          </TopBoxLink>
+          <TopBoxText2 onClick={() => handleRefresh()}>
+            03. 자바스크립트 기초 문법
+          </TopBoxText2>
         </TopBox2>
       </TopBoxWide2>
       <Container>

@@ -3,7 +3,6 @@ import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import {
   Wrap,
   TopBoxWide,
-  TopBoxLink,
   TopBox,
   Container,
   AboutTitle,
@@ -34,13 +33,11 @@ const About = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>about</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => handleRefresh()}>about</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>🔥 코디터 소개</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => handleRefresh()}>
+                🔥 코디터 소개
+              </TopBoxText>
             </TopBox>
           </TopBoxWide>
           <Container>

@@ -6,7 +6,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
   LeftContainer,
   CenterContainer,
@@ -42,14 +41,9 @@ const MyPage_Suggestion_M = () => {
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <TopBoxLink onClick={() => handleMyPage()}>
-              <TopBoxText>my page</TopBoxText>
-            </TopBoxLink>
-
+            <TopBoxText onClick={() => handleMyPage()}>my page</TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>건의사항</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleRefresh()}>건의사항</TopBoxText>
           </TopBox>
         </TopBoxWide>
         <Container>

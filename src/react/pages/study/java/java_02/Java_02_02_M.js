@@ -13,7 +13,6 @@ import {
   TopBoxText2,
   TopBoxArrow,
   TopBoxArrow2,
-  TopBoxLink,
   Container,
   EachClass,
   ClassHeader,
@@ -248,24 +247,20 @@ public class Main {
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>study</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxLink onClick={() => handleStudyJava()}>
-            <TopBoxText>Java</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleStudyJava()}>Java</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <TopBoxWide2>
         <TopBox2>
-          <TopBoxLink onClick={() => handleStudyJava()}>
-            <TopBoxText2>02. 기본 자료형과 연산자</TopBoxText2>
-          </TopBoxLink>
+          <TopBoxText2 onClick={() => handleStudyJava()}>
+            02. 기본 자료형과 연산자
+          </TopBoxText2>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
-          <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText2>02. 변수와 시스템 입출력</TopBoxText2>
-          </TopBoxLink>
+          <TopBoxText2 onClick={() => handleRefresh()}>
+            02. 변수와 시스템 입출력
+          </TopBoxText2>
         </TopBox2>
       </TopBoxWide2>
       <Container>

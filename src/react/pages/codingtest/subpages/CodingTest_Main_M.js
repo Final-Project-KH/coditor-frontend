@@ -7,7 +7,6 @@ import {
   TopBoxText,
   Container,
   SubjectLink,
-  TopBoxLink,
   LevelContainer,
   LevelImgPractice,
   LevelImgBasic,
@@ -49,9 +48,7 @@ const CodingTest_Main_M = () => {
       <Wrap>
         <TopBoxWide>
           <TopBox>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>coding test</TopBoxText>
-              </TopBoxLink>
+            <TopBoxText onClick={() => handleRefresh()}>coding test</TopBoxText>
           </TopBox>
         </TopBoxWide>
         <Container>

@@ -33,8 +33,8 @@ const ToolBar = ({ editor }) => {
   if (!editor) return null;
 
   const handleImageInsert = () => {
-    const url = window.prompt("이미지 URL을 입력하세요");
-
+    const url = window.prompt('이미지 URL을 입력하세요');
+  
     if (url) {
       editor.chain().focus().setImage({ src: url }).run();
     }
@@ -258,51 +258,55 @@ const ToolBar = ({ editor }) => {
   );
 };
 
-const UserFeed_WriteEditor = ({ handleCloseEditor, existingIntroduction }) => {
+const UserFeed_WriteEditor = ({ handleCloseEditor }) => {
   const { boardId } = useParams();
   const navigate = useNavigate();
   const userAuth = useSelector((state) => state.auth.accesstoken);
-
-  // 기존 소개글을 초기값으로 설정
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
         codeBlock: false, // 기본 코드 블록 비활성화
       }),
       TextStyle,
-      Color.configure({ types: [TextStyle.name] }),
+      Color.configure({ types: [TextStyle.name] }), // TextStyle 확장과 연동
       Underline,
       Code,
-      CodeBlockLowlight.configure({ lowlight }),
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
       Image,
       Placeholder.configure({
-        placeholder: `소개글을 작성하세요.`,
+        placeholder: `답변을 작성해보세요.`,
       }),
     ],
-    content: existingIntroduction || "", // 기존 소개글이 있으면 로드, 없으면 빈 값
+    content: "",
   });
 
+  // submit button
   const handleSubmit = async () => {
     const htmlContent = editor.getHTML().trim();
-    const textContent = htmlContent.replace(/<[^>]+>/g, "").trim(); // HTML 태그 제거 후 텍스트 확인
+
+    // HTML 태그를 제거한 텍스트만 확인
+    const textContent = htmlContent.replace(/<[^>]+>/g, "").trim(); // HTML 태그 제거 후 남은 텍스트를 확인
 
     if (userAuth === "") {
       alert("로그인이 필요한 서비스입니다.");
       return navigate("/login");
     }
 
+    // 텍스트가 비어있거나 공백만 있는 경우 유효하지 않음
     if (!textContent) {
       alert("내용을 입력하세요!");
       return;
     }
-
     try {
-      await AxiosApi.saveUserIntroduction(htmlContent);
-      alert("소개글이 성공적으로 등록되었습니다.");
+      const response = await AxiosApi.writeReply(boardId, editor.getHTML());
+      alert("내용이 성공적으로 제출되었습니다.");
       window.location.reload();
     } catch (error) {
-      console.error("소개글 등록 실패:", error);
-      alert("등록에 실패했습니다. 다시 시도해주세요.");
+      console.error("제출 실패:", error);
+      alert("제출에 실패했습니다. 다시 시도해주세요.");
+      console.error(boardId);
     }
   };
 
@@ -318,9 +322,9 @@ const UserFeed_WriteEditor = ({ handleCloseEditor, existingIntroduction }) => {
               width: "100%",
               height: "100%",
               padding: "30px",
-              overflowY: "auto",
-              overflowX: "hidden",
-              boxSizing: "border-box",
+              overflowY: "auto", // 세로 스크롤 활성화
+              overflowX: "hidden", // 가로 스크롤 비활성화
+              boxSizing: "border-box", // 패딩 포함 계산
             }}
             editor={editor}
           />

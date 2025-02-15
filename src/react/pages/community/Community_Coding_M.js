@@ -8,7 +8,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
   BoardContainer,
 } from "../../styles/community/Community_M";
@@ -93,13 +92,11 @@ const Community_Coding_M = () => {
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <TopBoxLink onClick={() => handleCommunity()}>
-              <TopBoxText>community</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleCommunity()}>community</TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>💻 코딩 질문</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleRefresh()}>
+              💻 코딩 질문
+            </TopBoxText>
           </TopBox>
         </TopBoxWide>
         <Container>

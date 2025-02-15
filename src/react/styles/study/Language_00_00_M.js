@@ -108,8 +108,8 @@ export const TopBoxArrow = styled.div.attrs({
 })`
   color: white;
   font-size: 20px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-family: "medium", sans-serif;
   padding-bottom: 3px;
 `;
@@ -119,8 +119,8 @@ export const TopBoxArrow2 = styled.div.attrs({
 })`
   color: #313131;
   font-size: 18px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-family: "bold", sans-serif;
 `;
 export const TopBoxLink = styled.button.attrs({
@@ -230,12 +230,15 @@ export const ClassContentsContainer = styled.div.attrs({
   width: 90%;
   margin-top: 50px;
   padding-bottom: 50px;
-  gap: 20px;
+  gap: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
   /* overflow-x: auto; */
+  pre {
+    margin: 5px 0;
+  }
 `;
 export const ClassContentsTitle1 = styled.div.attrs({
   id: "classcontentstitle1",
@@ -244,6 +247,7 @@ export const ClassContentsTitle1 = styled.div.attrs({
   font-size: 24px;
   font-family: "bold", sans-serif;
   color: black;
+  margin-top: 10px;
 `;
 export const ClassContentsTitle2 = styled.div.attrs({
   id: "classcontentstitle2",
@@ -252,6 +256,7 @@ export const ClassContentsTitle2 = styled.div.attrs({
   font-size: 20px;
   font-family: "bold", sans-serif;
   color: #2c79c1;
+  margin-top: 10px;
 `;
 export const ClassContentsTitle3 = styled.div.attrs({
   id: "classcontentstitle3",
@@ -260,6 +265,7 @@ export const ClassContentsTitle3 = styled.div.attrs({
   font-size: 18px;
   font-family: "bold", sans-serif;
   color: #fe9226;
+  margin-top: 10px;
 `;
 export const ClassContentsText = styled.div.attrs({
   id: "classcontentstext",
@@ -274,6 +280,8 @@ export const ClassContentsTextTab = styled.div.attrs({
 })`
   padding-left: 10px;
   font-family: "regular", sans-serif;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
 export const ClassContentsImage = styled.div.attrs({
   id: "classcontentsimage",
@@ -283,6 +291,7 @@ export const ClassContentsImage = styled.div.attrs({
   background-repeat: no-repeat;
   background-size: contain;
   background-position: top left;
+  margin: 5px 0;
 `;
 
 export const ClassContentsCodeBox = styled.div.attrs({
@@ -297,15 +306,19 @@ export const ClassContentsCodeBox = styled.div.attrs({
   color: black;
   background-color: white;
   border-radius: 10px;
+  margin: 5px 0;
 `;
 
 export const ClassContentsCode = styled.div.attrs({
   id: "classcontentscode",
 })`
-  width: 100%;
-  font-size: 12px;
+  display: inline-block;
+  margin: 5px 0;
+  padding: 2px 5px;
+  border-radius: 5px;
   font-family: "regular", sans-serif;
-  color: #313131;
+  color: red;
+  background-color: rgba(0, 0, 0, 0.08);
 `;
 
 export const ClassTableBox = styled.div.attrs({
@@ -357,6 +370,8 @@ export const ClassLinkBox = styled(Link).attrs({
   font-family: "medium", sans-serif;
   background-color: #f1f1f1;
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
   &:hover {
     font-family: "bold", sans-serif;
     background-color: #313131;

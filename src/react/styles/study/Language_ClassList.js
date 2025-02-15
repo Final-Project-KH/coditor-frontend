@@ -121,4 +121,5 @@ export const ClassName = styled.div.attrs({
     transition: opacity 0.3s ease, transform 0.3s ease;
     opacity: 1;
   }
+  white-space: nowrap; /* 줄바꿈 방지 */
 `;

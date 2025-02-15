@@ -6,7 +6,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
   LeftContainer,
   CenterContainer,
@@ -60,13 +59,13 @@ const MyPage_Report = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxLink onClick={() => navigate("/mypage")}>
-                <TopBoxText>my page</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => navigate("/mypage")}>
+                my page
+              </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxLink onClick={() => navigate("/mypage/report")}>
-                <TopBoxText>악성 사용자 신고</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => navigate("/mypage/report")}>
+                악성 사용자 신고
+              </TopBoxText>
             </TopBox>
           </TopBoxWide>
 

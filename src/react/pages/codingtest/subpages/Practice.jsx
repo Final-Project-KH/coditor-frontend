@@ -36,7 +36,6 @@ import {
   LevelContainer,
   LevelContainerPage,
   LevelImgPractice,
-  PathLink,
 } from "../../../styles/codingtest/CodingTest_Main";
 import Practice_M from "./Practice_M";
 
@@ -106,13 +105,11 @@ const Practice = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <PathLink onClick={() => handleCodingTest()}>
-                <TopBoxText>coding test</TopBoxText>
-              </PathLink>
+              <TopBoxText onClick={() => handleCodingTest()}>
+                coding test
+              </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <PathLink onClick={() => handleRefresh()}>
-                <TopBoxText>practice</TopBoxText>
-              </PathLink>
+              <TopBoxText onClick={() => handleRefresh()}>practice</TopBoxText>
             </TopBox>
           </TopBoxWide>
           <Container>

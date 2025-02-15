@@ -13,7 +13,6 @@ import {
   TopBoxText2,
   TopBoxArrow,
   TopBoxArrow2,
-  TopBoxLink,
   Container,
   EachClass,
   ClassHeader,
@@ -71,24 +70,18 @@ const C_01_01_M = () => {
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>study</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxLink onClick={() => handleStudyC()}>
-            <TopBoxText>C</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleStudyC()}>C</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <TopBoxWide2>
         <TopBox2>
-          <TopBoxLink onClick={() => handleStudyC()}>
-            <TopBoxText2>01. C 기본</TopBoxText2>
-          </TopBoxLink>
+          <TopBoxText2 onClick={() => handleStudyC()}>01. C 기본</TopBoxText2>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
-          <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText2>01. C언어의 특징</TopBoxText2>
-          </TopBoxLink>
+          <TopBoxText2 onClick={() => handleRefresh()}>
+            01. C언어의 특징
+          </TopBoxText2>
         </TopBox2>
       </TopBoxWide2>
       <Container>

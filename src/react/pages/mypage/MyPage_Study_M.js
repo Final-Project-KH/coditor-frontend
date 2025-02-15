@@ -6,7 +6,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
   SubjectContainer,
   MobileEachTitle,
@@ -74,13 +73,9 @@ const MyPage_Study_M = () => {
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <TopBoxLink onClick={() => handleMyPage()}>
-              <TopBoxText>my page</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleMyPage()}>my page</TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>study</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleRefresh()}>study</TopBoxText>
           </TopBox>
         </TopBoxWide>
         <Container>

@@ -182,11 +182,14 @@ export const ClassContentsContainer = styled.div.attrs({
   width: 90%;
   margin-top: 50px;
   padding-bottom: 50px;
-  gap: 20px;
+  gap: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
+  pre {
+    margin: 5px 0;
+  }
 `;
 export const ClassContentsTitle1 = styled.div.attrs({
   id: "classcontentstitle1",
@@ -195,6 +198,7 @@ export const ClassContentsTitle1 = styled.div.attrs({
   font-size: 20px;
   font-family: "bold", sans-serif;
   color: black;
+  margin-top: 10px;
 `;
 export const ClassContentsTitle2 = styled.div.attrs({
   id: "classcontentstitle2",
@@ -203,6 +207,7 @@ export const ClassContentsTitle2 = styled.div.attrs({
   font-size: 18px;
   font-family: "bold", sans-serif;
   color: #2c79c1;
+  margin-top: 10px;
 `;
 export const ClassContentsTitle3 = styled.div.attrs({
   id: "classcontentstitle3",
@@ -211,6 +216,7 @@ export const ClassContentsTitle3 = styled.div.attrs({
   font-size: 16px;
   font-family: "bold", sans-serif;
   color: #fe9226;
+  margin-top: 10px;
 `;
 export const ClassContentsText = styled.div.attrs({
   id: "classcontentstext",
@@ -225,6 +231,8 @@ export const ClassContentsTextTab = styled.div.attrs({
 })`
   padding-left: 25px;
   font-family: "regular", sans-serif;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
 export const ClassContentsImage = styled.div.attrs({
   id: "classcontentsimage",
@@ -234,6 +242,7 @@ export const ClassContentsImage = styled.div.attrs({
   background-repeat: no-repeat;
   background-size: contain;
   background-position: top left;
+  margin: 10px 0;
 `;
 
 export const ClassContentsCodeBox = styled.div.attrs({
@@ -254,10 +263,13 @@ export const ClassContentsCodeBox = styled.div.attrs({
 export const ClassContentsCode = styled.div.attrs({
   id: "classcontentscode",
 })`
-  width: 100%;
-  font-size: 12px;
+  display: inline-block;
+  margin: 5px 0;
+  padding: 2px 5px;
+  border-radius: 5px;
   font-family: "regular", sans-serif;
-  color: #313131;
+  color: red;
+  background-color: rgba(0, 0, 0, 0.08);
 `;
 
 export const ClassTableBox = styled.div.attrs({
@@ -275,6 +287,8 @@ export const ClassTable = styled.table.attrs({
   width: 100%;
   border-collapse: collapse;
   border: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `;
 
 export const ClassTableTr = styled.tr.attrs({
@@ -294,10 +308,12 @@ export const StickyClassBox = styled.div.attrs({
   id: "stickyclassbox",
 })`
   width: 100%;
-  height: calc(100vh - 465px);
+  /* height: calc(100vh - 465px);
   position: sticky;
   top: 314px;
-  bottom: 50px;
+  bottom: 50px; */
+  height: 100%;
+  position: relative;
   overflow-y: scroll; /* 세로 스크롤 활성화 */
   -ms-overflow-style: none; /* IE/Edge */
   scrollbar-width: none; /* Firefox */
@@ -320,6 +336,8 @@ export const ClassLinkBox = styled(Link).attrs({
   font-family: "medium", sans-serif;
   background-color: white;
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
   &:hover {
     font-family: "bold", sans-serif;
     background-color: #313131;

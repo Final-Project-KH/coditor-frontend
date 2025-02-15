@@ -5,7 +5,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
   CenterAccountContainer,
   MobileEachTitle,
@@ -39,15 +38,11 @@ const MyPage_Main_M = () => {
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxLink onClick={() => navigate("/mypage")}>
-            <TopBoxText>my page</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => navigate("/mypage")}>my page</TopBoxText>
           {isAccountManagerPage && (
             <>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxLink onClick={handleRefresh}>
-                <TopBoxText>계정 관리</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={handleRefresh}>계정 관리</TopBoxText>
             </>
           )}
         </TopBox>

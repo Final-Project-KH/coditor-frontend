@@ -6,7 +6,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
   LeftContainer,
   CenterContainer,
@@ -72,13 +71,9 @@ const MyPage_CodingTest_M = () => {
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <TopBoxLink onClick={() => handleMyPage()}>
-              <TopBoxText>my page</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleMyPage()}>my page</TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>coding test</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleRefresh()}>coding test</TopBoxText>
           </TopBox>
         </TopBoxWide>
         <Container>

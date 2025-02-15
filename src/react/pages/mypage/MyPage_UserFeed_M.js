@@ -6,7 +6,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
   LeftContainer,
   CenterContainer,
@@ -54,13 +53,9 @@ const MyPage_UserFeed_M = () => {
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <TopBoxLink onClick={() => handleMyPage()}>
-              <TopBoxText>my page</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleMyPage()}>my page</TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>내 소개</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleRefresh()}>내 소개</TopBoxText>
           </TopBox>
         </TopBoxWide>
         <Container>

@@ -11,7 +11,6 @@ import {
   LeftContainer,
   CenterContainer,
   RightContainer,
-  PathLink,
   BoardContainer,
 } from "../../styles/community/Community";
 
@@ -91,13 +90,13 @@ const Community_Team = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <PathLink onClick={() => handleCommunity()}>
-                <TopBoxText>community</TopBoxText>
-              </PathLink>
+              <TopBoxText onClick={() => handleCommunity()}>
+                community
+              </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <PathLink onClick={() => handleRefresh()}>
-                <TopBoxText>📋 팀 프로젝트</TopBoxText>
-              </PathLink>
+              <TopBoxText onClick={() => handleRefresh()}>
+                📋 팀 프로젝트
+              </TopBoxText>
             </TopBox>
           </TopBoxWide>
           <Container>

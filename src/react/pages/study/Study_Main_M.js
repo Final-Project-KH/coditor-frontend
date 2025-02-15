@@ -8,7 +8,6 @@ import {
   Container,
   SubjectLink,
   TopBoxText,
-  TopBoxLink,
   TopBoxArrow,
 } from "../../styles/study/Study_Main_M";
 
@@ -65,9 +64,7 @@ const Study_Main_M = () => {
       <Wrap>
         <TopBoxWide>
           <TopBox>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>study</TopBoxText>
-              </TopBoxLink>
+            <TopBoxText onClick={() => handleRefresh()}>study</TopBoxText>
           </TopBox>
         </TopBoxWide>
         <Container>

@@ -17,7 +17,6 @@ import {
 } from "../../styles/community/Post";
 import Post_ReplyArea from "./components/common/Post_ReplyArea";
 import Post_UserProfile from "./components/common/Post_UserProfile";
-import { PathLink } from "../../styles/community/Community";
 import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
 import Post_MainContents from "./components/common/Post_MainContents";
 import { useEffect, useState } from "react";
@@ -100,36 +99,34 @@ const Post_Read = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <PathLink onClick={() => handleCommunity()}>
-                <TopBoxText>community</TopBoxText>
-              </PathLink>
+              <TopBoxText onClick={() => handleCommunity()}>
+                community
+              </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <PathLink onClick={() => handleCommunityBoard()}>
-                <TopBoxText
-                  style={{
-                    display: "block", // 기본적으로 block으로 설정, 필요 시 다른 스타일을 적용
-                    whiteSpace: "nowrap", // 텍스트가 한 줄에 모두 표시되게 설정
-                    overflow: "visible", // 텍스트가 잘리지 않도록 설정
-                    textOverflow: "clip", // 텍스트가 넘치지 않도록 설정 (필요 시 조정)
-                  }}
-                >
-                  {boardDisplayName}
-                </TopBoxText>
-              </PathLink>
+              <TopBoxText
+                style={{
+                  display: "block", // 기본적으로 block으로 설정, 필요 시 다른 스타일을 적용
+                  whiteSpace: "nowrap", // 텍스트가 한 줄에 모두 표시되게 설정
+                  overflow: "visible", // 텍스트가 잘리지 않도록 설정
+                  textOverflow: "clip", // 텍스트가 넘치지 않도록 설정 (필요 시 조정)
+                }}
+                onClick={() => handleCommunityBoard()}
+              >
+                {boardDisplayName}
+              </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <PathLink onClick={() => handleRefresh()}>
-                <TopBoxText
-                  style={{
-                    display: "-webkit-box",
-                    WebkitBoxOrient: "vertical",
-                    WebkitLineClamp: "1",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {postTitle}
-                </TopBoxText>
-              </PathLink>
+              <TopBoxText
+                style={{
+                  display: "-webkit-box",
+                  WebkitBoxOrient: "vertical",
+                  WebkitLineClamp: "1",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+                onClick={() => handleRefresh()}
+              >
+                {postTitle}
+              </TopBoxText>
             </TopBox>
           </TopBoxWide>
           <Container>

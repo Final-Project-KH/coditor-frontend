@@ -13,7 +13,6 @@ import {
   UserProfileImg,
   UserId,
   UserPostAmount,
-  TopBoxLink,
   ProfileTitle,
   ProfileContainer,
 } from "../../styles/community/User_M";
@@ -80,7 +79,6 @@ const User_Main_M = () => {
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <TopBoxLink onClick={() => handleCommunity()}>
               <TopBoxText
                 style={{
                   display: "block", // 기본적으로 block으로 설정, 필요 시 다른 스타일을 적용
@@ -88,12 +86,11 @@ const User_Main_M = () => {
                   overflow: "visible", // 텍스트가 잘리지 않도록 설정
                   textOverflow: "clip", // 텍스트가 넘치지 않도록 설정 (필요 시 조정)
                 }}
+                onClick={() => handleCommunity()}
               >
                 community
               </TopBoxText>
-            </TopBoxLink>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxLink onClick={() => handleRefresh()}>
               <TopBoxText
                 style={{
                   maxWidth: "89vw",
@@ -103,10 +100,10 @@ const User_Main_M = () => {
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                 }}
+                onClick={() => handleRefresh()}
               >
                 {writerName}님의 페이지
               </TopBoxText>
-            </TopBoxLink>
           </TopBox>
         </TopBoxWide>
         <Container>

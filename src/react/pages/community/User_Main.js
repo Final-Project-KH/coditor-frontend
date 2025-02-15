@@ -22,7 +22,6 @@ import {
   UserId,
   UserPostAmount,
 } from "../../styles/community/User";
-import { PathLink } from "../../styles/community/Community";
 import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
 import User_Feed from "./components/common/User_Feed";
 import Board_Community_Main from "./components/common/Board_Community_Main";
@@ -99,13 +98,11 @@ const User_Main = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <PathLink onClick={() => handleCommunity()}>
-                <TopBoxText>community</TopBoxText>
-              </PathLink>
+              <TopBoxText onClick={() => handleCommunity()}>
+                community
+              </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <PathLink onClick={() => handleRefresh()}>
-                <TopBoxText>User Page</TopBoxText>
-              </PathLink>
+              <TopBoxText onClick={() => handleRefresh()}>User Page</TopBoxText>
             </TopBox>
           </TopBoxWide>
           <Container>

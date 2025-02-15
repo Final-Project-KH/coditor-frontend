@@ -8,7 +8,6 @@ import {
   ImageBox,
   TopBox,
   TopBoxArrow,
-  TopBoxLink,
   TopBoxText,
   TopBoxWide,
   Wrap,
@@ -42,17 +41,13 @@ const Roadmap_Fullstack = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>more</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => handleRefresh()}>more</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>개발자 로드맵</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => handleRefresh()}>
+                개발자 로드맵
+              </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>📚 풀스택</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => handleRefresh()}>📚 풀스택</TopBoxText>
             </TopBox>
           </TopBoxWide>
           <Container>

@@ -10,7 +10,6 @@ import {
   TopBoxText2,
   TopBoxArrow,
   TopBoxArrow2,
-  TopBoxLink,
   Wrap,
 } from "../../styles/more/Roadmap_M";
 import ScrollToTopButton from "../ScrollToTopButton";
@@ -27,20 +26,16 @@ const Roadmap_Backend_M = () => {
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>more</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleRefresh()}>more</TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>개발자 로드맵</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleRefresh()}>
+              개발자 로드맵
+            </TopBoxText>
           </TopBox>
         </TopBoxWide>
         <TopBoxWide2>
           <TopBox2>
-            <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText2>🛠️ 백엔드</TopBoxText2>
-            </TopBoxLink>
+            <TopBoxText2 onClick={() => handleRefresh()}>🛠️ 백엔드</TopBoxText2>
           </TopBox2>
         </TopBoxWide2>
         <Container>

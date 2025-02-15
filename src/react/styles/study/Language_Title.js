@@ -11,9 +11,10 @@ export const LeftSubjectContainer = styled.div.attrs({
   gap: 5px;
   border-radius: 30px;
   background-color: #f1f1f1;
-  position: sticky;
+  /* position: sticky;
   top: 75px;
-  left: 0;
+  left: 0; */
+  position: relative;
 `;
 
 export const SubjectImgContainerJava = styled.div.attrs({

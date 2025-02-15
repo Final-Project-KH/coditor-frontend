@@ -34,7 +34,6 @@ export const TopBox = styled.div.attrs({
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 10px;
 `;
 export const TopBoxText = styled.div.attrs({
   id: "topboxtext",

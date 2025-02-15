@@ -133,7 +133,7 @@ export const LevelContainer = styled.div.attrs({
 export const LevelImgPractice = styled.div.attrs({
   id: "levelimgpractice",
 })`
-  width: 40%;
+  width: 30%;
   height: 100px;
   display: flex;
   justify-content: center;

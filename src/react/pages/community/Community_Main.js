@@ -9,7 +9,6 @@ import {
   LeftContainer,
   CenterContainer,
   RightContainer,
-  PathLink,
 } from "../../styles/community/Community";
 
 import Board_Community_Main from "./components/common/Board_Community_Main";
@@ -35,9 +34,7 @@ const Community_Main = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <PathLink onClick={() => handleRefresh()}>
-                <TopBoxText>community</TopBoxText>
-              </PathLink>
+              <TopBoxText onClick={() => handleRefresh()}>community</TopBoxText>
             </TopBox>
           </TopBoxWide>
           <Container>

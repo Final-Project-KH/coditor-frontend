@@ -11,7 +11,6 @@ import {
   LeftContainer,
   CenterContainer,
   RightContainer,
-  PathLink,
   BoardContainer,
 } from "../../styles/community/Community";
 import BoardList from "./components/common/Side_BoardList";
@@ -86,13 +85,13 @@ const Community_Course = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <PathLink onClick={() => handleCommunity()}>
-                <TopBoxText>community</TopBoxText>
-              </PathLink>
+              <TopBoxText onClick={() => handleCommunity()}>
+                community
+              </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <PathLink onClick={() => handleRefresh()}>
-                <TopBoxText>🎓 진로 질문</TopBoxText>
-              </PathLink>
+              <TopBoxText onClick={() => handleRefresh()}>
+                🎓 진로 질문
+              </TopBoxText>
             </TopBox>
           </TopBoxWide>
           <Container>

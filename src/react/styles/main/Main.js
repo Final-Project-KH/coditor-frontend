@@ -272,6 +272,7 @@ export const CTButton = styled.div.attrs({
   justify-content: center;
   align-items: center;
   border: 1px solid #333333;
+  cursor: pointer;
   &:hover {
     color: white;
     background-color: #333333;

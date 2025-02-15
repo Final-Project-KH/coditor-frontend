@@ -109,8 +109,8 @@ export const TopBoxArrow = styled.div.attrs({
 })`
   color: white;
   font-size: 20px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-family: "medium", sans-serif;
   padding-bottom: 3px;
 `;

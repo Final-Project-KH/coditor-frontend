@@ -8,7 +8,6 @@ import {
   ImageBox,
   TopBox,
   TopBoxArrow,
-  TopBoxLink,
   TopBoxText,
   TopBoxWide,
   Wrap,
@@ -42,17 +41,13 @@ const Roadmap_DevOps = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>more</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => handleRefresh()}>more</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>개발자 로드맵</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => handleRefresh()}>
+                개발자 로드맵
+              </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>🪢 DevOps</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => handleRefresh()}>🪢 DevOps</TopBoxText>
             </TopBox>
           </TopBoxWide>
           <Container>

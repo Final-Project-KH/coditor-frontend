@@ -7,7 +7,6 @@ import {
   ImageBox,
   TopBox,
   TopBoxArrow,
-  TopBoxLink,
   TopBoxText,
   TopBoxWide,
   Wrap,
@@ -41,17 +40,13 @@ const Roadmap_Backend = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>more</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => handleRefresh()}>more</TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>개발자 로드맵</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => handleRefresh()}>
+                개발자 로드맵
+              </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxLink onClick={() => handleRefresh()}>
-                <TopBoxText>🛠️ 백엔드</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => handleRefresh()}>🛠️ 백엔드</TopBoxText>
             </TopBox>
           </TopBoxWide>
           <Container>

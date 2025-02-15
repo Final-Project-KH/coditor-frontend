@@ -23,9 +23,11 @@ export const TopBoxWide = styled.div.attrs({
   align-items: center;
   background-color: #313131;
   position: fixed;
+  left: 0;
   top: 100px;
   z-index: 5;
 `;
+
 export const TopBox = styled.div.attrs({
   id: "topbox",
 })`
@@ -34,7 +36,6 @@ export const TopBox = styled.div.attrs({
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 10px;
 `;
 export const TopBoxText = styled.div.attrs({
   id: "topboxtext",

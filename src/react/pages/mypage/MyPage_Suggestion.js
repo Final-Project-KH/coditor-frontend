@@ -6,7 +6,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
   LeftContainer,
   CenterContainer,
@@ -60,13 +59,13 @@ const MyPage_Suggestion = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxLink onClick={() => navigate("/mypage")}>
-                <TopBoxText>my page</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => navigate("/mypage")}>
+                my page
+              </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxLink onClick={() => navigate("/mypage/suggestion")}>
-                <TopBoxText>건의사항</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => navigate("/mypage/suggestion")}>
+                건의사항
+              </TopBoxText>
             </TopBox>
           </TopBoxWide>
 
@@ -77,7 +76,7 @@ const MyPage_Suggestion = () => {
             </LeftContainer>
 
             <CenterContainer>
-            <CenterContainerTitle>건의사항</CenterContainerTitle>
+              <CenterContainerTitle>건의사항</CenterContainerTitle>
               {/* 정렬 버튼을 Board_TopSort 스타일로 변경 */}
               <TopSortOuterContiner>
                 <TopSortInnerContainer>

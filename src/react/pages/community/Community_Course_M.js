@@ -8,7 +8,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
   BoardContainer,
 } from "../../styles/community/Community_M";
@@ -71,31 +70,29 @@ const Community_Course_M = () => {
     setEnumFilter(newEnumFilter);
   };
 
-    // write post
-    const handleWrite = () => {
-      if (userAuth === "") {
-        alert("로그인이 필요한 서비스입니다.");
-        return navigate("/login");
-      }
-      navigate(`/community/${boardType}/write`, {
-        state: {
-          id: boardType,
-        },
-      });
-    };
+  // write post
+  const handleWrite = () => {
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
+    navigate(`/community/${boardType}/write`, {
+      state: {
+        id: boardType,
+      },
+    });
+  };
 
   return (
     <>
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <TopBoxLink onClick={() => handleCommunity()}>
-              <TopBoxText>community</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleCommunity()}>community</TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText>🎓 진로 질문</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleRefresh()}>
+              🎓 진로 질문
+            </TopBoxText>
           </TopBox>
         </TopBoxWide>
         <Container>

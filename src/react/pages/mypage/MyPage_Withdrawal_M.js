@@ -6,7 +6,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
   LeftContainer,
   CenterContainer,
@@ -85,47 +84,45 @@ const MyPage_Withdrawal_M = () => {
           <>
             <TopBoxWide>
               <TopBox>
-                <TopBoxLink onClick={() => handleMyPage()}>
-                  <TopBoxText>my page</TopBoxText>
-                </TopBoxLink>
+                <TopBoxText onClick={() => handleMyPage()}>my page</TopBoxText>
                 <TopBoxArrow>{`>`}</TopBoxArrow>
-                <TopBoxLink onClick={() => handleRefresh()}>
-                  <TopBoxText>회원 탈퇴</TopBoxText>
-                </TopBoxLink>
+                <TopBoxText onClick={() => handleRefresh()}>
+                  회원 탈퇴
+                </TopBoxText>
               </TopBox>
             </TopBoxWide>
             <Container>
               <MobileEachTitle>회원 탈퇴</MobileEachTitle>
-                  <CenterContentsContainer>
-                    <ContentsHeadline>
-                      회원 탈퇴 전, 다음 내용을 꼭 확인해주세요.
-                    </ContentsHeadline>
-                    <ContentsText>
-                      · 고객 정보 및 개인형 서비스 이용 기록은 개인정보
-                      처리방침에 따라 삭제됩니다.
-                      <br />
-                      · 회원 탈퇴 후에는 회원님의 개인정보를 복원할 수 없으며,
-                      해당 아이디는 영구 삭제되어 재가입이 불가합니다.
-                      <br />· 회원 탈퇴 후에도 작성하신 게시물은 삭제되지
-                      않으니, 한번 더 확인하시기 바랍니다.
-                    </ContentsText>
-                    <CheckBoxGroup>
-                      <Checkbox
-                        color="default"
-                        checked={isChecked}
-                        onChange={handleCheckboxChange}
-                      />
-                      <ContentsCheckText>
-                        안내 사항을 모두 확인하였으며, 이에 동의합니다.
-                      </ContentsCheckText>
-                    </CheckBoxGroup>
-                    <WithdrawalButton
-                      disabled={!isChecked}
-                      onClick={handleWithdrawal}
-                    >
-                      코디터 회원 탈퇴
-                    </WithdrawalButton>
-                  </CenterContentsContainer>
+              <CenterContentsContainer>
+                <ContentsHeadline>
+                  회원 탈퇴 전, 다음 내용을 꼭 확인해주세요.
+                </ContentsHeadline>
+                <ContentsText>
+                  · 고객 정보 및 개인형 서비스 이용 기록은 개인정보 처리방침에
+                  따라 삭제됩니다.
+                  <br />
+                  · 회원 탈퇴 후에는 회원님의 개인정보를 복원할 수 없으며, 해당
+                  아이디는 영구 삭제되어 재가입이 불가합니다.
+                  <br />· 회원 탈퇴 후에도 작성하신 게시물은 삭제되지 않으니,
+                  한번 더 확인하시기 바랍니다.
+                </ContentsText>
+                <CheckBoxGroup>
+                  <Checkbox
+                    color="default"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
+                  />
+                  <ContentsCheckText>
+                    안내 사항을 모두 확인하였으며, 이에 동의합니다.
+                  </ContentsCheckText>
+                </CheckBoxGroup>
+                <WithdrawalButton
+                  disabled={!isChecked}
+                  onClick={handleWithdrawal}
+                >
+                  코디터 회원 탈퇴
+                </WithdrawalButton>
+              </CenterContentsContainer>
             </Container>
             <ScrollToTopButton />
           </>

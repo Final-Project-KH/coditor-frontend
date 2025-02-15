@@ -6,7 +6,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
   LeftContainer,
   CenterContainer,
@@ -45,13 +44,13 @@ const MyPage_Community = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <TopBoxLink onClick={() => navigate("/mypage")}>
-                <TopBoxText>my page</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => navigate("/mypage")}>
+                my page
+              </TopBoxText>
               <TopBoxArrow>{`>`}</TopBoxArrow>
-              <TopBoxLink onClick={() => navigate("/mypage/community")}>
-                <TopBoxText>community</TopBoxText>
-              </TopBoxLink>
+              <TopBoxText onClick={() => navigate("/mypage/community")}>
+                community
+              </TopBoxText>
             </TopBox>
           </TopBoxWide>
           <Container>

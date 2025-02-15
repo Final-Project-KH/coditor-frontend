@@ -28,7 +28,6 @@ import {
   TopBoxText,
   TopBoxArrow,
   NavigatiePath,
-  TopBoxLink,
 } from "../../../styles/codingtest/CodingTestCommons_M";
 import ScrollToTopButton from "../../ScrollToTopButton";
 
@@ -99,13 +98,11 @@ const Practice_M = () => {
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxLink onClick={() => handleCodingTest()}>
-            <TopBoxText>coding test</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleCodingTest()}>
+            coding test
+          </TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText>Practice</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleRefresh()}>Practice</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <Container>
@@ -113,33 +110,33 @@ const Practice_M = () => {
           <LevelImgPractice />
           Practice
         </LevelContainerPage>
-          {challengeGroups === null
-            ? "Loading..."
-            : Object.keys(challengeGroups).length === 0
-            ? "데이터가 존재하지 않습니다😓.."
-            : Object.entries(challengeGroups).map(([category, items]) => (
-                <EachClass key={category}>
-                  <ClassHeader>
-                    <ClassHeaderTitle>{category}</ClassHeaderTitle>
-                  </ClassHeader>
-                  <ClassContents isOpen={true}>
-                    {items.map((content) => (
-                      <ClassSet key={content.questionId}>
-                        <ClassName>
-                          <NavigatiePath
-                            onClick={() =>
-                              navigate(
-                                `/codingtest/challenge/${content.questionId}`
-                              )
-                            }
-                          ></NavigatiePath>
-                          {content.title}
-                        </ClassName>
-                      </ClassSet>
-                    ))}
-                  </ClassContents>
-                </EachClass>
-              ))}
+        {challengeGroups === null
+          ? "Loading..."
+          : Object.keys(challengeGroups).length === 0
+          ? "데이터가 존재하지 않습니다😓.."
+          : Object.entries(challengeGroups).map(([category, items]) => (
+              <EachClass key={category}>
+                <ClassHeader>
+                  <ClassHeaderTitle>{category}</ClassHeaderTitle>
+                </ClassHeader>
+                <ClassContents isOpen={true}>
+                  {items.map((content) => (
+                    <ClassSet key={content.questionId}>
+                      <ClassName>
+                        <NavigatiePath
+                          onClick={() =>
+                            navigate(
+                              `/codingtest/challenge/${content.questionId}`
+                            )
+                          }
+                        ></NavigatiePath>
+                        {content.title}
+                      </ClassName>
+                    </ClassSet>
+                  ))}
+                </ClassContents>
+              </EachClass>
+            ))}
       </Container>
       <ScrollToTopButton />
     </Wrap>

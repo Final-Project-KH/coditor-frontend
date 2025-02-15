@@ -8,7 +8,6 @@ import {
   TopBoxText,
   Container,
   SubjectLink,
-  PathLink,
 } from "../../styles/study/Study_Main";
 
 import Java_Title from "./java/java_components/Java_Title";
@@ -69,9 +68,7 @@ const Study_Main = () => {
         <Wrap>
           <TopBoxWide>
             <TopBox>
-              <PathLink onClick={() => handleRefresh()}>
-                <TopBoxText>study</TopBoxText>
-              </PathLink>
+              <TopBoxText onClick={() => handleRefresh()}>study</TopBoxText>
             </TopBox>
           </TopBoxWide>
           <Container>

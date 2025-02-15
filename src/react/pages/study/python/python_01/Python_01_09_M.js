@@ -13,7 +13,6 @@ import {
   TopBoxText2,
   TopBoxArrow,
   TopBoxArrow2,
-  TopBoxLink,
   Container,
   EachClass,
   ClassHeader,
@@ -315,24 +314,18 @@ print(f"{work_time}시간 동안 근무한 {work_type_str} 급여는 {pay_str}�
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>study</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxLink onClick={() => handleStudyPython()}>
-            <TopBoxText>Python</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleStudyPython()}>Python</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <TopBoxWide2>
         <TopBox2>
-          <TopBoxLink onClick={() => handleStudyPython()}>
-            <TopBoxText2>01. 개발 환경 구성 및 기본 문법</TopBoxText2>
-          </TopBoxLink>
+          <TopBoxText2 onClick={() => handleStudyPython()}>
+            01. 개발 환경 구성 및 기본 문법
+          </TopBoxText2>
           <TopBoxArrow2>{`>`}</TopBoxArrow2>
-          <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText2>09. 조건문</TopBoxText2>
-          </TopBoxLink>
+          <TopBoxText2 onClick={() => handleRefresh()}>09. 조건문</TopBoxText2>
         </TopBox2>
       </TopBoxWide2>
       <Container>

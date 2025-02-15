@@ -7,7 +7,6 @@ import {
   TopBox,
   TopBoxText,
   TopBoxArrow,
-  TopBoxLink,
   Container,
 } from "../../../styles/study/Language_Main_M";
 
@@ -50,13 +49,9 @@ const Python_Main_M = () => {
     <Wrap>
       <TopBoxWide>
         <TopBox>
-          <TopBoxLink onClick={() => handleStudy()}>
-            <TopBoxText>study</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleStudy()}>study</TopBoxText>
           <TopBoxArrow>{`>`}</TopBoxArrow>
-          <TopBoxLink onClick={() => handleRefresh()}>
-            <TopBoxText>Python</TopBoxText>
-          </TopBoxLink>
+          <TopBoxText onClick={() => handleRefresh()}>Python</TopBoxText>
         </TopBox>
       </TopBoxWide>
       <Container>

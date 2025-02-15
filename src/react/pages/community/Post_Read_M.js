@@ -10,12 +10,10 @@ import {
   TopBoxText2,
   TopBoxArrow,
   TopBoxArrow2,
-  TopBoxLink,
   Container,
 } from "../../styles/community/Post_M";
 import { FloatWriteButton } from "../../styles/community/Board_M";
 import Post_ReplyArea from "./components/common/Post_ReplyArea";
-import { PathLink } from "../../styles/community/Community";
 import Post_RelatedPosts from "./components/common/Post_RelatedPosts";
 import Post_MainContents from "./components/common/Post_MainContents";
 import { useEffect, useState } from "react";
@@ -82,49 +80,46 @@ const Post_Read_M = () => {
     readPost();
   }, [boardId]);
 
-    // write post
-    const handleWrite = () => {
-      if (userAuth === "") {
-        alert("로그인이 필요한 서비스입니다.");
-        return navigate("/login");
-      }
-      navigate(`/community/${boardType}/write`, {
-        state: {
-          id: boardType,
-        },
-      });
-    };
+  // write post
+  const handleWrite = () => {
+    if (userAuth === "") {
+      alert("로그인이 필요한 서비스입니다.");
+      return navigate("/login");
+    }
+    navigate(`/community/${boardType}/write`, {
+      state: {
+        id: boardType,
+      },
+    });
+  };
 
   return (
     <>
       <Wrap>
         <TopBoxWide>
           <TopBox>
-            <TopBoxLink onClick={() => handleCommunity()}>
-              <TopBoxText>community</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleCommunity()}>community</TopBoxText>
             <TopBoxArrow>{`>`}</TopBoxArrow>
-            <TopBoxLink onClick={() => handleCommunityBoard()}>
-              <TopBoxText>{boardDisplayName}</TopBoxText>
-            </TopBoxLink>
+            <TopBoxText onClick={() => handleCommunityBoard()}>
+              {boardDisplayName}
+            </TopBoxText>
           </TopBox>
         </TopBoxWide>
         <TopBoxWide2>
           <TopBox2>
-            <TopBoxLink onClick={() => handleRefresh()}>
-              <TopBoxText2
-                style={{
-                  maxWidth: "89vw",
-                  display: "-webkit-box",
-                  WebkitBoxOrient: "vertical",
-                  WebkitLineClamp: "1",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                {postTitle}
-              </TopBoxText2>
-            </TopBoxLink>
+            <TopBoxText2
+              style={{
+                maxWidth: "89vw",
+                display: "-webkit-box",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: "1",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+              onClick={() => handleRefresh()}
+            >
+              {postTitle}
+            </TopBoxText2>
           </TopBox2>
         </TopBoxWide2>
         <Container>
